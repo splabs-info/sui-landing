@@ -1,0 +1,32 @@
+export const UserEndpoint = {
+  ENDPOINT_GET_PROFILE: `/identity/user/profile`,
+  FUND_LOCK_AMOUNT: "/fund/balancedeb",
+  ENDPOINT_GET_BALANCE: `/fund/balance`,
+  ENDPOINT_MY_NFT: `/nft/my-nfts`,
+  ENDPOINT_USER_LOGIN_WITH_SIGNATURE: "/identity/user/login-by-google",
+  USER_UPDATE_ADDRESS: "/user/address",
+  ENDPOINT_LOGIN_WITH_GOOGLE: `/user/login-by-google`,
+  ENDPOINT_POST_USER_REGISTER_OTP: `/user/send-otp`,
+  ENDPOINT_POST_USER_LOGIN: `/user/login-by-email`,
+  REGISTER: `/identity/user/register`,
+  LOGIN: `/identity/user/login`,
+  SEND_OTP: `/email/send-register-otp`,
+  GET_INFORMATION_BY_ADDRESS: `/identity/user/get-ref-by-address`,
+};
+
+export const UserConstant = {
+  ADD_MY_ITEMS: "ADD_MY_ITEMS",
+  ADD_WALLET_ADDRESS: "ADD_WALLET_ADDRESS",
+  ADD_WALLET_SIGNATURE: "ADD_WALLET_SIGNATURE",
+  FETCH_USER: "FETCH_USER",
+  GET_BALANCE: "GET_BALANCE",
+  GET_ONCHAIN_BALANCE: "GET_ONCHAIN_BALANCE",
+  GET_PRE_SALE_BALANCE: "GET_PRE_SALE_BALANCE",
+  UPDATE_PARTNER_REF: "UPDATE_PARTNER_REF",
+  UPDATE_REF: "UPDATE_REF",
+  UPDATE_WALLET_NAME: "UPDATE_WALLET_NAME",
+  SET_RI_USER_TYPE: "SET_RI_USER_TYPE",
+  SET_USER_PROFILE_LOADING: "SET_USER_PROFILE_LOADING",
+  GET_USER_LOCK_BALANCE: "GET_USER_LOCK_BALANCE",
+  SET_INFORMATION_BY_ADDRESS: `GET_INFORMATION_BY_ADDRESS`,
+};

@@ -1,0 +1,216 @@
+import { Box, Container, Grid, Typography, } from "@mui/material";
+import { styled } from "@mui/system";
+import { useSelector } from "react-redux";
+import { NetworksGrid, TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
+import useResponsive from "../../../hooks/useResponsive";
+
+const ContainerNetwork = styled(Box)(({ theme }) => ({
+  display: "grid",
+  width: "100%",
+  gridTemplateColumns: "repeat(6, 1fr)",
+
+  "& a": {
+    background: "rgba(50,53,96,0.33)",
+    margin: "0.3rem",
+    padding: '1rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '0.5rem',
+    "&:nth-of-type(n + 7)": {
+      opacity: '0.7'
+    },
+    "&:nth-of-type(n + 13)": {
+      opacity: '0.5'
+    }
+  },
+
+  [theme.breakpoints.down("md")]: {
+    gridTemplateColumns: "repeat(3, 1fr)",
+
+    "& a": {
+      "&:nth-of-type(n + 7)": {
+        display: 'none'
+      },
+
+    },
+
+  },
+  [theme.breakpoints.down("sm")]: {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+
+}));
+
+const CustomLogo = styled("img")(() => ({
+  transition: "transform 150ms ease-in-out",
+  padding: 0,
+  display: "block",
+  maxHeight: '45px',
+  "&:hover": {
+    transform: "scale(1.05)",
+  },
+}));
+
+const networks = [
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "3",
+    link: "/",
+  },
+  {
+    imgNumber: "4",
+    link: "/",
+  },
+
+
+
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "3",
+    link: "/",
+  },
+  {
+    imgNumber: "4",
+    link: "/",
+  },
+
+
+
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "1",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "2",
+    link: "/",
+  },
+  {
+    imgNumber: "3",
+    link: "/",
+  },
+  {
+    imgNumber: "4",
+    link: "/",
+  },
+
+
+];
+
+export default function Networks() {
+  const isDesktop = useResponsive("up", "md");
+  const isMobile = useResponsive("down", "sm");
+  const { setting } = useSelector((state) => state);
+  const { library } = setting;
+  return (
+    <Box pt={isDesktop ? 15 : 5} pb={5}>
+      <Box id="Network">
+      </Box>
+      <Container>
+        <TitleBox sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignSelf: 'center',
+          alignItems: 'center',
+        }}>
+          <TypographyGradient sx={{
+            fontSize: isDesktop ? '1.75rem' : '1.25rem',
+            fontFamily: "SVN-Gilroy-heavy",
+            marginBottom: '1rem',
+          }}>
+            ALL MAIN BLOCKCHAIN NETWORKS
+          </TypographyGradient>
+          <img alt="gatekeeper" src="/images/home/line.png" width={'30%'} />
+        </TitleBox>
+        <ContainerNetwork mt={4} mb={isDesktop ? 15 : 6}>
+          {networks.map((network, index) =>
+            <a
+              href={network.link}
+              target="_blank"
+              rel="noreferrer"
+              key={index}
+            >
+              <CustomLogo
+                src={`./images/networks/network-${network.imgNumber}.png`}
+                alt={network.label}
+              />
+            </a>
+          )}
+        </ContainerNetwork>
+
+        <NetworksGrid container >
+          <Grid item md={6}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignSelf: 'center',
+              alignItems: 'center',
+            }}>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: isDesktop ? 'flex-start' : 'center',
+            }}>
+              <img alt="gatekeeper" src="/images/home/gate-2.png" width={'90%'} />
+            </Box>
+
+          </Grid>
+          <Grid item md={6} p={isDesktop ? 5 : 2}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignSelf: 'center',
+              alignItems: 'center',
+            }}>
+            <TypographyGradient
+              sx={{
+                fontSize: isDesktop ? '2.5rem' : '1.25rem',
+                fontFamily: "SVN-Gilroy-semi-bold",
+                textTransform: 'inherit',
+                textAlign: isMobile && 'center'
+              }}>
+              Erase all comments and leave only artificial. Put picture i left on this level
+            </TypographyGradient>
+          </Grid>
+        </NetworksGrid>
+      </Container>
+    </Box>
+  );
+}
