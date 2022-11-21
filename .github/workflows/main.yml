@@ -1,0 +1,31 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Deploy Staging
+
+on:
+  push:
+  branches:
+      - develop
+  release:
+    types: [created]
+publish:
+    name: Install and publish
+    runs-on: ubuntu-latest
+teps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: expo/expo-github-action@v5
+        with:
+          expo-version: 3.x
+          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+          expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+- run: npm install
+      - run: expo publish --release-channel=pro2
+      - uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.EXPO_CLI_GIT_TOKEN }}
+        with:
+          msg: App is ready for review, you can [see it here](https://expo.io/@bycedric/use-expo?release-channel=pro2.
