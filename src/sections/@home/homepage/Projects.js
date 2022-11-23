@@ -29,6 +29,18 @@ const projects = [
     label: "airtnt",
     link: "https://airtnt.io/",
   },
+  {
+    label: "comingsoon",
+    link: "/coming-soon",
+  },
+  {
+    label: "comingsoon",
+    link: "/coming-soon",
+  },
+  {
+    label: "comingsoon",
+    link: "/coming-soon",
+  },
 
 ];
 

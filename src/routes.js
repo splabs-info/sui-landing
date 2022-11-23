@@ -3,7 +3,7 @@ import ClientLayout from "./layouts";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import NotFound from "./pages/Page404";
-import ComingSoon from "./pages/PageComingSoon";
+import ComingSoon from "./pages/ComingSoon";
 import Register from "./pages/Register";
 
 // ----------------------------------------------------------------------

@@ -5,12 +5,10 @@ export const jp = {
   key_1: "Home",
   key_2: "IDO",
   key_3: "INO",
-  key_4: "Multi-portal Brige",
-  key_5: "Partnership",
-  key_6: "Router",
-  key_7: "Roadmap",
-  key_8: "GT Token",
-  key_9: "Whitepaper",
-  key_10: "Apply for Launchpad",
+  key_4: "Swap",
+  key_5: "Stake",
+  key_6: "GT Token",
+  key_7: "Whitepaper",
+  key_8: "Apply for Launchpad",
 
 };

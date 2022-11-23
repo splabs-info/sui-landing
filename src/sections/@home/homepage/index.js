@@ -8,4 +8,5 @@ export { default as Roadmap } from './Roadmap';
 export { default as Tokenomic } from './Tokenomic';
 
 export { default as Projects } from './Projects';
+export { default as FeaturedBy } from './FeaturedBy';
 export { default as Partner } from './Partner';

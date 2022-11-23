@@ -1,3 +1,4 @@
+import { BorderRight } from "@mui/icons-material";
 import { Box, Container, Grid, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
@@ -7,7 +8,7 @@ import useResponsive from "../../../hooks/useResponsive";
 const ContainerNetwork = styled(Box)(({ theme }) => ({
   display: "grid",
   width: "100%",
-  gridTemplateColumns: "repeat(6, 1fr)",
+  gridTemplateColumns: "repeat(5, 1fr)",
 
   "& a": {
     background: "rgba(50,53,96,0.33)",
@@ -58,15 +59,11 @@ const networks = [
     link: "/",
   },
   {
-    imgNumber: "1",
-    link: "/",
-  },
-  {
     imgNumber: "2",
     link: "/",
   },
   {
-    imgNumber: "2",
+    imgNumber: "5",
     link: "/",
   },
   {
@@ -74,64 +71,29 @@ const networks = [
     link: "/",
   },
   {
-    imgNumber: "4",
+    imgNumber: "6",
     link: "/",
   },
 
+];
 
-
+const networksNumber = [
   {
-    imgNumber: "1",
-    link: "/",
+    label: "Blockchains",
+    amount: "16",
   },
   {
-    imgNumber: "1",
-    link: "/",
+    label: "Total trades",
+    amount: "16.5 M+",
   },
   {
-    imgNumber: "2",
-    link: "/",
+    label: "Total active users",
+    amount: "700 K+",
   },
   {
-    imgNumber: "2",
-    link: "/",
+    label: "Aggregated sources",
+    amount: "185 +",
   },
-  {
-    imgNumber: "3",
-    link: "/",
-  },
-  {
-    imgNumber: "4",
-    link: "/",
-  },
-
-
-
-  {
-    imgNumber: "1",
-    link: "/",
-  },
-  {
-    imgNumber: "1",
-    link: "/",
-  },
-  {
-    imgNumber: "2",
-    link: "/",
-  },
-  {
-    imgNumber: "2",
-    link: "/",
-  },
-  {
-    imgNumber: "3",
-    link: "/",
-  },
-  {
-    imgNumber: "4",
-    link: "/",
-  },
-
 
 ];
 
@@ -160,7 +122,7 @@ export default function Networks() {
           </TypographyGradient>
           <img alt="gatekeeper" src="/images/home/line.png" width={'30%'} />
         </TitleBox>
-        <ContainerNetwork mt={4} mb={isDesktop ? 15 : 6}>
+        <ContainerNetwork mt={4} mb={isDesktop ? 8 : 6}>
           {networks.map((network, index) =>
             <a
               href={network.link}
@@ -192,7 +154,7 @@ export default function Networks() {
             </Box>
 
           </Grid>
-          <Grid item md={6} p={isDesktop ? 5 : 2}
+          <Grid item md={6} pr={2}
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -204,10 +166,30 @@ export default function Networks() {
                 fontSize: isDesktop ? '2.5rem' : '1.25rem',
                 fontFamily: "SVN-Gilroy-semi-bold",
                 textTransform: 'inherit',
-                textAlign: isMobile && 'center'
+                textAlign: 'center'
               }}>
               Erase all comments and leave only artificial. Put picture i left on this level
             </TypographyGradient>
+            <Grid container sx={{
+              borderRadius: '1rem',
+              border: '1px solid #416FD9',
+              marginTop: '1.5rem',
+            }}>
+              {networksNumber.map((detail, index) => (
+                <Grid item xs={3} key={index}
+                  sx={{
+                    padding: '0 0.5rem',
+                    margin: '0.75rem 0',
+                    color: 'white',
+                    textAlign: 'center',
+                    borderRight: networksNumber.length !== index + 1 ? '1px solid #416FD9 ' : 'none',
+                  }}>
+                  <Typography fontSize={'1.75rem'} variant="h4">{detail.amount}</Typography>
+                  <Typography fontSize={'0.75rem'} variant="body2">{detail.label}</Typography>
+
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </NetworksGrid>
       </Container>

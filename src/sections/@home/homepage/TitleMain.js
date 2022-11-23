@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import useResponsive from "../../../hooks/useResponsive";
@@ -80,7 +80,13 @@ export default function TitleMain() {
                 Apply for Launchpad
               </ApplyButton>
             </ButtonTitleBox>
-            <Box mt={3}>
+            <Box mt={3}
+              sx={{
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+              }}>
+              <Typography variant="body1" mr={2}> Powered by </Typography>
               <img alt="gatekeeper" src="/images/home/logo-gatechain.png" width={120} />
             </Box>
           </Grid>

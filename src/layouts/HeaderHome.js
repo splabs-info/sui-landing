@@ -28,12 +28,12 @@ import { WhitePaperButton, Header, IconLang, Navbar, ApplyButton } from "../comp
 
 const config = [
 
-  { label: "key_1", link: "/#" },
-  { label: "key_2", link: "/#" },
-  { label: "key_3", link: "/#" },
-  { label: "key_4", link: "/#" },
-  { label: "key_5", link: "/#" },
-  { label: "key_6", link: "/#" },
+  { label: "key_1", link: "/" },
+  { label: "key_2", link: "/coming-soon" },
+  { label: "key_3", link: "/coming-soon" },
+  { label: "key_4", link: "/coming-soon" },
+  { label: "key_5", link: "/coming-soon" },
+  { label: "key_6", link: "/coming-soon" },
 ];
 
 const whitepaper = [
