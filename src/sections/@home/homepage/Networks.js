@@ -154,7 +154,7 @@ export default function Networks() {
             </Box>
 
           </Grid>
-          <Grid item md={6} pr={2}
+          <Grid item md={6} pr={isDesktop && 2}
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -163,7 +163,7 @@ export default function Networks() {
             }}>
             <TypographyGradient
               sx={{
-                fontSize: isDesktop ? '2.5rem' : '1.25rem',
+                fontSize: isDesktop ? '2.5rem' : '1.1rem',
                 fontFamily: "SVN-Gilroy-semi-bold",
                 textTransform: 'inherit',
                 textAlign: 'center'
@@ -184,7 +184,7 @@ export default function Networks() {
                     textAlign: 'center',
                     borderRight: networksNumber.length !== index + 1 ? '1px solid #416FD9 ' : 'none',
                   }}>
-                  <Typography fontSize={'1.75rem'} variant="h4">{detail.amount}</Typography>
+                  <Typography variant="h4" fontSize={isDesktop ? '1.75rem' : '1rem'} >{detail.amount}</Typography>
                   <Typography fontSize={'0.75rem'} variant="body2">{detail.label}</Typography>
 
                 </Grid>

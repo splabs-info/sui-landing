@@ -108,6 +108,7 @@ export const NetworksGrid = styled(Grid)(({ theme }) => ({
     background: "transparent",
     margin: '2rem 0',
     padding: '1rem',
+    justifyContent: 'center',
     "&::before": {
         content: "''",
         position: "absolute",
