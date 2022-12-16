@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import { useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import LogoSPlabs from "../components/common/LogoSPlabs";
 import { EndBox, Footer, SocialBox, FooterTitle, UlCustom } from "../components/footer/FooterStyles";
 import useResponsive from "../hooks/useResponsive";
 import { _changeLanguage } from "../store/setting/settingActions";
@@ -142,13 +143,10 @@ export default function FooterHome() {
               }}>
               <Box component={'img'} src="/logo.png" width={isMobile ? 250 : '100%'} maxWidth={300} />
             </Box>
-            <Typography variant="h4" sx={{
-              padding: "1rem 0 0.5rem",
-              textAlign: isMobile && 'center',
-              fontFamily: "SVN-Gilroy-semi-bold",
-            }}>
-              SPLABS MARK
-            </Typography>
+            <LogoSPlabs
+              width={'150px'}
+              sx={{ marginTop: '1rem', marginBottom: '0.5rem' }}
+            />
             <Typography variant="body1" sx={{
               fontSize: ".9rem",
               textAlign: isMobile && 'center',
@@ -257,6 +255,9 @@ export default function FooterHome() {
           >
             <FooterTitle>
               {library.key_14}
+              <LogoSPlabs
+                width={'90px'}
+              />
             </FooterTitle>
 
             <UlCustom >

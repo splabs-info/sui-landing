@@ -18,7 +18,9 @@ export const TypographyGradient = styled(Typography)(({ theme }) => ({
 
 
 export const ButtonTitleBox = styled(Box)(({ theme }) => ({
-    marginTop: '4rem',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '1rem',
     '& button': {
         borderRadius: "2rem",
         padding: "1rem 2rem",
@@ -30,7 +32,7 @@ export const ButtonTitleBox = styled(Box)(({ theme }) => ({
         fontSize: '1rem',
     },
     [theme.breakpoints.down("lg")]: {
-        marginTop: '2rem',
+        marginTop: '1rem',
         '& button': {
             minWidth: '200px',
         }

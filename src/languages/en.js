@@ -21,12 +21,11 @@ export const en = {
   key_9: "Contact",
 
 
-  key_10: "About SPLABS MARK",
+  key_10: "About GateKeeper",
   key_11: "Tokenomics",
-  key_12: "SPLABS MARK DEX",
   key_13: "Private Policy",
 
-  key_14: "Join SPLABS MARK",
+  key_14: "Join",
   key_15: "Apply for Incubation",
   key_16: "Gamefund",
   key_17: "IDO/INO",

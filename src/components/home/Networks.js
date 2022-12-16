@@ -1,7 +1,6 @@
-import { BorderRight } from "@mui/icons-material";
+
 import { Box, Container, Grid, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
-import { useSelector } from "react-redux";
 import { NetworksGrid, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
 
@@ -55,23 +54,23 @@ const CustomLogo = styled("img")(() => ({
 
 const networks = [
   {
-    imgNumber: "1",
+    label: "network-bnb",
     link: "/",
   },
   {
-    imgNumber: "2",
+    label: "network-bnb",
     link: "/",
   },
   {
-    imgNumber: "5",
+    label: "network-bnb",
     link: "/",
   },
   {
-    imgNumber: "3",
+    label: "network-bnb",
     link: "/",
   },
   {
-    imgNumber: "6",
+    label: "network-bnb",
     link: "/",
   },
 
@@ -99,9 +98,6 @@ const networksNumber = [
 
 export default function Networks() {
   const isDesktop = useResponsive("up", "md");
-  const isMobile = useResponsive("down", "sm");
-  const { setting } = useSelector((state) => state);
-  const { library } = setting;
   return (
     <Box pt={isDesktop ? 15 : 5} pb={5}>
       <Box id="Network">
@@ -131,7 +127,7 @@ export default function Networks() {
               key={index}
             >
               <CustomLogo
-                src={`./images/networks/network-${network.imgNumber}.png`}
+                src={`./images/networks/${network.label}.png`}
                 alt={network.label}
               />
             </a>

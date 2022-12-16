@@ -3,13 +3,11 @@ import useResponsive from "../../hooks/useResponsive";
 import { ButtonTitleBox, TypographyGradient, ApplyButton, AppButton } from "./HomeStyles";
 
 const Title = [
-  'Unlimited bridge for',
-  'multi-chain launchpad',
+  'Unlimited bridge for multi-chain launchpad',
   'on more blockchains',
 ]
 const SubTitle = [
-  'Our vision is to remove all barriers,',
-  'Build a decentralized technology for financial services,',
+  'Our vision is to remove all barriers, Build a decentralized technology for financial services,',
   'IDO and INO to be accessible to all global users.',
 ]
 
@@ -35,17 +33,15 @@ export default function TitleMain() {
         <Grid container>
           <Grid item
             xs={12}
-            sm={8}
-            md={6}
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignSelf: 'center',
             }}>
-            <Box mt={isDesktop ? 5 : 10} textAlign={isMobile && 'center'}>
+            <Box mt={isDesktop ? 5 : 10} textAlign={'center'}>
               {Title.map((item) => (
                 <TypographyGradient key={item}
-                  fontSize={isMaxDesktop ? '2.75rem' : isDesktop ? "2.3rem" : '1.5rem'}
+                  fontSize={isDesktop ? "2rem" : '1.5rem'}
                   fontFamily='SVN-Gilroy-semi-bold'
                 >
                   {item}<br />
@@ -61,11 +57,18 @@ export default function TitleMain() {
                   sx={{
                     color: 'white',
                     fontSize: isMobile && '14px',
-                    textAlign: isMobile && 'center',
+                    textAlign: 'center',
                   }}>
                   {item}
                 </Box>
               ))}
+            </Box>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+              mt={2} >
+              <img alt="gatekeeper" src="/images/home/gate-11.png" width={'30%'} />
             </Box>
             <ButtonTitleBox>
               <AppButton>
@@ -80,18 +83,10 @@ export default function TitleMain() {
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center'
               }}>
               <Typography variant="body1" mr={2}> Powered by </Typography>
               <img alt="gatekeeper" src="/images/home/logo-gatechain.png" width={120} />
-            </Box>
-          </Grid>
-          <Grid item sm={4} md={6} py={5}>
-            <Box sx={{
-              display: 'flex',
-              justifyContent: isMobile && 'center',
-            }}
-              mt={!isMobile && 5} >
-              <img alt="gatekeeper" src="/images/home/gate-11.png" width={isMobile ? '50%' : '90%'} />
             </Box>
           </Grid>
         </Grid>
