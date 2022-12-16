@@ -1,10 +1,6 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-
-import useResponsive from "../../../hooks/useResponsive";
-import "./../../../styles/Title.css";
-import { ButtonTitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import { ApplyButton, AppButton } from "../../../components/home/HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
+import { ButtonTitleBox, TypographyGradient, ApplyButton, AppButton } from "./HomeStyles";
 
 const Title = [
   'Unlimited bridge for',
@@ -23,7 +19,6 @@ export default function TitleMain() {
   const isMaxDesktop = useResponsive("up", "lg");
   const isTablet = useResponsive("down", "md");
   const isMobile = useResponsive("down", "sm");
-  const { setting } = useSelector((state) => state);
 
   return (
     <Box

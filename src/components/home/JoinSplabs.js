@@ -1,8 +1,7 @@
 
 import { Box, Container, Divider, Grid, Typography, } from "@mui/material";
-import { useSelector } from "react-redux";
-import { TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import useResponsive from "../../../hooks/useResponsive";
+import { TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 const Mints = [
   {
@@ -23,8 +22,6 @@ const Mints = [
 export default function JoinSplabs() {
   const isDesktop = useResponsive("up", "md");
   const isMobile = useResponsive("down", "sm");
-  const { setting } = useSelector((state) => state);
-  const { library } = setting;
   return (
     <Box pb={10} pt={10}
       sx={{

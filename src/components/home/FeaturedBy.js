@@ -4,13 +4,10 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
-import useResponsive from "../../../hooks/useResponsive";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function Tokenomic() {
   const isDesktop = useResponsive("up", "md");
-  const { setting } = useSelector((state) => state);
-  const { library } = setting;
   return (
     <Box>
       <Container>

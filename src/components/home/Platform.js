@@ -1,8 +1,7 @@
 
 import { Box, Container, } from "@mui/material";
-import { useSelector } from "react-redux";
-import { ContainerPlatform, PlatformBox, TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import useResponsive from "../../../hooks/useResponsive";
+import { ContainerPlatform, PlatformBox, TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 const platforms = [
   {
@@ -29,8 +28,7 @@ const platforms = [
 
 export default function Platform() {
   const isDesktop = useResponsive("up", "md");
-  const { setting } = useSelector((state) => state);
-  const { library } = setting;
+
   return (
     <Box pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}>
       <Container>

@@ -10,10 +10,10 @@ import {
   JoinSplabs,
   Roadmap,
   FeaturedBy,
-} from "../sections/@home/homepage";
-import Page from "../components/Page";
+} from "../components/home";
 import { Box } from "@mui/material";
 import useResponsive from "../hooks/useResponsive";
+import Page from "../components/common/Page";
 
 export default function Homepage() {
 

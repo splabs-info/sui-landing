@@ -1,8 +1,8 @@
 import {
   Box, Container,
 } from "@mui/material";
-import useResponsive from "../../../hooks/useResponsive";
-import { RoadmapBox, RoadmapList, RoadmapTitle, TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
+import { RoadmapBox, RoadmapList, RoadmapTitle, TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 
 const RoadmapContent = [

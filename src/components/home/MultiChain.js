@@ -1,9 +1,7 @@
-import { Box, Container, Typography, Card, Stack, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
-import { styled } from "@mui/system";
+import { Box, Container, Typography, Card, Stack, Grid, styled } from "@mui/material";
 import Slider from "react-slick";
-import useResponsive from "../../../hooks/useResponsive";
-import { TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
+import { TitleBox, TypographyGradient } from "./HomeStyles";
 
 const teams = [
   {
@@ -109,9 +107,6 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
 
 export default function MultiChain() {
   const isDesktop = useResponsive("up", "md");
-  const isMobile = useResponsive("down", "sm");
-  const { setting } = useSelector((state) => state);
-  const { library } = setting;
   const teamSliderSettings = {
     dots: true,
     infinite: true,
@@ -209,7 +204,7 @@ export default function MultiChain() {
             mt={4}>
             <SliderCustom {...teamSliderSettings}>
               {teams.map((item, index) => (
-                <Grid alignitem="flex-start" justifyContent="space-evenly" key={index} container>
+                <Grid alignItems="flex-start" justifyContent="space-evenly" key={index} container>
                   <CustomBox>
                     <Box mb={4}>
                       <img style={{ width: "min(25%,70px)" }} src={item.photoUrl} alt="" />

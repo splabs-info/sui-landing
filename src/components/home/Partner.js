@@ -1,8 +1,8 @@
-import { Box, Container, Typography, } from "@mui/material";
+import { Box, Container, } from "@mui/material";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
-import { TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import useResponsive from "../../../hooks/useResponsive";
+import { TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 const ContainerPartner = styled(Box)(({ theme }) => ({
 

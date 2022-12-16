@@ -1,8 +1,8 @@
 import { Box, Container, } from "@mui/material";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
-import { ContainerProject, ProjectBox, SeeMoreButton, TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import useResponsive from "../../../hooks/useResponsive";
+import { ContainerProject, ProjectBox, SeeMoreButton, TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 
 const CustomLogo = styled("img")(() => ({

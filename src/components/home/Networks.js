@@ -2,8 +2,8 @@ import { BorderRight } from "@mui/icons-material";
 import { Box, Container, Grid, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
-import { NetworksGrid, TitleBox, TypographyGradient } from "../../../components/home/HomeStyles";
-import useResponsive from "../../../hooks/useResponsive";
+import { NetworksGrid, TitleBox, TypographyGradient } from "./HomeStyles";
+import useResponsive from "../../hooks/useResponsive";
 
 const ContainerNetwork = styled(Box)(({ theme }) => ({
   display: "grid",

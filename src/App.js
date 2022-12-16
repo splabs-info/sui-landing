@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BackgroundJob from "./components/BackgroundJob";
+import BackgroundJob from "./components/common/BackgroundJob";
 import { BaseOptionChartStyle } from "./components/chart/BaseOptionChart";
 import ShowErrorComponent from "./components/common/ShowErrorComponent";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./components/common/ScrollToTop";
 import Routers from "./routes";
 import {
   _changeLanguage,
