@@ -45,12 +45,14 @@ export const FooterTitle = styled(Box)(({ theme }) => ({
 export const SocialBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     "& img": {
-        width: '90%'
+        width: '90%',
+        padding: '8px 8px 0 0',
     },
     "& a:hover": {
         borderBottom: '0px',
         "& img": {
-            width: '100%'
+            boxShadow: '0 0 10px white',
+            borderRadius: '16px',
         }
     },
     [theme.breakpoints.down("md")]: {

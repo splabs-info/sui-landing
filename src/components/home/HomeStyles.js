@@ -130,6 +130,20 @@ export const NetworksGrid = styled(Grid)(({ theme }) => ({
 
 }));
 
+export const NetworkBox = styled(Box)(({ theme }) => ({
+    marginTop: '2rem',
+    "& a": {
+        background: "rgba(50,53,96,0.33)",
+        // margin: "0.3rem",
+        padding: '1rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '0.5rem',
+    },
+
+}));
+
 
 // Platform
 
@@ -143,9 +157,9 @@ export const ContainerPlatform = styled(Box)(({ theme }) => ({
 
 export const PlatformBox = styled(Box)(({ theme }) => ({
     background: "#04051E",
-    margin: "1rem",
-    padding: '2rem',
-    display: 'flex',
+    // margin: "1rem",
+    padding: '1.5rem',
+    display: 'flex!important',
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
@@ -153,6 +167,8 @@ export const PlatformBox = styled(Box)(({ theme }) => ({
     width: '30%',
     position: 'relative',
     marginBottom: '2rem',
+    height: '100%',
+    minHeight: '520px',
     "&::before": {
         content: "''",
         position: "absolute",
@@ -166,36 +182,11 @@ export const PlatformBox = styled(Box)(({ theme }) => ({
         WebkitMaskComposite: "xor",
         zIndex: "0",
     },
-    "&:nth-of-type(1)": {
-        background: "#1F171F",
-    },
-    "&:nth-of-type(2)": {
-        background: "#04051E",
-        marginTop: '-5rem',
-        marginBottom: '7rem',
-    },
-    "&:nth-of-type(3)": {
-        background: "#181719",
-    },
-    "&:nth-of-type(4)": {
-        background: "#1D1717",
-    },
-    "&:nth-of-type(5)": {
-        background: "#061D1A",
-    },
     [theme.breakpoints.down("md")]: {
         width: '45%',
-        "&:nth-of-type(2)": {
-            marginTop: '1rem',
-            marginBottom: '2rem',
-        },
     },
     [theme.breakpoints.down("sm")]: {
         width: '90%',
-        "&:nth-of-type(2)": {
-            marginTop: '0',
-            marginBottom: '2rem',
-        },
     },
 }));
 

@@ -52,6 +52,10 @@ const joinGateKeeper = [
     label: "key_18",
     link: "/coming-soon"
   },
+  {
+    label: "key_19",
+    link: "/coming-soon"
+  },
 ]
 
 const aboutGateKeeper = [
@@ -69,6 +73,14 @@ const aboutGateKeeper = [
   },
   {
     label: "key_13",
+    link: ""
+  },
+  {
+    label: "WHITEPAPER",
+    link: ""
+  },
+  {
+    label: "MEDIA_KIT",
     link: ""
   },
 
@@ -280,7 +292,7 @@ export default function FooterHome() {
             textAlign={useResponsive("down", "md") && "center"}
           >
             <FooterTitle>
-              {library.key_19}
+              {library.key_20}
             </FooterTitle>
             <SocialBox>
               {socials.map((item, index) => (
@@ -289,6 +301,9 @@ export default function FooterHome() {
                 </Box>
               ))}
             </SocialBox>
+            <FooterTitle mt={3}>
+              {library.key_21}
+            </FooterTitle>
           </Grid>
 
         </Grid>

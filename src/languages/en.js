@@ -23,14 +23,18 @@ export const en = {
 
   key_10: "About GateKeeper",
   key_11: "Tokenomics",
+  key_12: "GateKeeper DEX",
   key_13: "Private Policy",
+  MEDIA_KIT: "Media Kit",
 
   key_14: "Join",
   key_15: "Apply for Incubation",
   key_16: "Gamefund",
   key_17: "IDO/INO",
   key_18: "Apply for Guild",
+  key_19: "Apply for IDO/INO",
 
-  key_19: "Social",
+  key_20: "Social",
+  key_21: "We are hiring",
 
 };

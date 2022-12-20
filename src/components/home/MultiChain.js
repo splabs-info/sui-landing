@@ -2,6 +2,7 @@ import { Box, Container, Typography, Card, Stack, Grid, styled } from "@mui/mate
 import Slider from "react-slick";
 import useResponsive from "../../hooks/useResponsive";
 import { TitleBox, TypographyGradient } from "./HomeStyles";
+import { multiChainSliderSettings } from "./SliderSettings";
 
 const teams = [
   {
@@ -107,55 +108,7 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
 
 export default function MultiChain() {
   const isDesktop = useResponsive("up", "md");
-  const teamSliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplaySpeed: 4000,
-    autoplay: true,
-    arrows: false,
-    appendDots: dots => {
-      return (
-        <div>
-          <ul>
-            {dots.map((item, index) => {
-              return (
-                <li style={{ color: "red" }} key={index}>{item.props.children}</li>
-              );
-            })}
-          </ul>
-        </div>
-      )
-    },
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+
 
   return (
     <Box pt={isDesktop ? 30 : 15} pb={isDesktop ? 20 : 5}
@@ -202,7 +155,7 @@ export default function MultiChain() {
 
           <Box
             mt={4}>
-            <SliderCustom {...teamSliderSettings}>
+            <SliderCustom {...multiChainSliderSettings}>
               {teams.map((item, index) => (
                 <Grid alignItems="flex-start" justifyContent="space-evenly" key={index} container>
                   <CustomBox>

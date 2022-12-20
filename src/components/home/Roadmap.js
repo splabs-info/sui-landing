@@ -3,6 +3,7 @@ import {
 } from "@mui/material";
 import { RoadmapBox, RoadmapList, RoadmapTitle, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
+import { IconDiscountCheck } from "@tabler/icons";
 
 
 const RoadmapContent = [
@@ -16,7 +17,8 @@ const RoadmapContent = [
       'Gatekeeper Pitch Deck',
       'Core Platform',
       'Development',
-    ]
+    ],
+    status: true
   },
   {
     title: 'Q4-2022',
@@ -91,7 +93,7 @@ export default function Roadmap() {
             (<RoadmapBox key={index}>
               <Box sx={{ width: '40%' }} className='Roadmap-Content' >
                 <RoadmapTitle>
-                  {item.title}
+                  {item.status && <IconDiscountCheck />} {item.title}
                 </RoadmapTitle>
                 <RoadmapList>
                   {item.content.map((text, j) => (

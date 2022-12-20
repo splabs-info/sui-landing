@@ -1,8 +1,10 @@
 
 import { Box, Container, Grid, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
-import { NetworksGrid, TitleBox, TypographyGradient } from "./HomeStyles";
+import { NetworkBox, NetworksGrid, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
+import Slider from "react-slick";
+import { networksSliderSettings } from "./SliderSettings";
 
 const ContainerNetwork = styled(Box)(({ theme }) => ({
   display: "grid",
@@ -58,19 +60,27 @@ const networks = [
     link: "/",
   },
   {
-    label: "network-bnb",
+    label: "network-etherum",
     link: "/",
   },
   {
-    label: "network-bnb",
+    label: "network-polygon",
     link: "/",
   },
   {
-    label: "network-bnb",
+    label: "network-klaytn",
     link: "/",
   },
   {
-    label: "network-bnb",
+    label: "network-ftmscan",
+    link: "/",
+  },
+  {
+    label: "network-kcc-2",
+    link: "/",
+  },
+  {
+    label: "network-solana",
     link: "/",
   },
 
@@ -79,25 +89,55 @@ const networks = [
 const networksNumber = [
   {
     label: "Blockchains",
-    amount: "16",
+    amount: "18",
   },
   {
-    label: "Total trades",
-    amount: "16.5 M+",
+    label: "Total Fundraised",
+    amount: "$ 2.5M",
   },
   {
-    label: "Total active users",
-    amount: "700 K+",
+    label: "Total Participant",
+    amount: "3 K+",
   },
   {
-    label: "Aggregated sources",
-    amount: "185 +",
+    label: "Projects",
+    amount: "3 +",
   },
 
 ];
 
+const SliderCustom = styled(Slider)(() => ({
+  '&.slick-slide': {
+    padding: "10px!important",
+  },
+  "& .slick-slide": {
+    transition: "all 0.3s ease-in-out",
+    padding: "10px!important",
+    "&.slick-active": {
+      opacity: "1",
+      color: "red",
+
+    },
+    "&.slick-current": {
+      opacity: "1",
+    },
+    "&.slick-center": {
+      marginTop: "-3rem",
+    },
+    "&.slick-prev": {
+      height: "3rem",
+    },
+    "& li.slick-active button::before": {
+      color: "red",
+    },
+    "& li": {
+      color: "red",
+    },
+  },
+}));
 export default function Networks() {
   const isDesktop = useResponsive("up", "md");
+
   return (
     <Box pt={isDesktop ? 15 : 5} pb={5}>
       <Box id="Network">
@@ -118,21 +158,23 @@ export default function Networks() {
           </TypographyGradient>
           <img alt="gatekeeper" src="/images/home/line.png" width={'30%'} />
         </TitleBox>
-        <ContainerNetwork mt={4} mb={isDesktop ? 8 : 6}>
+        <SliderCustom {...networksSliderSettings}>
           {networks.map((network, index) =>
-            <a
-              href={network.link}
-              target="_blank"
-              rel="noreferrer"
-              key={index}
-            >
-              <CustomLogo
-                src={`./images/networks/${network.label}.png`}
-                alt={network.label}
-              />
-            </a>
+            <NetworkBox>
+              <a
+                href={network.link}
+                target="_blank"
+                rel="noreferrer"
+                key={index}
+              >
+                <CustomLogo
+                  src={`./images/networks/${network.label}.png`}
+                  alt={network.label}
+                />
+              </a>
+            </NetworkBox>
           )}
-        </ContainerNetwork>
+        </SliderCustom>
 
         <NetworksGrid container >
           <Grid item md={6}
@@ -164,7 +206,7 @@ export default function Networks() {
                 textTransform: 'inherit',
                 textAlign: 'center'
               }}>
-              Erase all comments and leave only artificial. Put picture i left on this level
+              GateKeeper Overview
             </TypographyGradient>
             <Grid container sx={{
               borderRadius: '1rem',
