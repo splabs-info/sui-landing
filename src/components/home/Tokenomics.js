@@ -4,10 +4,11 @@ import {
   Grid,
 } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
-import { TitleBox, TypographyGradient } from "./HomeStyles"; import TokenTable from "./TokenTable";
+import { TitleBox, TypographyGradient } from "./HomeStyles";
+import TokenTable from "./TokenTable";
 ;
 
-export default function Tokenomic() {
+export default function Tokenomics() {
   const isDesktop = useResponsive("up", "md");
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import {
   TitleMain,
   MultiChain,
-  Tokenomic,
+  Tokenomics,
   Partner,
   Networks,
   Projects,
@@ -53,7 +53,7 @@ export default function Homepage() {
           backgroundSize: isDesktop ? "100% 100%" : "cover",
         }}
       >
-        <Tokenomic />
+        <Tokenomics />
       </Box>
       <Box
         sx={{
