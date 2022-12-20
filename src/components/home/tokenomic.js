@@ -4,8 +4,8 @@ import {
   Grid,
 } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
-import { TitleBox, TypographyGradient } from "./HomeStyles";
-import TokenomicTable from "./TokenomicTable";
+import { TitleBox, TypographyGradient } from "./HomeStyles"; import TokenTable from "./TokenTable";
+;
 
 export default function Tokenomic() {
   const isDesktop = useResponsive("up", "md");
@@ -32,7 +32,7 @@ export default function Tokenomic() {
             </a>
           </Grid>
           <Grid item xs={isDesktop ? 5 : 12} sx={{ position: "relative", top: !isDesktop ? "0" : "-1rem" }}>
-            <TokenomicTable />
+            <TokenTable />
           </Grid>
         </Grid>
       </Container>
