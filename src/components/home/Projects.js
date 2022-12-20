@@ -17,18 +17,18 @@ const CustomLogo = styled("img")(() => ({
 }));
 
 const projects = [
-  {
-    label: "stepwatch",
-    link: "https://stepwatch.io/",
-  },
-  {
-    label: "infinity",
-    link: "https://infinityangel.io/",
-  },
-  {
-    label: "airtnt",
-    link: "https://airtnt.io/",
-  },
+  // {
+  //   label: "stepwatch",
+  //   link: "https://stepwatch.io/",
+  // },
+  // {
+  //   label: "infinity",
+  //   link: "https://infinityangel.io/",
+  // },
+  // {
+  //   label: "airtnt",
+  //   link: "https://airtnt.io/",
+  // },
   {
     label: "comingsoon",
     link: "/coming-soon",
