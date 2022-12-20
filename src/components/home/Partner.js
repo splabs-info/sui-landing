@@ -21,7 +21,6 @@ const CustomLogo = styled("img")(() => ({
   transition: "transform 150ms ease-in-out",
   padding: 0,
   display: "block",
-  maxHeight: '60px',
   "&:hover": {
     transform: "scale(1.05)",
   },
@@ -29,95 +28,160 @@ const CustomLogo = styled("img")(() => ({
 
 const partners = [
   {
-    label: "8_FINANCE",
-    link: "https://8.finance/",
+    label: 'POLYGONSTUDIO',
+    link: 'https://polygonstudios.com/',
   },
   {
-    label: "bullperks",
-    link: "https://bullperks.com/",
+    label: 'POLYGON',
+    link: 'https://polygon.technology/',
   },
   {
-    label: "BITKEEP_P",
-    link: "https://bitkeep.com/",
+    label: 'BITKEEP_P',
+    link: 'https://bitkeep.com/',
   },
   {
-    label: "chaindustry",
-    link: "https://www.chaindustry.io/",
+    label: 'BLOCKWIZ',
+    link: 'https://blockwiz.com/',
   },
   {
-    label: "BLOCKWIZ",
-    link: "https://blockwiz.com/",
-  },
-
-
-
-
-  {
-    label: "CHAINLINK",
-    link: "https://chain.link/",
+    label: 'DWF',
+    link: 'https://www.dwf-labs.com/',
   },
   {
-    label: "POLYGON",
-    link: "https://polygon.technology/",
+    label: 'Kross',
+    link: 'https://www.krosslab.io/',
   },
   {
-    label: "POLYGONSTUDIO",
-    link: "https://polygonstudios.com/",
+    label: 'NFTB',
+    link: 'https://nftb.io/',
   },
   {
-    label: "SIGNVM",
-    link: "https://www.signvm.io/",
+    label: 'CHAINLINK',
+    link: 'https://chain.link/',
   },
   {
-    label: "SOKEN",
-    link: "https://soken.io/",
-  },
-
-
-
-
-  {
-    label: "klaytn",
-    link: "https://www.klaytn.foundation/",
+    label: 'chaindustry',
+    link: 'https://www.chaindustry.io/',
   },
   {
-    label: "GAMESPAD",
-    link: "https://gamespad.io/",
+    label: 'CLS',
+    link: 'https://www.cls.global/',
   },
   {
-    label: "GAMETREE",
-    link: "https://gametree.me/",
-  },
-  {
-    label: "EARNBOX",
-    link: "/",
-  },
-  {
-    label: "CLS",
-    link: "https://www.cls.global/",
+    label: 'nslogo',
+    link: 'http://www.nsstudio.co.kr/',
   },
 
+  {
+    label: 'Kiaydice',
+    link: 'https://klaydice.io/',
+  },
+  {
+    label: 'kaikas',
+    link: 'https://docs.kaikas.io/',
+  },
 
+  {
+    label: 'SOKEN',
+    link: 'https://soken.io/',
+  },
+  {
+    label: 'Houbi-NFT',
+    link: 'https://tmg35s.d1verse.io/#/home',
+  },
+  {
+    label: 'tofu',
+    link: 'https://tofunft.com/',
+  },
+  {
+    label: 'SIGNVM',
+    link: 'https://www.signvm.io/',
+  },
+  {
+    label: 'MK',
+    link: 'https://game.mk.co.kr/',
+  },
+  {
+    label: 'MOON-KNIGHT',
+    link: 'https://moonknightlabs.com/',
+  },
+  {
+    label: 'Gramming',
+    link: 'https://www.p-gramming.com/main/main.php',
+  },
 
   {
-    label: "sotatek",
-    link: "https://www.sotatek.com/",
+    label: 'GAMETREE',
+    link: 'https://gametree.me/',
   },
   {
-    label: "splabs",
-    link: "http://www.splabs.io/",
+    label: 'gate-io',
+    link: 'https://www.gate.io/',
   },
   {
-    label: "nslogo",
-    link: "http://www.nsstudio.co.kr/",
+    label: 'gate-labs',
+    link: 'https://www.gate.io/',
+  },
+
+  {
+    label: 'Pixel',
+    link: 'https://www.pixelplay.com/',
   },
   {
-    label: "NFTB",
-    link: "https://nftb.io/",
+    label: 'Linx',
+    link: '/',
   },
   {
-    label: "Linx",
-    link: "/",
+    label: 'Sunmiya',
+    link: 'https://sunmiya.club/',
+  },
+  {
+    label: 'sotatek',
+    link: 'https://www.sotatek.com/',
+  },
+  {
+    label: 'Natus-Alien-Club',
+    link: 'https://natusalienclub.com/',
+  },
+  {
+    label: 'Teddybear-Labs',
+    link: 'https://teddybearlabs.io/',
+  },
+  {
+    label: 'Aquapnix',
+    link: 'https://aquapnix.com/',
+  },
+  {
+    label: 'Game-on',
+    link: 'https://gameon.vc/',
+  },
+  {
+    label: 'Parable',
+    link: 'https://parable-asia.com/',
+  },
+  {
+    label: 'EARNBOX',
+    link: '/',
+  },
+  {
+    label: 'Travel-Tracks',
+    link: 'https://traveltracks.com.vn/',
+  },
+  {
+    label: '8_FINANCE',
+    link: 'https://8.finance/',
+  },
+  {
+    label: 'KATA_1',
+    link: 'https://www.kata.or.kr/v2/',
+  },
+  {
+    label: 'Influencer',
+    link: 'https://www.itfluencer.co.kr/',
+  },
+  {
+    label: 'KLT',
+    link: 'https://www.saramin.co.kr/zf_user/company-info/view/csn/SmUra3BsZ25CL2F4YmFHaTJGU1IrUT09/company_nm/Korea%20Land%20Tour%20KLT',
   },
 ];
 
@@ -150,7 +214,7 @@ export default function Partner() {
                 backgroundSize: "100% 100%",
                 margin: "0.1rem",
                 backgroundRepeat: "no-repeat",
-                padding: '1rem 2rem',
+                padding: '1rem',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -158,7 +222,7 @@ export default function Partner() {
               }}
             >
               <CustomLogo
-                src={`./images/partners/partner-${index + 1}.png`}
+                src={`./images/partners/${partner.label}.png`}
                 alt={partner.label}
 
               />
