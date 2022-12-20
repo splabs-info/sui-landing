@@ -7,8 +7,6 @@ import useResponsive from "../../hooks/useResponsive";
 import { TitleBox, TypographyGradient } from "./HomeStyles";
 import TokenomicTable from "./TokenomicTable";
 
-
-
 export default function Tokenomic() {
   const isDesktop = useResponsive("up", "md");
 
