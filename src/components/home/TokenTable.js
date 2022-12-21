@@ -68,13 +68,12 @@ const CustomTableContainer = styled(TableContainer)(() => ({
 }))
 
 
-export default function TokenomicTable() {
+export default function TokenTable() {
 
   return (
     <CustomTableContainer>
       <Table sx={{
         background: "transparent!important",
-
       }} aria-label="simple table">
         <TableHead sx={{
           background:

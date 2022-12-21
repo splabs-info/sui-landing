@@ -72,7 +72,7 @@ const networks = [
     link: "/",
   },
   {
-    label: "network-ftmscan",
+    label: "network-fantom",
     link: "/",
   },
   {

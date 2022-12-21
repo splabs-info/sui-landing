@@ -242,6 +242,8 @@ export const RoadmapTitle = styled(Typography)(({ theme }) => ({
     padding: '1rem 2rem',
     textShadow: 'rgba(0,0,0,0.25) 0 0 4px ',
     background: 'linear-gradient(90deg, #96E0DA 0%, #EACCF8 50%, #937EF3 100%)',
+    display: 'inline-flex',
+    alignItems: 'center',
 }));
 
 export const RoadmapList = styled('ul')(({ theme }) => ({

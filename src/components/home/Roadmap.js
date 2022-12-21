@@ -82,7 +82,8 @@ export default function Roadmap() {
           <TypographyGradient sx={{
             fontSize: isDesktop ? '3.5rem' : '2rem',
             fontFamily: "SVN-Gilroy-heavy",
-          }}> ROADMAP
+          }}>
+            ROADMAP
           </TypographyGradient>
           <Box component={'p'} sx={{ color: 'white' }}>
             What stage are we at?
@@ -93,7 +94,7 @@ export default function Roadmap() {
             (<RoadmapBox key={index}>
               <Box sx={{ width: '40%' }} className='Roadmap-Content' >
                 <RoadmapTitle>
-                  {item.status && <IconDiscountCheck />} {item.title}
+                  {item.status && <img src="/images/home/check.png" width='40px' alt="" />} {item.title}
                 </RoadmapTitle>
                 <RoadmapList>
                   {item.content.map((text, j) => (
