@@ -94,7 +94,7 @@ export default function Roadmap() {
             (<RoadmapBox key={index}>
               <Box sx={{ width: '40%' }} className='Roadmap-Content' >
                 <RoadmapTitle>
-                  {item.status && <img src="/images/home/check.png" width='40px' alt="" />} {item.title}
+                  {item.title}  {item.status && <img src="/images/home/check.png" width='40px' alt="" />}
                 </RoadmapTitle>
                 <RoadmapList>
                   {item.content.map((text, j) => (

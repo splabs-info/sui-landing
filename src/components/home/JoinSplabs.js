@@ -2,6 +2,7 @@
 import { Box, Container, Divider, Grid, Typography, } from "@mui/material";
 import { TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
+import LogoSPlabs from "../common/LogoSPlabs";
 
 const Mints = [
   {
@@ -51,7 +52,8 @@ export default function JoinSplabs() {
           <Typography>
             Join your journey <br />
           </Typography>
-          <Typography>with <TypographyGradient variant="span">Splabs Mark</TypographyGradient>
+          <Typography>with <LogoSPlabs />
+            {/* <TypographyGradient variant="span">Splabs Mark</TypographyGradient> */}
           </Typography>
         </TitleBox>
         {Mints.map((mint, index) => (
