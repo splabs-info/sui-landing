@@ -34,6 +34,7 @@ const config = [
   { label: "key_4", link: "/coming-soon" },
   { label: "key_5", link: "/coming-soon" },
   { label: "key_6", link: "/coming-soon" },
+  { label: "key_7", link: "/whitepaper" },
 ];
 
 const whitepaper = [
@@ -250,7 +251,7 @@ export default function HeaderHome() {
                       </Link>
                     );
                 })}
-                <div>
+                {/* <div>
                   <WhitePaperButton onClick={handleClick}>
                     {library.key_7}&nbsp;&nbsp;
                     <span
@@ -291,7 +292,7 @@ export default function HeaderHome() {
                       </MenuItem>
                     ))}
                   </Menu>
-                </div>
+                </div> */}
                 <ApplyButton>
                   Apply for Launchpad
                 </ApplyButton>

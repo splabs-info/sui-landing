@@ -160,12 +160,12 @@ export default function Networks() {
         </TitleBox>
         <SliderCustom {...networksSliderSettings}>
           {networks.map((network, index) =>
-            <NetworkBox>
+            <NetworkBox key={index}>
               <a
                 href={network.link}
                 target="_blank"
                 rel="noreferrer"
-                key={index}
+
               >
                 <CustomLogo
                   src={`./images/networks/${network.label}.png`}
