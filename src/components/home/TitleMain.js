@@ -67,8 +67,8 @@ export default function TitleMain() {
               display: 'flex',
               justifyContent: 'center',
             }}
-              mt={2} >
-              <img alt="gatekeeper" src="/images/home/gate-11.png" width={'30%'} />
+              mt={-4} >
+              <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} />
             </Box>
             <ButtonTitleBox>
               <AppButton>
