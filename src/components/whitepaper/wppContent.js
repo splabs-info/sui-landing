@@ -1,7 +1,9 @@
+import { IconSquare, IconSquareCheck } from "@tabler/icons";
 
 
 export const wppContent = [
   {
+    id: 'A',
     category: 'Introduction of Gatekeeper',
     description: [
       {
@@ -55,27 +57,27 @@ export const wppContent = [
       {
         title: 'Suppported Blockchain',
         list: [
-          'Gatechain',
-          'Ethereum',
-          'Binance',
-          'Polygon',
-          'Avalanche',
-          'Klaytn',
-          'Solana',
-          'Fantom',
-          'Harmony',
-          'Optimism',
-          'Arbitrum',
-          'Tron',
+          <><IconSquareCheck /> Gatechain</>,
+          <><IconSquareCheck /> Ethereum</>,
+          <><IconSquareCheck /> Binance</>,
+          <><IconSquareCheck /> Polygon</>,
+          <> <IconSquare /> Avalanche</>,
+          <> <IconSquare />Klaytn</>,
+          <> <IconSquare />Solana</>,
+          <> <IconSquare />Fantom</>,
+          <> <IconSquare />Harmony</>,
+          <> <IconSquare />Optimism</>,
+          <> <IconSquare />Arbitrum</>,
+          <> <IconSquare />Tron</>,
         ],
       },
       {
         title: 'Suppported Wallets',
         list: [
-          'Metamask',
-          'Bitkeep',
-          'Coin98',
-          'Trust Wallet',
+          <><IconSquareCheck /> Metamask</>,
+          <><IconSquareCheck /> Bitkeep</>,
+          <><IconSquareCheck /> Coin98</>,
+          <> <IconSquare />Trust Wallet</>,
         ],
       },
       {
@@ -95,7 +97,9 @@ export const wppContent = [
       },
     ]
   },
+
   {
+    id: 'B',
     category: 'Vision & Mission',
     description: [
       {
@@ -108,7 +112,154 @@ export const wppContent = [
       },
     ]
   },
+
   {
+    id: 'C',
+    category: 'Meet The Team',
+    description: [
+      {
+        title: 'CEO - Kyle Kim',
+        list: [
+          'CEO SPLabs.',
+          'COO/Co-Founder Sp-exchange.',
+        ]
+      },
+      {
+        title: 'CTO - Nam Nguyen',
+        list: [
+          'CTO Blockchain Era.',
+          'Class 5, deep clearning-based smart glass development for the visually impaired.',
+          'Netus development manager.',
+          'Raon Plus Co., Ltd., Raon Entertainment Co., Ltd. Samsung Project and Japan.',
+          'Commseed “Select” project development manager.',
+        ]
+      },
+      {
+        title: 'COO - Tracy Nguyen',
+        list: [
+          'COO Splabs',
+          'COO Gatekeeper',
+          'COO InfinityAngel, Stepwatch project',
+        ]
+      },
+      {
+        title: 'CMO - Sim Sang Jin',
+        list: [
+          'CEO Nettiss',
+          'Infinity Angel, Stepwatch, Immortal wars Head of Partnership',
+          'CEO Splabs Korea',
+          'Product manager Gramming',
+        ]
+      },
+      {
+        title: 'CSO - David Lee',
+        list: [
+          'Listing / IEO Manager Bitget exchange',
+          'Ambassador Korea Coinmarketcap',
+          'CEO KlayDAO',
+          'Asset manager Huobi exchange',
+          'Operation Manager Bitkeep',
+          'CSO Infinity Games',
+          'CSO GateKeeper',
+          'CSO HDlabs',
+        ]
+      },
+      {
+        title: 'Team Demographic',
+        list: [
+          'Vietnam : 24',
+          'Japan : 3',
+          'South Korea : 21',
+          'Nigeria : 2',
+        ]
+      },
+      {
+        title: 'Meet all Teams',
+        list: [
+          'Business Development Team : 7',
+          'Operation Team : 5',
+          'Development Team : 25',
+          'Design Team : 3',
+          'Finance Team : 2',
+          'Marketing Team : 3',
+          'Service and Community Team : 5',
+        ]
+      },
+    ]
+  },
+
+  {
+    id: 'D',
+    category: 'Roadmap',
+    description: [
+      {
+        title: 'Q3 2022 - DONE',
+        list: [
+          'Gatekeeper Launch',
+          'Smart-Contract Deployment',
+          'Whitepaper',
+          'Initiate Development',
+          'Web3 Build-Up',
+        ]
+      },
+      {
+        title: 'Q4 2022 - ONGOING',
+        list: [
+          'Platform Development',
+          'IDO Open',
+          'NFT Marketplace Development',
+          'Multi-Chain Announcement',
+          'Staking Open',
+          'Bridge Development',
+        ]
+      },
+      {
+        title: 'Q1 2023 - PENDING',
+        list: [
+          'Staking & Gatekeeper First IDO/INO',
+          'Soft-Launching',
+          'New Governance',
+          'INO Open',
+          'New Block-Chain Integration Announcement',
+          'Community Open',
+          'Bridge & Multichain Swap',
+        ]
+      },
+      {
+        title: 'Q2 2023 - PENDING',
+        list: [
+          'Guild Assemble & IGO',
+          'First IGO Launch',
+          'DEX Launch',
+          'Platform Expansion',
+          'NFT Marketplace Launch',
+          'New Blochchain Integration Announcement',
+        ]
+      },
+      {
+        title: 'Q3 2023 - PENDING',
+        list: [
+          'DAO Governed IDO',
+          'Ecosystem Expansion',
+          'Platform Mega-Update',
+          'DEFI 3.0',
+          '3 x 3 liquidity Provide',
+          'Guild System Launch',
+          'Migration Incentive Program',
+          'NFT Enabled Wallet',
+        ]
+      },
+      {
+        title: 'Master Product (2023~2027)',
+        list: [
+          `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the GT Token and GTK Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
+        ]
+      },
+
+    ]
+  },
+  {
+    id: 'E',
     category: 'Partners',
     description: [
       {

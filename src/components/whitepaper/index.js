@@ -3,9 +3,10 @@ import { Box, Container, Divider, Tab, Tabs } from "@mui/material";
 import PropTypes from 'prop-types';
 import useResponsive from "../../hooks/useResponsive";
 import { wppContent } from "./wppContent";
-import { NormalText, TitleText } from "./wppStyled";
+import { NormalText, TitleText, WppContentBox } from "./wppStyled";
 import { TitleBox, TypographyGradient } from "../home/HomeStyles";
 import { useState } from "react";
+import { IconSquareCheck } from "@tabler/icons";
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -40,12 +41,8 @@ export default function WhitepaperContent() {
         <TitleBox textAlign={'center'}>
           <TypographyGradient sx={{
             fontSize: isDesktop ? '3rem' : '2rem',
-            fontFamily: "SVN-Gilroy-regular",
-          }}>About
-            <span style={{
-              fontFamily: "SVN-Gilroy-heavy",
-            }}> GATEKEEPER
-            </span>
+            fontFamily: "SVN-Gilroy-heavy",
+          }}> WHITEPAPER
           </TypographyGradient>
         </TitleBox>
         <Box
@@ -70,37 +67,43 @@ export default function WhitepaperContent() {
             )}
           </Tabs>
           {wppContent.map((item, i) =>
-            <TabPanel value={value} key={i} index={i}>
-              <Box ml={5}>
-                <TitleText variant="h3" pt={'0!important'}>
-                  {item.category}
-                </TitleText>
-                <Divider sx={{ borderColor: 'deepskyblue', opacity: 0.7, mb: 2, mt: 1 }} />
-                {item.description.map((desc, j) =>
-                  <Box key={j}>
-                    <TitleText variant="h5" >
-                      {desc.title}
+          (<TabPanel value={value} key={i} index={i} style={{ width: '100%' }}>
+            <WppContentBox >
+              <TitleText variant="h3" pt={'0!important'}>
+                {item.category}
+              </TitleText>
+              <Divider sx={{ borderColor: 'deepskyblue', opacity: 0.7, mb: 2, mt: 1 }} />
+              {item.description.map((desc, j) =>
+                <Box key={j}>
+                  <TitleText variant="h5" >
+                    {desc.title}
+                  </TitleText>
+                  {desc?.subtitle &&
+                    <TitleText variant="body1" pt={'8px!important'}>
+                      {desc.subtitle}
                     </TitleText>
-                    {desc?.content && desc?.content.map((text, m) =>
-                      <NormalText variant={'body1'} key={m}>
-                        {text}
-                      </NormalText>
-                    )}
-                    {desc?.list &&
-                      <ul style={{ paddingLeft: 32 }}>
-                        {desc?.list.map((text, n) =>
-                          <li key={n}>
-                            <NormalText variant={'body1'} >
-                              {text}
-                            </NormalText>
-                          </li>
-                        )}
-                      </ul>
-                    }
-                  </Box>
-                )}
-              </Box>
-            </TabPanel>
+                  }
+                  {desc?.content && desc?.content.map((text, m) =>
+                    <NormalText variant={'body2'} key={m}>
+                      {text}
+                    </NormalText>
+                  )}
+                  {desc?.list &&
+                    <ul>
+                      {desc?.list.map((text, n) =>
+                        <li key={n}>
+                          <NormalText variant={'body1'} display='flex'>
+                            {text}
+                          </NormalText>
+
+                        </li>
+                      )}
+                    </ul>
+                  }
+                </Box>
+              )}
+            </WppContentBox>
+          </TabPanel>)
           )}
 
         </Box>
