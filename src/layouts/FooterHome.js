@@ -77,7 +77,7 @@ const aboutGateKeeper = [
   },
   {
     label: "WHITEPAPER",
-    link: ""
+    link: "/whitepaper"
   },
   {
     label: "MEDIA_KIT",

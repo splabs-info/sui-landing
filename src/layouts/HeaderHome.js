@@ -34,7 +34,6 @@ const config = [
   { label: "key_4", link: "/coming-soon" },
   { label: "key_5", link: "/coming-soon" },
   { label: "key_6", link: "/coming-soon" },
-  { label: "key_7", link: "/whitepaper" },
 ];
 
 const whitepaper = [
@@ -294,7 +293,7 @@ export default function HeaderHome() {
                   </Menu>
                 </div> */}
                 <ApplyButton>
-                  Apply for Launchpad
+                  Connect Wallet
                 </ApplyButton>
                 <Avatar src="/images/icon/icon-user.png" />
                 {/* <Languages sx={{ color: "white" }} /> */}

@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { AppConfig } from "../setting";
 import { logout } from "../utils/auth";
 import { getAccessToken } from "./auth";
+import { API } from "../setting/environment";
 export const defaultHeaders = {
   "Content-Type": "application/json",
   Accept: "application/json",
@@ -28,7 +29,7 @@ export const alertError = (error) => {
 };
 
 function myFetch(method, endpoint, body, successCallback, errorCallback) {
-  let url = AppConfig.API + endpoint;
+  let url = API + endpoint;
 
   body = JSON.stringify(body);
 

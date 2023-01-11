@@ -3,12 +3,13 @@ import useResponsive from "../../hooks/useResponsive";
 import { ButtonTitleBox, TypographyGradient, ApplyButton, AppButton } from "./HomeStyles";
 
 const Title = [
-  'Unlimited bridge for multi-chain launchpad',
-  'on more blockchains',
+  'Become an early investor in the scalable',
+  'Launchpad to participate in all Games,',
+  'NFTs and Metaverse in the world.',
 ]
 const SubTitle = [
-  'Our vision is to remove all barriers, Build a decentralized technology for financial services,',
-  'IDO and INO to be accessible to all global users.',
+  'Gatekeeper works with projects with a high probability of success ',
+  'with enhanced Due Diligence and Regulation.',
 ]
 
 
@@ -71,11 +72,14 @@ export default function TitleMain() {
               <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} />
             </Box>
             <ButtonTitleBox>
-              <AppButton>
-                Launchpad App
-              </AppButton>
+              <ApplyButton>
+                Buy Gatekeeper
+              </ApplyButton>
               <ApplyButton>
                 Apply for Launchpad
+              </ApplyButton>
+              <ApplyButton>
+                Whitepaper
               </ApplyButton>
             </ButtonTitleBox>
             <Box mt={3}
@@ -85,7 +89,7 @@ export default function TitleMain() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-              <Typography variant="body1" mr={2}> Powered by </Typography>
+              <Typography variant="body1" mr={2}> Backed by </Typography>
               <img alt="gatekeeper" src="/images/home/logo-gatechain.png" width={120} />
             </Box>
           </Grid>

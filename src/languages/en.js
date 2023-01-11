@@ -7,16 +7,14 @@ export const en = {
   PITCHDECK: `Pitchdeck`,
   COMING_SOON: `Coming soon`,
   MARKETPLACE: "Marketplace",
-
-
-  key_1: "Home",
-  key_2: "IDO",
-  key_3: "INO",
-  key_4: "Swap",
-  key_5: "Stake",
-  key_6: "GT Token",
+  key_1: "Gatekeeper",
+  key_2: "IDO Launchpad",
+  key_3: "INO Launchpad",
+  key_4: "Staking / Farming",
+  key_5: "Claims",
+  key_6: "DEX",
   key_7: "Whitepaper",
-  key_8: "Apply for Launchpad",
+  key_8: "Connect Wallet",
 
   key_9: "Contact",
 
