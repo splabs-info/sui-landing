@@ -23,7 +23,7 @@ const teams = [
   {
     title: "Multi-Chain",
     photoUrl: "/images/multi-chain/Expansion_04.png",
-    text: "Not only with Klaytn but expanding to various chain"
+    text: "Not only with Gate-chain but expanding to various chain"
   },
 ];
 

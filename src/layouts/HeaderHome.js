@@ -307,11 +307,7 @@ export default function HeaderHome() {
                     padding: "4px",
                     marginLeft: "1.5rem",
                     "& svg": {
-                      boxShadow: 'white 0 0 10px 0',
-                      borderRadius: '10px',
-                      background: 'white',
-                      color: 'deepskyblue',
-                      padding: '5px',
+                      color: 'aqua',
                     }
                   }}
                   onClick={() => {
@@ -349,7 +345,7 @@ export default function HeaderHome() {
             </IconButton>
             <Languages sx={{ "& span": { color: "#637381" } }} />
           </Box>
-          <List>
+          <List sx={{ color: 'white' }}>
             <Hidden lgUp>
               <Divider />
               {config.map((item, index) => {
@@ -357,7 +353,7 @@ export default function HeaderHome() {
                   return (
                     <Link
                       to={item.link}
-                      style={{ textDecoration: "none", color: "#212b36" }}
+                      style={{ textDecoration: "none", }}
                       key={index}
                     >
                       <ListItemButton
