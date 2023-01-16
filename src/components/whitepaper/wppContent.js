@@ -287,257 +287,257 @@ export const wppContent = [
       },
     ]
   },
-  // {
-  //   id: 'F',
-  //   category: 'Launchpad',
-  //   description: [
-  //     {
-  //       category: 'Launchpad',
-  //       content: [
-  //         `Gatekeeper's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. Gatekeeper will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
-  //       ]
-  //     },
-  //     {
-  //       title: 'How does IGO work on Gatekeeper?',
-  //       content: [
-  //         'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with Gatekeeper and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
-  //       ]
-  //     },
-  //     {
-  //       list: [
-  //         'Community-Governed Launchpad System',
-  //         'Global Gatechain Community Builder',
-  //         'Access Every Blockchain',
-  //         'Access Every AMM',
-  //         'Cross-Chain Swap & Bridge',
-  //         'Intergrate the most liquidity sources across a wide range of blockchains',
-  //         'Security & Transparent',
-  //         'Statistical IDO/INO screening',
-  //       ]
-  //     },
-  //     {
-  //       title: 'What makes it different from other launchpads?',
-  //       list: [
-  //         'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
-  //         'All blockchain tokens and NFTs can be easily funded through Bridge.',
-  //         'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
-  //         'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
-  //         'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
-  //       ]
-  //     },
-  //     {
-  //       title: 'How can I get involved in IDO?',
-  //       content: [
-  //         'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
-  //         <><b>Step 1:</b> Purchase GTK tokens.</>,
-  //         <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
-  //         'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
-  //         <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
-  //         <><b>Step 4:</b> Buy a ticket and join the IDO.</>,
-  //         'The purchase method in all tiers is the same as the lottery method, and only those who have purchased tickets can participate.',
-  //         'Tickets that fail token swap through Launchpad can be used in the next Launchpad.',
-  //         <><b>Step 5:</b> Claim your tokens.</>,
-  //         'If the purchased ticket has been successfully participated in Launchpad, you can go to the Claims page to check your Release Schedule and claim.',
-  //       ]
-  //     },
-  //     {
-  //       title: 'How can I get involved in INO?',
-  //       content: [
-  //         'INO stands for Initial NFT Offering, and Gatekeeper plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
-  //         <><b>Step 1:</b> Purchase GTK tokens.</>,
-  //         <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
-  //         'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
-  //         <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
-  //         <><b>Step 4:</b> Check your tier and check the discount rate</>,
-  //       ]
-  //     },
-  //     {
-  //       list: [
-  //         'Tier 1 & Tier Master : 20% discounted price (compared to public price)',
-  //         'Tier 2 : 10% discounted price (compared to public price)',
-  //         'Tier 3 : 5% discounted price (compared to public price)',
-  //         'Tier 4 : 3% discounted price (compared to public price)',
-  //         'Tier 5 : 2% discounted price (compared to public price)',
-  //         'Public Round : Public price',
-  //       ]
-  //     },
-  //     {
-  //       content: [
-  //         <><b>Step 5:</b> Check the amount of NFTs allocated to your tier and purchase them on a first-come, first-served basis.</>,
-  //         <><b>Step 6:</b> Claim NFTs</>,
-  //         'NFTs purchased on the INO Launchpad can be viewed on the Claims page. If you press Claim, you can automatically transfer it to your wallet.',
-  //       ]
-  //     },
-  //     {
-  //       title: 'Notice',
-  //       content: [
-  //         'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the Gatekeeper Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
-  //       ]
-  //     },
-  //   ]
-  // },
-  // {
-  //   id: 'G',
-  //   category: 'Staking',
-  //   description: [
-  //     {
-  //       content: [
-  //         'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
-  //       ]
-  //     },
-  //     {
-  //       title: 'GTK Normal Staking Reward',
-  //       content: [
-  //         'Normal Staking APR : 3% (Fixed APR)',
-  //       ]
-  //     },
-  //     {
-  //       title: 'GTK Lock-Up Staking Reward',
-  //       content: [
-  //         'Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)',
-  //       ]
-  //     },
-  //     {
-  //       list: [
-  //         '7 Days : 4% (Fixed APR)',
-  //         '30 Days : 6% (Fixed APR)',
-  //         '90 Days : 8% (Fixed APR)',
-  //         '180 Days : 15% (Fixed APR)',
-  //       ]
-  //     },
-  //     {
-  //       content: [
-  //         <highline>** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of 1% of the deposit amount may occur.</highline>,
-  //         <highline>** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be returned as it is.</highline>,
-  //         <highline>** The staking reward is generated every 24 hours, and in the case of normal staking, a claim can be made every 24 hours, and in the case of Lock-Up Staking, a claim can be made after the period is all filled.</highline>,
-  //         <highline>** Unstaking function cannot be used for 24 hours after lockup staking.</highline>,
-  //       ]
-  //     },
-  //   ]
-  // },
-  // {
-  //   id: 'H',
-  //   category: 'Tier',
-  //   description: [
-  //     {
-  //       title: 'Basic Requirement',
-  //       content: [
-  //         `In order to participate in Gatekeeper's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
-  //         <highline>** 1 Ticket Price = 10 USD</highline>,
-  //         'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
-  //         <highline>** All assigned tickets for each tier will be won through a lottery, and the winning tickets will be automatically swapped with IDO tokens on the exchange listing date. Once purchased, tickets are non-refundable and can be used for the next IDO and INO.</highline>,
-  //       ]
-  //     },
-  //     {
-  //       title: 'Benefits by Tier System',
-  //       subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
-  //       content: [
-  //         'Participate in the Private Round with the same price and opportunity through Venture Pool.',
-  //         'Permission to participate in additional airdrops and Launchpad Tier 1',
-  //         'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 1 :',
-  //       content: [
-  //         'Permission to participate in additional airdrops and Launchpad Tier 1',
-  //         'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 2 :',
-  //       content: [
-  //         'Permission to participate in additional airdrops and Launchpad Tier 2',
-  //         'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 3 :',
-  //       content: [
-  //         'Permission to participate in additional airdrops and Launchpad Tier 3',
-  //         'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
-  //       ]
-  //     },
-  //     {
-  //       title: 'Division of Tiers',
-  //       subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
-  //       content: [
-  //         'Requirement : 120,000 Staked $ GTK',
-  //         'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
-  //         'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
-  //         'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
-  //         'Airdrop Logic :',
-  //         '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 2',
-  //       content: [
-  //         'Requirement : 40,000 Staked $ GTK',
-  //         'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
-  //         'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-  //         'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
-  //         'Airdrop Logic :',
-  //         '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
-  //         'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 3',
-  //       content: [
-  //         'Requirement : 15,000 Staked $ GTK',
-  //         'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
-  //         'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-  //         'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
-  //         'Airdrop Logic :',
-  //         '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
-  //         'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 4',
-  //       content: [
-  //         'Requirement : 10,000 Staked $ GTK',
-  //         'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
-  //         'Free Airdrop for Tier 4 users : X',
-  //         '75,000 USD = 7,500 tickets',
-  //         '30,000 tickets were purchased by users of Tier 4, and if all of them apply to the lottery, the probability of winning is 25%, which is (7500 / 30000 * 100) %.',
-  //       ]
-  //     },
-  //     {
-  //       subtitle: 'Tier 5',
-  //       content: [
-  //         'Requirement : 3,000 Staked $ GTK',
-  //         'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
-  //         'Free Airdrop for Tier 5 users : X',
-  //         '50,000 USD = 5,000 tickets',
-  //       ]
-  //     },
-  //   ]
-  // },
-  // {
-  //   id: 'I',
-  //   category: 'Social Platform',
-  //   description: [
-  //     {
-  //       title: 'Basic Information for Gatekeeper Social Platform',
-  //       content: [
-  //         `Gatekeeper Social Platform Gatekeeper's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
-  //       ]
-  //     },
-  //     {
-  //       list: [
-  //         'Post and comment. Both web and app are supported.',
-  //         'Everyone can communicate in a real-time chat room. Global pages, Japanese pages, Korean pages, and Vietnamese pages are supported.',
-  //         'Provide pages that can be automatically translated.',
-  //         'Gatekeeper Launchpad platform and Gatekeeper social platform are linked.',
-  //         'Posts with high views are exposed on global pages and can be translated into all languages.',
-  //         'Influencers can have their own followers, and profit activities are possible through streaming services.',
-  //         'It is linked with the NFT Marketplace, allowing P2P trading of NFTs.',
-  //       ]
-  //     },
-  //   ]
-  // },
+  {
+    id: 'F',
+    category: 'Launchpad',
+    description: [
+      {
+        category: 'Launchpad',
+        content: [
+          `Gatekeeper's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. Gatekeeper will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
+        ]
+      },
+      {
+        title: 'How does IGO work on Gatekeeper?',
+        content: [
+          'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with Gatekeeper and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
+        ]
+      },
+      {
+        list: [
+          'Community-Governed Launchpad System',
+          'Global Gatechain Community Builder',
+          'Access Every Blockchain',
+          'Access Every AMM',
+          'Cross-Chain Swap & Bridge',
+          'Intergrate the most liquidity sources across a wide range of blockchains',
+          'Security & Transparent',
+          'Statistical IDO/INO screening',
+        ]
+      },
+      {
+        title: 'What makes it different from other launchpads?',
+        list: [
+          'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
+          'All blockchain tokens and NFTs can be easily funded through Bridge.',
+          'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
+          'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
+          'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
+        ]
+      },
+      {
+        title: 'How can I get involved in IDO?',
+        content: [
+          'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
+          <><b>Step 1:</b> Purchase GTK tokens.</>,
+          <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
+          'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
+          <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
+          <><b>Step 4:</b> Buy a ticket and join the IDO.</>,
+          'The purchase method in all tiers is the same as the lottery method, and only those who have purchased tickets can participate.',
+          'Tickets that fail token swap through Launchpad can be used in the next Launchpad.',
+          <><b>Step 5:</b> Claim your tokens.</>,
+          'If the purchased ticket has been successfully participated in Launchpad, you can go to the Claims page to check your Release Schedule and claim.',
+        ]
+      },
+      {
+        title: 'How can I get involved in INO?',
+        content: [
+          'INO stands for Initial NFT Offering, and Gatekeeper plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
+          <><b>Step 1:</b> Purchase GTK tokens.</>,
+          <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
+          'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
+          <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
+          <><b>Step 4:</b> Check your tier and check the discount rate</>,
+        ]
+      },
+      {
+        list: [
+          'Tier 1 & Tier Master : 20% discounted price (compared to public price)',
+          'Tier 2 : 10% discounted price (compared to public price)',
+          'Tier 3 : 5% discounted price (compared to public price)',
+          'Tier 4 : 3% discounted price (compared to public price)',
+          'Tier 5 : 2% discounted price (compared to public price)',
+          'Public Round : Public price',
+        ]
+      },
+      {
+        content: [
+          <><b>Step 5:</b> Check the amount of NFTs allocated to your tier and purchase them on a first-come, first-served basis.</>,
+          <><b>Step 6:</b> Claim NFTs</>,
+          'NFTs purchased on the INO Launchpad can be viewed on the Claims page. If you press Claim, you can automatically transfer it to your wallet.',
+        ]
+      },
+      {
+        title: 'Notice',
+        content: [
+          'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the Gatekeeper Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
+        ]
+      },
+    ]
+  },
+  {
+    id: 'G',
+    category: 'Staking',
+    description: [
+      {
+        content: [
+          'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
+        ]
+      },
+      {
+        title: 'GTK Normal Staking Reward',
+        content: [
+          'Normal Staking APR : 3% (Fixed APR)',
+        ]
+      },
+      {
+        title: 'GTK Lock-Up Staking Reward',
+        content: [
+          'Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)',
+        ]
+      },
+      {
+        list: [
+          '7 Days : 4% (Fixed APR)',
+          '30 Days : 6% (Fixed APR)',
+          '90 Days : 8% (Fixed APR)',
+          '180 Days : 15% (Fixed APR)',
+        ]
+      },
+      {
+        content: [
+          <highline>** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of 1% of the deposit amount may occur.</highline>,
+          <highline>** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be returned as it is.</highline>,
+          <highline>** The staking reward is generated every 24 hours, and in the case of normal staking, a claim can be made every 24 hours, and in the case of Lock-Up Staking, a claim can be made after the period is all filled.</highline>,
+          <highline>** Unstaking function cannot be used for 24 hours after lockup staking.</highline>,
+        ]
+      },
+    ]
+  },
+  {
+    id: 'H',
+    category: 'Tier',
+    description: [
+      {
+        title: 'Basic Requirement',
+        content: [
+          `In order to participate in Gatekeeper's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
+          <highline>** 1 Ticket Price = 10 USD</highline>,
+          'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
+          <highline>** All assigned tickets for each tier will be won through a lottery, and the winning tickets will be automatically swapped with IDO tokens on the exchange listing date. Once purchased, tickets are non-refundable and can be used for the next IDO and INO.</highline>,
+        ]
+      },
+      {
+        title: 'Benefits by Tier System',
+        subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
+        content: [
+          'Participate in the Private Round with the same price and opportunity through Venture Pool.',
+          'Permission to participate in additional airdrops and Launchpad Tier 1',
+          'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+        ]
+      },
+      {
+        subtitle: 'Tier 1 :',
+        content: [
+          'Permission to participate in additional airdrops and Launchpad Tier 1',
+          'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+        ]
+      },
+      {
+        subtitle: 'Tier 2 :',
+        content: [
+          'Permission to participate in additional airdrops and Launchpad Tier 2',
+          'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
+        ]
+      },
+      {
+        subtitle: 'Tier 3 :',
+        content: [
+          'Permission to participate in additional airdrops and Launchpad Tier 3',
+          'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
+        ]
+      },
+      {
+        title: 'Division of Tiers',
+        subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
+        content: [
+          'Requirement : 120,000 Staked $ GTK',
+          'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
+          'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
+          'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
+          'Airdrop Logic :',
+          '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
+        ]
+      },
+      {
+        subtitle: 'Tier 2',
+        content: [
+          'Requirement : 40,000 Staked $ GTK',
+          'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
+          'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
+          'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+          'Airdrop Logic :',
+          '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
+          'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
+        ]
+      },
+      {
+        subtitle: 'Tier 3',
+        content: [
+          'Requirement : 15,000 Staked $ GTK',
+          'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
+          'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
+          'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+          'Airdrop Logic :',
+          '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
+          'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
+        ]
+      },
+      {
+        subtitle: 'Tier 4',
+        content: [
+          'Requirement : 10,000 Staked $ GTK',
+          'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
+          'Free Airdrop for Tier 4 users : X',
+          '75,000 USD = 7,500 tickets',
+          '30,000 tickets were purchased by users of Tier 4, and if all of them apply to the lottery, the probability of winning is 25%, which is (7500 / 30000 * 100) %.',
+        ]
+      },
+      {
+        subtitle: 'Tier 5',
+        content: [
+          'Requirement : 3,000 Staked $ GTK',
+          'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
+          'Free Airdrop for Tier 5 users : X',
+          '50,000 USD = 5,000 tickets',
+        ]
+      },
+    ]
+  },
+  {
+    id: 'I',
+    category: 'Social Platform',
+    description: [
+      {
+        title: 'Basic Information for Gatekeeper Social Platform',
+        content: [
+          `Gatekeeper Social Platform Gatekeeper's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
+        ]
+      },
+      {
+        list: [
+          'Post and comment. Both web and app are supported.',
+          'Everyone can communicate in a real-time chat room. Global pages, Japanese pages, Korean pages, and Vietnamese pages are supported.',
+          'Provide pages that can be automatically translated.',
+          'Gatekeeper Launchpad platform and Gatekeeper social platform are linked.',
+          'Posts with high views are exposed on global pages and can be translated into all languages.',
+          'Influencers can have their own followers, and profit activities are possible through streaming services.',
+          'It is linked with the NFT Marketplace, allowing P2P trading of NFTs.',
+        ]
+      },
+    ]
+  },
   {
     id: 'J',
     category: 'Swap',
