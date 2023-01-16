@@ -200,7 +200,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q4 2022 - ONGOING',
+        title: 'Q4 2022 - DONE',
         list: [
           'Platform Development',
           'IDO Open',
@@ -211,7 +211,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q1 2023 - PENDING',
+        title: 'Q1 2023 - ONGOING',
         list: [
           'Staking & Gatekeeper First IDO/INO',
           'Soft-Launching',
@@ -582,7 +582,7 @@ export const wppContent = [
     description: [
       {
         content: [
-          'VCs registered as General Partners of Gatekeeper and users with NFT-E Master Tier can participate in Private Rounds with IDOs and INOs registered in Gatekeeper. To participate in Venture sides, the Legal Entity must be clear, and subscribers and popular influencers can also participate. However, influencers also need required Staked GTK of course. Ventures and those holding GTK Tokens over requirement and companies can view a report provided separately by Gatekeeper, with expected returns and analyzed token flows. Holders of NFT-E Master Tier must verify general KYC to participate in VC sides, and a contract is provided for each investment. The lock-up conditions are also included in the analyzed report, and the contract is provided as Docussign. Two days before IDO, the private link will be delivered separately through the mail used for KYC.',
+          <><b>VCs</b> registered as General Partners of Gatekeeper and users with NFT-E Master Tier can participate in Private Rounds with IDOs and INOs registered in Gatekeeper. To participate in Venture sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers can also participate. However, influencers also need <b>required Staked GTK of course</b>. Ventures and those holding GTK Tokens over requirement and companies can view a report provided separately by Gatekeeper, with expected returns and analyzed token flows. Master Tier users must verify general KYC to participate in VC sides, and a contract is provided for each investment. The lock-up conditions are also included in the analyzed report, and the contract is provided as <b>Docussign</b>. Two days before IDO, the private link will be delivered separately through <b>the mail used for KYC.</b></>,
         ]
       },
     ]
@@ -594,7 +594,7 @@ export const wppContent = [
       {
         title: 'GTK Token Overview',
         content: [
-          'GTK is the main token of the project. Considered as a Governance token with Launchpad, INO and Governance',
+          <>The gatekeeper token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the Gatekeeper token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be used when clicking likes or making donations. By staking Gatekeeper tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.</>,
           <><b>Name :</b> Gatekeeper</>,
           <><b>Ticker :</b> GTK</>,
           <><b>Total Supply :</b> 100,000,000</>,
@@ -930,19 +930,19 @@ export const wppContent = [
         content: [
           '​To use GateKeeper, we recommend the following steps to RPC URL.',
           <><b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.</>,
-          <img src="/images/whitepaper/image1.png" alt="" />,
+          <img src="/images/whitepaper/image-1.png" alt="" />,
           <><b>Step 2 :</b> Select Add Network.</>,
-          <img src="/images/whitepaper/image2.png" alt="" />,
+          <img src="/images/whitepaper/image-2.png" alt="" />,
           <><b>Step 3 :</b> Enter details as below and save.</>,
           'Network name: GateChain',
           <>RPC URL:<a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">  https://evm.gatenode.cc</a></>,
           'Chain ID: 86',
           'Symbol: GT',
           <>Block explorer: <a href="https://gatescan.org/" target="_blank" rel="noreferrer">  https://gatescan.org/</a></>,
-          <img src="/images/whitepaper/image3.png" alt="" />,
+          <img src="/images/whitepaper/image-3.png" alt="" />,
           <><b>Step 4 :</b> Check the right router is notified</>,
           'GT has been added to the Metamask wallet!',
-          <img src="/images/whitepaper/image4.png" alt="" />,
+          <img src="/images/whitepaper/image-4.png" alt="" />,
         ]
       },
       {
@@ -951,26 +951,26 @@ export const wppContent = [
           <><b>Step 1 :</b> Access to <a href="https://bitkeep.com/en/download?type=2" target="_blank" rel="noreferrer">  https://bitkeep.com/en/download?type=2</a>  then select [Available in Chrome Web Store].</>,
           <><b>Step 2 :</b> After selecting [Available in the chrome Web Store], select the [Add to Chrome] button.</>,
           <><b>Step 3 :</b> In case you do not see Bitkeep displayed on the top of the page, you can choose to activate the battery button as shown below.</>,
-          <img src="/images/whitepaper/image5.png" alt="" />,
+          <img src="/images/whitepaper/image-5.png" alt="" />,
           <><b>Step 4 :</b> Select Wallet Icon on top and choose create wallet.</>,
-          <img src="/images/whitepaper/image6.png" alt="" />,
+          <img src="/images/whitepaper/image-6.png" alt="" />,
           <><b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know. Check the Gate-Chain.</>,
-          <img src="/images/whitepaper/image7.png" alt="" />,
+          <img src="/images/whitepaper/image-7.png" alt="" />,
           <><b>Step 6 :</b> Please keep the Secret Key safe or take a screenshot at this step.</>,
-          <img src="/images/whitepaper/image8.png" alt="" />,
+          <img src="/images/whitepaper/image-8.png" alt="" />,
           <><b>Step 7 :</b> After saving the wallet password, the user can use Bitkeep.</>,
-          <img src="/images/whitepaper/image9.png" alt="" />,
+          <img src="/images/whitepaper/image-9.png" alt="" />,
         ]
       },
       {
         title: 'Coin98',
         content: [
-          <img src="/images/whitepaper/image10.png" alt="" />,
+          <img src="/images/whitepaper/image-10.png" alt="" />,
           <><b>Step 1 :</b> Find and select Coin98 Extension Wallet on Chrome Web Store;</>,
           'Click Manage Wallet icon',
-          <img src="/images/whitepaper/image11.png" alt="" />,
+          <img src="/images/whitepaper/image-11.png" alt="" />,
           'Click Add Wallet icon',
-          <img src="/images/whitepaper/image12.png" alt="" />,
+          <img src="/images/whitepaper/image-12.png" alt="" />,
           <><b>Step 2 :</b> Create </>,
           <><b>Step 3 :</b> Name your wallet → Click Next </>,
           <><b>Step 4 :</b> </>,
@@ -978,7 +978,7 @@ export const wppContent = [
           'Paste the copied Passphrase from the previous step into the confirmation box;',
           'Read the caution carefully and tick to confirm your awareness of the risks if you lose keys;',
           'Click Create Wallet to complete.',
-          <img src="/images/whitepaper/image13.png" alt="" />,
+          <img src="/images/whitepaper/image-13.png" alt="" />,
           'Your new wallet will instantly be displayed on the home screen. You can also access the Manage Wallet section again to check all your wallets.',
         ]
       },
