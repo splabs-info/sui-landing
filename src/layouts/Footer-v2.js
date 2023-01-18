@@ -6,34 +6,10 @@ import {
 } from "@mui/material";
 import { useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LogoSPlabs from "../components/common/LogoSPlabs";
+import LogoSPlabs, { CusLink } from "../components/common/LogoSPlabs";
 import { EndBox, Footer, SocialBox, FooterTitle, UlCustom } from "../components/footer/FooterStyles";
 import useResponsive from "../hooks/useResponsive";
 import { _changeLanguage } from "../store/setting/settingActions";
-
-
-// const whitepaper = [
-//   {
-//     lang: "English",
-//     url: "/",
-//     icon: "/images/icon/icon-en.png",
-//   },
-//   {
-//     lang: "Korean",
-//     url: "/",
-//     icon: "/images/icon/icon-kr.png",
-//   },
-//   {
-//     lang: "Vietnamese",
-//     url: "/",
-//     icon: "/images/icon/icon-vn.png",
-//   },
-//   {
-//     lang: "Japanese",
-//     url: "/",
-//     icon: "/images/icon/icon-jp.png",
-//   },
-// ];
 
 const joinGateKeeper = [
   {
@@ -83,7 +59,6 @@ const aboutGateKeeper = [
     label: "MEDIA_KIT",
     link: ""
   },
-
 ]
 
 const socials = [
@@ -106,9 +81,7 @@ const socials = [
 
 ]
 
-export default function FooterHome() {
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
+export default function FooterV2() {
 
   const dispatch = useDispatch()
   const { setting } = useSelector((state) => state);
@@ -116,13 +89,6 @@ export default function FooterHome() {
 
   const isMobile = useResponsive("down", "sm");
   const isTablet = useResponsive("down", "lg");
-
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleCloseMenu = () => {
-  //   setAnchorEl(null);
-  // };
 
 
   useEffect(() => {
@@ -149,16 +115,18 @@ export default function FooterHome() {
                   borderBottom: '0px!important'
                 }
               }}>
-              <Box component={'img'} src="/logo.png" width={isMobile ? 250 : '100%'} maxWidth={300} />
+              <Box component={'img'} src="/logo2.png" width={isMobile ? 250 : '90%'} maxWidth={280} />
             </Box>
-            <LogoSPlabs
-              width={'150px'}
-              sx={{ marginTop: '1rem', marginBottom: '0.5rem' }}
-            />
+            <CusLink href="https://splabs.info/"
+              target={'_blank'} sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}>
+              <Box component="img"
+                src="/logo-splabs.png"
+                width={'100px'}
+              />
+            </CusLink>
             <Typography variant="body1" sx={{
-              fontSize: ".9rem",
               textAlign: isMobile && 'center',
-              padding: isMobile && '0 10%',
+              padding: isMobile ? '0 10%' : '0 20% 0 0 ',
             }}>
               Splabs is a blockchain hub that provides global gamefi, metaverse, M2E, and Defi service solutions.
             </Typography>

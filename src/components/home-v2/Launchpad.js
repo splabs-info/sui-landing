@@ -1,8 +1,6 @@
-import { Box, Container, Typography, Card, Stack, Grid, styled } from "@mui/material";
-import Slider from "react-slick";
+import { Box, Container, Typography, Grid, styled } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
-import { ImgTitleBox, TitleBox, TypographyGradient } from "./HomeStyles";
-import { multiChainSliderSettings } from "./SliderSettings";
+import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from "./HomeStyles";
 
 const teams = [
   {
@@ -28,64 +26,22 @@ const teams = [
 ];
 
 
-const SliderCustom = styled(Slider)(() => ({
-  '&.slick-slide': {
-    padding: "10px!important",
-  },
-  "& .slick-slide": {
-    transition: "all 0.3s ease-in-out",
-    padding: "10px!important",
-    "&.slick-active": {
-      opacity: "1",
-      color: "red",
-
-    },
-    "&.slick-current": {
-      opacity: "1",
-    },
-    "&.slick-center": {
-      marginTop: "-3rem",
-    },
-    "&.slick-prev": {
-      height: "3rem",
-    },
-    "& li.slick-active button::before": {
-      color: "red",
-    },
-    "& li": {
-      color: "red",
-    },
-  },
-}));
 
 const CustomBox = styled(Box)(({ theme }) => ({
   padding: "2rem",
   border: "1px solid #98cafe",
   borderRadius: "1rem",
   background: "rgba(46, 48, 83, 0.4);",
-  textAlign: "flex-start",
   borderTopWidth: "80%",
   boxShadow: " 0px 1px 9px rgba(0, 0, 0, 0.34)",
-  minHeight: "330px",
+  display: 'inline-flex',
+  width: '100%',
   '&:hover': {
     background: "linear-gradient(336.08deg, #9F8CCC 10.7%, #2D91C8 97.43%)",
   },
   [theme.breakpoints.down("md")]: {
     minHeight: "unset",
     padding: "2rem",
-  },
-}));
-
-const CardContent = styled(Card)(({ theme }) => ({
-  background: "transparent",
-  borderRadius: "0px!important",
-  width: "100%",
-  margin: "0 auto 0 auto",
-  boxShadow: "none",
-  color: "white",
-  maxHeight: "200px",
-  [theme.breakpoints.down("md")]: {
-    padding: "0px",
   },
 }));
 
@@ -97,7 +53,6 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
   background: "linear-gradient(90deg, #D0C4FC 4.98%, #9CEAF0 100%), #FFFFFF",
   backgroundClip: "text",
   textFillColor: "transparent",
-  minHeight: '60px',
   [theme.breakpoints.down("md")]: {
     marginBottom: '1rem',
   },
@@ -106,14 +61,9 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
 export default function MultiChain() {
   const isDesktop = useResponsive("up", "md");
   return (
-    <Box pt={isDesktop ? 30 : 15} pb={isDesktop ? 20 : 5}
+    <SectionBox pt={isDesktop ? 30 : 15} pb={isDesktop ? 20 : 5}
       sx={{
-        background: "url('/images/background/homebg3.jpg')",
-        backgroundSize: isDesktop ? "100% 100%" : "cover",
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
+        backgroundImage: "url('/images/background/homebg3.jpg')",
       }}>
       <Box component={'img'} src='/images/home/blur.png' alt=""
         sx={{
@@ -133,43 +83,36 @@ export default function MultiChain() {
             </TypographyGradient >
             <Typography variant="span"> Platform</Typography>
           </TitleBox>
-
-          <Box
-            mt={4}>
-            <SliderCustom {...multiChainSliderSettings}>
-              {teams.map((item, index) => (
-                <Grid alignItems="flex-start" justifyContent="space-evenly" key={index} container>
-                  <CustomBox>
-                    <Box mb={4}>
-                      <img style={{ width: "min(25%,70px)" }} src={item.photoUrl} alt="" />
-                    </Box>
-                    <CardContent>
-                      <Stack>
-                        <TypographyTitle
-                          variant="h6"
-                        >
-                          {item.title}
-                        </TypographyTitle>
-                        <Typography
-                          variant="body2"
-                          className="content"
-                          sx={{
-                            lineHeight: 'unset',
-                            color: "white",
-                            paddingBottom: "2rem",
-                          }}
-                        >
-                          {item.text}
-                        </Typography>
-                      </Stack>
-                    </CardContent>
-                  </CustomBox>
-                </Grid>
-              ))}
-            </SliderCustom>
-          </Box>
+          <Grid container spacing={3} mt={4}>
+            {teams.map((item, index) => (
+              <Grid item key={index} md={6} xs={12}>
+                <CustomBox>
+                  <Box>
+                    <img style={{ width: "min(100%,70px)" }} src={item.photoUrl} alt="" />
+                  </Box>
+                  <Box>
+                    <TypographyTitle
+                      variant="h6"
+                    >
+                      {item.title}
+                    </TypographyTitle>
+                    <Typography
+                      variant="body2"
+                      className="content"
+                      sx={{
+                        lineHeight: 'unset',
+                        color: "white",
+                      }}
+                    >
+                      {item.text}
+                    </Typography>
+                  </Box>
+                </CustomBox>
+              </Grid>
+            ))}
+          </Grid>
         </Box>
       </Container>
-    </Box>
+    </SectionBox>
   );
 }

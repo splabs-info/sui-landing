@@ -1,6 +1,6 @@
 
 import { Box, Container, Typography, styled, } from "@mui/material";
-import { ImgTitleBox, PlatformBox, TitleBox, TypographyGradient } from "./HomeStyles";
+import { ImgTitleBox, PlatformBox, SectionBox, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
 import Slider from "react-slick";
 import { platformSliderSettings } from "./SliderSettings";
@@ -38,14 +38,9 @@ export default function UpcomingPools() {
   const isDesktop = useResponsive("up", "md");
 
   return (
-    <Box pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}
+    <SectionBox pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}
       sx={{
-        background: "url('/images/background/homebg4.jpg')",
-        backgroundSize: isDesktop ? "100% 100%" : "cover",
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
+        backgroundImage: "url('/images/background/homebg4.jpg')",
       }}>
       <Container>
         <Box mb={5} sx={{ position: 'relative' }}>
@@ -58,6 +53,6 @@ export default function UpcomingPools() {
           </TitleBox>
         </Box>
       </Container>
-    </Box>
+    </SectionBox>
   );
 }

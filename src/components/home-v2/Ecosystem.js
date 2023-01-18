@@ -3,14 +3,12 @@ import { Box, Container, Grid, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
 import { ImgTitleBox, NetworkBox, NetworksGrid, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
-import Slider from "react-slick";
-import { networksSliderSettings } from "./SliderSettings";
 
 const ContainerNetwork = styled(Box)(({ theme }) => ({
   display: "grid",
   width: "100%",
-  gridTemplateColumns: "repeat(5, 1fr)",
-
+  gridTemplateColumns: "repeat(4, 1fr)",
+  marginTop: "2rem",
   "& a": {
     background: "rgba(50,53,96,0.33)",
     margin: "0.3rem",
@@ -19,20 +17,20 @@ const ContainerNetwork = styled(Box)(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '0.5rem',
-    "&:nth-of-type(n + 7)": {
+    "&:nth-of-type(n + 5)": {
       opacity: '0.7'
     },
-    "&:nth-of-type(n + 13)": {
+    "&:nth-of-type(n + 9)": {
       opacity: '0.5'
     }
   },
 
   [theme.breakpoints.down("md")]: {
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(4, 1fr)",
 
     "& a": {
       "&:nth-of-type(n + 7)": {
-        display: 'none'
+        // display: 'none'
       },
 
     },
@@ -56,85 +54,68 @@ const CustomLogo = styled("img")(() => ({
 
 const networks = [
   {
+    icon: '/images/networks/icon-.png',
     label: "network-bnb",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
     label: "network-etherum",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
     label: "network-polygon",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
     label: "network-klaytn",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
     label: "network-fantom",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
     label: "network-kcc-2",
     link: "/",
   },
   {
+    icon: '/images/networks/icon-.png',
+    label: "network-solana",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-.png',
+    label: "network-solana",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-.png',
+    label: "network-solana",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-.png',
+    label: "network-solana",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-.png',
+    label: "network-solana",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-.png',
     label: "network-solana",
     link: "/",
   },
 
 ];
 
-const networksNumber = [
-  {
-    label: "Blockchains",
-    amount: "18",
-  },
-  {
-    label: "Total Fundraised",
-    amount: "$ 2.5M",
-  },
-  {
-    label: "Total Participant",
-    amount: "3 K+",
-  },
-  {
-    label: "Projects",
-    amount: "3 +",
-  },
-
-];
-
-const SliderCustom = styled(Slider)(() => ({
-  '&.slick-slide': {
-    padding: "10px!important",
-  },
-  "& .slick-slide": {
-    transition: "all 0.3s ease-in-out",
-    padding: "10px!important",
-    "&.slick-active": {
-      opacity: "1",
-      color: "red",
-
-    },
-    "&.slick-current": {
-      opacity: "1",
-    },
-    "&.slick-center": {
-      marginTop: "-3rem",
-    },
-    "&.slick-prev": {
-      height: "3rem",
-    },
-    "& li.slick-active button::before": {
-      color: "red",
-    },
-    "& li": {
-      color: "red",
-    },
-  },
-}));
 export default function Ecosystem() {
   const isDesktop = useResponsive("up", "md");
 
@@ -157,24 +138,21 @@ export default function Ecosystem() {
         <TextTypography variant={'body1'}>
           wallets & bridges to build a unified decentralized financial ecosystem open to everyone in Web 3.0.
         </TextTypography>
-        <SliderCustom {...networksSliderSettings}>
+        <ContainerNetwork>
           {networks.map((network, index) =>
-            <NetworkBox key={index}>
-              <a
-                href={network.link}
-                target="_blank"
-                rel="noreferrer"
-
-              >
-                <CustomLogo
-                  src={`./images/networks/${network.label}.png`}
-                  alt={network.label}
-                />
-              </a>
-            </NetworkBox>
+            <a
+              href={network.link}
+              target="_blank"
+              rel="noreferrer"
+              key={index}
+            >
+              <CustomLogo
+                src={`./images/networks/${network.label}.png`}
+                alt={network.label}
+              />
+            </a>
           )}
-        </SliderCustom>
-
+        </ContainerNetwork>
       </Container>
     </Box>
   );

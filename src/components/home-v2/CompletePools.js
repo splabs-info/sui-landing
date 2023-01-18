@@ -1,6 +1,6 @@
 
 import { Box, Container, Typography, } from "@mui/material";
-import { ImgTitleBox, TitleBox, TypographyGradient } from "./HomeStyles";
+import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
 
 const platforms = [
@@ -35,15 +35,8 @@ export default function CompletePools() {
   const isDesktop = useResponsive("up", "md");
 
   return (
-    <Box pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}
-      sx={{
-        background: "url('/images/background/homebg5.jpg')",
-        backgroundSize: isDesktop ? "100% 100%" : "cover",
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-      }}>
+    <SectionBox pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}
+      sx={{ backgroundImage: "url('/images/background/homebg5.jpg')", }}>
       <Container>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
@@ -55,6 +48,6 @@ export default function CompletePools() {
           </TitleBox>
         </Box>
       </Container>
-    </Box>
+    </SectionBox>
   );
 }
