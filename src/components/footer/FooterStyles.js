@@ -7,14 +7,18 @@ import {
 import { styled } from "@mui/system";
 
 export const Footer = styled(Box)(({ theme }) => ({
-    background: "linear-gradient(to right, #41B0A7 0%, #C583E4 50%, #8068EF 100%)",
+    // backgroundColor: "linear-gradient(to right, #41B0A7 0%, #C583E4 50%, #8068EF 100%)",
+    backgroundImage: "url('/images/background/footerbg.jpg')",
+    backgroundSize: "100% 100%",
+    backgroundPosition: 'center',
+
     padding: "4rem 0 0",
     color: 'white',
     "& a": {
         paddingBottom: '0.25rem'
     },
     "& a:hover": {
-        borderBottom: "2px solid #0099CC",
+        borderBottom: "2px solid #00E5FF",
         fontWeight: 700,
     },
 }));
@@ -46,13 +50,12 @@ export const SocialBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     "& img": {
         width: '90%',
-        padding: '8px 8px 0 0',
     },
     "& a:hover": {
         borderBottom: '0px',
         "& img": {
             boxShadow: '0 0 10px white',
-            borderRadius: '16px',
+            borderRadius: '14px',
         }
     },
     [theme.breakpoints.down("md")]: {
@@ -97,9 +100,9 @@ export const WhitePaperButton = styled(Button)(() => ({
     fontSize: '1rem',
     fontWeight: 500,
     "&:hover": {
-        borderBottom: "1px solid #0099CC",
+        borderBottom: "1px solid #00E5FF",
         borderRadius: '0px',
-        color: "#0099CC",
+        color: "#00E5FF",
         background: 'transparent',
         fontWeight: 700,
     },

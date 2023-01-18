@@ -33,9 +33,9 @@ export const Navbar = styled(Box)(({ theme }) => ({
         },
     },
     "& a:hover": {
-        borderBottom: "1px solid #0099CC",
+        borderBottom: "1px solid #00E5FF",
         borderRadius: '0px',
-        color: "#0099CC",
+        color: "#00E5FF",
         background: 'transparent',
         fontWeight: 700,
     },
@@ -45,11 +45,11 @@ export const Navbar = styled(Box)(({ theme }) => ({
         marginLeft: '-1rem'
     },
     "& a.logo:hover": {
-        borderBottom: "0px solid #0099CC",
+        borderBottom: "0px solid #00E5FF",
     },
     "& .active": {
         fontWeight: 700,
-        color: "#0099CC",
+        color: "#00E5FF",
     },
     "& .minting": {
         fontWeight: 700,
@@ -83,9 +83,9 @@ export const WhitePaperButton = styled(Button)(() => ({
     textTransform: 'uppercase',
     fontWeight: 500,
     "&:hover": {
-        borderBottom: "1px solid #0099CC",
+        borderBottom: "1px solid #00E5FF",
         borderRadius: '0px',
-        color: "#0099CC",
+        color: "#00E5FF",
         background: 'transparent',
         fontWeight: 700,
     },
