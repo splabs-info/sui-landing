@@ -21,18 +21,19 @@ export const en = {
 
   key_10: "About GateKeeper",
   key_11: "Tokenomics",
-  key_12: "GateKeeper DEX",
+  key_12: "GateKeeper DEX Marketplace",
   key_13: "Private Policy",
   MEDIA_KIT: "Media Kit",
 
-  key_14: "Join",
-  key_15: "Apply for Incubation",
-  key_16: "Gamefund",
-  key_17: "IDO/INO",
-  key_18: "Apply for Guild",
-  key_19: "Apply for IDO/INO",
+  key_14: "Join Ecosystem",
+  key_15: "Apply for IDO Launchpad",
+  key_16: "Apply for INO Launchpad",
+  key_17: "Apply for Incubation",
+  key_Gamefund: "Gamefund",
+  key_18: "IDO/INO",
+  key_19: "Apply for Guild",
 
   key_20: "Social",
-  key_21: "We are hiring",
+  key_21: "GateKeeper Social Platform",
 
 };

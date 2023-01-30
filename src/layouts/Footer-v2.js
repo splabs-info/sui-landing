@@ -25,6 +25,10 @@ const joinGateKeeper = [
     link: "/coming-soon"
   },
   {
+    label: "key_Gamefund",
+    link: "/coming-soon"
+  },
+  {
     label: "key_18",
     link: "/coming-soon"
   },
@@ -37,19 +41,15 @@ const joinGateKeeper = [
 const aboutGateKeeper = [
   {
     label: "key_11",
-    link: ""
-  },
-  {
-    label: "MARKETPLACE",
-    link: ""
+    link: "/coming-soon"
   },
   {
     label: "key_12",
-    link: ""
+    link: "/coming-soon"
   },
   {
     label: "key_13",
-    link: ""
+    link: "/coming-soon"
   },
   {
     label: "WHITEPAPER",
@@ -57,7 +57,7 @@ const aboutGateKeeper = [
   },
   {
     label: "MEDIA_KIT",
-    link: ""
+    link: "/coming-soon"
   },
 ]
 
@@ -117,6 +117,13 @@ export default function FooterV2() {
               }}>
               <Box component={'img'} src="/logo2.png" width={isMobile ? 250 : '90%'} maxWidth={280} />
             </Box>
+            <Typography mt={3} variant="body1" sx={{
+              fontSize: '0.95rem',
+              textAlign: isMobile && 'center',
+              padding: isMobile ? '0 10%' : '0 20% 0 0 ',
+            }}>
+              The Gatekeeper Launchpad platform is a user-friendly platform that runs on Gate-Chain as a multi-chain platform for Metaverse, Game, and WEB 3.0.
+            </Typography>
             <CusLink href="https://splabs.info/"
               target={'_blank'} sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}>
               <Box component="img"
@@ -125,6 +132,7 @@ export default function FooterV2() {
               />
             </CusLink>
             <Typography variant="body1" sx={{
+              fontSize: '0.95rem',
               textAlign: isMobile && 'center',
               padding: isMobile ? '0 10%' : '0 20% 0 0 ',
             }}>
@@ -190,9 +198,7 @@ export default function FooterV2() {
           >
             <FooterTitle>
               {library.key_14}
-              <LogoSPlabs
-                width={'90px'}
-              />
+
             </FooterTitle>
 
             <UlCustom >

@@ -1,17 +1,31 @@
-import { Box, Button, Grid, styled, Typography } from "@mui/material";
-import { BoxStyled, Color, FontFamily } from "../../constant/styled";
+import { alpha, Box, Button, Grid, styled, Typography } from "@mui/material";
+import { Background, BoxStyled, Color, FontFamily } from "../../constant/styled";
+import { TabList } from "@mui/lab";
 
 
 
 export const SectionBox = styled(Box)(({ theme }) => ({
-    backgroundSize: "100% 100%",
+    backgroundSize: { md: "100% 100%", xs: 'cover' },
     backgroundPosition: 'center',
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
+    paddingTop: 150,
+    paddingBottom: 50,
     [theme.breakpoints.down("md")]: {
         backgroundSize: "cover",
     },
+}));
+
+export const CenterBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+}));
+export const SpaceBetweenBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
 }));
 
 
@@ -25,7 +39,12 @@ export const TitleBox = styled(Box)(({ theme }) => ({
         color: 'white',
         fontSize: '3rem',
         textTransform: 'capital',
-    }
+    },
+    [theme.breakpoints.down("md")]: {
+        "& .MuiTypography-root": {
+            fontSize: '2rem',
+        },
+    },
 }));
 
 export const ImgTitleBox = styled(Box)(({ theme }) => ({
@@ -54,6 +73,10 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     lineHeight: '1.3',
     fontSize: '2.25rem!important',
     '& span': { color: Color.primary },
+    [theme.breakpoints.down("sm")]: {
+
+        fontSize: '1.25rem!important',
+    },
 }));
 export const TextTypography = styled(Typography)(({ theme }) => ({
     color: Color.text,
@@ -62,7 +85,7 @@ export const TextTypography = styled(Typography)(({ theme }) => ({
 
 export const ButtonTitleBox = styled(Box)(({ theme }) => ({
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginTop: '1rem',
 }));
 
@@ -143,49 +166,192 @@ export const NetworkBox = styled(Box)(({ theme }) => ({
 
 }));
 
-
-// Platform
-
-export const ContainerPlatform = styled(Box)(({ theme }) => ({
-    display: "flex",
-    width: "100%",
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-}));
-
-
-export const PlatformBox = styled(Box)(({ theme }) => ({
-    background: "#04051E",
-    // margin: "1rem",
-    padding: '1.5rem',
-    display: 'flex!important',
-    justifyContent: 'flex-start',
+export const ComingPoolsBox = styled(Box)(({ theme }) => ({
+    background: "#2C2C50",
+    padding: '1.25rem',
     alignItems: 'center',
     flexDirection: 'column',
     borderRadius: '1rem',
-    width: '30%',
     position: 'relative',
     marginBottom: '2rem',
-    height: '100%',
-    minHeight: '520px',
+    // height: '100%',
+    zIndex: "1",
+    transition: '0.25s',
     "&::before": {
         content: "''",
         position: "absolute",
         inset: "0px",
         borderRadius: "1rem",
         padding: " 1px",
-        background:
-            "linear-gradient(90deg, #9162FE 25%, #00A5FF 100%)",
+        background: Background.gradientBorder,
+        WebkitMask:
+            "linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)",
+        WebkitMaskComposite: "xor",
+        zIndex: "-1",
+    },
+    "& img": {
+        borderRadius: '10px',
+    },
+
+    "&:hover": {
+        "& .ComingPoolsChild": {
+            background: '#2C2C50'
+        },
+        background: Background.gradient336,
+        "& img": {
+            border: '1px solid #98cafe'
+        },
+    },
+
+    [theme.breakpoints.down("md")]: {
+
+    },
+}));
+export const ComingPoolsChildBox = styled(Box)(({ theme }) => ({
+    background: Background.gradient45,
+    padding: '1rem',
+    borderRadius: '1rem',
+    marginTop: '1rem',
+    transition: '0.25s',
+    '& .MuiTypography-body1': {
+
+        fontSize: '0.85rem',
+    },
+}));
+
+export const CompletedPoolsBox = styled(Box)(({ theme }) => ({
+    background: Background.gradient45,
+    padding: '0px',
+    borderRadius: '1rem',
+    position: 'relative',
+    marginBottom: '2rem',
+    width: '100%',
+    "&::before": {
+        content: "''",
+        position: "absolute",
+        inset: "0px",
+        borderRadius: "1rem",
+        padding: " 1px",
+        background: Background.gradientBorder,
         WebkitMask:
             "linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)",
         WebkitMaskComposite: "xor",
         zIndex: "0",
     },
-    [theme.breakpoints.down("md")]: {
-        width: '45%',
+    "& img": {
+        borderRadius: '10px',
+        width: '200px',
+        transition: '0.25s',
     },
-    [theme.breakpoints.down("sm")]: {
-        width: '90%',
+    "& img,p": {
+        zIndex: 1
+    },
+    "& .CompletedPoolsChild": {
+        transition: '0.25s',
+    },
+    "&:hover": {
+        minHeight: 364,
+        padding: 8,
+        "& .CompletedPoolsChild": {
+            padding: 0
+        },
+        "& .CompletedPoolsChild-2": {
+            padding: '12px 16px',
+        },
+        "& .ImgBox": {
+            width: '60%'
+        },
+        "& .TextBox": {
+            paddingRight: '0.5rem'
+        },
+        "& img": {
+            width: '250px',
+            borderRadius: '10px 0 0 10px',
+        },
+    },
+
+
+    [theme.breakpoints.down("md")]: {
+
     },
 }));
 
+export const CompletedPoolsChildBox = styled(Box)(({ theme }) => ({
+    background: "#2C2C50",
+    padding: '24px',
+    display: "inline-flex",
+    borderRadius: '1rem',
+    width: '100%',
+    height: 250,
+}));
+
+
+export const CustomTabList = styled(TabList)(({ theme }) => ({
+    transition: '1s',
+    '& button': {
+        padding: '1.5rem',
+        color: alpha('#fff', 1),
+        margin: '8px',
+        borderRadius: "8px",
+        zIndex: '1',
+        boxShadow: '0 0 5px 2px rgba(45,145,200,0.3)',
+        '& span': {
+            background: Background.gradient336,
+            opacity: '0.3',
+            borderRadius: "8px",
+        },
+        "&::before": {
+            content: "''",
+            position: "absolute",
+            inset: "0px",
+            borderRadius: "8px",
+            padding: " 1px",
+            background: Background.gradientBorder,
+            WebkitMask:
+                "linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)",
+            WebkitMaskComposite: "xor",
+            zIndex: "0",
+        },
+    },
+    '& .MuiTabs-flexContainer': {
+        justifyContent: { md: 'center', xs: 'flex-start' },
+        overflowX: { md: 'hidden', xs: 'auto' },
+        '::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
+    '& button.Mui-selected': {
+        boxShadow: 'none',
+        color: alpha('#fff', 1),
+        transition: '1s',
+        '& span': {
+            background: Background.gradient336,
+            opacity: '0.8',
+            zIndex: '-1',
+        },
+        "&::before": {
+            background: 'transparent',
+        },
+    },
+    '& .MuiTypography-body1': {
+        fontSize: '0.95rem',
+        fontWeight: 'bold',
+        whiteSpace: 'nowrap',
+    },
+    '& .MuiTypography-body2': {
+        fontSize: '0.8rem',
+    },
+    [theme.breakpoints.down("md")]: {
+        '& button': {
+            padding: '0.5rem 1rem',
+        },
+
+        '& .MuiTabs-scrollButtons': {
+            color: Color.primary
+        },
+        '& .MuiTabs-scrollButtons.Mui-disabled ': {
+            opacity: '0.3'
+        }
+
+    },
+}))

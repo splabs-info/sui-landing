@@ -1,7 +1,9 @@
 
-import { Box, Container, Typography, } from "@mui/material";
-import { ImgTitleBox, PlatformBox, TitleBox, TypographyGradient } from "./HomeStyles";
+import { Box, Container, Tab, Tabs, } from "@mui/material";
+import { CustomTabList, ImgTitleBox, SectionBox, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
+import { TabContext, TabPanel } from "@mui/lab";
+import { useState } from "react";
 
 const platforms = [
   {
@@ -32,29 +34,78 @@ const platforms = [
 ];
 
 
+
 export default function Questions() {
   const isDesktop = useResponsive("up", "md");
 
+  const [tabIndex, setTabIndex] = useState('0');
+
+  const handleChange = (event, newValue) => {
+    setTabIndex(newValue.toString());
+  };
+
+
   return (
-    <Box pt={isDesktop ? 10 : 3} pb={isDesktop ? 5 : 3}
-      sx={{
-        background: "url('/images/background/homebg6.jpg')",
-        backgroundSize: isDesktop ? "100% 100%" : "cover",
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-      }}>
+    <SectionBox sx={{
+      backgroundImage: "url('/images/background/homebg6.jpg')",
+      paddingTop: '100px',
+      paddingBottom: '100px',
+    }}>
       <Container>
-        <Box mb={5} sx={{ position: 'relative' }}>
-          <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
-          <TitleBox>
-            <TypographyGradient>
-              Questions
-            </TypographyGradient >
-          </TitleBox>
-        </Box>
+        <TabContext value={tabIndex} >
+          <Box>
+            <CustomTabList
+              onChange={handleChange}
+              indicatorColor='none'
+              variant={isDesktop ? "fullWidth" : "scrollable"}
+              scrollButtons="auto"
+            >
+              <Tab value='0'
+                label={
+                  <div>
+                    <TextTypography variant="body1">How to get started ?</TextTypography>
+                    <TextTypography variant="body2">see more</TextTypography>
+                  </div>
+                } />
+              <Tab value='1'
+                label={
+                  <div>
+                    <TextTypography variant="body1">What is Tier System ?</TextTypography>
+                    <TextTypography variant="body2">see more</TextTypography>
+                  </div>
+                } />
+              <Tab value='2'
+                label={
+                  <div>
+                    <TextTypography variant="body1">How to join IDO ?</TextTypography>
+                    <TextTypography variant="body2">see more</TextTypography>
+                  </div>
+                } />
+              <Tab value='3'
+                label={
+                  <div>
+                    <TextTypography variant="body1">What is Gate-Keeper.io ?</TextTypography>
+                    <TextTypography variant="body2">see more</TextTypography>
+                  </div>
+                } />
+            </CustomTabList>
+          </Box>
+
+          <TabPanel value={'0'} sx={{ padding: "1.5rem 0" }}>
+            <Box component={'img'} src='/images/home/video.png' alt="" />
+          </TabPanel>
+          <TabPanel value={'1'} sx={{ padding: "1.5rem 0" }}>
+            <Box component={'img'} src='/images/home/video.png' alt="" />
+          </TabPanel>
+          <TabPanel value={'2'} sx={{ padding: "1.5rem 0" }}>
+            <Box component={'img'} src='/images/home/video.png' alt="" />
+          </TabPanel>
+          <TabPanel value={'3'} sx={{ padding: "1.5rem 0" }}>
+            <Box component={'img'} src='/images/home/video.png' alt="" />
+          </TabPanel>
+
+        </TabContext>
       </Container>
-    </Box>
+    </SectionBox>
   );
 }

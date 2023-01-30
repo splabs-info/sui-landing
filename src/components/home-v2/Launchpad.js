@@ -1,6 +1,7 @@
 import { Box, Container, Typography, Grid, styled } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from "./HomeStyles";
+import { Background, Color } from "../../constant/styled";
 
 const teams = [
   {
@@ -29,19 +30,25 @@ const teams = [
 
 const CustomBox = styled(Box)(({ theme }) => ({
   padding: "2rem",
-  border: "1px solid #98cafe",
   borderRadius: "1rem",
-  background: "rgba(46, 48, 83, 0.4);",
+  border: "1px solid rgba(46, 48, 83, 0.4)",
+  background: Color.background,
   borderTopWidth: "80%",
-  boxShadow: " 0px 1px 9px rgba(0, 0, 0, 0.34)",
   display: 'inline-flex',
   width: '100%',
+  height: '100%',
   '&:hover': {
-    background: "linear-gradient(336.08deg, #9F8CCC 10.7%, #2D91C8 97.43%)",
+    background: Background.gradient336,
+    border: "1px solid #98cafe",
+    boxShadow: " 0px 1px 9px rgba(0, 0, 0, 0.34)",
   },
   [theme.breakpoints.down("md")]: {
     minHeight: "unset",
-    padding: "2rem",
+    padding: "1rem",
+    '& .TextBox': {
+      width: '95%'
+    }
+
   },
 }));
 
@@ -54,17 +61,14 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
   backgroundClip: "text",
   textFillColor: "transparent",
   [theme.breakpoints.down("md")]: {
-    marginBottom: '1rem',
+    marginBottom: '.25rem',
   },
 }));
 
 export default function MultiChain() {
   const isDesktop = useResponsive("up", "md");
   return (
-    <SectionBox pt={isDesktop ? 30 : 15} pb={isDesktop ? 20 : 5}
-      sx={{
-        backgroundImage: "url('/images/background/homebg3.jpg')",
-      }}>
+    <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.jpg')" }}>
       <Box component={'img'} src='/images/home/blur.png' alt=""
         sx={{
           width: isDesktop ? '450px' : '200px',
@@ -85,12 +89,12 @@ export default function MultiChain() {
           </TitleBox>
           <Grid container spacing={3} mt={4}>
             {teams.map((item, index) => (
-              <Grid item key={index} md={6} xs={12}>
+              <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
                 <CustomBox>
                   <Box>
                     <img style={{ width: "min(100%,70px)" }} src={item.photoUrl} alt="" />
                   </Box>
-                  <Box>
+                  <Box pl={1} className="TextBox">
                     <TypographyTitle
                       variant="h6"
                     >

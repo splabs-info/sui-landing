@@ -27,13 +27,14 @@ const networksNumber = [
   },
 ];
 export default function Overview() {
-  const isDesktop = useResponsive("up", "md");
+  const isMobile = useResponsive("down", "sm");
   return (
     <Box sx={{
-      backgroundImage: "url('/images/background/homebg2.jpg')", backgroundSize: "100% 100%",
+      backgroundImage: "url('/images/background/homebg2.jpg')",
+      backgroundSize: "100% 100%",
       backgroundPosition: 'center',
     }}>
-      <Box pt={isDesktop ? 15 : 5} pb={5} >
+      <SectionBox>
         <Container>
           <Box mb={5} sx={{ position: 'relative' }}>
             <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
@@ -47,13 +48,15 @@ export default function Overview() {
           <NetworksGrid>
             <Grid container>
               {networksNumber.map((detail, index) => (
-                <Grid item xs={3} key={index}
+                <Grid item xs={6} sm={3} key={index}
                   sx={{
                     padding: '0 0.5rem',
                     margin: '0.75rem 0',
                     color: 'white',
                     textAlign: 'center',
-                    borderRight: networksNumber.length !== index + 1 ? '1px solid rgba(45,145,200,0.3)' : 'none',
+                    borderRight:
+                      isMobile ? index % 2 === 0 ? '1px solid rgba(45,145,200,0.3)' : 'none'
+                        : networksNumber.length !== index + 1 ? '1px solid rgba(45,145,200,0.3)' : 'none',
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -66,7 +69,7 @@ export default function Overview() {
             </Grid>
           </NetworksGrid>
         </Container>
-      </Box>
+      </SectionBox>
       <Ecosystem />
     </Box>
   );

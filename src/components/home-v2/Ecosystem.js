@@ -1,8 +1,9 @@
 
-import { Box, Container, Grid, Typography, } from "@mui/material";
+import { Box, Container, Typography, } from "@mui/material";
 import { styled } from "@mui/system";
-import { ImgTitleBox, NetworkBox, NetworksGrid, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
+import { ImgTitleBox, SectionBox, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
+import { Color } from "../../constant/styled";
 
 const ContainerNetwork = styled(Box)(({ theme }) => ({
   display: "grid",
@@ -11,18 +12,28 @@ const ContainerNetwork = styled(Box)(({ theme }) => ({
   marginTop: "2rem",
   "& a": {
     background: "rgba(50,53,96,0.33)",
-    margin: "0.3rem",
-    padding: '1rem',
+    margin: "0.75rem",
+    padding: '1.5rem',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '0.5rem',
     "&:nth-of-type(n + 5)": {
-      opacity: '0.7'
+      opacity: '0.7',
+      "& img": {
+        maxHeight: '35px',
+      },
     },
     "&:nth-of-type(n + 9)": {
       opacity: '0.5'
-    }
+    },
+    "&:hover": {
+      color: Color.primary,
+      "& img": {
+        transform: "scale(1.05)",
+      },
+    },
+
   },
 
   [theme.breakpoints.down("md")]: {
@@ -47,70 +58,88 @@ const CustomLogo = styled("img")(() => ({
   padding: 0,
   display: "block",
   maxHeight: '45px',
-  "&:hover": {
-    transform: "scale(1.05)",
-  },
+
 }));
 
 const networks = [
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-bnb",
+    icon: '/images/networks/icon-1.png',
+    label: "BNB Chain",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-etherum",
+    icon: '/images/networks/icon-2.png',
+    label: "Ethereum",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-polygon",
+    icon: '/images/networks/icon-3.png',
+    label: "Solana",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-klaytn",
+    icon: '/images/networks/icon-4.png',
+    label: "Polygon",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-fantom",
+    icon: '/images/networks/icon-5.png',
+    label: "Fantom",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-kcc-2",
+    icon: '/images/networks/icon-6.png',
+    label: "Avalanche",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-7.png',
+    label: "Arbitrum",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-8.png',
+    label: "Optimism",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-9.png',
+    label: "Harmony",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-10.png',
+    label: "Aptos",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-11.png',
+    label: "Gnosis",
     link: "/",
   },
   {
-    icon: '/images/networks/icon-.png',
-    label: "network-solana",
+    icon: '/images/networks/icon-12.png',
+    label: "Boba",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-13.png',
+    label: "Ontology",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-14.png',
+    label: "Tron",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-15.png',
+    label: "HECO",
+    link: "/",
+  },
+  {
+    icon: '/images/networks/icon-16.png',
+    label: "OKC",
     link: "/",
   },
 
@@ -120,7 +149,7 @@ export default function Ecosystem() {
   const isDesktop = useResponsive("up", "md");
 
   return (
-    <Box pt={isDesktop ? 15 : 5} pb={5} >
+    <SectionBox>
       <Container>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
@@ -147,13 +176,14 @@ export default function Ecosystem() {
               key={index}
             >
               <CustomLogo
-                src={`./images/networks/${network.label}.png`}
+                src={network.icon}
                 alt={network.label}
               />
+              <span style={{ minWidth: 80, marginLeft: 10 }}>{network.label}</span>
             </a>
           )}
         </ContainerNetwork>
       </Container>
-    </Box>
+    </SectionBox>
   );
 }
