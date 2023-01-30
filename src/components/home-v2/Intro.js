@@ -62,7 +62,7 @@ export default function Intro() {
               <TextTypography
                 variant={'body1'}
                 fontSize={isMobile && '0.9rem'}
-                fontWeight='bold'
+                fontWeight='500'
                 maxWidth={500}>
                 Gatekeeper works with projects with a high probability of success with enhanced Due Diligence and Regulation.
 
@@ -137,7 +137,15 @@ export default function Intro() {
           right: 0,
           display: isTablet && 'none'
         }} />
-      <img alt="gatekeeper" src="/images/home/home-coins.png"
+      <img alt="gatekeeper" src="/images/home/home-coins-others.png"
+        className={isDesktop && 'imgCoins'}
+        style={{
+          position: 'absolute',
+          width: '40%',
+          right: 0,
+          display: isTablet && 'none'
+        }} />
+      <img alt="gatekeeper" src="/images/home/home-coins-G.png"
         className={isDesktop && 'imgGate'}
         style={{
           position: 'absolute',
@@ -145,12 +153,12 @@ export default function Intro() {
           right: 0,
           display: isTablet && 'none'
         }} />
-      <img alt="gatekeeper" src="/images/home/base.png"
+      <img alt="" src="/images/home/base-2.png"
         style={{
           position: 'absolute',
           width: '40%',
           right: 0,
-          top: '75%',
+          top: '80%',
           display: isTablet && 'none'
         }} />
 

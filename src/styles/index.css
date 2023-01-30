@@ -24,6 +24,10 @@ a {
 }
 
 .imgGate {
+  animation: scale2 2.5s linear infinite;
+}
+
+.imgCoins {
   animation: scale 2.5s linear infinite;
 }
 
@@ -38,5 +42,19 @@ a {
   50% {
     transform: scale(1.01);
     -webkit-transform: scale(1.01);
+  }
+}
+
+@keyframes scale2 {
+
+  from,
+  to {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
   }
 }
