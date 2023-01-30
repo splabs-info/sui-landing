@@ -138,6 +138,7 @@ export default function Intro() {
           display: isTablet && 'none'
         }} />
       <img alt="gatekeeper" src="/images/home/home-coins.png"
+        className={isDesktop && 'imgGate'}
         style={{
           position: 'absolute',
           width: '40%',

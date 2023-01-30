@@ -22,3 +22,21 @@ a {
   text-decoration: none;
   color: white;
 }
+
+.imgGate {
+  animation: scale 2.5s linear infinite;
+}
+
+@keyframes scale {
+
+  from,
+  to {
+    transform: scale(0.99);
+    -webkit-transform: scale(0.99);
+  }
+
+  50% {
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+  }
+}
