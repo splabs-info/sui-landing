@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
-import { ButtonTitleBox, FrameButton, TitleTypography, TextTypography, SectionBox } from "./HomeStyles";
+import { ButtonTitleBox, FrameButton, TitleTypography, TextTypography, SectionBox, CenterBox } from "./HomeStyles";
 import { Link } from "react-router-dom";
 
 
@@ -24,14 +24,14 @@ export default function Intro() {
   return (
     <SectionBox
       sx={{
-        backgroundImage: isDesktop ? "url('/images/background/homebg1.jpg')" : "url('/images/background/homebg1-mobile.jpg')",
+        backgroundImage: "url('/images/background/homebg1.jpg')",
         minHeight: '100vh',
         paddingTop: !isDesktop && 5
       }}
 
     >
       <Container maxWidth={'xl'}>
-        <Grid container>
+        <Grid container sx={{ flexDirection: isMobile && 'column-reverse' }}>
           <Grid item
             xs={12}
             md={8}
@@ -45,7 +45,7 @@ export default function Intro() {
                 textAlign: isMobile && 'center'
               }
             }}>
-            <Box mt={12}>
+            <Box mt={isMobile ? 5 : 12}>
               {Title.map((item, i) => (
                 <TitleTypography key={i}
                   variant="h1"
@@ -117,16 +117,21 @@ export default function Intro() {
             </Box>
           </Grid>
           <Grid item md={4}>
-            {isMobile && <Box>
+            {isMobile && <CenterBox>
               <img alt="gatekeeper" src="/images/home/gatekeeper.png"
                 style={{
+                  width: '60%',
+                  right: 0,
+                  zIndex: 2
                 }} />
-              <img alt="gatekeeper" src="/images/home/base.png"
+              <img alt="gatekeeper" src="/images/home/base-2.png"
                 style={{
-                  marginTop: '-2rem',
+                  position: 'absolute',
+                  width: '60%',
+                  top: '270px',
+                  zIndex: 1
                 }} />
-            </Box>}
-
+            </CenterBox>}
           </Grid>
         </Grid>
       </Container>

@@ -75,7 +75,7 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     '& span': { color: Color.primary },
     [theme.breakpoints.down("sm")]: {
 
-        fontSize: '1.25rem!important',
+        fontSize: '1.2rem!important',
     },
 }));
 export const TextTypography = styled(Typography)(({ theme }) => ({
