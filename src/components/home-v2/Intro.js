@@ -116,19 +116,18 @@ export default function Intro() {
               </Box>
             </Box>
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={4} mt={isMobile && 5}>
             {isMobile && <CenterBox>
               <img alt="gatekeeper" src="/images/home/gatekeeper.png"
                 style={{
                   width: '60%',
-                  right: 0,
                   zIndex: 2
                 }} />
               <img alt="gatekeeper" src="/images/home/base-2.png"
                 style={{
                   position: 'absolute',
                   width: '60%',
-                  top: '270px',
+                  top: '250px',
                   zIndex: 1
                 }} />
             </CenterBox>}

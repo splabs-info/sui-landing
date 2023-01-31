@@ -32,7 +32,10 @@ export const UlCustom = styled(Box)(({ theme }) => ({
 
     },
     [theme.breakpoints.down("sm")]: {
-        fontSize: "0.6rem",
+        "& li": {
+            fontSize: '0.8rem',
+
+        },
     },
 }));
 
@@ -108,10 +111,9 @@ export const WhitePaperButton = styled(Button)(() => ({
     },
 }));
 
-export const GetIntoButton = styled(Button)(() => ({
+export const GetIntoButton = styled(Button)(({ theme }) => ({
     color: "white",
     lineHeight: "1",
-    marginRight: "2rem",
     background: alpha('#fff', 0.3),
     fontFamily: "SVN-Gilroy-regular",
     padding: '0.75rem 1.5rem',
@@ -125,5 +127,8 @@ export const GetIntoButton = styled(Button)(() => ({
         color: "#00E5FF",
         background: 'transparent',
         fontWeight: 700,
+    },
+    [theme.breakpoints.down("md")]: {
+        justifyContent: 'center',
     },
 }));
