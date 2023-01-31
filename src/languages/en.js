@@ -21,7 +21,7 @@ export const en = {
 
   key_10: "About GateKeeper",
   key_11: "Tokenomics",
-  key_12: "GateKeeper DEX Marketplace",
+  key_12: "GateKeeper DEX",
   key_13: "Private Policy",
   MEDIA_KIT: "Media Kit",
 
