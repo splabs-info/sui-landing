@@ -30,7 +30,7 @@ export default function Intro() {
       }}
 
     >
-      <Container maxWidth={'lg'}>
+      <Container maxWidth={'xl'}>
         <Grid container>
           <Grid item
             xs={12}
@@ -138,7 +138,7 @@ export default function Intro() {
           display: isTablet && 'none'
         }} />
       <img alt="gatekeeper" src="/images/home/home-coins-others.png"
-        className={isDesktop && 'imgCoins'}
+        className={'imgCoins'}
         style={{
           position: 'absolute',
           width: '40%',
@@ -146,7 +146,7 @@ export default function Intro() {
           display: isTablet && 'none'
         }} />
       <img alt="gatekeeper" src="/images/home/home-coins-G.png"
-        className={isDesktop && 'imgGate'}
+        className={'imgGate'}
         style={{
           position: 'absolute',
           width: '40%',

@@ -54,7 +54,7 @@ export default function CompletePools() {
       sx={{
         backgroundImage: "url('/images/background/homebg5.jpg')",
       }}>
-      <Container>
+      <Container maxWidth={"xl"}>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
           <TitleBox>

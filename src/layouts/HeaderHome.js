@@ -296,6 +296,7 @@ export default function HeaderHome() {
                   Connect Wallet
                 </ApplyButton>
                 <Avatar src="/images/icon/icon-user.png" />
+                {/* <Avatar src="/images/icon/icon-person.png" sx={{ borderRadius: '0' }} /> */}
                 {/* <Languages sx={{ color: "white" }} /> */}
               </Hidden>
 

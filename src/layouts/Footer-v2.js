@@ -7,7 +7,7 @@ import {
 import { useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LogoSPlabs, { CusLink } from "../components/common/LogoSPlabs";
-import { EndBox, Footer, SocialBox, FooterTitle, UlCustom } from "../components/footer/FooterStyles";
+import { EndBox, Footer, SocialBox, FooterTitle, UlCustom, GetIntoButton } from "../components/footer/FooterStyles";
 import useResponsive from "../hooks/useResponsive";
 import { _changeLanguage } from "../store/setting/settingActions";
 
@@ -233,6 +233,9 @@ export default function FooterV2() {
             <FooterTitle mt={3}>
               {library.key_21}
             </FooterTitle>
+            <GetIntoButton>
+              Get into Social Platform
+            </GetIntoButton>
           </Grid>
 
         </Grid>

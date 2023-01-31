@@ -150,7 +150,7 @@ export default function Ecosystem() {
 
   return (
     <SectionBox>
-      <Container>
+      <Container maxWidth={"xl"}>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
           <TitleBox>

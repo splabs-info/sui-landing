@@ -77,7 +77,7 @@ export default function MultiChain() {
           top: isDesktop ? '0rem' : '2rem',
           zIndex: 0
         }} />
-      <Container>
+      <Container maxWidth={"xl"}>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
           <TitleBox >

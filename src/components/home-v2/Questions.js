@@ -1,6 +1,6 @@
 
 import { Box, Container, Tab, Tabs, } from "@mui/material";
-import { CustomTabList, ImgTitleBox, SectionBox, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
+import { CenterBox, CustomTabList, CustomTabPanel, ImgTitleBox, SectionBox, TextTypography, TitleBox, TypographyGradient } from "./HomeStyles";
 import useResponsive from "../../hooks/useResponsive";
 import { TabContext, TabPanel } from "@mui/lab";
 import { useState } from "react";
@@ -51,7 +51,7 @@ export default function Questions() {
       paddingTop: '100px',
       paddingBottom: '100px',
     }}>
-      <Container>
+      <Container maxWidth={"xl"}>
         <TabContext value={tabIndex} >
           <Box>
             <CustomTabList
@@ -91,18 +91,18 @@ export default function Questions() {
             </CustomTabList>
           </Box>
 
-          <TabPanel value={'0'} sx={{ padding: "1.5rem 0" }}>
-            <Box component={'img'} src='/images/home/video.png' alt="" />
-          </TabPanel>
-          <TabPanel value={'1'} sx={{ padding: "1.5rem 0" }}>
-            <Box component={'img'} src='/images/home/video.png' alt="" />
-          </TabPanel>
-          <TabPanel value={'2'} sx={{ padding: "1.5rem 0" }}>
-            <Box component={'img'} src='/images/home/video.png' alt="" />
-          </TabPanel>
-          <TabPanel value={'3'} sx={{ padding: "1.5rem 0" }}>
-            <Box component={'img'} src='/images/home/video.png' alt="" />
-          </TabPanel>
+          <CustomTabPanel value={'0'} >
+            <CenterBox><Box component={'img'} src='/images/home/video.png' alt="" /></CenterBox>
+          </CustomTabPanel>
+          <CustomTabPanel value={'1'} >
+            <CenterBox><Box component={'img'} src='/images/home/video.png' alt="" /></CenterBox>
+          </CustomTabPanel>
+          <CustomTabPanel value={'2'} >
+            <CenterBox><Box component={'img'} src='/images/home/video.png' alt="" /></CenterBox>
+          </CustomTabPanel>
+          <CustomTabPanel value={'3'} >
+            <CenterBox><Box component={'img'} src='/images/home/video.png' alt="" /></CenterBox>
+          </CustomTabPanel>
 
         </TabContext>
       </Container>

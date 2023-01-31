@@ -44,7 +44,7 @@ export default function UpcomingPools() {
       sx={{
         backgroundImage: "url('/images/background/homebg4.jpg')",
       }}>
-      <Container>
+      <Container maxWidth={"xl"}>
         <Box mb={5} sx={{ position: 'relative' }}>
           <ImgTitleBox component={'img'} src='/images/home/shape.png' alt="" />
           <TitleBox>
@@ -73,7 +73,7 @@ export default function UpcomingPools() {
                   </Box>
                 </Box>
                 <TextTypography variant="body1" mt={2}>  {platform.label}</TextTypography>
-                <TextTypography variant="body1" mt={1} fontSize={'0.9rem'}> {platform.description}</TextTypography>
+                <TextTypography variant="body1" mt={1} fontSize={'0.9rem'} textAlign={'justify'}> {platform.description}</TextTypography>
                 <ComingPoolsChildBox className="ComingPoolsChild">
                   <SpaceBetweenBox>
                     <TextTypography>Min Allocation:</TextTypography>

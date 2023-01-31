@@ -4,7 +4,7 @@ import {
     Button,
     Menu,
 } from "@mui/material";
-import { styled } from "@mui/system";
+import { alpha, styled } from "@mui/system";
 
 export const Footer = styled(Box)(({ theme }) => ({
     // backgroundColor: "linear-gradient(to right, #41B0A7 0%, #C583E4 50%, #8068EF 100%)",
@@ -102,6 +102,26 @@ export const WhitePaperButton = styled(Button)(() => ({
     "&:hover": {
         borderBottom: "1px solid #00E5FF",
         borderRadius: '0px',
+        color: "#00E5FF",
+        background: 'transparent',
+        fontWeight: 700,
+    },
+}));
+
+export const GetIntoButton = styled(Button)(() => ({
+    color: "white",
+    lineHeight: "1",
+    marginRight: "2rem",
+    background: alpha('#fff', 0.3),
+    fontFamily: "SVN-Gilroy-regular",
+    padding: '0.75rem 1.5rem',
+    borderRadius: '20px',
+    fontSize: '1rem',
+    fontWeight: 500,
+    border: "1px solid white",
+    boxShadow: '0 0 10px 2px rgba(255,255,255,.5), inset 0 0 10px 2px rgba(255,255,255,.5)',
+    "&:hover": {
+        border: "1px solid #00E5FF",
         color: "#00E5FF",
         background: 'transparent',
         fontWeight: 700,

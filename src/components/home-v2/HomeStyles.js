@@ -1,6 +1,6 @@
 import { alpha, Box, Button, Grid, styled, Typography } from "@mui/material";
 import { Background, BoxStyled, Color, FontFamily } from "../../constant/styled";
-import { TabList } from "@mui/lab";
+import { TabList, TabPanel } from "@mui/lab";
 
 
 
@@ -355,3 +355,8 @@ export const CustomTabList = styled(TabList)(({ theme }) => ({
 
     },
 }))
+
+export const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
+    padding: "2rem 0",
+}));
+
