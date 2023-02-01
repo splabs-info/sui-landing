@@ -29,7 +29,7 @@ export const en = {
   key_15: "Apply for IDO Launchpad",
   key_16: "Apply for INO Launchpad",
   key_17: "Apply for Incubation",
-  key_Gamefund: "Gamefund",
+  key_Staking: "Staking",
   key_18: "IDO/INO",
   key_19: "Apply for Guild",
 

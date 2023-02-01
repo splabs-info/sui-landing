@@ -162,10 +162,13 @@ export default function Ecosystem() {
           </TitleBox>
         </Box>
         <TextTypography variant={'body1'}>
-          We’re working together with market, decentralized exchanges,
+          Although it is a launchpad platform operated by Gate-Chain,
         </TextTypography>
         <TextTypography variant={'body1'}>
-          wallets & bridges to build a unified decentralized financial ecosystem open to everyone in Web 3.0.
+          various chains can be accessed with scalability through the bridge,
+        </TextTypography>
+        <TextTypography variant={'body1'}>
+          and users can easily access games and NFTs of various chains and get the opportunity to become early investors.
         </TextTypography>
         <ContainerNetwork>
           {networks.map((network, index) =>

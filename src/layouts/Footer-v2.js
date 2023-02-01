@@ -25,7 +25,7 @@ const joinGateKeeper = [
     link: "/coming-soon"
   },
   {
-    label: "key_Gamefund",
+    label: "key_Staking",
     link: "/coming-soon"
   },
   {
@@ -115,7 +115,7 @@ export default function FooterV2() {
                   borderBottom: '0px!important'
                 }
               }}>
-              <Box component={'img'} src="/logo2.png" width={isMobile ? 250 : '90%'} maxWidth={280} />
+              <Box component={'img'} src="/logo2.png" width={isMobile ? 200 : '90%'} maxWidth={250} />
             </Box>
             <Typography mt={3} variant="body1" sx={{
               fontSize: '0.95rem',
@@ -128,7 +128,7 @@ export default function FooterV2() {
               target={'_blank'} sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}>
               <Box component="img"
                 src="/logo-splabs.png"
-                width={'100px'}
+                width={'150px'}
               />
             </CusLink>
             <Typography variant="body1" sx={{
@@ -153,7 +153,7 @@ export default function FooterV2() {
             </FooterTitle>
             <UlCustom >
               <li >
-                <a href='mailto:business@gate-keeper.io' target="_blank" rel="noreferrer">
+                <a href='mailto:business@gate-keeper.io' target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>
                   business@gate-keeper.io
                 </a>
               </li>
