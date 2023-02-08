@@ -64,19 +64,19 @@ const aboutGateKeeper = [
 const socials = [
   {
     src: "/images/icon/icon-medium.png",
-    link: ""
+    link: "https://medium.com/@GatekeeperGlobal"
   },
   {
     src: "/images/icon/icon-twitter.png",
-    link: ""
+    link: "https://twitter.com/Sp_Gatekeeper"
   },
   {
     src: "/images/icon/icon-discord.png",
-    link: ""
+    link: "https://discord.gg/uGsNuBHU3C"
   },
   {
     src: "/images/icon/icon-telegram.png",
-    link: ""
+    link: "https://t.me/GateKeeperGlobal"
   },
 
 ]
@@ -225,7 +225,7 @@ export default function FooterV2() {
             </FooterTitle>
             <SocialBox>
               {socials.map((item, index) => (
-                <Box key={index} component='a' href={item.link}>
+                <Box key={index} component='a' href={item.link} target={'_blank'}>
                   <Box component='img' src={item.src} />
                 </Box>
               ))}

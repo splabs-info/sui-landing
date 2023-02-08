@@ -8,7 +8,7 @@ import { IconDiscountCheck } from "@tabler/icons";
 
 const RoadmapContent = [
   {
-    title: 'Q3-2022',
+    title: 'Q4-2022',
     content: [
       'Idea Formation',
       'Team Formation',
@@ -21,7 +21,7 @@ const RoadmapContent = [
     status: true
   },
   {
-    title: 'Q4-2022',
+    title: 'Q1-2023',
     content: [
       'Core Platform',
       'Finalization',
@@ -36,7 +36,7 @@ const RoadmapContent = [
     ]
   },
   {
-    title: 'Q1-2023',
+    title: 'Q2-2023',
     content: [
       'Marketing Strategy',
       'Incubation Program',

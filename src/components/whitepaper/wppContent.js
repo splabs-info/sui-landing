@@ -190,7 +190,7 @@ export const wppContent = [
     category: 'Roadmap',
     description: [
       {
-        title: 'Q3 2022 - DONE',
+        title: 'Q4 2022 - DONE',
         list: [
           'Gatekeeper Launch',
           'Smart-Contract Deployment',
@@ -200,7 +200,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q4 2022 - DONE',
+        title: 'Q1 2023 - ONGOING',
         list: [
           'Platform Development',
           'IDO Open',
@@ -211,7 +211,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q1 2023 - ONGOING',
+        title: 'Q2 2023 - PENDING',
         list: [
           'Staking & Gatekeeper First IDO/INO',
           'Soft-Launching',
@@ -223,7 +223,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q2 2023 - PENDING',
+        title: 'Q3 2023 - PENDING',
         list: [
           'Guild Assemble & IGO',
           'First IGO Launch',
@@ -234,7 +234,7 @@ export const wppContent = [
         ]
       },
       {
-        title: 'Q3 2023 - PENDING',
+        title: 'Q4 2023 - PENDING',
         list: [
           'DAO Governed IDO',
           'Ecosystem Expansion',
