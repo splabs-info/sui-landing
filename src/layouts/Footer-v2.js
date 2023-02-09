@@ -2,12 +2,14 @@ import {
   Box,
   Container,
   Grid,
+  MenuItem,
   Typography,
 } from "@mui/material";
-import { useEffect, } from "react";
+import { IconBrandTelegram } from "@tabler/icons";
+import { useEffect, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LogoSPlabs, { CusLink } from "../components/common/LogoSPlabs";
-import { EndBox, Footer, SocialBox, FooterTitle, UlCustom, GetIntoButton } from "../components/footer/FooterStyles";
+import { EndBox, Footer, SocialBox, FooterTitle, UlCustom, MenuCustom, GetIntoButton } from "../components/footer/FooterStyles";
 import useResponsive from "../hooks/useResponsive";
 import { _changeLanguage } from "../store/setting/settingActions";
 
@@ -76,7 +78,7 @@ const socials = [
   },
   {
     src: "/images/icon/icon-telegram.png",
-    link: "https://t.me/GateKeeperGlobal"
+    link: ""
   },
 
 ]
@@ -90,6 +92,15 @@ export default function FooterV2() {
   const isMobile = useResponsive("down", "sm");
   const isTablet = useResponsive("down", "lg");
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     dispatch(_changeLanguage(localStorage.getItem("lang")));
@@ -224,12 +235,54 @@ export default function FooterV2() {
               {library.key_20}
             </FooterTitle>
             <SocialBox>
-              {socials.map((item, index) => (
+              {socials.map((item, index) =>
+              (item.link ?
                 <Box key={index} component='a' href={item.link} target={'_blank'}>
+                  <Box component='img' src={item.src} />
+                </Box> :
+                <Box key={index} component='a' onClick={handleClick} sx={{ cursor: 'pointer' }}>
                   <Box component='img' src={item.src} />
                 </Box>
               ))}
+              <MenuCustom
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleCloseMenu}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+                className="Menu"
+                sx={{
+                  background: "transparent!important",
+                  border: "1px solid black",
+                  color: "white",
+                  marginTop: '15px',
+                  "& a": {
+                    color: "white",
+                    textDecoration: 'none',
+                  },
+                  "& .MuiMenu-paper": {
+                    background: '#0a0a0a!important',
+                  }
+                }}
+              >
+                <a
+                  href="https://t.me/GateKeeperGlobal"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <MenuItem onClick={handleCloseMenu}>
+                    <IconBrandTelegram />    Gate-Keeper Global </MenuItem></a>
+                <a
+                  href="https://t.me/GateKeeperChat"
+                  target="_blank"
+                  rel="noreferrer"
+                > <MenuItem onClick={handleCloseMenu}>
+                    <IconBrandTelegram />    Gate-Keeper Chat</MenuItem></a>
+              </MenuCustom>
             </SocialBox>
+
             <FooterTitle mt={3}>
               {library.key_21}
             </FooterTitle>

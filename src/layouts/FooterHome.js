@@ -2,12 +2,13 @@ import {
   Box,
   Container,
   Grid,
+  MenuItem,
   Typography,
 } from "@mui/material";
-import { useEffect, } from "react";
+import { useEffect, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LogoSPlabs from "../components/common/LogoSPlabs";
-import { EndBox, Footer, SocialBox, FooterTitle, UlCustom } from "../components/footer/FooterStyles";
+import { EndBox, Footer, SocialBox, FooterTitle, UlCustom, MenuCustom } from "../components/footer/FooterStyles";
 import useResponsive from "../hooks/useResponsive";
 import { _changeLanguage } from "../store/setting/settingActions";
 
@@ -107,8 +108,8 @@ const socials = [
 ]
 
 export default function FooterHome() {
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   const dispatch = useDispatch()
   const { setting } = useSelector((state) => state);
@@ -117,12 +118,12 @@ export default function FooterHome() {
   const isMobile = useResponsive("down", "sm");
   const isTablet = useResponsive("down", "lg");
 
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleCloseMenu = () => {
-  //   setAnchorEl(null);
-  // };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
 
   useEffect(() => {
@@ -256,6 +257,39 @@ export default function FooterHome() {
                 </Box>
               ))}
             </SocialBox>
+
+            <MenuCustom
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleCloseMenu}
+              sx={{
+                background: "transparent!important",
+                border: "1px solid black",
+                color: "white",
+                marginTop: '15px',
+                "& a": {
+                  color: "white",
+                  textDecoration: 'none',
+                },
+                "& .MuiMenu-paper": {
+                  background: '#0a0a0a!important',
+                }
+              }}
+            >
+              <a
+                href="https://t.me/GateKeeperGlobal"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MenuItem onClick={handleCloseMenu}>
+                  Gate-Keeper Global </MenuItem></a>
+              <a
+                href="https://t.me/GateKeeperChat"
+                target="_blank"
+                rel="noreferrer"
+              > <MenuItem onClick={handleCloseMenu}>
+                  Gate-Keeper Chat</MenuItem></a>
+            </MenuCustom>
             <FooterTitle mt={3}>
               {library.key_21}
             </FooterTitle>
