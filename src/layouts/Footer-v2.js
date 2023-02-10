@@ -268,12 +268,12 @@ export default function FooterV2() {
                 }}
               >
                 <a
-                  href="https://t.me/GateKeeperGlobal"
+                  href="https://t.me/Gatekeeperoffcial"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <MenuItem onClick={handleCloseMenu}>
-                    <IconBrandTelegram />    Gate-Keeper Global </MenuItem></a>
+                    <IconBrandTelegram />    Gate-Keeper Official </MenuItem></a>
                 <a
                   href="https://t.me/GateKeeperChat"
                   target="_blank"
