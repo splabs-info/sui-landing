@@ -74,13 +74,12 @@ const socials = [
   },
   {
     src: "/images/icon/icon-discord.png",
-    link: "https://discord.gg/jUnUeWryna"
+    link: "https://discord.gg/gatekeeper"
   },
   {
     src: "/images/icon/icon-telegram.png",
     link: ""
   },
-
 ]
 
 export default function FooterV2() {
