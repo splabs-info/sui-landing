@@ -74,7 +74,7 @@ const socials = [
   },
   {
     src: "/images/icon/icon-discord.png",
-    link: "https://discord.gg/uGsNuBHU3C"
+    link: "https://discord.gg/jUnUeWryna"
   },
   {
     src: "/images/icon/icon-telegram.png",
