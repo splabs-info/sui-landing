@@ -1,23 +1,22 @@
-import { styled } from "@mui/material/styles";
-import { Outlet } from "react-router-dom";
-import HeaderHome from "./HeaderHome";
-import FooterHome from "./FooterHome";
-import FooterV2 from "./Footer-v2";
+import { styled } from '@mui/material/styles';
+import { Outlet } from 'react-router-dom';
+import FooterV2 from './Footer-v2';
+import HeaderHome from './HeaderHome';
 
-const RootStyle = styled("div")({
-  background: '#121A27'
+const RootStyle = styled('div')({
+    background: '#121A27',
 });
-const MainStyle = styled("div")(({ theme }) => ({}));
+const MainStyle = styled('div')(({ theme }) => ({}));
 
 export default function ClientLayout() {
-  return (
-    <RootStyle>
-      <HeaderHome />
-      <MainStyle>
-        <Outlet />
-      </MainStyle>
-      {/* <FooterHome /> */}
-      <FooterV2 />
-    </RootStyle>
-  );
+    return (
+        <RootStyle>
+            <HeaderHome />
+            <MainStyle>
+                <Outlet />
+            </MainStyle>
+            {/* <FooterHome /> */}
+            <FooterV2 />
+        </RootStyle>
+    );
 }
