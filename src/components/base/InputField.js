@@ -17,7 +17,7 @@ const CustomInput = styled(TextField)(({ theme }) => ({
     },
     '& .MuiOutlinedInput-root': {
         borderRadius: 6,
-        borderColor: `${theme.palette.primary}`,
+        borderColor: `white`,
     },
 }));
 

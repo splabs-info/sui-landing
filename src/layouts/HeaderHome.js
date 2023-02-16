@@ -3,6 +3,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
     Avatar,
+    Button,
     Box,
     Collapse,
     Container,
@@ -21,7 +22,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { subMenus } from 'static/subMenus';
 import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
-import { ConnectPopup } from '../components/wallet/connect-popup';
+// import { ConnectPopup } from '../components/wallet/connect-popup';
+import { CreateProfilePopup } from 'components';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
@@ -44,6 +46,8 @@ export default function HeaderHome() {
     const isTablet = useResponsive(`down`, `md`);
     const [openConnectPopup, setOpenConnectPopup] = useState();
     const [wallet, setWallet] = useState();
+    const [openCreateProfile, setOpenCreateProfile] = useState();
+
     const [openWalletDrawer, setOpenWalletDrawer] = useState();
     const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
@@ -194,14 +198,24 @@ export default function HeaderHome() {
                   </Menu>
                 </div> */}
                                 {wallet ? (
-                                    // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
-                                    <IconButton onClick={handleOpenDrawer}>
-                                        <Avatar src="/images/icon/icon-user.png" />
-                                    </IconButton>
+                                    <>
+                                        <IconButton onClick={handleOpenDrawer}>
+                                            <Avatar src="/images/icon/icon-user.png" />
+                                        </IconButton>
+                                        {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
+                                            create profile test button
+                                        </Button> */}
+                                    </>
                                 ) : (
-                                    <ApplyButton onClick={handleOpenConnectPopup} open={openConnectPopup}>
-                                        Connect Wallet
-                                    </ApplyButton>
+                                    // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
+                                    <>
+                                        {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
+                                            create profile test button
+                                        </Button> */}
+                                        <ApplyButton onClick={handleOpenConnectPopup} open={openConnectPopup}>
+                                            Connect Wallet
+                                        </ApplyButton>
+                                    </>
                                 )}
 
                                 {/* <Avatar src="/images/icon/icon-person.png" sx={{ borderRadius: '0' }} /> */}
@@ -299,6 +313,7 @@ export default function HeaderHome() {
             </Drawer>
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
+            <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
             <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} />
         </>
     );

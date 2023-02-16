@@ -23,6 +23,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
 
 export const WalletDrawer = ({ open, handleClose }) => {
     const { address } = useContext(WalletContext);
+
     return (
         <CustomDrawer anchor={'right'} open={open} onClose={() => handleClose(!open)}>
             <Box>
