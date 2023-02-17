@@ -9,9 +9,10 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     zIndex: '9998!important',
     ' .MuiDrawer-paperAnchorRight': {
         color: '#fff',
-        backgroundImage: 'linear-gradient(to top, #4c3287 25%, #02659c 100%)',
-        backdropFilter: 'blur(80px)',
-        width: '420px!important',
+        background:
+            'linear-gradient(45deg, rgba(21, 133, 236, 0.3) 0%, rgba(27, 35, 103, 0.3) 48.96%, rgba(15, 40, 68, 0.3) 100%)',
+        backdropFilter: 'blur(10px)',
+        width: '420px !important',
         boxShadow: 'none',
     },
     [theme.breakpoints.down('sm')]: {

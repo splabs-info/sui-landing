@@ -67,7 +67,7 @@ const InstallButton = styled(Button)(({ theme }) => ({
     border: '1px solid #869ba5',
 }));
 
-export const LoggedComponent = ({ address }) => {
+export const LoggedComponent = ({ address, handleClose }) => {
     const { disconnectWallet } = React.useContext(WalletContext);
     // const { userStore, setting } = useSelector((state) => state);
     // const { onChainBalances, walletAddress } = userStore;

@@ -6,7 +6,6 @@ const SubmitBtn = styled(LoadingButton)({
     fontSize: 16,
     fontWeight: 'bold',
     height: 44,
-    marginBottom: 24,
 });
 
 export const SubmitButton = ({ children, loading, ...props }) => {

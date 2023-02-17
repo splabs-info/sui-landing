@@ -1,6 +1,4 @@
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -12,10 +10,10 @@ const baseStyle = {
     padding: 16,
     borderWidth: 2,
     borderRadius: '50%',
-    borderColor: grey[500],
-    borderStyle: 'dashed',
+    // borderColor: grey[500],
+    // borderStyle: 'dashed',
     backgroundColor: 'transparent',
-    color: '#bdbdbd',
+    // color: '#bdbdbd',
     outline: 'none',
     transition: 'border .24s ease-in-out',
     width: 128,
@@ -120,8 +118,9 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <PersonAddAltIcon />
-                <CaptionUpload>Drag 'n' drop your avatar here</CaptionUpload>
+                <img src="/images/default-avatar.png" style={{borderRadius: '50%'}}/>
+                {/* <PersonAddAltIcon /> */}
+                {/* <CaptionUpload>Drag 'n' drop your avatar here</CaptionUpload> */}
             </div>
         );
     }, [getInputProps, getRootProps, style]);

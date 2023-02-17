@@ -3,6 +3,7 @@ import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
 import { useEffect, useState, useContext } from 'react';
 import { WalletButton } from './wallet-button';
 import { WalletContext } from 'hooks/use-connect';
+import { useSelector } from 'react-redux';
 
 const InstallButton = styled(Button)(({ theme }) => ({
     display: 'flex',
@@ -24,7 +25,8 @@ export const ChooseWalletModal = () => {
     const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
     const { connectToWallet, error } = useContext(WalletContext);
-
+    const { setting } = useSelector((state) => state);
+    const { library } = setting;
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);
@@ -44,10 +46,11 @@ export const ChooseWalletModal = () => {
             <Typography>No logged in</Typography>
             <AccountCircleIcon sx={{ width: 70, height: 70 }} />
             <Typography fontWeight={900} mb={2}>
-                {/* {library.MY_WALLET} */}
+                My Wallet
             </Typography>
-            <Divider sx={{ borderBottomWidth: 3 }} />
+            <Divider sx={{ borderBottomWidth: 1 }} />
             <Typography mt={2} pl={3} pr={3} variant="body2">
+                Connect with your available or create new wallet to join our marketplace
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
@@ -96,6 +99,7 @@ export const ChooseWalletModal = () => {
                 </Typography>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}
+                    We do not own private keys and cannot access your funds without your confirmation <br /> See {''}
                     <a
                         href="/docs/Infinity_Angel_NFT_Marketplace_Terms_And_Conditions.docx.pdf"
                         target="_blank"
