@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
@@ -14,10 +13,8 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    // bgcolor: '#171e2e',
     border: 'none',
     borderRadius: '8px',
-    // boxShadow: 1,
     p: 4,
     backgroundImage: 'linear-gradient(to top, #362361 25%, #014a73 100%)',
     backdropFilter: 'blur(120px)',

@@ -14,6 +14,7 @@ import './styles/index.css';
 import ThemeProvider from './theme';
 
 const queryClient = new QueryClient();
+
 export default function App() {
     const dispatch = useDispatch();
 
@@ -28,7 +29,9 @@ export default function App() {
                 <QueryClientProvider client={queryClient}>
                     <ScrollToTop />
                     <BaseOptionChartStyle />
+
                     <Routers />
+
                     <ShowErrorComponent />
                     <BackgroundJob />
                     <ToastContainer

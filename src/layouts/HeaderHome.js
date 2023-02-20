@@ -2,10 +2,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
-    Avatar,
-    Button,
-    Box,
-    Collapse,
+    Avatar, Box, Button, Collapse,
     Container,
     Divider,
     Drawer,
@@ -14,7 +11,7 @@ import {
     List,
     ListItemButton,
     ListItemIcon,
-    ListItemText,
+    ListItemText
 } from '@mui/material';
 import { IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -23,13 +20,13 @@ import { Link } from 'react-router-dom';
 import { subMenus } from 'static/subMenus';
 import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
+import { Web3Button } from '@web3modal/react';
 import { CreateProfilePopup } from 'components';
+import { WalletDrawer } from 'components/drawer';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
 import Languages from './Languages';
-
-import { WalletDrawer } from 'components/drawer';
 const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soon' },
@@ -202,6 +199,7 @@ export default function HeaderHome() {
                                         <IconButton onClick={handleOpenDrawer}>
                                             <Avatar src="/images/icon/icon-user.png" />
                                         </IconButton>
+                                        {/* <Web3Button /> */}
                                         {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
                                             create profile test button
                                         </Button> */}
@@ -215,6 +213,7 @@ export default function HeaderHome() {
                                         <ApplyButton onClick={handleOpenConnectPopup} open={openConnectPopup}>
                                             Connect Wallet
                                         </ApplyButton>
+                                        {/* <Web3Button /> */}
                                     </>
                                 )}
 

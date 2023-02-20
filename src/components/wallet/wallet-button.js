@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const WalletBtn = styled(Button)(({ theme }) => ({
     cursor: 'pointer',
@@ -10,7 +10,7 @@ const WalletBtn = styled(Button)(({ theme }) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     position: 'relative',
-    backgroundImage: 'linear-gradient(to right, #4b565e, #2d343d)',
+    backgroundColor: 'rgba(18, 24, 52, 0.7)',
     WebkitTextStroke: '0.1px #3f484f',
     borderRadius: 8,
     transition: 'all 0.5s ease-out',

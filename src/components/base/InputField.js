@@ -1,10 +1,11 @@
-import { TextField } from '@mui/material';
+import { TextField, InputLabel, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useController } from 'react-hook-form';
 import { Error } from './Error';
 
 const CustomInput = styled(TextField)(({ theme }) => ({
     marginTop: 0,
+    color: 'white',
     '& .MuiOutlinedInput-root:hover': {
         '& > fieldset': {
             borderColor: `${theme.palette.primary}`,
@@ -16,14 +17,21 @@ const CustomInput = styled(TextField)(({ theme }) => ({
         },
     },
     '& .MuiOutlinedInput-root': {
-        borderRadius: 6,
+        borderRadius: 10,
         borderColor: `white`,
+        color: 'white',
+        height: 48,
+        backgroundColor: 'rgba(18, 24, 52, 0.5)',
     },
+}));
+
+const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
+    color: 'white',
 }));
 
 export function InputField({ name, control, label, apiError, InputProps, passwordCriteria, onKeyUp, ...inputProps }) {
     const {
-        field: { value, onChange, onBlur, ref },
+        field: { value, onChange, onBlur, ref, getFieldState },
         fieldState: { invalid, error },
     } = useController({
         name,
@@ -31,7 +39,10 @@ export function InputField({ name, control, label, apiError, InputProps, passwor
     });
 
     return (
-        <>
+        <Box>
+            <StyledInputLabel shrink htmlFor="bootstrap-input">
+                {label}
+            </StyledInputLabel>
             <CustomInput
                 fullWidth
                 size="small"
@@ -43,11 +54,10 @@ export function InputField({ name, control, label, apiError, InputProps, passwor
                 variant="outlined"
                 inputRef={ref}
                 error={invalid}
-                label={label}
                 inputProps={inputProps}
                 InputProps={InputProps}
             />
             <Error error={true}>{error?.message}</Error>
-        </>
+        </Box>
     );
 }

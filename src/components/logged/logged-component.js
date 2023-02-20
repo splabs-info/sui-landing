@@ -1,11 +1,13 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Button, Divider, styled, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { formatAddress } from '../../setting/format';
-import CopyComponent from '../common/CopyComponent';
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { WalletContext } from 'hooks/use-connect';
 import React from 'react';
+import { formatAddress } from '../../setting/format';
+import CopyComponent from '../common/CopyComponent';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import { Link } from 'react-router-dom';
 const WalletOption = styled(Box)(({ theme }) => ({
     cursor: 'pointer',
     display: 'flex',
@@ -67,21 +69,8 @@ const InstallButton = styled(Button)(({ theme }) => ({
     border: '1px solid #869ba5',
 }));
 
-export const LoggedComponent = ({ address }) => {
+export const LoggedComponent = ({ address, handleClose }) => {
     const { disconnectWallet } = React.useContext(WalletContext);
-    // const { userStore, setting } = useSelector((state) => state);
-    // const { onChainBalances, walletAddress } = userStore;
-    // const dispatch = useDispatch();
-    // const { library } = setting;
-
-    // const _handleLogout = () => {
-    //     dispatch(_getWalletLogout());
-    // };
-
-    const handleLogout = () => {
-      
-      disconnectWallet()
-    };
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -91,7 +80,7 @@ export const LoggedComponent = ({ address }) => {
             <Box mb={2}>
                 <CopyComponent content={`${address}`}>{formatAddress(`${address}`, 10)}</CopyComponent>
             </Box>
-            <Divider sx={{ borderBottomWidth: 3 }} />
+            <Divider sx={{ borderBottomWidth: 1 }} />
             {/* <Box p={3}>
                 {onChainBalances &&
                     onChainBalances.map(
@@ -147,6 +136,9 @@ export const LoggedComponent = ({ address }) => {
                 <MenuItem component={Link} to="/vesting" sx={{ color: '#fff', textDecoration: 'unset' }}>
                     <IconCash /> <Box ml={2}>{library.VESTING_SCHEDULE}</Box>
                 </MenuItem> */}
+                <MenuItem component={Link} to="my-profile" sx={{ color: 'white', textDecoration: 'unset' }}>
+                    <AccountBoxOutlinedIcon /> <Box ml={2}>My profile</Box>
+                </MenuItem>
                 <MenuItem onClick={disconnectWallet}>
                     <ExitToAppOutlinedIcon /> <Box ml={2}>Disconnect</Box>
                 </MenuItem>
