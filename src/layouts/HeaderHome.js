@@ -207,9 +207,9 @@ export default function HeaderHome() {
                                 ) : (
                                     // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
                                     <>
-                                        {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
+                                        <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
                                             create profile test button
-                                        </Button> */}
+                                        </Button>
                                         <ApplyButton onClick={handleOpenConnectPopup} open={openConnectPopup}>
                                             Connect Wallet
                                         </ApplyButton>
