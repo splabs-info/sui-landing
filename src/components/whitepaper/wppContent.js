@@ -1,987 +1,1153 @@
-import { IconSquare, IconSquareCheck } from "@tabler/icons";
+import { IconSquare, IconSquareCheck } from '@tabler/icons';
 export const wppContent = [
-  {
-    id: 'A',
-    category: 'Introduction of Gatekeeper',
-    description: [
-      {
-        title: 'The History',
-        content: [
-          'Splabs.info has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces. There were tens of thousands of people in the communities of various projects, and most users of the projects were not able to participate in Private Sale or IDO. Even related influencers could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets. So, we are going to provide users with experiences and opportunities such as INO, IDO, and IGO for the convenience of users, focusing on projects that we are incubating or developed in the future.'
+    {
+        id: 'A',
+        category: 'Introduction of Gatekeeper',
+        description: [
+            {
+                title: 'The History',
+                content: [
+                    'Splabs.info has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces. There were tens of thousands of people in the communities of various projects, and most users of the projects were not able to participate in Private Sale or IDO. Even related influencers could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets. So, we are going to provide users with experiences and opportunities such as INO, IDO, and IGO for the convenience of users, focusing on projects that we are incubating or developed in the future.',
+                ],
+            },
+            {
+                title: 'Features of Gatekeeper',
+                list: [
+                    'Gatekeeper is a transparent and rational launchpad with smart contracts',
+                    'Gatekeeper is not limited to one area and welcomes all projects',
+                    'Gatekeeper was born to activate Gate-Chain',
+                    'Gatekeeper works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
+                    'Gatekeeper supports multiple chains and has bridge technology as well',
+                ],
+            },
+            {
+                title: 'GateKeeper Summary',
+                content: [
+                    'Gatekeeper is a launchpad platform born to expand the ecosystem of Gatechain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Gatechain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Gatechain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Gatechain ecosystem. The GTK token used on the platform is a utility token used on the Launchpad platform along with GT, the Gate.io',
+                ],
+            },
+            {
+                title: 'Cryptocurrency and NFT',
+                content: [
+                    'The Basics about Cryptocurrency : Cryptocurrency comes under many names. You have probably read about some of the most popular types of cryptocurrencies such as Bitcoin, Litecoin, and Ethereum. Cryptocurrencies are increasingly popular alternatives for online payments. Before converting real dollars, euros, pounds, or other traditional currencies into ₿ (the symbol for Bitcoin, the most popular cryptocurrency), you should understand what cryptocurrencies are, what the risks are in using cryptocurrencies, and how to protect your investment.',
+                    'What is cryptocurrency? A cryptocurrency is a digital currency, which is an alternative form of payment created using encryption algorithms. The use of encryption technologies means that cryptocurrencies function both as a currency and as a virtual accounting system. To use cryptocurrencies, you need a cryptocurrency wallet. These wallets can be software that is a cloud-based service or is stored on your computer or on your mobile device. The wallets are the tool through which you store your encryption keys that confirm your identity and link to your cryptocurrency.',
+                ],
+            },
+            {
+                title: 'NFTs (Non-fungible tokens)',
+                content: [
+                    'NFTs are a relatively new type of digital asset that are a popular topic of conversation in the blockchain world today. Unlike fungible tokens, like bitcoin and ethereum, where one token is indistinguishable from another, NFTs are designed to represent ownership of a digital asset that is unique and scarce.',
+                    'With the overall popularity of video games and the idea that NFTs could replace the in-game virtual items, many video game developers started to look at this new opportunity to attract game players around the idea of real ownership of their virtual assets. Furthermore, as a reaction to the trending market, many protocol chains dedicated hundreds of millions of dollars of investment to NFTs and video games.',
+                ],
+            },
+            {
+                title: 'Core Value',
+                list: [
+                    'Community-Governed Launchpad System',
+                    'Global Gatechain Community Builder',
+                    'Access Every Blockchain',
+                    'Access Every AMM',
+                    'Cross-Chain Swap & Bridge',
+                    'Intergrate the most liquidity sources across a wide range of blockchains',
+                    'Security & Transparent',
+                ],
+            },
+            {
+                title: 'Suppported Blockchain',
+                checklist: true,
+                list: [
+                    <>
+                        {' '}
+                        <IconSquareCheck /> Gatechain
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquareCheck /> Ethereum
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquareCheck /> Binance
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquareCheck /> Polygon
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare /> Avalanche
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Klaytn
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Solana
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Fantom
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Harmony
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Optimism
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Arbitrum
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Tron
+                    </>,
+                ],
+            },
+            {
+                title: 'Suppported Wallets',
+                checklist: true,
+                list: [
+                    <>
+                        <IconSquareCheck /> Metamask
+                    </>,
+                    <>
+                        <IconSquareCheck /> Bitkeep
+                    </>,
+                    <>
+                        <IconSquareCheck /> Coin98
+                    </>,
+                    <>
+                        {' '}
+                        <IconSquare />
+                        Trust Wallet
+                    </>,
+                ],
+            },
+            {
+                title: 'Gatekeeper Platform',
+                content: [
+                    <b> Launchpad Platform</b>,
+                    'Gatekeeper is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
+                    <b> NFT marketplace</b>,
+                    'Gatekeeper provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
+                    <b>Beyond Gatechain </b>,
+                    'Gatekeeper wants to grow into a multi-chain launchpad platform that goes beyond Gatechain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Gatechain.',
+                    <b>Liquidity Supply </b>,
+                    'Gatekeeper creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
+                    <b>Participation of ventures and DAOs</b>,
+                    'Through our own Due Diligence, Gatekeeper matches ventures and DAOs that can invest in order for users to succeed in investment and to fully integrate with the project community. Not only general users, but also ventures and DAO users can help the success of the project as they are simultaneously influxed into the new project.',
+                ],
+            },
         ],
-      },
-      {
-        title: 'Features of Gatekeeper',
-        list: [
-          'Gatekeeper is a transparent and rational launchpad with smart contracts',
-          'Gatekeeper is not limited to one area and welcomes all projects',
-          'Gatekeeper was born to activate Gate-Chain',
-          'Gatekeeper works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
-          'Gatekeeper supports multiple chains and has bridge technology as well',
+    },
+    {
+        id: 'B',
+        category: 'Vision & Mission',
+        description: [
+            {
+                title: 'Our vision',
+                content: [
+                    'is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the Gatekeeper community will join us to make us stronger when we work together.',
+                ],
+            },
+            {
+                title: 'Our mission',
+                content: [
+                    'is to activate the Gatechain and help Dapps and WEB 3 projects on other blockchains migrate to Gatechain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on Gatekeeper.',
+                ],
+            },
         ],
-      },
-      {
-        title: 'GateKeeper Summary',
-        content: [
-          'Gatekeeper is a launchpad platform born to expand the ecosystem of Gatechain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Gatechain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Gatechain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Gatechain ecosystem. The GTK token used on the platform is a utility token used on the Launchpad platform along with GT, the Gate.io',
+    },
+    {
+        id: 'C',
+        category: 'Meet The Team',
+        description: [
+            {
+                title: 'CEO - Kyle Kim',
+                list: ['CEO SPLabs.', 'COO/Co-Founder Sp-exchange.'],
+            },
+            {
+                title: 'CTO - Nam Nguyen',
+                list: [
+                    'CTO Blockchain Era.',
+                    'Class 5, deep clearning-based smart glass development for the visually impaired.',
+                    'Netus development manager.',
+                    'Raon Plus Co., Ltd., Raon Entertainment Co., Ltd. Samsung Project and Japan.',
+                    'Commseed “Select” project development manager.',
+                ],
+            },
+            {
+                title: 'COO - Tracy Nguyen',
+                list: ['COO Splabs', 'COO Gatekeeper', 'COO InfinityAngel, Stepwatch project'],
+            },
+            {
+                title: 'CMO - Sim Sang Jin',
+                list: [
+                    'CEO Nettiss',
+                    'Infinity Angel, Stepwatch, Immortal wars Head of Partnership',
+                    'CEO Splabs Korea',
+                    'Product manager Gramming',
+                ],
+            },
+            {
+                title: 'CSO - David Lee',
+                list: [
+                    'Listing / IEO Manager Bitget exchange',
+                    'Ambassador Korea Coinmarketcap',
+                    'CEO KlayDAO',
+                    'Asset manager Huobi exchange',
+                    'Operation Manager Bitkeep',
+                    'CSO Infinity Games',
+                    'CSO GateKeeper',
+                    'CSO HDlabs',
+                ],
+            },
+            {
+                title: 'Team Demographic',
+                list: ['Vietnam : 24', 'Japan : 3', 'South Korea : 21', 'Nigeria : 2'],
+            },
+            {
+                title: 'Meet all Teams',
+                list: [
+                    'Business Development Team : 7',
+                    'Operation Team : 5',
+                    'Development Team : 25',
+                    'Design Team : 3',
+                    'Finance Team : 2',
+                    'Marketing Team : 3',
+                    'Service and Community Team : 5',
+                ],
+            },
         ],
-      },
-      {
-        title: 'Cryptocurrency and NFT',
-        content: [
-          'The Basics about Cryptocurrency : Cryptocurrency comes under many names. You have probably read about some of the most popular types of cryptocurrencies such as Bitcoin, Litecoin, and Ethereum. Cryptocurrencies are increasingly popular alternatives for online payments. Before converting real dollars, euros, pounds, or other traditional currencies into ₿ (the symbol for Bitcoin, the most popular cryptocurrency), you should understand what cryptocurrencies are, what the risks are in using cryptocurrencies, and how to protect your investment.',
-          'What is cryptocurrency? A cryptocurrency is a digital currency, which is an alternative form of payment created using encryption algorithms. The use of encryption technologies means that cryptocurrencies function both as a currency and as a virtual accounting system. To use cryptocurrencies, you need a cryptocurrency wallet. These wallets can be software that is a cloud-based service or is stored on your computer or on your mobile device. The wallets are the tool through which you store your encryption keys that confirm your identity and link to your cryptocurrency.',
+    },
+    {
+        id: 'D',
+        category: 'Roadmap',
+        description: [
+            {
+                title: 'Q4 2022 - DONE',
+                list: [
+                    'Gatekeeper Launch',
+                    'Smart-Contract Deployment',
+                    'Whitepaper',
+                    'Initiate Development',
+                    'Web3 Build-Up',
+                ],
+            },
+            {
+                title: 'Q1 2023 - ONGOING',
+                list: [
+                    'Platform Development',
+                    'IDO Open',
+                    'NFT Marketplace Development',
+                    'Multi-Chain Announcement',
+                    'Staking Open',
+                    'Bridge Development',
+                ],
+            },
+            {
+                title: 'Q2 2023 - PENDING',
+                list: [
+                    'Staking & Gatekeeper First IDO/INO',
+                    'Soft-Launching',
+                    'New Governance',
+                    'INO Open',
+                    'New Block-Chain Integration Announcement',
+                    'Community Open',
+                    'Bridge & Multichain Swap',
+                ],
+            },
+            {
+                title: 'Q3 2023 - PENDING',
+                list: [
+                    'Guild Assemble & IGO',
+                    'First IGO Launch',
+                    'DEX Launch',
+                    'Platform Expansion',
+                    'NFT Marketplace Launch',
+                    'New Blochchain Integration Announcement',
+                ],
+            },
+            {
+                title: 'Q4 2023 - PENDING',
+                list: [
+                    'DAO Governed IDO',
+                    'Ecosystem Expansion',
+                    'Platform Mega-Update',
+                    'DEFI 3.0',
+                    '3 x 3 liquidity Provide',
+                    'Guild System Launch',
+                    'Migration Incentive Program',
+                    'NFT Enabled Wallet',
+                ],
+            },
+            {
+                title: 'Master Product (2023~2027)',
+                content: [
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the GT Token and GTK Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
+                ],
+            },
         ],
-      },
-      {
-        title: 'NFTs (Non-fungible tokens)',
-        content: [
-          'NFTs are a relatively new type of digital asset that are a popular topic of conversation in the blockchain world today. Unlike fungible tokens, like bitcoin and ethereum, where one token is indistinguishable from another, NFTs are designed to represent ownership of a digital asset that is unique and scarce.',
-          'With the overall popularity of video games and the idea that NFTs could replace the in-game virtual items, many video game developers started to look at this new opportunity to attract game players around the idea of real ownership of their virtual assets. Furthermore, as a reaction to the trending market, many protocol chains dedicated hundreds of millions of dollars of investment to NFTs and video games.',
+    },
+    {
+        id: 'E',
+        category: 'Partners',
+        description: [
+            {
+                title: 'Gate-Chain',
+                subtitle: 'What is GateChain?',
+                content: [
+                    'Secure, scalable and interoperable public chains. GateChain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, GateChain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
+                ],
+            },
+            {
+                title: 'Chainlink',
+                subtitle: 'What is Chainlink?',
+                content: [
+                    'Securely connect smart contracts with off-chain data and services. Chainlink decentralized oracle networks provide tamper-proof inputs, outputs, and computations to support advanced smart contracts on any blockchain.',
+                ],
+            },
+            {
+                title: 'Polygon Studio',
+                subtitle: 'What is Polygon Studio?',
+                content: [
+                    'Scaling the future of digital culture. Polygon Studio is the home of all NFT, Gaming, and Metaverse projects that are on the Polygon protocol. We partner with large scale NFT projects for globally recognized IP and Brands, and are the best in class solution for energy efficiency and scaling on the blockchain.',
+                ],
+            },
+            {
+                title: 'Gate-Labs',
+                subtitle: 'What is Gate-Labs?',
+                content: [],
+            },
         ],
-      },
-      {
-        title: 'Core Value',
-        list: [
-          'Community-Governed Launchpad System',
-          'Global Gatechain Community Builder',
-          'Access Every Blockchain',
-          'Access Every AMM',
-          'Cross-Chain Swap & Bridge',
-          'Intergrate the most liquidity sources across a wide range of blockchains',
-          'Security & Transparent',
-        ],
-      },
-      {
-        title: 'Suppported Blockchain',
-        checklist: true,
-        list: [
-          <> <IconSquareCheck /> Gatechain</>,
-          <> <IconSquareCheck /> Ethereum</>,
-          <> <IconSquareCheck /> Binance</>,
-          <> <IconSquareCheck /> Polygon</>,
-          <> <IconSquare /> Avalanche</>,
-          <> <IconSquare />Klaytn</>,
-          <> <IconSquare />Solana</>,
-          <> <IconSquare />Fantom</>,
-          <> <IconSquare />Harmony</>,
-          <> <IconSquare />Optimism</>,
-          <> <IconSquare />Arbitrum</>,
-          <> <IconSquare />Tron</>,
-        ],
-      },
-      {
-        title: 'Suppported Wallets',
-        checklist: true,
-        list: [
-          <><IconSquareCheck /> Metamask</>,
-          <><IconSquareCheck /> Bitkeep</>,
-          <><IconSquareCheck /> Coin98</>,
-          <> <IconSquare />Trust Wallet</>,
-        ],
-      },
-      {
-        title: 'Gatekeeper Platform',
-        content: [
-          <b> Launchpad Platform</b>,
-          'Gatekeeper is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
-          <b> NFT marketplace</b>,
-          'Gatekeeper provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
-          <b>Beyond Gatechain </b>,
-          'Gatekeeper wants to grow into a multi-chain launchpad platform that goes beyond Gatechain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Gatechain.',
-          <b>Liquidity Supply </b>,
-          'Gatekeeper creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
-          <b>Participation of ventures and DAOs</b>,
-          'Through our own Due Diligence, Gatekeeper matches ventures and DAOs that can invest in order for users to succeed in investment and to fully integrate with the project community. Not only general users, but also ventures and DAO users can help the success of the project as they are simultaneously influxed into the new project.',
-        ],
-      },
-    ]
-  },
-  {
-    id: 'B',
-    category: 'Vision & Mission',
-    description: [
-      {
-        title: 'Our vision',
-        content: ['is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the Gatekeeper community will join us to make us stronger when we work together.',]
-      },
-      {
-        title: 'Our mission',
-        content: ['is to activate the Gatechain and help Dapps and WEB 3 projects on other blockchains migrate to Gatechain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on Gatekeeper.',]
-      },
-    ]
-  },
-  {
-    id: 'C',
-    category: 'Meet The Team',
-    description: [
-      {
-        title: 'CEO - Kyle Kim',
-        list: [
-          'CEO SPLabs.',
-          'COO/Co-Founder Sp-exchange.',
-        ]
-      },
-      {
-        title: 'CTO - Nam Nguyen',
-        list: [
-          'CTO Blockchain Era.',
-          'Class 5, deep clearning-based smart glass development for the visually impaired.',
-          'Netus development manager.',
-          'Raon Plus Co., Ltd., Raon Entertainment Co., Ltd. Samsung Project and Japan.',
-          'Commseed “Select” project development manager.',
-        ]
-      },
-      {
-        title: 'COO - Tracy Nguyen',
-        list: [
-          'COO Splabs',
-          'COO Gatekeeper',
-          'COO InfinityAngel, Stepwatch project',
-        ]
-      },
-      {
-        title: 'CMO - Sim Sang Jin',
-        list: [
-          'CEO Nettiss',
-          'Infinity Angel, Stepwatch, Immortal wars Head of Partnership',
-          'CEO Splabs Korea',
-          'Product manager Gramming',
-        ]
-      },
-      {
-        title: 'CSO - David Lee',
-        list: [
-          'Listing / IEO Manager Bitget exchange',
-          'Ambassador Korea Coinmarketcap',
-          'CEO KlayDAO',
-          'Asset manager Huobi exchange',
-          'Operation Manager Bitkeep',
-          'CSO Infinity Games',
-          'CSO GateKeeper',
-          'CSO HDlabs',
-        ]
-      },
-      {
-        title: 'Team Demographic',
-        list: [
-          'Vietnam : 24',
-          'Japan : 3',
-          'South Korea : 21',
-          'Nigeria : 2',
-        ]
-      },
-      {
-        title: 'Meet all Teams',
-        list: [
-          'Business Development Team : 7',
-          'Operation Team : 5',
-          'Development Team : 25',
-          'Design Team : 3',
-          'Finance Team : 2',
-          'Marketing Team : 3',
-          'Service and Community Team : 5',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'D',
-    category: 'Roadmap',
-    description: [
-      {
-        title: 'Q4 2022 - DONE',
-        list: [
-          'Gatekeeper Launch',
-          'Smart-Contract Deployment',
-          'Whitepaper',
-          'Initiate Development',
-          'Web3 Build-Up',
-        ]
-      },
-      {
-        title: 'Q1 2023 - ONGOING',
-        list: [
-          'Platform Development',
-          'IDO Open',
-          'NFT Marketplace Development',
-          'Multi-Chain Announcement',
-          'Staking Open',
-          'Bridge Development',
-        ]
-      },
-      {
-        title: 'Q2 2023 - PENDING',
-        list: [
-          'Staking & Gatekeeper First IDO/INO',
-          'Soft-Launching',
-          'New Governance',
-          'INO Open',
-          'New Block-Chain Integration Announcement',
-          'Community Open',
-          'Bridge & Multichain Swap',
-        ]
-      },
-      {
-        title: 'Q3 2023 - PENDING',
-        list: [
-          'Guild Assemble & IGO',
-          'First IGO Launch',
-          'DEX Launch',
-          'Platform Expansion',
-          'NFT Marketplace Launch',
-          'New Blochchain Integration Announcement',
-        ]
-      },
-      {
-        title: 'Q4 2023 - PENDING',
-        list: [
-          'DAO Governed IDO',
-          'Ecosystem Expansion',
-          'Platform Mega-Update',
-          'DEFI 3.0',
-          '3 x 3 liquidity Provide',
-          'Guild System Launch',
-          'Migration Incentive Program',
-          'NFT Enabled Wallet',
-        ]
-      },
-      {
-        title: 'Master Product (2023~2027)',
-        content: [
-          `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the GT Token and GTK Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
-        ]
-      },
-    ]
-  },
-  {
-    id: 'E',
-    category: 'Partners',
-    description: [
-      {
-        title: 'Gate-Chain',
-        subtitle: 'What is GateChain?',
-        content: [
-          'Secure, scalable and interoperable public chains. GateChain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, GateChain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.'
-        ]
-      },
-      {
-        title: 'Chainlink',
-        subtitle: 'What is Chainlink?',
-        content: [
-          'Securely connect smart contracts with off-chain data and services. Chainlink decentralized oracle networks provide tamper-proof inputs, outputs, and computations to support advanced smart contracts on any blockchain.',
-        ]
-      },
-      {
-        title: 'Polygon Studio',
-        subtitle: 'What is Polygon Studio?',
-        content: [
-          'Scaling the future of digital culture. Polygon Studio is the home of all NFT, Gaming, and Metaverse projects that are on the Polygon protocol. We partner with large scale NFT projects for globally recognized IP and Brands, and are the best in class solution for energy efficiency and scaling on the blockchain.',
-        ]
-      },
-      {
-        title: 'Gate-Labs',
-        subtitle: 'What is Gate-Labs?',
-        content: [
-        ]
-      },
-    ]
-  },
-  {
-    id: 'F',
-    category: 'Launchpad',
-    description: [
-      {
+    },
+    {
+        id: 'F',
         category: 'Launchpad',
-        content: [
-          `Gatekeeper's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. Gatekeeper will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
-        ]
-      },
-      {
-        title: 'How does IGO work on Gatekeeper?',
-        content: [
-          'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with Gatekeeper and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
-        ]
-      },
-      {
-        list: [
-          'Community-Governed Launchpad System',
-          'Global Gatechain Community Builder',
-          'Access Every Blockchain',
-          'Access Every AMM',
-          'Cross-Chain Swap & Bridge',
-          'Intergrate the most liquidity sources across a wide range of blockchains',
-          'Security & Transparent',
-          'Statistical IDO/INO screening',
-        ]
-      },
-      {
-        title: 'What makes it different from other launchpads?',
-        list: [
-          'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
-          'All blockchain tokens and NFTs can be easily funded through Bridge.',
-          'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
-          'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
-          'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
-        ]
-      },
-      {
-        title: 'How can I get involved in IDO?',
-        content: [
-          'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
-          <><b>Step 1:</b> Purchase GTK tokens.</>,
-          <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
-          'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
-          <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
-          <><b>Step 4:</b> Buy a ticket and join the IDO.</>,
-          'The purchase method in all tiers is the same as the lottery method, and only those who have purchased tickets can participate.',
-          'Tickets that fail token swap through Launchpad can be used in the next Launchpad.',
-          <><b>Step 5:</b> Claim your tokens.</>,
-          'If the purchased ticket has been successfully participated in Launchpad, you can go to the Claims page to check your Release Schedule and claim.',
-        ]
-      },
-      {
-        title: 'How can I get involved in INO?',
-        content: [
-          'INO stands for Initial NFT Offering, and Gatekeeper plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
-          <><b>Step 1:</b> Purchase GTK tokens.</>,
-          <><b>Step 2:</b> Deposit your GTK tokens into a staking pool.</>,
-          'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
-          <><b>Step 3:</b> Complete KYC, Be Whitelisted.</>,
-          <><b>Step 4:</b> Check your tier and check the discount rate</>,
-        ]
-      },
-      {
-        list: [
-          'Tier 1 & Tier Master : 20% discounted price (compared to public price)',
-          'Tier 2 : 10% discounted price (compared to public price)',
-          'Tier 3 : 5% discounted price (compared to public price)',
-          'Tier 4 : 3% discounted price (compared to public price)',
-          'Tier 5 : 2% discounted price (compared to public price)',
-          'Public Round : Public price',
-        ]
-      },
-      {
-        content: [
-          <><b>Step 5:</b> Check the amount of NFTs allocated to your tier and purchase them on a first-come, first-served basis.</>,
-          <><b>Step 6:</b> Claim NFTs</>,
-          'NFTs purchased on the INO Launchpad can be viewed on the Claims page. If you press Claim, you can automatically transfer it to your wallet.',
-        ]
-      },
-      {
-        title: 'Notice',
-        content: [
-          'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the Gatekeeper Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'G',
-    category: 'Staking',
-    description: [
-      {
-        content: [
-          'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
-        ]
-      },
-      {
-        title: 'GTK Normal Staking Reward',
-        content: [
-          'Normal Staking APR : 3% (Fixed APR)',
-        ]
-      },
-      {
-        title: 'GTK Lock-Up Staking Reward',
-        content: [
-          'Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)',
-        ]
-      },
-      {
-        list: [
-          '7 Days : 4% (Fixed APR)',
-          '30 Days : 6% (Fixed APR)',
-          '90 Days : 8% (Fixed APR)',
-          '180 Days : 15% (Fixed APR)',
-        ]
-      },
-      {
-        content: [
-          <highline>** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of 1% of the deposit amount may occur.</highline>,
-          <highline>** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be returned as it is.</highline>,
-          <highline>** The staking reward is generated every 24 hours, and in the case of normal staking, a claim can be made every 24 hours, and in the case of Lock-Up Staking, a claim can be made after the period is all filled.</highline>,
-          <highline>** Unstaking function cannot be used for 24 hours after lockup staking.</highline>,
-        ]
-      },
-    ]
-  },
-  {
-    id: 'H',
-    category: 'Tier',
-    description: [
-      {
-        title: 'Basic Requirement',
-        content: [
-          `In order to participate in Gatekeeper's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
-          <highline>** 1 Ticket Price = 10 USD</highline>,
-          'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
-          <highline>** All assigned tickets for each tier will be won through a lottery, and the winning tickets will be automatically swapped with IDO tokens on the exchange listing date. Once purchased, tickets are non-refundable and can be used for the next IDO and INO.</highline>,
-        ]
-      },
-      {
-        title: 'Benefits by Tier System',
-        subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
-        content: [
-          'Participate in the Private Round with the same price and opportunity through Venture Pool.',
-          'Permission to participate in additional airdrops and Launchpad Tier 1',
-          'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
-        ]
-      },
-      {
-        subtitle: 'Tier 1 :',
-        content: [
-          'Permission to participate in additional airdrops and Launchpad Tier 1',
-          'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
-        ]
-      },
-      {
-        subtitle: 'Tier 2 :',
-        content: [
-          'Permission to participate in additional airdrops and Launchpad Tier 2',
-          'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
-        ]
-      },
-      {
-        subtitle: 'Tier 3 :',
-        content: [
-          'Permission to participate in additional airdrops and Launchpad Tier 3',
-          'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
-        ]
-      },
-      {
-        title: 'Division of Tiers',
-        subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
-        content: [
-          'Requirement : 120,000 Staked $ GTK',
-          'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
-          'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
-          'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
-          'Airdrop Logic :',
-          '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
-        ]
-      },
-      {
-        subtitle: 'Tier 2',
-        content: [
-          'Requirement : 40,000 Staked $ GTK',
-          'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
-          'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-          'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
-          'Airdrop Logic :',
-          '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
-          'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
-        ]
-      },
-      {
-        subtitle: 'Tier 3',
-        content: [
-          'Requirement : 15,000 Staked $ GTK',
-          'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
-          'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-          'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
-          'Airdrop Logic :',
-          '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
-          'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
-        ]
-      },
-      {
-        subtitle: 'Tier 4',
-        content: [
-          'Requirement : 10,000 Staked $ GTK',
-          'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
-          'Free Airdrop for Tier 4 users : X',
-          '75,000 USD = 7,500 tickets',
-          '30,000 tickets were purchased by users of Tier 4, and if all of them apply to the lottery, the probability of winning is 25%, which is (7500 / 30000 * 100) %.',
-        ]
-      },
-      {
-        subtitle: 'Tier 5',
-        content: [
-          'Requirement : 3,000 Staked $ GTK',
-          'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
-          'Free Airdrop for Tier 5 users : X',
-          '50,000 USD = 5,000 tickets',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'I',
-    category: 'Social Platform',
-    description: [
-      {
-        title: 'Basic Information for Gatekeeper Social Platform',
-        content: [
-          `Gatekeeper Social Platform Gatekeeper's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
-        ]
-      },
-      {
-        list: [
-          'Post and comment. Both web and app are supported.',
-          'Everyone can communicate in a real-time chat room. Global pages, Japanese pages, Korean pages, and Vietnamese pages are supported.',
-          'Provide pages that can be automatically translated.',
-          'Gatekeeper Launchpad platform and Gatekeeper social platform are linked.',
-          'Posts with high views are exposed on global pages and can be translated into all languages.',
-          'Influencers can have their own followers, and profit activities are possible through streaming services.',
-          'It is linked with the NFT Marketplace, allowing P2P trading of NFTs.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'J',
-    category: 'Swap',
-    description: [
-      {
-        content: [
-        ]
-      },
-    ]
-  },
-  {
-    id: 'K',
-    category: 'Gate-Chain Bridge',
-    description: [
-      {
-        content: [
-        ]
-      },
-    ]
-  },
-  {
-    id: 'L',
-    category: 'Governance',
-    description: [
-      {
-        title: 'How can governance work in gatekeepers?',
-        content: [
-          'Governance operating within the gatekeeper can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the Gatekeeper team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the gatekeeper.',
-        ]
-      },
-      {
-        title: 'How can users vote on the direction of the gatekeeper?',
-        content: [
-          'A gatekeeper has a personality of 1 GTK = 1 VOTE. All staked GTK Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake GTK 24 hours before the voting date. If GTK is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'M',
-    category: ' Venture Sides',
-    description: [
-      {
-        content: [
-          <><b>VCs</b> registered as General Partners of Gatekeeper and users with NFT-E Master Tier can participate in Private Rounds with IDOs and INOs registered in Gatekeeper. To participate in Venture sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers can also participate. However, influencers also need <b>required Staked GTK of course</b>. Ventures and those holding GTK Tokens over requirement and companies can view a report provided separately by Gatekeeper, with expected returns and analyzed token flows. Master Tier users must verify general KYC to participate in VC sides, and a contract is provided for each investment. The lock-up conditions are also included in the analyzed report, and the contract is provided as <b>Docussign</b>. Two days before IDO, the private link will be delivered separately through <b>the mail used for KYC.</b></>,
-        ]
-      },
-    ]
-  },
-  {
-    id: 'N',
-    category: 'Tokenomics',
-    description: [
-      {
-        title: 'GTK Token Overview',
-        content: [
-          <>The gatekeeper token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the Gatekeeper token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be used when clicking likes or making donations. By staking Gatekeeper tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.</>,
-          <><b>Name :</b> Gatekeeper</>,
-          <><b>Ticker :</b> GTK</>,
-          <><b>Total Supply :</b> 100,000,000</>,
-          <><b>Standard :</b> GRC20, BEP20</>,
-          <><b>Token Allocation:</b></>,
+        description: [
+            {
+                category: 'Launchpad',
+                content: [
+                    `Gatekeeper's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. Gatekeeper will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
+                ],
+            },
+            {
+                title: 'How does IGO work on Gatekeeper?',
+                content: [
+                    'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with Gatekeeper and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
+                ],
+            },
+            {
+                list: [
+                    'Community-Governed Launchpad System',
+                    'Global Gatechain Community Builder',
+                    'Access Every Blockchain',
+                    'Access Every AMM',
+                    'Cross-Chain Swap & Bridge',
+                    'Intergrate the most liquidity sources across a wide range of blockchains',
+                    'Security & Transparent',
+                    'Statistical IDO/INO screening',
+                ],
+            },
+            {
+                title: 'What makes it different from other launchpads?',
+                list: [
+                    'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
+                    'All blockchain tokens and NFTs can be easily funded through Bridge.',
+                    'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
+                    'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
+                    'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
+                ],
+            },
+            {
+                title: 'How can I get involved in IDO?',
+                content: [
+                    'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
+                    <>
+                        <b>Step 1:</b> Purchase GTK tokens.
+                    </>,
+                    <>
+                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                    </>,
+                    'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
+                    <>
+                        <b>Step 3:</b> Complete KYC, Be Whitelisted.
+                    </>,
+                    <>
+                        <b>Step 4:</b> Buy a ticket and join the IDO.
+                    </>,
+                    'The purchase method in all tiers is the same as the lottery method, and only those who have purchased tickets can participate.',
+                    'Tickets that fail token swap through Launchpad can be used in the next Launchpad.',
+                    <>
+                        <b>Step 5:</b> Claim your tokens.
+                    </>,
+                    'If the purchased ticket has been successfully participated in Launchpad, you can go to the Claims page to check your Release Schedule and claim.',
+                ],
+            },
+            {
+                title: 'How can I get involved in INO?',
+                content: [
+                    'INO stands for Initial NFT Offering, and Gatekeeper plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
+                    <>
+                        <b>Step 1:</b> Purchase GTK tokens.
+                    </>,
+                    <>
+                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                    </>,
+                    'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
+                    <>
+                        <b>Step 3:</b> Complete KYC, Be Whitelisted.
+                    </>,
+                    <>
+                        <b>Step 4:</b> Check your tier and check the discount rate
+                    </>,
+                ],
+            },
+            {
+                list: [
+                    'Tier 1 & Tier Master : 20% discounted price (compared to public price)',
+                    'Tier 2 : 10% discounted price (compared to public price)',
+                    'Tier 3 : 5% discounted price (compared to public price)',
+                    'Tier 4 : 3% discounted price (compared to public price)',
+                    'Tier 5 : 2% discounted price (compared to public price)',
+                    'Public Round : Public price',
+                ],
+            },
+            {
+                content: [
+                    <>
+                        <b>Step 5:</b> Check the amount of NFTs allocated to your tier and purchase them on a
+                        first-come, first-served basis.
+                    </>,
+                    <>
+                        <b>Step 6:</b> Claim NFTs
+                    </>,
+                    'NFTs purchased on the INO Launchpad can be viewed on the Claims page. If you press Claim, you can automatically transfer it to your wallet.',
+                ],
+            },
+            {
+                title: 'Notice',
+                content: [
+                    'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the Gatekeeper Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
+                ],
+            },
         ],
-        list: [
-          'Investment : 16%',
-          'Marketing & Development : 5%',
-          'Liquidity Fund : 5%',
-          'Ecosystem Fund : 2%',
-          'Insurance & Reserve : 3%',
-          'Team : 10%',
-          'Advisory : 5%',
-          'Mining Pool : 10%',
-          'Guild Adoption : 5%',
-          'IDO : 1%',
-          'CGF (Community Growth Fund) : 10%',
-          'Gamefund : 18%',
-          'Governance : 10%',
-        ]
-      },
-      {
-        title: 'Token Distribution',
-        list: [
-          <>Token Details : <highline>**based on Total Supply at Genesis</highline> </>,
-          'Ticker : GTK',
-          'Standard : Gate-Chain Based',
-          'Max Supply & Total Supply : 100,000,000 GTK',
-          'Initial Circulating Supply on Day 1 : 1,100,000 GTK',
-          'Public Launch Allocation (%) : 1,000,000 GTK (1%)',
-          'Public Launch price: $ 0.25',
-        ]
-      },
-      {
-        title: 'Token Vesting Schedule',
-        list: [
-          'Investment 16% : 5% TGE Unlock, 3 months cliff, Monthly vesting over 24 months',
-          'Marketing & Development 5% : 3 months cliff. Quaterly vesting over 24 months',
-          'Liquidity Fund 5% : 5% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
-          'Ecosystem Fund 2% : 6 months cliff. Monthly vesting over 48 months',
-          'Insurance & Reserve 3% : 12 months cliff. Monthly vesting over 48 months',
-          'Team 10% : 12 months cliff. Monthly vesting over 48 months',
-          'Advisory 5% : Monthly vesting over 60 months',
-          'Mining Pool 10% : Monthly vesting over 60 months',
-          'Guild Adoption 5% : Monthly vesting over 60 months',
-          'IDO 1% : 20% TGE Unlock, Monthly vesting over 4 months',
-          'CGF (Community Growth Fund) 10% : Monthly vesting over 60 months',
-          'Gamefund 18% : Monthly vesting over 60 months',
-          'Governance 10% : 12 months cliff. Monthly vesting over 48 months',
-        ]
-      },
-      {
-        title: 'Business Model',
-        list: [
-          'Staking Platform : Unstaking Fee',
-          'DEX : Swap Fee',
-          'Launchpad : Fund Deduction + Upfront Fee',
-          'INO : Fund Deduction + Upfront Fee',
-          'NFT Market-place : Transaction Fee',
-          'Incubation Program : Service Fee + Token Investment',
-          'Liquidity Providing Program : Service Fee',
-        ]
-      },
-      {
-        title: 'About Gate Token',
-        subtitle: 'GateChain',
-        content: [
-          'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, GateChain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
-        ]
-      },
-      {
-        subtitle: 'GateBridge',
-        content: [
-          'GateChain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, GateChain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
-        ]
-      },
-      {
-        subtitle: 'Gate Token',
-        content: [
-          `GateToken (GT) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
-        ]
-      },
-      {
-        subtitle: 'Gate.io',
-        content: [
-          'Gate.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
-          'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'O',
-    category: 'IDO & INO Regulation',
-    description: [
-      {
-        title: 'Gatekeeper Introduces New IDO Regulations Aimed To Protect The Community',
-        content: [
-          'Effective from October 1, 2022, Gatekeeper introduces new policies to protect the community.',
-        ]
-      },
-      {
-        subtitle: 'As',
-        content: [
-          'one of the most community-dedicated launchpads, Gatekeeper has always been committed to protecting users and prioritized the safety of their investments from day one. One of our key differentiators is a more thorough due diligence of all projects that considers various project aspects, including regulatory, legal, financial, technology, and business capabilities.',
-          'Despite our very selective process, we have faced a range of issues with some of the projects that unfavorably affected the investments of our community and the credibility of our platform, including a delayed launch, insufficient marketing on the project’s end, postponed token distribution, and others. To avoid these problems in the future and protect our users, Gatekeeper will apply new regulations based on the last 2-month research completed by our team and extensive experience in launches of a number of projects.',
-          'To adhere to our mission to bring only top-quality IDOs to the attention of our community, Gatekeeper has formulated a list of new IDO rules that will apply to all projects that would like to complete the IDO on our launchpad starting May 1, 2022. These regulations will also benefit projects as they will guide them on how to prepare for the IDO more comprehensively to ensure their success, as well as high returns for their investors. All selected projects will receive multifaceted support in marketing, tokenomics advisory, launch strategies, and more from our team.',
-        ]
-      },
-      {
-        subtitle: 'New Gatekeeper regulations for a safer IDO launch include the following:',
-        content: [
-          'Gatekeeper won’t accept projects with unreasonable valuations (FDV) or where multiples between the seed and the public rounds are more than 5x.',
-          'Gatekeeper will not participate in project launches if there are more than 4–5 launchpads participating in the project public launch and will limit projects launching on our platform to around $1M in public raise unless there are exceptional reasons to justify a larger raise.',
-          'Gatekeeper will review more carefully the project cap table to avoid known dumpers as well as MM’s and Exchanges in order to make sure the best results for the project.',
-          'Gatekeeper will review carefully the project roadmap and budgeting both from development and marketing aspects and will make sure the plan is feasible and the project is dedicating enough funds for at least a 2 years runway.',
-          'Gatekeeper will require a minimum amount of $400–500k to be added to the liquidity pool (proportional to the amount raised) and locked for at least 12 months. In case a project would choose to not respect this rule, Gatekeeper will have the right to keep the raised amount of tokens in stable coins in order to protect its community.',
-          'Gatekeeper will require at max 1 month between the IDO and listing date (TGE). In cases where 1 month is exceeded, the community will be offered to participate in a poll to decide whether we should continue with the project or do a full refund.',
-          'Gatekeeper will require projects to stay above the IDO price until at least 50% of tokens were distributed to the community from the public sale. This is mandatory for all projects in all market conditions. If a project falls below the IDO price before 50% is distributed and stays below the IDO price for at least a week, then it will be considered as a legit reason for a refund of all further distributions.',
-          'Due to multiple issues where other launchpads got tokens prior to our community, we will enforce that all projects will verify the distribution times of all parties. Everyone will get the distributions at the same time or else they will suffer a substantial financial penalty or full refund or partial refund of all future distributions.',
-          'Gatekeeper will require from projects full amounts of tokens before their launch. Unless the project has created a prior vesting contract with entire token amounts to be distributed on specific agreed dates which will be verified so it can’t be changed later.',
-          'As a launchpad Gatekeeper will send the funds collected from the public IDO or VC deals only according to the vesting schedule. In other words, we will no longer release the funds at the TGE. Gatekeeper will hold raised amounts for refunds at a safe vault in case of rug pools or any other critical failure caused directly or indirectly by incompetent management of the company.',
-          'Gatekeeper will review the project’s smart contract audits and verify there are no blacklisting or other restrictions in their token contract so it doesn’t hurt token distribution and the community.',
-        ]
-      },
-      {
-        subtitle: 'Gatekeeper Terms of Use',
-        content: [
-          'PLEASE READ THESE TERMS OF USE BEFORE USING THE WEBSITE.',
-          'Acceptance of the Terms of Use These terms of use is entered into by and between you and the Gatekeeper ("Gatekeeper", "we" or "us"). The following terms and conditions, together with any documents they expressly incorporate by reference (collectively, these "Terms of Use"), govern your access to and use of Gatekeeper website, including any content, functionality and services offered on or through Gatekeeper website (the "Website"). Please read the Terms of Use carefully before you start to use the Websites. By using the Websites or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to',
-          'our Privacy Policy , incorporated herein by reference; and',
-          'our Cookie Policy , incorporated herein by reference (note: no cookies are used on launchpad.Gatekeeper website).',
-          'If you do not agree to these Terms of Use or the Privacy Policy, you must not access or use the Websites. Who May Use the Websites This website is offered and available to users who are 13 years of age or older. The website is not intended for children under 13 years of age. By using this Website, you represent and warrant that you (i) are 13 years of age or older, (ii) are not barred to use the Website under any applicable law, and (iii) are using the Website only for your own personal use. If you do not meet these requirements, you must not access or use the Websites. Changes to the Terms of Use We may revise and update these Terms of Use from time to time at our sole discretion. All changes are effective immediately when we post them. Your continued use of the Websites following the posting of the revised Terms of Use means that you accept and agree to the changes. You are expected to check this page frequently so you are aware of any changes, as they are binding on you. Accessing the Websites and Account Security We reserve the right to withdraw or amend this Website, and any service or material we provide on the Website, in our sole discretion without notice. We do not guarantee that our site or any content on it, will always be available or be interrupted. We will not be liable if for any reason all or any part of the Website is unavailable at any time or for any period. From time to time, we may restrict access to some parts of the Website, or the entire Website, to users. You are responsible for:',
-          'Make all arrangements necessary for you to have access to the Websites.',
-          'Ensuring that all persons who access the Websites through your internet connection are aware of these Terms of Use and comply with them.',
-          'To access the Websites or some of the resources it offers, you may be asked to provide certain registration details or other information. It is a condition of your use of the Websites that all the information you provide on the Websites is correct, current and complete. You agree that all information you provide to register using this website or otherwise, including, but not limited to, using any interactive features on the Website, is governed by our Privacy Policy, and you consent to all actions we take with respect to your information consistent with our Privacy Policy. You should use particular caution when inputting personal information to the Websites on a public or shared computer so that others are not able to view or record your personal information. Intellectual Property Rights The Websites and its entire contents, features and functionality (including but not limited to all information, software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by the Foundation, its licensors or other providers of such material and are protected by copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws. Unless otherwise marked: (a) all material, data, and information on the Websites, such as data files, text, music, audio files or other sounds, photographs, videos, or other images, but excluding any software or computer code (collectively, the “Non- Code Content”) is licensed under the Creative Commons Attribution 4.0 International License; and (b) all software or computer code (collectively, the “Code Content”) is licensed under the MIT License. Trademarks The Foundation name, the terms Gatekeeper Switzerland, Gatekeeper Asia, the Foundation logo and all related names, logos, product and service names, designs and slogans are trademarks of the Foundation or its affiliates or licensors. You must not use such marks without the prior written permission of the Foundation. All other names, logos, product and service names, designs and slogans on this Website are the trademarks of their respective owners.',
-          'Prohibited Uses',
-          'You may use the Websites only for lawful purposes and in accordance with these Terms of Use. You agree not to use the Website:',
-          'In any way that violates any applicable federal, state, local or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the US or other countries).',
-          'For the purpose of exploiting, harming or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information or otherwise.',
-          'To send, knowingly receive, upload, download, use or re-use any material which does not comply with these Terms of Use.',
-          'To transmit, or procure the sending of, any advertising or promotional material without our prior written consent, including any "junk mail", "chain letter" or "spam" or any other similar solicitation.',
-          'To impersonate or attempt to impersonate the Foundation, a Foundation employee, another user or any other person or entity (including, without limitation, by using e-mail addresses or screen names associated with any of the foregoing).',
-          `To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by us, may harm the Foundation or users of the Websites or expose them to liability.`,
-          'Additionally, you agree not to:',
-          `Use the Websites in any manner that could disable, overburden, damage, or impair the site or interfere with any other party's use of the Website, including their ability to engage in real-time activities through the Websites.`,
-          'Use any robot, spider or other automatic devices, process or means to access the Websites for any purpose, including monitoring or copying any of the material on the Websites.',
-          'Use any manual process to monitor or copy any of the material on the Websites or for any other unauthorized purpose without our prior written consent.',
-          'Use any device, software or routine that interferes with the proper working of the Websites.',
-          'Introduce any viruses, trojan horses, worms, logic bombs or other material which is malicious or technologically harmful.',
-          'Attempt to gain unauthorized access to, interfere with, damage or disrupt any parts of the Website, the server on which the Website is stored, or any server, computer or database connected to the website.',
-          'Attack the Websites via a denial-of-service attack or a distributed denial-of-service attack.',
-          'Otherwise, attempt to interfere with the proper working of the Websites.',
-          'Reliance on Information Posted',
-          'The information presented on or through the Websites is made available solely for general information purposes. We do not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. We disclaim all liability and responsibility arising from any reliance placed on such materials by you or any other visitor to the Website, or by anyone who may be informed of any of its contents.',
-          'This Website includes content provided by third parties, including materials provided by other users, bloggers and third-party licensors, syndicators, aggregators and/or reporting services. All statements and/or opinions expressed in these materials, and all articles and responses to questions and other content, other than the content provided by the Foundation, are solely the opinions and the responsibility of the person or entity providing those materials. These materials do not necessarily reflect the opinion of the Foundation. We are not responsible, or liable to you or any third party, for the content or accuracy of any materials provided by any third parties.',
-          'Changes to the Websites',
-          'We may update the content on this Website from time to time, but its content is not necessarily complete or up-to-date. Any of the material on the Websites may be out of date at any given time, and we are under no obligation to update such material.',
-          'Information About You and Your Visits to the Websites',
-          'All information we collect on these Websites is subject to ourPrivacy Policy. By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. Online Purchases and Other Terms and Conditions Additional terms and conditions may also apply to specific portions, services or features of the Website, including the registration and sponsorship for conference events. All such additional terms and conditions are hereby incorporated by this reference into these Terms of Use. In the event of terms that are directly conflicting between these Terms of Use and terms of conditions for the registration or sponsorship of a conference event, the terms and conditions for the event shall control.',
-          'Linking to the Websites and Social Media Features',
-          'You may link to our homepage, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it, but you must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part without our express written consent.',
-          'Links from the Websites',
-          'If the Website contains links to other sites and resources provided by third parties, these links are provided for your convenience only. This includes links contained in advertisements, including banner advertisements and sponsored links. We have no control over the contents of those sites or resources and accept no responsibility for them or for any loss or damage that may arise from your use of them. If you decide to access any of the third-party websites linked to this Website, you do so entirely at your own risk and subject to the terms and conditions of use for such websites. We reserve the right to withdraw linking permission without notice.',
-          'Geographic Restrictions',
-          'The owner of the Website is based in Switzerland. We make no claims that the Website or any of its content is accessible or appropriate outside of Switzerland. Access to the Websites may not be legal by certain persons or in certain countries. If you access the Websites from outside Switzerland, you do so on your own initiative and are responsible for compliance with local laws.',
-        ]
-      },
-      {
-        subtitle: 'Disclaimer of Warranties',
-        content: [
-          'You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or the Websites will be free of viruses or other destructive code. You are responsible for implementing sufficient procedures and checkpoints to satisfy your particular requirements for anti-virus protection and accuracy of data input and output, and for maintaining a means external to our site for any reconstruction of any lost data. WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES OR TO YOUR DOWNLOADING OF ANY MATERIAL POSTED ON IT, OR ON ANY WEBSITES LINKED TO IT. YOUR USE OF THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE IS AT YOUR OWN RISK. THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER THE FOUNDATION NOR ANY PERSON ASSOCIATED WITH THE FOUNDATION MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE WEBSITES. WITHOUT LIMITING THE FOREGOING, NEITHER THE FOUNDATION NOR ANYONE ASSOCIATED WITH THE FOUNDATION REPRESENTS OR WARRANTS THAT THE WEBSITE, ITS CONTENT OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES WILL BE ACCURATE, RELIABLE, ERROR-FREE OR UNINTERRUPTED, AND THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS. THE FOUNDATION HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. SOME JURISDICTIONS DO NOT ALLOW EXCLUSION OF WARRANTIES OR LIMITATIONS ON THE DURATION OF IMPLIED WARRANTIES, SO THE ABOVE DISCLAIMER MAY NOT APPLY TO YOU IN THEIR ENTIRETY, BUT WILL APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.',
-        ]
-      },
-      {
-        subtitle: 'Limitation on Liability',
-        content: [
-          'IN NO EVENT WILL THE FOUNDATION, ITS AFFILIATES OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT ON THE WEBSITES OR SUCH OTHER WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT OR OTHERWISE, EVEN IF FORESEEABLE. THE FOREGOING DOES NOT AFFECT ANY LIABILITY WHICH CAN NOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW WHICH MAY INCLUDE FRAUD.',
-        ]
-      },
-      {
-        subtitle2: 'Indemnification',
-        content: [
-          `You agree to defend, indemnify and hold harmless the Foundation, its affiliates, licensors and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms of Use or your use of the Website, including, but not limited to, any use of the Website's content, services and products other than as expressly authorized in these Terms of Use or your use of any information obtained from the Websites.`,
-        ]
-      },
-      {
-        subtitle: 'Governing Law and Jurisdiction',
-        content: [
-          'All matters relating to the Websites and these Terms of Use and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims), shall be governed by and construed in accordance with the internal laws of Switzerland without giving effect to any choice or conflict of law provision or rule (whether of Switzerland or any other jurisdiction).',
-          'Any legal suit, action or proceeding arising out of, or related to, these Terms of Use or the Websites shall be instituted exclusively in Switzerland in the Kanton of Zug although we retain the right to bring any suit, action or proceeding against you for breach of these Terms of Use in your country of residence or any other relevant country. You waive any and all objections to the exercise of jurisdiction over you by such courts and to the venue in such courts.',
-        ]
-      },
-      {
-        subtitle: 'Waiver and Severability',
-        content: [
-          'No waiver by the Foundation of any term or condition set forth in these Terms of Use shall be deemed a further or continuing waiver of such term or condition or a waiver of any other term or condition, and any failure of the Foundation to assert a right or provision under these Terms of Use shall not constitute a waiver of such right or provision.',
-          'If any provision of these Terms of Use is held by a court or other tribunal of competent jurisdiction to be invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent such that the remaining provisions of the Terms of Use will continue in full force and effect.',
-        ]
-      },
-      {
-        subtitle: 'Entire Agreement',
-        content: [
-          'The Terms of Use, our Privacy Policy and Terms of conditions for the registration of events constitute the sole and entire agreement between you and the Gatekeeper Foundation with respect to the Websites and supersede all prior and contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the Websites.',
-        ]
-      },
-      {
-        subtitle2: 'Your Comments and Concerns',
-        content: [
-          'This website is operated by the Foundation. All other feedback, comments, requests for technical support and other communications relating to the Websites should be directed to support website.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'P',
-    category: 'Policy',
-    description: [
-      {
-        title: 'Legal Policy',
-        subtitle: 'Be Alert for Scams',
-        content: [
-          'As Launchpads are scarce and highly sought-after, this makes them a potential target for scams. Please ensure that you apply adequate caution to protect yourself. All official information regarding the Launchpad on Gatekeeper will be shared via our official Telegram. Admins will never initiate a DM first. They will never ask for personal information, funds, passwords, or private keys for any reason. Pools are only open during the times stated in this post.',
-        ]
-      },
-      {
-        subtitle: 'Countries excluded from the Launchpad participation',
-        content: [
-          'The sale is only open to non-U.S. persons and entities. In addition, the sale is not and will not be offered or sold, directly or indirectly, to any person who is a resident, organized, or located in any country or territory subject to OFAC comprehensive sanctions programs from time to time, including Cuba, Crimea region of Ukraine, Democratic people’s Republic of Korea, Iran, Syria, any person found on the OFAC specially designated nationals, blocked person list, any other consolidated prohibited person list as determined by any applicable governmental authority.',
-        ]
-      },
-      {
-        title: 'Privacy Policy',
-        subtitle: 'Introduction',
-        content: [
-          'Gatekeeper and its affiliates (hereinafter, “Gatekeeper”, "the Company", "we", "us" or "our") are committed to protecting and respecting your privacy. In addition, we recognize that persons who use Gatekeeper value their privacy. This Privacy Policy together with our Terms of Service governs our collection, processing and use of your Personal Information. By accessing Gatekeeper, you are consenting to the information collection and use practices described in this Privacy Policy. This Privacy Policy applies to the operations of Gatekeeper in the European Economic Area (EEA). It gives you rights by operation of the EU GDPR. If you live outside the EEA, Gatekeeper will undertake its best efforts to give you a similar degree of control over your privacy.',
-          'Purpose of Privacy Policy',
-          'The purpose of this Privacy Policy is to set out in an accountable and transparent way the collection and use of information by Gatekeeper',
-          'Personal Information',
-          '"Personal Information" is information which identifies you personally or by which your identity can reasonably be ascertained. This may include but is not limited to:',
-          'Full legal name, address for service, e-mail address, phone number, date of birth, photographic identification, government-issued identification and other contact details.',
-          'Your blockchain wallet addresses.',
-          'Polygon, BSC, ERC, GATE-chain network information related to transactions.',
-          'We may receive Ethereum network information from you as a result of your interaction with Gatekeeper.',
-          'Gatekeeper requires the highest level of browser permissions that could potentially lead to procurement of more Personal Information than enclosed in the definition of Personal Information.',
-          'Gatekeeper may require the use of MetaMask and may obtain additional information from MetaMask related to Ethereum addresses and transactions.',
-          'World Wide Web-related information, including but not limited to IP Addresses, operating systems and browser types may be received by Gatekeeper as a result of your interactions with Gatekeeper.',
-          'Gatekeeper uses Google Analytics for purposes of monitoring web traffic. Any identifying information collected via Google Analytics is controlled by Google.',
-          'Gate-Chain and other public blockchains provide transparency into transactions and Gatekeeper is not responsible for preventing or managing information broadcasted on a blockchain.',
-          'Purpose of Personal Information collection',
-          'Personal Information is collected in order to:',
-          'Provide our services efficiently and effectively;',
-          'Inform you about lending and financing features;',
-          'Develop, enhance, market and deliver products and services to you;',
-          'Understand your needs and your eligibility for products and services;',
-          'Provide information to you about developments and new products, including changes and enhancements to the Site;',
-          'Process billing and collection of any fees;',
-          'Conduct surveys and get feedback from you;',
-          'Establish and maintain a responsible commercial relationship with you;',
-          'Provide you with news and other matters of general interest to you as a Gatekeeper customer;',
-          'Meet Gatekeeper’s legal and regulatory requirements (eg, information required to verify your identity).',
-          'Security, Protection and Use of Personal Information',
-          'Gatekeeper is committed to protecting your privacy. Internally, only employees with a business who have access to know Personal Information, or whose duties reasonably require access to it are granted access to Personal Information. Gatekeeper’s systems and data are constantly under review to ensure that you are getting the best class of service and that market-leading security features are in place. Gatekeeper reserves the right to retain and share certain personal Information in order to meet our regulatory and statutory requirements and further our contractual agreements with partners and third parties. Personal Information and other related data may be exported outside of the jurisdiction in which you reside. Your Personal Information may be processed and stored in a foreign country or countries. Under those circumstances, the governments, courts, law enforcement or regulatory agencies of that country or those countries may be able to obtain access to your Personal Information through foreign laws. You need to be aware that the privacy standards of those countries may be lower than those of the jurisdiction in which you reside. You should note that you are not obliged to give your Personal Information to Gatekeeper, but if you choose not to do so, we may not be able to provide our services, or your access to our services may be limited.',
-          'Consent',
-          'Consent is required for the collection of Personal Information and the subsequent use of disclosure of Personal Information. The form of consent may vary depending upon the circumstances and the type of Personal information obtained. Your agreement with Gatekeeper’s Terms of Service constitutes your consent to the collection and use of Personal Information as described in this Privacy Policy. Gatekeeper reserves the right to use and disclose Personal Information without your knowledge or consent as permitted by applicable law.',
-        ]
-      },
-      {
-        subtitle: 'Disclosure of Personal Information',
-        content: [
-          `We use the Personal Information for the purposes indicated at the time you provide us with such information, and/or otherwise for the purposes set out in this Privacy Policy and/or as otherwise permitted by law. We may make available the Personal Information that you provide to us to our affiliates, agents, representatives, service providers and contractors for these purposes. We also reserve the right to disclose Personal information that Gatekeeper believes, in good faith, is appropriate or necessary to enforce our Terms of Use, take precautions against liability or harm, investigate and respond to third-party claims or allegations, to respond to a court order or official requests, to protect security or integrity of Gatekeeper and to protect the rights, property or safety of Gatekeeper, our users or others. We may share Users' Personal Information with any financial dispute resolution scheme to which the Company subscribes, and other law enforcement bodies, regulatory agencies, courts, arbitration bodies and dispute resolution schemes, as may be required by law. If you request it in writing, we may share your Personal Information with your nominated advisers. Except where disclosure of your Personal Information is required by law or requested by you, we will generally require any third party which receives or has access to Personal Information to protect such Personal Information and to use it only to carry out the services they are performing for you or for us unless otherwise required or permitted by law. We will ensure that any such third party is aware of our obligations under this Privacy Policy and we will take reasonable steps to ensure that contracts we enter with such third parties bind them to terms no less protective of any Personal Information disclosed to them than the obligations we undertake to you under this Privacy Policy or which are imposed on us under applicable data protection laws. In the event that Gatekeeper is involved in a merger, acquisition, sale, bankruptcy, insolvency, reorganization, receivership, assignment or the application of laws or change of control, there may be a disclosure of your information to another entity related to such an event.`,
-        ]
-      },
-      {
-        subtitle: 'Access and Changing of Personal Information',
-        content: [
-          'You have the right to access the Personal Information we hold about you, and to require the correction, updating and blocking of inaccurate and/or incorrect data by sending an email to us. We will usually respond to your request within 14 days. You may also request the deletion or destruction of your Personal Information, your Account details or your Transaction details by sending an email to us. Gatekeeper will act on your request only when it is not inconsistent with its legal and regulatory obligations and compliance procedures. Upon your written request, we will inform you of the use and general disclosure of your Personal Information. Depending on the nature of your request, there may be a minimal charge for accessing your Personal Information.',
-        ]
-      },
-      {
-        subtitle: 'Security',
-        content: [
-          'We take reasonable steps to protect your Personal Information from misuse, loss, unauthorised access, modification or disclosure, including implementing appropriate security measures. The security measures in place will, from time to time, be reviewed in line with legal and technical developments. However, we give no guarantee that such misuse, loss, unauthorised access, modification or disclosure will not occur. There are protective measures that you should take which as well include but are not limited to changing passwords regularly, not sharing your Personal Information with other unless you clearly understand the purpose of their request and you know with whom you are dealing.',
-        ]
-      },
-      {
-        subtitle: 'Retention of Personal Information',
-        content: [
-          'We will hold your Personal Information only for as long as it is necessary for us to do so, having regard to the purposes described in this Privacy Policy and our own legal and regulatory requirements. In general, Personal Information relating to your Account for at least a period of five years after your Account is closed. Similarly, we usually retain information about Transactions on your Account for a period of five years from the date of the Transaction. Personal Information which is collected for other purposes will be discarded inn accordance with our policies in place from time to time.',
-        ]
-      },
-      {
-        subtitle: 'Users Under the Age of 13',
-        content: [
-          'Gatekeeper does not knowingly collect or store any personal information about children under 13 without verifiable prior parental consent. If you believe such information have been inadvertently collected, we shall take necessary steps in order to remove such information from our database. Users under 13 must seek and obtain parental consent to use this website.',
-        ]
-      },
-      {
-        subtitle: 'Links',
-        content: [
-          'There may be links from our Site to other sites and resources provided by third parties. This Privacy Policy applies only to our Site. Accessing those third-party sites or sources requires you to leave our Site. We do not control those third-party sites or any of the content contained therein and you agree that we are in no way responsible or liable for any of those third-party sites, including, without limitation, their content, policies, failures, promotions, products, services or actions and/or any damages, losses, failures or problems caused by, related to or arising from those sites. We encourage you to review all policies, rules, terms and regulations, including the privacy policies, of each site that you visit.',
-        ]
-      },
-      {
-        subtitle: 'Changes',
-        content: [
-          'Our policies, content, information, promotions, disclosures, disclaimers and features may be revised, modified, updated, and/or supplemented at any time and without prior notice at the sole and absolute discretion of the Company. If we change this Privacy Policy, we will take steps to notify all Users by a notice on our website and will post the amended Privacy Policy on the website.',
-        ]
-      },
-      {
-        subtitle: 'Contact Us',
-        content: [
-          'If you have any questions, comments, or concerns regarding our Privacy Policy and/or practices, please contact one of the administrators of our community channel.',
-        ]
-      },
-      {
-        title: 'Security',
-        content: [
-          'Using proven and audited technology and best practices is the way to maximize security. The basic infrastructure on GateKeeper is built by integrating already existing solutions and practices that have been proven over time.',
-          'The encrypted seed phrase, along with other sensitive data like addresses, keys, and account data, is securely saved in the browser’s local storage. No online app, website, or provider can access any of that secured data - the user remains with total control over their wallet. We leverage audited and proven open source solutions to minimize the possibility of error.',
-        ]
-      },
-    ]
-  },
-  {
-    id: 'Q',
-    category: 'Connect Wallet',
-    description: [
-      {
-        title: 'Metamask',
-        subtitle: 'Switch to RPC Gate-Chain Network',
-        content: [
-          '​To use GateKeeper, we recommend the following steps to RPC URL.',
-          <><b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.</>,
-          <img src="/images/whitepaper/image-1.png" alt="" />,
-          <><b>Step 2 :</b> Select Add Network.</>,
-          <img src="/images/whitepaper/image-2.png" alt="" />,
-          <><b>Step 3 :</b> Enter details as below and save.</>,
-          'Network name: GateChain',
-          <>RPC URL:<a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">  https://evm.gatenode.cc</a></>,
-          'Chain ID: 86',
-          'Symbol: GT',
-          <>Block explorer: <a href="https://gatescan.org/" target="_blank" rel="noreferrer">  https://gatescan.org/</a></>,
-          <img src="/images/whitepaper/image-3.png" alt="" />,
-          <><b>Step 4 :</b> Check the right router is notified</>,
-          'GT has been added to the Metamask wallet!',
-          <img src="/images/whitepaper/image-4.png" alt="" />,
-        ]
-      },
-      {
-        title: 'Bitkeep',
-        content: [
-          <><b>Step 1 :</b> Access to <a href="https://bitkeep.com/en/download?type=2" target="_blank" rel="noreferrer">  https://bitkeep.com/en/download?type=2</a>  then select [Available in Chrome Web Store].</>,
-          <><b>Step 2 :</b> After selecting [Available in the chrome Web Store], select the [Add to Chrome] button.</>,
-          <><b>Step 3 :</b> In case you do not see Bitkeep displayed on the top of the page, you can choose to activate the battery button as shown below.</>,
-          <img src="/images/whitepaper/image-5.png" alt="" />,
-          <><b>Step 4 :</b> Select Wallet Icon on top and choose create wallet.</>,
-          <img src="/images/whitepaper/image-6.png" alt="" />,
-          <><b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know. Check the Gate-Chain.</>,
-          <img src="/images/whitepaper/image-7.png" alt="" />,
-          <><b>Step 6 :</b> Please keep the Secret Key safe or take a screenshot at this step.</>,
-          <img src="/images/whitepaper/image-8.png" alt="" />,
-          <><b>Step 7 :</b> After saving the wallet password, the user can use Bitkeep.</>,
-          <img src="/images/whitepaper/image-9.png" alt="" />,
-        ]
-      },
-      {
-        title: 'Coin98',
-        content: [
-          <img src="/images/whitepaper/image-10.png" alt="" />,
-          <><b>Step 1 :</b> Find and select Coin98 Extension Wallet on Chrome Web Store;</>,
-          'Click Manage Wallet icon',
-          <img src="/images/whitepaper/image-11.png" alt="" />,
-          'Click Add Wallet icon',
-          <img src="/images/whitepaper/image-12.png" alt="" />,
-          <><b>Step 2 :</b> Create </>,
-          <><b>Step 3 :</b> Name your wallet → Click Next </>,
-          <><b>Step 4 :</b> </>,
-          'Backup your Passphrase & Private Key correctly in the right order and in a safe place. Please note that the Passphrase & Private Key are crucial to have access to your wallet and assets;',
-          'Paste the copied Passphrase from the previous step into the confirmation box;',
-          'Read the caution carefully and tick to confirm your awareness of the risks if you lose keys;',
-          'Click Create Wallet to complete.',
-          <img src="/images/whitepaper/image-13.png" alt="" />,
-          'Your new wallet will instantly be displayed on the home screen. You can also access the Manage Wallet section again to check all your wallets.',
-        ]
-      },
-    ]
-  },
+    },
+    {
+        id: 'G',
+        category: 'Staking',
+        description: [
+            {
+                content: [
+                    'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
+                ],
+            },
+            {
+                title: 'GTK Normal Staking Reward',
+                content: ['Normal Staking APR : 3% (Fixed APR)'],
+            },
+            {
+                title: 'GTK Lock-Up Staking Reward',
+                content: ['Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)'],
+            },
+            {
+                list: [
+                    '7 Days : 4% (Fixed APR)',
+                    '30 Days : 6% (Fixed APR)',
+                    '90 Days : 8% (Fixed APR)',
+                    '180 Days : 15% (Fixed APR)',
+                ],
+            },
+            {
+                content: [
+                    <highline>
+                        ** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of
+                        1% of the deposit amount may occur.
+                    </highline>,
+                    <highline>
+                        ** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked
+                        GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
+                        returned as it is.
+                    </highline>,
+                    <highline>
+                        ** The staking reward is generated every 24 hours, and in the case of normal staking, a claim
+                        can be made every 24 hours, and in the case of Lock-Up Staking, a claim can be made after the
+                        period is all filled.
+                    </highline>,
+                    <highline>** Unstaking function cannot be used for 24 hours after lockup staking.</highline>,
+                ],
+            },
+        ],
+    },
+    {
+        id: 'H',
+        category: 'Tier',
+        description: [
+            {
+                title: 'Basic Requirement',
+                content: [
+                    `In order to participate in Gatekeeper's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
+                    <highline>** 1 Ticket Price = 10 USD</highline>,
+                    'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
+                    <highline>
+                        ** All assigned tickets for each tier will be won through a lottery, and the winning tickets
+                        will be automatically swapped with IDO tokens on the exchange listing date. Once purchased,
+                        tickets are non-refundable and can be used for the next IDO and INO.
+                    </highline>,
+                ],
+            },
+            {
+                title: 'Benefits by Tier System',
+                subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
+                content: [
+                    'Participate in the Private Round with the same price and opportunity through Venture Pool.',
+                    'Permission to participate in additional airdrops and Launchpad Tier 1',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                ],
+            },
+            {
+                subtitle: 'Tier 1 :',
+                content: [
+                    'Permission to participate in additional airdrops and Launchpad Tier 1',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                ],
+            },
+            {
+                subtitle: 'Tier 2 :',
+                content: [
+                    'Permission to participate in additional airdrops and Launchpad Tier 2',
+                    'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
+                ],
+            },
+            {
+                subtitle: 'Tier 3 :',
+                content: [
+                    'Permission to participate in additional airdrops and Launchpad Tier 3',
+                    'Benefit from an airdrop of 1.5% tokens from the total pool through IDO/INO.',
+                ],
+            },
+            {
+                title: 'Division of Tiers',
+                subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
+                content: [
+                    'Requirement : 120,000 Staked $ GTK',
+                    'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
+                    'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
+                    'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
+                    'Airdrop Logic :',
+                    '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
+                ],
+            },
+            {
+                subtitle: 'Tier 2',
+                content: [
+                    'Requirement : 40,000 Staked $ GTK',
+                    'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
+                    'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
+                    'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'Airdrop Logic :',
+                    '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
+                    'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
+                ],
+            },
+            {
+                subtitle: 'Tier 3',
+                content: [
+                    'Requirement : 15,000 Staked $ GTK',
+                    'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
+                    'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
+                    'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'Airdrop Logic :',
+                    '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
+                    'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
+                ],
+            },
+            {
+                subtitle: 'Tier 4',
+                content: [
+                    'Requirement : 10,000 Staked $ GTK',
+                    'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
+                    'Free Airdrop for Tier 4 users : X',
+                    '75,000 USD = 7,500 tickets',
+                    '30,000 tickets were purchased by users of Tier 4, and if all of them apply to the lottery, the probability of winning is 25%, which is (7500 / 30000 * 100) %.',
+                ],
+            },
+            {
+                subtitle: 'Tier 5',
+                content: [
+                    'Requirement : 3,000 Staked $ GTK',
+                    'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
+                    'Free Airdrop for Tier 5 users : X',
+                    '50,000 USD = 5,000 tickets',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'I',
+        category: 'Social Platform',
+        description: [
+            {
+                title: 'Basic Information for Gatekeeper Social Platform',
+                content: [
+                    `Gatekeeper Social Platform Gatekeeper's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
+                ],
+            },
+            {
+                list: [
+                    'Post and comment. Both web and app are supported.',
+                    'Everyone can communicate in a real-time chat room. Global pages, Japanese pages, Korean pages, and Vietnamese pages are supported.',
+                    'Provide pages that can be automatically translated.',
+                    'Gatekeeper Launchpad platform and Gatekeeper social platform are linked.',
+                    'Posts with high views are exposed on global pages and can be translated into all languages.',
+                    'Influencers can have their own followers, and profit activities are possible through streaming services.',
+                    'It is linked with the NFT Marketplace, allowing P2P trading of NFTs.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'J',
+        category: 'Swap',
+        description: [
+            {
+                content: [],
+            },
+        ],
+    },
+    {
+        id: 'K',
+        category: 'Gate-Chain Bridge',
+        description: [
+            {
+                content: [],
+            },
+        ],
+    },
+    {
+        id: 'L',
+        category: 'Governance',
+        description: [
+            {
+                title: 'How can governance work in gatekeepers?',
+                content: [
+                    'Governance operating within the gatekeeper can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the Gatekeeper team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the gatekeeper.',
+                ],
+            },
+            {
+                title: 'How can users vote on the direction of the gatekeeper?',
+                content: [
+                    'A gatekeeper has a personality of 1 GTK = 1 VOTE. All staked GTK Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake GTK 24 hours before the voting date. If GTK is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'M',
+        category: ' Venture Sides',
+        description: [
+            {
+                content: [
+                    <>
+                        <b>VCs</b> registered as General Partners of Gatekeeper and users with NFT-E Master Tier can
+                        participate in Private Rounds with IDOs and INOs registered in Gatekeeper. To participate in
+                        Venture sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers
+                        can also participate. However, influencers also need <b>required Staked GTK of course</b>.
+                        Ventures and those holding GTK Tokens over requirement and companies can view a report provided
+                        separately by Gatekeeper, with expected returns and analyzed token flows. Master Tier users must
+                        verify general KYC to participate in VC sides, and a contract is provided for each investment.
+                        The lock-up conditions are also included in the analyzed report, and the contract is provided as{' '}
+                        <b>Docussign</b>. Two days before IDO, the private link will be delivered separately through{' '}
+                        <b>the mail used for KYC.</b>
+                    </>,
+                ],
+            },
+        ],
+    },
+    {
+        id: 'N',
+        category: 'Tokenomics',
+        description: [
+            {
+                title: 'GTK Token Overview',
+                content: [
+                    <>
+                        The gatekeeper token is the platform's governance token, and by staking it, you get the
+                        opportunity to participate in IDO and INO. In addition, you can participate in the governance
+                        that determines the direction of the project by using the Gatekeeper token. It can be used as
+                        currency in DEX and NFT Marketplace, and liquidity can be supplied along with Gate Token. On
+                        social platforms, it can be used when clicking likes or making donations. By staking Gatekeeper
+                        tokens, you not only get staking rewards, but also become an early investor in cutting-edge and
+                        high-potential projects.
+                    </>,
+                    <>
+                        <b>Name :</b> Gatekeeper
+                    </>,
+                    <>
+                        <b>Ticker :</b> GTK
+                    </>,
+                    <>
+                        <b>Total Supply :</b> 100,000,000
+                    </>,
+                    <>
+                        <b>Standard :</b> GRC20, BEP20
+                    </>,
+                    <>
+                        <b>Token Allocation:</b>
+                    </>,
+                ],
+                list: [
+                    'Investment : 16%',
+                    'Marketing & Development : 5%',
+                    'Liquidity Fund : 5%',
+                    'Ecosystem Fund : 2%',
+                    'Insurance & Reserve : 3%',
+                    'Team : 10%',
+                    'Advisory : 5%',
+                    'Mining Pool : 10%',
+                    'Guild Adoption : 5%',
+                    'IDO : 1%',
+                    'CGF (Community Growth Fund) : 10%',
+                    'Gamefund : 18%',
+                    'Governance : 10%',
+                ],
+            },
+            {
+                title: 'Token Distribution',
+                list: [
+                    <>
+                        Token Details : <highline>**based on Total Supply at Genesis</highline>{' '}
+                    </>,
+                    'Ticker : GTK',
+                    'Standard : Gate-Chain Based',
+                    'Max Supply & Total Supply : 100,000,000 GTK',
+                    'Initial Circulating Supply on Day 1 : 1,100,000 GTK',
+                    'Public Launch Allocation (%) : 1,000,000 GTK (1%)',
+                    'Public Launch price: $ 0.25',
+                ],
+            },
+            {
+                title: 'Token Vesting Schedule',
+                list: [
+                    'Investment 16% : 5% TGE Unlock, 3 months cliff, Monthly vesting over 24 months',
+                    'Marketing & Development 5% : 3 months cliff. Quaterly vesting over 24 months',
+                    'Liquidity Fund 5% : 5% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
+                    'Ecosystem Fund 2% : 6 months cliff. Monthly vesting over 48 months',
+                    'Insurance & Reserve 3% : 12 months cliff. Monthly vesting over 48 months',
+                    'Team 10% : 12 months cliff. Monthly vesting over 48 months',
+                    'Advisory 5% : Monthly vesting over 60 months',
+                    'Mining Pool 10% : Monthly vesting over 60 months',
+                    'Guild Adoption 5% : Monthly vesting over 60 months',
+                    'IDO 1% : 20% TGE Unlock, Monthly vesting over 4 months',
+                    'CGF (Community Growth Fund) 10% : Monthly vesting over 60 months',
+                    'Gamefund 18% : Monthly vesting over 60 months',
+                    'Governance 10% : 12 months cliff. Monthly vesting over 48 months',
+                ],
+            },
+            {
+                title: 'Business Model',
+                list: [
+                    'Staking Platform : Unstaking Fee',
+                    'DEX : Swap Fee',
+                    'Launchpad : Fund Deduction + Upfront Fee',
+                    'INO : Fund Deduction + Upfront Fee',
+                    'NFT Market-place : Transaction Fee',
+                    'Incubation Program : Service Fee + Token Investment',
+                    'Liquidity Providing Program : Service Fee',
+                ],
+            },
+            {
+                title: 'About Gate Token',
+                subtitle: 'GateChain',
+                content: [
+                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, GateChain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
+                ],
+            },
+            {
+                subtitle: 'GateBridge',
+                content: [
+                    'GateChain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, GateChain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
+                ],
+            },
+            {
+                subtitle: 'Gate Token',
+                content: [
+                    `GateToken (GT) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+                ],
+            },
+            {
+                subtitle: 'Gate.io',
+                content: [
+                    'Gate.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
+                    'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'O',
+        category: 'IDO & INO Regulation',
+        description: [
+            {
+                title: 'Gatekeeper Introduces New IDO Regulations Aimed To Protect The Community',
+                content: [
+                    'Effective from October 1, 2022, Gatekeeper introduces new policies to protect the community.',
+                ],
+            },
+            {
+                subtitle: 'As',
+                content: [
+                    'one of the most community-dedicated launchpads, Gatekeeper has always been committed to protecting users and prioritized the safety of their investments from day one. One of our key differentiators is a more thorough due diligence of all projects that considers various project aspects, including regulatory, legal, financial, technology, and business capabilities.',
+                    'Despite our very selective process, we have faced a range of issues with some of the projects that unfavorably affected the investments of our community and the credibility of our platform, including a delayed launch, insufficient marketing on the project’s end, postponed token distribution, and others. To avoid these problems in the future and protect our users, Gatekeeper will apply new regulations based on the last 2-month research completed by our team and extensive experience in launches of a number of projects.',
+                    'To adhere to our mission to bring only top-quality IDOs to the attention of our community, Gatekeeper has formulated a list of new IDO rules that will apply to all projects that would like to complete the IDO on our launchpad starting May 1, 2022. These regulations will also benefit projects as they will guide them on how to prepare for the IDO more comprehensively to ensure their success, as well as high returns for their investors. All selected projects will receive multifaceted support in marketing, tokenomics advisory, launch strategies, and more from our team.',
+                ],
+            },
+            {
+                subtitle: 'New Gatekeeper regulations for a safer IDO launch include the following:',
+                content: [
+                    'Gatekeeper won’t accept projects with unreasonable valuations (FDV) or where multiples between the seed and the public rounds are more than 5x.',
+                    'Gatekeeper will not participate in project launches if there are more than 4–5 launchpads participating in the project public launch and will limit projects launching on our platform to around $1M in public raise unless there are exceptional reasons to justify a larger raise.',
+                    'Gatekeeper will review more carefully the project cap table to avoid known dumpers as well as MM’s and Exchanges in order to make sure the best results for the project.',
+                    'Gatekeeper will review carefully the project roadmap and budgeting both from development and marketing aspects and will make sure the plan is feasible and the project is dedicating enough funds for at least a 2 years runway.',
+                    'Gatekeeper will require a minimum amount of $400–500k to be added to the liquidity pool (proportional to the amount raised) and locked for at least 12 months. In case a project would choose to not respect this rule, Gatekeeper will have the right to keep the raised amount of tokens in stable coins in order to protect its community.',
+                    'Gatekeeper will require at max 1 month between the IDO and listing date (TGE). In cases where 1 month is exceeded, the community will be offered to participate in a poll to decide whether we should continue with the project or do a full refund.',
+                    'Gatekeeper will require projects to stay above the IDO price until at least 50% of tokens were distributed to the community from the public sale. This is mandatory for all projects in all market conditions. If a project falls below the IDO price before 50% is distributed and stays below the IDO price for at least a week, then it will be considered as a legit reason for a refund of all further distributions.',
+                    'Due to multiple issues where other launchpads got tokens prior to our community, we will enforce that all projects will verify the distribution times of all parties. Everyone will get the distributions at the same time or else they will suffer a substantial financial penalty or full refund or partial refund of all future distributions.',
+                    'Gatekeeper will require from projects full amounts of tokens before their launch. Unless the project has created a prior vesting contract with entire token amounts to be distributed on specific agreed dates which will be verified so it can’t be changed later.',
+                    'As a launchpad Gatekeeper will send the funds collected from the public IDO or VC deals only according to the vesting schedule. In other words, we will no longer release the funds at the TGE. Gatekeeper will hold raised amounts for refunds at a safe vault in case of rug pools or any other critical failure caused directly or indirectly by incompetent management of the company.',
+                    'Gatekeeper will review the project’s smart contract audits and verify there are no blacklisting or other restrictions in their token contract so it doesn’t hurt token distribution and the community.',
+                ],
+            },
+            {
+                subtitle: 'Gatekeeper Terms of Use',
+                content: [
+                    'PLEASE READ THESE TERMS OF USE BEFORE USING THE WEBSITE.',
+                    'Acceptance of the Terms of Use These terms of use is entered into by and between you and the Gatekeeper ("Gatekeeper", "we" or "us"). The following terms and conditions, together with any documents they expressly incorporate by reference (collectively, these "Terms of Use"), govern your access to and use of Gatekeeper website, including any content, functionality and services offered on or through Gatekeeper website (the "Website"). Please read the Terms of Use carefully before you start to use the Websites. By using the Websites or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to',
+                    'our Privacy Policy , incorporated herein by reference; and',
+                    'our Cookie Policy , incorporated herein by reference (note: no cookies are used on launchpad.Gatekeeper website).',
+                    'If you do not agree to these Terms of Use or the Privacy Policy, you must not access or use the Websites. Who May Use the Websites This website is offered and available to users who are 13 years of age or older. The website is not intended for children under 13 years of age. By using this Website, you represent and warrant that you (i) are 13 years of age or older, (ii) are not barred to use the Website under any applicable law, and (iii) are using the Website only for your own personal use. If you do not meet these requirements, you must not access or use the Websites. Changes to the Terms of Use We may revise and update these Terms of Use from time to time at our sole discretion. All changes are effective immediately when we post them. Your continued use of the Websites following the posting of the revised Terms of Use means that you accept and agree to the changes. You are expected to check this page frequently so you are aware of any changes, as they are binding on you. Accessing the Websites and Account Security We reserve the right to withdraw or amend this Website, and any service or material we provide on the Website, in our sole discretion without notice. We do not guarantee that our site or any content on it, will always be available or be interrupted. We will not be liable if for any reason all or any part of the Website is unavailable at any time or for any period. From time to time, we may restrict access to some parts of the Website, or the entire Website, to users. You are responsible for:',
+                    'Make all arrangements necessary for you to have access to the Websites.',
+                    'Ensuring that all persons who access the Websites through your internet connection are aware of these Terms of Use and comply with them.',
+                    'To access the Websites or some of the resources it offers, you may be asked to provide certain registration details or other information. It is a condition of your use of the Websites that all the information you provide on the Websites is correct, current and complete. You agree that all information you provide to register using this website or otherwise, including, but not limited to, using any interactive features on the Website, is governed by our Privacy Policy, and you consent to all actions we take with respect to your information consistent with our Privacy Policy. You should use particular caution when inputting personal information to the Websites on a public or shared computer so that others are not able to view or record your personal information. Intellectual Property Rights The Websites and its entire contents, features and functionality (including but not limited to all information, software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by the Foundation, its licensors or other providers of such material and are protected by copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws. Unless otherwise marked: (a) all material, data, and information on the Websites, such as data files, text, music, audio files or other sounds, photographs, videos, or other images, but excluding any software or computer code (collectively, the “Non- Code Content”) is licensed under the Creative Commons Attribution 4.0 International License; and (b) all software or computer code (collectively, the “Code Content”) is licensed under the MIT License. Trademarks The Foundation name, the terms Gatekeeper Switzerland, Gatekeeper Asia, the Foundation logo and all related names, logos, product and service names, designs and slogans are trademarks of the Foundation or its affiliates or licensors. You must not use such marks without the prior written permission of the Foundation. All other names, logos, product and service names, designs and slogans on this Website are the trademarks of their respective owners.',
+                    'Prohibited Uses',
+                    'You may use the Websites only for lawful purposes and in accordance with these Terms of Use. You agree not to use the Website:',
+                    'In any way that violates any applicable federal, state, local or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the US or other countries).',
+                    'For the purpose of exploiting, harming or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information or otherwise.',
+                    'To send, knowingly receive, upload, download, use or re-use any material which does not comply with these Terms of Use.',
+                    'To transmit, or procure the sending of, any advertising or promotional material without our prior written consent, including any "junk mail", "chain letter" or "spam" or any other similar solicitation.',
+                    'To impersonate or attempt to impersonate the Foundation, a Foundation employee, another user or any other person or entity (including, without limitation, by using e-mail addresses or screen names associated with any of the foregoing).',
+                    `To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by us, may harm the Foundation or users of the Websites or expose them to liability.`,
+                    'Additionally, you agree not to:',
+                    `Use the Websites in any manner that could disable, overburden, damage, or impair the site or interfere with any other party's use of the Website, including their ability to engage in real-time activities through the Websites.`,
+                    'Use any robot, spider or other automatic devices, process or means to access the Websites for any purpose, including monitoring or copying any of the material on the Websites.',
+                    'Use any manual process to monitor or copy any of the material on the Websites or for any other unauthorized purpose without our prior written consent.',
+                    'Use any device, software or routine that interferes with the proper working of the Websites.',
+                    'Introduce any viruses, trojan horses, worms, logic bombs or other material which is malicious or technologically harmful.',
+                    'Attempt to gain unauthorized access to, interfere with, damage or disrupt any parts of the Website, the server on which the Website is stored, or any server, computer or database connected to the website.',
+                    'Attack the Websites via a denial-of-service attack or a distributed denial-of-service attack.',
+                    'Otherwise, attempt to interfere with the proper working of the Websites.',
+                    'Reliance on Information Posted',
+                    'The information presented on or through the Websites is made available solely for general information purposes. We do not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. We disclaim all liability and responsibility arising from any reliance placed on such materials by you or any other visitor to the Website, or by anyone who may be informed of any of its contents.',
+                    'This Website includes content provided by third parties, including materials provided by other users, bloggers and third-party licensors, syndicators, aggregators and/or reporting services. All statements and/or opinions expressed in these materials, and all articles and responses to questions and other content, other than the content provided by the Foundation, are solely the opinions and the responsibility of the person or entity providing those materials. These materials do not necessarily reflect the opinion of the Foundation. We are not responsible, or liable to you or any third party, for the content or accuracy of any materials provided by any third parties.',
+                    'Changes to the Websites',
+                    'We may update the content on this Website from time to time, but its content is not necessarily complete or up-to-date. Any of the material on the Websites may be out of date at any given time, and we are under no obligation to update such material.',
+                    'Information About You and Your Visits to the Websites',
+                    'All information we collect on these Websites is subject to ourPrivacy Policy. By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. Online Purchases and Other Terms and Conditions Additional terms and conditions may also apply to specific portions, services or features of the Website, including the registration and sponsorship for conference events. All such additional terms and conditions are hereby incorporated by this reference into these Terms of Use. In the event of terms that are directly conflicting between these Terms of Use and terms of conditions for the registration or sponsorship of a conference event, the terms and conditions for the event shall control.',
+                    'Linking to the Websites and Social Media Features',
+                    'You may link to our homepage, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it, but you must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part without our express written consent.',
+                    'Links from the Websites',
+                    'If the Website contains links to other sites and resources provided by third parties, these links are provided for your convenience only. This includes links contained in advertisements, including banner advertisements and sponsored links. We have no control over the contents of those sites or resources and accept no responsibility for them or for any loss or damage that may arise from your use of them. If you decide to access any of the third-party websites linked to this Website, you do so entirely at your own risk and subject to the terms and conditions of use for such websites. We reserve the right to withdraw linking permission without notice.',
+                    'Geographic Restrictions',
+                    'The owner of the Website is based in Switzerland. We make no claims that the Website or any of its content is accessible or appropriate outside of Switzerland. Access to the Websites may not be legal by certain persons or in certain countries. If you access the Websites from outside Switzerland, you do so on your own initiative and are responsible for compliance with local laws.',
+                ],
+            },
+            {
+                subtitle: 'Disclaimer of Warranties',
+                content: [
+                    'You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or the Websites will be free of viruses or other destructive code. You are responsible for implementing sufficient procedures and checkpoints to satisfy your particular requirements for anti-virus protection and accuracy of data input and output, and for maintaining a means external to our site for any reconstruction of any lost data. WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES OR TO YOUR DOWNLOADING OF ANY MATERIAL POSTED ON IT, OR ON ANY WEBSITES LINKED TO IT. YOUR USE OF THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE IS AT YOUR OWN RISK. THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER THE FOUNDATION NOR ANY PERSON ASSOCIATED WITH THE FOUNDATION MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE WEBSITES. WITHOUT LIMITING THE FOREGOING, NEITHER THE FOUNDATION NOR ANYONE ASSOCIATED WITH THE FOUNDATION REPRESENTS OR WARRANTS THAT THE WEBSITE, ITS CONTENT OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES WILL BE ACCURATE, RELIABLE, ERROR-FREE OR UNINTERRUPTED, AND THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS. THE FOUNDATION HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. SOME JURISDICTIONS DO NOT ALLOW EXCLUSION OF WARRANTIES OR LIMITATIONS ON THE DURATION OF IMPLIED WARRANTIES, SO THE ABOVE DISCLAIMER MAY NOT APPLY TO YOU IN THEIR ENTIRETY, BUT WILL APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.',
+                ],
+            },
+            {
+                subtitle: 'Limitation on Liability',
+                content: [
+                    'IN NO EVENT WILL THE FOUNDATION, ITS AFFILIATES OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT ON THE WEBSITES OR SUCH OTHER WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITES OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT OR OTHERWISE, EVEN IF FORESEEABLE. THE FOREGOING DOES NOT AFFECT ANY LIABILITY WHICH CAN NOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW WHICH MAY INCLUDE FRAUD.',
+                ],
+            },
+            {
+                subtitle2: 'Indemnification',
+                content: [
+                    `You agree to defend, indemnify and hold harmless the Foundation, its affiliates, licensors and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms of Use or your use of the Website, including, but not limited to, any use of the Website's content, services and products other than as expressly authorized in these Terms of Use or your use of any information obtained from the Websites.`,
+                ],
+            },
+            {
+                subtitle: 'Governing Law and Jurisdiction',
+                content: [
+                    'All matters relating to the Websites and these Terms of Use and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims), shall be governed by and construed in accordance with the internal laws of Switzerland without giving effect to any choice or conflict of law provision or rule (whether of Switzerland or any other jurisdiction).',
+                    'Any legal suit, action or proceeding arising out of, or related to, these Terms of Use or the Websites shall be instituted exclusively in Switzerland in the Kanton of Zug although we retain the right to bring any suit, action or proceeding against you for breach of these Terms of Use in your country of residence or any other relevant country. You waive any and all objections to the exercise of jurisdiction over you by such courts and to the venue in such courts.',
+                ],
+            },
+            {
+                subtitle: 'Waiver and Severability',
+                content: [
+                    'No waiver by the Foundation of any term or condition set forth in these Terms of Use shall be deemed a further or continuing waiver of such term or condition or a waiver of any other term or condition, and any failure of the Foundation to assert a right or provision under these Terms of Use shall not constitute a waiver of such right or provision.',
+                    'If any provision of these Terms of Use is held by a court or other tribunal of competent jurisdiction to be invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent such that the remaining provisions of the Terms of Use will continue in full force and effect.',
+                ],
+            },
+            {
+                subtitle: 'Entire Agreement',
+                content: [
+                    'The Terms of Use, our Privacy Policy and Terms of conditions for the registration of events constitute the sole and entire agreement between you and the Gatekeeper Foundation with respect to the Websites and supersede all prior and contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the Websites.',
+                ],
+            },
+            {
+                subtitle2: 'Your Comments and Concerns',
+                content: [
+                    'This website is operated by the Foundation. All other feedback, comments, requests for technical support and other communications relating to the Websites should be directed to support website.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'P',
+        category: 'Policy',
+        description: [
+            {
+                title: 'Legal Policy',
+                subtitle: 'Be Alert for Scams',
+                content: [
+                    'As Launchpads are scarce and highly sought-after, this makes them a potential target for scams. Please ensure that you apply adequate caution to protect yourself. All official information regarding the Launchpad on Gatekeeper will be shared via our official Telegram. Admins will never initiate a DM first. They will never ask for personal information, funds, passwords, or private keys for any reason. Pools are only open during the times stated in this post.',
+                ],
+            },
+            {
+                subtitle: 'Countries excluded from the Launchpad participation',
+                content: [
+                    'The sale is only open to non-U.S. persons and entities. In addition, the sale is not and will not be offered or sold, directly or indirectly, to any person who is a resident, organized, or located in any country or territory subject to OFAC comprehensive sanctions programs from time to time, including Cuba, Crimea region of Ukraine, Democratic people’s Republic of Korea, Iran, Syria, any person found on the OFAC specially designated nationals, blocked person list, any other consolidated prohibited person list as determined by any applicable governmental authority.',
+                ],
+            },
+            {
+                title: 'Privacy Policy',
+                subtitle: 'Introduction',
+                content: [
+                    'Gatekeeper and its affiliates (hereinafter, “Gatekeeper”, "the Company", "we", "us" or "our") are committed to protecting and respecting your privacy. In addition, we recognize that persons who use Gatekeeper value their privacy. This Privacy Policy together with our Terms of Service governs our collection, processing and use of your Personal Information. By accessing Gatekeeper, you are consenting to the information collection and use practices described in this Privacy Policy. This Privacy Policy applies to the operations of Gatekeeper in the European Economic Area (EEA). It gives you rights by operation of the EU GDPR. If you live outside the EEA, Gatekeeper will undertake its best efforts to give you a similar degree of control over your privacy.',
+                    'Purpose of Privacy Policy',
+                    'The purpose of this Privacy Policy is to set out in an accountable and transparent way the collection and use of information by Gatekeeper',
+                    'Personal Information',
+                    '"Personal Information" is information which identifies you personally or by which your identity can reasonably be ascertained. This may include but is not limited to:',
+                    'Full legal name, address for service, e-mail address, phone number, date of birth, photographic identification, government-issued identification and other contact details.',
+                    'Your blockchain wallet addresses.',
+                    'Polygon, BSC, ERC, GATE-chain network information related to transactions.',
+                    'We may receive Ethereum network information from you as a result of your interaction with Gatekeeper.',
+                    'Gatekeeper requires the highest level of browser permissions that could potentially lead to procurement of more Personal Information than enclosed in the definition of Personal Information.',
+                    'Gatekeeper may require the use of MetaMask and may obtain additional information from MetaMask related to Ethereum addresses and transactions.',
+                    'World Wide Web-related information, including but not limited to IP Addresses, operating systems and browser types may be received by Gatekeeper as a result of your interactions with Gatekeeper.',
+                    'Gatekeeper uses Google Analytics for purposes of monitoring web traffic. Any identifying information collected via Google Analytics is controlled by Google.',
+                    'Gate-Chain and other public blockchains provide transparency into transactions and Gatekeeper is not responsible for preventing or managing information broadcasted on a blockchain.',
+                    'Purpose of Personal Information collection',
+                    'Personal Information is collected in order to:',
+                    'Provide our services efficiently and effectively;',
+                    'Inform you about lending and financing features;',
+                    'Develop, enhance, market and deliver products and services to you;',
+                    'Understand your needs and your eligibility for products and services;',
+                    'Provide information to you about developments and new products, including changes and enhancements to the Site;',
+                    'Process billing and collection of any fees;',
+                    'Conduct surveys and get feedback from you;',
+                    'Establish and maintain a responsible commercial relationship with you;',
+                    'Provide you with news and other matters of general interest to you as a Gatekeeper customer;',
+                    'Meet Gatekeeper’s legal and regulatory requirements (eg, information required to verify your identity).',
+                    'Security, Protection and Use of Personal Information',
+                    'Gatekeeper is committed to protecting your privacy. Internally, only employees with a business who have access to know Personal Information, or whose duties reasonably require access to it are granted access to Personal Information. Gatekeeper’s systems and data are constantly under review to ensure that you are getting the best class of service and that market-leading security features are in place. Gatekeeper reserves the right to retain and share certain personal Information in order to meet our regulatory and statutory requirements and further our contractual agreements with partners and third parties. Personal Information and other related data may be exported outside of the jurisdiction in which you reside. Your Personal Information may be processed and stored in a foreign country or countries. Under those circumstances, the governments, courts, law enforcement or regulatory agencies of that country or those countries may be able to obtain access to your Personal Information through foreign laws. You need to be aware that the privacy standards of those countries may be lower than those of the jurisdiction in which you reside. You should note that you are not obliged to give your Personal Information to Gatekeeper, but if you choose not to do so, we may not be able to provide our services, or your access to our services may be limited.',
+                    'Consent',
+                    'Consent is required for the collection of Personal Information and the subsequent use of disclosure of Personal Information. The form of consent may vary depending upon the circumstances and the type of Personal information obtained. Your agreement with Gatekeeper’s Terms of Service constitutes your consent to the collection and use of Personal Information as described in this Privacy Policy. Gatekeeper reserves the right to use and disclose Personal Information without your knowledge or consent as permitted by applicable law.',
+                ],
+            },
+            {
+                subtitle: 'Disclosure of Personal Information',
+                content: [
+                    `We use the Personal Information for the purposes indicated at the time you provide us with such information, and/or otherwise for the purposes set out in this Privacy Policy and/or as otherwise permitted by law. We may make available the Personal Information that you provide to us to our affiliates, agents, representatives, service providers and contractors for these purposes. We also reserve the right to disclose Personal information that Gatekeeper believes, in good faith, is appropriate or necessary to enforce our Terms of Use, take precautions against liability or harm, investigate and respond to third-party claims or allegations, to respond to a court order or official requests, to protect security or integrity of Gatekeeper and to protect the rights, property or safety of Gatekeeper, our users or others. We may share Users' Personal Information with any financial dispute resolution scheme to which the Company subscribes, and other law enforcement bodies, regulatory agencies, courts, arbitration bodies and dispute resolution schemes, as may be required by law. If you request it in writing, we may share your Personal Information with your nominated advisers. Except where disclosure of your Personal Information is required by law or requested by you, we will generally require any third party which receives or has access to Personal Information to protect such Personal Information and to use it only to carry out the services they are performing for you or for us unless otherwise required or permitted by law. We will ensure that any such third party is aware of our obligations under this Privacy Policy and we will take reasonable steps to ensure that contracts we enter with such third parties bind them to terms no less protective of any Personal Information disclosed to them than the obligations we undertake to you under this Privacy Policy or which are imposed on us under applicable data protection laws. In the event that Gatekeeper is involved in a merger, acquisition, sale, bankruptcy, insolvency, reorganization, receivership, assignment or the application of laws or change of control, there may be a disclosure of your information to another entity related to such an event.`,
+                ],
+            },
+            {
+                subtitle: 'Access and Changing of Personal Information',
+                content: [
+                    'You have the right to access the Personal Information we hold about you, and to require the correction, updating and blocking of inaccurate and/or incorrect data by sending an email to us. We will usually respond to your request within 14 days. You may also request the deletion or destruction of your Personal Information, your Account details or your Transaction details by sending an email to us. Gatekeeper will act on your request only when it is not inconsistent with its legal and regulatory obligations and compliance procedures. Upon your written request, we will inform you of the use and general disclosure of your Personal Information. Depending on the nature of your request, there may be a minimal charge for accessing your Personal Information.',
+                ],
+            },
+            {
+                subtitle: 'Security',
+                content: [
+                    'We take reasonable steps to protect your Personal Information from misuse, loss, unauthorised access, modification or disclosure, including implementing appropriate security measures. The security measures in place will, from time to time, be reviewed in line with legal and technical developments. However, we give no guarantee that such misuse, loss, unauthorised access, modification or disclosure will not occur. There are protective measures that you should take which as well include but are not limited to changing passwords regularly, not sharing your Personal Information with other unless you clearly understand the purpose of their request and you know with whom you are dealing.',
+                ],
+            },
+            {
+                subtitle: 'Retention of Personal Information',
+                content: [
+                    'We will hold your Personal Information only for as long as it is necessary for us to do so, having regard to the purposes described in this Privacy Policy and our own legal and regulatory requirements. In general, Personal Information relating to your Account for at least a period of five years after your Account is closed. Similarly, we usually retain information about Transactions on your Account for a period of five years from the date of the Transaction. Personal Information which is collected for other purposes will be discarded inn accordance with our policies in place from time to time.',
+                ],
+            },
+            {
+                subtitle: 'Users Under the Age of 13',
+                content: [
+                    'Gatekeeper does not knowingly collect or store any personal information about children under 13 without verifiable prior parental consent. If you believe such information have been inadvertently collected, we shall take necessary steps in order to remove such information from our database. Users under 13 must seek and obtain parental consent to use this website.',
+                ],
+            },
+            {
+                subtitle: 'Links',
+                content: [
+                    'There may be links from our Site to other sites and resources provided by third parties. This Privacy Policy applies only to our Site. Accessing those third-party sites or sources requires you to leave our Site. We do not control those third-party sites or any of the content contained therein and you agree that we are in no way responsible or liable for any of those third-party sites, including, without limitation, their content, policies, failures, promotions, products, services or actions and/or any damages, losses, failures or problems caused by, related to or arising from those sites. We encourage you to review all policies, rules, terms and regulations, including the privacy policies, of each site that you visit.',
+                ],
+            },
+            {
+                subtitle: 'Changes',
+                content: [
+                    'Our policies, content, information, promotions, disclosures, disclaimers and features may be revised, modified, updated, and/or supplemented at any time and without prior notice at the sole and absolute discretion of the Company. If we change this Privacy Policy, we will take steps to notify all Users by a notice on our website and will post the amended Privacy Policy on the website.',
+                ],
+            },
+            {
+                subtitle: 'Contact Us',
+                content: [
+                    'If you have any questions, comments, or concerns regarding our Privacy Policy and/or practices, please contact one of the administrators of our community channel.',
+                ],
+            },
+            {
+                title: 'Security',
+                content: [
+                    'Using proven and audited technology and best practices is the way to maximize security. The basic infrastructure on GateKeeper is built by integrating already existing solutions and practices that have been proven over time.',
+                    'The encrypted seed phrase, along with other sensitive data like addresses, keys, and account data, is securely saved in the browser’s local storage. No online app, website, or provider can access any of that secured data - the user remains with total control over their wallet. We leverage audited and proven open source solutions to minimize the possibility of error.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'Q',
+        category: 'Connect Wallet',
+        description: [
+            {
+                title: 'Metamask',
+                subtitle: 'Switch to RPC Gate-Chain Network',
+                content: [
+                    '​To use GateKeeper, we recommend the following steps to RPC URL.',
+                    <>
+                        <b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.
+                    </>,
+                    <img src="/images/whitepaper/image-1.png" alt="" />,
+                    <>
+                        <b>Step 2 :</b> Select Add Network.
+                    </>,
+                    <img src="/images/whitepaper/image-2.png" alt="" />,
+                    <>
+                        <b>Step 3 :</b> Enter details as below and save.
+                    </>,
+                    'Network name: GateChain',
+                    <>
+                        RPC URL:
+                        <a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">
+                            {' '}
+                            https://evm.gatenode.cc
+                        </a>
+                    </>,
+                    'Chain ID: 86',
+                    'Symbol: GT',
+                    <>
+                        Block explorer:{' '}
+                        <a href="https://gatescan.org/" target="_blank" rel="noreferrer">
+                            {' '}
+                            https://gatescan.org/
+                        </a>
+                    </>,
+                    <img src="/images/whitepaper/image-3.png" alt="" />,
+                    <>
+                        <b>Step 4 :</b> Check the right router is notified
+                    </>,
+                    'GT has been added to the Metamask wallet!',
+                    <img src="/images/whitepaper/image-4.png" alt="" />,
+                ],
+            },
+            {
+                title: 'Bitkeep',
+                content: [
+                    <>
+                        <b>Step 1 :</b> Access to{' '}
+                        <a href="https://bitkeep.com/en/download?type=2" target="_blank" rel="noreferrer">
+                            {' '}
+                            https://bitkeep.com/en/download?type=2
+                        </a>{' '}
+                        then select [Available in Chrome Web Store].
+                    </>,
+                    <>
+                        <b>Step 2 :</b> After selecting [Available in the chrome Web Store], select the [Add to Chrome]
+                        button.
+                    </>,
+                    <>
+                        <b>Step 3 :</b> In case you do not see Bitkeep displayed on the top of the page, you can choose
+                        to activate the battery button as shown below.
+                    </>,
+                    <img src="/images/whitepaper/image-5.png" alt="" />,
+                    <>
+                        <b>Step 4 :</b> Select Wallet Icon on top and choose create wallet.
+                    </>,
+                    <img src="/images/whitepaper/image-6.png" alt="" />,
+                    <>
+                        <b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know.
+                        Check the Gate-Chain.
+                    </>,
+                    <img src="/images/whitepaper/image-7.png" alt="" />,
+                    <>
+                        <b>Step 6 :</b> Please keep the Secret Key safe or take a screenshot at this step.
+                    </>,
+                    <img src="/images/whitepaper/image-8.png" alt="" />,
+                    <>
+                        <b>Step 7 :</b> After saving the wallet password, the user can use Bitkeep.
+                    </>,
+                    <img src="/images/whitepaper/image-9.png" alt="" />,
+                ],
+            },
+            {
+                title: 'Coin98',
+                content: [
+                    <img src="/images/whitepaper/image-10.png" alt="" />,
+                    <>
+                        <b>Step 1 :</b> Find and select Coin98 Extension Wallet on Chrome Web Store;
+                    </>,
+                    'Click Manage Wallet icon',
+                    <img src="/images/whitepaper/image-11.png" alt="" />,
+                    'Click Add Wallet icon',
+                    <img src="/images/whitepaper/image-12.png" alt="" />,
+                    <>
+                        <b>Step 2 :</b> Create{' '}
+                    </>,
+                    <>
+                        <b>Step 3 :</b> Name your wallet → Click Next{' '}
+                    </>,
+                    <>
+                        <b>Step 4 :</b>{' '}
+                    </>,
+                    'Backup your Passphrase & Private Key correctly in the right order and in a safe place. Please note that the Passphrase & Private Key are crucial to have access to your wallet and assets;',
+                    'Paste the copied Passphrase from the previous step into the confirmation box;',
+                    'Read the caution carefully and tick to confirm your awareness of the risks if you lose keys;',
+                    'Click Create Wallet to complete.',
+                    <img src="/images/whitepaper/image-13.png" alt="" />,
+                    'Your new wallet will instantly be displayed on the home screen. You can also access the Manage Wallet section again to check all your wallets.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'platform-overview',
+        category: 'Platform Overview',
+        description: [
+            {
+                content: [<img src="/images/whitepaper/UNDERSTAND-GATE-KEEPER.png" alt="" />],
+            },
+        ],
+    },
 ];

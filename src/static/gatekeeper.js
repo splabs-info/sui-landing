@@ -46,4 +46,8 @@ export const aboutGateKeeper = [
         label: 'MEDIA_KIT',
         link: '',
     },
+    {
+        label: 'Bridge',
+        link: '',
+    },
 ];

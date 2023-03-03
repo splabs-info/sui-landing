@@ -73,7 +73,7 @@ export default function TitleMain() {
             </Box>
             <ButtonTitleBox>
               <ApplyButton>
-                Buy Gatekeeper
+                Buy XUIatekeeper
               </ApplyButton>
               <ApplyButton>
                 Apply for Launchpad
@@ -90,7 +90,7 @@ export default function TitleMain() {
                 justifyContent: 'center'
               }}>
               <Typography variant="body1" mr={2}> Backed by </Typography>
-              <img alt="gatekeeper" src="/images/home/logo-gatechain.png" width={120} />
+              <img alt="sui" src="/images/whitelogo.png" width={120} />
             </Box>
           </Grid>
         </Grid>

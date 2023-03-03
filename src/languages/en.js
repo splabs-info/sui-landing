@@ -19,11 +19,12 @@ export const en = {
   key_9: "Contact",
 
 
-  key_10: "About GateKeeper",
+  key_10: "About YouSui",
   key_11: "Tokenomics",
-  key_12: "GateKeeper DEX",
+  key_12: "YouSui DEX",
   key_13: "Private Policy",
   MEDIA_KIT: "Media Kit",
+  bridge: "Bridge",
 
   key_14: "Join Ecosystem",
   key_15: "Apply for IDO Launchpad",
@@ -34,6 +35,6 @@ export const en = {
   key_19: "Apply for Guild",
 
   key_20: "Social",
-  key_21: "GateKeeper Social Platform",
+  key_21: "YouSui Social Platform",
 
 };
