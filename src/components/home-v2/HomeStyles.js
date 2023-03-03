@@ -306,7 +306,8 @@ export const CustomTabList = styled(TabList)(({ theme }) => ({
             inset: "0px",
             borderRadius: "8px",
             padding: " 1px",
-            background: Background.gradientBorder,
+            // background: Background.gradientBorder,
+            background: 'linear-gradient(45deg, #00C5D3 0%, #42EECF 100%)',
             WebkitMask:
                 "linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)",
             WebkitMaskComposite: "xor",
