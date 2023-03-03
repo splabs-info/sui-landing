@@ -1,18 +1,22 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import useResponsive from '../../hooks/useResponsive';
-import { ButtonTitleBox, FrameButton, TitleTypography, TextTypography, SectionBox, CenterBox } from './HomeStyles';
 import { Link } from 'react-router-dom';
+import useResponsive from '../../hooks/useResponsive';
+import { TypographyGradient } from 'components/home/HomeStyles';
+import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
 const Title = [
     <>
-        Become <span>an early investor</span>{' '}
+        Become{' '}
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>an early investor</TypographyGradient>{' '}
     </>,
     <>in the scalable Launchpad</>,
     <>
-        to participate in <span>all Games</span>,
+        to participate in{' '}
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>all Games</TypographyGradient> ,
     </>,
     <>
-        <span>NFTs and Metaverse</span> in the world.
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>NFTs and Metaverse</TypographyGradient> in
+        the world.
     </>,
 ];
 const SubTitle = [

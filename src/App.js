@@ -20,7 +20,6 @@ export default function App() {
 
     useEffect(() => {
         dispatch(_changeLanguage(localStorage.getItem('lang')));
-        console.log('GateKeeper - ver 0.0.1 - Layout');
     }, [dispatch]);
 
     return (

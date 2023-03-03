@@ -92,7 +92,7 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
     fontFamily: 'SVN-Gilroy-semi-bold',
     marginBottom: '.5rem',
     textTransform: 'uppercase',
-    background: 'linear-gradient(90deg, #81ECC5 4.98%, #8596FF 100%), #FFFFFF',
+    background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
     backgroundClip: 'text',
     textFillColor: 'transparent',
     minHeight: '60px',

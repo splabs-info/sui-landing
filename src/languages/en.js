@@ -7,7 +7,7 @@ export const en = {
   PITCHDECK: `Pitchdeck`,
   COMING_SOON: `Coming soon`,
   MARKETPLACE: "Marketplace",
-  key_1: "Gatekeeper",
+  // key_1: "Gatekeeper",
   key_2: "IDO Launchpad",
   key_3: "INO Launchpad",
   key_4: "Staking / Farming",

@@ -140,7 +140,7 @@ export const NetworksGrid = styled(Grid)(({ theme }) => ({
         borderRadius: "2rem",
         padding: " 1px",
         background:
-            "linear-gradient(90deg, #9162FE 25%,  #00A5FF 100%)",
+            "linear-gradient(90deg, #00C5D3 25%,  #42EECF 100%)",
         WebkitMask:
             "linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)",
         WebkitMaskComposite: "xor",

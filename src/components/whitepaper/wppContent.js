@@ -58,7 +58,7 @@ export const wppContent = [
                 list: [
                     <>
                         {' '}
-                        <IconSquareCheck /> Gatechain
+                        <IconSquareCheck /> SUI chain
                     </>,
                     <>
                         {' '}
@@ -140,7 +140,7 @@ export const wppContent = [
                     'SUI is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
                     <b> NFT marketplace</b>,
                     'SUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
-                    <b>Beyond Gatechain </b>,
+                    <b>Beyond SUI chain </b>,
                     'SUI wants to grow into a multi-chain launchpad platform that goes beyond Gatechain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Gatechain.',
                     <b>Liquidity Supply </b>,
                     'SUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
@@ -304,7 +304,7 @@ export const wppContent = [
         category: 'Partners',
         description: [
             {
-                title: 'Gate-Chain',
+                title: 'SUI Chain',
                 subtitle: 'What is GateChain?',
                 content: [
                     'Secure, scalable and interoperable public chains. GateChain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, GateChain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
@@ -766,14 +766,14 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'About Gate Token',
-                subtitle: 'GateChain',
+                title: 'About XUI Token',
+                subtitle: 'SUI Chain',
                 content: [
                     'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, GateChain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
                 ],
             },
             {
-                subtitle: 'GateBridge',
+                subtitle: 'SUIBridge',
                 content: [
                     'GateChain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, GateChain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
                 ],
