@@ -61,6 +61,10 @@ const aboutGateKeeper = [
     label: "MEDIA_KIT",
     link: "/coming-soon"
   },
+  {
+    label: "bridge",
+    link: "/coming-soon"
+  },
 ]
 
 const socials = [
@@ -125,14 +129,14 @@ export default function FooterV2() {
                   borderBottom: '0px!important'
                 }
               }}>
-              <Box component={'img'} src="/logo2.png" width={isMobile ? 200 : '90%'} maxWidth={250} />
+              <Box component={'img'} src="/logo2.png" width={isMobile ? 180 : '100%'} maxWidth={180} />
             </Box>
             <Typography mt={3} variant="body1" sx={{
               fontSize: '0.95rem',
               textAlign: isMobile && 'center',
               padding: isMobile ? '0 10%' : '0 20% 0 0 ',
             }}>
-              The Gatekeeper Launchpad platform is a user-friendly platform that runs on Gate-Chain as a multi-chain platform for Metaverse, Game, and WEB 3.0.
+              The YouSUI is a user-friendly platform that runs on SUI blockchain as a multi-chain platform for Metaverse, Game, and WEB 3.0.
             </Typography>
             <CusLink href="https://splabs.info/"
               target={'_blank'} sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}>
@@ -163,8 +167,8 @@ export default function FooterV2() {
             </FooterTitle>
             <UlCustom >
               <li >
-                <a href='mailto:business@gate-keeper.io' target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>
-                  business@gate-keeper.io
+                <a href='mailto:business@yousui.io' target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>
+                  business@yousui.io
                 </a>
               </li>
             </UlCustom>

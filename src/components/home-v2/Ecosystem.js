@@ -64,7 +64,7 @@ const CustomLogo = styled("img")(() => ({
 const networks = [
   {
     icon: '/images/networks/icon-1.png',
-    label: "BNB Chain",
+    label: "SUI",
     link: "/",
   },
   {
@@ -72,6 +72,16 @@ const networks = [
     label: "Ethereum",
     link: "/",
   },
+  {
+    icon: '/images/networks/BNB.svg',
+    label: "BNB Chain",
+    link: "/",
+  },
+  // {
+  //   icon: '/images/icon/networks/',
+  //   label: "BNB Chain",
+  //   link: "/",
+  // },
   {
     icon: '/images/networks/icon-3.png',
     label: "Solana",
