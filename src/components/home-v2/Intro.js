@@ -16,7 +16,7 @@ const Title = [
     </>,
 ];
 const SubTitle = [
-    'Gatekeeper works with projects with a high probability of success',
+    'SUI works with projects with a high probability of success',
     'with enhanced Due Diligence and Regulation.',
 ];
 
@@ -67,10 +67,10 @@ export default function Intro() {
                                 variant={'body1'}
                                 fontSize={isMobile && '0.9rem'}
                                 fontWeight="500"
-                                maxWidth={500}
+                                maxWidth={640}
                             >
-                                Gatekeeper works with projects with a high probability of success with enhanced Due
-                                Diligence and Regulation.
+                                YouSUI works with projects with a high probability of success with enhanced
+                                <br /> Due Diligence and Regulation.
                             </TextTypography>
                         </Box>
 

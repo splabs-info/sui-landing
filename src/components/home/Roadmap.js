@@ -13,8 +13,8 @@ const RoadmapContent = [
       'Idea Formation',
       'Team Formation',
       'Website Development',
-      'Gatekeeper Tokenomics',
-      'Gatekeeper Pitch Deck',
+      'SUI Tokenomics',
+      'SUI Pitch Deck',
       'Core Platform',
       'Development',
     ],
@@ -27,12 +27,12 @@ const RoadmapContent = [
       'Finalization',
       'Seed & Private',
       'Sale Round Public Sale Round',
-      'Gatekeeper',
+      'SUI',
       'Contract Development',
       'Contract Audit',
-      'Gatekeeper Free',
+      'SUI Free',
       'Launchpad',
-      'Gatekeeper Swap',
+      'SUI Swap',
     ]
   },
   {
@@ -40,7 +40,7 @@ const RoadmapContent = [
     content: [
       'Marketing Strategy',
       'Incubation Program',
-      'Gatekeeper First IDO',
+      'SUI First IDO',
       'Seeding for Partners',
       'Seeking for Uncubated',
       'Startups',
@@ -49,12 +49,12 @@ const RoadmapContent = [
   {
     title: 'Q3-2023',
     content: [
-      'GatekeeperXLaunch',
+      'SUIXLaunch',
       'OneMarket',
       'NFTs Launchpad',
-      'Gatekeeper First INO',
-      'Gatekeeper First IGO',
-      'Gatekeeper OneFam',
+      'SUI First INO',
+      'SUI First IGO',
+      'SUI OneFam',
       'function development',
 
     ]
