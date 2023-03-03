@@ -2,7 +2,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
-    Avatar, Box, Button, Collapse,
+    Avatar, Box, Collapse,
     Container,
     Divider,
     Drawer,
@@ -20,7 +20,6 @@ import { Link } from 'react-router-dom';
 import { subMenus } from 'static/subMenus';
 import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
-import { Web3Button } from '@web3modal/react';
 import { CreateProfilePopup } from 'components';
 import { WalletDrawer } from 'components/drawer';
 import { WalletContext } from '../hooks/use-connect';
