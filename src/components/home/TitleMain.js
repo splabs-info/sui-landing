@@ -8,8 +8,8 @@ const Title = [
   'NFTs and Metaverse in the world.',
 ]
 const SubTitle = [
-  'Gatekeeper works with projects with a high probability of success ',
-  'with enhanced Due Diligence and Regulation.',
+  'YouSUI works with projects with a high probability of success with enhanced',
+  'Due Diligence and Regulation.',
 ]
 
 
