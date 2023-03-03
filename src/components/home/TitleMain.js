@@ -73,7 +73,7 @@ export default function TitleMain() {
             </Box>
             <ButtonTitleBox>
               <ApplyButton>
-                Buy XUIatekeeper
+                Buy XUI
               </ApplyButton>
               <ApplyButton>
                 Apply for Launchpad

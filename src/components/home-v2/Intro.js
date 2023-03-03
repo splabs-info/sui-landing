@@ -76,7 +76,7 @@ export default function Intro() {
 
                         <ButtonTitleBox>
                             <Link to={'/coming-soon'}>
-                                <FrameButton>Buy XUIatekeeper</FrameButton>
+                                <FrameButton>Buy XUI</FrameButton>
                             </Link>
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Apply for Launchpad</FrameButton>
@@ -101,6 +101,7 @@ export default function Intro() {
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
+                                    marginBottom: 2,
                                 }}
                             >
                                 {/* <img alt="gatekeeper" src="/images/home/gatechain.png" height={isMobile ? 40 : 60} />
@@ -126,7 +127,8 @@ export default function Intro() {
                                 }}
                             >
                                 <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 60 : 80} />
+                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 110} width={220} />
+                                <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} />
                             </Box>
                         </Box>
                     </Grid>
@@ -179,12 +181,12 @@ export default function Intro() {
             />
             <img
                 alt="gatekeeper"
-                src="/images/home/home-coins-G.png"
+                src="/Token-YouSUI.png"
                 className={'imgGate'}
                 style={{
                     position: 'absolute',
-                    width: '40%',
-                    right: 0,
+                    width: '12%',
+                    right: '14.5%',
                     display: isTablet && 'none',
                 }}
             />

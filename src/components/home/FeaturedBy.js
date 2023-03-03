@@ -43,6 +43,9 @@ export default function Tokenomic() {
           <Grid item sm={3} xs={6}>
             <img alt="" src="/images/partners/MK1.png" width={'60%'} />
           </Grid>
+          <Grid item sm={3} xs={6}>
+            <img alt="" src="/images/partners/MK1.png" width={'60%'} />
+          </Grid>
         </Grid>
       </Container>
     </Box>

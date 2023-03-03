@@ -16,7 +16,7 @@ export const wppContent = [
                     'Gatekeeper is a transparent and rational launchpad with smart contracts',
                     'Gatekeeper is not limited to one area and welcomes all projects',
                     'Gatekeeper was born to activate Gate-Chain',
-                    'Gatekeeper works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
+                    'YouSUI works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
                     'Gatekeeper supports multiple chains and has bridge technology as well',
                 ],
             },
