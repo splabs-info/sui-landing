@@ -87,7 +87,7 @@ export const FrameButton = styled(Button)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: 'url(/images/background/btn.png)',
+    background: 'url(/images/background/btn-sui.png)',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
@@ -97,7 +97,7 @@ export const FrameButton = styled(Button)(({ theme }) => ({
     fontFamily: 'SVN-Gilroy-heavy',
     fontSize: '1rem',
     '&:hover': {
-        background: 'url(/images/background/btn.png)',
+        background: 'url(/images/background/btn-sui.png)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         color: Color.primary,

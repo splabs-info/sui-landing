@@ -71,7 +71,7 @@ export default function UpcomingPools() {
                                     }}
                                 >
                                     <img
-                                        src={`./images/pools/pools-${index + 1}.jpg`}
+                                        src={`./images/pools/pools-sui-${index + 1}.png`}
                                         alt={platform.label}
                                         width={'100%'}
                                     />
