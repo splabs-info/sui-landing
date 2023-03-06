@@ -64,7 +64,7 @@ export default function Intro() {
                         </Box>
                         <Box
                             sx={{
-                                margin: '1rem 0',
+                                margin: '2rem 0',
                             }}
                         >
                             <TextTypography
@@ -78,7 +78,7 @@ export default function Intro() {
                             </TextTypography>
                         </Box>
 
-                        <ButtonTitleBox>
+                        <ButtonTitleBox sx={{ gap: '1rem' }}>
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>

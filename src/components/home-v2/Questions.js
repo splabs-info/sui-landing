@@ -2,12 +2,7 @@ import { TabContext } from '@mui/lab';
 import { Box, Container, Tab } from '@mui/material';
 import { useState } from 'react';
 import useResponsive from '../../hooks/useResponsive';
-import {
-  CenterBox,
-  CustomTabList,
-  CustomTabPanel, SectionBox,
-  TextTypography
-} from './HomeStyles';
+import { CenterBox, CustomTabList, CustomTabPanel, SectionBox, TextTypography } from './HomeStyles';
 
 const platforms = [
     {
@@ -107,7 +102,7 @@ export default function Questions() {
 
                     <CustomTabPanel value={'0'}>
                         <CenterBox>
-                            <Box component={'img'} src="/images/home/video.png" alt="" />
+                            <Box sx={{ width: '100%' }} component={'img'} src="/images/home/video.png" alt="" />
                         </CenterBox>
                     </CustomTabPanel>
                     <CustomTabPanel value={'1'}>
