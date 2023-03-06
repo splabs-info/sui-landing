@@ -23,7 +23,7 @@ export const wppContent = [
             {
                 title: 'SUI Summary',
                 content: [
-                    'SUI is a launchpad platform born to expand the ecosystem of SUI chain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Gatechain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Gatechain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Gatechain ecosystem. The GTK token used on the platform is a utility token used on the Launchpad platform along with GT, the Gate.io',
+                    'SUI is a launchpad platform born to expand the ecosystem of SUI chain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Yui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Yui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Yui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with SUI, the Gate.io',
                 ],
             },
             {
@@ -141,7 +141,7 @@ export const wppContent = [
                     <b> NFT marketplace</b>,
                     'SUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
                     <b>Beyond SUI chain </b>,
-                    'SUI wants to grow into a multi-chain launchpad platform that goes beyond Gatechain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Gatechain.',
+                    'SUI wants to grow into a multi-chain launchpad platform that goes beyond Yui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Yui Blockchain.',
                     <b>Liquidity Supply </b>,
                     'SUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
                     <b>Participation of ventures and DAOs</b>,
@@ -163,7 +163,7 @@ export const wppContent = [
             {
                 title: 'Our mission',
                 content: [
-                    'is to activate the Gatechain and help Dapps and WEB 3 projects on other blockchains migrate to Gatechain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on SUI.',
+                    'is to activate the Yui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Yui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on SUI.',
                 ],
             },
         ],
@@ -294,7 +294,7 @@ export const wppContent = [
             {
                 title: 'Master Product (2023~2027)',
                 content: [
-                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the GT Token and GTK Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strenSUIhen utility by providing abundant liquidity to the SUI Token and XUI Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
                 ],
             },
         ],
@@ -350,7 +350,7 @@ export const wppContent = [
             {
                 list: [
                     'Community-Governed Launchpad System',
-                    'Global Gatechain Community Builder',
+                    'Global Yui Blockchain Community Builder',
                     'Access Every Blockchain',
                     'Access Every AMM',
                     'Cross-Chain Swap & Bridge',
@@ -374,10 +374,10 @@ export const wppContent = [
                 content: [
                     'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
                     <>
-                        <b>Step 1:</b> Purchase GTK tokens.
+                        <b>Step 1:</b> Purchase XUI tokens.
                     </>,
                     <>
-                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                        <b>Step 2:</b> Deposit your XUI tokens into a staking pool.
                     </>,
                     'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
                     <>
@@ -399,10 +399,10 @@ export const wppContent = [
                 content: [
                     'INO stands for Initial NFT Offering, and SUI plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
                     <>
-                        <b>Step 1:</b> Purchase GTK tokens.
+                        <b>Step 1:</b> Purchase XUI tokens.
                     </>,
                     <>
-                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                        <b>Step 2:</b> Deposit your XUI tokens into a staking pool.
                     </>,
                     'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
                     <>
@@ -449,16 +449,16 @@ export const wppContent = [
         description: [
             {
                 content: [
-                    'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
+                    'The most basic thing to do to participate in Launchpad is to stake XUI tokens in a staking pool. Tier is determined according to the amount of XUI staked and XUI NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
                 ],
             },
             {
-                title: 'GTK Normal Staking Reward',
+                title: 'XUI Normal Staking Reward',
                 content: ['Normal Staking APR : 3% (Fixed APR)'],
             },
             {
-                title: 'GTK Lock-Up Staking Reward',
-                content: ['Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)'],
+                title: 'XUI Lock-Up Staking Reward',
+                content: ['Lock-up Staking APR (Minimum amount of $XUI Staking : 3,000 XUI)'],
             },
             {
                 list: [
@@ -476,7 +476,7 @@ export const wppContent = [
                     </highline>,
                     <highline>
                         ** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked
-                        GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
+                        XUI by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
                         returned as it is.
                     </highline>,
                     <highline>
@@ -496,7 +496,7 @@ export const wppContent = [
             {
                 title: 'Basic Requirement',
                 content: [
-                    `In order to participate in SUI's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
+                    `In order to participate in SUI's IDO and INO, you must stake XUI tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold XUI token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have XUI staked more than Tier 4~5.`,
                     <highline>** 1 Ticket Price = 10 USD</highline>,
                     'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
                     <highline>
@@ -508,18 +508,18 @@ export const wppContent = [
             },
             {
                 title: 'Benefits by Tier System',
-                subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
+                subtitle: 'Tier Master (Top 10 $XUI Holders_sharing pools with Tier 1) :',
                 content: [
                     'Participate in the Private Round with the same price and opportunity through Venture Pool.',
                     'Permission to participate in additional airdrops and Launchpad Tier 1',
-                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the XUI staked',
                 ],
             },
             {
                 subtitle: 'Tier 1 :',
                 content: [
                     'Permission to participate in additional airdrops and Launchpad Tier 1',
-                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the XUI staked',
                 ],
             },
             {
@@ -538,23 +538,23 @@ export const wppContent = [
             },
             {
                 title: 'Division of Tiers',
-                subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
+                subtitle: 'Tier 1 & Tier Master (Top 10 $XUI holders)',
                 content: [
-                    'Requirement : 120,000 Staked $ GTK',
+                    'Requirement : 120,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
                     'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
-                    'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
+                    'Tier 1 users will receive free airdrops according to the amount of $ XUI staked.',
                     'Airdrop Logic :',
-                    '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
+                    '(How many $ XUI tokens is staked by each user / Tier 1’s Total amount of staked $ XUI tokens)',
                 ],
             },
             {
                 subtitle: 'Tier 2',
                 content: [
-                    'Requirement : 40,000 Staked $ GTK',
+                    'Requirement : 40,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
                     'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-                    'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'All Tier 2 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
                     'Airdrop Logic :',
                     '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
                     'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
@@ -563,10 +563,10 @@ export const wppContent = [
             {
                 subtitle: 'Tier 3',
                 content: [
-                    'Requirement : 15,000 Staked $ GTK',
+                    'Requirement : 15,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
                     'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-                    'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'All Tier 3 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
                     'Airdrop Logic :',
                     '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
                     'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
@@ -575,7 +575,7 @@ export const wppContent = [
             {
                 subtitle: 'Tier 4',
                 content: [
-                    'Requirement : 10,000 Staked $ GTK',
+                    'Requirement : 10,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
                     'Free Airdrop for Tier 4 users : X',
                     '75,000 USD = 7,500 tickets',
@@ -585,7 +585,7 @@ export const wppContent = [
             {
                 subtitle: 'Tier 5',
                 content: [
-                    'Requirement : 3,000 Staked $ GTK',
+                    'Requirement : 3,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
                     'Free Airdrop for Tier 5 users : X',
                     '50,000 USD = 5,000 tickets',
@@ -647,7 +647,7 @@ export const wppContent = [
             {
                 title: 'How can users vote on the direction of the SUI?',
                 content: [
-                    'A SUI has a personality of 1 GTK = 1 VOTE. All staked GTK Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake GTK 24 hours before the voting date. If GTK is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
+                    'A SUI has a personality of 1 XUI = 1 VOTE. All staked XUI Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake XUI 24 hours before the voting date. If XUI is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
                 ],
             },
         ],
@@ -662,8 +662,8 @@ export const wppContent = [
                         <b>VCs</b> registered as General Partners of SUI and users with NFT-E Master Tier can
                         participate in Private Rounds with IDOs and INOs registered in SUI. To participate in Venture
                         sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers can also
-                        participate. However, influencers also need <b>required Staked GTK of course</b>. Ventures and
-                        those holding GTK Tokens over requirement and companies can view a report provided separately by
+                        participate. However, influencers also need <b>required Staked XUI of course</b>. Ventures and
+                        those holding XUI Tokens over requirement and companies can view a report provided separately by
                         SUI, with expected returns and analyzed token flows. Master Tier users must verify general KYC
                         to participate in VC sides, and a contract is provided for each investment. The lock-up
                         conditions are also included in the analyzed report, and the contract is provided as{' '}
@@ -679,7 +679,7 @@ export const wppContent = [
         category: 'Tokenomics',
         description: [
             {
-                title: 'GTK Token Overview',
+                title: 'XUI Token Overview',
                 content: [
                     <>
                         The SUI token is the platform's governance token, and by staking it, you get the opportunity to
@@ -693,7 +693,7 @@ export const wppContent = [
                         <b>Name :</b> SUI
                     </>,
                     <>
-                        <b>Ticker :</b> GTK
+                        <b>Ticker :</b> XUI
                     </>,
                     <>
                         <b>Total Supply :</b> 100,000,000
@@ -727,11 +727,11 @@ export const wppContent = [
                     <>
                         Token Details : <highline>**based on Total Supply at Genesis</highline>{' '}
                     </>,
-                    'Ticker : GTK',
+                    'Ticker : XUI',
                     'Standard : Gate-Chain Based',
-                    'Max Supply & Total Supply : 100,000,000 GTK',
-                    'Initial Circulating Supply on Day 1 : 1,100,000 GTK',
-                    'Public Launch Allocation (%) : 1,000,000 GTK (1%)',
+                    'Max Supply & Total Supply : 100,000,000 XUI',
+                    'Initial Circulating Supply on Day 1 : 1,100,000 XUI',
+                    'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
                     'Public Launch price: $ 0.25',
                 ],
             },
@@ -781,7 +781,7 @@ export const wppContent = [
             {
                 subtitle: 'Gate Token',
                 content: [
-                    `GateToken (GT) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+                    `GateToken (SUI) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
             },
             {
@@ -1053,7 +1053,7 @@ export const wppContent = [
                         </a>
                     </>,
                     'Chain ID: 86',
-                    'Symbol: GT',
+                    'Symbol: SUI',
                     <>
                         Block explorer:{' '}
                         <a href="https://gatescan.org/" target="_blank" rel="noreferrer">
@@ -1065,7 +1065,7 @@ export const wppContent = [
                     <>
                         <b>Step 4 :</b> Check the right router is notified
                     </>,
-                    'GT has been added to the Metamask wallet!',
+                    'SUI has been added to the Metamask wallet!',
                     <img src="/images/whitepaper/image-4.png" alt="" />,
                 ],
             },

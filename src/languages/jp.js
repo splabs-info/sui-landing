@@ -7,7 +7,7 @@ export const jp = {
   key_3: "INO",
   key_4: "Swap",
   key_5: "Stake",
-  key_6: "GT Token",
+  key_6: "SUI Token",
   key_7: "Whitepaper",
   key_8: "Apply for Launchpad",
 

@@ -64,7 +64,7 @@ export default function Intro() {
                         </Box>
                         <Box
                             sx={{
-                                margin: '1rem 0',
+                                margin: '2rem 0',
                             }}
                         >
                             <TextTypography
@@ -78,7 +78,7 @@ export default function Intro() {
                             </TextTypography>
                         </Box>
 
-                        <ButtonTitleBox>
+                        <ButtonTitleBox sx={{ gap: '1rem' }}>
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>
@@ -91,7 +91,7 @@ export default function Intro() {
                         </ButtonTitleBox>
 
                         <Box
-                            mt={2}
+                            mt={'3rem'}
                             sx={{
                                 color: 'white',
                             }}
@@ -114,7 +114,7 @@ export default function Intro() {
                             </Box>
                         </Box>
                         <Box
-                            mt={2}
+                            mt={'3rem'}
                             sx={{
                                 color: 'white',
                             }}
@@ -128,10 +128,11 @@ export default function Intro() {
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
+                                    gap: '33px',
                                 }}
                             >
                                 <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 110} width={220} />
+                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
                                 <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} />
                             </Box>
                         </Box>

@@ -1,27 +1,30 @@
 import { Box, Container, Typography, Grid, styled } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
-import { Background, Color } from '../../constant/styled';
+import { Color } from '../../constant/styled';
+import IcReact from 'components/asset/icon/IcReact';
+import IcMultiChain from 'components/asset/icon/IcMultiChain';
+import IcVerified from 'components/asset/icon/IcVerified';
 
 const teams = [
     {
         title: 'Self-sustaining ecosystem',
-        photoUrl: '/images/multi-chain/Expansion_01.png',
+        photoUrl: <IcReact />,
         text: 'Blockchain with everybody able to Supply & Demand',
     },
     {
         title: 'Expand with us',
-        photoUrl: '/images/multi-chain/Expansion_02.png',
+        photoUrl: <IcReact />,
         text: 'With Blockchain and Web3 experts everything would be possible',
     },
     {
         title: 'Must be verified',
-        photoUrl: '/images/multi-chain/Expansion_03.png',
+        photoUrl: <IcVerified />,
         text: 'We integrate with only potential and passionate projects',
     },
     {
         title: 'Multi-Chain',
-        photoUrl: '/images/multi-chain/Expansion_04.png',
+        photoUrl: <IcMultiChain />,
         text: 'Not only with SUI blockchain but expanding to multichain',
     },
 ];
@@ -39,7 +42,12 @@ const CustomBox = styled(Box)(({ theme }) => ({
         background: 'linear-gradient(90deg, #D0C4FC 4.98%, #9CEAF0 100%)',
         border: '1px solid #98cafe',
         boxShadow: ' 0px 1px 9px rgba(0, 0, 0, 0.34)',
+        '& div:first-child': {
+            background: '#000E26',
+            color: 'rgba(66, 238, 207, .9)',
+        },
     },
+
     [theme.breakpoints.down('md')]: {
         minHeight: 'unset',
         padding: '1rem',
@@ -90,8 +98,18 @@ export default function MultiChain() {
                         {teams.map((item, index) => (
                             <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
                                 <CustomBox>
-                                    <Box>
-                                        <img style={{ width: 'min(100%,70px)' }} src={item.photoUrl} alt="" />
+                                    <Box
+                                        sx={{
+                                            width: 90,
+                                            height: 90,
+                                            background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+                                            borderRadius: '16px',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        {item.photoUrl}
                                     </Box>
                                     <Box pl={1} className="TextBox">
                                         <TypographyTitle variant="h6">{item.title}</TypographyTitle>
