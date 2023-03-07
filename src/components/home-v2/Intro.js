@@ -191,7 +191,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '12%',
-                    right: '14.5%',
+                    right: '12.5%',
                     display: isTablet && 'none',
                 }}
             />
