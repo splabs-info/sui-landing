@@ -46,7 +46,7 @@ export default function WhitepaperContent() {
                             fontFamily: 'SVN-Gilroy-heavy',
                         }}
                     >
-                        {!isMobile && <>GATEKEEPER</>} WHITEPAPER
+                        {!isMobile && <>YOUSUI</>} WHITEPAPER
                     </TypographyGradient>
                     <Box component="img" src="images/home/line.png" alt="" maxWidth={'50%'} />
                 </TitleBox>
