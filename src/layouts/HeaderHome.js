@@ -312,7 +312,7 @@ export default function HeaderHome() {
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
             <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
-            <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} />
+            {/* <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} /> */}
         </>
     );
 }
