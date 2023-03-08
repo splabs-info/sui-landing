@@ -23,7 +23,7 @@ export const wppContent = [
             {
                 title: 'SUI Summary',
                 content: [
-                    'SUI is a launchpad platform born to expand the ecosystem of SUI chain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Yui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Yui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Yui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with SUI, the Gate.io',
+                    'SUI is a launchpad platform born to expand the ecosystem of SUI chain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with SUI, the Sui.io',
                 ],
             },
             {
@@ -141,7 +141,7 @@ export const wppContent = [
                     <b> NFT marketplace</b>,
                     'SUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
                     <b>Beyond SUI chain </b>,
-                    'SUI wants to grow into a multi-chain launchpad platform that goes beyond Yui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Yui Blockchain.',
+                    'SUI wants to grow into a multi-chain launchpad platform that goes beyond Sui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Sui Blockchain.',
                     <b>Liquidity Supply </b>,
                     'SUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
                     <b>Participation of ventures and DAOs</b>,
@@ -163,7 +163,7 @@ export const wppContent = [
             {
                 title: 'Our mission',
                 content: [
-                    'is to activate the Yui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Yui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on SUI.',
+                    'is to activate the Sui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Sui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on SUI.',
                 ],
             },
         ],
@@ -305,9 +305,9 @@ export const wppContent = [
         description: [
             {
                 title: 'SUI Chain',
-                subtitle: 'What is GateChain?',
+                subtitle: 'What is Sui Blockchain?',
                 content: [
-                    'Secure, scalable and interoperable public chains. GateChain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, GateChain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
+                    'Secure, scalable and interoperable public chains. Sui Blockchain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, Sui Blockchain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
                 ],
             },
             {
@@ -323,11 +323,6 @@ export const wppContent = [
                 content: [
                     'Scaling the future of digital culture. Polygon Studio is the home of all NFT, Gaming, and Metaverse projects that are on the Polygon protocol. We partner with large scale NFT projects for globally recognized IP and Brands, and are the best in class solution for energy efficiency and scaling on the blockchain.',
                 ],
-            },
-            {
-                title: 'Gate-Labs',
-                subtitle: 'What is Gate-Labs?',
-                content: [],
             },
         ],
     },
@@ -350,7 +345,7 @@ export const wppContent = [
             {
                 list: [
                     'Community-Governed Launchpad System',
-                    'Global Yui Blockchain Community Builder',
+                    'Global Sui Blockchain Community Builder',
                     'Access Every Blockchain',
                     'Access Every AMM',
                     'Cross-Chain Swap & Bridge',
@@ -769,25 +764,25 @@ export const wppContent = [
                 title: 'About XUI Token',
                 subtitle: 'SUI Chain',
                 content: [
-                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, GateChain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
+                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, Sui Blockchain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
                 ],
             },
             {
                 subtitle: 'SUIBridge',
                 content: [
-                    'GateChain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, GateChain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
+                    'Sui Blockchain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
                 ],
             },
             {
                 subtitle: 'Gate Token',
                 content: [
-                    `GateToken (SUI) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+                    `GateToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. GateToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
             },
             {
-                subtitle: 'Gate.io',
+                subtitle: 'Sui.io',
                 content: [
-                    'Gate.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
+                    'Sui.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
                     'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
                 ],
             },
@@ -1044,7 +1039,7 @@ export const wppContent = [
                     <>
                         <b>Step 3 :</b> Enter details as below and save.
                     </>,
-                    'Network name: GateChain',
+                    'Network name: Sui Blockchain',
                     <>
                         RPC URL:
                         <a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">

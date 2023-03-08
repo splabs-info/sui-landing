@@ -92,7 +92,7 @@ export default function Questions() {
                                 value="3"
                                 label={
                                     <div>
-                                        <TextTypography variant="body1">What is Gate-Keeper.io ?</TextTypography>
+                                        <TextTypography variant="body1">What is YouSUI ?</TextTypography>
                                         <TextTypography variant="body2">see more</TextTypography>
                                     </div>
                                 }
