@@ -294,7 +294,7 @@ export const wppContent = [
             {
                 title: 'Master Product (2023~2027)',
                 content: [
-                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strenSUIhen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
                 ],
             },
         ],
@@ -770,7 +770,7 @@ export const wppContent = [
             {
                 subtitle: 'SUIBridge',
                 content: [
-                    'Sui Blockchain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
+                    'Sui Blockchain’s original cross-chain protocol, Sui Bridge, is a decentralized solution based on liquidity pools. Sui Bridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via Sui Bridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
                 ],
             },
             {
