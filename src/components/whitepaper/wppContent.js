@@ -15,7 +15,7 @@ export const wppContent = [
                 list: [
                     'SUI is a transparent and rational launchpad with smart contracts',
                     'SUI is not limited to one area and welcomes all projects',
-                    'SUI was born to activate SUI-Chain',
+                    'SUI was born to activate Sui Blockchain',
                     'YouSUI works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
                     'SUI supports multiple chains and has bridge technology as well',
                 ],
@@ -294,7 +294,7 @@ export const wppContent = [
             {
                 title: 'Master Product (2023~2027)',
                 content: [
-                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strenSUIhen utility by providing abundant liquidity to the SUI Token and XUI Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strenSUIhen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
                 ],
             },
         ],
@@ -333,7 +333,7 @@ export const wppContent = [
             {
                 category: 'Launchpad',
                 content: [
-                    `SUI's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. SUI will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
+                    `SUI's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. SUI will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Sui Blockchain.`,
                 ],
             },
             {
@@ -360,7 +360,7 @@ export const wppContent = [
                     'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
                     'All blockchain tokens and NFTs can be easily funded through Bridge.',
                     'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
-                    'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
+                    'Development assistant is available through the incubating program, and if it is a project on the Sui Blockchain, it is possible to support a settlement in the form of a grant.',
                     'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
                 ],
             },
@@ -622,7 +622,7 @@ export const wppContent = [
     },
     {
         id: 'K',
-        category: 'Gate-Chain Bridge',
+        category: 'Sui Blockchain Bridge',
         description: [
             {
                 content: [],
@@ -677,11 +677,11 @@ export const wppContent = [
                 title: 'XUI Token Overview',
                 content: [
                     <>
-                        The SUI token is the platform's governance token, and by staking it, you get the opportunity to
+                        The XUI Token is the platform's governance token, and by staking it, you get the opportunity to
                         participate in IDO and INO. In addition, you can participate in the governance that determines
-                        the direction of the project by using the SUI token. It can be used as currency in DEX and NFT
+                        the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT
                         Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be
-                        used when clicking likes or making donations. By staking SUI tokens, you not only get staking
+                        used when clicking likes or making donations. By staking XUI Tokens, you not only get staking
                         rewards, but also become an early investor in cutting-edge and high-potential projects.
                     </>,
                     <>
@@ -723,7 +723,7 @@ export const wppContent = [
                         Token Details : <highline>**based on Total Supply at Genesis</highline>{' '}
                     </>,
                     'Ticker : XUI',
-                    'Standard : Gate-Chain Based',
+                    'Standard : Sui Blockchain Based',
                     'Max Supply & Total Supply : 100,000,000 XUI',
                     'Initial Circulating Supply on Day 1 : 1,100,000 XUI',
                     'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
@@ -937,13 +937,13 @@ export const wppContent = [
                     '"Personal Information" is information which identifies you personally or by which your identity can reasonably be ascertained. This may include but is not limited to:',
                     'Full legal name, address for service, e-mail address, phone number, date of birth, photographic identification, government-issued identification and other contact details.',
                     'Your blockchain wallet addresses.',
-                    'Polygon, BSC, ERC, GATE-chain network information related to transactions.',
+                    'Polygon, BSC, ERC, Sui Blockchain network information related to transactions.',
                     'We may receive Ethereum network information from you as a result of your interaction with SUI.',
                     'SUI requires the highest level of browser permissions that could potentially lead to procurement of more Personal Information than enclosed in the definition of Personal Information.',
                     'SUI may require the use of MetaMask and may obtain additional information from MetaMask related to Ethereum addresses and transactions.',
                     'World Wide Web-related information, including but not limited to IP Addresses, operating systems and browser types may be received by SUI as a result of your interactions with SUI.',
                     'SUI uses Google Analytics for purposes of monitoring web traffic. Any identifying information collected via Google Analytics is controlled by Google.',
-                    'Gate-Chain and other public blockchains provide transparency into transactions and SUI is not responsible for preventing or managing information broadcasted on a blockchain.',
+                    'Sui Blockchain and other public blockchains provide transparency into transactions and SUI is not responsible for preventing or managing information broadcasted on a blockchain.',
                     'Purpose of Personal Information collection',
                     'Personal Information is collected in order to:',
                     'Provide our services efficiently and effectively;',
@@ -1025,7 +1025,7 @@ export const wppContent = [
         description: [
             {
                 title: 'Metamask',
-                subtitle: 'Switch to RPC Gate-Chain Network',
+                subtitle: 'Switch to RPC Sui Blockchain Network',
                 content: [
                     '​To use SUI, we recommend the following steps to RPC URL.',
                     <>
@@ -1090,7 +1090,7 @@ export const wppContent = [
                     <img src="/images/whitepaper/image-6.png" alt="" />,
                     <>
                         <b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know.
-                        Check the Gate-Chain.
+                        Check the Sui Blockchain.
                     </>,
                     <img src="/images/whitepaper/image-7.png" alt="" />,
                     <>

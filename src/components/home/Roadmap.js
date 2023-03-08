@@ -13,7 +13,7 @@ const RoadmapContent = [
       'Idea Formation',
       'Team Formation',
       'Website Development',
-      'SUI Tokenomics',
+      'XUI Tokenomics',
       'SUI Pitch Deck',
       'Core Platform',
       'Development',
