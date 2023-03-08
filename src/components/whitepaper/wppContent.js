@@ -776,7 +776,7 @@ export const wppContent = [
             {
                 subtitle: 'Gate Token',
                 content: [
-                    `GateToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. GateToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+                    `SUIToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
             },
             {
