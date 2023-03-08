@@ -1,22 +1,26 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import useResponsive from '../../hooks/useResponsive';
-import { ButtonTitleBox, FrameButton, TitleTypography, TextTypography, SectionBox, CenterBox } from './HomeStyles';
 import { Link } from 'react-router-dom';
+import useResponsive from '../../hooks/useResponsive';
+import { TypographyGradient } from 'components/home/HomeStyles';
+import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
 const Title = [
     <>
-        Become <span>an early investor</span>{' '}
+        Become{' '}
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>an early investor</TypographyGradient>{' '}
     </>,
     <>in the scalable Launchpad</>,
     <>
-        to participate in <span>all Games</span>,
+        to participate in{' '}
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>all Games</TypographyGradient> ,
     </>,
     <>
-        <span>NFTs and Metaverse</span> in the world.
+        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>NFTs and Metaverse</TypographyGradient> in
+        the world.
     </>,
 ];
 const SubTitle = [
-    'Gatekeeper works with projects with a high probability of success',
+    'SUI works with projects with a high probability of success',
     'with enhanced Due Diligence and Regulation.',
 ];
 
@@ -60,23 +64,23 @@ export default function Intro() {
                         </Box>
                         <Box
                             sx={{
-                                margin: '1rem 0',
+                                margin: '2rem 0',
                             }}
                         >
                             <TextTypography
                                 variant={'body1'}
                                 fontSize={isMobile && '0.9rem'}
                                 fontWeight="500"
-                                maxWidth={500}
+                                maxWidth={640}
                             >
-                                Gatekeeper works with projects with a high probability of success with enhanced Due
-                                Diligence and Regulation.
+                                YouSUI works with projects with a high probability of success with enhanced
+                                <br /> Due Diligence and Regulation.
                             </TextTypography>
                         </Box>
 
-                        <ButtonTitleBox>
+                        <ButtonTitleBox sx={{ gap: '1rem' }}>
                             <Link to={'/coming-soon'}>
-                                <FrameButton>Buy XUIatekeeper</FrameButton>
+                                <FrameButton>Buy XUI</FrameButton>
                             </Link>
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Apply for Launchpad</FrameButton>
@@ -87,7 +91,7 @@ export default function Intro() {
                         </ButtonTitleBox>
 
                         <Box
-                            mt={2}
+                            mt={'3rem'}
                             sx={{
                                 color: 'white',
                             }}
@@ -101,15 +105,16 @@ export default function Intro() {
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
+                                    marginBottom: 2,
                                 }}
                             >
-                                {/* <img alt="gatekeeper" src="/images/home/gatechain.png" height={isMobile ? 40 : 60} />
+                                {/* <img alt="gatekeeper" src="/images/home/Sui Blockchain.png" height={isMobile ? 40 : 60} />
                 <img alt="gatekeeper" src="/images/home/gateio.png" height={isMobile ? 40 : 60} /> */}
                                 <img alt="sui" src="/whitelogo.png" width={80} />
                             </Box>
                         </Box>
                         <Box
-                            mt={2}
+                            mt={'3rem'}
                             sx={{
                                 color: 'white',
                             }}
@@ -123,10 +128,12 @@ export default function Intro() {
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
+                                    gap: '33px',
                                 }}
                             >
                                 <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 60 : 80} />
+                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
+                                {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
                     </Grid>
@@ -179,12 +186,12 @@ export default function Intro() {
             />
             <img
                 alt="gatekeeper"
-                src="/images/home/home-coins-G.png"
+                src="/Token-YouSUI.png"
                 className={'imgGate'}
                 style={{
                     position: 'absolute',
-                    width: '40%',
-                    right: 0,
+                    width: '12%',
+                    right: '12.5%',
                     display: isTablet && 'none',
                 }}
             />

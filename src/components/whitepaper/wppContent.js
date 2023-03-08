@@ -2,7 +2,7 @@ import { IconSquare, IconSquareCheck } from '@tabler/icons';
 export const wppContent = [
     {
         id: 'A',
-        category: 'Introduction of Gatekeeper',
+        category: 'Introduction of SUI',
         description: [
             {
                 title: 'The History',
@@ -11,19 +11,19 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'Features of Gatekeeper',
+                title: 'Features of SUI',
                 list: [
-                    'Gatekeeper is a transparent and rational launchpad with smart contracts',
-                    'Gatekeeper is not limited to one area and welcomes all projects',
-                    'Gatekeeper was born to activate Gate-Chain',
-                    'Gatekeeper works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
-                    'Gatekeeper supports multiple chains and has bridge technology as well',
+                    'SUI is a transparent and rational launchpad with smart contracts',
+                    'SUI is not limited to one area and welcomes all projects',
+                    'SUI was born to activate Sui Blockchain',
+                    'YouSUI works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
+                    'SUI supports multiple chains and has bridge technology as well',
                 ],
             },
             {
-                title: 'GateKeeper Summary',
+                title: 'SUI Summary',
                 content: [
-                    'Gatekeeper is a launchpad platform born to expand the ecosystem of Gatechain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Gatechain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Gatechain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Gatechain ecosystem. The GTK token used on the platform is a utility token used on the Launchpad platform along with GT, the Gate.io',
+                    'SUI is a launchpad platform born to expand the ecosystem of SUI chain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with SUI, the Sui.io',
                 ],
             },
             {
@@ -44,7 +44,7 @@ export const wppContent = [
                 title: 'Core Value',
                 list: [
                     'Community-Governed Launchpad System',
-                    'Global Gatechain Community Builder',
+                    'Global SUI chain Community Builder',
                     'Access Every Blockchain',
                     'Access Every AMM',
                     'Cross-Chain Swap & Bridge',
@@ -58,7 +58,7 @@ export const wppContent = [
                 list: [
                     <>
                         {' '}
-                        <IconSquareCheck /> Gatechain
+                        <IconSquareCheck /> SUI chain
                     </>,
                     <>
                         {' '}
@@ -134,18 +134,18 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'Gatekeeper Platform',
+                title: 'SUI Platform',
                 content: [
                     <b> Launchpad Platform</b>,
-                    'Gatekeeper is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
+                    'SUI is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
                     <b> NFT marketplace</b>,
-                    'Gatekeeper provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
-                    <b>Beyond Gatechain </b>,
-                    'Gatekeeper wants to grow into a multi-chain launchpad platform that goes beyond Gatechain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Gatechain.',
+                    'SUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
+                    <b>Beyond SUI chain </b>,
+                    'SUI wants to grow into a multi-chain launchpad platform that goes beyond Sui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Sui Blockchain.',
                     <b>Liquidity Supply </b>,
-                    'Gatekeeper creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
+                    'SUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
                     <b>Participation of ventures and DAOs</b>,
-                    'Through our own Due Diligence, Gatekeeper matches ventures and DAOs that can invest in order for users to succeed in investment and to fully integrate with the project community. Not only general users, but also ventures and DAO users can help the success of the project as they are simultaneously influxed into the new project.',
+                    'Through our own Due Diligence, SUI matches ventures and DAOs that can invest in order for users to succeed in investment and to fully integrate with the project community. Not only general users, but also ventures and DAO users can help the success of the project as they are simultaneously influxed into the new project.',
                 ],
             },
         ],
@@ -157,13 +157,13 @@ export const wppContent = [
             {
                 title: 'Our vision',
                 content: [
-                    'is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the Gatekeeper community will join us to make us stronger when we work together.',
+                    'is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the SUI community will join us to make us stronger when we work together.',
                 ],
             },
             {
                 title: 'Our mission',
                 content: [
-                    'is to activate the Gatechain and help Dapps and WEB 3 projects on other blockchains migrate to Gatechain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on Gatekeeper.',
+                    'is to activate the Sui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Sui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on SUI.',
                 ],
             },
         ],
@@ -188,7 +188,7 @@ export const wppContent = [
             },
             {
                 title: 'COO - Tracy Nguyen',
-                list: ['COO Splabs', 'COO Gatekeeper', 'COO InfinityAngel, Stepwatch project'],
+                list: ['COO Splabs', 'COO SUI', 'COO InfinityAngel, Stepwatch project'],
             },
             {
                 title: 'CMO - Sim Sang Jin',
@@ -208,7 +208,7 @@ export const wppContent = [
                     'Asset manager Huobi exchange',
                     'Operation Manager Bitkeep',
                     'CSO Infinity Games',
-                    'CSO GateKeeper',
+                    'CSO SUI',
                     'CSO HDlabs',
                 ],
             },
@@ -237,7 +237,7 @@ export const wppContent = [
             {
                 title: 'Q4 2022 - DONE',
                 list: [
-                    'Gatekeeper Launch',
+                    'SUI Launch',
                     'Smart-Contract Deployment',
                     'Whitepaper',
                     'Initiate Development',
@@ -258,7 +258,7 @@ export const wppContent = [
             {
                 title: 'Q2 2023 - PENDING',
                 list: [
-                    'Staking & Gatekeeper First IDO/INO',
+                    'Staking & SUI First IDO/INO',
                     'Soft-Launching',
                     'New Governance',
                     'INO Open',
@@ -294,7 +294,7 @@ export const wppContent = [
             {
                 title: 'Master Product (2023~2027)',
                 content: [
-                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Gate-Chain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Gate-Chain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the GT Token and GTK Token Pool, and the second goal was the scalability of Gate-Chain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Gate-Chain through NFT activation.`,
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
                 ],
             },
         ],
@@ -304,10 +304,10 @@ export const wppContent = [
         category: 'Partners',
         description: [
             {
-                title: 'Gate-Chain',
-                subtitle: 'What is GateChain?',
+                title: 'SUI Chain',
+                subtitle: 'What is Sui Blockchain?',
                 content: [
-                    'Secure, scalable and interoperable public chains. GateChain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, GateChain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
+                    'Secure, scalable and interoperable public chains. Sui Blockchain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, Sui Blockchain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
                 ],
             },
             {
@@ -324,11 +324,6 @@ export const wppContent = [
                     'Scaling the future of digital culture. Polygon Studio is the home of all NFT, Gaming, and Metaverse projects that are on the Polygon protocol. We partner with large scale NFT projects for globally recognized IP and Brands, and are the best in class solution for energy efficiency and scaling on the blockchain.',
                 ],
             },
-            {
-                title: 'Gate-Labs',
-                subtitle: 'What is Gate-Labs?',
-                content: [],
-            },
         ],
     },
     {
@@ -338,19 +333,19 @@ export const wppContent = [
             {
                 category: 'Launchpad',
                 content: [
-                    `Gatekeeper's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. Gatekeeper will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Gate-Chain.`,
+                    `SUI's launchpad is divided into IDO and INO. IDO is an abbreviation of Initial DEX Offering, which is a launchpad related to tokens, and INO is an abbreviation of Initial NFT Offering, which means the initial minting of NFTs. SUI will strive to integrate all blockchains as a multi-chain launchpad, as well as NFTs and tokens built on Sui Blockchain.`,
                 ],
             },
             {
-                title: 'How does IGO work on Gatekeeper?',
+                title: 'How does IGO work on SUI?',
                 content: [
-                    'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with Gatekeeper and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
+                    'IGO is an acronym for Initial Game Offering. It is a place to introduce tokens and NFTs used in the game or metaverse world to the community at an early stage. The purpose of our IGO is to engage in community exchanges with SUI and launch many successful projects as IGOs so that IDO participants can also make money and join their projects directly.',
                 ],
             },
             {
                 list: [
                     'Community-Governed Launchpad System',
-                    'Global Gatechain Community Builder',
+                    'Global Sui Blockchain Community Builder',
                     'Access Every Blockchain',
                     'Access Every AMM',
                     'Cross-Chain Swap & Bridge',
@@ -365,7 +360,7 @@ export const wppContent = [
                     'Unlike general launchpads, VC and Tier master users are given the opportunity to participate in the private round before IDO.',
                     'All blockchain tokens and NFTs can be easily funded through Bridge.',
                     'We are directly connected to the exchange and help projects to be listed immediately after IDO.',
-                    'Development assistant is available through the incubating program, and if it is a project on the Gate-Chain, it is possible to support a settlement in the form of a grant.',
+                    'Development assistant is available through the incubating program, and if it is a project on the Sui Blockchain, it is possible to support a settlement in the form of a grant.',
                     'If there are more projects to participate in IDO/INO, users can select IDO/INO by themselves through governance, and review contents can be provided to users in the form of a report.',
                 ],
             },
@@ -374,10 +369,10 @@ export const wppContent = [
                 content: [
                     'You can be an early investor in games that will succeed in the overwhelming scale and crypt scene, metaverse and web 3.0 projects.',
                     <>
-                        <b>Step 1:</b> Purchase GTK tokens.
+                        <b>Step 1:</b> Purchase XUI tokens.
                     </>,
                     <>
-                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                        <b>Step 2:</b> Deposit your XUI tokens into a staking pool.
                     </>,
                     'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
                     <>
@@ -397,12 +392,12 @@ export const wppContent = [
             {
                 title: 'How can I get involved in INO?',
                 content: [
-                    'INO stands for Initial NFT Offering, and Gatekeeper plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
+                    'INO stands for Initial NFT Offering, and SUI plans to launch with a focus on NFTs used in games, metaverses, and various popular topics in the future.',
                     <>
-                        <b>Step 1:</b> Purchase GTK tokens.
+                        <b>Step 1:</b> Purchase XUI tokens.
                     </>,
                     <>
-                        <b>Step 2:</b> Deposit your GTK tokens into a staking pool.
+                        <b>Step 2:</b> Deposit your XUI tokens into a staking pool.
                     </>,
                     'There are various options in the staking pool, and an Unstaking Fee may be charged if you fail to complete the lock-up staking period and unlock it.',
                     <>
@@ -438,7 +433,7 @@ export const wppContent = [
             {
                 title: 'Notice',
                 content: [
-                    'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the Gatekeeper Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
+                    'Due to government restrictions, residents of the following regions or countries are not able to participate in IDOs on the SUI Launchpad: Afghanistan, Albania, Burundi, Bosnia and Herzegovina, Belarus, Barbados, Botswana, Central African Republic, China, Republic of the Congo, Guinea, Guinea-Bissau, Haiti, Iran, Iraq, Jamaica, Cambodia, Lebanon, Libya, Myanmar, Nicaragua, Somalia, Serbia, South Sudan, Syria, Uganda, United States, Venezuela, British Virgin Islands, Yemen, Zimbabwe.',
                 ],
             },
         ],
@@ -449,16 +444,16 @@ export const wppContent = [
         description: [
             {
                 content: [
-                    'The most basic thing to do to participate in Launchpad is to stake GTK tokens in a staking pool. Tier is determined according to the amount of GTK staked and GTK NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
+                    'The most basic thing to do to participate in Launchpad is to stake XUI tokens in a staking pool. Tier is determined according to the amount of XUI staked and XUI NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
                 ],
             },
             {
-                title: 'GTK Normal Staking Reward',
+                title: 'XUI Normal Staking Reward',
                 content: ['Normal Staking APR : 3% (Fixed APR)'],
             },
             {
-                title: 'GTK Lock-Up Staking Reward',
-                content: ['Lock-up Staking APR (Minimum amount of $GTK Staking : 3,000 GTK)'],
+                title: 'XUI Lock-Up Staking Reward',
+                content: ['Lock-up Staking APR (Minimum amount of $XUI Staking : 3,000 XUI)'],
             },
             {
                 list: [
@@ -476,7 +471,7 @@ export const wppContent = [
                     </highline>,
                     <highline>
                         ** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked
-                        GTK by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
+                        XUI by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
                         returned as it is.
                     </highline>,
                     <highline>
@@ -496,7 +491,7 @@ export const wppContent = [
             {
                 title: 'Basic Requirement',
                 content: [
-                    `In order to participate in Gatekeeper's IDO and INO, you must stake GTK tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold GTK token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have GTK staked more than Tier 4~5.`,
+                    `In order to participate in SUI's IDO and INO, you must stake XUI tokens. Also, if you want to participate in a higher tier IDO Pool to increase your chances of winning, you must hold XUI token more. Of course, there are 5 total tiers, and users who want to participate in the Tier 1~3 pool must have XUI staked more than Tier 4~5.`,
                     <highline>** 1 Ticket Price = 10 USD</highline>,
                     'If 500,000 USD worth of tokens were allocated to the IDO, 50,000 tickets would be split into each tier pool.',
                     <highline>
@@ -508,18 +503,18 @@ export const wppContent = [
             },
             {
                 title: 'Benefits by Tier System',
-                subtitle: 'Tier Master (Top 10 $GTK Holders_sharing pools with Tier 1) :',
+                subtitle: 'Tier Master (Top 10 $XUI Holders_sharing pools with Tier 1) :',
                 content: [
                     'Participate in the Private Round with the same price and opportunity through Venture Pool.',
                     'Permission to participate in additional airdrops and Launchpad Tier 1',
-                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the XUI staked',
                 ],
             },
             {
                 subtitle: 'Tier 1 :',
                 content: [
                     'Permission to participate in additional airdrops and Launchpad Tier 1',
-                    'Benefit from an airdrop of 2% tokens from the total pool based on the GTK staked',
+                    'Benefit from an airdrop of 2% tokens from the total pool based on the XUI staked',
                 ],
             },
             {
@@ -538,23 +533,23 @@ export const wppContent = [
             },
             {
                 title: 'Division of Tiers',
-                subtitle: 'Tier 1 & Tier Master (Top 10 $GTK holders)',
+                subtitle: 'Tier 1 & Tier Master (Top 10 $XUI holders)',
                 content: [
-                    'Requirement : 120,000 Staked $ GTK',
+                    'Requirement : 120,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
                     'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
-                    'Tier 1 users will receive free airdrops according to the amount of $ GTK staked.',
+                    'Tier 1 users will receive free airdrops according to the amount of $ XUI staked.',
                     'Airdrop Logic :',
-                    '(How many $ GTK tokens is staked by each user / Tier 1’s Total amount of staked $ GTK tokens)',
+                    '(How many $ XUI tokens is staked by each user / Tier 1’s Total amount of staked $ XUI tokens)',
                 ],
             },
             {
                 subtitle: 'Tier 2',
                 content: [
-                    'Requirement : 40,000 Staked $ GTK',
+                    'Requirement : 40,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
                     'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-                    'All Tier 2 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'All Tier 2 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
                     'Airdrop Logic :',
                     '(Number of people in Tier 2 / Airdrop tokens assigned to Tier 2)',
                     'If there are 100 users in Tier 2, 7,500 USD is divided by 100, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 100 Users = 75 USD Per each user)',
@@ -563,10 +558,10 @@ export const wppContent = [
             {
                 subtitle: 'Tier 3',
                 content: [
-                    'Requirement : 15,000 Staked $ GTK',
+                    'Requirement : 15,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
                     'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
-                    'All Tier 3 users will receive the same Free Airdrops regardless of how many GTK tokens they stake.',
+                    'All Tier 3 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
                     'Airdrop Logic :',
                     '(Number of people in Tier 3 / Airdrop tokens assigned to Tier 3)',
                     'If there are 250 users in Tier 3, 7,500 USD is divided by 250, and in the end, each person receives an airdrop of 75 USD. (7,500 USD / 250 Users = 30 USD Per each user)',
@@ -575,7 +570,7 @@ export const wppContent = [
             {
                 subtitle: 'Tier 4',
                 content: [
-                    'Requirement : 10,000 Staked $ GTK',
+                    'Requirement : 10,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
                     'Free Airdrop for Tier 4 users : X',
                     '75,000 USD = 7,500 tickets',
@@ -585,7 +580,7 @@ export const wppContent = [
             {
                 subtitle: 'Tier 5',
                 content: [
-                    'Requirement : 3,000 Staked $ GTK',
+                    'Requirement : 3,000 Staked $ XUI',
                     'IDO & INO Allocation for Tier 5 users : 10% of Total Pool (500,000 USD * 10% = 50,000 USD)',
                     'Free Airdrop for Tier 5 users : X',
                     '50,000 USD = 5,000 tickets',
@@ -598,9 +593,9 @@ export const wppContent = [
         category: 'Social Platform',
         description: [
             {
-                title: 'Basic Information for Gatekeeper Social Platform',
+                title: 'Basic Information for SUI Social Platform',
                 content: [
-                    `Gatekeeper Social Platform Gatekeeper's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
+                    `SUI Social Platform SUI's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
                 ],
             },
             {
@@ -608,7 +603,7 @@ export const wppContent = [
                     'Post and comment. Both web and app are supported.',
                     'Everyone can communicate in a real-time chat room. Global pages, Japanese pages, Korean pages, and Vietnamese pages are supported.',
                     'Provide pages that can be automatically translated.',
-                    'Gatekeeper Launchpad platform and Gatekeeper social platform are linked.',
+                    'SUI Launchpad platform and SUI social platform are linked.',
                     'Posts with high views are exposed on global pages and can be translated into all languages.',
                     'Influencers can have their own followers, and profit activities are possible through streaming services.',
                     'It is linked with the NFT Marketplace, allowing P2P trading of NFTs.',
@@ -627,7 +622,7 @@ export const wppContent = [
     },
     {
         id: 'K',
-        category: 'Gate-Chain Bridge',
+        category: 'Sui Blockchain Bridge',
         description: [
             {
                 content: [],
@@ -639,15 +634,15 @@ export const wppContent = [
         category: 'Governance',
         description: [
             {
-                title: 'How can governance work in gatekeepers?',
+                title: 'How can governance work in SUIs?',
                 content: [
-                    'Governance operating within the gatekeeper can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the Gatekeeper team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the gatekeeper.',
+                    'Governance operating within the SUI can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the SUI team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the SUI.',
                 ],
             },
             {
-                title: 'How can users vote on the direction of the gatekeeper?',
+                title: 'How can users vote on the direction of the SUI?',
                 content: [
-                    'A gatekeeper has a personality of 1 GTK = 1 VOTE. All staked GTK Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake GTK 24 hours before the voting date. If GTK is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
+                    'A SUI has a personality of 1 XUI = 1 VOTE. All staked XUI Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake XUI 24 hours before the voting date. If XUI is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
                 ],
             },
         ],
@@ -659,14 +654,14 @@ export const wppContent = [
             {
                 content: [
                     <>
-                        <b>VCs</b> registered as General Partners of Gatekeeper and users with NFT-E Master Tier can
-                        participate in Private Rounds with IDOs and INOs registered in Gatekeeper. To participate in
-                        Venture sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers
-                        can also participate. However, influencers also need <b>required Staked GTK of course</b>.
-                        Ventures and those holding GTK Tokens over requirement and companies can view a report provided
-                        separately by Gatekeeper, with expected returns and analyzed token flows. Master Tier users must
-                        verify general KYC to participate in VC sides, and a contract is provided for each investment.
-                        The lock-up conditions are also included in the analyzed report, and the contract is provided as{' '}
+                        <b>VCs</b> registered as General Partners of SUI and users with NFT-E Master Tier can
+                        participate in Private Rounds with IDOs and INOs registered in SUI. To participate in Venture
+                        sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers can also
+                        participate. However, influencers also need <b>required Staked XUI of course</b>. Ventures and
+                        those holding XUI Tokens over requirement and companies can view a report provided separately by
+                        SUI, with expected returns and analyzed token flows. Master Tier users must verify general KYC
+                        to participate in VC sides, and a contract is provided for each investment. The lock-up
+                        conditions are also included in the analyzed report, and the contract is provided as{' '}
                         <b>Docussign</b>. Two days before IDO, the private link will be delivered separately through{' '}
                         <b>the mail used for KYC.</b>
                     </>,
@@ -679,22 +674,21 @@ export const wppContent = [
         category: 'Tokenomics',
         description: [
             {
-                title: 'GTK Token Overview',
+                title: 'XUI Token Overview',
                 content: [
                     <>
-                        The gatekeeper token is the platform's governance token, and by staking it, you get the
-                        opportunity to participate in IDO and INO. In addition, you can participate in the governance
-                        that determines the direction of the project by using the Gatekeeper token. It can be used as
-                        currency in DEX and NFT Marketplace, and liquidity can be supplied along with Gate Token. On
-                        social platforms, it can be used when clicking likes or making donations. By staking Gatekeeper
-                        tokens, you not only get staking rewards, but also become an early investor in cutting-edge and
-                        high-potential projects.
+                        The XUI Token is the platform's governance token, and by staking it, you get the opportunity to
+                        participate in IDO and INO. In addition, you can participate in the governance that determines
+                        the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT
+                        Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be
+                        used when clicking likes or making donations. By staking XUI Tokens, you not only get staking
+                        rewards, but also become an early investor in cutting-edge and high-potential projects.
                     </>,
                     <>
-                        <b>Name :</b> Gatekeeper
+                        <b>Name :</b> SUI
                     </>,
                     <>
-                        <b>Ticker :</b> GTK
+                        <b>Ticker :</b> XUI
                     </>,
                     <>
                         <b>Total Supply :</b> 100,000,000
@@ -728,11 +722,11 @@ export const wppContent = [
                     <>
                         Token Details : <highline>**based on Total Supply at Genesis</highline>{' '}
                     </>,
-                    'Ticker : GTK',
-                    'Standard : Gate-Chain Based',
-                    'Max Supply & Total Supply : 100,000,000 GTK',
-                    'Initial Circulating Supply on Day 1 : 1,100,000 GTK',
-                    'Public Launch Allocation (%) : 1,000,000 GTK (1%)',
+                    'Ticker : XUI',
+                    'Standard : Sui Blockchain Based',
+                    'Max Supply & Total Supply : 100,000,000 XUI',
+                    'Initial Circulating Supply on Day 1 : 1,100,000 XUI',
+                    'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
                     'Public Launch price: $ 0.25',
                 ],
             },
@@ -767,28 +761,28 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'About Gate Token',
-                subtitle: 'GateChain',
+                title: 'About XUI Token',
+                subtitle: 'SUI Chain',
                 content: [
-                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, GateChain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
+                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, Sui Blockchain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
                 ],
             },
             {
-                subtitle: 'GateBridge',
+                subtitle: 'SUIBridge',
                 content: [
-                    'GateChain’s original cross-chain protocol, GateBridge, is a decentralized solution based on liquidity pools. GateBridge has completed its integration with more than 10 mainnets including Ethereum, GateChain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via GateBridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
+                    'Sui Blockchain’s original cross-chain protocol, Sui Bridge, is a decentralized solution based on liquidity pools. Sui Bridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via Sui Bridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
                 ],
             },
             {
                 subtitle: 'Gate Token',
                 content: [
-                    `GateToken (GT) is the native currency of GateChain's ecosystem. It is used to pay for transaction fees on GateChain’s network and also serves as the PoS staking reward. It is essential to GateChain's functions. GateToken is an eco-memeber safely stored on GateChain. GateChain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+                    `SUIToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
             },
             {
-                subtitle: 'Gate.io',
+                subtitle: 'Sui.io',
                 content: [
-                    'Gate.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
+                    'Sui.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
                     'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
                 ],
             },
@@ -799,46 +793,44 @@ export const wppContent = [
         category: 'IDO & INO Regulation',
         description: [
             {
-                title: 'Gatekeeper Introduces New IDO Regulations Aimed To Protect The Community',
-                content: [
-                    'Effective from October 1, 2022, Gatekeeper introduces new policies to protect the community.',
-                ],
+                title: 'SUI Introduces New IDO Regulations Aimed To Protect The Community',
+                content: ['Effective from October 1, 2022, SUI introduces new policies to protect the community.'],
             },
             {
                 subtitle: 'As',
                 content: [
-                    'one of the most community-dedicated launchpads, Gatekeeper has always been committed to protecting users and prioritized the safety of their investments from day one. One of our key differentiators is a more thorough due diligence of all projects that considers various project aspects, including regulatory, legal, financial, technology, and business capabilities.',
-                    'Despite our very selective process, we have faced a range of issues with some of the projects that unfavorably affected the investments of our community and the credibility of our platform, including a delayed launch, insufficient marketing on the project’s end, postponed token distribution, and others. To avoid these problems in the future and protect our users, Gatekeeper will apply new regulations based on the last 2-month research completed by our team and extensive experience in launches of a number of projects.',
-                    'To adhere to our mission to bring only top-quality IDOs to the attention of our community, Gatekeeper has formulated a list of new IDO rules that will apply to all projects that would like to complete the IDO on our launchpad starting May 1, 2022. These regulations will also benefit projects as they will guide them on how to prepare for the IDO more comprehensively to ensure their success, as well as high returns for their investors. All selected projects will receive multifaceted support in marketing, tokenomics advisory, launch strategies, and more from our team.',
+                    'one of the most community-dedicated launchpads, SUI has always been committed to protecting users and prioritized the safety of their investments from day one. One of our key differentiators is a more thorough due diligence of all projects that considers various project aspects, including regulatory, legal, financial, technology, and business capabilities.',
+                    'Despite our very selective process, we have faced a range of issues with some of the projects that unfavorably affected the investments of our community and the credibility of our platform, including a delayed launch, insufficient marketing on the project’s end, postponed token distribution, and others. To avoid these problems in the future and protect our users, SUI will apply new regulations based on the last 2-month research completed by our team and extensive experience in launches of a number of projects.',
+                    'To adhere to our mission to bring only top-quality IDOs to the attention of our community, SUI has formulated a list of new IDO rules that will apply to all projects that would like to complete the IDO on our launchpad starting May 1, 2022. These regulations will also benefit projects as they will guide them on how to prepare for the IDO more comprehensively to ensure their success, as well as high returns for their investors. All selected projects will receive multifaceted support in marketing, tokenomics advisory, launch strategies, and more from our team.',
                 ],
             },
             {
-                subtitle: 'New Gatekeeper regulations for a safer IDO launch include the following:',
+                subtitle: 'New SUI regulations for a safer IDO launch include the following:',
                 content: [
-                    'Gatekeeper won’t accept projects with unreasonable valuations (FDV) or where multiples between the seed and the public rounds are more than 5x.',
-                    'Gatekeeper will not participate in project launches if there are more than 4–5 launchpads participating in the project public launch and will limit projects launching on our platform to around $1M in public raise unless there are exceptional reasons to justify a larger raise.',
-                    'Gatekeeper will review more carefully the project cap table to avoid known dumpers as well as MM’s and Exchanges in order to make sure the best results for the project.',
-                    'Gatekeeper will review carefully the project roadmap and budgeting both from development and marketing aspects and will make sure the plan is feasible and the project is dedicating enough funds for at least a 2 years runway.',
-                    'Gatekeeper will require a minimum amount of $400–500k to be added to the liquidity pool (proportional to the amount raised) and locked for at least 12 months. In case a project would choose to not respect this rule, Gatekeeper will have the right to keep the raised amount of tokens in stable coins in order to protect its community.',
-                    'Gatekeeper will require at max 1 month between the IDO and listing date (TGE). In cases where 1 month is exceeded, the community will be offered to participate in a poll to decide whether we should continue with the project or do a full refund.',
-                    'Gatekeeper will require projects to stay above the IDO price until at least 50% of tokens were distributed to the community from the public sale. This is mandatory for all projects in all market conditions. If a project falls below the IDO price before 50% is distributed and stays below the IDO price for at least a week, then it will be considered as a legit reason for a refund of all further distributions.',
+                    'SUI won’t accept projects with unreasonable valuations (FDV) or where multiples between the seed and the public rounds are more than 5x.',
+                    'SUI will not participate in project launches if there are more than 4–5 launchpads participating in the project public launch and will limit projects launching on our platform to around $1M in public raise unless there are exceptional reasons to justify a larger raise.',
+                    'SUI will review more carefully the project cap table to avoid known dumpers as well as MM’s and Exchanges in order to make sure the best results for the project.',
+                    'SUI will review carefully the project roadmap and budgeting both from development and marketing aspects and will make sure the plan is feasible and the project is dedicating enough funds for at least a 2 years runway.',
+                    'SUI will require a minimum amount of $400–500k to be added to the liquidity pool (proportional to the amount raised) and locked for at least 12 months. In case a project would choose to not respect this rule, SUI will have the right to keep the raised amount of tokens in stable coins in order to protect its community.',
+                    'SUI will require at max 1 month between the IDO and listing date (TGE). In cases where 1 month is exceeded, the community will be offered to participate in a poll to decide whether we should continue with the project or do a full refund.',
+                    'SUI will require projects to stay above the IDO price until at least 50% of tokens were distributed to the community from the public sale. This is mandatory for all projects in all market conditions. If a project falls below the IDO price before 50% is distributed and stays below the IDO price for at least a week, then it will be considered as a legit reason for a refund of all further distributions.',
                     'Due to multiple issues where other launchpads got tokens prior to our community, we will enforce that all projects will verify the distribution times of all parties. Everyone will get the distributions at the same time or else they will suffer a substantial financial penalty or full refund or partial refund of all future distributions.',
-                    'Gatekeeper will require from projects full amounts of tokens before their launch. Unless the project has created a prior vesting contract with entire token amounts to be distributed on specific agreed dates which will be verified so it can’t be changed later.',
-                    'As a launchpad Gatekeeper will send the funds collected from the public IDO or VC deals only according to the vesting schedule. In other words, we will no longer release the funds at the TGE. Gatekeeper will hold raised amounts for refunds at a safe vault in case of rug pools or any other critical failure caused directly or indirectly by incompetent management of the company.',
-                    'Gatekeeper will review the project’s smart contract audits and verify there are no blacklisting or other restrictions in their token contract so it doesn’t hurt token distribution and the community.',
+                    'SUI will require from projects full amounts of tokens before their launch. Unless the project has created a prior vesting contract with entire token amounts to be distributed on specific agreed dates which will be verified so it can’t be changed later.',
+                    'As a launchpad SUI will send the funds collected from the public IDO or VC deals only according to the vesting schedule. In other words, we will no longer release the funds at the TGE. SUI will hold raised amounts for refunds at a safe vault in case of rug pools or any other critical failure caused directly or indirectly by incompetent management of the company.',
+                    'SUI will review the project’s smart contract audits and verify there are no blacklisting or other restrictions in their token contract so it doesn’t hurt token distribution and the community.',
                 ],
             },
             {
-                subtitle: 'Gatekeeper Terms of Use',
+                subtitle: 'SUI Terms of Use',
                 content: [
                     'PLEASE READ THESE TERMS OF USE BEFORE USING THE WEBSITE.',
-                    'Acceptance of the Terms of Use These terms of use is entered into by and between you and the Gatekeeper ("Gatekeeper", "we" or "us"). The following terms and conditions, together with any documents they expressly incorporate by reference (collectively, these "Terms of Use"), govern your access to and use of Gatekeeper website, including any content, functionality and services offered on or through Gatekeeper website (the "Website"). Please read the Terms of Use carefully before you start to use the Websites. By using the Websites or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to',
+                    'Acceptance of the Terms of Use These terms of use is entered into by and between you and the SUI ("SUI", "we" or "us"). The following terms and conditions, together with any documents they expressly incorporate by reference (collectively, these "Terms of Use"), govern your access to and use of SUI website, including any content, functionality and services offered on or through SUI website (the "Website"). Please read the Terms of Use carefully before you start to use the Websites. By using the Websites or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to',
                     'our Privacy Policy , incorporated herein by reference; and',
-                    'our Cookie Policy , incorporated herein by reference (note: no cookies are used on launchpad.Gatekeeper website).',
+                    'our Cookie Policy , incorporated herein by reference (note: no cookies are used on launchpad.SUI website).',
                     'If you do not agree to these Terms of Use or the Privacy Policy, you must not access or use the Websites. Who May Use the Websites This website is offered and available to users who are 13 years of age or older. The website is not intended for children under 13 years of age. By using this Website, you represent and warrant that you (i) are 13 years of age or older, (ii) are not barred to use the Website under any applicable law, and (iii) are using the Website only for your own personal use. If you do not meet these requirements, you must not access or use the Websites. Changes to the Terms of Use We may revise and update these Terms of Use from time to time at our sole discretion. All changes are effective immediately when we post them. Your continued use of the Websites following the posting of the revised Terms of Use means that you accept and agree to the changes. You are expected to check this page frequently so you are aware of any changes, as they are binding on you. Accessing the Websites and Account Security We reserve the right to withdraw or amend this Website, and any service or material we provide on the Website, in our sole discretion without notice. We do not guarantee that our site or any content on it, will always be available or be interrupted. We will not be liable if for any reason all or any part of the Website is unavailable at any time or for any period. From time to time, we may restrict access to some parts of the Website, or the entire Website, to users. You are responsible for:',
                     'Make all arrangements necessary for you to have access to the Websites.',
                     'Ensuring that all persons who access the Websites through your internet connection are aware of these Terms of Use and comply with them.',
-                    'To access the Websites or some of the resources it offers, you may be asked to provide certain registration details or other information. It is a condition of your use of the Websites that all the information you provide on the Websites is correct, current and complete. You agree that all information you provide to register using this website or otherwise, including, but not limited to, using any interactive features on the Website, is governed by our Privacy Policy, and you consent to all actions we take with respect to your information consistent with our Privacy Policy. You should use particular caution when inputting personal information to the Websites on a public or shared computer so that others are not able to view or record your personal information. Intellectual Property Rights The Websites and its entire contents, features and functionality (including but not limited to all information, software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by the Foundation, its licensors or other providers of such material and are protected by copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws. Unless otherwise marked: (a) all material, data, and information on the Websites, such as data files, text, music, audio files or other sounds, photographs, videos, or other images, but excluding any software or computer code (collectively, the “Non- Code Content”) is licensed under the Creative Commons Attribution 4.0 International License; and (b) all software or computer code (collectively, the “Code Content”) is licensed under the MIT License. Trademarks The Foundation name, the terms Gatekeeper Switzerland, Gatekeeper Asia, the Foundation logo and all related names, logos, product and service names, designs and slogans are trademarks of the Foundation or its affiliates or licensors. You must not use such marks without the prior written permission of the Foundation. All other names, logos, product and service names, designs and slogans on this Website are the trademarks of their respective owners.',
+                    'To access the Websites or some of the resources it offers, you may be asked to provide certain registration details or other information. It is a condition of your use of the Websites that all the information you provide on the Websites is correct, current and complete. You agree that all information you provide to register using this website or otherwise, including, but not limited to, using any interactive features on the Website, is governed by our Privacy Policy, and you consent to all actions we take with respect to your information consistent with our Privacy Policy. You should use particular caution when inputting personal information to the Websites on a public or shared computer so that others are not able to view or record your personal information. Intellectual Property Rights The Websites and its entire contents, features and functionality (including but not limited to all information, software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by the Foundation, its licensors or other providers of such material and are protected by copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws. Unless otherwise marked: (a) all material, data, and information on the Websites, such as data files, text, music, audio files or other sounds, photographs, videos, or other images, but excluding any software or computer code (collectively, the “Non- Code Content”) is licensed under the Creative Commons Attribution 4.0 International License; and (b) all software or computer code (collectively, the “Code Content”) is licensed under the MIT License. Trademarks The Foundation name, the terms SUI Switzerland, SUI Asia, the Foundation logo and all related names, logos, product and service names, designs and slogans are trademarks of the Foundation or its affiliates or licensors. You must not use such marks without the prior written permission of the Foundation. All other names, logos, product and service names, designs and slogans on this Website are the trademarks of their respective owners.',
                     'Prohibited Uses',
                     'You may use the Websites only for lawful purposes and in accordance with these Terms of Use. You agree not to use the Website:',
                     'In any way that violates any applicable federal, state, local or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the US or other countries).',
@@ -906,7 +898,7 @@ export const wppContent = [
             {
                 subtitle: 'Entire Agreement',
                 content: [
-                    'The Terms of Use, our Privacy Policy and Terms of conditions for the registration of events constitute the sole and entire agreement between you and the Gatekeeper Foundation with respect to the Websites and supersede all prior and contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the Websites.',
+                    'The Terms of Use, our Privacy Policy and Terms of conditions for the registration of events constitute the sole and entire agreement between you and the SUI Foundation with respect to the Websites and supersede all prior and contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the Websites.',
                 ],
             },
             {
@@ -925,7 +917,7 @@ export const wppContent = [
                 title: 'Legal Policy',
                 subtitle: 'Be Alert for Scams',
                 content: [
-                    'As Launchpads are scarce and highly sought-after, this makes them a potential target for scams. Please ensure that you apply adequate caution to protect yourself. All official information regarding the Launchpad on Gatekeeper will be shared via our official Telegram. Admins will never initiate a DM first. They will never ask for personal information, funds, passwords, or private keys for any reason. Pools are only open during the times stated in this post.',
+                    'As Launchpads are scarce and highly sought-after, this makes them a potential target for scams. Please ensure that you apply adequate caution to protect yourself. All official information regarding the Launchpad on SUI will be shared via our official Telegram. Admins will never initiate a DM first. They will never ask for personal information, funds, passwords, or private keys for any reason. Pools are only open during the times stated in this post.',
                 ],
             },
             {
@@ -938,20 +930,20 @@ export const wppContent = [
                 title: 'Privacy Policy',
                 subtitle: 'Introduction',
                 content: [
-                    'Gatekeeper and its affiliates (hereinafter, “Gatekeeper”, "the Company", "we", "us" or "our") are committed to protecting and respecting your privacy. In addition, we recognize that persons who use Gatekeeper value their privacy. This Privacy Policy together with our Terms of Service governs our collection, processing and use of your Personal Information. By accessing Gatekeeper, you are consenting to the information collection and use practices described in this Privacy Policy. This Privacy Policy applies to the operations of Gatekeeper in the European Economic Area (EEA). It gives you rights by operation of the EU GDPR. If you live outside the EEA, Gatekeeper will undertake its best efforts to give you a similar degree of control over your privacy.',
+                    'SUI and its affiliates (hereinafter, “SUI”, "the Company", "we", "us" or "our") are committed to protecting and respecting your privacy. In addition, we recognize that persons who use SUI value their privacy. This Privacy Policy together with our Terms of Service governs our collection, processing and use of your Personal Information. By accessing SUI, you are consenting to the information collection and use practices described in this Privacy Policy. This Privacy Policy applies to the operations of SUI in the European Economic Area (EEA). It gives you rights by operation of the EU GDPR. If you live outside the EEA, SUI will undertake its best efforts to give you a similar degree of control over your privacy.',
                     'Purpose of Privacy Policy',
-                    'The purpose of this Privacy Policy is to set out in an accountable and transparent way the collection and use of information by Gatekeeper',
+                    'The purpose of this Privacy Policy is to set out in an accountable and transparent way the collection and use of information by SUI',
                     'Personal Information',
                     '"Personal Information" is information which identifies you personally or by which your identity can reasonably be ascertained. This may include but is not limited to:',
                     'Full legal name, address for service, e-mail address, phone number, date of birth, photographic identification, government-issued identification and other contact details.',
                     'Your blockchain wallet addresses.',
-                    'Polygon, BSC, ERC, GATE-chain network information related to transactions.',
-                    'We may receive Ethereum network information from you as a result of your interaction with Gatekeeper.',
-                    'Gatekeeper requires the highest level of browser permissions that could potentially lead to procurement of more Personal Information than enclosed in the definition of Personal Information.',
-                    'Gatekeeper may require the use of MetaMask and may obtain additional information from MetaMask related to Ethereum addresses and transactions.',
-                    'World Wide Web-related information, including but not limited to IP Addresses, operating systems and browser types may be received by Gatekeeper as a result of your interactions with Gatekeeper.',
-                    'Gatekeeper uses Google Analytics for purposes of monitoring web traffic. Any identifying information collected via Google Analytics is controlled by Google.',
-                    'Gate-Chain and other public blockchains provide transparency into transactions and Gatekeeper is not responsible for preventing or managing information broadcasted on a blockchain.',
+                    'Polygon, BSC, ERC, Sui Blockchain network information related to transactions.',
+                    'We may receive Ethereum network information from you as a result of your interaction with SUI.',
+                    'SUI requires the highest level of browser permissions that could potentially lead to procurement of more Personal Information than enclosed in the definition of Personal Information.',
+                    'SUI may require the use of MetaMask and may obtain additional information from MetaMask related to Ethereum addresses and transactions.',
+                    'World Wide Web-related information, including but not limited to IP Addresses, operating systems and browser types may be received by SUI as a result of your interactions with SUI.',
+                    'SUI uses Google Analytics for purposes of monitoring web traffic. Any identifying information collected via Google Analytics is controlled by Google.',
+                    'Sui Blockchain and other public blockchains provide transparency into transactions and SUI is not responsible for preventing or managing information broadcasted on a blockchain.',
                     'Purpose of Personal Information collection',
                     'Personal Information is collected in order to:',
                     'Provide our services efficiently and effectively;',
@@ -962,24 +954,24 @@ export const wppContent = [
                     'Process billing and collection of any fees;',
                     'Conduct surveys and get feedback from you;',
                     'Establish and maintain a responsible commercial relationship with you;',
-                    'Provide you with news and other matters of general interest to you as a Gatekeeper customer;',
-                    'Meet Gatekeeper’s legal and regulatory requirements (eg, information required to verify your identity).',
+                    'Provide you with news and other matters of general interest to you as a SUI customer;',
+                    'Meet SUI’s legal and regulatory requirements (eg, information required to verify your identity).',
                     'Security, Protection and Use of Personal Information',
-                    'Gatekeeper is committed to protecting your privacy. Internally, only employees with a business who have access to know Personal Information, or whose duties reasonably require access to it are granted access to Personal Information. Gatekeeper’s systems and data are constantly under review to ensure that you are getting the best class of service and that market-leading security features are in place. Gatekeeper reserves the right to retain and share certain personal Information in order to meet our regulatory and statutory requirements and further our contractual agreements with partners and third parties. Personal Information and other related data may be exported outside of the jurisdiction in which you reside. Your Personal Information may be processed and stored in a foreign country or countries. Under those circumstances, the governments, courts, law enforcement or regulatory agencies of that country or those countries may be able to obtain access to your Personal Information through foreign laws. You need to be aware that the privacy standards of those countries may be lower than those of the jurisdiction in which you reside. You should note that you are not obliged to give your Personal Information to Gatekeeper, but if you choose not to do so, we may not be able to provide our services, or your access to our services may be limited.',
+                    'SUI is committed to protecting your privacy. Internally, only employees with a business who have access to know Personal Information, or whose duties reasonably require access to it are granted access to Personal Information. SUI’s systems and data are constantly under review to ensure that you are getting the best class of service and that market-leading security features are in place. SUI reserves the right to retain and share certain personal Information in order to meet our regulatory and statutory requirements and further our contractual agreements with partners and third parties. Personal Information and other related data may be exported outside of the jurisdiction in which you reside. Your Personal Information may be processed and stored in a foreign country or countries. Under those circumstances, the governments, courts, law enforcement or regulatory agencies of that country or those countries may be able to obtain access to your Personal Information through foreign laws. You need to be aware that the privacy standards of those countries may be lower than those of the jurisdiction in which you reside. You should note that you are not obliged to give your Personal Information to SUI, but if you choose not to do so, we may not be able to provide our services, or your access to our services may be limited.',
                     'Consent',
-                    'Consent is required for the collection of Personal Information and the subsequent use of disclosure of Personal Information. The form of consent may vary depending upon the circumstances and the type of Personal information obtained. Your agreement with Gatekeeper’s Terms of Service constitutes your consent to the collection and use of Personal Information as described in this Privacy Policy. Gatekeeper reserves the right to use and disclose Personal Information without your knowledge or consent as permitted by applicable law.',
+                    'Consent is required for the collection of Personal Information and the subsequent use of disclosure of Personal Information. The form of consent may vary depending upon the circumstances and the type of Personal information obtained. Your agreement with SUI’s Terms of Service constitutes your consent to the collection and use of Personal Information as described in this Privacy Policy. SUI reserves the right to use and disclose Personal Information without your knowledge or consent as permitted by applicable law.',
                 ],
             },
             {
                 subtitle: 'Disclosure of Personal Information',
                 content: [
-                    `We use the Personal Information for the purposes indicated at the time you provide us with such information, and/or otherwise for the purposes set out in this Privacy Policy and/or as otherwise permitted by law. We may make available the Personal Information that you provide to us to our affiliates, agents, representatives, service providers and contractors for these purposes. We also reserve the right to disclose Personal information that Gatekeeper believes, in good faith, is appropriate or necessary to enforce our Terms of Use, take precautions against liability or harm, investigate and respond to third-party claims or allegations, to respond to a court order or official requests, to protect security or integrity of Gatekeeper and to protect the rights, property or safety of Gatekeeper, our users or others. We may share Users' Personal Information with any financial dispute resolution scheme to which the Company subscribes, and other law enforcement bodies, regulatory agencies, courts, arbitration bodies and dispute resolution schemes, as may be required by law. If you request it in writing, we may share your Personal Information with your nominated advisers. Except where disclosure of your Personal Information is required by law or requested by you, we will generally require any third party which receives or has access to Personal Information to protect such Personal Information and to use it only to carry out the services they are performing for you or for us unless otherwise required or permitted by law. We will ensure that any such third party is aware of our obligations under this Privacy Policy and we will take reasonable steps to ensure that contracts we enter with such third parties bind them to terms no less protective of any Personal Information disclosed to them than the obligations we undertake to you under this Privacy Policy or which are imposed on us under applicable data protection laws. In the event that Gatekeeper is involved in a merger, acquisition, sale, bankruptcy, insolvency, reorganization, receivership, assignment or the application of laws or change of control, there may be a disclosure of your information to another entity related to such an event.`,
+                    `We use the Personal Information for the purposes indicated at the time you provide us with such information, and/or otherwise for the purposes set out in this Privacy Policy and/or as otherwise permitted by law. We may make available the Personal Information that you provide to us to our affiliates, agents, representatives, service providers and contractors for these purposes. We also reserve the right to disclose Personal information that SUI believes, in good faith, is appropriate or necessary to enforce our Terms of Use, take precautions against liability or harm, investigate and respond to third-party claims or allegations, to respond to a court order or official requests, to protect security or integrity of SUI and to protect the rights, property or safety of SUI, our users or others. We may share Users' Personal Information with any financial dispute resolution scheme to which the Company subscribes, and other law enforcement bodies, regulatory agencies, courts, arbitration bodies and dispute resolution schemes, as may be required by law. If you request it in writing, we may share your Personal Information with your nominated advisers. Except where disclosure of your Personal Information is required by law or requested by you, we will generally require any third party which receives or has access to Personal Information to protect such Personal Information and to use it only to carry out the services they are performing for you or for us unless otherwise required or permitted by law. We will ensure that any such third party is aware of our obligations under this Privacy Policy and we will take reasonable steps to ensure that contracts we enter with such third parties bind them to terms no less protective of any Personal Information disclosed to them than the obligations we undertake to you under this Privacy Policy or which are imposed on us under applicable data protection laws. In the event that SUI is involved in a merger, acquisition, sale, bankruptcy, insolvency, reorganization, receivership, assignment or the application of laws or change of control, there may be a disclosure of your information to another entity related to such an event.`,
                 ],
             },
             {
                 subtitle: 'Access and Changing of Personal Information',
                 content: [
-                    'You have the right to access the Personal Information we hold about you, and to require the correction, updating and blocking of inaccurate and/or incorrect data by sending an email to us. We will usually respond to your request within 14 days. You may also request the deletion or destruction of your Personal Information, your Account details or your Transaction details by sending an email to us. Gatekeeper will act on your request only when it is not inconsistent with its legal and regulatory obligations and compliance procedures. Upon your written request, we will inform you of the use and general disclosure of your Personal Information. Depending on the nature of your request, there may be a minimal charge for accessing your Personal Information.',
+                    'You have the right to access the Personal Information we hold about you, and to require the correction, updating and blocking of inaccurate and/or incorrect data by sending an email to us. We will usually respond to your request within 14 days. You may also request the deletion or destruction of your Personal Information, your Account details or your Transaction details by sending an email to us. SUI will act on your request only when it is not inconsistent with its legal and regulatory obligations and compliance procedures. Upon your written request, we will inform you of the use and general disclosure of your Personal Information. Depending on the nature of your request, there may be a minimal charge for accessing your Personal Information.',
                 ],
             },
             {
@@ -997,7 +989,7 @@ export const wppContent = [
             {
                 subtitle: 'Users Under the Age of 13',
                 content: [
-                    'Gatekeeper does not knowingly collect or store any personal information about children under 13 without verifiable prior parental consent. If you believe such information have been inadvertently collected, we shall take necessary steps in order to remove such information from our database. Users under 13 must seek and obtain parental consent to use this website.',
+                    'SUI does not knowingly collect or store any personal information about children under 13 without verifiable prior parental consent. If you believe such information have been inadvertently collected, we shall take necessary steps in order to remove such information from our database. Users under 13 must seek and obtain parental consent to use this website.',
                 ],
             },
             {
@@ -1021,7 +1013,7 @@ export const wppContent = [
             {
                 title: 'Security',
                 content: [
-                    'Using proven and audited technology and best practices is the way to maximize security. The basic infrastructure on GateKeeper is built by integrating already existing solutions and practices that have been proven over time.',
+                    'Using proven and audited technology and best practices is the way to maximize security. The basic infrastructure on SUI is built by integrating already existing solutions and practices that have been proven over time.',
                     'The encrypted seed phrase, along with other sensitive data like addresses, keys, and account data, is securely saved in the browser’s local storage. No online app, website, or provider can access any of that secured data - the user remains with total control over their wallet. We leverage audited and proven open source solutions to minimize the possibility of error.',
                 ],
             },
@@ -1033,9 +1025,9 @@ export const wppContent = [
         description: [
             {
                 title: 'Metamask',
-                subtitle: 'Switch to RPC Gate-Chain Network',
+                subtitle: 'Switch to RPC Sui Blockchain Network',
                 content: [
-                    '​To use GateKeeper, we recommend the following steps to RPC URL.',
+                    '​To use SUI, we recommend the following steps to RPC URL.',
                     <>
                         <b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.
                     </>,
@@ -1047,7 +1039,7 @@ export const wppContent = [
                     <>
                         <b>Step 3 :</b> Enter details as below and save.
                     </>,
-                    'Network name: GateChain',
+                    'Network name: Sui Blockchain',
                     <>
                         RPC URL:
                         <a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">
@@ -1056,7 +1048,7 @@ export const wppContent = [
                         </a>
                     </>,
                     'Chain ID: 86',
-                    'Symbol: GT',
+                    'Symbol: SUI',
                     <>
                         Block explorer:{' '}
                         <a href="https://gatescan.org/" target="_blank" rel="noreferrer">
@@ -1068,7 +1060,7 @@ export const wppContent = [
                     <>
                         <b>Step 4 :</b> Check the right router is notified
                     </>,
-                    'GT has been added to the Metamask wallet!',
+                    'SUI has been added to the Metamask wallet!',
                     <img src="/images/whitepaper/image-4.png" alt="" />,
                 ],
             },
@@ -1098,7 +1090,7 @@ export const wppContent = [
                     <img src="/images/whitepaper/image-6.png" alt="" />,
                     <>
                         <b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know.
-                        Check the Gate-Chain.
+                        Check the Sui Blockchain.
                     </>,
                     <img src="/images/whitepaper/image-7.png" alt="" />,
                     <>
@@ -1146,7 +1138,7 @@ export const wppContent = [
         category: 'Platform Overview',
         description: [
             {
-                content: [<img src="/images/whitepaper/UNDERSTAND-GATE-KEEPER.png" alt="" />],
+                content: [<img src="/images/whitepaper/UNDERSTAND-YouSUI.png" alt="" />],
             },
         ],
     },

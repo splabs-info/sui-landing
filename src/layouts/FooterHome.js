@@ -106,8 +106,8 @@ export default function FooterHome() {
                         <FooterTitle>{library.key_9}</FooterTitle>
                         <UlCustom>
                             <li>
-                                <a href="mailto:business@gate-keeper.io" target="_blank" rel="noreferrer">
-                                    business@gate-keeper.io
+                                <a href="mailto:business@YouSUI.io" target="_blank" rel="noreferrer">
+                                    business@YouSUI.io
                                 </a>
                             </li>
                         </UlCustom>
@@ -197,11 +197,11 @@ export default function FooterHome() {
                             }}
                         >
                             <a href="https://t.me/GateKeeperGlobal" target="_blank" rel="noreferrer">
-                                <MenuItem onClick={handleCloseMenu}>Gate-Keeper Global </MenuItem>
+                                <MenuItem onClick={handleCloseMenu}>YouSUI Global </MenuItem>
                             </a>
                             <a href="https://t.me/GateKeeperChat" target="_blank" rel="noreferrer">
                                 {' '}
-                                <MenuItem onClick={handleCloseMenu}>Gate-Keeper Chat</MenuItem>
+                                <MenuItem onClick={handleCloseMenu}>YouSUI Chat</MenuItem>
                             </a>
                         </MenuCustom>
                         <FooterTitle mt={3}>{library.key_21}</FooterTitle>

@@ -206,7 +206,7 @@ export default function Networks() {
                 textTransform: 'inherit',
                 textAlign: 'center'
               }}>
-              GateKeeper Overview
+              SUI Overview
             </TypographyGradient>
             <Grid container sx={{
               borderRadius: '1rem',
