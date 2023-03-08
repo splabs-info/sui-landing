@@ -680,7 +680,7 @@ export const wppContent = [
                         The XUI Token is the platform's governance token, and by staking it, you get the opportunity to
                         participate in IDO and INO. In addition, you can participate in the governance that determines
                         the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT
-                        Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be
+                        Marketplace, and liquidity can be supplied along with SUI Token. On social platforms, it can be
                         used when clicking likes or making donations. By staking XUI Tokens, you not only get staking
                         rewards, but also become an early investor in cutting-edge and high-potential projects.
                     </>,
@@ -774,7 +774,7 @@ export const wppContent = [
                 ],
             },
             {
-                subtitle: 'Gate Token',
+                subtitle: 'SUI Token',
                 content: [
                     `SUIToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
