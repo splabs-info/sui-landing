@@ -680,7 +680,7 @@ export const wppContent = [
                         The XUI Token is the platform's governance token, and by staking it, you get the opportunity to
                         participate in IDO and INO. In addition, you can participate in the governance that determines
                         the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT
-                        Marketplace, and liquidity can be supplied along with Gate Token. On social platforms, it can be
+                        Marketplace, and liquidity can be supplied along with SUI Token. On social platforms, it can be
                         used when clicking likes or making donations. By staking XUI Tokens, you not only get staking
                         rewards, but also become an early investor in cutting-edge and high-potential projects.
                     </>,
@@ -774,7 +774,7 @@ export const wppContent = [
                 ],
             },
             {
-                subtitle: 'Gate Token',
+                subtitle: 'SUI Token',
                 content: [
                     `SUIToken (SUI) is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
@@ -1019,120 +1019,120 @@ export const wppContent = [
             },
         ],
     },
-    {
-        id: 'Q',
-        category: 'Connect Wallet',
-        description: [
-            {
-                title: 'Metamask',
-                subtitle: 'Switch to RPC Sui Blockchain Network',
-                content: [
-                    '​To use SUI, we recommend the following steps to RPC URL.',
-                    <>
-                        <b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.
-                    </>,
-                    <img src="/images/whitepaper/image-1.png" alt="" />,
-                    <>
-                        <b>Step 2 :</b> Select Add Network.
-                    </>,
-                    <img src="/images/whitepaper/image-2.png" alt="" />,
-                    <>
-                        <b>Step 3 :</b> Enter details as below and save.
-                    </>,
-                    'Network name: Sui Blockchain',
-                    <>
-                        RPC URL:
-                        <a href="https://evm.gatenode.cc" target="_blank" rel="noreferrer">
-                            {' '}
-                            https://evm.gatenode.cc
-                        </a>
-                    </>,
-                    'Chain ID: 86',
-                    'Symbol: SUI',
-                    <>
-                        Block explorer:{' '}
-                        <a href="https://gatescan.org/" target="_blank" rel="noreferrer">
-                            {' '}
-                            https://gatescan.org/
-                        </a>
-                    </>,
-                    <img src="/images/whitepaper/image-3.png" alt="" />,
-                    <>
-                        <b>Step 4 :</b> Check the right router is notified
-                    </>,
-                    'SUI has been added to the Metamask wallet!',
-                    <img src="/images/whitepaper/image-4.png" alt="" />,
-                ],
-            },
-            {
-                title: 'Bitkeep',
-                content: [
-                    <>
-                        <b>Step 1 :</b> Access to{' '}
-                        <a href="https://bitkeep.com/en/download?type=2" target="_blank" rel="noreferrer">
-                            {' '}
-                            https://bitkeep.com/en/download?type=2
-                        </a>{' '}
-                        then select [Available in Chrome Web Store].
-                    </>,
-                    <>
-                        <b>Step 2 :</b> After selecting [Available in the chrome Web Store], select the [Add to Chrome]
-                        button.
-                    </>,
-                    <>
-                        <b>Step 3 :</b> In case you do not see Bitkeep displayed on the top of the page, you can choose
-                        to activate the battery button as shown below.
-                    </>,
-                    <img src="/images/whitepaper/image-5.png" alt="" />,
-                    <>
-                        <b>Step 4 :</b> Select Wallet Icon on top and choose create wallet.
-                    </>,
-                    <img src="/images/whitepaper/image-6.png" alt="" />,
-                    <>
-                        <b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know.
-                        Check the Sui Blockchain.
-                    </>,
-                    <img src="/images/whitepaper/image-7.png" alt="" />,
-                    <>
-                        <b>Step 6 :</b> Please keep the Secret Key safe or take a screenshot at this step.
-                    </>,
-                    <img src="/images/whitepaper/image-8.png" alt="" />,
-                    <>
-                        <b>Step 7 :</b> After saving the wallet password, the user can use Bitkeep.
-                    </>,
-                    <img src="/images/whitepaper/image-9.png" alt="" />,
-                ],
-            },
-            {
-                title: 'Coin98',
-                content: [
-                    <img src="/images/whitepaper/image-10.png" alt="" />,
-                    <>
-                        <b>Step 1 :</b> Find and select Coin98 Extension Wallet on Chrome Web Store;
-                    </>,
-                    'Click Manage Wallet icon',
-                    <img src="/images/whitepaper/image-11.png" alt="" />,
-                    'Click Add Wallet icon',
-                    <img src="/images/whitepaper/image-12.png" alt="" />,
-                    <>
-                        <b>Step 2 :</b> Create{' '}
-                    </>,
-                    <>
-                        <b>Step 3 :</b> Name your wallet → Click Next{' '}
-                    </>,
-                    <>
-                        <b>Step 4 :</b>{' '}
-                    </>,
-                    'Backup your Passphrase & Private Key correctly in the right order and in a safe place. Please note that the Passphrase & Private Key are crucial to have access to your wallet and assets;',
-                    'Paste the copied Passphrase from the previous step into the confirmation box;',
-                    'Read the caution carefully and tick to confirm your awareness of the risks if you lose keys;',
-                    'Click Create Wallet to complete.',
-                    <img src="/images/whitepaper/image-13.png" alt="" />,
-                    'Your new wallet will instantly be displayed on the home screen. You can also access the Manage Wallet section again to check all your wallets.',
-                ],
-            },
-        ],
-    },
+    // {
+    //     id: 'Q',
+    //     category: 'Connect Wallet',
+    //     description: [
+    //         {
+    //             title: 'Metamask',
+    //             subtitle: 'Switch to RPC Sui Blockchain Network',
+    //             content: [
+    //                 '​To use SUI, we recommend the following steps to RPC URL.',
+    //                 <>
+    //                     <b>Step 1 :</b> Select the Network bar above the unlocked Metamask wallet.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-1.png" alt="" />,
+    //                 <>
+    //                     <b>Step 2 :</b> Select Add Network.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-2.png" alt="" />,
+    //                 <>
+    //                     <b>Step 3 :</b> Enter details as below and save.
+    //                 </>,
+    //                 'Network name: Sui Blockchain',
+    //                 <>
+    //                     RPC URL:
+    //                     <a href="https://docs.sui.io/build/json-rpc" target="_blank" rel="noreferrer">
+    //                         {' '}
+    //                         https://docs.sui.io/build/json-rpc
+    //                     </a>
+    //                 </>,
+    //                 'Chain ID: 86',
+    //                 'Symbol: SUI',
+    //                 <>
+    //                     Block explorer:{' '}
+    //                     <a href="https://suiscan.com/" target="_blank" rel="noreferrer">
+    //                         {' '}
+    //                         https://suiscan.com/
+    //                     </a>
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-3.png" alt="" />,
+    //                 <>
+    //                     <b>Step 4 :</b> Check the right router is notified
+    //                 </>,
+    //                 'SUI has been added to the Metamask wallet!',
+    //                 <img src="/images/whitepaper/image-4.png" alt="" />,
+    //             ],
+    //         },
+    //         {
+    //             title: 'Bitkeep',
+    //             content: [
+    //                 <>
+    //                     <b>Step 1 :</b> Access to{' '}
+    //                     <a href="https://bitkeep.com/en/download?type=2" target="_blank" rel="noreferrer">
+    //                         {' '}
+    //                         https://bitkeep.com/en/download?type=2
+    //                     </a>{' '}
+    //                     then select [Available in Chrome Web Store].
+    //                 </>,
+    //                 <>
+    //                     <b>Step 2 :</b> After selecting [Available in the chrome Web Store], select the [Add to Chrome]
+    //                     button.
+    //                 </>,
+    //                 <>
+    //                     <b>Step 3 :</b> In case you do not see Bitkeep displayed on the top of the page, you can choose
+    //                     to activate the battery button as shown below.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-5.png" alt="" />,
+    //                 <>
+    //                     <b>Step 4 :</b> Select Wallet Icon on top and choose create wallet.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-6.png" alt="" />,
+    //                 <>
+    //                     <b>Step 5 :</b> User can add desired Network. We recommend using the Public Chain you know.
+    //                     Check the Sui Blockchain.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-7.png" alt="" />,
+    //                 <>
+    //                     <b>Step 6 :</b> Please keep the Secret Key safe or take a screenshot at this step.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-8.png" alt="" />,
+    //                 <>
+    //                     <b>Step 7 :</b> After saving the wallet password, the user can use Bitkeep.
+    //                 </>,
+    //                 <img src="/images/whitepaper/image-9.png" alt="" />,
+    //             ],
+    //         },
+    //         {
+    //             title: 'Coin98',
+    //             content: [
+    //                 <img src="/images/whitepaper/image-10.png" alt="" />,
+    //                 <>
+    //                     <b>Step 1 :</b> Find and select Coin98 Extension Wallet on Chrome Web Store;
+    //                 </>,
+    //                 'Click Manage Wallet icon',
+    //                 <img src="/images/whitepaper/image-11.png" alt="" />,
+    //                 'Click Add Wallet icon',
+    //                 <img src="/images/whitepaper/image-12.png" alt="" />,
+    //                 <>
+    //                     <b>Step 2 :</b> Create{' '}
+    //                 </>,
+    //                 <>
+    //                     <b>Step 3 :</b> Name your wallet → Click Next{' '}
+    //                 </>,
+    //                 <>
+    //                     <b>Step 4 :</b>{' '}
+    //                 </>,
+    //                 'Backup your Passphrase & Private Key correctly in the right order and in a safe place. Please note that the Passphrase & Private Key are crucial to have access to your wallet and assets;',
+    //                 'Paste the copied Passphrase from the previous step into the confirmation box;',
+    //                 'Read the caution carefully and tick to confirm your awareness of the risks if you lose keys;',
+    //                 'Click Create Wallet to complete.',
+    //                 <img src="/images/whitepaper/image-13.png" alt="" />,
+    //                 'Your new wallet will instantly be displayed on the home screen. You can also access the Manage Wallet section again to check all your wallets.',
+    //             ],
+    //         },
+    //     ],
+    // },
     {
         id: 'platform-overview',
         category: 'Platform Overview',
