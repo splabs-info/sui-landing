@@ -1138,7 +1138,7 @@ export const wppContent = [
         category: 'Platform Overview',
         description: [
             {
-                content: [<img src="/images/whitepaper/UNDERSTAND-GATE-KEEPER.png" alt="" />],
+                content: [<img src="/images/whitepaper/UNDERSTAND-YouSUI.png" alt="" />],
             },
         ],
     },

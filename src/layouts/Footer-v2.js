@@ -261,13 +261,13 @@ export default function FooterV2() {
                             >
                                 <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
                                     <MenuItem onClick={handleCloseMenu}>
-                                        <IconBrandTelegram /> Gate-Keeper Official{' '}
+                                        <IconBrandTelegram /> YouSUI Official{' '}
                                     </MenuItem>
                                 </a>
                                 <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
                                     {' '}
                                     <MenuItem onClick={handleCloseMenu}>
-                                        <IconBrandTelegram /> Gate-Keeper Chat
+                                        <IconBrandTelegram /> YouSUI Chat
                                     </MenuItem>
                                 </a>
                             </MenuCustom>
