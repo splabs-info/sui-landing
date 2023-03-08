@@ -133,7 +133,7 @@ export default function Intro() {
                             >
                                 <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
                                 <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
-                                <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} />
+                                {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
                     </Grid>

@@ -340,7 +340,6 @@ export default function CompletePools() {
                                         fontSize: '2.25rem',
                                     }}
                                 >
-                                    {' '}
                                     180 Days
                                 </Typography>
                             </Box>
