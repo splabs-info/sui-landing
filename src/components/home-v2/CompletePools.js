@@ -71,7 +71,7 @@ export default function CompletePools() {
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
-                        <Typography> Previous</Typography>
+                        <Typography>Staking</Typography>
                         <TypographyGradient>Pools</TypographyGradient>
                     </TitleBox>
                 </Box>
