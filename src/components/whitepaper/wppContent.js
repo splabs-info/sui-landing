@@ -595,7 +595,7 @@ export const wppContent = [
             {
                 title: 'Basic Information for YouSUI Social Platform',
                 content: [
-                    `YouSUI Social Platform YouSUI's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
+                    `YouSUI's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
                 ],
             },
             {
@@ -634,7 +634,7 @@ export const wppContent = [
         category: 'Governance',
         description: [
             {
-                title: 'How can governance work in SUIs?',
+                title: 'How can governance work in YouSUI?',
                 content: [
                     'Governance operating within the YouSUI can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the YouSUI team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the YouSUI.',
                 ],
