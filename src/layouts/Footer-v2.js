@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CusLink } from '../components/common/LogoSPlabs';
 import {
-  EndBox,
-  Footer, FooterTitle, GetIntoButton, MenuCustom, SocialBox, UlCustom
+    EndBox,
+    Footer,
+    FooterTitle,
+    GetIntoButton,
+    MenuCustom,
+    SocialBox,
+    UlCustom,
 } from '../components/footer/FooterStyles';
 import useResponsive from '../hooks/useResponsive';
 import { _changeLanguage } from '../store/setting/settingActions';
@@ -64,7 +69,7 @@ const aboutGateKeeper = [
     },
 ];
 
-const socials = [
+export const socials = [
     {
         src: '/images/icon/icon-medium.png',
         link: 'https://medium.com/@YouSUI',
@@ -132,7 +137,7 @@ export default function FooterV2() {
                                 padding: isMobile ? '0 10%' : '0 20% 0 0 ',
                             }}
                         >
-                            The YouSUI is a user-friendly platform that runs on SUI blockchain as a multi-chain platform
+                            The YouSUI is a user-friendly platform that runs on Sui blockchain as a multi-chain platform
                             for Metaverse, Game, and WEB 3.0.
                         </Typography>
                         <CusLink

@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
-import { TypographyGradient } from 'components/home/HomeStyles';
 import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
 const Title = [
@@ -20,7 +20,7 @@ const Title = [
     </>,
 ];
 const SubTitle = [
-    'SUI works with projects with a high probability of success',
+    'YouSUI works with projects with a high probability of success',
     'with enhanced Due Diligence and Regulation.',
 ];
 
@@ -32,8 +32,10 @@ export default function Intro() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg1.jpg')",
+                backgroundImage: "url('/images/background/homebg1.png')",
                 minHeight: '100vh',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
                 paddingTop: !isDesktop && 5,
             }}
         >

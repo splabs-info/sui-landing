@@ -64,14 +64,15 @@ export default function CompletePools() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg5.jpg')",
+                backgroundImage: "url('/images/background/homebg5.png')",
+                backgroundSize: 'cover',
             }}
         >
             <Container maxWidth={'xl'}>
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
-                        <Typography> Previous</Typography>
+                        <Typography>Staking</Typography>
                         <TypographyGradient>Pools</TypographyGradient>
                     </TitleBox>
                 </Box>
@@ -145,15 +146,19 @@ export default function CompletePools() {
                                     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.5)',
                                     borderRadius: '10px',
                                     padding: '16px',
-                                    textAlign: 'center',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: '10px',
+                                    alignItems: 'center',
                                 }}
                             >
                                 <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
                     </Grid>
 
-                    <Grid item md={3} xs={6} minHeight={'100%'}>
+                    <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
                                 cursor: 'pointer',
@@ -222,15 +227,19 @@ export default function CompletePools() {
                                     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.5)',
                                     borderRadius: '10px',
                                     padding: '16px',
-                                    textAlign: 'center',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: '10px',
+                                    alignItems: 'center',
                                 }}
                             >
                                 <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
                     </Grid>
 
-                    <Grid item md={3} xs={6} minHeight={'100%'}>
+                    <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
                                 cursor: 'pointer',
@@ -295,20 +304,23 @@ export default function CompletePools() {
 
                             <Box
                                 sx={{
-                                    background:
-                                        'linear-gradient(230.44deg, rgba(129, 236, 197, 0.5) 3.99%, rgba(148, 203, 255, 0.5) 48.45%, rgba(133, 150, 255, 0.5) 89.66%)',
+                                    background: 'linear-gradient(98.21deg, #68E6B8 -9.15%, #6D85DA 102.32%)',
                                     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.5)',
                                     borderRadius: '10px',
                                     padding: '16px',
-                                    textAlign: 'center',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: '10px',
+                                    alignItems: 'center',
                                 }}
                             >
                                 <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
                     </Grid>
 
-                    <Grid item md={3} xs={6} minHeight={'100%'}>
+                    <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
                                 cursor: 'pointer',
@@ -340,6 +352,7 @@ export default function CompletePools() {
                                         fontSize: '2.25rem',
                                     }}
                                 >
+                                    {' '}
                                     180 Days
                                 </Typography>
                             </Box>

@@ -116,7 +116,7 @@ export const NetworksGrid = styled(Grid)(({ theme }) => ({
     background: '#11132C',
     borderRadius: '2rem',
     margin: '2rem 0',
-    padding: '3rem 1rem',
+    padding: '1.5rem 1rem',
     justifyContent: 'center',
     boxShadow: BoxStyled.boxShadow1,
     '&::before': {

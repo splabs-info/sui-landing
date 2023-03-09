@@ -14,7 +14,7 @@ const RoadmapContent = [
       'Team Formation',
       'Website Development',
       'XUI Tokenomics',
-      'SUI Pitch Deck',
+      'YouSUI Pitch Deck',
       'Core Platform',
       'Development',
     ],
@@ -27,12 +27,12 @@ const RoadmapContent = [
       'Finalization',
       'Seed & Private',
       'Sale Round Public Sale Round',
-      'SUI',
+      'YouSUI',
       'Contract Development',
       'Contract Audit',
-      'SUI Free',
+      'YouSUI Free',
       'Launchpad',
-      'SUI Swap',
+      'YouSUI Swap',
     ]
   },
   {
@@ -40,7 +40,7 @@ const RoadmapContent = [
     content: [
       'Marketing Strategy',
       'Incubation Program',
-      'SUI First IDO',
+      'YouSUI First IDO',
       'Seeding for Partners',
       'Seeking for Uncubated',
       'Startups',
@@ -52,9 +52,9 @@ const RoadmapContent = [
       'SUIXLaunch',
       'OneMarket',
       'NFTs Launchpad',
-      'SUI First INO',
-      'SUI First IGO',
-      'SUI OneFam',
+      'YouSUI First INO',
+      'YouSUI First IGO',
+      'YouSUI OneFam',
       'function development',
 
     ]
