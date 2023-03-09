@@ -30,7 +30,7 @@ const teams = [
 ];
 
 const CustomBox = styled(Box)(({ theme }) => ({
-    padding: '2rem',
+    padding: '1rem',
     borderRadius: '1rem',
     border: '1px solid rgba(46, 48, 83, 0.4)',
     background: Color.background,
@@ -108,11 +108,12 @@ export default function MultiChain() {
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
+                                            marginRight: 3,
                                         }}
                                     >
                                         {item.photoUrl}
                                     </Box>
-                                    <Box pl={1} className="TextBox">
+                                    <Box pl={1} className="TextBox" sx={{ margin: 'auto 0' }}>
                                         <TypographyTitle variant="h6">{item.title}</TypographyTitle>
                                         <Typography
                                             variant="body2"
