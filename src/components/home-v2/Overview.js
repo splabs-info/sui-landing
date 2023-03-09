@@ -40,7 +40,7 @@ export default function Overview() {
                     <Box mb={5} sx={{ position: 'relative' }}>
                         <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                         <TitleBox>
-                            <Typography>You SUI</Typography>
+                            <Typography>YouSUI</Typography>
                             <TypographyGradient>Overview</TypographyGradient>
                         </TitleBox>
                     </Box>

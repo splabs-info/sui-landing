@@ -58,7 +58,7 @@ const CustomLogo = styled('img')(() => ({
 const networks = [
     {
         icon: '/images/networks/icon-1.png',
-        label: 'SUI',
+        label: 'YouSUI',
         link: '/',
     },
     {
@@ -162,7 +162,7 @@ export default function Ecosystem() {
                     </TitleBox>
                 </Box>
                 <TextTypography variant={'body1'}>
-                    Although it is a launchpad platform operated by SUI blockchain, various chains can be accessed with
+                    Although it is a launchpad platform operated by YouSUI blockchain, various chains can be accessed with
                     scalability through the bridge, <br />
                     and users can easily access games and NFTs of various chains and get the opportunity to become early
                     investors.

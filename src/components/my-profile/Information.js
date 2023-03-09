@@ -46,7 +46,7 @@ export default function AreaInformation() {
                 <UploadAvatar avatarUrl="" percent={''} />
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                     <Typography color={'#ffffff'} variant="h5" align="center">
-                        SUI
+                        YouSUI
                     </Typography>
                     <IcVerify />
                 </Box>

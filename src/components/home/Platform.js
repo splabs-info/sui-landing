@@ -93,7 +93,7 @@ export default function Platform() {
                         Buy, Trade, and Track your Favorite Crypto!
                     </Box>
                     <Box component={'p'} sx={{ color: 'white' }}>
-                        SUI allows you to start your own product through the technology the platform provides to
+                        YouSUI allows you to start your own product through the technology the platform provides to
                         kickstart your cherished ideas on Gatekeeper.
                     </Box>
                     <Box component={'p'} sx={{ color: 'white', paddingBottom: isDesktop ? '4rem' : '1rem' }}>

@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
-import { TypographyGradient } from 'components/home/HomeStyles';
 import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
 const Title = [
@@ -20,7 +20,7 @@ const Title = [
     </>,
 ];
 const SubTitle = [
-    'SUI works with projects with a high probability of success',
+    'YouSUI works with projects with a high probability of success',
     'with enhanced Due Diligence and Regulation.',
 ];
 
@@ -108,7 +108,7 @@ export default function Intro() {
                                     marginBottom: 2,
                                 }}
                             >
-                                {/* <img alt="gatekeeper" src="/images/home/gatechain.png" height={isMobile ? 40 : 60} />
+                                {/* <img alt="gatekeeper" src="/images/home/Sui Blockchain.png" height={isMobile ? 40 : 60} />
                 <img alt="gatekeeper" src="/images/home/gateio.png" height={isMobile ? 40 : 60} /> */}
                                 <img alt="sui" src="/whitelogo.png" width={80} />
                             </Box>
@@ -131,15 +131,9 @@ export default function Intro() {
                                     gap: '33px',
                                 }}
                             >
-                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
-                                    <img alt="sui" src="/featuredby1.png" />
-                                </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
-                                    <img alt="sui" src="/featuredby2.png" />
-                                </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
-                                    <img alt="sui" src="/bnb-white.png" />
-                                </Box>
+                                <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
+                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
+                                {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
                     </Grid>
@@ -197,7 +191,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '12%',
-                    right: '14.5%',
+                    right: '12.5%',
                     display: isTablet && 'none',
                 }}
             />

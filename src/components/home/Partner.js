@@ -116,12 +116,12 @@ const partners = [
   },
   {
     label: 'gate-io',
-    link: 'https://www.gate.io/',
+    link: 'https://www.Sui.io/',
   },
-  {
-    label: 'gate-labs',
-    link: 'https://www.gate.io/',
-  },
+  // {
+  //   label: 'gate-labs',
+  //   link: 'https://www.Sui.io/',
+  // },
 
   {
     label: 'Pixel',

@@ -76,7 +76,7 @@ export default function CompletePools() {
                     </TitleBox>
                 </Box>
                 <Grid container spacing={3} mt={4}>
-                    <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
+                    <Grid item md={3} xs={6} minHeight={'100%'}>
                         <Box
                             sx={{
                                 cursor: 'pointer',

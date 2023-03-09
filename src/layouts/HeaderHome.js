@@ -200,9 +200,9 @@ export default function HeaderHome() {
                 </div> */}
                                 {wallet ? (
                                     <>
-                                        <IconButton onClick={handleOpenDrawer}>
+                                        {/* <IconButton onClick={handleOpenDrawer}>
                                             <Avatar src="/images/icon/icon-user.png" />
-                                        </IconButton>
+                                        </IconButton> */}
                                         {/* <Web3Button /> */}
                                         {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
                                             create profile test button
@@ -274,22 +274,24 @@ export default function HeaderHome() {
                                     >
                                         <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
                                             <MenuItem onClick={handleCloseMenu}>
-                                                <IconBrandTelegram /> Gate-Keeper Official{' '}
+                                                <IconBrandTelegram /> YouSUI Official{' '}
                                             </MenuItem>
                                         </a>
                                         <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
                                             {' '}
                                             <MenuItem onClick={handleCloseMenu}>
-                                                <IconBrandTelegram /> Gate-Keeper Chat
+                                                <IconBrandTelegram /> YouSUI Chat
                                             </MenuItem>
                                         </a>
                                     </MenuCustom>
                                 </SocialBox>
+                                <IconButton onClick={handleOpenDrawer} sx={{textAlign: 'center'}}>
+                                    <Avatar
+                                        src="/images/icon/icon-person-sui.png"
+                                        sx={{ borderRadius: '0', marginRight: '1.18rem' }}
+                                    />
+                                </IconButton>
 
-                                <Avatar
-                                    src="/images/icon/icon-person-sui.png"
-                                    sx={{ borderRadius: '0', marginRight: '1.18rem' }}
-                                />
                                 <Languages sx={{ color: 'white' }} />
                             </Hidden>
 
@@ -385,7 +387,7 @@ export default function HeaderHome() {
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
             <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
-            <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} />
+            {/* <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} /> */}
         </>
     );
 }
