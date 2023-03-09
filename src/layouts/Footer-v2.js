@@ -137,7 +137,7 @@ export default function FooterV2() {
                                 padding: isMobile ? '0 10%' : '0 20% 0 0 ',
                             }}
                         >
-                            The YouSUI is a user-friendly platform that runs on SUI blockchain as a multi-chain platform
+                            The YouSUI is a user-friendly platform that runs on Sui blockchain as a multi-chain platform
                             for Metaverse, Game, and WEB 3.0.
                         </Typography>
                         <CusLink

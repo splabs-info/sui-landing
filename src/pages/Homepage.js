@@ -22,7 +22,7 @@ export default function Homepage() {
             <TitleMain />
             <Box
                 sx={{
-                    background: "url('/images/background/bg1.jpg')",
+                    background: "url('/images/background/bg1.png')",
                     backgroundSize: isDesktop ? '100% 100%' : 'cover',
                 }}
             >

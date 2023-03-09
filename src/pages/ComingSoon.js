@@ -1,7 +1,7 @@
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Container, Box } from '@mui/material';
-import { AppButton } from '../components/home/HomeStyles';
+import { TitleBox, TypographyGradient, ImgTitleBox } from 'components/home-v2/HomeStyles';
+import useResponsive from 'hooks/useResponsive';
 import Page from '../components/common/Page';
 
 // ----------------------------------------------------------------------
@@ -17,11 +17,12 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function ComingSoon() {
+    const isDesktop = useResponsive('up', 'md');
     return (
         <Page title="Coming Soon">
             <Box
                 sx={{
-                    background: "url('/images/background/bg1.jpg')",
+                    background: "url('/images/background/bg1.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -33,15 +34,14 @@ export default function ComingSoon() {
                 }}
             >
                 <Container>
-                    <ContentStyle sx={{ textAlign: 'center', alignItems: 'center' }}>
-                        <Box
-                            component="img"
-                            src="/images/comingsoon/coming-soon.png"
-                            sx={{ width: 'min(800px, 100%)', mx: 'auto', mb: '2rem' }}
-                        />
-                        <AppButton to="/" size="large" variant="contained" component={RouterLink}>
-                            Go to Home
-                        </AppButton>
+                    <ContentStyle>
+                        <Box mb={8} sx={{ position: 'relative', margin: '0 auto' }}>
+                            <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                            <TitleBox>
+                                <Typography>Coming</Typography>
+                                <TypographyGradient>Soon</TypographyGradient>
+                            </TitleBox>
+                        </Box>
                     </ContentStyle>
                 </Container>
             </Box>

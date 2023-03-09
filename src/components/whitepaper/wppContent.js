@@ -23,7 +23,7 @@ export const wppContent = [
             {
                 title: 'YouSUI Summary',
                 content: [
-                    'YouSUI is a launchpad platform born to expand the ecosystem of SUI blockchain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with YouSUI, the Sui.io',
+                    'YouSUI is a launchpad platform born to expand the ecosystem of Sui blockchain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with YouSUI',
                 ],
             },
             {
@@ -44,7 +44,7 @@ export const wppContent = [
                 title: 'Core Value',
                 list: [
                     'Community-Governed Launchpad System',
-                    'Global SUI blockchain Community Builder',
+                    'Global Sui blockchain Community Builder',
                     'Access Every Blockchain',
                     'Access Every AMM',
                     'Cross-Chain Swap & Bridge',
@@ -58,7 +58,7 @@ export const wppContent = [
                 list: [
                     <>
                         {' '}
-                        <IconSquareCheck /> SUI blockchain
+                        <IconSquareCheck /> Sui blockchain
                     </>,
                     <>
                         {' '}
@@ -140,7 +140,7 @@ export const wppContent = [
                     'YouSUI is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
                     <b> NFT marketplace</b>,
                     'YouSUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
-                    <b>Beyond SUI blockchain </b>,
+                    <b>Beyond Sui blockchain </b>,
                     'YouSUI wants to grow into a multi-chain launchpad platform that goes beyond Sui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Sui Blockchain.',
                     <b>Liquidity Supply </b>,
                     'YouSUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
@@ -177,13 +177,12 @@ export const wppContent = [
                 list: ['CEO SPLabs.', 'COO/Co-Founder Sp-exchange.'],
             },
             {
-                title: 'CTO - Nam Nguyen',
+                title: 'CTO - Bill Nguyen',
                 list: [
-                    'CTO Blockchain Era.',
-                    'Class 5, deep clearning-based smart glass development for the visually impaired.',
-                    'Netus development manager.',
-                    'Raon Plus Co., Ltd., Raon Entertainment Co., Ltd. Samsung Project and Japan.',
-                    'Commseed “Select” project development manager.',
+                    'CTO at BTVLab (Laboritoy and blockchain project development)',
+                    'Server lead at Where.Place ( Indoor digital maps service)',
+                    'Server lead at Cinamon  (Online social media service)',
+                    'Viettel Group, research and development department, team leader',
                 ],
             },
             {
@@ -304,7 +303,7 @@ export const wppContent = [
         category: 'Partners',
         description: [
             {
-                title: 'SUI blockchain',
+                title: 'Sui blockchain',
                 subtitle: 'What is Sui Blockchain?',
                 content: [
                     'Secure, scalable and interoperable public chains. Sui Blockchain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, Sui Blockchain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
@@ -694,7 +693,7 @@ export const wppContent = [
                         <b>Total Supply :</b> 100,000,000
                     </>,
                     <>
-                        <b>Standard :</b> GRC20, BEP20
+                        <b>Standard :</b> BSC, SUI
                     </>,
                     <>
                         <b>Token Allocation:</b>
@@ -762,7 +761,7 @@ export const wppContent = [
             },
             {
                 title: 'About XUI Token',
-                subtitle: 'SUI blockchain',
+                subtitle: 'Sui blockchain',
                 content: [
                     'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, Sui Blockchain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
                 ],

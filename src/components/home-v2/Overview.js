@@ -28,13 +28,13 @@ const networksNumber = [
 export default function Overview() {
     const isMobile = useResponsive('down', 'sm');
     return (
-        <Box
-            sx={{
-                backgroundImage: "url('/images/background/homebg2.png')",
-                backgroundSize: '100% 100%',
-                backgroundPosition: 'center',
-            }}
-        >
+            <Box
+                sx={{
+                    backgroundImage: "url('/images/background/homebg2.png')",
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                }}
+            >
             <SectionBox>
                 <Container maxWidth={'xl'}>
                     <Box mb={5} sx={{ position: 'relative' }}>

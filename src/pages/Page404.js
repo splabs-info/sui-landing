@@ -21,7 +21,7 @@ export default function Page404() {
     <Page title="404 Page Not Found">
       <Box
         sx={{
-          background: "url('/images/background/bg1.jpg')",
+          background: "url('/images/background/bg1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
