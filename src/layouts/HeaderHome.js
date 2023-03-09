@@ -2,7 +2,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
-    Avatar, Box, Collapse,
+    Avatar,
+    Box,
+    Collapse,
     Container,
     Divider,
     Drawer,
@@ -11,9 +13,10 @@ import {
     List,
     ListItemButton,
     ListItemIcon,
-    ListItemText
+    ListItemText,
+    MenuItem,
 } from '@mui/material';
-import { IconMenu2 } from '@tabler/icons';
+import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,6 +29,8 @@ import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
 import Languages from './Languages';
+import { socials } from './Footer-v2';
+import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soon' },
@@ -216,8 +221,76 @@ export default function HeaderHome() {
                                     </>
                                 )}
 
-                                {/* <Avatar src="/images/icon/icon-person.png" sx={{ borderRadius: '0' }} /> */}
-                                {/* <Languages sx={{ color: "white" }} /> */}
+                                <SocialBox sx={{ gap: '1.18rem', marginRight: '1.18rem' }}>
+                                    {socials.map((item, index) =>
+                                        item.link ? (
+                                            <Box
+                                                className="ádasd"
+                                                key={index}
+                                                component="a"
+                                                href={item.link}
+                                                target={'_blank'}
+                                                sx={{ padding: '0px !important', margin: '0 !important' }}
+                                            >
+                                                <Box component="img" src={item.src} />
+                                            </Box>
+                                        ) : (
+                                            <Box
+                                                key={index}
+                                                component="a"
+                                                onClick={handleClick}
+                                                sx={{
+                                                    cursor: 'pointer',
+                                                    padding: '0px !important',
+                                                    margin: '0 !important',
+                                                }}
+                                            >
+                                                <Box component="img" src={item.src} />
+                                            </Box>
+                                        )
+                                    )}
+                                    <MenuCustom
+                                        id="basic-menu"
+                                        anchorEl={anchorEl}
+                                        open={open}
+                                        onClose={handleCloseMenu}
+                                        MenuListProps={{
+                                            'aria-labelledby': 'basic-button',
+                                        }}
+                                        className="Menu"
+                                        sx={{
+                                            background: 'transparent!important',
+                                            border: '1px solid black',
+                                            color: 'white',
+                                            marginTop: '15px',
+                                            '& a': {
+                                                color: 'white',
+                                                textDecoration: 'none',
+                                            },
+                                            '& .MuiMenu-paper': {
+                                                background: '#0a0a0a!important',
+                                            },
+                                        }}
+                                    >
+                                        <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
+                                            <MenuItem onClick={handleCloseMenu}>
+                                                <IconBrandTelegram /> Gate-Keeper Official{' '}
+                                            </MenuItem>
+                                        </a>
+                                        <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
+                                            {' '}
+                                            <MenuItem onClick={handleCloseMenu}>
+                                                <IconBrandTelegram /> Gate-Keeper Chat
+                                            </MenuItem>
+                                        </a>
+                                    </MenuCustom>
+                                </SocialBox>
+
+                                <Avatar
+                                    src="/images/icon/icon-person-sui.png"
+                                    sx={{ borderRadius: '0', marginRight: '1.18rem' }}
+                                />
+                                <Languages sx={{ color: 'white' }} />
                             </Hidden>
 
                             {/* <AccountPopover /> */}

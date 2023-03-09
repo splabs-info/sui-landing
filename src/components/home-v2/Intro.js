@@ -131,9 +131,15 @@ export default function Intro() {
                                     gap: '33px',
                                 }}
                             >
-                                <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
-                                <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} />
+                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
+                                    <img alt="sui" src="/featuredby1.png" />
+                                </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
+                                    <img alt="sui" src="/featuredby2.png" />
+                                </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '240px' }}>
+                                    <img alt="sui" src="/bnb-white.png" />
+                                </Box>
                             </Box>
                         </Box>
                     </Grid>

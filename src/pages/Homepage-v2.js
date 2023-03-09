@@ -8,7 +8,7 @@ export default function Homepage_v2() {
             <Overview />
             <Launchpad />
             <UpcomingPools />
-            {/* <CompletePools /> */}
+            <CompletePools />
             <Questions />
         </Page>
     );
