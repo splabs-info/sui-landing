@@ -32,8 +32,10 @@ export default function Intro() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg1.jpg')",
+                backgroundImage: "url('/images/background/homebg1.png')",
                 minHeight: '100vh',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
                 paddingTop: !isDesktop && 5,
             }}
         >

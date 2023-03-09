@@ -30,7 +30,7 @@ export default function Overview() {
     return (
         <Box
             sx={{
-                backgroundImage: "url('/images/background/homebg2.jpg')",
+                backgroundImage: "url('/images/background/homebg2.png')",
                 backgroundSize: '100% 100%',
                 backgroundPosition: 'center',
             }}

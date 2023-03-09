@@ -64,7 +64,8 @@ export default function CompletePools() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg5.jpg')",
+                backgroundImage: "url('/images/background/homebg5.png')",
+                backgroundSize: 'cover',
             }}
         >
             <Container maxWidth={'xl'}>
