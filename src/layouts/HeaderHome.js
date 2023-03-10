@@ -33,7 +33,7 @@ import { socials } from './Footer-v2';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 const config = [
     { label: 'key_1', link: '/' },
-    { label: 'key_2', link: '/coming-soon' },
+    { label: 'key_2', link: '/coming-soons' },
     { label: 'key_3', link: '/coming-soon' },
     { label: 'key_4', link: '/coming-soon' },
     { label: 'key_5', link: '/coming-soon' },
@@ -107,18 +107,51 @@ export default function HeaderHome() {
         }
     }, [address]);
 
+    const activeRoute = '/coming-soons';
+
     return (
         <>
             <Header>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        zIndex: 0,
+                        opacity: 0.3,
+                        transform: 'matrix(1, 0, 0, -1, 0, 0)',
+                        width: '100%',
+                        height: '100%',
+                    }}
+                ></Box>
                 <Container
                     maxWidth={'xl'}
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
+                        zIndex: 1,
                     }}
                     className={scrollPositionToggle ? 'sticky-scroll' : ''}
                 >
-                    <Navbar>
+                    <Navbar
+                        sx={{
+                            '& .active': {
+                                background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
+                                backgroundClip: 'text',
+                                textFillColor: 'transparent',
+                                position: 'relative',
+                            },
+                            '& .active::before': {
+                                content: '" "',
+                                position: 'absolute',
+                                width: '100%',
+                                height: '3px',
+                                background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
+                                bottom: -8,
+                            },
+                            '& a': {
+                                fontWeight: 700,
+                            },
+                        }}
+                    >
                         <Box component={Link} to="/" className="logo">
                             <Box component="img" src="/logo.png" alt="" />
                         </Box>
@@ -137,10 +170,19 @@ export default function HeaderHome() {
                                 {config.map((item, index) => {
                                     if (item.link.indexOf('#') <= -1) {
                                         return (
-                                            <Link to={item.link} key={index} className={item.customStyle || ''}>
-                                                {library[item.label]}
-                                                {item.icon}
-                                            </Link>
+                                            <Box
+                                                className={`${item.link === activeRoute ? 'active' : ''}`}
+                                                sx={{
+                                                    display: 'flex',
+                                                    alignSelf: 'stretch',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                <Link to={item.link} key={index} className={item.customStyle || ''}>
+                                                    {library[item.label]}
+                                                    {item.icon}
+                                                </Link>
+                                            </Box>
                                         );
                                     } else
                                         return (
@@ -150,7 +192,7 @@ export default function HeaderHome() {
                                                     scroll(item);
                                                 }}
                                                 key={index}
-                                                // className={indexTag === item ? "active" : ""}
+                                                className={item.link === activeRoute ? 'active' : ''}
                                             >
                                                 {library[item.label]}
                                             </Link>
@@ -198,101 +240,111 @@ export default function HeaderHome() {
                     ))}
                   </Menu>
                 </div> */}
-                                {wallet ? (
-                                    <>
-                                        {/* <IconButton onClick={handleOpenDrawer}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '1.18rem',
+                                        marginLeft: '8rem',
+                                    }}
+                                >
+                                    {wallet ? (
+                                        <>
+                                            {/* <IconButton onClick={handleOpenDrawer}>
                                             <Avatar src="/images/icon/icon-user.png" />
                                         </IconButton> */}
-                                        {/* <Web3Button /> */}
-                                        {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
+                                            {/* <Web3Button /> */}
+                                            {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
                                             create profile test button
                                         </Button> */}
-                                    </>
-                                ) : (
-                                    // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
-                                    <>
-                                        {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
+                                        </>
+                                    ) : (
+                                        // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
+                                        <>
+                                            {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
                                             create profile test button
                                         </Button> */}
-                                        <ApplyButton onClick={handleOpenConnectPopup} open={openConnectPopup}>
-                                            Connect Wallet
-                                        </ApplyButton>
-                                        {/* <Web3Button /> */}
-                                    </>
-                                )}
-
-                                <SocialBox sx={{ gap: '1.18rem', marginRight: '1.18rem' }}>
-                                    {socials.map((item, index) =>
-                                        item.link ? (
-                                            <Box
-                                                className="ádasd"
-                                                key={index}
-                                                component="a"
-                                                href={item.link}
-                                                target={'_blank'}
-                                                sx={{ padding: '0px !important', margin: '0 !important' }}
+                                            <ApplyButton
+                                                sx={{ margin: 0 }}
+                                                onClick={handleOpenConnectPopup}
+                                                open={openConnectPopup}
                                             >
-                                                <Box component="img" src={item.src} />
-                                            </Box>
-                                        ) : (
-                                            <Box
-                                                key={index}
-                                                component="a"
-                                                onClick={handleClick}
-                                                sx={{
-                                                    cursor: 'pointer',
-                                                    padding: '0px !important',
-                                                    margin: '0 !important',
-                                                }}
-                                            >
-                                                <Box component="img" src={item.src} />
-                                            </Box>
-                                        )
+                                                Connect Wallet
+                                            </ApplyButton>
+                                            {/* <Web3Button /> */}
+                                        </>
                                     )}
-                                    <MenuCustom
-                                        id="basic-menu"
-                                        anchorEl={anchorEl}
-                                        open={open}
-                                        onClose={handleCloseMenu}
-                                        MenuListProps={{
-                                            'aria-labelledby': 'basic-button',
-                                        }}
-                                        className="Menu"
-                                        sx={{
-                                            background: 'transparent!important',
-                                            border: '1px solid black',
-                                            color: 'white',
-                                            marginTop: '15px',
-                                            '& a': {
-                                                color: 'white',
-                                                textDecoration: 'none',
-                                            },
-                                            '& .MuiMenu-paper': {
-                                                background: '#0a0a0a!important',
-                                            },
-                                        }}
-                                    >
-                                        <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
-                                            <MenuItem onClick={handleCloseMenu}>
-                                                <IconBrandTelegram /> YouSUI Official{' '}
-                                            </MenuItem>
-                                        </a>
-                                        <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
-                                            {' '}
-                                            <MenuItem onClick={handleCloseMenu}>
-                                                <IconBrandTelegram /> YouSUI Chat
-                                            </MenuItem>
-                                        </a>
-                                    </MenuCustom>
-                                </SocialBox>
-                                <IconButton onClick={handleOpenDrawer} sx={{textAlign: 'center'}}>
-                                    <Avatar
-                                        src="/images/icon/icon-person-sui.png"
-                                        sx={{ borderRadius: '0', marginRight: '1.18rem' }}
-                                    />
-                                </IconButton>
 
-                                <Languages sx={{ color: 'white' }} />
+                                    <SocialBox sx={{ gap: '1.18rem' }}>
+                                        {socials.map((item, index) =>
+                                            item.link ? (
+                                                <Box
+                                                    className="ádasd"
+                                                    key={index}
+                                                    component="a"
+                                                    href={item.link}
+                                                    target={'_blank'}
+                                                    sx={{ padding: '0px !important', margin: '0 !important' }}
+                                                >
+                                                    <Box component="img" src={item.src} />
+                                                </Box>
+                                            ) : (
+                                                <Box
+                                                    key={index}
+                                                    component="a"
+                                                    onClick={handleClick}
+                                                    sx={{
+                                                        cursor: 'pointer',
+                                                        padding: '0px !important',
+                                                        margin: '0 !important',
+                                                    }}
+                                                >
+                                                    <Box component="img" src={item.src} />
+                                                </Box>
+                                            )
+                                        )}
+                                        <MenuCustom
+                                            id="basic-menu"
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleCloseMenu}
+                                            MenuListProps={{
+                                                'aria-labelledby': 'basic-button',
+                                            }}
+                                            className="Menu"
+                                            sx={{
+                                                background: 'transparent!important',
+                                                border: '1px solid black',
+                                                color: 'white',
+                                                marginTop: '15px',
+                                                '& a': {
+                                                    color: 'white',
+                                                    textDecoration: 'none',
+                                                },
+                                                '& .MuiMenu-paper': {
+                                                    background: '#0a0a0a!important',
+                                                },
+                                            }}
+                                        >
+                                            <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
+                                                <MenuItem onClick={handleCloseMenu}>
+                                                    <IconBrandTelegram /> YouSUI Official{' '}
+                                                </MenuItem>
+                                            </a>
+                                            <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
+                                                {' '}
+                                                <MenuItem onClick={handleCloseMenu}>
+                                                    <IconBrandTelegram /> YouSUI Chat
+                                                </MenuItem>
+                                            </a>
+                                        </MenuCustom>
+                                    </SocialBox>
+                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
+                                        <Avatar src="/images/icon/icon-person-sui.png" sx={{ borderRadius: '0' }} />
+                                    </IconButton>
+
+                                    <Languages sx={{ color: 'white' }} />
+                                </Box>
                             </Hidden>
 
                             {/* <AccountPopover /> */}
