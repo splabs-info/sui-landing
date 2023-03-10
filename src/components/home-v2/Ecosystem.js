@@ -19,9 +19,9 @@ const ContainerNetwork = styled(Box)(({ theme }) => ({
         borderRadius: '0.5rem',
         '&:nth-of-type(n + 5)': {
             opacity: '0.7',
-            '& img': {
-                maxHeight: '35px',
-            },
+            // '& img': {
+            //     maxHeight: '35px',
+            // },
         },
         '&:nth-of-type(n + 9)': {
             opacity: '0.5',
@@ -173,12 +173,7 @@ export default function Ecosystem() {
                     and users can easily access games and NFTs of various chains and get the opportunity to become early
                     investors.
                 </TextTypography>
-                {/* <TextTypography variant={'body1'}>
-          various chains can be accessed with scalability through the bridge,
-        </TextTypography>
-        <TextTypography variant={'body1'}>
-          and users can easily access games and NFTs of various chains and get the opportunity to become early investors.
-        </TextTypography> */}
+
                 <ContainerNetwork>
                     {networks.map((network, index) => (
                         <a href={network.link} target="_blank" rel="noreferrer" key={index}>

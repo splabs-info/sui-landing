@@ -118,7 +118,7 @@ export default function HeaderHome() {
                         transform: 'matrix(1, 0, 0, -1, 0, 0)',
                         width: '100%',
                         height: '100%',
-                        backdropFilter: 'blur(10px)',
+                        // backdropFilter: 'blur(10px)',
                     }}
                 ></Box>
                 <Container

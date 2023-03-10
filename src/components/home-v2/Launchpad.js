@@ -74,9 +74,13 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
     background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
     backgroundClip: 'text',
     textFillColor: 'transparent',
+    '&:hover': {
+        color: 'white',
+    },
     [theme.breakpoints.down('md')]: {
         marginBottom: '.25rem',
     },
+
 }));
 
 export default function MultiChain() {
@@ -110,8 +114,8 @@ export default function MultiChain() {
                                 <CustomBox>
                                     <Box
                                         sx={{
-                                            width: 90,
-                                            height: 90,
+                                            width: 86,
+                                            height: 86,
                                             background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
                                             borderRadius: '16px',
                                             display: 'flex',

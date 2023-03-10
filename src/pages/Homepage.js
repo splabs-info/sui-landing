@@ -30,7 +30,7 @@ export default function Homepage() {
             </Box>
             <Box
                 sx={{
-                    background: "url('/images/background/bg2.jpg')",
+                    background: 'transparent',
                     backgroundSize: isDesktop ? '100% 100%' : 'cover',
                 }}
             >

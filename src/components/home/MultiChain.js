@@ -96,6 +96,10 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
     backgroundClip: 'text',
     textFillColor: 'transparent',
     minHeight: '60px',
+    '&:hover': {
+        color: 'white',
+    
+    },
     [theme.breakpoints.down('md')]: {
         marginBottom: '1rem',
     },
@@ -164,7 +168,7 @@ export default function MultiChain() {
                                 <Grid alignItems="flex-start" justifyContent="space-evenly" key={index} container>
                                     <CustomBox>
                                         <Box mb={4}>
-                                            <img style={{ width: 'min(25%,70px)' }} src={item.photoUrl} alt="" />
+                                            <img style={{ width: 'min(15%,50px)' }} src={item.photoUrl} alt="" />
                                         </Box>
                                         <CardContent>
                                             <Stack>
