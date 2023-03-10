@@ -144,7 +144,7 @@ export default function HeaderHome() {
                                 width: '100%',
                                 height: '3px',
                                 background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
-                                bottom: -16,
+                                bottom: -23,
                             },
                             '& a': {
                                 fontWeight: 700,
