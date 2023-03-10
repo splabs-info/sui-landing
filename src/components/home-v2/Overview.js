@@ -69,7 +69,7 @@ export default function Overview() {
                                         flexDirection: 'column',
                                     }}
                                 >
-                                    <img src={detail.src} alt={detail.label} width={'50%'} />
+                                    <img src={detail.src} alt={detail.label} width={'40%'} />
                                     <Typography variant="h3">{detail.amount}</Typography>
                                     <Typography variant="body1">{detail.label}</Typography>
                                 </Grid>

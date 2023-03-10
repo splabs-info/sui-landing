@@ -48,11 +48,17 @@ const ContainerNetwork = styled(Box)(({ theme }) => ({
     },
 }));
 
-const CustomLogo = styled('img')(() => ({
+const CustomLogo = styled('img')(({ theme }) => ({
     transition: 'transform 150ms ease-in-out',
     padding: 0,
     display: 'block',
-    maxHeight: '45px',
+    maxHeight: '56px',
+    [theme.breakpoints.down('md')]: {
+        maxHeight: '48px',
+    },
+    [theme.breakpoints.down('sm')]: {
+        maxHeight: '40px',
+    },
 }));
 
 const networks = [
@@ -162,8 +168,8 @@ export default function Ecosystem() {
                     </TitleBox>
                 </Box>
                 <TextTypography variant={'body1'}>
-                    Although it is a launchpad platform operated by YouSUI blockchain, various chains can be accessed with
-                    scalability through the bridge, <br />
+                    Although it is a launchpad platform operated by YouSUI blockchain, various chains can be accessed
+                    with scalability through the bridge, <br />
                     and users can easily access games and NFTs of various chains and get the opportunity to become early
                     investors.
                 </TextTypography>

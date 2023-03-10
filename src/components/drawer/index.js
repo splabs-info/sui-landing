@@ -9,8 +9,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     zIndex: '9998!important',
     ' .MuiDrawer-paperAnchorRight': {
         color: '#fff',
-        background:
-            'linear-gradient(45deg, rgba(21, 133, 236, 0.3) 0%, rgba(27, 35, 103, 0.3) 48.96%, rgba(15, 40, 68, 0.3) 100%)',
+        background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
         backdropFilter: 'blur(10px)',
         width: '420px !important',
         boxShadow: 'none',

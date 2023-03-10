@@ -45,7 +45,7 @@ export default function Page404() {
                         </Typography>
                         <Box
                             component="img"
-                            src="/images/comingsoon/404.png"
+                            // src="/images/comingsoon/404.png"
                             sx={{ width: 'min(550px, 100%)', mx: 'auto', mb: '2rem' }}
                         />
                         <AppButton to="/" size="large" variant="contained" component={RouterLink}>

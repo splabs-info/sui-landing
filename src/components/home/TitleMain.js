@@ -37,7 +37,7 @@ export default function TitleMain() {
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            alignSelf: 'center',
+                            alignItems: 'center',
                         }}
                     >
                         <Box mt={isDesktop ? 5 : 10} textAlign={'center'}>

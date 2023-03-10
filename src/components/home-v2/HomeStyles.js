@@ -11,7 +11,7 @@ export const SectionBox = styled(Box)(({ theme }) => ({
     paddingTop: 70,
     paddingBottom: 20,
     [theme.breakpoints.up('lg')]: {
-        paddingTop: 150,
+        paddingTop: 108,
         paddingBottom: 50,
     },
     [theme.breakpoints.down('md')]: {
