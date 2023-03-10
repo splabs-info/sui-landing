@@ -111,11 +111,10 @@ export default function HeaderHome() {
 
     return (
         <>
-            <Header className="dasdas">
+            <Header>
                 <Box
                     sx={{
                         position: 'absolute',
-                        background: 'linear-gradient(360deg, rgba(13, 112, 216, 0.1) 0%, #078078 100%)',
                         zIndex: 0,
                         opacity: 0.3,
                         transform: 'matrix(1, 0, 0, -1, 0, 0)',
