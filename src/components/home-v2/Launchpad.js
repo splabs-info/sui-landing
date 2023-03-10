@@ -74,13 +74,9 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
     background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
     backgroundClip: 'text',
     textFillColor: 'transparent',
-    '&:hover': {
-        color: 'white',
-    },
     [theme.breakpoints.down('md')]: {
         marginBottom: '.25rem',
     },
-
 }));
 
 export default function MultiChain() {
@@ -111,7 +107,18 @@ export default function MultiChain() {
                     <Grid container spacing={3} mt={4}>
                         {teams.map((item, index) => (
                             <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
-                                <CustomBox>
+                                <CustomBox
+                                    sx={{
+                                        margin: 'auto 0',
+                                        '&:hover': {
+                                            '& h6': {
+                                                color: 'white',
+                                                background: 'white',
+                                                backgroundClip: 'text',
+                                            },
+                                        },
+                                    }}
+                                >
                                     <Box
                                         sx={{
                                             width: 86,
