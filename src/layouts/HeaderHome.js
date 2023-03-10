@@ -14,7 +14,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    MenuItem,
+    MenuItem
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -24,13 +24,13 @@ import { subMenus } from 'static/subMenus';
 import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
 import { CreateProfilePopup } from 'components';
-import { WalletDrawer } from 'components/drawer';
+// import { WalletDrawer } from 'components/drawer';
+import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
-import Languages from './Languages';
 import { socials } from './Footer-v2';
-import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
+import Languages from './Languages';
 const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soons' },
@@ -343,7 +343,7 @@ export default function HeaderHome() {
                                         <Avatar src="/images/icon/icon-person-sui.png" sx={{ borderRadius: '0' }} />
                                     </IconButton>
 
-                                    <Languages sx={{ color: 'white' }} />
+                                    {/* <Languages sx={{ color: 'white' }} /> */}
                                 </Box>
                             </Hidden>
 
@@ -390,7 +390,7 @@ export default function HeaderHome() {
                         <IconButton aria-label="CLose menu list" onClick={handleClose} sx={{ color: 'deepskyblue' }}>
                             <ArrowBackIcon />
                         </IconButton>
-                        <Languages sx={{ '& span': { color: '#637381' } }} />
+                        {/* <Languages sx={{ '& span': { color: '#637381' } }} /> */}
                     </Box>
                     <List sx={{ color: 'white' }}>
                         <Hidden lgUp>

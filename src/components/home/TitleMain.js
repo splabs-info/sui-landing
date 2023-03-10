@@ -78,7 +78,7 @@ export default function TitleMain() {
                             }}
                             mt={-4}
                         >
-                            <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} />
+                            {/* <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} /> */}
                         </Box>
                         <ButtonTitleBox>
                             <ApplyButton>Buy XUI</ApplyButton>

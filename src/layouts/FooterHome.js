@@ -196,10 +196,10 @@ export default function FooterHome() {
                                 },
                             }}
                         >
-                            <a href="https://t.me/GateKeeperGlobal" target="_blank" rel="noreferrer">
+                            <a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
                                 <MenuItem onClick={handleCloseMenu}>YouSUI Global </MenuItem>
                             </a>
-                            <a href="https://t.me/GateKeeperChat" target="_blank" rel="noreferrer">
+                            <a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
                                 {' '}
                                 <MenuItem onClick={handleCloseMenu}>YouSUI Chat</MenuItem>
                             </a>
