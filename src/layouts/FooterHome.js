@@ -33,15 +33,15 @@ import { joinGateKeeper, aboutGateKeeper } from 'static/gatekeeper';
 const socials = [
     {
         src: '/images/icon/icon-medium.png',
-        link: '',
+        link: 'https://medium.com/@YouSUI',
     },
     {
         src: '/images/icon/icon-twitter.png',
-        link: '',
+        link: 'https://twitter.com/YouSUI_Global',
     },
     {
         src: '/images/icon/icon-discord.png',
-        link: '',
+        link: 'https://discord.gg/yousui',
     },
     {
         src: '/images/icon/icon-telegram.png',

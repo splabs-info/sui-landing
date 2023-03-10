@@ -52,7 +52,7 @@ const CustomLogo = styled('img')(() => ({
     transition: 'transform 150ms ease-in-out',
     padding: 0,
     display: 'block',
-    maxHeight: '45px',
+    maxHeight: '56px',
 }));
 
 const networks = [
