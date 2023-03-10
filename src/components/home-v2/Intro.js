@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
@@ -28,6 +29,7 @@ export default function Intro() {
     const isDesktop = useResponsive('up', 'md');
     const isTablet = useResponsive('down', 'md');
     const isMobile = useResponsive('down', 'sm');
+    const theme = useTheme();
 
     return (
         <SectionBox
@@ -66,7 +68,10 @@ export default function Intro() {
                         </Box>
                         <Box
                             sx={{
-                                margin: '2rem 0',
+                                margin: '1.5rem 0',
+                                [theme.breakpoints.up('lg')]: {
+                                    margin: '2rem 0',
+                                },
                             }}
                         >
                             <TextTypography
@@ -139,7 +144,7 @@ export default function Intro() {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid item md={4} mt={isMobile && 5}>
+                    {/* <Grid item md={4} mt={isMobile && 5}>
                         {isMobile && (
                             <CenterBox>
                                 <img
@@ -162,7 +167,7 @@ export default function Intro() {
                                 />
                             </CenterBox>
                         )}
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Container>
             <img
@@ -171,7 +176,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '40%',
-                    right: 0,
+                    right: '2%',
                     display: isTablet && 'none',
                 }}
             />
@@ -182,7 +187,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '40%',
-                    right: 0,
+                    right: '2%',
                     display: isTablet && 'none',
                 }}
             />
@@ -193,7 +198,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '12%',
-                    right: '12.5%',
+                    right: '14.5%',
                     display: isTablet && 'none',
                 }}
             />

@@ -44,7 +44,7 @@ export default function TitleMain() {
                             {Title.map((item) => (
                                 <TypographyGradient
                                     key={item}
-                                    fontSize={isDesktop ? '2rem' : '1.5rem'}
+                                    fontSize={isDesktop ? '2rem' : '1.2rem'}
                                     fontFamily="SVN-Gilroy-semi-bold"
                                 >
                                     {item}
@@ -78,7 +78,7 @@ export default function TitleMain() {
                             }}
                             mt={-4}
                         >
-                            <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} />
+                            {/* <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} /> */}
                         </Box>
                         <ButtonTitleBox>
                             <ApplyButton>Buy XUI</ApplyButton>

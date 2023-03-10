@@ -181,7 +181,7 @@ export default function Networks() {
                                 justifyContent: isDesktop ? 'flex-start' : 'center',
                             }}
                         >
-                            <img alt="gatekeeper" src="/images/home/gate-2.png" width={'90%'} />
+                            {/* <img alt="gatekeeper" src="/images/home/gate-2.png" width={'90%'} /> */}
                         </Box>
                     </Grid>
                     <Grid
