@@ -3,23 +3,8 @@ import { Box, Container, Grid, Typography } from '@mui/material';
 import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
-import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
+import { ButtonTitleBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
-const Title = [
-    <>
-        Become{' '}
-        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>an early investor</TypographyGradient>{' '}
-    </>,
-    <>in the scalable Launchpad</>,
-    <>
-        to participate in{' '}
-        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>all Games</TypographyGradient> ,
-    </>,
-    <>
-        <TypographyGradient sx={{ fontSize: '2.25rem', fontWeight: 'bold' }}>NFTs and Metaverse</TypographyGradient> in
-        the world.
-    </>,
-];
 const SubTitle = [
     'YouSUI works with projects with a high probability of success',
     'with enhanced Due Diligence and Regulation.',
@@ -30,6 +15,32 @@ export default function Intro() {
     const isTablet = useResponsive('down', 'md');
     const isMobile = useResponsive('down', 'sm');
     const theme = useTheme();
+
+    const Title = [
+        <>
+            Become{' '}
+            <TypographyGradient
+                sx={{
+                    fontSize: isMobile ? '1.5rem' : '2.25rem',
+                    fontWeight: 'bold',
+                }}
+            >
+                an early investor
+            </TypographyGradient>{' '}
+        </>,
+        <>in the scalable Launchpad</>,
+        <>
+            to participate in{' '}
+            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>
+                all Games
+            </TypographyGradient>{' '}
+            ,
+        </>,
+        <>
+            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>NFTs and Metaverse</TypographyGradient>{' '}
+            in the world.
+        </>,
+    ];
 
     return (
         <SectionBox
@@ -60,7 +71,11 @@ export default function Intro() {
                     >
                         <Box mt={isMobile ? 5 : 12}>
                             {Title.map((item, i) => (
-                                <TitleTypography key={i} variant="h1">
+                                <TitleTypography
+                                    key={i}
+                                    variant="h1"
+                                    sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem' }}
+                                >
                                     {item}
                                     <br />
                                 </TitleTypography>

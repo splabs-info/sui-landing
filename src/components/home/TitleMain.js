@@ -44,7 +44,7 @@ export default function TitleMain() {
                             {Title.map((item) => (
                                 <TypographyGradient
                                     key={item}
-                                    fontSize={isDesktop ? '2rem' : '1.2rem'}
+                                    fontSize={isDesktop ? '2rem' : '1.5rem'}
                                     fontFamily="SVN-Gilroy-semi-bold"
                                 >
                                     {item}
