@@ -96,6 +96,12 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
     backgroundClip: 'text',
     textFillColor: 'transparent',
     minHeight: '60px',
+    // '&:hover': {
+    //     color: 'white',
+    //     background: 'white',
+    //     backgroundClip: 'text',
+
+    // },
     [theme.breakpoints.down('md')]: {
         marginBottom: '1rem',
     },
@@ -162,12 +168,14 @@ export default function MultiChain() {
                         <SliderCustom {...multiChainSliderSettings}>
                             {teams.map((item, index) => (
                                 <Grid alignItems="flex-start" justifyContent="space-evenly" key={index} container>
-                                    <CustomBox>
+                                    <CustomBox  >
                                         <Box mb={4}>
-                                            <img style={{ width: 'min(25%,70px)' }} src={item.photoUrl} alt="" />
+                                            <img style={{ width: 'min(15%,50px)' }} src={item.photoUrl} alt="" />
                                         </Box>
                                         <CardContent>
-                                            <Stack>
+                                            <Stack
+                                               
+                                            >
                                                 <TypographyTitle variant="h6">{item.title}</TypographyTitle>
                                                 <Typography
                                                     variant="body2"

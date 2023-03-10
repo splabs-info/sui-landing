@@ -107,11 +107,22 @@ export default function MultiChain() {
                     <Grid container spacing={3} mt={4}>
                         {teams.map((item, index) => (
                             <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
-                                <CustomBox>
+                                <CustomBox
+                                    sx={{
+                                        margin: 'auto 0',
+                                        '&:hover': {
+                                            '& h6': {
+                                                color: 'white',
+                                                background: 'white',
+                                                backgroundClip: 'text',
+                                            },
+                                        },
+                                    }}
+                                >
                                     <Box
                                         sx={{
-                                            width: 90,
-                                            height: 90,
+                                            width: 86,
+                                            height: 86,
                                             background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
                                             borderRadius: '16px',
                                             display: 'flex',

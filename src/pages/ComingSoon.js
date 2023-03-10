@@ -1,9 +1,10 @@
 import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { TitleBox, TypographyGradient, ImgTitleBox } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { AppButton } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
+import { Link as RouterLink } from 'react-router-dom';
 import Page from '../components/common/Page';
-
 // ----------------------------------------------------------------------
 
 const ContentStyle = styled('div')(({ theme }) => ({
@@ -22,7 +23,7 @@ export default function ComingSoon() {
         <Page title="Coming Soon">
             <Box
                 sx={{
-                    background: "url('/images/background/bg1.png')",
+                    background: "url('/images/comingsoon/bg.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -35,13 +36,25 @@ export default function ComingSoon() {
             >
                 <Container>
                     <ContentStyle>
-                        <Box mb={8} sx={{ position: 'relative', margin: '0 auto' }}>
-                            <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                            <TitleBox>
-                                <Typography>Coming</Typography>
-                                <TypographyGradient>Soon</TypographyGradient>
-                            </TitleBox>
+                        <Box mb={8} sx={{ position: 'relative', margin: '0 auto', width: '100%' }}>
+                            <ImgTitleBox
+                                component={'img'}
+                                src="/images/home/shape.png"
+                                alt=""
+                                sx={{ width: '260px !important', margin: 'auto', textAlign: 'center' }}
+                            />
+                            <img src="/images/comingsoon/coming-soon.png" alt="" style={{ width: '100%', margin: '0 auto' }} />
+                          
                         </Box>
+                        <AppButton
+                            to="/"
+                            size="large"
+                            variant="contained"
+                            component={RouterLink}
+                            sx={{ margin: '24px auto 0 auto', width: 148 }}
+                        >
+                            Go to Home
+                        </AppButton>
                     </ContentStyle>
                 </Container>
             </Box>
