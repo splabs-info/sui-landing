@@ -9,7 +9,7 @@ export const Header = styled(Box)(({ theme }) => ({
     zIndex: '10',
     background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
     boxShadow: 'none',
-    backdropFilter: 'blur(10px)',
+    height: 88,
     '& .sticky-scroll': {
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',

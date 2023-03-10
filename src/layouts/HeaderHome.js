@@ -14,7 +14,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    MenuItem
+    MenuItem,
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -24,7 +24,7 @@ import { subMenus } from 'static/subMenus';
 import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
 import { CreateProfilePopup } from 'components';
-// import { WalletDrawer } from 'components/drawer';
+import { WalletDrawer } from 'components/drawer';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
@@ -99,8 +99,6 @@ export default function HeaderHome() {
     }, []);
 
     useEffect(() => {
-        // console.log('address', address);
-        // console.log('wallet', wallet);
         if (address) {
             setWallet(address);
             setOpenConnectPopup(false);
@@ -120,6 +118,7 @@ export default function HeaderHome() {
                         transform: 'matrix(1, 0, 0, -1, 0, 0)',
                         width: '100%',
                         height: '100%',
+                        backdropFilter: 'blur(10px)',
                     }}
                 ></Box>
                 <Container
@@ -145,7 +144,7 @@ export default function HeaderHome() {
                                 width: '100%',
                                 height: '3px',
                                 background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
-                                bottom: -8,
+                                bottom: -16,
                             },
                             '& a': {
                                 fontWeight: 700,
@@ -248,33 +247,6 @@ export default function HeaderHome() {
                                         marginLeft: '8rem',
                                     }}
                                 >
-                                    {wallet ? (
-                                        <>
-                                            {/* <IconButton onClick={handleOpenDrawer}>
-                                            <Avatar src="/images/icon/icon-user.png" />
-                                        </IconButton> */}
-                                            {/* <Web3Button /> */}
-                                            {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
-                                            create profile test button
-                                        </Button> */}
-                                        </>
-                                    ) : (
-                                        // <Typography sx={{ color: 'white', fontSize: 14 }}>{address}</Typography>
-                                        <>
-                                            {/* <Button onClick={() => setOpenCreateProfile(!openCreateProfile)}>
-                                            create profile test button
-                                        </Button> */}
-                                            <ApplyButton
-                                                sx={{ margin: 0 }}
-                                                onClick={handleOpenConnectPopup}
-                                                open={openConnectPopup}
-                                            >
-                                                Connect Wallet
-                                            </ApplyButton>
-                                            {/* <Web3Button /> */}
-                                        </>
-                                    )}
-
                                     <SocialBox sx={{ gap: '1.18rem' }}>
                                         {socials.map((item, index) =>
                                             item.link ? (
@@ -339,9 +311,19 @@ export default function HeaderHome() {
                                             </a>
                                         </MenuCustom>
                                     </SocialBox>
-                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
-                                        <Avatar src="/images/icon/icon-person-sui.png" sx={{ borderRadius: '0' }} />
-                                    </IconButton>
+                                    {wallet ? (
+                                        <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
+                                            <Avatar src="/images/icon/icon-person-sui.png" sx={{ borderRadius: '0' }} />
+                                        </IconButton>
+                                    ) : (
+                                        <ApplyButton
+                                            sx={{ margin: 0 }}
+                                            onClick={handleOpenConnectPopup}
+                                            open={openConnectPopup}
+                                        >
+                                            Connect Wallet
+                                        </ApplyButton>
+                                    )}
 
                                     {/* <Languages sx={{ color: 'white' }} /> */}
                                 </Box>
@@ -375,7 +357,7 @@ export default function HeaderHome() {
                 onClose={handleClose}
                 sx={{
                     '& .MuiPaper-root': {
-                        background: "url('/images/background/bg2.jpg')",
+                        background: "url('/images/background/homebg1.png')",
                     },
                 }}
             >
@@ -439,7 +421,7 @@ export default function HeaderHome() {
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
             <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
-            {/* <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} /> */}
+            <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} />
         </>
     );
 }

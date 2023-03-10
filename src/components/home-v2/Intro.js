@@ -37,7 +37,9 @@ export default function Intro() {
             ,
         </>,
         <>
-            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>NFTs and Metaverse</TypographyGradient>{' '}
+            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>
+                NFTs and Metaverse
+            </TypographyGradient>{' '}
             in the world.
         </>,
     ];
@@ -154,7 +156,7 @@ export default function Intro() {
                                 }}
                             >
                                 <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 80 : 32} />
+                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 40 : 32} />
                                 {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
@@ -191,7 +193,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '40%',
-                    right: '2%',
+                    right: '3%',
                     display: isTablet && 'none',
                 }}
             />
@@ -202,7 +204,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '40%',
-                    right: '2%',
+                    right: '3%',
                     display: isTablet && 'none',
                 }}
             />
@@ -213,7 +215,7 @@ export default function Intro() {
                 style={{
                     position: 'absolute',
                     width: '12%',
-                    right: '14.5%',
+                    right: '15.5%',
                     display: isTablet && 'none',
                 }}
             />
