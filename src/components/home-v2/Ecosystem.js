@@ -64,7 +64,7 @@ const CustomLogo = styled('img')(({ theme }) => ({
 const networks = [
     {
         icon: '/images/networks/icon-1.png',
-        label: 'YouSUI',
+        label: 'SUI',
         link: '/',
     },
     {
