@@ -18,8 +18,8 @@ function IcFrame() {
                     y2="5.43724"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#00C5D3" />
-                    <stop offset="1" stop-color="#42EECF" />
+                    <stop stopColor="#00C5D3" />
+                    <stop offset="1" stopColor="#42EECF" />
                 </linearGradient>
                 <clipPath id="clip0_236_1150">
                     <rect width="40" height="40" fill="white" transform="translate(0 0.5)" />

@@ -44,7 +44,8 @@ export const WalletProvider = ({ children }) => {
                 if (window && window.ethereum) {
                     // Check if web3modal wallet connection is available on storage
                     if (localStorage.getItem(web3modalStorageKey)) {
-                        await connectToWallet();
+                        // await connectToWallet();
+                        return;
                     }
                 } else {
                     console.log('window or window.ethereum is not available');

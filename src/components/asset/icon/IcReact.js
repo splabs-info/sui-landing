@@ -20,8 +20,8 @@ function IcReact() {
                     y2="42.7087"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#00C5D3" />
-                    <stop offset="1" stop-color="#42EECF" />
+                    <stop stopColor="#00C5D3" />
+                    <stop offset="1" stopColor="#42EECF" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_236_37"
@@ -31,8 +31,8 @@ function IcReact() {
                     y2="26.236"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#00C5D3" />
-                    <stop offset="1" stop-color="#42EECF" />
+                    <stop stopColor="#00C5D3" />
+                    <stop offset="1" stopColor="#42EECF" />
                 </linearGradient>
             </defs>
         </svg>

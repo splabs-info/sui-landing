@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { C98Provider } from 'provider/C98Provider';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -25,26 +26,28 @@ export default function App() {
     return (
         <ThemeProvider>
             <WalletProvider>
-                <QueryClientProvider client={queryClient}>
-                    <ScrollToTop />
-                    <BaseOptionChartStyle />
+                <C98Provider>
+                    <QueryClientProvider client={queryClient}>
+                        <ScrollToTop />
+                        <BaseOptionChartStyle />
 
-                    <Routers />
+                        <Routers />
 
-                    <ShowErrorComponent />
-                    <BackgroundJob />
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                </QueryClientProvider>
+                        <ShowErrorComponent />
+                        <BackgroundJob />
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
+                    </QueryClientProvider>
+                </C98Provider>
             </WalletProvider>
         </ThemeProvider>
     );
