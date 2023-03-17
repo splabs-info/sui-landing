@@ -115,7 +115,7 @@ export default function CompletePools() {
                             </Box>
                             <Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Previous</Typography>
+                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Fixed APR</Typography>
                                     <Typography sx={{ fontSize: '1rem', color: '#ffffff', fontWeight: 700 }}>
                                         {' '}
                                         04%
@@ -196,7 +196,7 @@ export default function CompletePools() {
                             </Box>
                             <Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Previous</Typography>
+                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}>Fixed APR</Typography>
                                     <Typography sx={{ fontSize: '1rem', color: '#ffffff', fontWeight: 700 }}>
                                         {' '}
                                         06%
@@ -277,7 +277,7 @@ export default function CompletePools() {
                             </Box>
                             <Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Previous</Typography>
+                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Fixed APR</Typography>
                                     <Typography sx={{ fontSize: '1rem', color: '#ffffff', fontWeight: 700 }}>
                                         {' '}
                                         08%
@@ -358,7 +358,7 @@ export default function CompletePools() {
                             </Box>
                             <Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Previous</Typography>
+                                    <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Fixed APR</Typography>
                                     <Typography sx={{ fontSize: '1rem', color: '#ffffff', fontWeight: 700 }}>
                                         {' '}
                                         15%
