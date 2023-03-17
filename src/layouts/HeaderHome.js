@@ -30,7 +30,7 @@ import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
 import { socials } from './Footer-v2';
-import { useC98Provider } from 'provider/C98Provider';
+
 const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soons' },
@@ -43,7 +43,7 @@ const config = [
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
 
-    const { connectToCoin98 } = useC98Provider();
+    
 
     const { setting } = useSelector((state) => state);
     const { library } = setting;

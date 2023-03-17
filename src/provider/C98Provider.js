@@ -28,12 +28,6 @@ const C98Provider = ({ children }) => {
     const connectToCoin98 = async () => {
         const newClient = new Client();
 
-        // console.log('newClient', newClient);
-        if (!newClient) {
-            // newClient = new Client();
-            setClient(newClient);
-        }
-
         try {
             const result = await newClient.connect(Chain.matic, {
                 logo: 'Dapps Logo URL',

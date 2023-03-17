@@ -26,7 +26,7 @@ export default function App() {
     return (
         <ThemeProvider>
             <WalletProvider>
-                <C98Provider>
+                {/* <C98Provider> */}
                     <QueryClientProvider client={queryClient}>
                         <ScrollToTop />
                         <BaseOptionChartStyle />
@@ -47,7 +47,7 @@ export default function App() {
                             pauseOnHover
                         />
                     </QueryClientProvider>
-                </C98Provider>
+                {/* </C98Provider> */}
             </WalletProvider>
         </ThemeProvider>
     );
