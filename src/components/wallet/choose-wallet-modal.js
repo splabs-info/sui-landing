@@ -4,6 +4,7 @@ import { WalletContext } from 'hooks/use-connect';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WalletButton } from './wallet-button';
+import { useC98Provider } from 'provider/C98Provider';
 
 const InstallButton = styled(Button)(({ theme }) => ({
     display: 'flex',
@@ -24,7 +25,7 @@ const InstallButton = styled(Button)(({ theme }) => ({
 export const ChooseWalletModal = () => {
     const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
-    const { connectToWallet, error } = useContext(WalletContext);
+    const { connectToWallet, connectBitkeepWallet, error } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     useEffect(() => {
@@ -35,11 +36,6 @@ export const ChooseWalletModal = () => {
             setIsInstalledBitKeep(true);
         }
     }, []);
-
-    // const _handleUpdateWalletAddress = (address, walletName) => {
-    //     dispatch(_setWalletAddress(address));
-    //     dispatch(_setWalletName(walletName));
-    // };
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -54,6 +50,19 @@ export const ChooseWalletModal = () => {
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
+                {/* <WalletButton onClick={connectToCoin98}>
+                    <Box className="img-box">
+                        <img src="/images/icon/metamask.png" alt="logo metamask" />
+                    </Box>
+                    <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
+                        C98
+                    </Typography>
+                    {error && (
+                        <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
+                            <Typography variant="caption">INSTALL</Typography>
+                        </InstallButton>
+                    )}
+                </WalletButton> */}
                 <WalletButton onClick={connectToWallet}>
                     <Box className="img-box">
                         <img src="/images/icon/metamask.png" alt="logo metamask" />
@@ -69,11 +78,19 @@ export const ChooseWalletModal = () => {
                     )}
                 </WalletButton>
                 <WalletButton
-                    onClick={() => {
-                        if (isInstalledBitKeep) {
-                            // _connectToMetamaskWallet('bitkeep', _handleUpdateWalletAddress);
-                        }
-                    }}
+                    onClick={
+                        isInstalledBitKeep ? (
+                            connectBitkeepWallet
+                        ) : (
+                            <Link href="https://bitkeep.com/download?type=2&theme=light"></Link>
+                        )
+                    }
+                    // onClick={() => {
+                    //     if (isInstalledBitKeep) {
+
+                    //         // _connectToMetamaskWallet('bitkeep', _handleUpdateWalletAddress);
+                    //     }
+                    // }}
                 >
                     <Box className="img-box">
                         <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />

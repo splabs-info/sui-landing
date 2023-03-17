@@ -30,7 +30,7 @@ import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
 import { socials } from './Footer-v2';
-import Languages from './Languages';
+
 const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soons' },
@@ -42,13 +42,15 @@ const config = [
 
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
+
+    
+
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     const isTablet = useResponsive(`down`, `md`);
     const [openConnectPopup, setOpenConnectPopup] = useState();
     const [wallet, setWallet] = useState();
     const [openCreateProfile, setOpenCreateProfile] = useState();
-
     const [openWalletDrawer, setOpenWalletDrawer] = useState();
     const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
@@ -170,6 +172,7 @@ export default function HeaderHome() {
                                     if (item.link.indexOf('#') <= -1) {
                                         return (
                                             <Box
+                                                key={item.id}
                                                 className={`${item.link === activeRoute ? 'active' : ''}`}
                                                 sx={{
                                                     display: 'flex',

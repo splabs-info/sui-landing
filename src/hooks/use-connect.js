@@ -44,7 +44,8 @@ export const WalletProvider = ({ children }) => {
                 if (window && window.ethereum) {
                     // Check if web3modal wallet connection is available on storage
                     if (localStorage.getItem(web3modalStorageKey)) {
-                        await connectToWallet();
+                        // await connectToWallet();
+                        return;
                     }
                 } else {
                     console.log('window or window.ethereum is not available');
@@ -70,6 +71,21 @@ export const WalletProvider = ({ children }) => {
         }
     };
 
+    const setBitkeepWalletAddress = async (prefix) => {
+        try {
+            const accounts = await prefix.request({
+                method: 'eth_requestAccounts',
+            });
+
+            const address = accounts[0];
+
+            setAddress(address);
+            getBalance(prefix, address);
+        } catch (error) {
+            console.log('Account not connected; logged from setBitkeepWalletAddress function');
+        }
+    };
+
     const getBalance = async (provider, walletAddress) => {
         const walletBalance = await provider.getBalance(walletAddress);
         const balanceInEth = ethers.utils.formatEther(walletBalance);
@@ -88,6 +104,18 @@ export const WalletProvider = ({ children }) => {
         }
     };
 
+    const subscribeBitkeepProvider = async (prefix) => {
+        prefix.on('accountsChanged', async (accounts) => {
+            if (accounts?.length) {
+                setAddress(accounts[0]);
+                const provider = new ethers.providers.Web3Provider(prefix);
+                getBalance(provider, accounts[0]);
+            } else {
+                setAddress(undefined);
+            }
+        });
+    };
+
     const connectToWallet = async () => {
         try {
             setLoading(true);
@@ -103,6 +131,30 @@ export const WalletProvider = ({ children }) => {
             setLoading(false);
             console.log(error, 'got this error on connectToWallet catch block while connecting the wallet');
         }
+    };
+
+    const connectBitkeepWallet = async () => {
+        try {
+            setLoading(true);
+            checkIfExtensionIsAvailable();
+            const prefix = window.bitkeep?.ethereum;
+            if (!prefix) {
+                throw new Error('Bitkeep extension is not available');
+            }
+
+            await subscribeBitkeepProvider(prefix);
+
+            setBitkeepWalletAddress(prefix);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log(error, 'got this error on connectBitkeepWallet catch block while connecting the wallet');
+        }
+    };
+
+    const disconnectBitkeepWallet = () => {
+        setAddress(undefined);
+        web3Modal && web3Modal.clearCachedProvider();
     };
 
     const subscribeProvider = async (connection) => {
@@ -129,6 +181,8 @@ export const WalletProvider = ({ children }) => {
                 error,
                 connectToWallet,
                 disconnectWallet,
+                connectBitkeepWallet,
+                disconnectBitkeepWallet,
             }}
         >
             <>
