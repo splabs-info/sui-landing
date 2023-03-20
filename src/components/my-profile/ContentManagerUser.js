@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import Tabs from './Tabs';
 
 const WrapperContentManagerUser = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(270deg, rgba(234, 204, 248, 0.2) 0%, rgba(150, 224, 218, 0.2) 100%)',
@@ -14,11 +14,5 @@ const WrapperContentManagerUser = styled(Box)(({ theme }) => ({
 }));
 
 export default function ContentManagerUser() {
-    return (
-        <WrapperContentManagerUser>
-            <Typography color={'white'} variant="h5" align="center">
-                Coming Soon
-            </Typography>
-        </WrapperContentManagerUser>
-    );
+    return <Tabs />;
 }
