@@ -8,6 +8,7 @@ import { Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { AssetCard } from './AssetCard';
 import { TierInformation } from './TierInformation';
+import { TitleSection } from './TitleSection';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -57,24 +58,13 @@ export default function BasicTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Typography
-                    sx={{ fontSize: 18, fontWeight: 'bold', lineHeight: '26px', color: 'white', marginBottom: 3 }}
-                >
-                    MY WALLETS BALANCES
-                    <span></span>
-                </Typography>
+                <TitleSection title="MY WALLETS BALANCES" />
                 <Stack direction="row" spacing={2}>
                     <AssetCard balance={200000} currency="XUI" />
                     <AssetCard balance={200000} currency="XUI" />
                     <AssetCard balance={200000} currency="XUI" />
                 </Stack>
-
-                <Typography
-                    sx={{ fontSize: 18, fontWeight: 'bold', lineHeight: '26px', color: 'white', marginBottom: 3 }}
-                >
-                    TIER INFORMATION
-                    <span></span>
-                </Typography>
+                <TitleSection title="TIER INFORMATION" />
                 <TierInformation tierMedal="/tier-1.png" level="TIER 1" idoApp="2% of Total Pool" />
             </TabPanel>
             <TabPanel value={value} index={1}>
