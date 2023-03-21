@@ -14,7 +14,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    MenuItem,
+    MenuItem
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -42,8 +42,6 @@ const config = [
 
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
-
-    
 
     const { setting } = useSelector((state) => state);
     const { library } = setting;

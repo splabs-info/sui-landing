@@ -1,4 +1,4 @@
-import { Box, Divider, styled } from '@mui/material';
+import { Box, Divider, styled, Typography } from '@mui/material';
 import { TitleSection } from './TitleSection';
 
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
@@ -8,152 +8,64 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     padding: '30px 75px',
     display: 'flex',
     justifyContent: 'space-between',
+    border: '1px solid #00C5D3',
+    alignItems: 'center',
+}));
+
+const StyledTitleInfo = styled(Typography)(({ theme }) => ({
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 24,
+    textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+}));
+
+const StyledInfo = styled(Typography)(({ theme }) => ({
+    fontSize: '16px',
+    lineHeight: '23px',
+    textAlign: 'center',
+    color: 'white',
+}));
+
+const StyledDivider = styled(Divider)(({ theme }) => ({
+    height: 80,
+    borderColor: 'rgba(0, 229, 255, 0.2)',
 }));
 
 export const MyIDOArea = () => {
     return (
-        <Box sx={{ padding: 10 }}>
+        <Box>
             <TitleSection title="My IDO Participated" />
             <StyledMyIDOBox>
                 <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: '24px',
-                            lineHeight: '35px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    >
-                        Time
-                    </Box>
-
-                    <Divider sx={{ borderColor: 'rgba(0, 229, 255, 0.2)' }} orientation="vertical" />
-                    <Box
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: '16px',
-                            lineHeight: '23px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                        }}
-                    >
-                        22.0721:12:22 25/12/2022.2022
-                    </Box>
+                    <StyledTitleInfo>Time</StyledTitleInfo>
+                    <StyledInfo>22.0721:12:22 25/12/2022.2022</StyledInfo>
                 </Box>
 
-                <Divider sx={{ borderColor: 'rgba(0, 229, 255, 0.2)' }} orientation="vertical" />
+                <StyledDivider orientation="vertical" />
 
                 <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: '24px',
-                            lineHeight: '35px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    >
-                        IDO Pool
-                    </Box>
-                    <Box
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: '16px',
-                            lineHeight: '23px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                        }}
-                    >
-                        ADK Project
-                    </Box>
+                    <StyledTitleInfo>IDO Pool</StyledTitleInfo>
+                    <StyledInfo>ADK Project</StyledInfo>
                 </Box>
-                <Box>
-                    {' '}
-                    <Divider sx={{ borderColor: 'rgba(0, 229, 255, 0.2)' }} orientation="vertical" />
-                </Box>
+                <StyledDivider orientation="vertical" />
                 <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: '24px',
-                            lineHeight: '35px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    >
-                        Amount
-                    </Box>
-                    <Box
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: '16px',
-                            lineHeight: '23px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                        }}
-                    >
-                        30,000 ADK
-                    </Box>
+                    <StyledTitleInfo>Amount</StyledTitleInfo>
+                    <StyledInfo>30,000 ADK</StyledInfo>
                 </Box>
 
-                <Divider sx={{ borderColor: 'rgba(0, 229, 255, 0.2)' }} orientation="vertical" />
+                <StyledDivider orientation="vertical" />
 
                 <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: '24px',
-                            lineHeight: '35px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    >
-                        USDT
-                    </Box>
-                    <Box
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: '16px',
-                            lineHeight: '23px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                        }}
-                    >
-                        ~ 12,000 USDT
-                    </Box>
+                    <StyledTitleInfo>USDT</StyledTitleInfo>
+                    <StyledInfo>~ 12,000 USDT</StyledInfo>
                 </Box>
-                <Box>
-                    <Divider sx={{ borderColor: 'rgba(0, 229, 255, 0.2)' }} orientation="vertical" />
-                </Box>
+
+                <StyledDivider orientation="vertical" />
+
                 <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: '24px',
-                            lineHeight: '35px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    >
-                        Status
-                    </Box>
-                    <Box
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: '16px',
-                            lineHeight: '23px',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                        }}
-                    >
-                        Completed
-                    </Box>
+                    <StyledTitleInfo>Status</StyledTitleInfo>
+                    <StyledInfo>Completed</StyledInfo>
                 </Box>
             </StyledMyIDOBox>
         </Box>

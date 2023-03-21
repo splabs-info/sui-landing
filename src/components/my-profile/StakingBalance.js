@@ -13,7 +13,7 @@ const StakingBalanceCard = styled(Box)(({ theme }) => ({
 }));
 export const StakingBalance = () => {
     return (
-        <Box sx={{ padding: 10 }}>
+        <Box>
             <TitleSection title="STAKING BALANCE" />
             <StakingBalanceCard>
                 <Box sx={{ margin: 'auto' }}>

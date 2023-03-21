@@ -1,42 +1,61 @@
-import { Box, Divider, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Container, Stack } from '@mui/material';
+import { SectionBox } from 'components/home-v2/HomeStyles';
+import useResponsive from 'hooks/useResponsive';
 import ContentManagerUser from './ContentManagerUser';
+import { CurrentStakingPool } from './CurrentStakingPool';
+import { IDOParticipated } from './IDOParticipated';
 import AreaInformation from './Information';
 import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import { StakingBalance } from './StakingBalance';
-const WrapperManagerUser = styled(Box)(({ theme }) => ({
-    width: '100%',
-    display: 'flex',
-    gap: '34px',
-    padding: '70px',
-    paddingTop: '90px',
-    '> div:nth-child(1)': {
-        overflow: 'auto',
-        flexBasis: 'min-content',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '15px',
-        '> div:nth-child(3)': {
-            marginTop: '20px',
-        },
-    },
-    '> div:nth-child(2)': {
-        flexBasis: '70%',
-    },
-}));
 
 export default function MyInfo() {
+    const isDesktop = useResponsive('up', 'sm');
     return (
         <>
-            <WrapperManagerUser>
-                <AreaInformation />
-                <ContentManagerUser />
-            </WrapperManagerUser>
-            <Box sx={{ width: '100%', padding: 10, display: 'flex' }}></Box>
-            <StakingBalance />
-            <MyIDOArea />
-            <MyINOArea />
+            <SectionBox
+                sx={{
+                    backgroundImage: "url('/images/background/homebg2.png')",
+                    minHeight: '100vh',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    paddingTop: !isDesktop && 5,
+                }}
+            >
+                <Container maxWidth={'xl'} sx={{ display: 'flex' }}>
+                    <AreaInformation />
+                    <ContentManagerUser />
+                </Container>
+            </SectionBox>
+            <SectionBox
+                sx={{
+                    backgroundImage: "url('/images/background/homebg3.png')",
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                }}
+            >
+                <Container maxWidth={'xl'} sx={{ display: 'flex' }}>
+                    <Stack direction="row" spacing={10}>
+                        <IDOParticipated />
+                        <CurrentStakingPool />
+                    </Stack>
+                </Container>
+            </SectionBox>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg4.png')", backgroundSize: 'cover' }}>
+                <Container maxWidth={'xl'}>
+                    <StakingBalance />
+                </Container>
+            </SectionBox>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg5.png')", backgroundSize: 'cover' }}>
+                <Container maxWidth={'xl'}>
+                    <MyIDOArea />
+                </Container>
+            </SectionBox>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg6.png')", backgroundSize: 'cover' }}>
+                <Container maxWidth={'xl'}>
+                    <MyINOArea />
+                </Container>
+            </SectionBox>
         </>
     );
 }
