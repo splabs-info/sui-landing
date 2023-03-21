@@ -10,7 +10,6 @@
         "eject": "react-scripts eject"
     },
     "dependencies": {
-        "@coin98-com/connect-sdk": "^1.0.9",
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
         "@headlessui/react": "^1.7.10",
@@ -23,8 +22,8 @@
         "@tabler/icons": "^1.72.0",
         "@tanstack/react-query": "^4.24.6",
         "@testing-library/jest-dom": "^5.16.4",
-        "@web3modal/ethereum": "^2.1.1",
-        "@web3modal/react": "^2.1.1",
+        "@web3modal/ethereum": "^2.2.2",
+        "@web3modal/react": "^2.2.2",
         "axios": "^1.3.3",
         "buffer": "^6.0.3",
         "change-case": "^4.1.2",
@@ -57,7 +56,7 @@
         "redux-thunk": "^2.4.1",
         "simplebar": "^5.3.8",
         "simplebar-react": "^2.4.1",
-        "wagmi": "^0.11.5",
+        "wagmi": "^0.12.2",
         "web-vitals": "^2.1.4",
         "web3modal": "^1.9.12",
         "yup": "^0.32.11"

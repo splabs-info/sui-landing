@@ -35,12 +35,7 @@ export default function MyInfo() {
                 }}
             >
                 <Container maxWidth={'xl'} sx={{ display: 'flex' }}>
-                    <Stack
-                        direction="row"
-                        sx={{ flexWrap: 'wrap' }}
-                        alignItems="center"
-                        justifyContent="flex-start"
-                    >
+                    <Stack direction="row" sx={{ flexWrap: 'wrap' }} alignItems="center" justifyContent="flex-start">
                         <IDOParticipated />
                         <CurrentStakingPool />
                     </Stack>

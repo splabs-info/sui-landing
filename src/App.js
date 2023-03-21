@@ -27,26 +27,26 @@ export default function App() {
         <ThemeProvider>
             <WalletProvider>
                 {/* <C98Provider> */}
-                    <QueryClientProvider client={queryClient}>
-                        <ScrollToTop />
-                        <BaseOptionChartStyle />
+                <QueryClientProvider client={queryClient}>
+                    <ScrollToTop />
+                    <BaseOptionChartStyle />
 
-                        <Routers />
+                    <Routers />
 
-                        <ShowErrorComponent />
-                        <BackgroundJob />
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                        />
-                    </QueryClientProvider>
+                    <ShowErrorComponent />
+                    <BackgroundJob />
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                </QueryClientProvider>
                 {/* </C98Provider> */}
             </WalletProvider>
         </ThemeProvider>
