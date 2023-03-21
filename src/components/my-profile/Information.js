@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Typography } from '@mui/material';
+import { StyledInputUpload, UploadBtn } from 'components/create-profile';
 import { Box } from '@mui/system';
 import IcCopy from 'components/asset/icon/IcCopy';
 import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
 import { UploadAvatar } from 'components/upload-avatar';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%, 1)',
@@ -18,7 +20,7 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
 }));
 
 const DATA_DEFAULT = [
-    { titleName: '012jf5684464...dh6845eer2598', icon: <IcCopy /> },
+    { titleName: '_', icon: <IcCopy /> },
     { titleName: 'Email', title: 'john_br.son@gmail.com', icon: <MailOutlineIcon color="inherit" /> },
     {
         titleName: 'Day of Birth',
@@ -28,7 +30,7 @@ const DATA_DEFAULT = [
     { titleName: 'Sex', title: 'john_br.son@gmail.com', icon: <IcSex /> },
 ];
 
-export default function AreaInformation() {
+export default function AreaInformation({onOpen}) {
     const onUploadAvatar = () => {};
 
     return (
@@ -68,13 +70,25 @@ export default function AreaInformation() {
                                 variant="subtitle2"
                                 align="center"
                             >
-                                {el.title}
+                                {/* {el.title} */}
+                                _
                             </Typography>
                         )}
                     </Box>
                 ))}
             </Box>
 
+            <Box sx={{ textAlign: 'center', margin: '24px 0' }}>
+                <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
+                    {/* <StyledInputUpload
+                        type="file"
+                        accept="image/jpeg,image/png,image/svg,image/gif"
+                        multiple
+                        onChange={onOpen}
+                    /> */}
+                    Update profile
+                </UploadBtn>
+            </Box>
             <Box sx={{ textAlign: 'center' }}>
                 <Typography
                     color={'#ffffff'}
@@ -83,7 +97,7 @@ export default function AreaInformation() {
                     align="center"
                     sx={{ fontWeight: 'normal', fontStyle: 'italic' }}
                 >
-                    Last signed in 15th July 2021
+                    Last signed in _
                 </Typography>
             </Box>
         </WrapperAreaInformation>
