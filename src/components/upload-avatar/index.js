@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
@@ -10,14 +11,11 @@ const baseStyle = {
     padding: 16,
     borderWidth: 2,
     borderRadius: '50%',
-    // borderColor: grey[500],
-    // borderStyle: 'dashed',
     backgroundColor: 'transparent',
-    // color: '#bdbdbd',
     outline: 'none',
     transition: 'border .24s ease-in-out',
-    width: 128,
-    height: 128,
+    width: 270,
+    height: 270,
     // marginRight: 24,
     cursor: 'pointer',
     justifyContent: 'center',
@@ -117,7 +115,7 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <img src="/images/default-avatar.png" style={{ borderRadius: '50%' }} />
+                <img src="/images/default-avatar.png" style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 {/* <PersonAddAltIcon /> */}
                 {/* <CaptionUpload>Drag 'n' drop your avatar here</CaptionUpload> */}
             </div>
