@@ -1,6 +1,5 @@
+import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Divider } from '@mui/material';
-
 import { TitleSection } from './TitleSection';
 const StakingBalanceCard = styled(Box)(({ theme }) => ({
     width: '100%',
@@ -11,14 +10,27 @@ const StakingBalanceCard = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
 }));
+
 export const StakingBalance = () => {
     return (
-        <Box>
+        <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="STAKING BALANCE" />
             <StakingBalanceCard>
                 <Box sx={{ margin: 'auto' }}>
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>$XUI Staked</Typography>
-                    <Typography sx={{ fontSize: 90, color: 'white', fontWeight: 'bold' }}>150.000</Typography>
+                    <Typography
+                        sx={{
+                            fontSize: 90,
+                            color: 'white',
+                            fontWeight: 'bold',
+                            textShadow: '2px 3px 5px rgb(0,0,0,0.2)',
+                            background: 'linear-gradient(to top, #CCCCCC 0%, #FFFFFF 50%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                        }}
+                    >
+                        150.000
+                    </Typography>
                 </Box>
                 <Divider
                     orientation="vertical"
@@ -28,7 +40,19 @@ export const StakingBalance = () => {
                 />
                 <Box sx={{ margin: 'auto' }}>
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>Holding $XUI</Typography>
-                    <Typography sx={{ fontSize: 90, color: 'white', fontWeight: 'bold' }}>80.000</Typography>
+                    <Typography
+                        sx={{
+                            fontSize: 90,
+                            color: 'white',
+                            fontWeight: 'bold',
+                            textShadow: '2px 3px 5px rgb(0,0,0,0.2)',
+                            background: 'linear-gradient(to top, #e3e1e1 0%, #FFFFFF 50%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                        }}
+                    >
+                        80.000
+                    </Typography>
                 </Box>
             </StakingBalanceCard>
         </Box>

@@ -33,7 +33,7 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
 }));
 export const MyINOArea = () => {
     return (
-        <Box>
+        <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="My INO Participated" />
             <StyledMyIDOBox>
                 <Box sx={{ textAlign: 'center' }}>

@@ -33,7 +33,7 @@ const StyledTitleTierInfo = styled(Typography)(({ theme }) => ({
 const Info = styled(Typography)(({ theme }) => ({
     fontSize: 20,
     lineHeight: '29px',
-    color: 'white'
+    color: 'white',
 }));
 export const TierInformation = ({ tierMedal, level, idoApp }) => {
     return (
@@ -55,24 +55,24 @@ export const TierInformation = ({ tierMedal, level, idoApp }) => {
             <Divider orientation="vertical" variant="middle" flexItem sx={{ height: 240, marginRight: 5 }} />
             <Box width={'100%'}>
                 <InfoWrapper>
-                    <StyledTitleTierInfo>IDO Application</StyledTitleTierInfo>
-                    <Info>{idoApp}</Info>
+                    <StyledTitleTierInfo>IDO Allocation</StyledTitleTierInfo>
+                    <Info>35%</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>$XUI Required</StyledTitleTierInfo>
-                    <Info>{idoApp}</Info>
+                    <Info>2% of Total pool</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>Free Airdrop Allocation</StyledTitleTierInfo>
-                    <Info>{idoApp}</Info>
+                    <Info>Lottery</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Allocation</StyledTitleTierInfo>
-                    <Info></Info>
+                    <Info>FCFS</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Discount</StyledTitleTierInfo>
-                    <Info></Info>
+                    <Info>-20%</Info>
                 </InfoWrapper>
             </Box>
         </TierBox>

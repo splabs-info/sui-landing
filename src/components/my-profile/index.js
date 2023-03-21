@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, Box } from '@mui/material';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import ContentManagerUser from './ContentManagerUser';
@@ -8,26 +8,42 @@ import AreaInformation from './Information';
 import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import { StakingBalance } from './StakingBalance';
-
+import { ClaimAvailable } from './ClaimAvailable';
 export default function MyInfo() {
     const isDesktop = useResponsive('up', 'sm');
     return (
         <>
             <SectionBox
                 sx={{
-                    backgroundImage: "url('/images/background/homebg2.png')",
+                    backgroundImage: "url('/MyPage.png')",
                     minHeight: '100vh',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     paddingTop: !isDesktop && 5,
                 }}
             >
-                <Container maxWidth={'xl'} sx={{ display: 'flex' }}>
-                    <AreaInformation />
-                    <ContentManagerUser />
+                <Container maxWidth={'xl'}>
+                    <Stack direction="column">
+                        <Stack direction="row" sx={{ marginBottom: 12 }}>
+                            <AreaInformation />
+                            <ContentManagerUser />
+                        </Stack>
+
+                        <Stack direction="column">
+                            <Stack direction="row" sx={{ marginBottom: 12 }}>
+                                <IDOParticipated />
+                                <CurrentStakingPool />
+                            </Stack>
+
+                            <StakingBalance />
+                            <MyIDOArea />
+                            <MyINOArea />
+                            <ClaimAvailable />
+                        </Stack>
+                    </Stack>
                 </Container>
             </SectionBox>
-            <SectionBox
+            {/* <SectionBox
                 sx={{
                     backgroundImage: "url('/images/background/homebg3.png')",
                     backgroundSize: '100% 100%',
@@ -40,13 +56,13 @@ export default function MyInfo() {
                         <CurrentStakingPool />
                     </Stack>
                 </Container>
-            </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg4.png')", backgroundSize: 'cover' }}>
+            </SectionBox> */}
+            {/* <SectionBox sx={{ backgroundImage: "url('/images/background/homebg4.png')", backgroundSize: 'cover' }}>
                 <Container maxWidth={'xl'}>
                     <StakingBalance />
                 </Container>
-            </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg5.png')", backgroundSize: 'cover' }}>
+            </SectionBox> */}
+            {/* <SectionBox sx={{ backgroundImage: "url('/images/background/homebg5.png')", backgroundSize: 'cover' }}>
                 <Container maxWidth={'xl'}>
                     <MyIDOArea />
                 </Container>
@@ -56,6 +72,11 @@ export default function MyInfo() {
                     <MyINOArea />
                 </Container>
             </SectionBox>
+            <SectionBox>
+                <Container maxWidth={'xl'}>
+                    <ClaimAvailable />
+                </Container>
+            </SectionBox> */}
         </>
     );
 }
