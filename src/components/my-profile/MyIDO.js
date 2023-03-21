@@ -1,7 +1,6 @@
 import { Box, Divider, styled, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { TitleSection } from './TitleSection';
 import useResponsive from 'hooks/useResponsive';
+import { TitleSection } from './TitleSection';
 
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
