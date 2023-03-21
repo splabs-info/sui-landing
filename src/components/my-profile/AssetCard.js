@@ -8,7 +8,11 @@ const StyledAssetCard = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
     borderRadius: 10,
     padding: '24px 48px 24px 48px',
-    textAlign: 'center'
+    textAlign: 'center',
+    [theme.breakpoints.down('xl')]: {
+        width: '100%',
+        marginBottom: 32,
+    },
 }));
 
 const StyledBalance = styled(Typography)(({ theme }) => ({

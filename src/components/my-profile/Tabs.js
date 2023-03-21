@@ -119,7 +119,7 @@ export default function BasicTabs() {
                 </Box>
                 <TabPanel value={value} index={0}>
                     <TitleSection title="MY WALLETS BALANCES" />
-                    <Stack direction="row" justifyContent="space-between" sx={{ marginBottom: 4 }}>
+                    <Stack direction="row" justifyContent="space-between" sx={{ marginBottom: 4, flexWrap: 'wrap' }}>
                         <AssetCard balance={'0'} currency="$XUI" />
                         <AssetCard balance={'0'} currency="USDT" />
                         <AssetCard balance={'0'} currency="SUI" />
