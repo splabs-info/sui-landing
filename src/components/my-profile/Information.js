@@ -11,9 +11,9 @@ import { StyledInputUpload, UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(270deg, rgba(234, 204, 248, 0.2) 0%, rgba(150, 224, 218, 0.2) 100%)',
+    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%, 1)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-    backdropFilter: 'blur(25px)',
+    backdropFilter: 'blur(10px)',
     borderRadius: '15px',
     height: '720px',
     padding: '40px',
@@ -55,7 +55,7 @@ export default function AreaInformation() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {DATA_DEFAULT.map((el, i) => (
                     <Box sx={{ display: 'flex', gap: '8px', color: '#ffffff' }}>
-                        <span>{el.icon}</span>
+                        <Box>{el.icon}</Box>
                         {el.titleName && (
                             <Typography color={'#ffffff'} component={'span'} variant="subtitle2" align="center">
                                 {el.titleName}

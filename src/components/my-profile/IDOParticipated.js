@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 import { TitleSection } from './TitleSection';
 const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
-    // background: 'linear-gradient(178.73deg, #68E5B8 -8.02%, #6D85DA 98.69%)',
+    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     border: '1px solid #00C5D3',
     borderRadius: '8px',
     padding: 48,
