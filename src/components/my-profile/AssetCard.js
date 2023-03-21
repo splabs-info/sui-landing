@@ -13,6 +13,11 @@ const StyledAssetCard = styled(Box)(({ theme }) => ({
 
 const StyledBalance = styled(Typography)(({ theme }) => ({
     fontSize: 42,
+    textShadow: '2px 3px 5px rgb(0,0,0,0.2)',
+    background: 'linear-gradient(to top, #CCCCCC 0%, #FFFFFF 50%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    fontWeight: 700,
 }));
 
 const StyledCurrencies = styled(Typography)(({ theme }) => ({

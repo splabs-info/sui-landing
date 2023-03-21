@@ -1,4 +1,4 @@
-import { EthereumClient, modalConnectors, walletConnectProvider } from '@web3modal/ethereum';
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 import { Web3Modal as Web3ModalReact } from '@web3modal/react';
 import { ethers } from 'ethers';
 import { createContext, useEffect, useState } from 'react';
@@ -11,12 +11,12 @@ const web3modalStorageKey = 'WEB3_CONNECT_CACHED_PROVIDER';
 
 // Wagmi client
 const { provider } = configureChains(chains, [
-    walletConnectProvider({ projectId: 'a6d4a9db5776c4ad9b324588b10c7ee5' }),
+    w3mProvider({ projectId: 'a6d4a9db5776c4ad9b324588b10c7ee5' }),
 ]);
 
 const wagmiClient = createClient({
     autoConnect: true,
-    connectors: modalConnectors({
+    connectors: w3mConnectors({
         projectId: 'a6d4a9db5776c4ad9b324588b10c7ee5',
         version: '1', // or "2"
         appName: 'gate-landing',
