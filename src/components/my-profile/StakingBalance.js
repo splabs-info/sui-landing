@@ -1,5 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import useResponsive from 'hooks/useResponsive';
 import { TitleSection } from './TitleSection';
 const StakingBalanceCard = styled(Box)(({ theme }) => ({
     width: '100%',
@@ -9,8 +10,9 @@ const StakingBalanceCard = styled(Box)(({ theme }) => ({
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('816')]: {
         flexDirection: 'column',
+        padding: '24px',
     },
 }));
 
@@ -43,11 +45,17 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         margin: '0 80px',
     },
-    [theme.breakpoints.down('sm')]: {
-        margin: '0 40px',
+    [theme.breakpoints.down('816')]: {
+        height: 16,
+        marginTop: 32,
+        marginBottom: 32,
     },
 }));
 export const StakingBalance = () => {
+    const tablet = useResponsive('down', 'md');
+    // const theme = useTheme();
+    // const tablet = theme.breakpoints.down('md');
+    console.log('tablet', tablet);
     return (
         <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="STAKING BALANCE" />
@@ -56,7 +64,8 @@ export const StakingBalance = () => {
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>$XUI Staked</Typography>
                     <StyledStakingBalanceInfo>150.000</StyledStakingBalanceInfo>
                 </Box>
-                <StyledDivider orientation="vertical" variant="middle" flexItem />
+                <StyledDivider orientation={tablet ? '' : 'vertical'} variant="middle" flexItem />
+                {/* <StyledDivider orientation="vertical" variant="middle" flexItem /> */}
                 <Box sx={{ margin: 'auto' }}>
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>Holding $XUI</Typography>
                     <StyledStakingBalanceInfo>80.000</StyledStakingBalanceInfo>
