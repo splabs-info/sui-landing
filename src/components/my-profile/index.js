@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ContentManagerUser from './ContentManagerUser';
 import AreaInformation from './Information';
+import { MyIDOArea } from './MyIDO';
+import { MyINOArea } from './MyINO';
 import { StakingBalance } from './StakingBalance';
-
 const WrapperManagerUser = styled(Box)(({ theme }) => ({
-    height: '90vh',
     width: '100%',
     display: 'flex',
     gap: '34px',
@@ -35,26 +35,8 @@ export default function MyInfo() {
             </WrapperManagerUser>
             <Box sx={{ width: '100%', padding: 10, display: 'flex' }}></Box>
             <StakingBalance />
-            {/* <Box sx={{ padding: 10 }}>
-                <Typography
-                    sx={{ fontSize: 18, fontWeight: 'bold', lineHeight: '26px', color: 'white', marginBottom: 3 }}
-                >
-                    My IDO Participated
-                    <span></span>
-                </Typography>
-                <Box></Box>
-                <Box></Box>
-            </Box>
-            <Box sx={{ padding: 10 }}>
-                <Typography
-                    sx={{ fontSize: 18, fontWeight: 'bold', lineHeight: '26px', color: 'white', marginBottom: 3 }}
-                >
-                    My INO Participated
-                    <span></span>
-                </Typography>
-                <Box></Box>
-                <Box></Box>
-            </Box> */}
+            <MyIDOArea />
+            <MyINOArea />
         </>
     );
 }

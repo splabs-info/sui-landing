@@ -1,7 +1,7 @@
 import { Box, Divider, styled } from '@mui/material';
 import { TitleSection } from './TitleSection';
 
-const StyledMyIDOBox = styled(Box)(({ theme }) => ({
+const StyledMyINOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '15px',
@@ -10,11 +10,11 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
 }));
 
-export const MyIDOArea = () => {
+export const MyINOArea = () => {
     return (
         <Box sx={{ padding: 10 }}>
-            <TitleSection title="My IDO Participated" />
-            <StyledMyIDOBox>
+            <TitleSection title="My INO Participated" />
+            <StyledMyINOBox>
                 <Box sx={{ textAlign: 'center' }}>
                     <Box
                         sx={{
@@ -155,7 +155,7 @@ export const MyIDOArea = () => {
                         Completed
                     </Box>
                 </Box>
-            </StyledMyIDOBox>
+            </StyledMyINOBox>
         </Box>
     );
 };
