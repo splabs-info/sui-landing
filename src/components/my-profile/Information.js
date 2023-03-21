@@ -44,9 +44,9 @@ export default function AreaInformation() {
                 }}
             >
                 <UploadAvatar avatarUrl="" percent={''} />
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '32px' }}>
                     <Typography color={'#ffffff'} variant="h5" align="center">
-                        YouSUI
+                        John Breasons
                     </Typography>
                     <IcVerify />
                 </Box>
@@ -54,7 +54,7 @@ export default function AreaInformation() {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {DATA_DEFAULT.map((el, i) => (
-                    <Box sx={{ display: 'flex', gap: '8px', color: '#ffffff' }}>
+                    <Box sx={{ display: 'flex', gap: '8px', color: '#ffffff', marginBottom: 2 }}>
                         <Box>{el.icon}</Box>
                         {el.titleName && (
                             <Typography color={'#ffffff'} component={'span'} variant="subtitle2" align="center">
@@ -77,7 +77,7 @@ export default function AreaInformation() {
                 ))}
             </Box>
 
-            <Box sx={{ textAlign: 'center' }}>
+            {/* <Box sx={{ textAlign: 'center' }}>
                 <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />}>
                     <StyledInputUpload
                         type="file"
@@ -87,9 +87,15 @@ export default function AreaInformation() {
                     />
                     Update profile
                 </UploadBtn>
-            </Box>
-            <Box sx={{ textAlign: 'center' }}>
-                <Typography color={'#ffffff'} component={'span'} variant="subtitle2" align="center">
+            </Box> */}
+            <Box sx={{ textAlign: 'center', marginTop: 2 }}>
+                <Typography
+                    color={'#ffffff'}
+                    component={'p'}
+                    variant="subtitle2"
+                    align="center"
+                    sx={{ fontStyle: 'italic', fontWeight: 'normal' }}
+                >
                     Last signed in 15th July 2021
                 </Typography>
             </Box>

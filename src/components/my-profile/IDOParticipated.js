@@ -1,6 +1,14 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 import { TitleSection } from './TitleSection';
+
+const Wrapper = styled(Box)(({ theme }) => ({
+    marginRight: 80,
+    [theme.breakpoints.down('xl')]: {
+        marginLeft: 0,
+        marginBottom: 32,
+    },
+}));
 const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     border: '1px solid #00C5D3',
@@ -9,11 +17,10 @@ const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
     display: 'flex',
     height: 280,
     alignItems: 'center',
-    flexWrap: 'wrap',
 }));
 export const IDOParticipated = () => {
     return (
-        <Box>
+        <Wrapper>
             <TitleSection title="IDO PARTICIPATED" />
             <StyledIDOParticipatedCard>
                 <img src={'/circle.png'} width={169} height={169} />
@@ -31,6 +38,6 @@ export const IDOParticipated = () => {
                     </Typography>
                 </Box>
             </StyledIDOParticipatedCard>
-        </Box>
+        </Wrapper>
     );
 };
