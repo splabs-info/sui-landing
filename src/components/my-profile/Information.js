@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
-import { Box } from '@mui/system';
-import { StyledInputUpload, UploadBtn } from 'components/create-profile';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import { UploadAvatar } from 'components/upload-avatar';
-import { Typography } from '@mui/material';
-import IcVerify from 'components/asset/icon/IcVerify';
-import IcCopy from 'components/asset/icon/IcCopy';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import IcCopy from 'components/asset/icon/IcCopy';
 import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
+import IcVerify from 'components/asset/icon/IcVerify';
+import { UploadAvatar } from 'components/upload-avatar';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(270deg, rgba(234, 204, 248, 0.2) 0%, rgba(150, 224, 218, 0.2) 100%)',
+    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%, 1)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-    backdropFilter: 'blur(25px)',
+    backdropFilter: 'blur(10px)',
     borderRadius: '15px',
-    height: '100%',
+    height: '750px',
     padding: '40px',
 }));
 
@@ -44,7 +42,7 @@ export default function AreaInformation() {
                 }}
             >
                 <UploadAvatar avatarUrl="" percent={''} />
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: 4 }}>
                     <Typography color={'#ffffff'} variant="h5" align="center">
                         YouSUI
                     </Typography>
@@ -78,18 +76,13 @@ export default function AreaInformation() {
             </Box>
 
             <Box sx={{ textAlign: 'center' }}>
-                <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />}>
-                    <StyledInputUpload
-                        type="file"
-                        accept="image/jpeg,image/png,image/svg,image/gif"
-                        multiple
-                        onChange={onUploadAvatar}
-                    />
-                    Update profile
-                </UploadBtn>
-            </Box>
-            <Box sx={{ textAlign: 'center' }}>
-                <Typography color={'#ffffff'} component={'span'} variant="subtitle2" align="center">
+                <Typography
+                    color={'#ffffff'}
+                    component={'span'}
+                    variant="subtitle2"
+                    align="center"
+                    sx={{ fontWeight: 'normal', fontStyle: 'italic' }}
+                >
                     Last signed in 15th July 2021
                 </Typography>
             </Box>

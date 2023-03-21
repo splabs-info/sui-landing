@@ -5,6 +5,7 @@ import HeaderHome from './HeaderHome';
 
 const RootStyle = styled('div')({
     background: '#121A27',
+    // background: 'transparent',
 });
 const MainStyle = styled('div')(({ theme }) => ({}));
 
