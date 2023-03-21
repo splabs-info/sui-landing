@@ -30,7 +30,7 @@ const DATA_DEFAULT = [
     { titleName: 'Sex', title: 'john_br.son@gmail.com', icon: <IcSex /> },
 ];
 
-export default function AreaInformation() {
+export default function AreaInformation({onOpen}) {
     const onUploadAvatar = () => {};
 
     return (
@@ -79,13 +79,13 @@ export default function AreaInformation() {
             </Box>
 
             <Box sx={{ textAlign: 'center', margin: '24px 0' }}>
-                <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />}>
-                    <StyledInputUpload
+                <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
+                    {/* <StyledInputUpload
                         type="file"
                         accept="image/jpeg,image/png,image/svg,image/gif"
                         multiple
-                        onChange={onUploadAvatar}
-                    />
+                        onChange={onOpen}
+                    /> */}
                     Update profile
                 </UploadBtn>
             </Box>
