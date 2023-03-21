@@ -14,7 +14,7 @@ const { provider } = configureChains(chains, [w3mProvider({ projectId: 'a6d4a9db
 
 const wagmiClient = createClient({
     autoConnect: true,
-    w3mConnectors: w3mConnectors({
+    connectors: w3mConnectors({
         projectId: 'a6d4a9db5776c4ad9b324588b10c7ee5',
         version: '1', // or "2"
         appName: 'gate-landing',
