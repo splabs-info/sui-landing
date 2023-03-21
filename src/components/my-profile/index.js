@@ -9,6 +9,13 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import { StakingBalance } from './StakingBalance';
 import { ClaimAvailable } from './ClaimAvailable';
+import { styled } from '@mui/material/styles';
+
+const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
+    [theme.breakpoints.down('xl')]: {
+        flexDirection: 'column',
+    },
+}));
 export default function MyInfo() {
     const isDesktop = useResponsive('up', 'sm');
     return (
@@ -24,13 +31,13 @@ export default function MyInfo() {
             >
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
-                        <Stack direction="row" sx={{ marginBottom: 12 }}>
+                        <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
                             <AreaInformation />
                             <ContentManagerUser />
-                        </Stack>
+                        </StyledResponsiveStack>
 
                         <Stack direction="column">
-                            <Stack direction="row" sx={{ marginBottom: 12 }}>
+                            <Stack direction="row" sx={{ marginBottom: 12, flexWrap: 'wrap' }}>
                                 <IDOParticipated />
                                 <CurrentStakingPool />
                             </Stack>

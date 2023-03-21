@@ -1,4 +1,5 @@
 import { Box, Divider, styled, Typography } from '@mui/material';
+import useResponsive from 'hooks/useResponsive';
 import { TitleSection } from './TitleSection';
 
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
@@ -10,6 +11,10 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
     border: '1px solid #00C5D3',
     alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
+        padding: '24px 48px',
+    },
 }));
 
 const StyledTitleInfo = styled(Typography)(({ theme }) => ({
@@ -30,42 +35,60 @@ const StyledInfo = styled(Typography)(({ theme }) => ({
 const StyledDivider = styled(Divider)(({ theme }) => ({
     height: 80,
     borderColor: 'rgba(0, 229, 255, 0.2)',
+    [theme.breakpoints.down('md')]: {
+        width: '100%',
+        height: 12,
+        marginBottom: 16,
+    },
 }));
+
+const StyledInfoBox = styled(Box)(({ theme }) => ({
+    textAlign: 'center',
+    [theme.breakpoints.down('md')]: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+}));
+
 export const MyINOArea = () => {
+
+    const tablet = useResponsive('down', 'md');
     return (
         <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="My INO Participated" />
             <StyledMyIDOBox>
-                <Box sx={{ textAlign: 'center' }}>
+                <StyledInfoBox>
                     <StyledTitleInfo>Time</StyledTitleInfo>
                     <StyledInfo>22.0721:12:22 25/12/2022.2022</StyledInfo>
-                </Box>
+                </StyledInfoBox>
 
-                <StyledDivider orientation="vertical" />
+                <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <Box sx={{ textAlign: 'center' }}>
+                <StyledInfoBox>
                     <StyledTitleInfo>IDO Pool</StyledTitleInfo>
                     <StyledInfo>ADK Project</StyledInfo>
-                </Box>
-                <StyledDivider orientation="vertical" />
-                <Box sx={{ textAlign: 'center' }}>
+                </StyledInfoBox>
+                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+                <StyledInfoBox>
                     <StyledTitleInfo>Amount</StyledTitleInfo>
                     <StyledInfo>30,000 ADK</StyledInfo>
-                </Box>
+                </StyledInfoBox>
 
-                <StyledDivider orientation="vertical" />
+                <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <Box sx={{ textAlign: 'center' }}>
+                <StyledInfoBox>
                     <StyledTitleInfo>USDT</StyledTitleInfo>
                     <StyledInfo>~ 12,000 USDT</StyledInfo>
-                </Box>
+                </StyledInfoBox>
 
-                <StyledDivider orientation="vertical" />
+                <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <Box sx={{ textAlign: 'center' }}>
+                <StyledInfoBox>
                     <StyledTitleInfo>Status</StyledTitleInfo>
                     <StyledInfo>Completed</StyledInfo>
-                </Box>
+                </StyledInfoBox>
             </StyledMyIDOBox>
         </Box>
     );
