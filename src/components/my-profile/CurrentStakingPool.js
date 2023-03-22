@@ -1,5 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import useResponsive from 'hooks/useResponsive';
 import { TitleSection } from './TitleSection';
 
 const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
@@ -11,6 +12,10 @@ const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
     height: 280,
     alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+        padding: '15px',
+        height: 'auto',
+    },
 }));
 
 const StyledInfoTitle = styled(Typography)(({ theme }) => ({
@@ -23,6 +28,10 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
     height: 200,
     borderColor: 'rgba(255, 255, 255, 0.2)',
     margin: '0 88px',
+    [theme.breakpoints.down('md')]: {
+        margin: '0 10px',
+        height: 150,
+    },
 }));
 
 const StyledInfo = styled(Typography)(({ theme }) => ({
@@ -30,11 +39,16 @@ const StyledInfo = styled(Typography)(({ theme }) => ({
     fontSize: 90,
     fontWeight: 'bold',
     textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+    [theme.breakpoints.down('md')]: {
+        fontSize: '4rem',
+    },
 }));
 
 export const CurrentStakingPool = () => {
+    const isTablet = useResponsive('down', 'lg');
+
     return (
-        <Box>
+        <Box sx={{ flexBasis: isTablet ? '100%' : 'auto' }}>
             <TitleSection title="CURRENT STAKING POOL" />
             <StyledIDOParticipatedCard>
                 <Box>

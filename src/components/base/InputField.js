@@ -25,7 +25,7 @@ const CustomInput = styled(TextField)(({ theme }) => ({
     },
 }));
 
-const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
+export const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
     color: 'white',
 }));
 
@@ -44,6 +44,9 @@ export function InputField({ name, control, label, apiError, InputProps, passwor
                 {label}
             </StyledInputLabel>
             <CustomInput
+                sx={{
+                    height: 40,
+                }}
                 fullWidth
                 size="small"
                 margin="normal"

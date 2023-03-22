@@ -9,6 +9,7 @@ import { LoginSchema } from 'pages/validation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLogin } from 'services/auth';
+import MultipleNationalSelect from './nationality';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -179,6 +180,7 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
 
                             <UploadAvatar avatarUrl="" percent={''} />
                         </Box>
+
                         <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
                         <Box sx={{ padding: 6, paddingTop: 0 }}>
                             <InputField
@@ -230,7 +232,11 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                     Send OTP
                                 </UploadBtn>
                             </Box>
-                            <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" />
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" />
+                                <MultipleNationalSelect />
+                            </Box>
+
                             <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>
                                 &nbsp;Save Changes
                             </SubmitButton>

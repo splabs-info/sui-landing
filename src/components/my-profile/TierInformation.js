@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import useResponsive from 'hooks/useResponsive';
 
 const TierBox = styled(Box)(({ theme }) => ({
     padding: '2rem',
@@ -13,6 +14,10 @@ const TierBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         minHeight: 'unset',
         padding: '2rem',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
     },
 }));
 
@@ -35,7 +40,10 @@ const Info = styled(Typography)(({ theme }) => ({
     lineHeight: '29px',
     color: 'white',
 }));
+
 export const TierInformation = ({ tierMedal, level, idoApp }) => {
+    const isTablet = useResponsive('down', 'md');
+
     return (
         <TierBox sx={{ display: 'flex' }}>
             <Box sx={{ marginRight: 5 }}>
@@ -52,7 +60,12 @@ export const TierInformation = ({ tierMedal, level, idoApp }) => {
                     {level}
                 </Typography>
             </Box>
-            <Divider orientation="vertical" variant="middle" flexItem sx={{ height: 240, marginRight: 5 }} />
+            <Divider
+                orientation={isTablet ? 'horizontal' : 'vertical'}
+                variant="middle"
+                flexItem
+                sx={{ height: isTablet ? 20 : 240, marginRight: isTablet ? 0 : 5, marginBottom: isTablet ? 3 : 0 }}
+            />
             <Box width={'100%'}>
                 <InfoWrapper>
                     <StyledTitleTierInfo>IDO Allocation</StyledTitleTierInfo>
