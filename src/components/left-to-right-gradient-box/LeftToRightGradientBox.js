@@ -27,8 +27,7 @@ export const StyledLeftToRightGradientBoxV2 = styled(Card)(({ theme }) => ({
     transition: 'all 0.1s ease-in-out',
     position: 'relative',
     minHeight: '100%',
-    background:
-        'linear-gradient(269.37deg, rgba(0, 179, 255, 0.3) 0.07%, rgba(0, 179, 255, 0.243) 0.08%, rgba(229, 174, 255, 0.3) 97.26%)',
+    background: 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)',
     boxShadow: '0px 0px 7px rgba(255, 255, 255, 0.7), inset 0px 0px 15px rgba(255, 255, 255, 0.8)',
     backdropFilter: 'blur(10px)',
     borderRadius: '50px',

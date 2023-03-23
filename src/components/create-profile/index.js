@@ -45,7 +45,7 @@ export const UploadBtn = styled(Button)({
     textTransform: 'none',
     fontWeight: 'bold',
     marginRight: 16,
-    background: 'linear-gradient(336.08deg, #9F8CCC 10.7%, #2D91C8 97.43%)',
+    background: 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)',
     boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.7)',
     borderRadius: '10px',
 });
@@ -57,6 +57,9 @@ export const ButtonBtn = styled(Button)({
     marginRight: 16,
     boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.7)',
     borderRadius: '10px',
+    '&:hover': {
+        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
+    },
 });
 
 const DeletePhotoBtn = styled(Button)({
