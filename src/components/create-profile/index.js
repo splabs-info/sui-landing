@@ -5,10 +5,12 @@ import { Box, Button, Divider, Modal, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { InputField, SubmitButton, UploadAvatar } from 'components';
 import { LeftToRightGradientBoxV2 } from 'components/left-to-right-gradient-box/LeftToRightGradientBox';
+import { UploadAvatarV2 } from 'components/upload-avatar/AvatarV2';
 import { LoginSchema } from 'pages/validation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLogin } from 'services/auth';
+import MultipleNationalSelect from './nationality';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -25,7 +27,7 @@ const style = {
     background: 'linear-gradient(314.02deg, rgba(153, 171, 238, 0.25) -5.63%, rgba(33, 93, 137, 0.25) 88.83%)',
     backdropFilter: 'blur(20px)',
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2), inset 0px 0px 25px rgba(158, 214, 255, 0.25)',
-    maxHeight: '90%',
+    maxHeight: '100%',
     overflow: 'auto',
 };
 
@@ -34,7 +36,7 @@ const Title = styled(Typography)(({ theme }) => ({
     color: 'white',
     fontSize: 40,
     fontWeight: 'bold',
-    margin: '24px auto',
+    margin: '14px auto',
     textShadow: '0px 0px 5px rgba(255, 255, 255, 0.5)',
 }));
 
@@ -43,7 +45,16 @@ export const UploadBtn = styled(Button)({
     textTransform: 'none',
     fontWeight: 'bold',
     marginRight: 16,
-    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
+    background: 'linear-gradient(336.08deg, #9F8CCC 10.7%, #2D91C8 97.43%)',
+    boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.7)',
+    borderRadius: '10px',
+});
+
+export const ButtonBtn = styled(Button)({
+    height: 40,
+    textTransform: 'none',
+    fontWeight: 'bold',
+    marginRight: 16,
     boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.7)',
     borderRadius: '10px',
 });
@@ -66,9 +77,8 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
 
 export const CreateProfilePopup = ({ open, handleClose }) => {
     const [files, setFiles] = React.useState([]);
+    const [isFemale, setIsFemale] = React.useState(false);
     const { mutateAsync: login } = useLogin({});
-
-    const initialValues = '';
 
     const {
         control,
@@ -76,16 +86,17 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
         formState: { isSubmitting, isValid },
     } = useForm({
         mode: 'onChange',
-        defaultValues: initialValues,
         resolver: yupResolver(LoginSchema),
     });
 
     const handleFormSubmit = async (formValues) => {
-        try {
-            await login(formValues);
-        } catch (error) {
-            console.log('error', error);
-        }
+        console.log('formValues', { ...formValues, isFemale });
+
+        // try {
+        //     await login(formValues);
+        // } catch (error) {
+        //     console.log('error', error);
+        // }
     };
 
     const onDeleteAvatar = React.useCallback(() => {
@@ -98,6 +109,10 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
         const form = new FormData();
         form.append('avatar', banner);
         // dispatch(updateProfileActions.uploadAvatar(form));
+    };
+
+    const handleClickSex = (type) => {
+        setIsFemale(type === 'Female');
     };
 
     return (
@@ -128,6 +143,7 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                 width: '100%',
                                 padding: 6,
                                 paddingTop: 0,
+                                paddingBottom: 0,
                                 flexWrap: 'wrap',
                             }}
                         >
@@ -145,7 +161,6 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                     display: 'flex',
                                     justifyContent: 'center',
                                     cursor: 'pointer',
-                                    marginBottom: 2,
                                 }}
                             >
                                 Personal Info
@@ -177,7 +192,7 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                 </Box>
                             </Box>
 
-                            <UploadAvatar avatarUrl="" percent={''} />
+                            <UploadAvatarV2 avatarUrl="" percent={''} />
                         </Box>
                         <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
                         <Box sx={{ padding: 6, paddingTop: 0 }}>
@@ -198,8 +213,8 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                             >
                                 <Box sx={{ flexShrink: 1, flexBasis: '100%' }}>
                                     <InputField
-                                        id="date-of-birth"
-                                        name="date-of-birth"
+                                        id="date_of_birth"
+                                        name="date_of_birth"
                                         control={control}
                                         label="Date of birth"
                                         placeholder="Date of birth"
@@ -207,19 +222,27 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                 </Box>
 
                                 <Box sx={{ flexShrink: 0, display: 'flex' }}>
-                                    <UploadBtn sx={{ width: '123px' }} variant="contained">
+                                    <ButtonBtn
+                                        onClick={() => handleClickSex('Male')}
+                                        sx={{ width: '123px' }}
+                                        variant={isFemale ? 'outlined' : 'contained'}
+                                    >
                                         Male
-                                    </UploadBtn>
-                                    <DeletePhotoBtn sx={{ width: '123px' }} variant="outlined">
+                                    </ButtonBtn>
+                                    <ButtonBtn
+                                        onClick={() => handleClickSex('Female')}
+                                        sx={{ width: '123px' }}
+                                        variant={!isFemale ? 'outlined' : 'contained'}
+                                    >
                                         Female
-                                    </DeletePhotoBtn>
+                                    </ButtonBtn>
                                 </Box>
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
                                 <Box sx={{ flexBasis: '100%' }}>
                                     <InputField
-                                        id="date-of-birth"
-                                        name="date-of-birth"
+                                        id="email_address"
+                                        name="email_address"
                                         control={control}
                                         label="Email Address"
                                         placeholder="Email address"
@@ -230,7 +253,10 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                     Send OTP
                                 </UploadBtn>
                             </Box>
-                            <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" />
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" />
+                                <MultipleNationalSelect control={control} />
+                            </Box>
                             <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>
                                 &nbsp;Save Changes
                             </SubmitButton>

@@ -45,7 +45,10 @@ export default function MyInfo() {
                         </StyledResponsiveStack>
 
                         <Stack direction="column">
-                            <Stack direction="row" sx={{ marginBottom: 12, flexWrap: 'wrap' }}>
+                            <Stack
+                                direction="row"
+                                sx={{ marginBottom: 12, flexWrap: 'wrap', justifyContent: 'space-between' }}
+                            >
                                 <IDOParticipated />
                                 <CurrentStakingPool />
                             </Stack>
