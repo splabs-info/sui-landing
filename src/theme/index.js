@@ -19,6 +19,13 @@ import typography from './typography';
 // `;
 // ----------------------------------------------------------------------
 
+const fontFace = `
+    @font-face {
+        font-family: 'Be Vietnam';
+        src: url('/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+    }
+`;
+
 ThemeProvider.propTypes = {
     children: PropTypes.node,
 };
@@ -31,6 +38,13 @@ export default function ThemeProvider({ children }) {
             typography,
             shadows,
             customShadows,
+            components: {
+                MuiCssBaseline: {
+                    styleOverrides: `
+                    ${fontFace}
+                    `,
+                },
+            },
         }),
         []
     );
