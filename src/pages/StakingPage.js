@@ -71,7 +71,7 @@ export default function StakingPage() {
                 }}
             >
                 <Container maxWidth={'lg'}>
-                    <Grid container direction={isTablet ? 'column-reverse' : ''} spacing={5}>
+                    <Grid container direction={isTablet ? 'column' : ''} spacing={5}>
                         <Grid item xs={12}>
                             <Grid container spacing={5}>
                                 <Grid item md={4} xs={12}>
