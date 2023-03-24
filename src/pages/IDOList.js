@@ -14,9 +14,8 @@ export default function IDOList() {
 
     return (
         <Page title="IDO list">
-            <Background />
-            <Background2 />
-            <Box color="white">
+            <Background2>
+                <Background />
                 <Container>
                     <Box sx={{ position: 'relative', zIndex: 1, pt: 30 }}>
                         <Title variant="h2">
@@ -40,7 +39,7 @@ export default function IDOList() {
                     <UpComingPools />
                     <PreviousPools />
                 </Container>
-            </Box>
+            </Background2>
         </Page>
     );
 }
@@ -56,14 +55,12 @@ const Title = styled(Typography)(({ theme }) => ({
     },
 }));
 
-
 const Background = styled(Box)(({ theme }) => ({
     backgroundImage: "url('/images/background/ido-list-header-bg.png')",
     minHeight: '100vh',
     backgroundSize: '100% 100%',
     backgroundRepeat: 'no-repeat',
     top: '88px',
-    color: 'white',
     position: 'absolute',
     zIndex: 0,
     width: '100%',
@@ -71,15 +68,11 @@ const Background = styled(Box)(({ theme }) => ({
 
 const Background2 = styled(Box)(({ theme }) => ({
     backgroundImage: "url('/images/background/ido-list-bg.png')",
-    minHeight: '100vh',
     backgroundSize: '100% 100%',
     backgroundRepeat: 'no-repeat',
-    top: 'calc(100vh + 88px)',
-    color: 'white',
-    position: 'absolute',
-    zIndex: 0,
-    width: '100%',
-    backgroundPosition: 'center top',
+    color: "white",
+    backgroundPosition: "top",
+    backgroundPositionY: "calc(100vh + 88px)"
 }));
 
 const Questions = () => {

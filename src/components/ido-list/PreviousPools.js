@@ -33,7 +33,7 @@ const data = [
 export default function PreviousPools() {
     const soldDot = 100;
     return (
-        <Box my={20} position="relative">
+        <Box py={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Previous</Typography>
