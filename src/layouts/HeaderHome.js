@@ -14,7 +14,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    MenuItem
+    MenuItem,
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ const config = [
     { label: 'key_1', link: '/' },
     { label: 'key_2', link: '/coming-soons' },
     { label: 'key_3', link: '/coming-soon' },
-    { label: 'key_4', link: '/coming-soon' },
+    { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
     { label: 'key_6', link: '/coming-soon' },
 ];
