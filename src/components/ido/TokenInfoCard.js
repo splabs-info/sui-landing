@@ -6,7 +6,6 @@ const StyledPoolCard = styled(Box)(({ theme }) => ({
     border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '24px',
     padding: 40,
-    width: 720,
     height: 380,
     display: 'flex',
     flexDirection: 'column',

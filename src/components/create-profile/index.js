@@ -55,11 +55,10 @@ export const ButtonBtn = styled(Button)({
     textTransform: 'none',
     fontWeight: 'bold',
     marginRight: 16,
-    boxShadow: 'inset 0px 0px 10px rgba(255, 255, 255, 0.7)',
+    background: 'rgba(42, 78, 171, 0.12)',
+    background: 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)',
     borderRadius: '10px',
-    '&:hover': {
-        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
-    },
+    color: '#ffffff',
 });
 
 const DeletePhotoBtn = styled(Button)({
@@ -227,14 +226,24 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                 <Box sx={{ flexShrink: 0, display: 'flex' }}>
                                     <ButtonBtn
                                         onClick={() => handleClickSex('Male')}
-                                        sx={{ width: '123px' }}
+                                        sx={{
+                                            width: '123px',
+                                            background: !isFemale
+                                                ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
+                                                : 'rgba(42, 78, 171, 0.12)',
+                                        }}
                                         variant={isFemale ? 'outlined' : 'contained'}
                                     >
                                         Male
                                     </ButtonBtn>
                                     <ButtonBtn
                                         onClick={() => handleClickSex('Female')}
-                                        sx={{ width: '123px' }}
+                                        sx={{
+                                            width: '123px',
+                                            background: isFemale
+                                                ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
+                                                : 'rgba(42, 78, 171, 0.12)',
+                                        }}
                                         variant={!isFemale ? 'outlined' : 'contained'}
                                     >
                                         Female

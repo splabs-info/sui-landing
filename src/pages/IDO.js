@@ -18,7 +18,6 @@ export default function Staking() {
                 <Container maxWidth="xl">
                     <Pool />
                     <PoolInformation />
-
                     <ProjectInfo />
                 </Container>
             </SectionBox>

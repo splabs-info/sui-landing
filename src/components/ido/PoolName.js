@@ -7,13 +7,14 @@ const StyledPooName = styled(Typography)(({ theme }) => ({
     fontWeight: 'bold',
     lineHeight: '44px',
     marginBottom: 24,
+    textAlign: 'left'
 }));
 
 const Description = styled(Typography)(({ theme }) => ({
     fontSize: 20,
     lineHeight: '27px',
     color: 'white',
-    width: '50%',
+    textAlign: 'left',
     marginBottom: 16,
 }));
 
@@ -45,11 +46,13 @@ export const PoolName = () => {
     };
     return (
         <Box>
-            <StyledPooName>A PJT</StyledPooName>
-            <Description>
-                A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best
-                addition of blockchain features to their games in a few minutes for the future of gaming…
-            </Description>
+            <Box>
+                <StyledPooName>A PJT</StyledPooName>
+                <Description>
+                    A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the
+                    best addition of blockchain features to their games in a few minutes for the future of gaming…
+                </Description>
+            </Box>
             <SocialNetworkArea>
                 <Stack direction="row" spacing={2}>
                     {socials.map((item, index) =>
