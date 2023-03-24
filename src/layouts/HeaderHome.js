@@ -14,7 +14,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    MenuItem
+    MenuItem,
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -33,9 +33,9 @@ import { socials } from './Footer-v2';
 
 const config = [
     { label: 'key_1', link: '/' },
-    { label: 'key_2', link: '/coming-soons' },
+    { label: 'key_2', link: '/ido-launchpad' },
     { label: 'key_3', link: '/coming-soon' },
-    { label: 'key_4', link: '/coming-soon' },
+    { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
     { label: 'key_6', link: '/coming-soon' },
 ];
@@ -127,6 +127,7 @@ export default function HeaderHome() {
                         display: 'flex',
                         flexDirection: 'column',
                         zIndex: 1,
+                        height: 72,
                     }}
                     className={scrollPositionToggle ? 'sticky-scroll' : ''}
                 >
@@ -141,10 +142,13 @@ export default function HeaderHome() {
                             '& .active::before': {
                                 content: '" "',
                                 position: 'absolute',
-                                width: '100%',
-                                height: '3px',
+                                width: '70%',
+                                height: '2px',
+                                textAlign: 'center',
+                                margin: '0 auto',
                                 background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
                                 bottom: -23,
+                                left: 24,
                             },
                             '& a': {
                                 fontWeight: 700,
@@ -176,6 +180,7 @@ export default function HeaderHome() {
                                                     display: 'flex',
                                                     alignSelf: 'stretch',
                                                     alignItems: 'center',
+                                                    textTransform: 'capitalize',
                                                 }}
                                             >
                                                 <Link to={item.link} key={index} className={item.customStyle || ''}>

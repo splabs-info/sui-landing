@@ -1,11 +1,10 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 import { TitleSection } from './TitleSection';
+import useResponsive from 'hooks/useResponsive';
 
 const Wrapper = styled(Box)(({ theme }) => ({
-    marginRight: 80,
     [theme.breakpoints.down('xl')]: {
-        marginLeft: 0,
         marginBottom: 32,
     },
 }));
@@ -14,22 +13,27 @@ const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
     border: '1px solid #00C5D3',
     borderRadius: '8px',
     padding: 48,
+    [theme.breakpoints.down('lg')]: {
+        padding: '40px',
+    },
     display: 'flex',
     height: 280,
     alignItems: 'center',
 }));
 export const IDOParticipated = () => {
+    const isTablet = useResponsive('down', 'lg');
+    const isDesktop = useResponsive('up', 'xl');
     return (
-        <Wrapper>
+        <Wrapper sx={{ flexBasis: isTablet ? '100%' : 'auto' }}>
             <TitleSection title="IDO PARTICIPATED" />
             <StyledIDOParticipatedCard>
                 <img src={'/circle.png'} width={169} height={169} />
                 <Box>
-                    <Typography sx={{ color: 'white', fontSize: 24 }}>Total Part</Typography>
+                    <Typography sx={{ color: 'white', fontSize: 24 }}>Total Partsss</Typography>
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 90,
+                            fontSize: isDesktop ? 90 : '4rem',
                             fontWeight: 'bold',
                             textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
                         }}

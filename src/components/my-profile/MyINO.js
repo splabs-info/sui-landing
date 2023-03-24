@@ -9,7 +9,7 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     padding: '30px 75px',
     display: 'flex',
     justifyContent: 'space-between',
-    border: '1px solid #00C5D3',
+    // border: '1px solid #00C5D3',
     alignItems: 'center',
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -53,7 +53,6 @@ const StyledInfoBox = styled(Box)(({ theme }) => ({
 }));
 
 export const MyINOArea = () => {
-
     const tablet = useResponsive('down', 'md');
     return (
         <Box sx={{ marginBottom: 12 }}>

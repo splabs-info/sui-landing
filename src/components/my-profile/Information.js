@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Typography } from '@mui/material';
-import { StyledInputUpload, UploadBtn } from 'components/create-profile';
 import { Box } from '@mui/system';
 import IcCopy from 'components/asset/icon/IcCopy';
 import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
+import { UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-
+import { WalletContext } from 'hooks/use-connect';
+import React from 'react';
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%, 1)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -30,9 +31,12 @@ const DATA_DEFAULT = [
     { titleName: 'Sex', title: 'john_br.son@gmail.com', icon: <IcSex /> },
 ];
 
-export default function AreaInformation({onOpen}) {
+export default function AreaInformation({ onOpen }) {
     const onUploadAvatar = () => {};
 
+    const { address } = React.useContext(WalletContext);
+
+    console.log('address', address);
     return (
         <WrapperAreaInformation>
             <Box
@@ -70,8 +74,7 @@ export default function AreaInformation({onOpen}) {
                                 variant="subtitle2"
                                 align="center"
                             >
-                                {/* {el.title} */}
-                                _
+                                {/* {el.title} */}_
                             </Typography>
                         )}
                     </Box>
