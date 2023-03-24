@@ -7,6 +7,7 @@ import HomepageV2 from './pages/Homepage-v2';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
+import IDOList from './pages/IDOList';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +27,14 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <MyProfilePage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ido-list',
+                    element: (
+                        <Suspense>
+                            <IDOList />
                         </Suspense>
                     ),
                 },
