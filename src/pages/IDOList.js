@@ -70,9 +70,9 @@ const Background2 = styled(Box)(({ theme }) => ({
     backgroundImage: "url('/images/background/ido-list-bg.png')",
     backgroundSize: '100% 100%',
     backgroundRepeat: 'no-repeat',
-    color: "white",
-    backgroundPosition: "top",
-    backgroundPositionY: "calc(100vh + 88px)"
+    color: 'white',
+    backgroundPosition: 'top',
+    backgroundPositionY: 'calc(100vh + 88px)',
 }));
 
 const Questions = () => {

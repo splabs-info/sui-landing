@@ -49,9 +49,16 @@ export const ProjectInfo = () => {
                 <Typography color="white" textAlign="left">
                     A project is a challenging fitness app with game-fi features. You wear trendy virtual sneakers and
                     take a walk or jog to earn AMT tokens. GAMEPLAY   The earning system that AMAZY built using the
-                    Move-to-Earn model works based on a few simple steps:   1. CHOOSE THE RIGHT NFT SNEAKER FOR YOUR
-                    ABILITIES. Users will be able to purchase sneakers or rent them from other players.   2. ACCESS
-                    SNEAKERS FROM THE APP MARKETPLACE
+                    Move-to-Earn model works based on a few simple steps:  
+                    <br />
+                    <Typography sx={{ marginTop: 2 }}>
+                        1. CHOOSE THE RIGHT NFT SNEAKER FOR YOUR ABILITIES. Users will be able to purchase sneakers or
+                        rent them from other players.  
+                    </Typography>
+                    <br />
+                    <Typography sx={{ marginTop: 2, marginBottom: 2 }}>
+                        2. ACCESS SNEAKERS FROM THE APP MARKETPLACE
+                    </Typography>
                 </Typography>
                 <StyledDivider />
                 <ExpandMore

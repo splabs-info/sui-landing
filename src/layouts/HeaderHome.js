@@ -33,7 +33,7 @@ import { socials } from './Footer-v2';
 
 const config = [
     { label: 'key_1', link: '/' },
-    { label: 'key_2', link: '/coming-soons' },
+    { label: 'key_2', link: '/ido-launchpad' },
     { label: 'key_3', link: '/coming-soon' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
@@ -127,6 +127,7 @@ export default function HeaderHome() {
                         display: 'flex',
                         flexDirection: 'column',
                         zIndex: 1,
+                        height: 72,
                     }}
                     className={scrollPositionToggle ? 'sticky-scroll' : ''}
                 >

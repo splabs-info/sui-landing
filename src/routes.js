@@ -4,16 +4,17 @@ import ClientLayout from './layouts';
 // import Homepage from "./pages/Homepage";
 import ComingSoon from './pages/ComingSoon';
 import HomepageV2 from './pages/Homepage-v2';
+import IDOList from './pages/IDOList';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
-import IDOList from './pages/IDOList';
 
 // ----------------------------------------------------------------------
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-const Staking = React.lazy(() => import('./pages/IDO'));
+const IDO = React.lazy(() => import('./pages/IDO'));
+
 export default function Router() {
     return useRoutes([
         {
@@ -31,7 +32,7 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'ido-list',
+                    path: 'ido-launchpad',
                     element: (
                         <Suspense>
                             <IDOList />
@@ -39,10 +40,10 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'ido',
+                    path: 'pjt',
                     element: (
                         <Suspense>
-                            <Staking />
+                            <IDO />
                         </Suspense>
                     ),
                 },

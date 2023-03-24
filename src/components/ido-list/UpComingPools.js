@@ -1,7 +1,7 @@
-import { Box, Button, Divider, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
-
+import { useTheme } from '@mui/material/styles';
 const img = '/images/pools/pools-1.jpg';
 
 const data = [
@@ -32,6 +32,8 @@ const data = [
 ];
 
 export default function UpComingPools() {
+    const theme = useTheme();
+
     return (
         <Box my={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -39,9 +41,26 @@ export default function UpComingPools() {
                 <Typography>Upcoming</Typography>
                 <TypographyGradient>Pools</TypographyGradient>
             </TitleBox>
-            <Grid container spacing={2}>
+            <Grid
+                container
+                spacing={2}
+                sx={{
+                    [theme.breakpoints.down(480)]: {
+                        flexDirection: 'column',
+                    },
+                }}
+            >
                 {data.map((item) => (
-                    <Grid item md={3} xs={6}>
+                    <Grid
+                        item
+                        md={3}
+                        xs={6}
+                        sx={{
+                            [theme.breakpoints.down(480)]: {
+                                maxWidth: '100%',
+                            },
+                        }}
+                    >
                         <Box
                             sx={{
                                 p: 2,
@@ -49,6 +68,9 @@ export default function UpComingPools() {
                                 border: '1px solid #42EECF',
                                 background: 'rgba(20, 36, 54, 0.6)',
                                 borderRadius: '10px',
+                                [theme.breakpoints.down(480)]: {
+                                    width: '100%',
+                                },
                             }}
                         >
                             <img
