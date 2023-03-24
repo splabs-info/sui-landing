@@ -25,6 +25,9 @@ export const CheckboxFiled = ({ label }) => {
                         fontSize: 16,
                         marginRight: 0,
                     },
+                    '& svg': {
+                        color: '#28A3AB',
+                    },
                 }}
             />
         </FormGroup>

@@ -11,7 +11,6 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
 import React from 'react';
 
@@ -94,7 +93,10 @@ export default function StakingForm() {
                         </Box>
                     </Stack>
                 </Grid>
-                <Divider orientation="vertical" flexItem></Divider>
+                <Grid item>
+
+                <Divider orientation="vertical" flexItem sx={{ marginTop: "0 !important" }} />
+                </Grid>
                 <Grid item md={5.5} xs={12}>
                     <Stack direction={'row'} justifyContent="space-between">
                         <Typography>Amount</Typography>

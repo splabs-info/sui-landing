@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Link, Stack, styled, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Link, styled, Typography } from '@mui/material';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import StakingForm from 'components/staking/StakingForm';
