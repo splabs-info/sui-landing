@@ -105,14 +105,16 @@ export const ApplyButton = styled(Button)(({ theme }) => ({
         inset: '0px',
         borderRadius: '2rem',
         padding: ' 1px',
-        background: 'linear-gradient(90deg, #96E0DA 0%, #EACCF8 50%, #937EF3 100%)',
+        // background: 'linear-gradient(90deg, #96E0DA 0%, #EACCF8 50%, #937EF3 100%)',
+        background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
+        border: '1px solid rgba(0, 197, 211, 1)',
         WebkitMask:
             'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
         WebkitMaskComposite: 'xor',
         zIndex: '1',
     },
     '&:hover': {
-        background: 'linear-gradient(90deg, #96E0DA 0%, #EACCF8 50%, #937EF3 100%)',
+        background: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
     },
 }));
 

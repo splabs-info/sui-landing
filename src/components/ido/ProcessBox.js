@@ -15,6 +15,7 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(0, 197, 211, 1) 0%, rgba(66, 238, 207, 1) 100%)',
     borderRadius: 32,
     height: 32,
+    boxShadow: 'rgba(152, 255, 230, 0.7)',
 }));
 
 const StyledExchangeRate = styled(Box)(({ theme }) => ({
@@ -41,7 +42,7 @@ export const ProcessBox = () => {
                 </Typography>
             </Box>
 
-            <StyledLinearProgress variant="determinate" />
+            <StyledLinearProgress variant="determinate" component="p"/>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 1 }}>
                 <Typography sx={{ fontSize: 16, lineHeight: '24px', color: 'white' }}>100.00%</Typography>
                 <Typography sx={{ fontSize: 16, lineHeight: '24px', color: 'white' }}>

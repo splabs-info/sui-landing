@@ -141,10 +141,13 @@ export default function HeaderHome() {
                             '& .active::before': {
                                 content: '" "',
                                 position: 'absolute',
-                                width: '100%',
-                                height: '3px',
+                                width: '70%',
+                                height: '2px',
+                                textAlign: 'center',
+                                margin: '0 auto',
                                 background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
                                 bottom: -23,
+                                left: 24,
                             },
                             '& a': {
                                 fontWeight: 700,
@@ -176,6 +179,7 @@ export default function HeaderHome() {
                                                     display: 'flex',
                                                     alignSelf: 'stretch',
                                                     alignItems: 'center',
+                                                    textTransform: 'capitalize',
                                                 }}
                                             >
                                                 <Link to={item.link} key={index} className={item.customStyle || ''}>
