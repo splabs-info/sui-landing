@@ -5,6 +5,7 @@ import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
 import HomepageV2 from './pages/Homepage-v2';
 import NotFound from './pages/Page404';
+import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 
 // ----------------------------------------------------------------------
@@ -37,6 +38,7 @@ export default function Router() {
                     ),
                 },
                 { path: 'whitepaper', element: <Whitepaper /> },
+                { path: 'staking', element: <StakingPage /> },
             ],
         },
         {
