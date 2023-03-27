@@ -3,9 +3,9 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import React, { useState } from 'react';
 import Web3 from 'web3';
 
-const WalletContext = React.createContext();
+const SUIContext = React.createContext();
 
-const WalletProvider = ({ children }) => {
+const SUIProvider = ({ children }) => {
     const [isConnect, setIsConnect] = useState(false);
     const [walletAddress, setWalletAddress] = useState('');
     const [balance, setBalance] = useState(0);
@@ -108,7 +108,7 @@ const WalletProvider = ({ children }) => {
     // };
 
     return (
-        <WalletContext.Provider
+        <SUIContext.Provider
             value={{
                 isConnect,
                 walletAddress,
@@ -120,8 +120,8 @@ const WalletProvider = ({ children }) => {
             }}
         >
             {children}
-        </WalletContext.Provider>
+        </SUIContext.Provider>
     );
 };
 
-export default WalletProvider;
+export default SUIProvider;
