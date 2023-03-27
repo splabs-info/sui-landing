@@ -30,9 +30,9 @@ export const ChooseWalletModal = () => {
     const { library } = setting;
     const wallet = useWallet();
 
-    console.log('wallet status', wallet.status);
-    console.log('connected wallet name', wallet.name);
-    console.log('connected account info', wallet.account.address);
+    // console.log('wallet status', wallet.status);
+    // console.log('connected wallet name', wallet.name);
+    // console.log('connected account info', wallet.account.address);
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);

@@ -27,28 +27,28 @@ export default function App() {
     return (
         <ThemeProvider>
             <WalletProvider>
-                <QueryClientProvider client={queryClient}>
-                    <ScrollToTop />
-                    <BaseOptionChartStyle />
+                <SUIWalletProvider defaultWallets={[SuiWallet]}>
+                    <QueryClientProvider client={queryClient}>
+                        <ScrollToTop />
+                        <BaseOptionChartStyle />
 
-                    <SUIWalletProvider defaultWallets={[SuiWallet]}>
                         <Routers />
-                    </SUIWalletProvider>
 
-                    <ShowErrorComponent />
-                    <BackgroundJob />
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                </QueryClientProvider>
+                        <ShowErrorComponent />
+                        <BackgroundJob />
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
+                    </QueryClientProvider>
+                </SUIWalletProvider>
             </WalletProvider>
         </ThemeProvider>
     );
