@@ -1,10 +1,10 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
+import { ConnectButton, useWallet } from '@suiet/wallet-kit';
 import { WalletContext } from 'hooks/use-connect';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WalletButton } from './wallet-button';
-import { useC98Provider } from 'provider/C98Provider';
 
 const InstallButton = styled(Button)(({ theme }) => ({
     display: 'flex',
@@ -28,6 +28,11 @@ export const ChooseWalletModal = () => {
     const { connectToWallet, connectBitkeepWallet, error } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
+    const wallet = useWallet();
+
+    console.log('wallet status', wallet.status);
+    console.log('connected wallet name', wallet.name);
+    console.log('connected account info', wallet.account.address);
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);
@@ -50,12 +55,13 @@ export const ChooseWalletModal = () => {
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
-                {/* <WalletButton onClick={connectToCoin98}>
+                <ConnectButton />
+                {/* <WalletButton onClick={SUIContext}>
                     <Box className="img-box">
                         <img src="/images/icon/metamask.png" alt="logo metamask" />
                     </Box>
                     <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
-                        C98
+                        SUI
                     </Typography>
                     {error && (
                         <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">

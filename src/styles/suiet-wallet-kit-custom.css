@@ -1,0 +1,50 @@
+.wkit-dialog__overlay {
+    z-index: 9999;
+}
+.wkit-dialog__content {
+    color: #ffffff;
+    background: linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+.wkit-dialog__header {
+    color: white !important;
+}
+.wkit-dialog__title {
+    color: white !important;
+}
+.div {
+    color: white !important;
+}
+.wkit-dialog__close {
+    color: white;
+}
+.wkit-button {
+    width: 324px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%);
+}
+.wkit-button:hover {
+    background: linear-gradient(178.73deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%);
+}
+
+.wkit-new-to-sui {
+    display: none;
+}
+
+.wkit-select__container {
+    color: white;
+}
+.wkit-select-item {
+    color: white;
+}
+
+.wkit-select__title {
+    display: none;
+}
+
+.wkit-connected-button {
+    display: none;
+}

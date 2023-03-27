@@ -1,5 +1,6 @@
+import { SuiWallet, WalletProvider as SUIWalletProvider } from '@suiet/wallet-kit';
+import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { C98Provider } from 'provider/C98Provider';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -12,8 +13,8 @@ import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 import { _changeLanguage } from './store/setting/settingActions';
 import './styles/index.css';
+import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
-
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -26,12 +27,13 @@ export default function App() {
     return (
         <ThemeProvider>
             <WalletProvider>
-                {/* <C98Provider> */}
                 <QueryClientProvider client={queryClient}>
                     <ScrollToTop />
                     <BaseOptionChartStyle />
 
-                    <Routers />
+                    <SUIWalletProvider defaultWallets={[SuiWallet]}>
+                        <Routers />
+                    </SUIWalletProvider>
 
                     <ShowErrorComponent />
                     <BackgroundJob />
@@ -47,7 +49,6 @@ export default function App() {
                         pauseOnHover
                     />
                 </QueryClientProvider>
-                {/* </C98Provider> */}
             </WalletProvider>
         </ThemeProvider>
     );
