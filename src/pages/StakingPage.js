@@ -4,7 +4,7 @@ import { SectionBox } from 'components/home-v2/HomeStyles';
 import StakingForm from 'components/staking/StakingForm';
 import useResponsive from 'hooks/useResponsive';
 import { fCurrency } from 'utils/format';
-
+import { useTheme } from '@mui/material/styles';
 const XUILogo = '/images/coins/XUI.png';
 const gateUrl = 'https://www.gate.io';
 const data = {
@@ -58,7 +58,7 @@ const statisticFields = [
 export default function StakingPage() {
     const isDesktop = useResponsive('up', 'sm');
     const isTablet = useResponsive('down', 'md');
-
+    const theme = useTheme();
     return (
         <Page title="Staking">
             <SectionBox
@@ -90,7 +90,11 @@ export default function StakingPage() {
                                         <Typography variant="h3">{data.symbol}</Typography>
                                         <Typography>{data.description}</Typography>
                                         <Link
-                                            sx={{ textDecoration: 'unset', display: 'block', mt: 2 }}
+                                            sx={{
+                                                textDecoration: 'unset',
+                                                display: 'block',
+                                                mt: 2,
+                                            }}
                                             href={gateUrl}
                                             target="_blank"
                                         >

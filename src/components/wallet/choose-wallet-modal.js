@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
-import { ConnectButton} from '@suiet/wallet-kit';
+import { ConnectButton } from '@suiet/wallet-kit';
 import { WalletContext } from 'hooks/use-connect';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -29,12 +29,8 @@ export const ChooseWalletModal = () => {
     const { connectToWallet, connectBitkeepWallet, error } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
-    
-    console.log('window', window)
 
-    // console.log('wallet status', wallet.status);
-    // console.log('connected wallet name', wallet.name);
-    // console.log('connected account info', wallet.account.address);
+    console.log('window', window);
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);
@@ -70,12 +66,11 @@ export const ChooseWalletModal = () => {
             <Box p={3}>
                 <ConnectButton style={{ display: 'flex', alignItems: 'center' }}>
                     {/* <Box className="img-box" sx={{background: '#22272d', borderRadius: '50%'}}> */}
-                        <img
-                            src="/Token-YouSUI.png"
-                            alt="logo metamask"
-                            style={{ width: 56, height: 56, marginLeft: '4px', marginRight: '16px' }}
-                        />
-                       
+                    <img
+                        src="/Token-YouSUI.png"
+                        alt="logo metamask"
+                        style={{ width: 56, height: 56, marginLeft: '4px', marginRight: '16px' }}
+                    />
                     {/* </Box> */}
                     SUI Wallet
                 </ConnectButton>

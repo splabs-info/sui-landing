@@ -135,7 +135,8 @@ export default function HeaderHome() {
                     <Navbar
                         sx={{
                             '& .active': {
-                                background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
+                                background: 'linear-gradient(270deg, rgba(13, 112, 216, 0.1) 0%, rgba(7, 128, 120, 1) 100%)',
+
                                 backgroundClip: 'text',
                                 textFillColor: 'transparent',
                                 position: 'relative',
@@ -157,7 +158,7 @@ export default function HeaderHome() {
                         }}
                     >
                         <Box component={Link} to="/" className="logo">
-                            <Box component="img" src="/logo.png" alt="" />
+                            <Box component="img" src="/sui-icon.svg" alt="" />
                         </Box>
                         <Box
                             sx={{

@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import moment from 'moment';
 import React from 'react';
-
+import { useTheme } from '@mui/material/styles';
 const BoxGradientOpacityBorder = styled(Box)(({ theme }) => ({
     padding: '2rem',
     borderRadius: '1rem',
@@ -72,7 +72,7 @@ export default function StakingForm() {
     const [selectedPackage, setSelectedPackage] = React.useState(0);
     const [verifyData, setVerifyData] = React.useState(defaultPackage);
     const [isAgree, setIsAgree] = React.useState(false);
-
+    const theme = useTheme();
     return (
         <BoxGradientOpacityBorder>
             <Grid container justifyContent={'space-between'} spacing={5}>
@@ -94,8 +94,7 @@ export default function StakingForm() {
                     </Stack>
                 </Grid>
                 <Grid item>
-
-                <Divider orientation="vertical" flexItem sx={{ marginTop: "0 !important" }} />
+                    <Divider orientation="vertical" flexItem sx={{ marginTop: '0 !important' }} />
                 </Grid>
                 <Grid item md={5.5} xs={12}>
                     <Stack direction={'row'} justifyContent="space-between">
@@ -149,7 +148,12 @@ export default function StakingForm() {
                             }}
                         />
                     </FormGroup>
-                    <Box textAlign={'right'}>
+                    <Box textAlign={'right'} sx={{
+                          [theme.breakpoints.down(480)]: {
+                            display: 'flex',
+                            justifyContent: 'center',
+                        },
+                    }}>
                         <Button
                             sx={{
                                 background:
@@ -158,6 +162,7 @@ export default function StakingForm() {
                                 px: 5,
                                 py: 1,
                                 color: 'white',
+                              
                             }}
                             type="submit"
                         >

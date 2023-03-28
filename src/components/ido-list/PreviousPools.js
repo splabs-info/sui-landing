@@ -1,8 +1,7 @@
-import { Box, Button, Divider, Grid, Typography } from '@mui/material';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TextTypography, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import CustomSlider from './CustomSlider';
-
 const data = [
     {
         img: '/images/pools/pools-5.jpg',
@@ -33,7 +32,7 @@ const data = [
 export default function PreviousPools() {
     const soldDot = 100;
     return (
-        <Box py={20} position="relative">
+        <Box my={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Previous</Typography>
@@ -53,7 +52,7 @@ export default function PreviousPools() {
                         >
                             <Box sx={{ background: '#142436', borderRadius: '10px' }} p={2}>
                                 <Grid container spacing={2}>
-                                    <Grid item>
+                                    <Grid item sx={{ position: 'relative' }}>
                                         <img
                                             src={item.img}
                                             style={{
@@ -64,6 +63,21 @@ export default function PreviousPools() {
                                             }}
                                             alt=""
                                         />
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                bottom: 4,
+                                                right: 4,
+                                                padding: '4px 16px ',
+                                                borderRadius: '9px',
+                                                background:
+                                                    'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 48.78%, #5CBAF2 79.27%)',
+                                            }}
+                                        >
+                                            <TextTypography variant="body1" fontSize={'0.9rem'}>
+                                                Coming Soon
+                                            </TextTypography>
+                                        </Box>
                                     </Grid>
                                     <Grid item xs>
                                         <Typography mt={3} fontWeight={700}>
@@ -116,7 +130,7 @@ export default function PreviousPools() {
                                 }}
                                 title={
                                     <Stack direction="row" justifyContent="space-between" mb={1}>
-                                        <Typography variant="caption">Process</Typography>
+                                        <Typography variant="caption">Progress</Typography>
                                         <Typography variant="caption">Max Participants: 4527</Typography>
                                     </Stack>
                                 }

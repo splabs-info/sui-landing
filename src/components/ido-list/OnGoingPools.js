@@ -2,6 +2,7 @@ import { Box, Button, Divider, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { Link } from 'react-router-dom';
+import { TextTypography } from 'components/home-v2/HomeStyles';
 const img = '/images/pools/pools-4.jpg';
 
 export default function OnGoingPools() {
@@ -24,17 +25,32 @@ export default function OnGoingPools() {
                         mt: 5,
                         '&:hover': {
                             background:
-                            'linear-gradient(128.67deg, rgba(104, 230, 184, 1) 10.81%, rgba(109, 133, 218, 1) 75.48%)',
-                        }
+                                'linear-gradient(128.67deg, rgba(104, 230, 184, 1) 10.81%, rgba(109, 133, 218, 1) 75.48%)',
+                        },
                     }}
                 >
                     <Grid container alignItems={'center'} spacing={5}>
-                        <Grid item md={4} xs={12}>
+                        <Grid item md={4} xs={12} sx={{ position: 'relative' }}>
                             <img
                                 src={img}
                                 style={{ borderRadius: '10px', width: '100%', maxHeight: 300, objectFit: 'cover' }}
                                 alt=""
                             />
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    bottom: 4,
+                                    right: 4,
+                                    padding: '4px 16px ',
+                                    borderRadius: '9px',
+                                    background:
+                                        'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 48.78%, #5CBAF2 79.27%)',
+                                }}
+                            >
+                                <TextTypography variant="body1" fontSize={'0.9rem'}>
+                                    Coming Soon
+                                </TextTypography>
+                            </Box>
                         </Grid>
                         <Grid item md={8} xs={12}>
                             <Typography variant="h5">A Platform</Typography>
