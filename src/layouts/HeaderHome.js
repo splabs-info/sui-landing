@@ -175,6 +175,7 @@ export default function HeaderHome() {
                                     if (item.link.indexOf('#') <= -1) {
                                         return (
                                             <Box
+                                                id={item.id}
                                                 key={item.id}
                                                 className={`${item.link === activeRoute ? 'active' : ''}`}
                                                 sx={{

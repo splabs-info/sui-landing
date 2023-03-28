@@ -30,6 +30,7 @@ export const ChooseWalletModal = () => {
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     
+    console.log('window', window)
 
     // console.log('wallet status', wallet.status);
     // console.log('connected wallet name', wallet.name);

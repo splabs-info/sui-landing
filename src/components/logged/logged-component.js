@@ -75,12 +75,19 @@ export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
     const { disconnectWallet } = React.useContext(WalletContext);
     const wallet = useWallet();
 
-    console.log('wallet', wallet.disconnect)
-
     const handleDisconnectSui = () => {
         wallet.disconnect();
-        disconnectSui('')
-    }
+        disconnectSui('');
+    };
+
+    const handleDisconnect = () => {
+        if (wallet) {
+            handleDisconnectSui();
+        }
+        if (address) {
+            disconnectWallet();
+        }
+    };
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -149,7 +156,7 @@ export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
                 <MenuItem component={Link} to="my-profile" sx={{ color: 'white', textDecoration: 'unset' }}>
                     <AccountBoxOutlinedIcon /> <Box ml={2}>My profile</Box>
                 </MenuItem>
-                <MenuItem onClick={wallet ? handleDisconnectSui : disconnectWallet}>
+                <MenuItem onClick={handleDisconnect}>
                     <ExitToAppOutlinedIcon /> <Box ml={2}>Disconnect</Box>
                 </MenuItem>
             </Box>
