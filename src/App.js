@@ -1,4 +1,4 @@
-import { SuiWallet, WalletProvider as SUIWalletProvider } from '@suiet/wallet-kit';
+import { SuiWallet, WalletProvider as SUIWalletProvider, SuietWallet } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ export default function App() {
     return (
         <ThemeProvider>
             <WalletProvider>
-                <SUIWalletProvider defaultWallets={[SuiWallet]}>
+                <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]}>
                     <QueryClientProvider client={queryClient}>
                         <ScrollToTop />
                         <BaseOptionChartStyle />

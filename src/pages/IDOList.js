@@ -25,13 +25,13 @@ export default function IDOList() {
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
                         <Link to={'/coming-soon'}>
-                            <FrameButton>Apply as a Project</FrameButton>
+                            <FrameButton>Apply for Launchpad</FrameButton>
                         </Link>
                         <Link to={'/coming-soon'}>
-                            <FrameButton>Buy SUI blockchain</FrameButton>
+                            <FrameButton>Buy $ XUI</FrameButton>
                         </Link>
                         <Link to={'/whitepaper'}>
-                            <FrameButton>Buy on YouSUI.io</FrameButton>
+                            <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
                     <Questions />

@@ -1,6 +1,5 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
-import { ConnectButton, useWallet } from '@suiet/wallet-kit';
+import { ConnectButton} from '@suiet/wallet-kit';
 import { WalletContext } from 'hooks/use-connect';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,18 +7,20 @@ import { WalletButton } from './wallet-button';
 
 const InstallButton = styled(Button)(({ theme }) => ({
     display: 'flex',
+    width: 80,
+    height: 32,
     paddingTop: theme.spacing(0.5),
     paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     color: '#fff !important',
-    borderRadius: 8,
+    borderRadius: 50,
     textTransform: 'uppercase!important',
-    background: '#22272d',
+    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
     position: 'absolute',
     right: theme.spacing(2),
     minWidth: 'unset!important',
-    border: '1px solid #869ba5',
+    fontWeight: 'bold',
 }));
 
 export const ChooseWalletModal = () => {
@@ -28,7 +29,7 @@ export const ChooseWalletModal = () => {
     const { connectToWallet, connectBitkeepWallet, error } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
-    const wallet = useWallet();
+    
 
     // console.log('wallet status', wallet.status);
     // console.log('connected wallet name', wallet.name);
@@ -45,7 +46,18 @@ export const ChooseWalletModal = () => {
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
             <Typography>No logged in</Typography>
-            <AccountCircleIcon sx={{ width: 70, height: 70 }} />
+            {/* <AccountCircleIcon sx={{ width: 70, height: 70 }} /> */}
+            <Box
+                sx={{
+                    marginTop: '16px',
+                    marginBottom: '16px',
+                    textAlign: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <img src="/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} />
+            </Box>
             <Typography fontWeight={900} mb={2}>
                 My Wallet
             </Typography>
@@ -55,20 +67,17 @@ export const ChooseWalletModal = () => {
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
-                <ConnectButton />
-                {/* <WalletButton onClick={SUIContext}>
-                    <Box className="img-box">
-                        <img src="/images/icon/metamask.png" alt="logo metamask" />
-                    </Box>
-                    <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
-                        SUI
-                    </Typography>
-                    {error && (
-                        <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
-                            <Typography variant="caption">INSTALL</Typography>
-                        </InstallButton>
-                    )}
-                </WalletButton> */}
+                <ConnectButton style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <Box className="img-box" sx={{background: '#22272d', borderRadius: '50%'}}> */}
+                        <img
+                            src="/Token-YouSUI.png"
+                            alt="logo metamask"
+                            style={{ width: 56, height: 56, marginLeft: '4px', marginRight: '16px' }}
+                        />
+                       
+                    {/* </Box> */}
+                    SUI Wallet
+                </ConnectButton>
                 <WalletButton onClick={connectToWallet}>
                     <Box className="img-box">
                         <img src="/images/icon/metamask.png" alt="logo metamask" />
@@ -79,7 +88,9 @@ export const ChooseWalletModal = () => {
                     {error && (
                         <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
                             {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
-                            <Typography variant="caption">INSTALL</Typography>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                                INSTALL
+                            </Typography>
                         </InstallButton>
                     )}
                 </WalletButton>
@@ -111,7 +122,12 @@ export const ChooseWalletModal = () => {
                             target="_blank"
                         >
                             {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
-                            <Typography variant="caption">INSTALL</Typography>
+                            <Typography
+                                variant="caption"
+                                sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}
+                            >
+                                Install
+                            </Typography>
                         </InstallButton>
                     )}
                 </WalletButton>

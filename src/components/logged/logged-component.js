@@ -8,6 +8,8 @@ import { formatAddress } from '../../setting/format';
 import CopyComponent from '../common/CopyComponent';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import { Link } from 'react-router-dom';
+import { useWallet } from '@suiet/wallet-kit';
+
 const WalletOption = styled(Box)(({ theme }) => ({
     cursor: 'pointer',
     display: 'flex',
@@ -69,8 +71,16 @@ const InstallButton = styled(Button)(({ theme }) => ({
     border: '1px solid #869ba5',
 }));
 
-export const LoggedComponent = ({ address, handleClose }) => {
+export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
     const { disconnectWallet } = React.useContext(WalletContext);
+    const wallet = useWallet();
+
+    console.log('wallet', wallet.disconnect)
+
+    const handleDisconnectSui = () => {
+        wallet.disconnect();
+        disconnectSui('')
+    }
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -139,7 +149,7 @@ export const LoggedComponent = ({ address, handleClose }) => {
                 <MenuItem component={Link} to="my-profile" sx={{ color: 'white', textDecoration: 'unset' }}>
                     <AccountBoxOutlinedIcon /> <Box ml={2}>My profile</Box>
                 </MenuItem>
-                <MenuItem onClick={disconnectWallet}>
+                <MenuItem onClick={wallet ? handleDisconnectSui : disconnectWallet}>
                     <ExitToAppOutlinedIcon /> <Box ml={2}>Disconnect</Box>
                 </MenuItem>
             </Box>

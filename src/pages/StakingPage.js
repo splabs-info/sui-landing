@@ -12,7 +12,7 @@ const data = {
     description: `The $XUI token is a utility token of the YouSUI platform and is connected through a
     bridge on BSC and SUI Chain. By staking $XUI, you can participate in IDO Launchpad
     and INO Launchpad, and the more $XUI you stake, the higher tiers you receive. Higher
-    tiers are given a chance to be allocated more allocations in Launchpad or to
+    tiers are given a chance to obtain more allocations in Launchpad or to
     participate in INO Launchpad at a lower price.`,
     price: 1.63307,
     holder: 200000,

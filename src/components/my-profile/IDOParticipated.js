@@ -29,7 +29,7 @@ export const IDOParticipated = () => {
             <StyledIDOParticipatedCard>
                 <img src={'/circle.png'} width={169} height={169} />
                 <Box>
-                    <Typography sx={{ color: 'white', fontSize: 24 }}>Total Partsss</Typography>
+                    <Typography sx={{ color: 'white', fontSize: 24 }}>Total Pool</Typography>
                     <Typography
                         sx={{
                             color: 'white',

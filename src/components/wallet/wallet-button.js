@@ -10,7 +10,7 @@ const WalletBtn = styled(Button)(({ theme }) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     position: 'relative',
-    backgroundColor: 'rgba(18, 24, 52, 0.7)',
+    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     WebkitTextStroke: '0.1px #3f484f',
     borderRadius: 8,
     transition: 'all 0.5s ease-out',
@@ -28,7 +28,7 @@ const WalletBtn = styled(Button)(({ theme }) => ({
         },
     },
     '&:hover': {
-        background: '#22272d',
+        background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
         boxShadow: 'rgb(63 72 79 / 30%) 0px 0px 8px 0px',
         '.img-box': {
             backgroundImage: 'linear-gradient(to right, #4b565e, #2d343d)',
