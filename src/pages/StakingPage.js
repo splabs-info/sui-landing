@@ -70,7 +70,7 @@ export default function StakingPage() {
                     paddingTop: !isDesktop && 5,
                 }}
             >
-                <Container maxWidth={'lg'}>
+                <Container maxWidth={'xl'}>
                     <Grid container direction={isTablet ? 'column' : ''} spacing={5}>
                         <Grid item xs={12}>
                             <Grid container spacing={5}>
@@ -108,7 +108,7 @@ export default function StakingPage() {
                                                 }}
                                                 size="large"
                                             >
-                                                Buy on Gate.io
+                                                Buy on
                                             </Button>
                                         </Link>
                                         <Box my={2}>

@@ -1,6 +1,5 @@
-import { Height } from '@mui/icons-material';
 import { TabContext } from '@mui/lab';
-import { Box, Container, Link, styled, Tab, Typography } from '@mui/material';
+import { Box, Container, styled, Tab, Typography } from '@mui/material';
 import Page from 'components/common/Page';
 import { ButtonTitleBox, CustomTabList, FrameButton, TextTypography } from 'components/home-v2/HomeStyles';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
@@ -8,6 +7,7 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function IDOList() {
     const isDesktop = useResponsive('up', 'md');
@@ -24,9 +24,9 @@ export default function IDOList() {
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <Link to={'/coming-soon'}>
+                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
                             <FrameButton>Apply for Launchpad</FrameButton>
-                        </Link>
+                        </a>
                         <Link to={'/coming-soon'}>
                             <FrameButton>Buy $ XUI</FrameButton>
                         </Link>
@@ -34,6 +34,7 @@ export default function IDOList() {
                             <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
+
                     <Questions />
                     <OnGoingPools />
                     <UpComingPools />

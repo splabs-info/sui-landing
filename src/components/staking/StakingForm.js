@@ -148,12 +148,15 @@ export default function StakingForm() {
                             }}
                         />
                     </FormGroup>
-                    <Box textAlign={'right'} sx={{
-                          [theme.breakpoints.down(480)]: {
-                            display: 'flex',
-                            justifyContent: 'center',
-                        },
-                    }}>
+                    <Box
+                        textAlign={'right'}
+                        sx={{
+                            [theme.breakpoints.down(900)]: {
+                                display: 'flex',
+                                justifyContent: 'center',
+                            },
+                        }}
+                    >
                         <Button
                             sx={{
                                 background:
@@ -162,7 +165,6 @@ export default function StakingForm() {
                                 px: 5,
                                 py: 1,
                                 color: 'white',
-                              
                             }}
                             type="submit"
                         >
