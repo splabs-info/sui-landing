@@ -132,12 +132,12 @@ export const ChooseWalletModal = () => {
                 <Typography variant="body2" className="mt-20">
                     {/* {library.MY_WALLET_NOTE_2} */}
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ textAlign: 'left', marginBottom: '16px' }}>
                     {/* {library.SEE}{' '} */}
-                    Note: If you have previously installed SuiWallet extensions, please consider removing them. Doing so
-                    may prevent you from being able to connect to Sui wallet on our system, due to technical aspects of
-                    the library we are using. We apologize for any inconvenience this may cause and are actively working
-                    to resolve the issue
+                    <strong>Note:</strong>If you have previously installed SuiWallet extensions, please consider
+                    removing them. Doing so may prevent you from being able to connect to Sui wallet on our system, due
+                    to technical aspects of the library we are using. We apologize for any inconvenience this may cause
+                    and are actively working to resolve the issue
                 </Typography>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}

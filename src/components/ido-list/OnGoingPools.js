@@ -8,7 +8,7 @@ const img = '/images/pools/pools-4.jpg';
 export default function OnGoingPools() {
     return (
         <Box my={20} position="relative">
-            <Link to="/pjt">
+            <Link to="/">
                 <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                 <TitleBox>
                     <Typography>On-going</Typography>
@@ -53,12 +53,8 @@ export default function OnGoingPools() {
                             </Box>
                         </Grid>
                         <Grid item md={8} xs={12}>
-                            <Typography variant="h5">A Platform</Typography>
-                            <Typography>
-                                A is the easiest and fastest approach for developers who want to experime Web3, enabling
-                                the best addition of blockchain features to their games in a few minutes for the future
-                                of gaming…
-                            </Typography>
+                            <Typography variant="h5">-</Typography>
+                            <Typography>-</Typography>
                             <Box
                                 sx={{
                                     background:
@@ -73,15 +69,15 @@ export default function OnGoingPools() {
                                     <Grid item xs={8}>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Min Allocation</Typography>
-                                            <Typography>0.01</Typography>
+                                            <Typography>_</Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'} my={2}>
                                             <Typography>Max</Typography>
-                                            <Typography>TBA</Typography>
+                                            <Typography>_</Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Access</Typography>
-                                            <Typography>Public</Typography>
+                                            <Typography>_</Typography>
                                         </Stack>
                                     </Grid>
                                     <Divider flexItem orientation="vertical" />
@@ -95,7 +91,7 @@ export default function OnGoingPools() {
                                             }}
                                             fullWidth
                                         >
-                                            JOIN NOW
+                                            Coming soon
                                         </Button>
                                     </Grid>
                                 </Grid>

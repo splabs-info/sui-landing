@@ -8,27 +8,27 @@ const img = '/images/pools/pools-1.jpg';
 const data = [
     {
         img: '/images/pools/pools-1.jpg',
-        title: 'A Platform',
+        title: '-',
         description:
-            'A is the easiest and fastest approach for developers who want to experiment with Web3, enabling the addition of blockchain features to their games in a few minutes without any Web3 knowledge… See more',
+            '-',
     },
     {
         img: '/images/pools/pools-2.jpg',
-        title: 'A Platform',
+        title: '-',
         description:
-            'A is the easiest and fastest approach for developers who want to experiment with Web3, enabling the addition of blockchain features to their games in a few minutes without any Web3 knowledge… See more',
+            '-',
     },
     {
         img: '/images/pools/pools-3.jpg',
-        title: 'A Platform',
+        title: '-',
         description:
-            'A is the easiest and fastest approach for developers who want to experiment with Web3, enabling the addition of blockchain features to their games in a few minutes without any Web3 knowledge… See more',
+            '-',
     },
     {
         img: '/images/pools/pools-4.jpg',
-        title: 'A Platform',
+        title: '-',
         description:
-            'A is the easiest and fastest approach for developers who want to experiment with Web3, enabling the addition of blockchain features to their games in a few minutes without any Web3 knowledge… See more',
+            '-',
     },
 ];
 
@@ -116,15 +116,15 @@ export default function UpComingPools() {
                             >
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Min Allocation</Typography>
-                                    <Typography>0.01</Typography>
+                                    <Typography>_</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Max</Typography>
-                                    <Typography>TBA</Typography>
+                                    <Typography>_</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Access</Typography>
-                                    <Typography>Public</Typography>
+                                    <Typography>_</Typography>
                                 </Stack>
                             </Box>
                         </Box>

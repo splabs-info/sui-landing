@@ -13,6 +13,7 @@ import useResponsive from '../../hooks/useResponsive';
 import { Background } from '../../constant/styled';
 import CustomSlider from '../common/CustomSlider';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Link } from 'react-router-dom';
 
 const platforms = [
     {
@@ -113,6 +114,7 @@ export default function CompletePools() {
                                     07 Days
                                 </Typography>
                             </Box>
+
                             <Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Fixed APR</Typography>
@@ -152,7 +154,9 @@ export default function CompletePools() {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <Link to={'/staking'}>
+                                    <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                </Link>
                                 <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
@@ -233,7 +237,9 @@ export default function CompletePools() {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <Link to={'/staking'}>
+                                    <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                </Link>
                                 <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
@@ -314,7 +320,9 @@ export default function CompletePools() {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <Link to={'/staking'}>
+                                    <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                </Link>
                                 <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>
@@ -395,7 +403,9 @@ export default function CompletePools() {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                <Link to={'/staking'}>
+                                    <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
+                                </Link>
                                 <ArrowForwardIosIcon fontSize="15px" />
                             </Box>
                         </Box>

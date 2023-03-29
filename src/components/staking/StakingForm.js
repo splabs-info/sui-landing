@@ -128,7 +128,7 @@ export default function StakingForm() {
                         }}
                         fullWidth
                     />
-                    <Typography mt={1}>Minimum: 3,000 XUI</Typography>
+                    <Typography mt={1}>Minimum: <strong>3,000 XUI</strong></Typography>
                     <Stack direction={'row'} justifyContent={'space-between'} mt={2}>
                         {packages.map((p, index) => (
                             <PackageButton className={index === selectedPackage ? 'active' : ''}>

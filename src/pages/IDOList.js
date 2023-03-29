@@ -100,7 +100,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">How to get started ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -109,7 +109,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">What is Tier System ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -118,7 +118,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">How to join IDO ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -127,7 +127,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">What is YouSUI ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
