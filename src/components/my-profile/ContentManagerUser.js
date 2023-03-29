@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Box } from '@mui/system';
-import Tabs from './Tabs';
+import Tabs from './OverviewTabs';
 
 const WrapperContentManagerUser = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(270deg, rgba(234, 204, 248, 0.2) 0%, rgba(150, 224, 218, 0.2) 100%)',

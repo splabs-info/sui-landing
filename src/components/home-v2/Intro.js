@@ -106,7 +106,7 @@ export default function Intro() {
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>
-                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
+                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer" >
                                 <FrameButton>Apply for Launchpad</FrameButton>
                             </a>
                             <Link to={'/whitepaper'}>
@@ -155,8 +155,8 @@ export default function Intro() {
                                     gap: '33px',
                                 }}
                             >
-                                <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 40 : 32} />
+                                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 40 : 80} />
+                                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 40 : 80} />
                                 {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
