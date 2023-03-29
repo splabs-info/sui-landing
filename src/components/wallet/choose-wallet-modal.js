@@ -30,7 +30,6 @@ export const ChooseWalletModal = () => {
     const { setting } = useSelector((state) => state);
     const { library } = setting;
 
-    console.log('window', window);
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);
