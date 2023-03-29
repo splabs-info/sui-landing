@@ -89,7 +89,7 @@ export const ChooseWalletModal = () => {
                         </InstallButton>
                     )}
                 </WalletButton>
-                {/* <WalletButton
+                <WalletButton
                     onClick={
                         isInstalledBitKeep ? (
                             connectBitkeepWallet
@@ -97,29 +97,29 @@ export const ChooseWalletModal = () => {
                             <Link href="https://bitkeep.com/download?type=2&theme=light"></Link>
                         )
                     }
-                > */}
-                    {/* <Box className="img-box">
+                >
+                    <Box className="img-box">
                         <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
                     </Box>
                     <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
                         Bitkeep
-                    </Typography> */}
-                    {/* {!isInstalledBitKeep && ( */}
-                        {/* <InstallButton
+                    </Typography>
+                    {!isInstalledBitKeep && (
+                        <InstallButton
                             component={Link}
                             href="https://bitkeep.com/download?type=2&theme=light"
                             target="_blank"
-                        > */}
-                            {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
-                            {/* <Typography
+                        >
+                            <Typography variant="caption">{library.INSTALL}</Typography>
+                            <Typography
                                 variant="caption"
                                 sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}
                             >
                                 Install
                             </Typography>
-                        </InstallButton> */}
-                    {/* )}  */}
-                {/* </WalletButton> */}
+                        </InstallButton>
+                    )}
+                </WalletButton>
             </Box>
             <Box pl={3} pr={3}>
                 <Typography variant="body2" className="mt-20">

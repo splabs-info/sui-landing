@@ -42,7 +42,7 @@ export const WalletProvider = ({ children }) => {
                 if (window && window.ethereum) {
                     // Check if web3modal wallet connection is available on storage
                     if (localStorage.getItem(web3modalStorageKey)) {
-                        // await connectToWallet();
+                        await connectToWallet();
                         return;
                     }
                 } else {
@@ -132,7 +132,6 @@ export const WalletProvider = ({ children }) => {
     };
 
     const connectBitkeepWallet = async () => {
-        console.log('vao day chua')
         try {
             setLoading(true);
             checkIfExtensionIsAvailable();

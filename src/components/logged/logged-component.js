@@ -76,17 +76,18 @@ export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
     const wallet = useWallet();
 
     const handleDisconnect = React.useCallback(async () => {
-        if (wallet) {
+        if (wallet?.address) {
             await wallet.disconnect();
             // Suiet package not really handle disconnect because they don't clear local-storage
             localStorage.removeItem('WK__LAST_CONNECT_WALLET_NAME');
             disconnectSui('');
+            return;
+        } else {
+            if (address) {
+                await disconnectWallet();
+            }
         }
-        if (address) {
-            disconnectWallet();
-            await disconnectBitkeepWallet();
-        }
-    }, [wallet.address, address]);
+    }, [wallet, address, disconnectSui, disconnectWallet]);
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
