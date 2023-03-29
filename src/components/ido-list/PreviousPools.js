@@ -5,34 +5,34 @@ import CustomSlider from './CustomSlider';
 const data = [
     {
         img: '/images/pools/pools-5.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-6.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-7.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-8.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
 ];
 
 export default function PreviousPools() {
     const soldDot = 100;
     return (
-        <Box my={20} position="relative">
+        <Box mt={20} pb={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Previous</Typography>
@@ -106,7 +106,7 @@ export default function PreviousPools() {
                                         <Stack direction={'row'} alignItems="center">
                                             <Typography mr={1}>Access:</Typography>
                                             <Typography variant="body" fontWeight={700}>
-                                                _
+                                                --
                                             </Typography>
                                         </Stack>
                                     </Grid>
@@ -137,7 +137,7 @@ export default function PreviousPools() {
                             />
                             <Stack direction="row" justifyContent="space-between" mt={1}>
                                 <Typography variant="caption">0%</Typography>
-                                <Typography variant="caption">_ ATK</Typography>
+                                <Typography variant="caption">-- ATK</Typography>
                             </Stack>
                         </Box>
                     </Grid>

@@ -72,22 +72,22 @@ const InstallButton = styled(Button)(({ theme }) => ({
 }));
 
 export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
-    const { disconnectWallet } = React.useContext(WalletContext);
+    const { disconnectWallet, disconnectBitkeepWallet } = React.useContext(WalletContext);
     const wallet = useWallet();
 
-    const handleDisconnectSui = () => {
-        wallet.disconnect();
-        disconnectSui('');
-    };
-
-    const handleDisconnect = () => {
-        if (wallet) {
-            handleDisconnectSui();
+    const handleDisconnect = React.useCallback(async () => {
+        if (wallet?.address) {
+            await wallet.disconnect();
+            // Suiet package not really handle disconnect because they don't clear local-storage
+            localStorage.removeItem('WK__LAST_CONNECT_WALLET_NAME');
+            disconnectSui('');
+            return;
+        } else {
+            if (address) {
+                await disconnectWallet();
+            }
         }
-        if (address) {
-            disconnectWallet();
-        }
-    };
+    }, [wallet, address, disconnectSui, disconnectWallet]);
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">

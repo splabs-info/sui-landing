@@ -8,27 +8,27 @@ const img = '/images/pools/pools-1.jpg';
 const data = [
     {
         img: '/images/pools/pools-1.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-2.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-3.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
     {
         img: '/images/pools/pools-4.jpg',
-        title: '-',
+        title: '',
         description:
-            '-',
+            '',
     },
 ];
 
@@ -116,15 +116,15 @@ export default function UpComingPools() {
                             >
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Min Allocation</Typography>
-                                    <Typography>_</Typography>
+                                    <Typography>--</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Max</Typography>
-                                    <Typography>_</Typography>
+                                    <Typography>--</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={'space-between'}>
                                     <Typography>Access</Typography>
-                                    <Typography>_</Typography>
+                                    <Typography>--</Typography>
                                 </Stack>
                             </Box>
                         </Box>

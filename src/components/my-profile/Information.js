@@ -21,7 +21,7 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
 }));
 
 const DATA_DEFAULT = [
-    { titleName: '_', icon: <IcCopy /> },
+    { titleName: '--', icon: <IcCopy /> },
     { titleName: 'Email', title: 'john_br.son@gmail.com', icon: <MailOutlineIcon color="inherit" /> },
     {
         titleName: 'Day of Birth',
@@ -32,7 +32,7 @@ const DATA_DEFAULT = [
 ];
 
 export default function AreaInformation({ onOpen }) {
-    const onUploadAvatar = () => {};
+    const onUploadAvatar = () => { };
 
     const { address } = React.useContext(WalletContext);
 
@@ -74,7 +74,7 @@ export default function AreaInformation({ onOpen }) {
                                 variant="subtitle2"
                                 align="center"
                             >
-                                {/* {el.title} */}_
+                                {/* {el.title} */}--
                             </Typography>
                         )}
                     </Box>
@@ -100,7 +100,7 @@ export default function AreaInformation({ onOpen }) {
                     align="center"
                     sx={{ fontWeight: 'normal', fontStyle: 'italic' }}
                 >
-                    Last signed in _
+                    Last signed in --
                 </Typography>
             </Box>
         </WrapperAreaInformation>

@@ -30,7 +30,6 @@ export const ChooseWalletModal = () => {
     const { setting } = useSelector((state) => state);
     const { library } = setting;
 
-    console.log('window', window);
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             setIsInstalledMetamask(true);
@@ -98,12 +97,6 @@ export const ChooseWalletModal = () => {
                             <Link href="https://bitkeep.com/download?type=2&theme=light"></Link>
                         )
                     }
-                    // onClick={() => {
-                    //     if (isInstalledBitKeep) {
-
-                    //         // _connectToMetamaskWallet('bitkeep', _handleUpdateWalletAddress);
-                    //     }
-                    // }}
                 >
                     <Box className="img-box">
                         <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
@@ -117,7 +110,7 @@ export const ChooseWalletModal = () => {
                             href="https://bitkeep.com/download?type=2&theme=light"
                             target="_blank"
                         >
-                            {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
+                            <Typography variant="caption">{library.INSTALL}</Typography>
                             <Typography
                                 variant="caption"
                                 sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}
