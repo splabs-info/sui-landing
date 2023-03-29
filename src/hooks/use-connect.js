@@ -80,7 +80,7 @@ export const WalletProvider = ({ children }) => {
             setAddress(address);
             getBalance(prefix, address);
         } catch (error) {
-            console.log('Account not connected; logged from setBitkeepWalletAddress function');
+            console.log('Account not connected');
         }
     };
 
@@ -132,10 +132,13 @@ export const WalletProvider = ({ children }) => {
     };
 
     const connectBitkeepWallet = async () => {
+        console.log('vao day chua')
         try {
             setLoading(true);
             checkIfExtensionIsAvailable();
             const prefix = window.bitkeep?.ethereum;
+
+            console.log('prefix', prefix)
             if (!prefix) {
                 throw new Error('Bitkeep extension is not available');
             }

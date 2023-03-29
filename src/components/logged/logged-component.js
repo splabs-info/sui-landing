@@ -72,7 +72,7 @@ const InstallButton = styled(Button)(({ theme }) => ({
 }));
 
 export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
-    const { disconnectWallet } = React.useContext(WalletContext);
+    const { disconnectWallet, disconnectBitkeepWallet } = React.useContext(WalletContext);
     const wallet = useWallet();
 
     const handleDisconnect = React.useCallback(async () => {
@@ -84,6 +84,7 @@ export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
         }
         if (address) {
             disconnectWallet();
+            await disconnectBitkeepWallet();
         }
     }, [wallet.address, address]);
 
