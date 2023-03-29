@@ -1,6 +1,5 @@
-import { Height } from '@mui/icons-material';
 import { TabContext } from '@mui/lab';
-import { Box, Container, Link, styled, Tab, Typography } from '@mui/material';
+import { Box, Container, styled, Tab, Typography } from '@mui/material';
 import Page from 'components/common/Page';
 import { ButtonTitleBox, CustomTabList, FrameButton, TextTypography } from 'components/home-v2/HomeStyles';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
@@ -8,6 +7,7 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function IDOList() {
     const isDesktop = useResponsive('up', 'md');
@@ -24,16 +24,17 @@ export default function IDOList() {
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
+                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
+                            <FrameButton>Apply for Launchpad</FrameButton>
+                        </a>
                         <Link to={'/coming-soon'}>
-                            <FrameButton>Apply as a Project</FrameButton>
-                        </Link>
-                        <Link to={'/coming-soon'}>
-                            <FrameButton>Buy SUI blockchain</FrameButton>
+                            <FrameButton>Buy $ XUI</FrameButton>
                         </Link>
                         <Link to={'/whitepaper'}>
-                            <FrameButton>Buy on YouSUI.io</FrameButton>
+                            <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
+
                     <Questions />
                     <OnGoingPools />
                     <UpComingPools />
@@ -99,7 +100,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">How to get started ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -108,7 +109,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">What is Tier System ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -117,7 +118,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">How to join IDO ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />
@@ -126,7 +127,7 @@ const Questions = () => {
                             label={
                                 <div>
                                     <TextTypography variant="body1">What is YouSUI ?</TextTypography>
-                                    <TextTypography variant="body2">see more</TextTypography>
+                                    <TextTypography variant="body2">Learn more</TextTypography>
                                 </div>
                             }
                         />

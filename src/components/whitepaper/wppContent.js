@@ -300,27 +300,31 @@ export const wppContent = [
     },
     {
         id: 'E',
-        category: 'Partners',
+        category: ' About SUI',
         description: [
             {
-                title: 'Sui blockchain',
-                subtitle: 'What is Sui Blockchain?',
+                title: 'What Is Sui (SUI)?',
+                // subtitle: 'What is Sui Blockchain?',
                 content: [
-                    'Secure, scalable and interoperable public chains. Sui Blockchain is a next-generation public blockchain, focused on onchain asset safety and decentralized trading. With a uniquely designed Vault Account, primed for handling abnormal transactions, Sui Blockchain presents an extraordinary clearing mechanism, tackling the challenges of asset theft and private key loss. Decentralized trading and cross-chain transfers will also be supported, alongside other core features.',
+                    'Sui is a low-latency, high-throughput layer-1 chain. Its instant transaction finality makes Sui a prime candidate for on-chain use cases like DeFi and GameFi. The blockchain is programmed in Rust, a programming language with a focus on fast and secure transaction executions. Rust is also the programming language of Solana, another high-speed blockchain.',
+                    'Sui’s declared goal is to “cater to the next billion users in web3” by offering decentralized application (Dapp) deployment with a superior smart contract architecture compared to rival chains like Ethereum. The blockchain utilizes a process called “transaction parallelization” to achieve that, which allows transaction processing in “parallel agreement.” This “horizontal scaling,” as Sui dubs it, leads to better data organization in the byzantine fault-tolerant proof-of-stake (PoS) consensus mechanism.',
                 ],
             },
             {
-                title: 'Chainlink',
-                subtitle: 'What is Chainlink?',
+                title: 'Who Are the Founders of Sui?',
+                // subtitle: 'What is Chainlink?',
                 content: [
-                    'Securely connect smart contracts with off-chain data and services. Chainlink decentralized oracle networks provide tamper-proof inputs, outputs, and computations to support advanced smart contracts on any blockchain.',
+                    'Sui was founded by a team of ex-Meta engineers: Evan Cheng; Adeniyi Abiodun; Sam Blackshear; George Danezis; Kostas Chalkias.',
+                    'Before founding Mysten Labs, the company behind the Sui blockchain, the group of five worked in the Novi division. Mysten Labs secured backing from high-profile crypto VC funds like a16z, which invested $36 million in a Series A raise in December 2021. Another $300 million Series B announcement followed, putting the company valuation at $2 billion. Funds with a stake in Mysten Labs include: Jump Crypto, Apollo, Binance Labs, Franklin Templeton, Coinbase Ventures, Circle Ventures, Lightspeed Venture Partners, Sino Global, Dentsu Ventures, Greenoaks Capital and O’Leary Ventures.',
                 ],
             },
             {
-                title: 'Polygon Studio',
-                subtitle: 'What is Polygon Studio?',
+                title: 'What Makes Sui Unique?',
+                // subtitle: 'What is Polygon Studio?',
                 content: [
-                    'Scaling the future of digital culture. Polygon Studio is the home of all NFT, Gaming, and Metaverse projects that are on the Polygon protocol. We partner with large scale NFT projects for globally recognized IP and Brands, and are the best in class solution for energy efficiency and scaling on the blockchain.',
+                    'Sui aims to overtake other layer-one blockchains by employing a different consensus and transaction processing mechanism. Instead of focusing on vertical scaling, Sui aims to immediately scale horizontally, which is to lead to the promised high throughput that distinguishes the blockchain.',
+                    'Sui recognizes that many transactions have no relationship with each other. Instead of having each node validate each and every transaction, nodes only look at pieces of data relevant to them. This is what Sui calls a “object-centric model,” where chain data focuses on objects instead of accounts. It abstracts the traditional blockchain model into uncorrelated transaction flows that nodes can validate individually.',
+                    'First, a sender broadcasts all transactions, which are checked by relevant validators and, if a majority agrees, sent back to the sender, who broadcasts the result to all validators. The relevant ownership models are: Owned by an address (e.g. coins, or NFTs); Owned by another object (an NFT that is part of another NFT); Shared (e.g. AMM pools).This architecture allows Sui to target verticals such as NFTs, gaming, messaging services, social networks, and decentralized identity platforms.',
                 ],
             },
         ],
@@ -658,8 +662,8 @@ export const wppContent = [
                         sides,<b> the Legal Entity must be clear</b>, and subscribers and popular influencers can also
                         participate. However, influencers also need <b>required Staked XUI of course</b>. Ventures and
                         those holding XUI Tokens over requirement and companies can view a report provided separately by
-                        YouSUI, with expected returns and analyzed token flows. Master Tier users must verify general KYC
-                        to participate in VC sides, and a contract is provided for each investment. The lock-up
+                        YouSUI, with expected returns and analyzed token flows. Master Tier users must verify general
+                        KYC to participate in VC sides, and a contract is provided for each investment. The lock-up
                         conditions are also included in the analyzed report, and the contract is provided as{' '}
                         <b>Docussign</b>. Two days before IDO, the private link will be delivered separately through{' '}
                         <b>the mail used for KYC.</b>

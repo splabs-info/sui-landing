@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { ChooseWalletModal, LoggedComponent } from 'components';
 import { WalletContext } from 'hooks/use-connect';
 import { useContext } from 'react';
-
+import { useWallet } from '@suiet/wallet-kit';
 const CustomDrawer = styled(Drawer)(({ theme }) => ({
     zIndex: '9998!important',
     ' .MuiDrawer-paperAnchorRight': {
@@ -21,9 +21,11 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     },
 }));
 
-export const WalletDrawer = ({ open, handleClose }) => {
+export const WalletDrawer = ({ open, handleClose, disconnectSui }) => {
     const { address } = useContext(WalletContext);
+    const wallet = useWallet();
 
+    
     return (
         <CustomDrawer anchor={'right'} open={open} onClose={() => handleClose(!open)}>
             <Box>
@@ -38,7 +40,11 @@ export const WalletDrawer = ({ open, handleClose }) => {
                 >
                     <Close color="#fff" />
                 </IconButton>
-                {address ? <LoggedComponent address={address} _onClose={handleClose} /> : <ChooseWalletModal />}
+                {address || wallet?.address ? (
+                    <LoggedComponent address={address || wallet?.address} _onClose={handleClose} disconnectSui={disconnectSui}/>
+                ) : (
+                    <ChooseWalletModal />
+                )}
             </Box>
         </CustomDrawer>
     );

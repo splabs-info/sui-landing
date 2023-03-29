@@ -3,6 +3,7 @@ import { IconBrandTelegram } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CusLink } from '../components/common/LogoSPlabs';
+import { Link } from 'react-router-dom';
 import {
     EndBox,
     Footer,
@@ -18,7 +19,7 @@ import { _changeLanguage } from '../store/setting/settingActions';
 const joinGateKeeper = [
     {
         label: 'key_15',
-        link: '/coming-soon',
+        link: '/ido-launchpad',
     },
     {
         label: 'key_16',
@@ -207,7 +208,9 @@ export default function FooterV2() {
                         pl={isMobile && 2}
                         sx={{ height: '100%', textAlign: 'start', wordBreak: 'break-all' }}
                     >
-                        <FooterTitle>{library.key_14}</FooterTitle>
+                        
+                            <FooterTitle>{library.key_14}</FooterTitle>
+                        
 
                         <UlCustom>
                             {joinGateKeeper.map((item) => (

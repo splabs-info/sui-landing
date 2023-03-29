@@ -58,7 +58,7 @@ export const MyIDOArea = () => {
     // const tablet = theme.breakpoints.down('md');
     return (
         <Box sx={{ marginBottom: 12 }}>
-            <TitleSection title="My IDO Participated" />
+            <TitleSection title="MY IDO PARTICIPATED" />
             <StyledMyIDOBox>
                 <StyledInfoBox>
                     <StyledTitleInfo>Time</StyledTitleInfo>

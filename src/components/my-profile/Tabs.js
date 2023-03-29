@@ -113,8 +113,8 @@ export default function BasicTabs() {
                         variant={isDesktop ? 'fullWidth' : 'scrollable'}
                         scrollButtons="auto"
                     >
-                        <Tab label="Overview" {...a11yProps(0)} />
-                        <Tab label="My staking" {...a11yProps(1)} />
+                        <Tab label="OVERVIEW" {...a11yProps(0)} />
+                        <Tab label="MY STAKING" {...a11yProps(1)} />
                     </CustomTabList>
                 </Box>
                 <TabPanel value={value} index={0}>

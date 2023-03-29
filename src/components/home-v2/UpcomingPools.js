@@ -1,16 +1,11 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
+import useResponsive from '../../hooks/useResponsive';
 import {
-    ImgTitleBox,
-    ComingPoolsBox,
-    SectionBox,
+    ImgTitleBox, SectionBox,
     TextTypography,
     TitleBox,
-    TypographyGradient,
-    ComingPoolsChildBox,
-    SpaceBetweenBox,
+    TypographyGradient
 } from './HomeStyles';
-import useResponsive from '../../hooks/useResponsive';
-import { Background } from '../../constant/styled';
 const platforms = [
     {
         label: 'A Platform',

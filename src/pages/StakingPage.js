@@ -4,7 +4,7 @@ import { SectionBox } from 'components/home-v2/HomeStyles';
 import StakingForm from 'components/staking/StakingForm';
 import useResponsive from 'hooks/useResponsive';
 import { fCurrency } from 'utils/format';
-
+import { useTheme } from '@mui/material/styles';
 const XUILogo = '/images/coins/XUI.png';
 const gateUrl = 'https://www.gate.io';
 const data = {
@@ -12,7 +12,7 @@ const data = {
     description: `The $XUI token is a utility token of the YouSUI platform and is connected through a
     bridge on BSC and SUI Chain. By staking $XUI, you can participate in IDO Launchpad
     and INO Launchpad, and the more $XUI you stake, the higher tiers you receive. Higher
-    tiers are given a chance to be allocated more allocations in Launchpad or to
+    tiers are given a chance to obtain more allocations in Launchpad or to
     participate in INO Launchpad at a lower price.`,
     price: 1.63307,
     holder: 200000,
@@ -58,7 +58,7 @@ const statisticFields = [
 export default function StakingPage() {
     const isDesktop = useResponsive('up', 'sm');
     const isTablet = useResponsive('down', 'md');
-
+    const theme = useTheme();
     return (
         <Page title="Staking">
             <SectionBox
@@ -70,8 +70,8 @@ export default function StakingPage() {
                     paddingTop: !isDesktop && 5,
                 }}
             >
-                <Container maxWidth={'lg'}>
-                    <Grid container direction={isTablet ? 'column-reverse' : ''} spacing={5}>
+                <Container maxWidth={'xl'}>
+                    <Grid container direction={isTablet ? 'column' : ''} spacing={5}>
                         <Grid item xs={12}>
                             <Grid container spacing={5}>
                                 <Grid item md={4} xs={12}>
@@ -90,7 +90,11 @@ export default function StakingPage() {
                                         <Typography variant="h3">{data.symbol}</Typography>
                                         <Typography>{data.description}</Typography>
                                         <Link
-                                            sx={{ textDecoration: 'unset', display: 'block', mt: 2 }}
+                                            sx={{
+                                                textDecoration: 'unset',
+                                                display: 'block',
+                                                mt: 2,
+                                            }}
                                             href={gateUrl}
                                             target="_blank"
                                         >
@@ -104,7 +108,7 @@ export default function StakingPage() {
                                                 }}
                                                 size="large"
                                             >
-                                                Buy on Gate.io
+                                                Buy on
                                             </Button>
                                         </Link>
                                         <Box my={2}>

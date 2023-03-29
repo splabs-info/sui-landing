@@ -1,6 +1,6 @@
 import { Box, Divider, Grid, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ACCESS_TOKEN_KEY, AppConfig, SCOPES_KEY } from '../../setting';
@@ -124,7 +124,7 @@ export default function LoginPopup({ open, _handleClose }) {
         <CustomModal open={open} _close={_close} isShowCloseButton={true}>
             <Grid container spacing={3} align="left">
                 <Grid item xs={12}>
-                    <GoogleLogin
+                    {/* <GoogleLogin
                         clientId={AppConfig.GOOGLE_SIGN_IN_CLIENT_KEY}
                         render={(renderProps) => (
                             <CustomButton
@@ -164,7 +164,7 @@ export default function LoginPopup({ open, _handleClose }) {
                         onSuccess={_handleRegisterByGoogle}
                         onFailure={(e) => console.log(e)}
                         cookiePolicy={'single_host_origin'}
-                    />
+                    /> */}
                 </Grid>
             </Grid>
             <Grid item xs={12}>

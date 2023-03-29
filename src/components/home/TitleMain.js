@@ -82,7 +82,9 @@ export default function TitleMain() {
                         </Box>
                         <ButtonTitleBox>
                             <ApplyButton>Buy XUI</ApplyButton>
-                            <ApplyButton>Apply for Launchpad</ApplyButton>
+                            <ApplyButton>
+                                <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">Apply for Launchpad</a>
+                            </ApplyButton>
                             <ApplyButton>Whitepaper</ApplyButton>
                         </ButtonTitleBox>
                         <Box

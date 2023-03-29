@@ -21,10 +21,11 @@ const rows = [
   createData('Team', '10.00%'),
   createData('Advisory', '5.00%'),
   createData('Mining Pool', '10.00%'),
-  createData('Guild Adoption', '5.00%'),
+  createData('Treasury Pool', '5.00%'),
+  // createData('Guild Adoption', '5.00%'),
   createData('IDO', '1.00%'),
   createData('CGF (Community Growth Fund)', '10.00%'),
-  createData('Game Fund', '18.00%'),
+  createData('Ambassador & Yield Faming Incentives', '18.00%'),
   createData('Governance', '10.00%'),
   createData('Total', '100.00%'),
 ];

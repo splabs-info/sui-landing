@@ -106,9 +106,9 @@ export default function Intro() {
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>
-                            <Link to={'/coming-soon'}>
+                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
                                 <FrameButton>Apply for Launchpad</FrameButton>
-                            </Link>
+                            </a>
                             <Link to={'/whitepaper'}>
                                 <FrameButton>Whitepaper</FrameButton>
                             </Link>

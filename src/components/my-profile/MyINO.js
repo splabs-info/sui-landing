@@ -56,7 +56,7 @@ export const MyINOArea = () => {
     const tablet = useResponsive('down', 'md');
     return (
         <Box sx={{ marginBottom: 12 }}>
-            <TitleSection title="My INO Participated" />
+            <TitleSection title="MY INO PARTICIPATED" />
             <StyledMyIDOBox>
                 <StyledInfoBox>
                     <StyledTitleInfo>Time</StyledTitleInfo>

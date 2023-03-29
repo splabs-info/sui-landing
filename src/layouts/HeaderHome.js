@@ -29,6 +29,7 @@ import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
+import { useWallet } from '@suiet/wallet-kit';
 import { socials } from './Footer-v2';
 
 const config = [
@@ -42,12 +43,12 @@ const config = [
 
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
-
+    const wallet  = useWallet();
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     const isTablet = useResponsive(`down`, `md`);
     const [openConnectPopup, setOpenConnectPopup] = useState();
-    const [wallet, setWallet] = useState();
+    const [walletAddress, setWallet] = useState();
     const [openCreateProfile, setOpenCreateProfile] = useState();
     const [openWalletDrawer, setOpenWalletDrawer] = useState();
     const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
@@ -99,11 +100,11 @@ export default function HeaderHome() {
     }, []);
 
     useEffect(() => {
-        if (address) {
-            setWallet(address);
+        if (address || wallet?.address) {
+            setWallet(address || wallet?.address);
             setOpenConnectPopup(false);
         }
-    }, [address]);
+    }, [address, wallet?.address]);
 
     const activeRoute = '/coming-soons';
 
@@ -134,7 +135,8 @@ export default function HeaderHome() {
                     <Navbar
                         sx={{
                             '& .active': {
-                                background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
+                                background: 'linear-gradient(270deg, rgba(13, 112, 216, 0.1) 0%, rgba(7, 128, 120, 1) 100%)',
+
                                 backgroundClip: 'text',
                                 textFillColor: 'transparent',
                                 position: 'relative',
@@ -156,7 +158,7 @@ export default function HeaderHome() {
                         }}
                     >
                         <Box component={Link} to="/" className="logo">
-                            <Box component="img" src="/logo.png" alt="" />
+                            <Box component="img" src="/sui-icon.svg" alt="" />
                         </Box>
                         <Box
                             sx={{
@@ -174,6 +176,7 @@ export default function HeaderHome() {
                                     if (item.link.indexOf('#') <= -1) {
                                         return (
                                             <Box
+                                                id={item.id}
                                                 key={item.id}
                                                 className={`${item.link === activeRoute ? 'active' : ''}`}
                                                 sx={{
@@ -317,7 +320,7 @@ export default function HeaderHome() {
                                             </a>
                                         </MenuCustom>
                                     </SocialBox>
-                                    {wallet ? (
+                                    {walletAddress ? (
                                         <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
                                             <Avatar src="/images/icon/icon-person-sui.png" sx={{ borderRadius: '0' }} />
                                         </IconButton>
@@ -360,6 +363,7 @@ export default function HeaderHome() {
             <Drawer
                 open={showSidebar}
                 anchor="right"
+                
                 onClose={handleClose}
                 sx={{
                     '& .MuiPaper-root': {
@@ -427,7 +431,7 @@ export default function HeaderHome() {
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
             <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
-            <WalletDrawer address={wallet} open={openWalletDrawer} handleClose={setOpenWalletDrawer} />
+            <WalletDrawer address={walletAddress} open={openWalletDrawer} handleClose={setOpenWalletDrawer} disconnectSui={setWallet}/>
         </>
     );
 }
