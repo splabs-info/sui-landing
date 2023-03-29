@@ -62,33 +62,38 @@ export const MyIDOArea = () => {
             <StyledMyIDOBox>
                 <StyledInfoBox>
                     <StyledTitleInfo>Time</StyledTitleInfo>
-                    <StyledInfo>22.0721:12:22 25/12/2022.2022</StyledInfo>
+                    {/* <StyledInfo>22.0721:12:22 25/12/2022.2022</StyledInfo> */}
+                    <StyledInfo>--</StyledInfo>
                 </StyledInfoBox>
 
                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
                 <StyledInfoBox>
                     <StyledTitleInfo>IDO Pool</StyledTitleInfo>
-                    <StyledInfo>ADK Project</StyledInfo>
+                    {/* <StyledInfo>ADK Project</StyledInfo> */}
+                    <StyledInfo>--</StyledInfo>
                 </StyledInfoBox>
                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
                 <StyledInfoBox>
                     <StyledTitleInfo>Amount</StyledTitleInfo>
-                    <StyledInfo>30,000 ADK</StyledInfo>
+                    {/* <StyledInfo>30,000 ADK</StyledInfo> */}
+                    <StyledInfo>--</StyledInfo>
                 </StyledInfoBox>
 
                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
                 <StyledInfoBox>
                     <StyledTitleInfo>USDT</StyledTitleInfo>
-                    <StyledInfo>~ 12,000 USDT</StyledInfo>
+                    {/* <StyledInfo>~ 12,000 USDT</StyledInfo> */}
+                    <StyledInfo>--</StyledInfo>
                 </StyledInfoBox>
 
                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
                 <StyledInfoBox>
                     <StyledTitleInfo>Status</StyledTitleInfo>
-                    <StyledInfo>Completed</StyledInfo>
+                    {/* <StyledInfo>Completed</StyledInfo> */}
+                    <StyledInfo>--</StyledInfo>
                 </StyledInfoBox>
             </StyledMyIDOBox>
         </Box>

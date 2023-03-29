@@ -133,7 +133,10 @@ export default function BasicTabs() {
                     />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
+                    <Stack>
+                        <TitleSection title="COMING SOON" />
+
+                    </Stack>
                 </TabPanel>
             </TabContext>
         </Box>

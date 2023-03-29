@@ -38,7 +38,8 @@ export const IDOParticipated = () => {
                             textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
                         }}
                     >
-                        10/15
+                        {/* 10/15 */}
+                        0/0
                     </Typography>
                 </Box>
             </StyledIDOParticipatedCard>

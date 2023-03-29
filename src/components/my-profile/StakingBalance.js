@@ -62,13 +62,13 @@ export const StakingBalance = () => {
             <StakingBalanceCard>
                 <Box sx={{ margin: 'auto' }}>
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>$XUI Staked</Typography>
-                    <StyledStakingBalanceInfo>150.000</StyledStakingBalanceInfo>
+                    <StyledStakingBalanceInfo>0</StyledStakingBalanceInfo>
                 </Box>
                 <StyledDivider orientation={tablet ? '' : 'vertical'} variant="middle" flexItem />
                 {/* <StyledDivider orientation="vertical" variant="middle" flexItem /> */}
                 <Box sx={{ margin: 'auto' }}>
                     <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>Holding $XUI</Typography>
-                    <StyledStakingBalanceInfo>80.000</StyledStakingBalanceInfo>
+                    <StyledStakingBalanceInfo>0</StyledStakingBalanceInfo>
                 </Box>
             </StakingBalanceCard>
         </Box>
