@@ -134,15 +134,10 @@ export const ChooseWalletModal = () => {
                 </Typography>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}
-                    We do not own private keys and cannot access your funds without your confirmation <br /> See {''}
-                    <a
-                        href="/docs/Infinity_Angel_NFT_Marketplace_Terms_And_Conditions.docx.pdf"
-                        target="_blank"
-                        style={{ color: '#2FA4FF', textDecoration: 'underline' }}
-                    >
-                        {/* {library.TERM_AND_CONDITIONS}. */}
-                        Term and conditions
-                    </a>
+                    Note: If you have previously installed SuiWallet extensions, please consider removing them. Doing so
+                    may prevent you from being able to connect to Sui wallet on our system, due to technical aspects of
+                    the library we are using. We apologize for any inconvenience this may cause and are actively working
+                    to resolve the issue
                 </Typography>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}
