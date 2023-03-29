@@ -135,7 +135,6 @@ export default function BasicTabs() {
                 <TabPanel value={value} index={1}>
                     <Stack>
                         <TitleSection title="COMING SOON" />
-
                     </Stack>
                 </TabPanel>
             </TabContext>
