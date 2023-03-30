@@ -16,8 +16,8 @@ export const Header = styled(Box)(({ theme }) => ({
 }));
 export const BlurBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
-    zIndex: 0,
-    width: '100%',
+    zIndex: 1,
+    width: '100vw',
     height: '100%',
     backdropFilter: 'blur(30px)',
     '&:before': {

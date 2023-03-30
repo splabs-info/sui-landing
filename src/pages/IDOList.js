@@ -16,7 +16,7 @@ export default function IDOList() {
         <Page title="IDO list">
             <Background2>
                 <Background />
-                <Container>
+                <Container maxWidth='xl'>
                     <Box sx={{ position: 'relative', zIndex: 1, pt: 30 }}>
                         <Title variant="h2">
                             Enter <p className="linear">the multi chain</p> <br />

@@ -32,7 +32,7 @@ const joinGateKeeper = [
     },
     {
         label: 'key_Staking',
-        link: '/coming-soon',
+        link: '/staking',
     },
     {
         label: 'key_18',

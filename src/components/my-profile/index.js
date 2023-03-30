@@ -5,7 +5,6 @@ import { SectionBox } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import { ClaimAvailable } from './ClaimAvailable';
-import ContentManagerUser from './ContentManagerUser';
 import { CurrentStakingPool } from './CurrentStakingPool';
 import { IDOParticipated } from './IDOParticipated';
 import AreaInformation from './Information';

@@ -39,19 +39,25 @@ const CustomBox = styled(Box)(({ theme }) => ({
     display: 'inline-flex',
     width: '100%',
     height: '100%',
+    position: 'relative',
     '&:hover': {
-        background: 'linear-gradient(90deg, #D0C4FC 4.98%, #9CEAF0 100%)',
-        border: '1px solid #98cafe',
+        background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
         boxShadow: ' 0px 1px 9px rgba(0, 0, 0, 0.34)',
-        '& div:first-child': {
+        '& div:first-of-type': {
             background: '#000E26',
         },
-        '& div> svg> defs > linearGradient > stop:first-child': {
+        '& div> svg> defs > linearGradient > stop:first-of-type': {
             stopColor: '#00C5D3',
         },
         '& div> svg> defs > linearGradient > stop': {
             stopColor: '#42EECF',
         },
+        '&:before': {
+            position: 'absolute',
+            bottom: '1rem',
+            right: '1rem',
+            content: 'url("/images/home/arrow.png")'
+        }
     },
     '& div> svg> defs > linearGradient > stop': {
         stopColor: '#000F28',
@@ -67,11 +73,10 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }));
 
 const TypographyTitle = styled(Typography)(({ theme }) => ({
-    fontWeight: 700,
-    fontFamily: 'SVN-Gilroy-semi-bold',
+    fontWeight: 800,
     marginBottom: '.5rem',
     textTransform: 'uppercase',
-    background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
+    background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
     backgroundClip: 'text',
     textFillColor: 'transparent',
     [theme.breakpoints.down('md')]: {
@@ -101,8 +106,7 @@ export default function MultiChain() {
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
                         <Typography> Multi-Chain</Typography>
-                        <TypographyGradient>Launchpad</TypographyGradient>
-                        <Typography variant="span"> Platform</Typography>
+                        <TypographyGradient>Launchpad Platform</TypographyGradient>
                     </TitleBox>
                     <Grid container spacing={3} mt={4}>
                         {teams.map((item, index) => (

@@ -1,12 +1,12 @@
 import { Container } from '@mui/material';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
-import { Pool } from 'components/ido/Pool';
-import { PoolInformation } from 'components/ido/PoolInfo';
-import { ProjectInfo } from 'components/ido/Project';
+import { Pool } from 'components/ido-detail/Pool';
+import { PoolInformation } from 'components/ido-detail/PoolInfo';
+import { ProjectInfo } from 'components/ido-detail/Project';
 export default function Staking() {
     return (
-        <Page title="IDO">
+        <Page title="IDO - Detail">
             <SectionBox
                 sx={{
                     backgroundImage: "url('/MyPage.png')",

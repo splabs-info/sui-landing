@@ -64,7 +64,7 @@ export default function UpComingPools() {
                     >
                         <Box
                             sx={{
-                                p: 2,
+                                p: 3.5,
                                 mt: 5,
                                 border: '1px solid #42EECF',
                                 background: 'rgba(20, 36, 54, 0.6)',
@@ -85,7 +85,7 @@ export default function UpComingPools() {
                                 }}
                                 alt=""
                             />
-                            <Box
+                            {/* <Box
                                 sx={{
                                     position: 'absolute',
                                     top: 4,
@@ -99,7 +99,7 @@ export default function UpComingPools() {
                                 <TextTypography variant="body1" fontSize={'0.9rem'}>
                                     Coming Soon
                                 </TextTypography>
-                            </Box>
+                            </Box> */}
                             <Typography mt={3} fontWeight={700}>
                                 {item.title}
                             </Typography>

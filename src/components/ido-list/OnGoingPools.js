@@ -30,13 +30,13 @@ export default function OnGoingPools() {
                     }}
                 >
                     <Grid container alignItems={'center'} spacing={5}>
-                        <Grid item md={4} xs={12} sx={{ position: 'relative' }}>
+                        <Grid item md={3} xs={12} sx={{ position: 'relative' }}>
                             <img
                                 src={img}
-                                style={{ borderRadius: '10px', width: '100%', maxHeight: 300, objectFit: 'cover' }}
+                                style={{ borderRadius: '10px', width: '100%', height: '100%', }}
                                 alt=""
                             />
-                            <Box
+                            {/* <Box
                                 sx={{
                                     position: 'absolute',
                                     bottom: 4,
@@ -50,9 +50,9 @@ export default function OnGoingPools() {
                                 <TextTypography variant="body1" fontSize={'0.9rem'}>
                                     Coming Soon
                                 </TextTypography>
-                            </Box>
+                            </Box> */}
                         </Grid>
-                        <Grid item md={8} xs={12}>
+                        <Grid item md={9} xs={12}>
                             <Typography variant="h5"></Typography>
                             <Typography></Typography>
                             <Box
