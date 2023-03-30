@@ -21,7 +21,7 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
 }));
 
 const DATA_DEFAULT = [
-  { titleName: '_', icon: <IcCopy /> },
+  { titleName: '--', icon: <IcCopy /> },
   { titleName: 'Email', title: 'john_br.son@gmail.com', icon: <MailOutlineIcon color="inherit" /> },
   {
     titleName: 'Day of Birth',
@@ -35,8 +35,6 @@ export default function AreaInformation({ onOpen }) {
   const onUploadAvatar = () => { };
 
   const { address } = React.useContext(WalletContext);
-
-  console.log('address', address);
   return (
     <WrapperAreaInformation>
       <Box
@@ -74,7 +72,7 @@ export default function AreaInformation({ onOpen }) {
                 variant="subtitle2"
                 align="center"
               >
-                {/* {el.title} */}_
+                {/* {el.title} */}--
               </Typography>
             )}
           </Box>
@@ -83,12 +81,6 @@ export default function AreaInformation({ onOpen }) {
 
       <Box sx={{ textAlign: 'center', margin: '24px 0' }}>
         <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
-          {/* <StyledInputUpload
-                        type="file"
-                        accept="image/jpeg,image/png,image/svg,image/gif"
-                        multiple
-                        onChange={onOpen}
-                    /> */}
           Update profile
         </UploadBtn>
       </Box>
@@ -100,7 +92,7 @@ export default function AreaInformation({ onOpen }) {
           align="center"
           sx={{ fontWeight: 'normal', fontStyle: 'italic' }}
         >
-          Last signed in _
+          Last signed in --
         </Typography>
       </Box>
     </WrapperAreaInformation>

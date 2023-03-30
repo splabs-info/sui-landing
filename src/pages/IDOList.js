@@ -24,7 +24,7 @@ export default function IDOList() {
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
+                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer" >
                             <FrameButton>Apply for Launchpad</FrameButton>
                         </a>
                         <Link to={'/coming-soon'}>
@@ -61,7 +61,7 @@ const Background = styled(Box)(({ theme }) => ({
     minHeight: '100vh',
     backgroundSize: '100% 100%',
     backgroundRepeat: 'no-repeat',
-    top: '88px',
+    top: '72px',
     position: 'absolute',
     zIndex: 0,
     width: '100%',
@@ -73,7 +73,6 @@ const Background2 = styled(Box)(({ theme }) => ({
     backgroundRepeat: 'no-repeat',
     color: 'white',
     backgroundPosition: 'top',
-    backgroundPositionY: 'calc(100vh + 88px)',
 }));
 
 const Questions = () => {

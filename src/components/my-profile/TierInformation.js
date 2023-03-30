@@ -68,23 +68,28 @@ export const TierInformation = ({ tierMedal, level, idoApp }) => {
             <Box width={'100%'}>
                 <InfoWrapper>
                     <StyledTitleTierInfo>IDO Allocation</StyledTitleTierInfo>
-                    <Info>35%</Info>
+                    {/* <Info>35%</Info> */}
+                    <Info>--</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>$XUI Required</StyledTitleTierInfo>
-                    <Info>2% of Total pool</Info>
+                    {/* <Info>2% of Total pool</Info> */}
+                    <Info>--</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>Free Airdrop Allocation</StyledTitleTierInfo>
-                    <Info>Lottery</Info>
+                    {/* <Info>Lottery</Info> */}
+                    <Info>--</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Allocation</StyledTitleTierInfo>
-                    <Info>FCFS</Info>
+                    {/* <Info>FCFS</Info> */}
+                    <Info>--</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Discount</StyledTitleTierInfo>
-                    <Info>-20%</Info>
+                    {/* <Info>-20%</Info> */}
+                    <Info>--</Info>
                 </InfoWrapper>
             </Box>
         </TierBox>

@@ -53,8 +53,8 @@ export default function OnGoingPools() {
                             </Box>
                         </Grid>
                         <Grid item md={8} xs={12}>
-                            <Typography variant="h5">-</Typography>
-                            <Typography>-</Typography>
+                            <Typography variant="h5"></Typography>
+                            <Typography></Typography>
                             <Box
                                 sx={{
                                     background:
@@ -69,15 +69,15 @@ export default function OnGoingPools() {
                                     <Grid item xs={8}>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Min Allocation</Typography>
-                                            <Typography>_</Typography>
+                                            <Typography>--</Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'} my={2}>
                                             <Typography>Max</Typography>
-                                            <Typography>_</Typography>
+                                            <Typography>--</Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Access</Typography>
-                                            <Typography>_</Typography>
+                                            <Typography>--</Typography>
                                         </Stack>
                                     </Grid>
                                     <Divider flexItem orientation="vertical" />

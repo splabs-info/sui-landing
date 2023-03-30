@@ -53,17 +53,17 @@ export const CurrentStakingPool = () => {
             <StyledIDOParticipatedCard>
                 <Box>
                     <StyledInfoTitle sx={{ color: 'white', fontSize: 24 }}>Days</StyledInfoTitle>
-                    <StyledInfo>15</StyledInfo>
+                    <StyledInfo>0</StyledInfo>
                 </Box>
                 <StyledDivider orientation="vertical" />
                 <Box>
                     <StyledInfoTitle sx={{ color: 'white', fontSize: 24 }}>APR</StyledInfoTitle>
-                    <StyledInfo>7%</StyledInfo>
+                    <StyledInfo>0%</StyledInfo>
                 </Box>
                 <StyledDivider orientation="vertical" />
                 <Box>
                     <StyledInfoTitle sx={{ color: 'white', fontSize: 24 }}>Left</StyledInfoTitle>
-                    <StyledInfo>8D</StyledInfo>
+                    <StyledInfo>0D</StyledInfo>
                 </Box>
             </StyledIDOParticipatedCard>
         </Box>
