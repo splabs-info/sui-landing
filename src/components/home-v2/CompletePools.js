@@ -62,11 +62,11 @@ const platforms = [
 ];
 
 export default function CompletePools() {
+    const isDesktop = useResponsive('up', 'md');
     return (
         <SectionBox
             sx={{
                 backgroundImage: "url('/images/background/homebg5.png')",
-                backgroundSize: '100% 100%',
             }}
         >
             <Container maxWidth={'xl'}>

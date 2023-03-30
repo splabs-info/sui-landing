@@ -82,7 +82,7 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
 export default function MultiChain() {
     const isDesktop = useResponsive('up', 'md');
     return (
-        <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.png')", backgroundSize: 'cover' }}>
+        <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.png')", backgroundSize: isDesktop ? '100% 100%' : 'cover', }}>
             {/* <Box
                 component={'img'}
                 src="/images/home/blur.png"

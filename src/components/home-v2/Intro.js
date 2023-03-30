@@ -49,9 +49,6 @@ export default function Intro() {
             sx={{
                 backgroundImage: "url('/images/background/homebg1.png')",
                 minHeight: '100vh',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                paddingTop: !isDesktop && 5,
             }}
         >
             <Container maxWidth={'xl'}>
@@ -71,7 +68,7 @@ export default function Intro() {
                             },
                         }}
                     >
-                        <Box mt={isMobile ? 5 : 12}>
+                        <Box mt={isMobile ? 5 : 8}>
                             {Title.map((item, i) => (
                                 <TitleTypography
                                     key={i}

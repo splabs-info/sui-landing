@@ -7,12 +7,27 @@ export const Header = styled(Box)(({ theme }) => ({
     position: 'fixed',
     width: '100vw',
     zIndex: '10',
-    background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
+    background: 'linear-gradient(180deg, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120,0.5) 100%)',
     boxShadow: 'none',
-    '& .sticky-scroll': {
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+    minHeight: '4.5rem',
+    [theme.breakpoints.down('md')]: {
+        minHeight: '3rem',
     },
+}));
+export const BlurBox = styled(Box)(({ theme }) => ({
+    position: 'absolute',
+    zIndex: 0,
+    width: '100%',
+    height: '100%',
+    backdropFilter: 'blur(30px)',
+    '&:before': {
+        content: '""',
+        width: '100%',
+        height: '2px',
+        background: 'linear-gradient(90deg, #81ECC5 0%, #94CBFF 50%, #8596FF 100%)',
+        position: 'absolute',
+        bottom: 0,
+    }
 }));
 
 export const Navbar = styled(Box)(({ theme }) => ({
@@ -26,45 +41,38 @@ export const Navbar = styled(Box)(({ theme }) => ({
         padding: '0 0.5rem',
         margin: '0 0.5em',
         display: 'block',
+        fontWeight: 700,
         '&:last-child': {
             marginRight: '0',
         },
     },
-    '& a:hover': {
-        borderBottom: '1px solid #00E5FF',
+    '& a:hover:not(.logo)': {
+        // borderBottom: '1px solid #1DD7D1',
         borderRadius: '0px',
-        color: '#00E5FF',
+        color: '#1DD7D1',
         background: 'transparent',
         fontWeight: 700,
     },
     '& a.logo': {
         padding: '0',
         margin: '0',
-        marginLeft: '-1rem',
-    },
-    '& a.logo:hover': {
-        borderBottom: '0px solid #00E5FF',
     },
     '& .active': {
-        fontWeight: 700,
-        color: '#00E5FF',
-    },
-    '& .minting': {
-        fontWeight: 700,
-        color: '#fff',
-        display: 'initial',
-        background: 'linear-gradient(to right, #fc935f 0%, #FEAD4C 100%)!important',
-        borderRadius: '10px',
-        padding: '0.5rem 1rem',
+        background: 'linear-gradient(270deg, rgba(13, 112, 216, 0.1) 0%, rgba(7, 128, 120, 1) 100%)',
+        backgroundClip: 'text',
+        textFillColor: 'transparent',
         position: 'relative',
-        '& svg': {
-            position: 'absolute',
-            top: '-7px',
-            right: '-7px',
-        },
-        '&:hover': {
-            WebkitTextFillColor: 'white',
-        },
+    },
+    '& .active::before': {
+        content: '" "',
+        position: 'absolute',
+        width: '70%',
+        height: '2px',
+        textAlign: 'center',
+        margin: '0 auto',
+        background: 'linear-gradient(270deg, #EACCF8 0%, #96E0DA 100%)',
+        bottom: -23,
+        left: 24,
     },
     [theme.breakpoints.down('md')]: {
         padding: '10px',
@@ -81,9 +89,9 @@ export const WhitePaperButton = styled(Button)(() => ({
     textTransform: 'uppercase',
     fontWeight: 500,
     '&:hover': {
-        borderBottom: '1px solid #00E5FF',
+        borderBottom: '1px solid #1DD7D1',
         borderRadius: '0px',
-        color: '#00E5FF',
+        color: '#1DD7D1',
         background: 'transparent',
         fontWeight: 700,
     },
@@ -114,6 +122,10 @@ export const ApplyButton = styled(Button)(({ theme }) => ({
     },
     '&:hover': {
         background: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
+    },
+    [theme.breakpoints.down('sm')]: {
+        padding: '0.25rem 1rem',
+        margin: 0
     },
 }));
 

@@ -3,7 +3,7 @@ import { Background, BoxStyled, Color, FontFamily } from '../../constant/styled'
 import { TabList, TabPanel } from '@mui/lab';
 
 export const SectionBox = styled(Box)(({ theme }) => ({
-    backgroundSize: { md: '100% 100%', xs: 'cover' },
+    backgroundSize: '100% 100%',
     backgroundPosition: 'center',
     display: 'flex',
     alignItems: 'center',

@@ -33,7 +33,7 @@ export default function UpcomingPools() {
             pb={isDesktop ? 5 : 3}
             sx={{
                 backgroundImage: "url('/images/background/homebg4.png')",
-                backgroundSize: '100% 100%',
+                backgroundSize: isDesktop ? '100% 100%' : 'cover',
             }}
         >
             <Container maxWidth={'xl'}>
