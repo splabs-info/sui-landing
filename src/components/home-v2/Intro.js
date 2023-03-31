@@ -199,7 +199,7 @@ export default function Intro() {
                 position: 'absolute',
                 width: '40%',
                 right: '3%',
-                top: '10%',
+                top: '10%', zIndex: 1,
                 display: isTablet && 'none',
             }}>
 
@@ -235,6 +235,7 @@ export default function Intro() {
                     width: '40%',
                     right: '1%',
                     top: 'max(100px,70%)',
+                    zIndex: 0,
                     display: isTablet && 'none',
                 }}
             />
