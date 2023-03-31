@@ -39,6 +39,7 @@ const config = [
 	{ label: 'key_4', link: '/staking' },
 	{ label: 'key_5', link: '/coming-soon' },
 	{ label: 'key_6', link: '/coming-soon' },
+	{ label: 'key_Bridge', link: '/coming-soon' },
 ];
 
 const socials = [
@@ -253,7 +254,7 @@ export default function HeaderHome() {
 	return (
 		<>
 			<Header>
-				<BlurBox />
+				{/* <BlurBox /> */}
 				<Container
 					maxWidth={'xl'}
 					sx={{

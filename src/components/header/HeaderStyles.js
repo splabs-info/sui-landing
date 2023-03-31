@@ -10,6 +10,16 @@ export const Header = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120,0.5) 100%)',
     boxShadow: 'none',
     minHeight: '4.5rem',
+    backdropFilter: 'blur(30px)',
+    WebkitBackdropFilter: 'blur(30px)',
+    '&:before': {
+        content: '""',
+        width: '100%',
+        height: '2px',
+        background: 'linear-gradient(90deg, #81ECC5 0%, #94CBFF 50%, #8596FF 100%)',
+        position: 'absolute',
+        bottom: 0,
+    },
     [theme.breakpoints.down('md')]: {
         minHeight: '3rem',
     },

@@ -1,29 +1,29 @@
 import { Box, Divider, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import { ImgTitleBox, TextTypography, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import CustomSlider from './CustomSlider';
 const data = [
     {
         img: '/images/pools/pools-5.jpg',
-        title: '',
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-6.jpg',
-        title: '',
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-7.jpg',
-        title: '',
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-8.jpg',
-        title: '',
+        title: 'Coming soon',
         description:
             '',
     },

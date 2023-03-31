@@ -115,7 +115,7 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <img src="/images/default-avatar.png" style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                <img src="/images/my-profile/default-avatar.png" style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 {/* <PersonAddAltIcon /> */}
                 {/* <CaptionUpload>Drag 'n' drop your avatar here</CaptionUpload> */}
             </div>

@@ -15,7 +15,7 @@ export const ClaimAvailable = () => {
                             display: 'inline-block',
                         }}
                     >
-                        Select network:
+                        Select network: --
                     </Typography>
                 </Box>
             </Box>

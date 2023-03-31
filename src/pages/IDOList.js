@@ -1,7 +1,7 @@
 import { TabContext } from '@mui/lab';
 import { Box, Container, styled, Tab, Typography } from '@mui/material';
 import Page from 'components/common/Page';
-import { ButtonTitleBox, CustomTabList, FrameButton, TextTypography } from 'components/home-v2/HomeStyles';
+import { ButtonTitleBox, CustomTabList, FrameButton, SectionBox, TextTypography } from 'components/home-v2/HomeStyles';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
@@ -14,10 +14,9 @@ export default function IDOList() {
 
     return (
         <Page title="IDO list">
-            <Background2>
-                <Background />
+            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')", }}>
                 <Container maxWidth='xl'>
-                    <Box sx={{ position: 'relative', zIndex: 1, pt: 30 }}>
+                    <Box sx={{ position: 'relative', zIndex: 1, pt: 30, color: 'white' }}>
                         <Title variant="h2">
                             Enter <p className="linear">the multi chain</p> <br />
                             based Launchpad
@@ -34,13 +33,16 @@ export default function IDOList() {
                             <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
-
                     <Questions />
+                </Container>
+            </SectionBox>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white' }}>
+                <Container maxWidth='xl'>
                     <OnGoingPools />
                     <UpComingPools />
                     <PreviousPools />
                 </Container>
-            </Background2>
+            </SectionBox>
         </Page>
     );
 }
@@ -56,24 +58,6 @@ const Title = styled(Typography)(({ theme }) => ({
     },
 }));
 
-const Background = styled(Box)(({ theme }) => ({
-    backgroundImage: "url('/images/background/ido-list-header-bg.png')",
-    minHeight: '100vh',
-    backgroundSize: '100% 100%',
-    backgroundRepeat: 'no-repeat',
-    top: '72px',
-    position: 'absolute',
-    zIndex: 0,
-    width: '100%',
-}));
-
-const Background2 = styled(Box)(({ theme }) => ({
-    backgroundImage: "url('/images/background/ido-list-bg.png')",
-    backgroundSize: '100% 100%',
-    backgroundRepeat: 'no-repeat',
-    color: 'white',
-    backgroundPosition: 'top',
-}));
 
 const Questions = () => {
     const isDesktop = useResponsive('up', 'md');

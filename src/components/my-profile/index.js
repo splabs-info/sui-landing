@@ -30,12 +30,7 @@ export default function MyInfo() {
     <>
       <SectionBox
         sx={{
-          backgroundImage: "url('/MyPage.png')",
-          minHeight: '100vh',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          paddingTop: !isDesktop && 5,
-
+          backgroundImage: "url('/images/background/bg-ido.png')",
         }}
       >
         <Container maxWidth={'xl'} >

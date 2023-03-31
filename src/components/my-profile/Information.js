@@ -4,6 +4,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import IcCopy from 'components/asset/icon/IcCopy';
+import IcNationality from 'components/asset/icon/IcNationality';
 import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
@@ -12,9 +13,9 @@ import { UploadAvatar } from 'components/upload-avatar';
 import { WalletContext } from 'hooks/use-connect';
 import React from 'react';
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%, 1)',
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-  backdropFilter: 'blur(10px)',
+  background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',
+  boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+  backdropFilter: 'blur(50px)',
   borderRadius: '15px',
   height: '750px',
   padding: '40px',
@@ -28,7 +29,8 @@ const DATA_DEFAULT = [
     title: '20.05.1998',
     icon: <IcPeople />,
   },
-  { titleName: 'Sex', title: 'john_br.son@gmail.com', icon: <IcSex /> },
+  { titleName: 'Sex', title: '--', icon: <IcSex /> },
+  { titleName: 'Nationality', title: '==', icon: <img src='/images/my-profile/icon-nationality.png' /> },
 ];
 
 export default function AreaInformation({ onOpen }) {

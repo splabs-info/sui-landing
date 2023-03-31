@@ -3,30 +3,32 @@ import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { useTheme } from '@mui/material/styles';
 import { TextTypography } from 'components/home-v2/HomeStyles';
-const img = '/images/pools/pools-1.jpg';
 
 const data = [
     {
         img: '/images/pools/pools-1.jpg',
-        title: '',
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-2.jpg',
-        title: '',
+
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-3.jpg',
-        title: '',
+
+        title: 'Coming soon',
         description:
             '',
     },
     {
         img: '/images/pools/pools-4.jpg',
-        title: '',
+
+        title: 'Coming soon',
         description:
             '',
     },

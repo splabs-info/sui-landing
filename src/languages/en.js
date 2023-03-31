@@ -15,6 +15,7 @@ export const en = {
   key_6: "DEX",
   key_7: "Whitepaper",
   key_8: "Connect Wallet",
+  key_Bridge: "Bridge",
 
   key_9: "Contact",
 
