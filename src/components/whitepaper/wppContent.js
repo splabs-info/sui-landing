@@ -676,6 +676,7 @@ export const wppContent = [
         id: 'N',
         category: 'Tokenomics',
         description: [
+
             {
                 title: 'XUI Token Overview',
                 content: [
@@ -699,6 +700,7 @@ export const wppContent = [
                     <>
                         <b>Standard :</b> BSC, SUI
                     </>,
+                    [<img src="/images/whitepaper/tokenomics.png" alt="" />],
                     <>
                         <b>Token Allocation:</b>
                     </>,
@@ -784,13 +786,13 @@ export const wppContent = [
                     `SUI is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
                 ],
             },
-            {
-                subtitle: 'Sui.io',
-                content: [
-                    'Sui.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
-                    'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
-                ],
-            },
+            // {
+            //     subtitle: 'Sui.io',
+            //     content: [
+            //         'Sui.io is a centralized cryptocurrency exchange where users can find a large number of crypto coins and tokens to trade. The platform supports over 1400 cryptocurrencies with over 2500 trading pairs. The project occupies one of the leading positions in terms of trading volume (more than 12 billion dollars in trading volume daily) and supports spot and margin trading. It also expanded services to other markets, including options, futures, and derivatives for investors.',
+            //         'Launched in 2013, the platform claims to be “steady and reliable,” offering a user-friendly platform with 24/7 customer support and a robust mobile app. However, the exchange is not highly regulated, and does not offer the option to withdraw fiat. In order to withdraw funds from accounts or deposit cryptocurrencies, users go through a mandatory KYC or “Know Your Customer” process.',
+            //     ],
+            // },
         ],
     },
     {
@@ -1143,7 +1145,7 @@ export const wppContent = [
         category: 'Platform Overview',
         description: [
             {
-                content: [<img src="/images/whitepaper/UNDERSTAND-YouSUI.png" alt="" />],
+                content: [<img src="/images/whitepaper/understand-yousui.png" alt="" />],
             },
         ],
     },

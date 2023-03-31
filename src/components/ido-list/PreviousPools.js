@@ -63,7 +63,7 @@ export default function PreviousPools() {
                                             }}
                                             alt=""
                                         />
-                                        <Box
+                                        {/* <Box
                                             sx={{
                                                 position: 'absolute',
                                                 bottom: 4,
@@ -77,7 +77,7 @@ export default function PreviousPools() {
                                             <TextTypography variant="body1" fontSize={'0.9rem'}>
                                                 Coming Soon
                                             </TextTypography>
-                                        </Box>
+                                        </Box> */}
                                     </Grid>
                                     <Grid item xs>
                                         <Typography mt={3} fontWeight={700}>
@@ -93,7 +93,7 @@ export default function PreviousPools() {
                                 <Grid container justifyContent={'space-between'}>
                                     <Grid item xs={5.5}>
                                         <Typography>Total raise</Typography>
-                                        <Typography variant="h5">USDT</Typography>
+                                        <Typography variant="h5">-- USDT</Typography>
                                     </Grid>
                                     <Divider flexItem orientation="vertical" sx={{ background: '#fff' }} />
                                     <Grid item xs={5.5}>
@@ -115,7 +115,7 @@ export default function PreviousPools() {
                         </Box>
                         <Box mt={3}>
                             <CustomSlider
-                                color="linear-gradient(60.84deg, rgba(91, 210, 218, 0.8) 17.27%, rgba(128, 255, 217, 0.8) 59.07%, rgba(255, 255, 255, 0.8) 100%)"
+                                color="linear-gradient(10deg, rgba(91, 210, 218, 0.8) 17.27%, rgba(128, 255, 217, 0.8) 59.07%, rgba(255, 255, 255, 0.8) 100%)"
                                 disabledBorder={true}
                                 disabledMark={true}
                                 value={Number(100)}
@@ -127,17 +127,19 @@ export default function PreviousPools() {
                                         display: soldDot > 0 ? 'block' : 'none',
                                         marginLeft: soldDot === 100 ? '-1.25rem' : `-${soldDot / 100}rem`,
                                     },
+                                    border: '2px solid #C8D4EC',
+                                    boxShadow: '0 0 10px 2px rgb(255,255,255,0.7)'
                                 }}
                                 title={
                                     <Stack direction="row" justifyContent="space-between" mb={1}>
-                                        <Typography variant="caption">Progress</Typography>
-                                        <Typography variant="caption">Max Participants:</Typography>
+                                        <Typography variant="body2">Progress</Typography>
+                                        <Typography variant="body2">Max Participants: --</Typography>
                                     </Stack>
                                 }
                             />
                             <Stack direction="row" justifyContent="space-between" mt={1}>
-                                <Typography variant="caption">0%</Typography>
-                                <Typography variant="caption">-- ATK</Typography>
+                                <Typography variant="body2">0%</Typography>
+                                <Typography variant="body2">-- ATK</Typography>
                             </Stack>
                         </Box>
                     </Grid>

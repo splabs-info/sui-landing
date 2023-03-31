@@ -18,10 +18,10 @@ export const WppContentBox = styled(Box)(({ theme }) => ({
     paddingLeft: '1rem',
   },
   "& .icon-tabler-square-check path": {
-    color: '#00ffff'
+    color: '#1DD7D1'
   },
   "& .icon-tabler-square-check rect": {
-    color: '#00ffff'
+    color: '#1DD7D1'
   },
   [theme.breakpoints.down('sm')]: {
     marginLeft: '0',
@@ -49,7 +49,7 @@ export const NormalText = styled(Typography)(({ theme }) => ({
     color: alpha('#fff', 0.85)
   },
   "& highline": {
-    color: alpha('#00bfff', 0.85),
+    color: alpha('#1DD7D1', 0.85),
     fontStyle: 'italic'
   },
 }));

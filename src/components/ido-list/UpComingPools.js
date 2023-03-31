@@ -75,31 +75,33 @@ export default function UpComingPools() {
                                 },
                             }}
                         >
-                            <img
-                                src={item.img}
-                                style={{
-                                    borderRadius: '10px',
-                                    width: '100%',
-                                    maxHeight: 300,
-                                    objectFit: 'cover',
-                                }}
-                                alt=""
-                            />
-                            {/* <Box
-                                sx={{
-                                    position: 'absolute',
-                                    top: 4,
-                                    right: 4,
-                                    padding: '4px 16px ',
-                                    borderRadius: '9px',
-                                    background:
-                                        'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 48.78%, #5CBAF2 79.27%)',
-                                }}
-                            >
-                                <TextTypography variant="body1" fontSize={'0.9rem'}>
-                                    Coming Soon
-                                </TextTypography>
-                            </Box> */}
+                            <Box position={'relative'}>
+                                <img
+                                    src={item.img}
+                                    style={{
+                                        borderRadius: '10px',
+                                        width: '100%',
+                                        maxHeight: 300,
+                                        objectFit: 'cover',
+                                    }}
+                                    alt=""
+                                />
+                                <Box
+                                    sx={{
+                                        position: 'absolute',
+                                        bottom: 4,
+                                        right: 4,
+                                        padding: '4px 16px ',
+                                        borderRadius: '9px',
+                                        background:
+                                            'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 48.78%, #5CBAF2 79.27%)',
+                                    }}
+                                >
+                                    <TextTypography variant="body1" fontSize={'0.9rem'}>
+                                        TBA
+                                    </TextTypography>
+                                </Box>
+                            </Box>
                             <Typography mt={3} fontWeight={700}>
                                 {item.title}
                             </Typography>
