@@ -1,6 +1,6 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox } from 'components/home-v2/HomeStyles';
 import { AppButton } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { Link as RouterLink } from 'react-router-dom';
@@ -44,7 +44,7 @@ export default function ComingSoon() {
                                 sx={{ width: '260px !important', margin: 'auto', textAlign: 'center' }}
                             />
                             <img src="/images/comingsoon/coming-soon.png" alt="" style={{ width: '100%', margin: '0 auto' }} />
-                          
+
                         </Box>
                         <AppButton
                             to="/"

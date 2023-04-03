@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography } from '@mui/material';
 import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
-import { ButtonTitleBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
+import { ButtonTitleBox, CenterBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
 const SubTitle = [
     'YouSUI works with projects with a high probability of success',
@@ -48,10 +48,7 @@ export default function Intro() {
         <SectionBox
             sx={{
                 backgroundImage: "url('/images/background/homebg1.png')",
-                minHeight: '100vh',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                paddingTop: !isDesktop && 5,
+                // minHeight: '100vh',
             }}
         >
             <Container maxWidth={'xl'}>
@@ -71,7 +68,7 @@ export default function Intro() {
                             },
                         }}
                     >
-                        <Box mt={isMobile ? 5 : 12}>
+                        <Box mt={isMobile ? 5 : 8}>
                             {Title.map((item, i) => (
                                 <TitleTypography
                                     key={i}
@@ -106,14 +103,25 @@ export default function Intro() {
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>
-                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank">
+                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer" >
                                 <FrameButton>Apply for Launchpad</FrameButton>
                             </a>
                             <Link to={'/whitepaper'}>
                                 <FrameButton>Whitepaper</FrameButton>
                             </Link>
                         </ButtonTitleBox>
-
+                        {/* {isMobile && (
+                            <CenterBox>
+                                <img
+                                    alt="sui"
+                                    src="/images/home/yousui.png"
+                                    style={{
+                                        width: '90%',
+                                        zIndex: 2,
+                                    }}
+                                />
+                            </CenterBox>
+                        )} */}
                         <Box
                             mt={'3rem'}
                             sx={{
@@ -155,20 +163,20 @@ export default function Intro() {
                                     gap: '33px',
                                 }}
                             >
-                                <img alt="sui" src="/featuredby1.png" height={isMobile ? 40 : 60} />
-                                <img alt="sui" src="/featuredby2.png" height={isMobile ? 40 : 32} />
+                                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 40 : 80} />
+                                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 40 : 80} />
                                 {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
                     </Grid>
-                    {/* <Grid item md={4} mt={isMobile && 5}>
+                    {/* <Grid item md={4} mt={isMobile && 2} mb={isMobile && 2}>
                         {isMobile && (
                             <CenterBox>
                                 <img
                                     alt="sui"
-                                    src="/images/home/gatekeeper.png"
+                                    src="/images/home/yousui.png"
                                     style={{
-                                        width: '60%',
+                                        width: '80%',
                                         zIndex: 2,
                                     }}
                                 />
@@ -187,46 +195,47 @@ export default function Intro() {
                     </Grid> */}
                 </Grid>
             </Container>
-            <img
-                alt="sui"
-                src="/images/home/home-bg-coins.png"
-                style={{
-                    position: 'absolute',
-                    width: '40%',
-                    right: '3%',
-                    display: isTablet && 'none',
-                }}
-            />
-            <img
-                alt="gatekeeper"
-                src="/images/home/home-coins-others.png"
-                className={'imgCoins'}
-                style={{
-                    position: 'absolute',
-                    width: '40%',
-                    right: '3%',
-                    display: isTablet && 'none',
-                }}
-            />
-            <img
-                alt="gatekeeper"
-                src="/Token-YouSUI.png"
-                className={'imgGate'}
-                style={{
-                    position: 'absolute',
-                    width: '12%',
-                    right: '15.5%',
-                    display: isTablet && 'none',
-                }}
-            />
+            <Box sx={{
+                position: 'absolute',
+                width: '40%',
+                right: '3%',
+                top: '10%', zIndex: 1,
+                display: isTablet && 'none',
+            }}>
+
+                <img
+                    alt="sui"
+                    src="/images/home/home-bg-coins.png"
+                    style={{
+                        position: 'absolute',
+                    }}
+                />
+                <img
+                    alt="gatekeeper"
+                    src="/images/home/home-coins-others.png"
+                    className={'imgCoins'}
+                    style={{
+                        position: 'absolute',
+                    }}
+                />
+                <img
+                    alt="yousui"
+                    src="/images/home/home-coin-yousui.png"
+                    className={'imgSui'}
+                    style={{
+                        position: 'absolute',
+                    }}
+                />
+            </Box>
             <img
                 alt=""
                 src="/images/home/base-2.png"
                 style={{
                     position: 'absolute',
                     width: '40%',
-                    right: 0,
-                    top: '80%',
+                    right: '1%',
+                    top: 'max(100px,70%)',
+                    zIndex: 0,
                     display: isTablet && 'none',
                 }}
             />

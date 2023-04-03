@@ -48,9 +48,8 @@ export const TierInformation = ({ tierMedal, level, idoApp }) => {
         <TierBox sx={{ display: 'flex' }}>
             <Box sx={{ marginRight: 5 }}>
                 <img src={tierMedal} alt={level} style={{ width: 300, marginBottom: '4px' }} />
-                <Typography
+                <Typography variant='h4'
                     sx={{
-                        fontSize: 20,
                         fontWeight: 'bold',
                         color: 'white',
                         textShadow: '0 0 7px rgb(255,255,255,0.5)',

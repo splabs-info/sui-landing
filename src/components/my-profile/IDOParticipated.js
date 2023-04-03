@@ -27,7 +27,7 @@ export const IDOParticipated = () => {
         <Wrapper sx={{ flexBasis: isTablet ? '100%' : 'auto' }}>
             <TitleSection title="IDO PARTICIPATED" />
             <StyledIDOParticipatedCard>
-                <img src={'/circle.png'} width={169} height={169} />
+                <img src={'/images/my-profile/circle.png'} width={169} height={169} alt='' />
                 <Box>
                     <Typography sx={{ color: 'white', fontSize: 24 }}>Total Pool</Typography>
                     <Typography

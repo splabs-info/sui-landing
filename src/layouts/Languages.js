@@ -27,6 +27,7 @@ const MenuLanguages = styled(Menu)(() => ({
 
 const LanguagesButton = styled(IconButton)(() => ({
     borderRadius: '10px',
+    padding: '0',
     '& span': {
         color: 'white',
         fontSize: '1rem',
@@ -35,7 +36,7 @@ const LanguagesButton = styled(IconButton)(() => ({
 }));
 
 const LanguagesIcon = styled(Box)(() => ({
-    height: '25px',
+    // height: '25px',
     marginRight: '0.7rem',
     cursor: 'pointer',
 }));
@@ -91,11 +92,16 @@ export default function Languages({ ...other }) {
             <LanguagesButton onClick={handleClickLang}>
                 <LanguagesIcon
                     component={'img'}
+                    src={`/images/icon/icon-lang.png`}
+                    alt="languages"
+                />
+                {/* <LanguagesIcon
+                    component={'img'}
                     src={`/images/icon/icon-${currentLang}.png`}
                     alt="languages"
                     sx={{ marginRight: 0 }}
                 />
-                <span> {currentLang.toUpperCase()}</span>
+                <span> {currentLang.toUpperCase()}</span> */}
             </LanguagesButton>
             <MenuLanguages
                 anchorEl={anchorElLang}

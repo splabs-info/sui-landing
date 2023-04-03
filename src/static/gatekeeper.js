@@ -1,7 +1,7 @@
 export const joinGateKeeper = [
     {
         label: 'key_15',
-        link: '/coming-soon',
+        link: '/ido-launchpad',
     },
     {
         label: 'key_16',
@@ -17,7 +17,7 @@ export const joinGateKeeper = [
     },
     {
         label: 'key_19',
-        link: '/coming-soon',
+        link: '/staking',
     },
 ];
 

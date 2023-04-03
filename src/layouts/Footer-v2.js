@@ -15,6 +15,7 @@ import {
 } from '../components/footer/FooterStyles';
 import useResponsive from '../hooks/useResponsive';
 import { _changeLanguage } from '../store/setting/settingActions';
+import Logo from 'components/common/Logo';
 
 const joinGateKeeper = [
     {
@@ -31,7 +32,7 @@ const joinGateKeeper = [
     },
     {
         label: 'key_Staking',
-        link: '/coming-soon',
+        link: '/staking',
     },
     {
         label: 'key_18',
@@ -116,7 +117,7 @@ export default function FooterV2() {
             <Container maxWidth={'xl'}>
                 <Grid container>
                     <Grid item sm={12} md={12} lg={3} textAlign={isTablet && 'center'}>
-                        <Box
+                        {/* <Box
                             component="a"
                             href="/"
                             sx={{
@@ -128,7 +129,8 @@ export default function FooterV2() {
                             }}
                         >
                             <Box component={'img'} src="/logo2.png" width={isMobile ? 180 : '100%'} maxWidth={180} />
-                        </Box>
+                        </Box> */}
+                        <Logo sx={{ width: { md: '160px', sm: '100px', xs: '100px' } }} />
                         <Typography
                             mt={3}
                             variant="body1"
@@ -208,9 +210,9 @@ export default function FooterV2() {
                         pl={isMobile && 2}
                         sx={{ height: '100%', textAlign: 'start', wordBreak: 'break-all' }}
                     >
-                        
-                            <FooterTitle>{library.key_14}</FooterTitle>
-                        
+
+                        <FooterTitle>{library.key_14}</FooterTitle>
+
 
                         <UlCustom>
                             {joinGateKeeper.map((item) => (

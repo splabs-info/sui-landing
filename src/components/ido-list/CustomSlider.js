@@ -83,7 +83,7 @@ const CustomSlider = ({
         [theme.breakpoints.down('sm')]: {
             margin: '0.5rem 0',
             height: '20px',
-            padding: '4px',
+            padding: '0px',
             '&::before': {
                 borderRadius: '10px',
                 padding: ' 1px',

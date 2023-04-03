@@ -13,7 +13,7 @@ export const Footer = styled(Box)(({ theme }) => ({
         paddingBottom: '0.25rem',
     },
     '& a:hover': {
-        borderBottom: '2px solid #00E5FF',
+        borderBottom: '2px solid #1DD7D1',
         fontWeight: 700,
     },
 }));
@@ -93,9 +93,9 @@ export const WhitePaperButton = styled(Button)(() => ({
     fontSize: '1rem',
     fontWeight: 500,
     '&:hover': {
-        borderBottom: '1px solid #00E5FF',
+        borderBottom: '1px solid #1DD7D1',
         borderRadius: '0px',
-        color: '#00E5FF',
+        color: '#1DD7D1',
         background: 'transparent',
         fontWeight: 700,
     },
@@ -113,8 +113,8 @@ export const GetIntoButton = styled(Button)(({ theme }) => ({
     border: '1px solid white',
     boxShadow: '0 0 10px 2px rgba(255,255,255,.5), inset 0 0 10px 2px rgba(255,255,255,.5)',
     '&:hover': {
-        border: '1px solid #00E5FF',
-        color: '#00E5FF',
+        border: '1px solid #1DD7D1',
+        color: '#1DD7D1',
         background: 'transparent',
         fontWeight: 700,
     },
