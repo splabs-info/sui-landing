@@ -52,7 +52,7 @@ export const ChooseWalletModal = () => {
                     justifyContent: 'center',
                 }}
             >
-                <img src="/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} />
+                <img src="/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} alt='' />
             </Box>
             <Typography fontWeight={900} mb={2}>
                 My Wallet

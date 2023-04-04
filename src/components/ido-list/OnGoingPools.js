@@ -1,11 +1,15 @@
 import { Box, Button, Divider, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import useResponsive from 'hooks/useResponsive';
 const img = '/images/pools/pools-4.jpg';
+const imgComing = '/images/comingsoon/coming-1.png';
 
 export default function OnGoingPools() {
+    const isMobile = useResponsive('down', 'sm')
+    const isDesktop = useResponsive('up', 'md')
     return (
-        <Box my={20} position="relative">
+        <Box mb={20} mt={10} position="relative">
             {/* <Link to="/"> */}
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
@@ -18,12 +22,12 @@ export default function OnGoingPools() {
                         'linear-gradient(128.67deg, rgba(104, 230, 184, 0.2) 10.81%, rgba(109, 133, 218, 0.2) 75.48%)',
                     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
                     backdropFilter: 'blur(25px)',
-                    borderRadius: '50px',
+                    borderRadius: isMobile ? '20px' : '50px',
                     p: 4,
                     mt: 5,
                     '&:hover': {
                         background:
-                            'linear-gradient(128.67deg, rgba(104, 230, 184, 1) 10.81%, rgba(109, 133, 218, 1) 75.48%)',
+                            'linear-gradient(128.67deg, rgba(104, 230, 184, 0.5) 10.81%, rgba(109, 133, 218, 0.5) 75.48%)',
                     },
                 }}
             >
@@ -51,7 +55,14 @@ export default function OnGoingPools() {
                             </Box> */}
                     </Grid>
                     <Grid item md={9} xs={12}>
-                        <Typography variant="h5">Coming soon</Typography>
+                        <Stack justifyContent={'center'} alignItems={'center'}>
+                            <img
+                                src={imgComing}
+                                style={{ borderRadius: '10px', width: 'min(70%,600px)' }}
+                                alt=""
+                            />
+                        </Stack>
+                        {/* <Typography variant="h5">Coming soon</Typography>
                         <Typography></Typography>
                         <Box
                             sx={{
@@ -93,7 +104,7 @@ export default function OnGoingPools() {
                                     </Button>
                                 </Grid>
                             </Grid>
-                        </Box>
+                        </Box>*/}
                     </Grid>
                 </Grid>
             </Box>

@@ -9,8 +9,8 @@ export default function Whitepaper() {
         <Page title="Whitepaper">
             <Box
                 sx={{
-                    background: "url('/images/background/bg3.png')",
-                    backgroundSize: 'cover',
+                    background: "url('/images/background/bg-main.png')",
+                    backgroundSize: isDesktop ? '100% 100%' : 'cover',
                 }}
             >
                 <WhitepaperContent />

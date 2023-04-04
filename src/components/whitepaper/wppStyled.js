@@ -42,8 +42,10 @@ export const NormalText = styled(Typography)(({ theme }) => ({
   paddingTop: '0.5rem',
   fontSize: '0.98rem',
   "& img": {
-    paddingBottom: 32,
-    paddingTop: 16,
+    marginBottom: 32,
+    marginTop: 16,
+    borderRadius: '20px',
+    border: '1px solid #48595A'
   },
   "& b": {
     color: alpha('#fff', 0.85)
