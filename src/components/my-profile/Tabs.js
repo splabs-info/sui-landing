@@ -127,8 +127,8 @@ export default function BasicTabs() {
 
                     <TitleSection title="TIER INFORMATION" />
                     <TierInformation
-                        tierMedal="/images/my-profile/tier-1.png"
-                        level="TIER 1"
+                        tierMedal="/images/sui-tier/tier5.png"
+                        level="TIER 5"
                         idoApp="2% of Total Pool"
                     />
                 </TabPanel>
