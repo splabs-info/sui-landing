@@ -89,6 +89,9 @@ export const ButtonTitleBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     marginTop: '1rem',
+    [theme.breakpoints.down('sm')]: {
+        flexWrap: 'wrap'
+    },
 }));
 
 export const FrameButton = styled(Button)(({ theme }) => ({
@@ -112,8 +115,8 @@ export const FrameButton = styled(Button)(({ theme }) => ({
         color: Color.primary,
     },
     [theme.breakpoints.down('sm')]: {
-        width: 110,
-        height: 45,
+        width: 132,
+        height: 54,
         fontSize: '0.55rem',
     },
 }));

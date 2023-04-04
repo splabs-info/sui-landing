@@ -11,14 +11,15 @@ import { Link } from 'react-router-dom';
 
 export default function IDOList() {
     const isDesktop = useResponsive('up', 'md');
+    const isMobile = useResponsive('down', 'sm');
 
     return (
         <Page title="IDO list">
             <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')", }}>
                 <Container maxWidth='xl'>
-                    <Box sx={{ position: 'relative', zIndex: 1, pt: 30, color: 'white' }}>
+                    <Box sx={{ position: 'relative', zIndex: 1, pt: isDesktop ? 30 : 15, color: 'white' }}>
                         <Title variant="h2">
-                            Enter <p className="linear">the multi chain</p> <br />
+                            Enter {isMobile && <br />} <p className="linear">the multi chain</p> <br />
                             based Launchpad
                         </Title>
                     </Box>
@@ -36,7 +37,7 @@ export default function IDOList() {
                     <Questions />
                 </Container>
             </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white' }}>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
                 <Container maxWidth='xl'>
                     <OnGoingPools />
                     <UpComingPools />

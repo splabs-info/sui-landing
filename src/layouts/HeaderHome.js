@@ -14,23 +14,22 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	MenuItem,
+	MenuItem
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { subMenus } from 'static/subMenus';
-import { ApplyButton, BlurBox, Header, Navbar } from '../components/header/HeaderStyles';
+import { Link, NavLink } from 'react-router-dom';
+import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
+import { useWallet } from '@suiet/wallet-kit';
 import { CreateProfilePopup } from 'components';
+import Logo from 'components/common/Logo';
 import { WalletDrawer } from 'components/drawer';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
-import { useWallet } from '@suiet/wallet-kit';
-import Logo from 'components/common/Logo';
 import Languages from './Languages';
 
 const config = [
@@ -146,18 +145,18 @@ export default function HeaderHome() {
 							display: 'flex',
 							alignSelf: 'stretch',
 							alignItems: 'center',
-							textTransform: 'capitalize',
+							textTransform: 'uppercase',
 						}}
 					>
-						<Link to={item.link} key={index} className={item.customStyle || ''}>
+						<NavLink to={item.link} key={index} className={item.customStyle || ''}>
 							{library[item.label]}
 							{item.icon}
-						</Link>
+						</NavLink>
 					</Box>
 				);
 			} else
 				return (
-					<Link
+					<NavLink
 						to={item.link}
 						onClick={() => {
 							scroll(item);
@@ -166,7 +165,7 @@ export default function HeaderHome() {
 						className={item.link === activeRoute ? 'active' : ''}
 					>
 						{library[item.label]}
-					</Link>
+					</NavLink>
 				);
 		})}
 	</>
@@ -254,7 +253,6 @@ export default function HeaderHome() {
 	return (
 		<>
 			<Header>
-				{/* <BlurBox /> */}
 				<Container
 					maxWidth={'xl'}
 					sx={{
