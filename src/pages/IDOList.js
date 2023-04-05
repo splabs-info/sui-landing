@@ -1,7 +1,8 @@
 import { TabContext } from '@mui/lab';
-import { Box, Container, styled, Tab, Typography } from '@mui/material';
+import { Box, Container, Stack, styled, Tab, Typography } from '@mui/material';
 import Page from 'components/common/Page';
-import { ButtonTitleBox, CustomTabList, FrameButton, SectionBox, TextTypography } from 'components/home-v2/HomeStyles';
+import { ButtonTitleBox, CustomTabList, FrameButton, QuestionsButton, SectionBox, TextTypography } from 'components/home-v2/HomeStyles';
+import { questionsList } from 'components/home-v2/Questions';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
@@ -61,63 +62,20 @@ const Title = styled(Typography)(({ theme }) => ({
 
 
 const Questions = () => {
-    const isDesktop = useResponsive('up', 'md');
-
-    const [tabIndex, setTabIndex] = React.useState('0');
-
-    const handleChange = (event, newValue) => {
-        setTabIndex(newValue.toString());
-    };
+    const isMobile = useResponsive('down', 'sm');
 
     return (
-        <Box mt={20}>
-            <TabContext value={tabIndex}>
-                <Box>
-                    <CustomTabList
-                        onChange={handleChange}
-                        indicatorColor="none"
-                        variant={isDesktop ? 'fullWidth' : 'scrollable'}
-                        scrollButtons="auto"
-                    >
-                        <Tab
-                            value="0"
-                            label={
-                                <div>
-                                    <TextTypography variant="body1">How to get started ?</TextTypography>
-                                    <TextTypography variant="body2">Learn more</TextTypography>
-                                </div>
-                            }
-                        />
-                        <Tab
-                            value="1"
-                            label={
-                                <div>
-                                    <TextTypography variant="body1">What is Tier System ?</TextTypography>
-                                    <TextTypography variant="body2">Learn more</TextTypography>
-                                </div>
-                            }
-                        />
-                        <Tab
-                            value="2"
-                            label={
-                                <div>
-                                    <TextTypography variant="body1">How to join IDO ?</TextTypography>
-                                    <TextTypography variant="body2">Learn more</TextTypography>
-                                </div>
-                            }
-                        />
-                        <Tab
-                            value="3"
-                            label={
-                                <div>
-                                    <TextTypography variant="body1">What is YouSUI ?</TextTypography>
-                                    <TextTypography variant="body2">Learn more</TextTypography>
-                                </div>
-                            }
-                        />
-                    </CustomTabList>
-                </Box>
-            </TabContext>
+        <Box mt={isMobile ? 15 : 20}>
+            <Stack flexDirection='row' flexWrap={'wrap'} justifyContent='space-between'>
+                {questionsList.map((item, index) => (
+                    <QuestionsButton key={index} href={item.link} target={'_blank'}>
+                        <div>
+                            <TextTypography variant="body1">{item.title} </TextTypography>
+                            <TextTypography variant="body2">Learn more</TextTypography>
+                        </div>
+                    </QuestionsButton>
+                ))}
+            </Stack>
         </Box>
     );
 };
