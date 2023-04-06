@@ -146,6 +146,7 @@ export default function HeaderHome() {
 							alignSelf: 'stretch',
 							alignItems: 'center',
 							textTransform: 'uppercase',
+							fontSize: "0.9rem"
 						}}
 					>
 						<NavLink to={item.link} key={index} className={item.customStyle || ''}>

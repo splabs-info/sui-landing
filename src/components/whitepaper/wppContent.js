@@ -77,6 +77,11 @@ export const wppContent = [
                     </>,
                     <>
                         {' '}
+                        <IconSquareCheck />
+                        Solana
+                    </>,
+                    <>
+                        {' '}
                         <IconSquare /> Avalanche
                     </>,
                     <>
@@ -84,11 +89,7 @@ export const wppContent = [
                         <IconSquare />
                         Klaytn
                     </>,
-                    <>
-                        {' '}
-                        <IconSquare />
-                        Solana
-                    </>,
+
                     <>
                         {' '}
                         <IconSquare />
@@ -127,8 +128,14 @@ export const wppContent = [
                         <IconSquareCheck /> Bitkeep
                     </>,
                     <>
-                        <IconSquareCheck /> Coin98
+                        <IconSquareCheck /> Sui Wallet
                     </>,
+                    <>
+                        <IconSquareCheck /> Suiet
+                    </>,
+                    // <>
+                    //     <IconSquareCheck /> Coin98
+                    // </>,
                     <>
                         {' '}
                         <IconSquare />
@@ -157,6 +164,7 @@ export const wppContent = [
         id: 'B',
         category: 'Vision & Mission',
         description: [
+            { content: [<img src="/images/whitepaper/vision-mission.jpg" alt="" />] },
             {
                 title: 'Our vision',
                 content: [
@@ -449,6 +457,9 @@ export const wppContent = [
         category: 'Staking',
         description: [
             {
+                content: [<img src="/images/whitepaper/Staking-System.jpg" alt="" />],
+            },
+            {
                 content: [
                     'The most basic thing to do to participate in Launchpad is to stake XUI tokens in a staking pool. Tier is determined according to the amount of XUI staked and XUI NFT holding, and on average, you need to stake in the staking pool 10 days before Launchpad.',
                 ],
@@ -602,6 +613,9 @@ export const wppContent = [
         category: 'Social Platform',
         description: [
             {
+                content: [<img src="/images/whitepaper/social-platform.jpg" alt="" />],
+            },
+            {
                 title: 'Basic Information for YouSUI Social Platform',
                 content: [
                     `YouSUI's social platform will be made in the form of a platform, not a messenger program that has been done in the existing Discord or Telegram. Let's find out what functions and features are available in the social platform.`,
@@ -656,11 +670,11 @@ export const wppContent = [
                             total liquidity in a pool.
                         </b>
                     </p>,
-                    "",
-                    "",
-                    "Est. Received : Estimated number of final tokens you will receive after proceeding with the Swap",
-                    "Min. Received : The minimum number of final tokens you will receive after proceeding with the Swap",
-                    "Network fee : Estimated Gas Fee used for Swap Transaction. Depends on the per-block or blockchain state."
+                    '',
+                    '',
+                    'Est. Received : Estimated number of final tokens you will receive after proceeding with the Swap',
+                    'Min. Received : The minimum number of final tokens you will receive after proceeding with the Swap',
+                    'Network fee : Estimated Gas Fee used for Swap Transaction. Depends on the per-block or blockchain state.',
                 ],
             },
         ],
