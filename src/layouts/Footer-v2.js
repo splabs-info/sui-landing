@@ -143,14 +143,14 @@ export default function FooterV2() {
                             The YouSUI is a user-friendly platform that runs on Sui blockchain as a multi-chain platform
                             for Metaverse, Game, and WEB 3.0.
                         </Typography>
-                        <CusLink
+                        {/* <CusLink
                             href="https://splabs.info/"
                             target={'_blank'}
                             sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}
                         >
                             <Box component="img" src="/logo-splabs.png" width={'150px'} />
-                        </CusLink>
-                        <Typography
+                        </CusLink> */}
+                        {/* <Typography
                             variant="body1"
                             sx={{
                                 fontSize: '0.95rem',
@@ -160,7 +160,7 @@ export default function FooterV2() {
                         >
                             Splabs is a blockchain hub that provides global gamefi, metaverse, M2E, and Defi service
                             solutions.
-                        </Typography>
+                        </Typography> */}
                     </Grid>
                     <Grid item xs={12} sm={4} md={3} lg={2} mt={isTablet && 3} textAlign={isMobile && 'center'}>
                         <FooterTitle>{library.key_9}</FooterTitle>
