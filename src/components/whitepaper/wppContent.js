@@ -625,16 +625,63 @@ export const wppContent = [
         category: 'Swap',
         description: [
             {
-                content: [],
+                content: [
+                    'Preparing to use the Swap function',
+                    '1. Metamask, Bitkeep, Coin98, Suiet, SUI Wallet to your chrome browser.',
+                    '2. Link your wallet and change the chain to SUI Network.',
+                    '3. Make sure you have enough SUI in your wallet balance.',
+                    '4. Look at the picture below and experience the various functions.',
+                    'Swap features provided by YouSUI',
+                    [<img src="/images/whitepaper/SWAP.jpg" alt="" />],
+                    '',
+                    '',
+                    <b>Cross-Chain Swap</b>,
+                    '*Users can use the BNB Chain - SUI Network cross-chain swap. BNB USDT -> SUI USDT and BNB Token can be swapped directly to XUI Token. Cross-chain swap requires abundant liquidity, so it can be used when liquidity and TVL exceed the standard.',
+                    '',
+                    <b>Price Chart</b>,
+                    'If you click the chart shape, the transaction record, trading volume, and price are set to be viewed as a Candle Chart or Line Chart. It is set so that you can see not only the AAA/BBB chart but also the reverse chart of BBB/AAA.',
+                    '',
+                    <b>Price Slippage</b>,
+                    'The change in token price caused by the total movement of the entire current market. Price Slippage is reflected as the difference between the price you expect to receive after swapping vs what you actually receive after the swap is complete.',
+                    '',
+                    <b>Slippage Tolerance</b>,
+                    'By default, YouSUI provides slippage tolerances of 0.1% 0.5% 1.0%. It is also possible for users to set Slippage Tolerance directly. For example, in the case of pools with insufficient liquidity, 2.0% Slippage Tolerance is created as a recommended value. In the case of swap pools with high liquidity, 0.1% Slippage Tolerance is set as a recommended value. YouSUI Platform is equipped with a function that automatically recommends to users according to the LP situation. Use the Swap more fully with the automatic Slippage Tolerance setting function',
+                    '',
+                    <b>Basic Information</b>,
+                    <p>
+                        Price Impact:{' '}
+                        <b>
+                            Price Impact is the change in token price directly caused by your trade. Price Impact is
+                            reflected as the difference between the current market price and how your trade impacts the
+                            total liquidity in a pool.
+                        </b>
+                    </p>,
+                    "",
+                    "",
+                    "Est. Received : Estimated number of final tokens you will receive after proceeding with the Swap",
+                    "Min. Received : The minimum number of final tokens you will receive after proceeding with the Swap",
+                    "Network fee : Estimated Gas Fee used for Swap Transaction. Depends on the per-block or blockchain state."
+                ],
             },
         ],
     },
     {
         id: 'K',
-        category: 'Sui Blockchain Bridge',
+        category: 'Bridge',
         description: [
             {
-                content: [],
+                content: [
+                    [<img src="/images/whitepaper/bridge-cross-chain.png" alt="" />],
+                    'The first network provided by Cross Chain Bridge',
+
+                    '✅BNB (EVM) <-> SUI (Non EVM)',
+                    '✅ETH (EVM) <-> SUI (Non EVM)',
+                    '✅Polygon (EVM) <-> SUI (Non EVM)',
+                    '✅ETH (EVM) <-> Polygon (EVM)',
+                    '✅BNB (EVM) <-> ETH (EVM)',
+
+                    'Bridge network that are additionally created will continue to be updated here.',
+                ],
             },
         ],
     },
@@ -682,7 +729,6 @@ export const wppContent = [
         id: 'N',
         category: 'Tokenomics',
         description: [
-
             {
                 title: 'XUI Token Overview',
                 content: [

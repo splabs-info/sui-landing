@@ -44,8 +44,8 @@ export default function Questions() {
             </QuestionsButton>
           ))}
         </Stack>
-        <CenterBox mt={5}>
-          <Box sx={{ width: '100%' }} component={'img'} src="/images/home/video.png" alt="" />
+        <CenterBox my={5}>
+          <Box sx={{ width: '100%' }} component={'img'} src="/images/whitepaper/Staking-System.jpg" alt="" borderRadius={2}/>
         </CenterBox>
       </Container>
     </SectionBox>
