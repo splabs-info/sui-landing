@@ -164,7 +164,7 @@ export const wppContent = [
         id: 'B',
         category: 'Vision & Mission',
         description: [
-            { content: [<img src="/images/whitepaper/vision-mission.jpg" alt="" />] },
+            { content: [<img src="/images/whitepaper/Vision-Mission.jpg" alt="" />] },
             {
                 title: 'Our vision',
                 content: [
@@ -640,7 +640,7 @@ export const wppContent = [
         description: [
             {
                 content: [
-                    <b>Preparing to use the Swap function</b>,
+                    <h3>Preparing to use the Swap function</h3>,
                     '1. Metamask, Bitkeep, Coin98, Suiet, SUI Wallet to your chrome browser.',
                     '2. Link your wallet and change the chain to SUI Network.',
                     '3. Make sure you have enough SUI in your wallet balance.',
@@ -648,7 +648,7 @@ export const wppContent = [
                     [<img src="/images/whitepaper/SWAP.jpg" alt="" />],
                     '',
                     '',
-                    <b>Swap features provided by YouSUI</b>,
+                    <h3>Swap features provided by YouSUI</h3>,
                     <br />,
                     <b>Cross-Chain Swap</b>,
                     '*Users can use the BNB Chain - SUI Network cross-chain swap. BNB USDT -> SUI USDT and BNB Token can be swapped directly to XUI Token. Cross-chain swap requires abundant liquidity, so it can be used when liquidity and TVL exceed the standard.',
@@ -684,7 +684,7 @@ export const wppContent = [
             {
                 content: [
                     [<img src="/images/whitepaper/bridge-cross-chain.png" alt="" />],
-                    'The first network provided by Cross Chain Bridge',
+                    <b>The first network provided by Cross Chain Bridge</b>,
                     <br />,
                     '✅BNB (EVM) <-> SUI (Non EVM)',
                     '✅ETH (EVM) <-> SUI (Non EVM)',
