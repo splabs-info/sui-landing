@@ -639,16 +639,20 @@ export const wppContent = [
         category: 'Swap',
         description: [
             {
+                title: 'Preparing to use the Swap function',
                 content: [
-                    <h3>Preparing to use the Swap function</h3>,
                     '1. Metamask, Bitkeep, Coin98, Suiet, SUI Wallet to your chrome browser.',
                     '2. Link your wallet and change the chain to SUI Network.',
                     '3. Make sure you have enough SUI in your wallet balance.',
                     '4. Look at the picture below and experience the various functions.',
-                    [<img src="/images/whitepaper/SWAP.jpg" alt="" />],
-                    '',
-                    '',
-                    <h3>Swap features provided by YouSUI</h3>,
+                ],
+            },
+            {
+                content: [[<img src="/images/whitepaper/SWAP.jpg" alt="" />]],
+            },
+            {
+                title: 'Swap features provided by YouSUI',
+                content: [
                     <br />,
                     <b>Cross-Chain Swap</b>,
                     '*Users can use the BNB Chain - SUI Network cross-chain swap. BNB USDT -> SUI USDT and BNB Token can be swapped directly to XUI Token. Cross-chain swap requires abundant liquidity, so it can be used when liquidity and TVL exceed the standard.',
@@ -668,8 +672,6 @@ export const wppContent = [
                         Impact is reflected as the difference between the current market price and how your trade
                         impacts the total liquidity in a pool.
                     </p>,
-                    '',
-                    '',
                     'Est. Received : Estimated number of final tokens you will receive after proceeding with the Swap',
                     'Min. Received : The minimum number of final tokens you will receive after proceeding with the Swap',
                     'Network fee : Estimated Gas Fee used for Swap Transaction. Depends on the per-block or blockchain state.',
