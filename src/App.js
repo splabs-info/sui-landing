@@ -22,6 +22,7 @@ export default function App() {
 
     useEffect(() => {
         dispatch(_changeLanguage(localStorage.getItem('lang')));
+        console.log("Version: 0.0.2")
     }, [dispatch]);
 
     return (

@@ -457,7 +457,7 @@ export const wppContent = [
         category: 'Staking',
         description: [
             {
-                content: [<img src="/images/whitepaper/Staking-System.jpg" alt="" />],
+                content: [<img src="/images/whitepaper/Staking-Tier.jpg" alt="" />],
             },
             {
                 content: [
@@ -640,15 +640,16 @@ export const wppContent = [
         description: [
             {
                 content: [
-                    'Preparing to use the Swap function',
+                    <b>Preparing to use the Swap function</b>,
                     '1. Metamask, Bitkeep, Coin98, Suiet, SUI Wallet to your chrome browser.',
                     '2. Link your wallet and change the chain to SUI Network.',
                     '3. Make sure you have enough SUI in your wallet balance.',
                     '4. Look at the picture below and experience the various functions.',
-                    'Swap features provided by YouSUI',
                     [<img src="/images/whitepaper/SWAP.jpg" alt="" />],
                     '',
                     '',
+                    <b>Swap features provided by YouSUI</b>,
+                    <br />,
                     <b>Cross-Chain Swap</b>,
                     '*Users can use the BNB Chain - SUI Network cross-chain swap. BNB USDT -> SUI USDT and BNB Token can be swapped directly to XUI Token. Cross-chain swap requires abundant liquidity, so it can be used when liquidity and TVL exceed the standard.',
                     '',
@@ -663,12 +664,9 @@ export const wppContent = [
                     '',
                     <b>Basic Information</b>,
                     <p>
-                        Price Impact:{' '}
-                        <b>
-                            Price Impact is the change in token price directly caused by your trade. Price Impact is
-                            reflected as the difference between the current market price and how your trade impacts the
-                            total liquidity in a pool.
-                        </b>
+                        Price Impact: Price Impact is the change in token price directly caused by your trade. Price
+                        Impact is reflected as the difference between the current market price and how your trade
+                        impacts the total liquidity in a pool.
                     </p>,
                     '',
                     '',
@@ -687,13 +685,13 @@ export const wppContent = [
                 content: [
                     [<img src="/images/whitepaper/bridge-cross-chain.png" alt="" />],
                     'The first network provided by Cross Chain Bridge',
-
+                    <br />,
                     '✅BNB (EVM) <-> SUI (Non EVM)',
                     '✅ETH (EVM) <-> SUI (Non EVM)',
                     '✅Polygon (EVM) <-> SUI (Non EVM)',
                     '✅ETH (EVM) <-> Polygon (EVM)',
                     '✅BNB (EVM) <-> ETH (EVM)',
-
+                    <br />,
                     'Bridge network that are additionally created will continue to be updated here.',
                 ],
             },

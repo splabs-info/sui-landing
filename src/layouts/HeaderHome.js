@@ -118,8 +118,8 @@ export default function HeaderHome() {
 	}, []);
 
 	useEffect(() => {
-		console.log('address', address)
-		console.log(' wallet?.address', wallet?.address)
+		// console.log('address', address)
+		// console.log(' wallet?.address', wallet?.address)
 		if (address || wallet?.address) {
 			setWallet(address || wallet?.address);
 			setOpenConnectPopup(false);
