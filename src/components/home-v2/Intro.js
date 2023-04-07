@@ -103,7 +103,7 @@ export default function Intro() {
                             <Link to={'/coming-soon'}>
                                 <FrameButton>Buy XUI</FrameButton>
                             </Link>
-                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer" >
+                            <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                                 <FrameButton>Apply for Launchpad</FrameButton>
                             </a>
                             <Link to={'/whitepaper'}>
@@ -195,14 +195,16 @@ export default function Intro() {
                     </Grid> */}
                 </Grid>
             </Container>
-            <Box sx={{
-                position: 'absolute',
-                width: '40%',
-                right: '3%',
-                top: '10%', zIndex: 1,
-                display: isTablet && 'none',
-            }}>
-
+            <Box
+                sx={{
+                    position: 'absolute',
+                    width: '40%',
+                    right: '3%',
+                    top: '10%',
+                    zIndex: 1,
+                    display: isTablet && 'none',
+                }}
+            >
                 <img
                     alt="sui"
                     src="/images/home/home-bg-coins.png"

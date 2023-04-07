@@ -90,7 +90,7 @@ export const ButtonTitleBox = styled(Box)(({ theme }) => ({
     justifyContent: 'flex-start',
     marginTop: '1rem',
     [theme.breakpoints.down('sm')]: {
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
 }));
 
@@ -309,45 +309,24 @@ export const CustomTabList = styled(TabList)(({ theme }) => ({
 }));
 
 export const QuestionsButton = styled(Button)(({ theme }) => ({
-    padding: '1.5rem',
-    color: alpha('#fff', 1),
-    margin: '8px',
-    borderRadius: '8px',
-    zIndex: '1',
-    boxShadow: '0 0 5px 2px rgba(45,145,200,0.3)',
-    textAlign: 'center',
-    width: '23%',
-    '& span': {
-        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-        opacity: '0.3',
-        borderRadius: '8px',
-    },
-    '&::before': {
-        content: "''",
-        position: 'absolute',
-        inset: '0px',
-        borderRadius: '8px',
-        padding: ' 1px',
-        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-        WebkitMask:
-            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-        WebkitMaskComposite: 'xor',
-        zIndex: '0',
-    },
-    '& .MuiTypography-body1': {
-        fontSize: '0.95rem',
-        fontWeight: 'bold',
-        whiteSpace: 'nowrap',
-    },
-    '& .MuiTypography-body2': {
-        fontSize: '0.8rem',
-    },
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'url(/images/background/btn-sui.png)',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+    width: "23%",
+    height: 110,
+    color: Color.text,
+    fontFamily: 'SVN-Gilroy-heavy',
+    fontSize: '1rem',
+    textDecoration: 'none',
     '&:hover': {
-        '& span': {
-            background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-            opacity: '0.8',
-            zIndex: '-1',
-        },
+        background: 'url(/images/background/btn-sui.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%',
+        color: Color.primary,
     },
     [theme.breakpoints.down('md')]: {
         width: '47%',
@@ -362,6 +341,59 @@ export const QuestionsButton = styled(Button)(({ theme }) => ({
             fontSize: '0.6rem',
         },
     },
+    // padding: '1.5rem',
+    // color: alpha('#fff', 1),
+    // margin: '8px',
+    // borderRadius: '8px',
+    // zIndex: '1',
+    // boxShadow: '0 0 5px 2px rgba(45,145,200,0.3)',
+    // textAlign: 'center',
+    // width: '23%',
+    // '& span': {
+    //     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+    //     opacity: '0.3',
+    //     borderRadius: '8px',
+    // },
+    // '&::before': {
+    //     content: "''",
+    //     position: 'absolute',
+    //     inset: '0px',
+    //     borderRadius: '8px',
+    //     padding: ' 1px',
+    //     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+    //     WebkitMask:
+    //         'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+    //     WebkitMaskComposite: 'xor',
+    //     zIndex: '0',
+    // },
+    // '& .MuiTypography-body1': {
+    //     fontSize: '0.95rem',
+    //     fontWeight: 'bold',
+    //     whiteSpace: 'nowrap',
+    // },
+    // '& .MuiTypography-body2': {
+    //     fontSize: '0.8rem',
+    // },
+    // '&:hover': {
+    //     '& span': {
+    //         background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+    //         opacity: '0.8',
+    //         zIndex: '-1',
+    //     },
+    // },
+    // [theme.breakpoints.down('md')]: {
+    //     width: '47%',
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //     width: '45%',
+    //     padding: '.75rem 0.75rem',
+    //     '& .MuiTypography-body1': {
+    //         fontSize: '0.8rem',
+    //     },
+    //     '& .MuiTypography-body2': {
+    //         fontSize: '0.6rem',
+    //     },
+    // },
 }));
 
 export const CustomTabPanel = styled(TabPanel)(({ theme }) => ({

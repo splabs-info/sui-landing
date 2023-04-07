@@ -6,6 +6,7 @@ import {
     CenterBox,
     CustomTabList,
     CustomTabPanel,
+    FrameButton,
     ImgTitleBox,
     QuestionsButton,
     SectionBox,
@@ -52,9 +53,9 @@ export default function Questions() {
                 </Box>
                 <Stack flexDirection="row" flexWrap={'wrap'} justifyContent="space-between">
                     {questionsList.map((item, index) => (
-                        <QuestionsButton key={index} href={item.link} target={'_blank'}>
+                        <QuestionsButton sx={{width: "23%"}} key={index} href={item.link} target={'_blank'}>
                             <div>
-                                <TextTypography variant="body1">{item.title} </TextTypography>
+                                <TextTypography variant="body1" fontWeight={900}>{item.title} </TextTypography>
                                 <TextTypography variant="body2">Learn more</TextTypography>
                             </div>
                         </QuestionsButton>

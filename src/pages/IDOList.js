@@ -1,7 +1,17 @@
 import { TabContext } from '@mui/lab';
 import { Box, Container, Stack, styled, Tab, Typography } from '@mui/material';
 import Page from 'components/common/Page';
-import { ButtonTitleBox, CustomTabList, FrameButton, QuestionsButton, SectionBox, TextTypography } from 'components/home-v2/HomeStyles';
+import {
+    ButtonTitleBox,
+    CustomTabList,
+    FrameButton,
+    ImgTitleBox,
+    QuestionsButton,
+    SectionBox,
+    TextTypography,
+    TitleBox,
+    TypographyGradient,
+} from 'components/home-v2/HomeStyles';
 import { questionsList } from 'components/home-v2/Questions';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
@@ -16,16 +26,16 @@ export default function IDOList() {
 
     return (
         <Page title="IDO list">
-            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')", }}>
-                <Container maxWidth='xl'>
-                    <Box sx={{ position: 'relative', zIndex: 1, pt: isDesktop ? 30 : 15, color: 'white' }}>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
+                <Container maxWidth="xl">
+                    <Box sx={{ position: 'relative', zIndex: 1, pt: isDesktop ? 20 : 15, color: 'white' }}>
                         <Title variant="h2">
                             Enter {isMobile && <br />} <p className="linear">the multi chain</p> <br />
                             based Launchpad
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer" >
+                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                             <FrameButton>Apply for Launchpad</FrameButton>
                         </a>
                         <Link to={'/coming-soon'}>
@@ -35,11 +45,12 @@ export default function IDOList() {
                             <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
+
                     <Questions />
                 </Container>
             </SectionBox>
             <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
-                <Container maxWidth='xl'>
+                <Container maxWidth="xl">
                     <OnGoingPools />
                     <UpComingPools />
                     <PreviousPools />
@@ -60,17 +71,25 @@ const Title = styled(Typography)(({ theme }) => ({
     },
 }));
 
-
 const Questions = () => {
     const isMobile = useResponsive('down', 'sm');
 
     return (
         <Box mt={isMobile ? 15 : 20}>
-            <Stack flexDirection='row' flexWrap={'wrap'} justifyContent='space-between'>
+            <Box mb={5} sx={{ position: 'relative' }}>
+                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                <TitleBox>
+                    <Typography>Join and Understand</Typography>
+                    <TypographyGradient>YouSUI</TypographyGradient>
+                </TitleBox>
+            </Box>
+            <Stack flexDirection="row" flexWrap={'wrap'} justifyContent="space-between">
                 {questionsList.map((item, index) => (
                     <QuestionsButton key={index} href={item.link} target={'_blank'}>
                         <div>
-                            <TextTypography variant="body1">{item.title} </TextTypography>
+                            <TextTypography variant="body1" fontWeight={900}>
+                                {item.title}{' '}
+                            </TextTypography>
                             <TextTypography variant="body2">Learn more</TextTypography>
                         </div>
                     </QuestionsButton>
