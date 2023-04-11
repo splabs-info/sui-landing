@@ -26,6 +26,7 @@ const InstallButton = styled(Button)(({ theme }) => ({
 export const ChooseWalletModal = () => {
     const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
+    const [isInstalledOkx, setIsInstallOkx] = useState(false);
     const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
@@ -36,6 +37,9 @@ export const ChooseWalletModal = () => {
         }
         if (typeof window.bitkeep !== 'undefined') {
             setIsInstalledBitKeep(true);
+        }
+        if (typeof window.okxwallet !== 'undefined') {
+            setIsInstallOkx(true);
         }
     }, []);
 
@@ -52,7 +56,7 @@ export const ChooseWalletModal = () => {
                     justifyContent: 'center',
                 }}
             >
-                <img src="/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} alt='' />
+                <img src="/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} alt="" />
             </Box>
             <Typography fontWeight={900} mb={2}>
                 My Wallet
@@ -73,16 +77,29 @@ export const ChooseWalletModal = () => {
                     {/* </Box> */}
                     SUI Wallet
                 </ConnectButton>
-                <WalletButton onClick={connectOkxWallet}>
+                <WalletButton
+                    onClick={
+                        isInstalledOkx
+                            ? connectOkxWallet
+                            : () => {
+                                  window.open(
+                                      'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge'
+                                  );
+                              }
+                    }
+                >
                     <Box className="img-box">
                         <img src="/images/icon/okx-wallet.png" alt="logo metamask" />
                     </Box>
                     <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
                         OKX
                     </Typography>
-                    {error && (
-                        <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
-                            {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
+                    {!isInstalledOkx && (
+                        <InstallButton
+                            component={Link}
+                            href="https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge"
+                            target="_blank"
+                        >
                             <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
                                 INSTALL
                             </Typography>
