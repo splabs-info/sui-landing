@@ -152,6 +152,27 @@ export const WalletProvider = ({ children }) => {
         }
     };
 
+    const connectOkxWallet = async () => {
+        try {
+            setLoading(true);
+            checkIfExtensionIsAvailable();
+            const prefix = window.okxwallet;
+
+            console.log('prefix', prefix)
+            if (!prefix) {
+                throw new Error('Bitkeep extension is not available');
+            }
+
+            await subscribeBitkeepProvider(prefix);
+
+            setBitkeepWalletAddress(prefix);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log(error, 'got this error on connectBitkeepWallet catch block while connecting the wallet');
+        }
+    };
+
     const disconnectBitkeepWallet = () => {
         setAddress(undefined);
         web3Modal && web3Modal.clearCachedProvider();
@@ -183,6 +204,7 @@ export const WalletProvider = ({ children }) => {
                 disconnectWallet,
                 connectBitkeepWallet,
                 disconnectBitkeepWallet,
+                connectOkxWallet
             }}
         >
             <>

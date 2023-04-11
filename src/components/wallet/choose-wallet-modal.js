@@ -26,7 +26,7 @@ const InstallButton = styled(Button)(({ theme }) => ({
 export const ChooseWalletModal = () => {
     const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
-    const { connectToWallet, connectBitkeepWallet, error } = useContext(WalletContext);
+    const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
 
@@ -73,6 +73,22 @@ export const ChooseWalletModal = () => {
                     {/* </Box> */}
                     SUI Wallet
                 </ConnectButton>
+                <WalletButton onClick={connectOkxWallet}>
+                    <Box className="img-box">
+                        <img src="/images/icon/okx-wallet.png" alt="logo metamask" />
+                    </Box>
+                    <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
+                        OKX
+                    </Typography>
+                    {error && (
+                        <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
+                            {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
+                            <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                                INSTALL
+                            </Typography>
+                        </InstallButton>
+                    )}
+                </WalletButton>
                 <WalletButton onClick={connectToWallet}>
                     <Box className="img-box">
                         <img src="/images/icon/metamask.png" alt="logo metamask" />
