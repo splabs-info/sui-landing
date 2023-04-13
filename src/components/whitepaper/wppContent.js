@@ -1231,7 +1231,7 @@ export const wppContent = [
         category: 'Platform Overview',
         description: [
             {
-                content: [<img src="/images/whitepaper/overview-yousui.jpg" alt="" />],
+                content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
             },
         ],
     },
