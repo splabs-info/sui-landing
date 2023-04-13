@@ -9,7 +9,6 @@ export default function Homepage_v2() {
             <Launchpad />
             <UpcomingPools />
             <Questions />
-            <Partner />
             <CompletePools />
         </Page>
     );

@@ -40,7 +40,7 @@ export default function Questions() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg6.png')",
+                backgroundImage: "url('/images/background/homebg5.png')",
             }}
         >
             <Container maxWidth={'xl'}>

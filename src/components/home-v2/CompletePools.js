@@ -2,15 +2,18 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CenterBox, ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
+import Partner from 'components/home/Partner';
 
 export default function CompletePools() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg5.png')",
+                backgroundImage: "url('/images/background/homebg6.png')",
             }}
         >
             <Container maxWidth={'xl'}>
+            <Partner />
+
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>

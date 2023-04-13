@@ -161,7 +161,7 @@ function myFetch(method, endpoint, body, successCallback, errorCallback) {
     body = JSON.stringify(body);
 
     let headers = defaultHeaders;
-    headers['Authorization'] = 'bearer ' + getAccessToken();
+    headers['Authorization'] = '' + getAccessToken();
 
     let response = null;
 
