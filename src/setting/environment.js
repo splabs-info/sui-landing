@@ -1,5 +1,5 @@
 const Local = {
-    API: "https://stepwatch.feliciastation.com/api/v1",
+    API: "https://apiyousui.feliciastation.com/api/v1",
     CAPTCHA_KEY: "6LfcUkQgAAAAAOZgwycv6Os6yZ6aTu-_aggp6E4D",
 };
 
