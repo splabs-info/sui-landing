@@ -48,31 +48,14 @@ const fileds = [
     },
 ];
 
-const defaultPackage = {
-    expectedAPY: 6.18,
-    subscriptionDate: moment(),
-    firstRewardPayment: moment().add(1, 'days'),
-    stakingExpirationDate: moment().add(30, 'days'),
-    unstakeFee: 1,
-};
 
-const packages = [
-    {
-        time: 30,
-    },
-    {
-        time: 60,
-    },
-    { time: 90 },
-    { time: 120 },
-];
-
-export default function StakingForm() {
+export default function StakingForm({ verifyData, setVerifyData, packages }) {
     const [amount, setAmount] = React.useState(0);
-    const [selectedPackage, setSelectedPackage] = React.useState(0);
-    const [verifyData, setVerifyData] = React.useState(defaultPackage);
     const [isAgree, setIsAgree] = React.useState(false);
     const theme = useTheme();
+
+
+
     return (
         <BoxGradientOpacityBorder>
             <Grid container justifyContent={'space-between'} spacing={5}>
@@ -128,10 +111,15 @@ export default function StakingForm() {
                         }}
                         fullWidth
                     />
-                    <Typography mt={1}>Minimum: <strong>3,000 XUI</strong></Typography>
+                    <Typography mt={1}>
+                        Minimum: <strong>3,000 XUI</strong>
+                    </Typography>
                     <Stack direction={'row'} justifyContent={'space-between'} mt={2}>
                         {packages.map((p, index) => (
-                            <PackageButton className={index === selectedPackage ? 'active' : ''}>
+                            <PackageButton
+                                className={p.time === verifyData.time ? 'active' : ''}
+                                onClick={() => setVerifyData(p)}
+                            >
                                 {p.time} days
                             </PackageButton>
                         ))}

@@ -1,10 +1,10 @@
 const Local = {
-    API: "https://apiyousui.feliciastation.com/api/v1",
+    API: "http://10.209.166.111:5000/api/v1",
     CAPTCHA_KEY: "6LfcUkQgAAAAAOZgwycv6Os6yZ6aTu-_aggp6E4D",
 };
 
 const Production = {
-    API: "https://services.stepwatch.io/api/v1",
+    API: "https://apiyousui.feliciastation.com/api/v1",
     CAPTCHA_KEY: "6LddmUkgAAAAAB_vTeRY2j6G-PwGhu6uGBF75ZV8",
 };
 
