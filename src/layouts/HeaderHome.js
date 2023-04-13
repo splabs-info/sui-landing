@@ -264,7 +264,7 @@ export default function HeaderHome() {
 					className={scrollPositionToggle ? 'sticky-scroll' : ''}
 				>
 					<Navbar>
-						<Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px' } }} />
+						<Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px', transform: "scale(1.5)" } }} />
 						<Box
 							sx={{
 								display: 'inline-flex',

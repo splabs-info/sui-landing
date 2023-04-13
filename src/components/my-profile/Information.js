@@ -50,7 +50,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                         <span>{el.icon}</span>
                         {el.titleName && (
                             <Typography color={'#ffffff'} component={'span'} variant="subtitle2" align="center">
-                                {el.titleName}
+                                {el.titleName}:
                             </Typography>
                         )}
 
@@ -62,7 +62,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                                 variant="subtitle2"
                                 align="center"
                             >
-                                {/* {el.title} */}--
+                                {el.title}
                             </Typography>
                         )}
                     </Box>
