@@ -30,7 +30,7 @@ import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
-import Languages from './Languages';
+// import Languages from './Languages';
 
 const config = [
 	{ label: 'key_2', link: '/ido-launchpad' },
@@ -264,7 +264,7 @@ export default function HeaderHome() {
 					className={scrollPositionToggle ? 'sticky-scroll' : ''}
 				>
 					<Navbar>
-						<Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px' } }} />
+						<Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px', transform: "scale(1.5)" } }} />
 						<Box
 							sx={{
 								display: 'inline-flex',
@@ -301,7 +301,7 @@ export default function HeaderHome() {
 										<Avatar src="/images/icon/icon-user.png" sx={{ borderRadius: '0', height: 'auto', width: 'auto' }} />
 									</IconButton>
 								}
-								<Languages sx={{ color: 'white' }} />
+								{/* <Languages sx={{ color: 'white' }} /> */}
 							</Hidden>
 							{/* <AccountPopover /> */}
 
@@ -371,7 +371,7 @@ export default function HeaderHome() {
 						<IconButton aria-label="CLose menu list" onClick={handleClose} sx={{ color: 'deepskyblue' }}>
 							<ArrowBackIcon />
 						</IconButton>
-						<Languages sx={{ '& span': { color: '#637381' } }} />
+						{/* <Languages sx={{ '& span': { color: '#637381' } }} /> */}
 					</Box>
 					<List sx={{ color: 'white' }}>
 						<Hidden lgUp>

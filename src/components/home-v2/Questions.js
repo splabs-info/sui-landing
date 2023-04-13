@@ -40,7 +40,7 @@ export default function Questions() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg6.png')",
+                backgroundImage: "url('/images/background/homebg5.png')",
             }}
         >
             <Container maxWidth={'xl'}>
@@ -61,15 +61,6 @@ export default function Questions() {
                         </QuestionsButton>
                     ))}
                 </Stack>
-                <CenterBox my={5}>
-                    <Box
-                        sx={{ width: '100%' }}
-                        component={'img'}
-                        src="/images/whitepaper/Staking-Tier.jpg"
-                        alt=""
-                        borderRadius={2}
-                    />
-                </CenterBox>
             </Container>
         </SectionBox>
     );

@@ -215,7 +215,7 @@ export default function PreviousPools() {
                   </Grid> */}
                             </Box>
                         </Box>
-                        <Box mt={3}>
+                        {/* <Box mt={3}>
                             <CustomSlider
                                 color="linear-gradient(10deg, rgba(91, 210, 218, 0.8) 17.27%, rgba(128, 255, 217, 0.8) 59.07%, rgba(255, 255, 255, 0.8) 100%)"
                                 disabledBorder={true}
@@ -243,7 +243,7 @@ export default function PreviousPools() {
                                 <Typography variant="body2">100%</Typography>
                                 <Typography variant="body2"></Typography>
                             </Stack>
-                        </Box>
+                        </Box> */}
                     </Grid>
                 ))}
             </Grid>

@@ -5,6 +5,8 @@ import StakingForm from 'components/staking/StakingForm';
 import useResponsive from 'hooks/useResponsive';
 import { fCurrency } from 'utils/format';
 import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
+import moment from 'moment';
 const XUILogo = '/images/coins/XUI.png';
 const gateUrl = 'https://www.gate.io';
 const data = {
@@ -41,17 +43,55 @@ const statisticFields = [
     {
         key: 'price',
         label: 'Price',
-        format: (e) => `$${fCurrency(e, 5)}`,
+        // format: (e) => `$${fCurrency(e, 5)}`,
+        format: () => '-/-',
     },
     {
         key: 'holder',
         label: 'Holder',
-        format: (e) => `${fCurrency(e, 0)}`,
+        // format: (e) => `${fCurrency(e, 0)}`,
+        format: () => '-/-',
     },
     {
         key: 'marketCap',
         label: 'Marketcap',
-        format: (e) => `${fCurrency(e, 0)}`,
+        // format: (e) => `${fCurrency(e, 0)}`,
+        format: () => '-/-',
+    },
+];
+
+const packages = [
+    {
+        time: 7,
+        expectedAPY: 4,
+        subscriptionDate: moment(),
+        firstRewardPayment: moment().add(1, 'days'),
+        stakingExpirationDate: moment().add(7, 'days'),
+        unstakeFee: 1,
+    },
+    {
+        time: 30,
+        expectedAPY: 6,
+        subscriptionDate: moment(),
+        firstRewardPayment: moment().add(1, 'days'),
+        stakingExpirationDate: moment().add(30, 'days'),
+        unstakeFee: 1,
+    },
+    {
+        time: 90,
+        expectedAPY: 8,
+        subscriptionDate: moment(),
+        firstRewardPayment: moment().add(1, 'days'),
+        stakingExpirationDate: moment().add(90, 'days'),
+        unstakeFee: 1,
+    },
+    {
+        time: 180,
+        expectedAPY: 15,
+        subscriptionDate: moment(),
+        firstRewardPayment: moment().add(1, 'days'),
+        stakingExpirationDate: moment().add(180, 'days'),
+        unstakeFee: 1,
     },
 ];
 
@@ -59,6 +99,8 @@ export default function StakingPage() {
     const isDesktop = useResponsive('up', 'sm');
     const isTablet = useResponsive('down', 'md');
     const theme = useTheme();
+    const [verifyData, setVerifyData] = useState(packages[0]);
+
     return (
         <Page title="Staking">
             <SectionBox
@@ -138,7 +180,7 @@ export default function StakingPage() {
                                                     Selected APR
                                                 </Typography>
                                                 <Typography textAlign={'left'} variant="h3">
-                                                    06%
+                                                    {verifyData.expectedAPY}%
                                                 </Typography>
                                             </Box>
                                             <Box>
@@ -146,7 +188,7 @@ export default function StakingPage() {
                                                     Selected Terms
                                                 </Typography>
                                                 <Typography textAlign="right" variant="h3">
-                                                    30 Days
+                                                    {verifyData.time} Days
                                                 </Typography>
                                             </Box>
                                         </BoxGradient>
@@ -155,7 +197,11 @@ export default function StakingPage() {
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <StakingForm />
+                            <StakingForm
+                                setVerifyData={(e) => setVerifyData(e)}
+                                verifyData={verifyData}
+                                packages={packages}
+                            />
                         </Grid>
                     </Grid>
                 </Container>

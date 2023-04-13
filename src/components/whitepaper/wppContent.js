@@ -684,18 +684,38 @@ export const wppContent = [
         category: 'Bridge',
         description: [
             {
-                content: [
-                    [<img src="/images/whitepaper/bridge-cross-chain.png" alt="" />],
-                    <b>The first network provided by Cross Chain Bridge</b>,
-                    <br />,
-                    '✅BNB (EVM) <-> SUI (Non EVM)',
-                    '✅ETH (EVM) <-> SUI (Non EVM)',
-                    '✅Polygon (EVM) <-> SUI (Non EVM)',
-                    '✅ETH (EVM) <-> Polygon (EVM)',
-                    '✅BNB (EVM) <-> ETH (EVM)',
-                    <br />,
-                    'Bridge network that are additionally created will continue to be updated here.',
+                content: [[<img src="/images/whitepaper/bridge-cross-chain.png" alt="" />]],
+            },
+            {
+                title: 'The first network provided by Cross Chain Bridge',
+                checklist: true,
+                list: [
+                    <></>,
+                    <>
+                        <IconSquareCheck /> {`ETH (EVM) <-> SUI (Non EVM)`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`Polygon (EVM) <-> SUI (Non EVM)`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`ETH (EVM) <-> Polygon (EVM)`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`BNB (EVM) <-> ETH (EVM)`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`BNB <-> BNB Chain`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`SUI <-> SUI Network`}
+                    </>,
+                    <>
+                        <IconSquareCheck /> {`ETH <-> Ethereum`}
+                    </>,
                 ],
+            },
+            {
+                content: ['Bridge network that are additionally created will continue to be updated here.'],
             },
         ],
     },
@@ -833,25 +853,25 @@ export const wppContent = [
                     'Liquidity Providing Program : Service Fee',
                 ],
             },
-            {
-                title: 'About XUI Token',
-                subtitle: 'Sui blockchain',
-                content: [
-                    'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, Sui Blockchain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
-                ],
-            },
-            {
-                subtitle: 'SUIBridge',
-                content: [
-                    'Sui Blockchain’s original cross-chain protocol, YouSUI Bridge, is a decentralized solution based on liquidity pools. YouSUI Bridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via YouSUI Bridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
-                ],
-            },
-            {
-                subtitle: 'SUI',
-                content: [
-                    `SUI is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
-                ],
-            },
+            // {
+            //     title: 'About XUI Token',
+            //     subtitle: 'Sui blockchain',
+            //     content: [
+            //         'As a secure, scalable and interoperable public chain which focuses on on-chain asset safety as well as decentralized trading, Sui Blockchain has been running stably over two years. It has been continuously expanding its ecosystem and concentrating on the development of native DeFi and NFT products.',
+            //     ],
+            // },
+            // {
+            //     subtitle: 'SUIBridge',
+            //     content: [
+            //         'Sui Blockchain’s original cross-chain protocol, YouSUI Bridge, is a decentralized solution based on liquidity pools. YouSUI Bridge has completed its integration with more than 10 mainnets including Ethereum, Sui Blockchain, Polygon, BSC, Fantom, Arbitrum, Avalanche, Heco, OKExChain, & Klaytn. Anyone can create a cross chain liquidity pool via YouSUI Bridge by adding liquidity to the asset pool before proceeding with the swap between 2 tokens.',
+            //     ],
+            // },
+            // {
+            //     subtitle: 'SUI',
+            //     content: [
+            //         `SUI is the native currency of Sui Blockchain's ecosystem. It is used to pay for transaction fees on Sui Blockchain’s network and also serves as the PoS staking reward. It is essential to Sui Blockchain's functions. SUIToken is an eco-memeber safely stored on Sui Blockchain. Sui Blockchain is a public blockchain dedicated to blockchain assets safety and decentralized exchange. The new invented onchain-safety- account and customizable-time –delay-recovery feature guarantee the blockchain asset safety even after the leakage or destruction of the private keys.`,
+            //     ],
+            // },
             // {
             //     subtitle: 'Sui.io',
             //     content: [
@@ -1211,7 +1231,7 @@ export const wppContent = [
         category: 'Platform Overview',
         description: [
             {
-                content: [<img src="/images/whitepaper/overview-yousui.jpg" alt="" />],
+                content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
             },
         ],
     },

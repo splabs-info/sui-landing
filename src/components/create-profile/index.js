@@ -11,6 +11,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLogin } from 'services/auth';
 import MultipleNationalSelect from './nationality';
+import { put } from 'utils/api';
+import { toast } from 'react-toastify';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -77,10 +79,10 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
-export const CreateProfilePopup = ({ open, handleClose }) => {
+export const CreateProfilePopup = ({ open, handleClose, data }) => {
     const [files, setFiles] = React.useState([]);
     const [isFemale, setIsFemale] = React.useState(false);
-    const { mutateAsync: login } = useLogin({});
+    // const { mutateAsync: login } = useLogin({});
 
     const {
         control,
@@ -92,13 +94,32 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
     });
 
     const handleFormSubmit = async (formValues) => {
+        console.log(data);
         console.log('formValues', { ...formValues, isFemale });
 
-        // try {
-        //     await login(formValues);
-        // } catch (error) {
-        //     console.log('error', error);
-        // }
+        try {
+            put(
+                `/account/email/${data.account_id}`,
+                { email: formValues.email_address },
+                () => {
+                    // toast.success('Email updated');
+                    put(
+                        `/account/profile/${data.account_id}`,
+                        {
+                            Gender: isFemale ? 2 : 1,
+                            // Nationality_code: 'VN',
+                            Nationality: formValues.national,
+                            Dob: formValues.date_of_birth,
+                        },
+                        () => window.location.reload(),
+                        () => toast.error('Profile fail')
+                    );
+                },
+                () => toast.error('Email fail')
+            );
+        } catch (error) {
+            console.log('error', error);
+        }
     };
 
     const onDeleteAvatar = React.useCallback(() => {
@@ -198,13 +219,13 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                         </Box>
                         <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
                         <Box sx={{ padding: 6, paddingTop: 0 }}>
-                            <InputField
+                            {/* <InputField
                                 id="username"
                                 name="username"
                                 control={control}
                                 label="User name"
                                 placeholder="User name"
-                            />
+                            /> */}
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -261,12 +282,12 @@ export const CreateProfilePopup = ({ open, handleClose }) => {
                                     />
                                 </Box>
 
-                                <UploadBtn sx={{ width: '150px', margin: 0, flexShrink: 0 }} variant="contained">
+                                {/* <UploadBtn sx={{ width: '150px', margin: 0, flexShrink: 0 }} variant="contained">
                                     Send OTP
-                                </UploadBtn>
+                                </UploadBtn> */}
                             </Box>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" />
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                                {/* <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" /> */}
                                 <MultipleNationalSelect control={control} />
                             </Box>
                             <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>

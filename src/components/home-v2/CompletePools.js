@@ -1,21 +1,19 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import {
-    ImgTitleBox,
-    SectionBox,
-    TitleBox,
-    TypographyGradient
-} from './HomeStyles';
+import { CenterBox, ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
+import Partner from 'components/home/Partner';
 
 export default function CompletePools() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg5.png')",
+                backgroundImage: "url('/images/background/homebg6.png')",
             }}
         >
             <Container maxWidth={'xl'}>
+            <Partner />
+
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
@@ -99,7 +97,7 @@ export default function CompletePools() {
                                         justifyContent: 'center',
                                         gap: '10px',
                                         alignItems: 'center',
-                                        color: '#000'
+                                        color: '#000',
                                     }}
                                 >
                                     <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
@@ -112,7 +110,6 @@ export default function CompletePools() {
                     <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
-
                                 background:
                                     'linear-gradient(0deg, rgba(40, 140, 197, 0.3) 49.84%, rgba(93, 213, 230, 0.3) 100.31%)',
                                 boxShadow: '0px 1px 9px rgba(0, 0, 0, 0.34)',
@@ -184,7 +181,7 @@ export default function CompletePools() {
                                         justifyContent: 'center',
                                         gap: '10px',
                                         alignItems: 'center',
-                                        color: '#000'
+                                        color: '#000',
                                     }}
                                 >
                                     <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
@@ -197,7 +194,6 @@ export default function CompletePools() {
                     <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
-
                                 background:
                                     'linear-gradient(0deg, rgba(40, 140, 197, 0.5) 49.84%, rgba(93, 213, 230, 0.5) 100.31%);',
                                 boxShadow: '0px 1px 9px rgba(0, 0, 0, 0.34)',
@@ -269,7 +265,7 @@ export default function CompletePools() {
                                         justifyContent: 'center',
                                         gap: '10px',
                                         alignItems: 'center',
-                                        color: '#000'
+                                        color: '#000',
                                     }}
                                 >
                                     <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
@@ -282,7 +278,6 @@ export default function CompletePools() {
                     <Grid item md={3} sm={6} xs={12} minHeight={'100%'}>
                         <Box
                             sx={{
-
                                 background:
                                     'linear-gradient(230.44deg, rgba(129, 236, 197, 0.5) 3.99%, rgba(148, 203, 255, 0.5) 48.45%, rgba(133, 150, 255, 0.5) 89.66%)',
                                 boxShadow: '0px 1px 9px rgba(0, 0, 0, 0.34)',
@@ -354,7 +349,7 @@ export default function CompletePools() {
                                         justifyContent: 'center',
                                         gap: '10px',
                                         alignItems: 'center',
-                                        color: '#000'
+                                        color: '#000',
                                     }}
                                 >
                                     <Typography sx={{ fontSize: '1rem', color: '#000000' }}>Discover</Typography>
@@ -364,6 +359,15 @@ export default function CompletePools() {
                         </Box>
                     </Grid>
                 </Grid>
+                <CenterBox my={5}>
+                    <Box
+                        sx={{ width: '100%' }}
+                        component={'img'}
+                        src="/images/whitepaper/Staking-Tier.jpg"
+                        alt=""
+                        borderRadius={2}
+                    />
+                </CenterBox>
             </Container>
         </SectionBox>
     );
