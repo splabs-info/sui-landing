@@ -1,6 +1,13 @@
-import { Partner } from 'components/home';
 import Page from '../components/common/Page';
-import { CompletePools, Intro, Launchpad, Overview, Questions, UpcomingPools } from '../components/home-v2';
+import {
+    CompletePools,
+    Intro,
+    Launchpad,
+    Overview,
+    Questions,
+    StakingTier,
+    UpcomingPools,
+} from '../components/home-v2';
 export default function Homepage_v2() {
     return (
         <Page title="Home">
@@ -8,6 +15,7 @@ export default function Homepage_v2() {
             <Overview />
             <Launchpad />
             <UpcomingPools />
+            <StakingTier />
             <Questions />
             <CompletePools />
         </Page>

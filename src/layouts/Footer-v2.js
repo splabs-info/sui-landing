@@ -130,9 +130,8 @@ export default function FooterV2() {
                         >
                             <Box component={'img'} src="/logo2.png" width={isMobile ? 180 : '100%'} maxWidth={180} />
                         </Box> */}
-                        <Logo sx={{ width: { md: '160px', sm: '100px', xs: '100px' } }} />
+                        <Logo sx={{ width: { lg: 220, md: '160px', sm: '100px', xs: '100px' } }} />
                         <Typography
-                            mt={3}
                             variant="body1"
                             sx={{
                                 fontSize: '0.95rem',
@@ -210,9 +209,7 @@ export default function FooterV2() {
                         pl={isMobile && 2}
                         sx={{ height: '100%', textAlign: 'start', wordBreak: 'break-all' }}
                     >
-
                         <FooterTitle>{library.key_14}</FooterTitle>
-
 
                         <UlCustom>
                             {joinGateKeeper.map((item) => (
@@ -289,7 +286,7 @@ export default function FooterV2() {
                 </Grid>
             </Container>
             <EndBox>
-                <Typography>Copyright © 2022 SPLabs Co. LTD | All Rights Reserved</Typography>
+                <Typography>Copyright © 2023 | All Rights Reserved</Typography>
             </EndBox>
         </Footer>
     );

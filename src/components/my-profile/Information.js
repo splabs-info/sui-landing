@@ -1,17 +1,11 @@
 import styled from '@emotion/styled';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import IcCopy from 'components/asset/icon/IcCopy';
-import IcNationality from 'components/asset/icon/IcNationality';
-import IcPeople from 'components/asset/icon/IcPeople';
-import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
 import { UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
-import { WalletContext } from 'hooks/use-connect';
-import React from 'react';
+
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',
     boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -22,9 +16,6 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
 }));
 
 export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
-    const onUploadAvatar = () => {};
-
-    const { address } = React.useContext(WalletContext);
     return (
         <WrapperAreaInformation>
             <Box

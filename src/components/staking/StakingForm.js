@@ -25,7 +25,7 @@ const BoxGradientOpacityBorder = styled(Box)(({ theme }) => ({
 }));
 
 const fileds = [
-    { key: 'expectedAPY', label: 'Expected APY', format: (e) => `${e}%/year` },
+    { key: 'expectedAPY', label: 'Expected APY', format: (e) => `${e}%/daily` },
     {
         key: 'subscriptionDate',
         label: 'Subscript Date',

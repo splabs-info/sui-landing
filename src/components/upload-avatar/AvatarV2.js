@@ -3,6 +3,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useUploadAvatar } from 'services/auth';
 
 const baseStyle = {
     display: 'flex',
@@ -51,6 +52,13 @@ const StyledAvatar = styled('img')(({ theme }) => ({
 
 export const UploadAvatarV2 = ({ avatarUrl, percent }) => {
     // const dispatch = useAppDispatch();
+    const { mutateAsync: uploadAvatar } = useUploadAvatar({
+        onSuccess: (args) => {
+
+        // Update info avt in here
+            console.log(args);
+        },
+    });
     const [files, setFiles] = React.useState([]);
 
     React.useEffect(() => {
@@ -76,8 +84,8 @@ export const UploadAvatarV2 = ({ avatarUrl, percent }) => {
             );
             const acceptFile = acceptedFiles[0];
             const form = new FormData();
-            form.append('avatar', acceptFile);
-            // dispatch(updateProfileActions.uploadAvatar(form));
+            form.append('upload', acceptFile);
+            uploadAvatar(form);
         },
     });
 
@@ -93,7 +101,7 @@ export const UploadAvatarV2 = ({ avatarUrl, percent }) => {
 
     const thumbs = files.map((file) => (
         <StyledAvatarBox key={file?.name}>
-            <StyledAvatar src={avatarUrl} alt={file.name} />
+            <StyledAvatar src={URL.createObjectURL(file)} alt={file.name} />
         </StyledAvatarBox>
     ));
 

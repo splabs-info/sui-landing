@@ -209,7 +209,7 @@ export default function FooterHome() {
                 </Grid>
             </Container>
             <EndBox>
-                <Typography>Copyright © 2022 SPLabs Co. LTD | All Rights Reserved</Typography>
+                <Typography>Copyright © 2023 | All Rights Reserved</Typography>
             </EndBox>
         </Footer>
     );
