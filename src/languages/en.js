@@ -10,7 +10,7 @@ export const en = {
   // key_1: "YouSUI",
   key_2: "IDO Launchpad",
   key_3: "INO Launchpad",
-  key_4: "Staking / Farming",
+  key_4: "Staking",
   key_5: "Claims",
   key_6: "SWAP",
   key_7: "Whitepaper",

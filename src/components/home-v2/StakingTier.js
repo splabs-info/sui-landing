@@ -56,7 +56,7 @@ export default function StakingTier() {
                                 },
                             }}
                         />
-                        <Tier2n3 tie r="Tier 3" stakingAmount="15.000" logo="tier-3.png" />
+                        <Tier2n3 tier="Tier 3" stakingAmount="15.000" logo="tier-3.png" />
                     </Box>
 
                     <Box

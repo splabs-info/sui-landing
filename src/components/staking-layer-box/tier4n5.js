@@ -1,9 +1,8 @@
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 const Tier1Wrapper = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
+    background: 'linear-gradient(90deg, rgba(40, 140, 197, 0.15) 0%, rgba(93, 213, 229, 0.15) 100%)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
-    // dropShadow: '0px 0px 20px rgba(140, 255, 227, 0.5)',
     backdropFilter: 'blur(50px)',
     borderRadius: '15px',
     padding: 28,
