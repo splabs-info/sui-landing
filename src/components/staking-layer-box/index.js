@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 
+import { Tier1Mobile } from './tier1-mobile';
 const Tier1Wrapper = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.55) 0%, rgba(109, 133, 218, 0.55) 100%)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
@@ -40,33 +41,42 @@ const Lottery = styled(Typography)(({ theme }) => ({
 }));
 
 export const Tier1 = () => {
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.down(1400));
+
     return (
-        <Tier1Wrapper>
-            <Tier1Title>Tier 1</Tier1Title>
-            <CaptionStaking>STAKING</CaptionStaking>
-            <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
-                <StakingAmount>120.000</StakingAmount>
-                <img
-                    src="/YouSUI-token.png"
-                    alt="token"
-                    style={{
-                        width: 56,
-                        height: 56,
-                    }}
-                />
-            </Box>
-            <Box>
-                <Lottery>LOTTERY</Lottery>
-                <img
-                    src="Tier-1.png"
-                    alt="tier-1"
-                    style={{
-                        width: 240,
-                        height: 240,
-                        margin: 'auto',
-                    }}
-                />
-            </Box>
-        </Tier1Wrapper>
+        <>
+            {isDesktop ? (
+                <Tier1Mobile />
+            ) : (
+                <Tier1Wrapper>
+                    <Tier1Title>Tier 1</Tier1Title>
+                    <CaptionStaking>STAKING</CaptionStaking>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
+                        <StakingAmount>120.000</StakingAmount>
+                        <img
+                            src="/YouSUI-token.png"
+                            alt="token"
+                            style={{
+                                width: 56,
+                                height: 56,
+                            }}
+                        />
+                    </Box>
+                    <Box>
+                        <Lottery>LOTTERY</Lottery>
+                        <img
+                            src="Tier-1.png"
+                            alt="tier-1"
+                            style={{
+                                width: 240,
+                                height: 240,
+                                margin: 'auto',
+                            }}
+                        />
+                    </Box>
+                </Tier1Wrapper>
+            )}
+        </>
     );
 };

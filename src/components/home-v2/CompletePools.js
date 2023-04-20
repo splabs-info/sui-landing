@@ -359,7 +359,7 @@ export default function CompletePools() {
                         </Box>
                     </Grid>
                 </Grid>
-                <CenterBox my={5}>
+                {/* <CenterBox my={5}>
                     <Box
                         sx={{ width: '100%' }}
                         component={'img'}
@@ -367,7 +367,7 @@ export default function CompletePools() {
                         alt=""
                         borderRadius={2}
                     />
-                </CenterBox>
+                </CenterBox> */}
             </Container>
         </SectionBox>
     );

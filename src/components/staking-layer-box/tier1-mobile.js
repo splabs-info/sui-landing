@@ -2,45 +2,41 @@ import { Box, Typography, useMediaQuery } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 
 const Tier1Wrapper = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
+    background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.55) 0%, rgba(109, 133, 218, 0.55) 100%)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
     // dropShadow: '0px 0px 20px rgba(140, 255, 227, 0.5)',
     backdropFilter: 'blur(50px)',
     borderRadius: '15px',
-    padding: 28,
+    padding: 32,
+    [theme.breakpoints.down(1400)]: {
+        width: '60%',
+    },
+    [theme.breakpoints.down(1200)]: {
+        width: '80%',
+    },
+    [theme.breakpoints.down(900)]: {
+        width: '100%',
+    },
 }));
 
 const Tier1Title = styled(Typography)(({ theme }) => ({
     color: 'rgba(255, 255, 255, 1)',
-    fontSize: 38,
+    fontSize: 48,
     fontWeight: 700,
     marginBottom: 16,
     [theme.breakpoints.down(600)]: {
-        fontSize: 30,
+        fontSize: 32,
     },
     [theme.breakpoints.down(456)]: {
-        fontSize: 36,
+        fontSize: 40,
     },
 }));
 
 const CaptionStaking = styled(Typography)(({ theme }) => ({
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 600,
     color: 'rgba(255, 255, 255, 1)',
     textShadow: '0 0 10px rgb(255,255,255,0.3)',
-    [theme.breakpoints.down(600)]: {
-        fontSize: 18,
-    },
-    [theme.breakpoints.down(456)]: {
-        fontSize: 20,
-    },
-}));
-
-const StakingAmount = styled(Typography)(({ theme }) => ({
-    color: 'rgba(255, 255, 255, 1)',
-    textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
-    fontSize: 24,
-    fontWeight: 700,
     [theme.breakpoints.down(600)]: {
         fontSize: 20,
     },
@@ -49,6 +45,18 @@ const StakingAmount = styled(Typography)(({ theme }) => ({
     },
 }));
 
+const StakingAmount = styled(Typography)(({ theme }) => ({
+    color: 'rgba(255, 255, 255, 1)',
+    textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+    fontSize: 26,
+    fontWeight: 700,
+    [theme.breakpoints.down(600)]: {
+        fontSize: 20,
+    },
+    [theme.breakpoints.down(456)]: {
+        fontSize: 26,
+    },
+}));
 
 const Lottery = styled(Typography)(({ theme }) => ({
     color: 'rgba(255, 255, 255, 1)',
@@ -66,19 +74,15 @@ const Lottery = styled(Typography)(({ theme }) => ({
     },
 }));
 
-export const Tier2n3 = ({ tier, stakingAmount, logo, ...props }) => {
+export const Tier1Mobile = () => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.down(1400));
     const isMobile = useMediaQuery(theme.breakpoints.down(600));
-
     return (
-        <Tier1Wrapper {...props}>
+        <Tier1Wrapper>
             <Box
                 sx={{
                     display: 'flex',
-                    [theme.breakpoints.down(1400)]: {
-                        justifyContent: 'space-between',
-                    },
+                    justifyContent: 'space-between',
                     [theme.breakpoints.down(456)]: {
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -97,12 +101,22 @@ export const Tier2n3 = ({ tier, stakingAmount, logo, ...props }) => {
                         },
                     }}
                 >
-                    <Tier1Title>{tier}</Tier1Title>
+                    <Tier1Title>Tier 1</Tier1Title>
 
-                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'end',
+                            [theme.breakpoints.down(456)]: {
+                                textAlign: 'center',
+                                marginRight: 0,
+                            },
+                        }}
+                    >
                         <CaptionStaking>STAKING</CaptionStaking>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <StakingAmount>{stakingAmount}</StakingAmount>
+                            <StakingAmount>120.000</StakingAmount>
                             <img
                                 src="/YouSUI-token.png"
                                 alt="token"
@@ -117,13 +131,11 @@ export const Tier2n3 = ({ tier, stakingAmount, logo, ...props }) => {
 
                 <Lottery>LOTTERY</Lottery>
                 <img
-                    src={logo}
-                    alt="tier-2"
+                    src="Tier-1.png"
+                    alt="tier-1"
                     style={{
-                        width: isMobile ? 140 : 220,
-                        height: isMobile ? 140 : 220,
-                        
-                        margin: isDesktop ? '0' : 'auto',
+                        width: isMobile ? 180 : 240,
+                        height: isMobile ? 180 : 240,
                     }}
                 />
             </Box>
