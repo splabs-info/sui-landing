@@ -16,7 +16,7 @@ export const en = {
   key_7: "Whitepaper",
   key_8: "Connect Wallet",
   key_Bridge: "Bridge",
-  key_marketplace: "Marketplace",
+  key_marketplace: "NFT Marketplace",
 
   key_9: "Contact",
 
