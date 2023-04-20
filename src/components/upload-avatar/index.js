@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, CircularProgress, Typography } from '@mui/material';
+
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useUploadAvatar } from 'services/auth';
 
 const baseStyle = {
     display: 'flex',
@@ -49,8 +51,16 @@ const StyledAvatar = styled('img')(({ theme }) => ({
     objectFit: 'contain',
 }));
 
-export const UploadAvatar = ({ avatarUrl, percent }) => {
-    // const dispatch = useAppDispatch();
+export const UploadAvatar = ({ avatarUrl }) => {
+    const [urlImageUser, setUrlImageUser] = React.useState('');
+
+    const { mutateAsync: uploadAvatar, isLoading } = useUploadAvatar({
+        onSuccess: (args) => {
+            // Update info avt in here
+            setUrlImageUser(args.avatar);
+        },
+    });
+
     const [files, setFiles] = React.useState([]);
 
     React.useEffect(() => {
@@ -59,7 +69,7 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
 
     React.useEffect(
         () => () => {
-            files.forEach((file) => URL.revokeObjectURL(file.avatar));
+            files.forEach((file) => URL.revokeObjectURL(file.upload));
         },
         [files]
     );
@@ -70,14 +80,14 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
             setFiles(
                 acceptedFiles?.map((file) =>
                     Object.assign(file, {
-                        avatar: URL.createObjectURL(file),
+                        upload: URL.createObjectURL(file),
                     })
                 )
             );
             const acceptFile = acceptedFiles[0];
             const form = new FormData();
-            form.append('avatar', acceptFile);
-            // dispatch(updateProfileActions.uploadAvatar(form));
+            form.append('upload', acceptFile);
+            uploadAvatar(form);
         },
     });
 
@@ -92,17 +102,17 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
     );
 
     const thumbs = files.map((file) => (
-        <StyledAvatarBox key={file?.name}>
-            <StyledAvatar src={avatarUrl} alt={file.name} />
+        <StyledAvatarBox key={file?.upload}>
+            <StyledAvatar src={urlImageUser} alt={file.path} />
         </StyledAvatarBox>
     ));
 
-    const renderPreview = (percent) => {
+    const renderPreview = () => {
         return (
             <>
-                {percent ? (
+                {isLoading ? (
                     <div {...getRootProps({ style })}>
-                        <CircularProgress size={16} color="primary" />
+                        <CircularProgress size={32} color="primary" />
                     </div>
                 ) : (
                     <aside>{thumbs}</aside>
@@ -115,16 +125,17 @@ export const UploadAvatar = ({ avatarUrl, percent }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <img src="/images/my-profile/default-avatar.png" style={{ borderRadius: '50%', width: 270, height: 270 }} />
-                {/* <PersonAddAltIcon /> */}
-                {/* <CaptionUpload>Drag 'n' drop your avatar here</CaptionUpload> */}
+                <img
+                    src="/images/my-profile/default-avatar.png"
+                    style={{ borderRadius: '50%', width: 270, height: 270 }}
+                />
             </div>
         );
     }, [getInputProps, getRootProps, style]);
 
     return (
         <Box sx={{ display: 'flex', backgroundColor: 'transparent' }}>
-            {files.length > 0 ? renderPreview(percent) : renderUploadArea()}
+            {files.length > 0 ? renderPreview() : renderUploadArea()}
         </Box>
     );
 };

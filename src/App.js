@@ -11,19 +11,23 @@ import ScrollToTop from './components/common/ScrollToTop';
 import ShowErrorComponent from './components/common/ShowErrorComponent';
 import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
-import { _changeLanguage } from './store/setting/settingActions';
+// import { _changeLanguage } from './store/setting/settingActions';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
 const queryClient = new QueryClient();
 
 export default function App() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    // dispatch(_changeLanguage(localStorage.getItem('lang')));
+    // console.log("Version: 0.0.2")
+    // }, []);
 
     useEffect(() => {
-        dispatch(_changeLanguage(localStorage.getItem('lang')));
-        console.log("Version: 0.0.2")
-    }, [dispatch]);
+        localStorage.removeItem('lang');
+    }, []);
 
     return (
         <ThemeProvider>

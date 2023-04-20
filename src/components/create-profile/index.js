@@ -9,7 +9,6 @@ import { UploadAvatarV2 } from 'components/upload-avatar/AvatarV2';
 import { LoginSchema } from 'pages/validation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLogin } from 'services/auth';
 import MultipleNationalSelect from './nationality';
 import { put } from 'utils/api';
 import { toast } from 'react-toastify';
@@ -80,6 +79,7 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
 }));
 
 export const CreateProfilePopup = ({ open, handleClose, data }) => {
+  
     const [files, setFiles] = React.useState([]);
     const [isFemale, setIsFemale] = React.useState(false);
     // const { mutateAsync: login } = useLogin({});
@@ -94,15 +94,11 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
     });
 
     const handleFormSubmit = async (formValues) => {
-        console.log(data);
-        console.log('formValues', { ...formValues, isFemale });
-
         try {
             put(
                 `/account/email/${data.account_id}`,
                 { email: formValues.email_address },
                 () => {
-                    // toast.success('Email updated');
                     put(
                         `/account/profile/${data.account_id}`,
                         {
@@ -111,7 +107,6 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
                             Nationality: formValues.national,
                             Dob: formValues.date_of_birth,
                         },
-                        () => window.location.reload(),
                         () => toast.error('Profile fail')
                     );
                 },

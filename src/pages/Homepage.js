@@ -1,19 +1,17 @@
-import React from 'react';
-import {
-    TitleMain,
-    MultiChain,
-    Tokenomics,
-    Partner,
-    Networks,
-    Projects,
-    Platform,
-    JoinSplabs,
-    Roadmap,
-    FeaturedBy,
-} from '../components/home';
 import { Box } from '@mui/material';
-import useResponsive from '../hooks/useResponsive';
 import Page from '../components/common/Page';
+import {
+    FeaturedBy,
+    JoinSplabs,
+    MultiChain,
+    Networks,
+    Platform,
+    Projects,
+    Roadmap,
+    TitleMain,
+    Tokenomics
+} from '../components/home';
+import useResponsive from '../hooks/useResponsive';
 
 export default function Homepage() {
     const isDesktop = useResponsive('up', 'sm');
@@ -62,7 +60,6 @@ export default function Homepage() {
             >
                 <Projects />
                 <FeaturedBy />
-                <Partner />
             </Box>
         </Page>
     );
