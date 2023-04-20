@@ -16,8 +16,8 @@ export default function Homepage_v2() {
             <Launchpad />
             <UpcomingPools />
             <Questions />
-            <StakingTier />
             <CompletePools />
+            <StakingTier />
         </Page>
     );
 }

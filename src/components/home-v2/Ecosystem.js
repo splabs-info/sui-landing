@@ -17,13 +17,13 @@ const ContainerNetwork = styled(Box)(({ theme }) => ({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '0.5rem',
-        '&:nth-of-type(n + 5)': {
+        '&:nth-of-type(n + 9)': {
             opacity: '0.7',
             // '& img': {
             //     maxHeight: '35px',
             // },
         },
-        '&:nth-of-type(n + 9)': {
+        '&:nth-of-type(n + 10)': {
             opacity: '0.5',
         },
         '&:hover': {
