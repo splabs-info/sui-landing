@@ -1,8 +1,7 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { CenterBox, ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
-import Partner from 'components/home/Partner';
+import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
 
 export default function CompletePools() {
     return (
@@ -12,7 +11,7 @@ export default function CompletePools() {
             }}
         >
             <Container maxWidth={'xl'}>
-            <Partner />
+            {/* <Partner /> */}
 
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />

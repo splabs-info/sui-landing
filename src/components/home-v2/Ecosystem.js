@@ -61,6 +61,20 @@ const CustomLogo = styled('img')(({ theme }) => ({
     },
 }));
 
+const CustomLogoArt = styled('img')(({ theme }) => ({
+    transition: 'transform 150ms ease-in-out',
+    padding: 0,
+    display: 'block',
+    maxHeight: '64px',
+    height: 56,
+    [theme.breakpoints.down('md')]: {
+        maxHeight: '48px',
+    },
+    [theme.breakpoints.down('sm')]: {
+        maxHeight: '40px',
+    },
+}));
+
 const networks = [
     {
         icon: '/images/networks/icon-1.png',
@@ -122,11 +136,11 @@ const networks = [
         label: 'Aptos',
         link: '/',
     },
-    {
-        icon: '/images/networks/icon-11.png',
-        label: 'Gnosis',
-        link: '/',
-    },
+    // {
+    //     icon: '/images/networks/icon-11.png',
+    //     label: 'Gnosis',
+    //     link: '/',
+    // },
     {
         icon: '/images/networks/icon-12.png',
         label: 'Boba',
@@ -163,7 +177,7 @@ export default function Ecosystem() {
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
-                        <Typography> Multi-Chain</Typography>
+                        <Typography>Multi-Chain</Typography>
                         <TypographyGradient>Ecosystem</TypographyGradient>
                     </TitleBox>
                 </Box>
@@ -177,7 +191,12 @@ export default function Ecosystem() {
                 <ContainerNetwork>
                     {networks.map((network, index) => (
                         <a href={network.link} target="_blank" rel="noreferrer" key={index}>
-                            <CustomLogo src={network.icon} alt={network.label} />
+                            {network?.label === 'Arbitrum' ? (
+                                <CustomLogoArt src={network.icon} alt={network.label} />
+                            ) : (
+                                <CustomLogo src={network.icon} alt={network.label} />
+                            )}
+
                             <span style={{ minWidth: 80, marginLeft: 10 }}>{network.label}</span>
                         </a>
                     ))}
