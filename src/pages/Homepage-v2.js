@@ -19,7 +19,6 @@ export default function Homepage_v2() {
             <CompletePools />
             <StakingTier />
             <UpcomingPools />
-            
             <Partner />
         </Page>
     );

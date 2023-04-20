@@ -30,7 +30,7 @@ export default function StakingTier() {
     return (
         <SectionBox
             sx={{
-                backgroundImage: "url('/images/background/homebg5.png')",
+                backgroundImage: "url('/images/background/homebg4.png')",
             }}
         >
             <Container maxWidth={'xl'}>
