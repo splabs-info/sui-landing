@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, CircularProgress, Typography } from '@mui/material';
-
+import { Box, CircularProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { isEmpty } from 'lodash';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useUploadAvatar } from 'services/auth';
-
 const baseStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -35,11 +34,6 @@ const rejectStyle = {
     borderColor: '#f44336',
 };
 
-const CaptionUpload = styled(Typography)({
-    fontSize: 14,
-    textAlign: 'center',
-});
-
 const StyledAvatarBox = styled('div')(({ theme }) => ({
     width: 128,
     height: 128,
@@ -51,9 +45,10 @@ const StyledAvatar = styled('img')(({ theme }) => ({
     objectFit: 'contain',
 }));
 
-export const UploadAvatar = ({ avatarUrl }) => {
+export const UploadAvatar = ({ avatarUrl, id }) => {
     const [urlImageUser, setUrlImageUser] = React.useState('');
 
+    console.log('avatarUrl', avatarUrl);
     const { mutateAsync: uploadAvatar, isLoading } = useUploadAvatar({
         onSuccess: (args) => {
             // Update info avt in here
@@ -87,7 +82,7 @@ export const UploadAvatar = ({ avatarUrl }) => {
             const acceptFile = acceptedFiles[0];
             const form = new FormData();
             form.append('upload', acceptFile);
-            uploadAvatar(form);
+            uploadAvatar({ form, id });
         },
     });
 
@@ -103,7 +98,7 @@ export const UploadAvatar = ({ avatarUrl }) => {
 
     const thumbs = files.map((file) => (
         <StyledAvatarBox key={file?.upload}>
-            <StyledAvatar src={urlImageUser} alt={file.path} />
+            <StyledAvatar src={!isEmpty(avatarUrl) ? avatarUrl : urlImageUser} alt={file.path} />
         </StyledAvatarBox>
     ));
 
@@ -125,10 +120,14 @@ export const UploadAvatar = ({ avatarUrl }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <img
-                    src="/images/my-profile/default-avatar.png"
-                    style={{ borderRadius: '50%', width: 270, height: 270 }}
-                />
+                {avatarUrl ? (
+                    <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                ) : (
+                    <img
+                        src="/images/my-profile/default-avatar.png"
+                        style={{ borderRadius: '50%', width: 270, height: 270 }}
+                    />
+                )}
             </div>
         );
     }, [getInputProps, getRootProps, style]);

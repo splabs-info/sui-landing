@@ -3,15 +3,15 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, Divider, Modal, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { InputField, SubmitButton, UploadAvatar } from 'components';
+import { InputField, SubmitButton } from 'components';
 import { LeftToRightGradientBoxV2 } from 'components/left-to-right-gradient-box/LeftToRightGradientBox';
 import { UploadAvatarV2 } from 'components/upload-avatar/AvatarV2';
-import { LoginSchema } from 'pages/validation';
+import { UpdateProfileSchema } from 'pages/validation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import MultipleNationalSelect from './nationality';
-import { put } from 'utils/api';
 import { toast } from 'react-toastify';
+import { put } from 'utils/api';
+import MultipleNationalSelect from './nationality';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -78,11 +78,14 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
-export const CreateProfilePopup = ({ open, handleClose, data }) => {
-  
-    const [files, setFiles] = React.useState([]);
+export const CreateProfilePopup = ({ open, handleClose, data, id, avatar }) => {
     const [isFemale, setIsFemale] = React.useState(false);
-    // const { mutateAsync: login } = useLogin({});
+
+    console.log('data____2', data?.email);
+    const initValue = {
+        email_address: data?.email,
+        date_of_birth: '',
+    };
 
     const {
         control,
@@ -90,13 +93,15 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
         formState: { isSubmitting, isValid },
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(LoginSchema),
+        defaultValues: initValue,
+        resolver: yupResolver(UpdateProfileSchema),
     });
 
     const handleFormSubmit = async (formValues) => {
+        console.log('formValues____', formValues);
         try {
             put(
-                `/account/email/${data.account_id}`,
+                `/account/email/${id}`,
                 { email: formValues.email_address },
                 () => {
                     put(
@@ -107,7 +112,11 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
                             Nationality: formValues.national,
                             Dob: formValues.date_of_birth,
                         },
-                        () => toast.error('Profile fail')
+                        (result) => {
+                            toast.error('Profile fail');
+                            console.log('result', result);
+                        }
+                        // () => toast.error('Profile fail')
                     );
                 },
                 () => toast.error('Email fail')
@@ -117,10 +126,10 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
         }
     };
 
-    const onDeleteAvatar = React.useCallback(() => {
-        setFiles([]);
-        // dispatch(updateProfileActions.deleteAvatar());
-    }, []);
+    // const onDeleteAvatar = React.useCallback(() => {
+    //     setFiles([]);
+    //     // dispatch(updateProfileActions.deleteAvatar());
+    // }, []);
 
     const onUploadAvatar = (e) => {
         const banner = e.target.files[0];
@@ -197,12 +206,12 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
                                                 multiple
                                                 onChange={onUploadAvatar}
                                             />
-                                            Login
+                                            Upload
                                         </UploadBtn>
                                         <DeletePhotoBtn
                                             variant="outlined"
                                             startIcon={<DeleteIcon />}
-                                            onClick={onDeleteAvatar}
+                                            // onClick={onDeleteAvatar}
                                         >
                                             Change
                                         </DeletePhotoBtn>
@@ -210,17 +219,10 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
                                 </Box>
                             </Box>
 
-                            <UploadAvatarV2 avatarUrl="" percent={''} />
+                            <UploadAvatarV2 avatarUrl={avatar} percent={''} id={id} />
                         </Box>
                         <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
                         <Box sx={{ padding: 6, paddingTop: 0 }}>
-                            {/* <InputField
-                                id="username"
-                                name="username"
-                                control={control}
-                                label="User name"
-                                placeholder="User name"
-                            /> */}
                             <Box
                                 sx={{
                                     display: 'flex',

@@ -13,7 +13,7 @@ export const authApis = {
         return axiosClient.post(url, data);
     },
     uploadAvatar(data) {
-        return axiosClient.put('/api/v1/account/avatar/1', data, {
+        return axiosClient.put(`/api/v1/account/avatar/${data.id}`, data.form, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
