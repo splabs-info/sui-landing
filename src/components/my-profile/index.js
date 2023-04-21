@@ -29,17 +29,17 @@ export default function MyInfo() {
     const { address } = useContext(WalletContext);
     const [userData, setUserData] = useState(null);
     const [avatar, setAvatar] = useState('');
-    const [defaultInfo, setDefaultInfo] = useState(null); 
+    const [defaultInfo, setDefaultInfo] = useState(null);
     const [tempData, setTempData] = useState(null);
     const [id, setId] = useState(null);
-
+    const [flag, setFlag] = React.useState(false);
 
     React.useEffect(() => {
         if (address) {
             post('/login', { address: address }, (data) => {
                 const { account } = data;
-                console.log('account____', account)
-                setDefaultInfo(account)
+                console.log('account____', account);
+                setDefaultInfo(account);
                 setAvatar(account.avatar);
                 setAccessToken(data.token);
                 get(`/account/profile/${account.ID}`, (data) => {
@@ -72,7 +72,7 @@ export default function MyInfo() {
                 });
             });
         }
-    }, [address]);
+    }, [address, flag]);
 
     const handleOpen = () => {
         setOpenCreateProfile(true);
@@ -117,6 +117,7 @@ export default function MyInfo() {
                 data={defaultInfo}
                 id={id}
                 avatar={avatar}
+                handleRefresh={() => setFlag(!flag)}
             />
         </>
     );

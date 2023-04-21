@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { put } from 'utils/api';
 import MultipleNationalSelect from './nationality';
+import moment from 'moment';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -78,7 +79,7 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
-export const CreateProfilePopup = ({ open, handleClose, data, id, avatar }) => {
+export const CreateProfilePopup = ({ open, handleClose, data, id, avatar, handleRefresh }) => {
     const [isFemale, setIsFemale] = React.useState(false);
 
     console.log('data____2', data?.email);
@@ -104,22 +105,32 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, avatar }) => {
                 `/account/email/${id}`,
                 { email: formValues.email_address },
                 () => {
+                    console.log({
+                        Gender: isFemale ? 2 : 1,
+                        // Nationality_code: 'VN',
+                        Nationality: formValues.national,
+                        Dob: formValues.date_of_birth,
+                    });
                     put(
-                        `/account/profile/${data.account_id}`,
+                        `/account/profile/${data.ID}`,
                         {
                             Gender: isFemale ? 2 : 1,
                             // Nationality_code: 'VN',
                             Nationality: formValues.national,
-                            Dob: formValues.date_of_birth,
+                            Dob: moment(formValues.date_of_birth),
                         },
                         (result) => {
-                            toast.error('Profile fail');
+                            handleClose();
+                            handleRefresh();
+                            // toast.error('Profile fail');
                             console.log('result', result);
                         }
                         // () => toast.error('Profile fail')
                     );
                 },
-                () => toast.error('Email fail')
+                () => {
+                    // toast.error('Email fail');
+                }
             );
         } catch (error) {
             console.log('error', error);
