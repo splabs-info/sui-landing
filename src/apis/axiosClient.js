@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAccessToken } from '../utils/auth';
 
 const axiosSSO = axios.create({
-    baseURL: 'https://sea-lion-app-wqzel.ondigitalocean.app/api',
+    baseURL: 'https://apiyousui.feliciastation.com',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -14,7 +14,7 @@ axiosSSO.interceptors.request.use(
         // Do something before request is sent
         const token = getAccessToken();
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = `${token}`;
         }
         return config;
     },

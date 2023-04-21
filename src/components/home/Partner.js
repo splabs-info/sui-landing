@@ -193,37 +193,45 @@ export default function Partner() {
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     return (
-        <Box mb={20}>
-            <Box mb={5} sx={{ position: 'relative' }}>
-                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                <TitleBox>
-                    <Typography>Partner</Typography>
-                    <TypographyGradient></TypographyGradient>
-                </TitleBox>
-            </Box>
-            <ContainerPartner mt={10}>
-                {partners.map((partner, index) => (
-                    <a
-                        href={partner.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        key={index}
-                        style={{
-                            background: "url('/images/home/frame-partner.png')",
-                            backgroundSize: '100% 100%',
-                            margin: '0.1rem',
-                            backgroundRepeat: 'no-repeat',
-                            padding: '1rem',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            minHeight: '130px',
-                        }}
-                    >
-                        <CustomLogo src={`./images/partners/${partner.label}.png`} alt={partner.label} />
-                    </a>
-                ))}
-            </ContainerPartner>
-        </Box>
+        <SectionBox
+            sx={{
+                backgroundImage: "url('/images/background/homebg6.png')",
+            }}
+        >
+            <Container maxWidth={'xl'}>
+                <Box mb={20}>
+                    <Box mb={5} sx={{ position: 'relative' }}>
+                        <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                        <TitleBox>
+                            <Typography>Partner</Typography>
+                            <TypographyGradient></TypographyGradient>
+                        </TitleBox>
+                    </Box>
+                    <ContainerPartner mt={10}>
+                        {partners.map((partner, index) => (
+                            <a
+                                href={partner.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                key={index}
+                                style={{
+                                    background: "url('/images/home/frame-partner.png')",
+                                    backgroundSize: '100% 100%',
+                                    margin: '0.1rem',
+                                    backgroundRepeat: 'no-repeat',
+                                    padding: '1rem',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    minHeight: '130px',
+                                }}
+                            >
+                                <CustomLogo src={`./images/partners/${partner.label}.png`} alt={partner.label} />
+                            </a>
+                        ))}
+                    </ContainerPartner>
+                </Box>
+            </Container>
+        </SectionBox>
     );
 }

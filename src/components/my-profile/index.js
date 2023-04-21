@@ -1,16 +1,14 @@
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Container, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useWallet } from '@suiet/wallet-kit';
 import { CreateProfilePopup } from 'components';
 import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
-import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
 import React, { useContext, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useGetAccount, useLogin } from 'services/auth';
 import { get, post } from 'utils/api';
 import { setAccessToken } from 'utils/auth';
 import { ClaimAvailable } from './ClaimAvailable';
@@ -32,13 +30,20 @@ export default function MyInfo() {
     const { address } = useContext(WalletContext);
     const [userData, setUserData] = useState(null);
     const [tempData, setTempData] = useState(null);
+    const [id, setId] = useState(null);
+
+    const { account } = useGetAccount(id);
+    const { mutateAsync: login, isLoading } = useLogin();
+
 
     React.useEffect(() => {
         if (address) {
             post('/login', { address: address }, (data) => {
                 const { account } = data;
+
                 setAccessToken(data.token);
                 get(`/account/profile/${account.ID}`, (data) => {
+                    console.log(data, 'data');
                     setTempData(data);
                     setUserData([
                         // { titleName: '--', title: data.ID, icon: <IcCopy /> },

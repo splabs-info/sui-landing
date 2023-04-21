@@ -32,7 +32,7 @@ export default function UpcomingPools() {
             pt={isDesktop ? 10 : 3}
             pb={isDesktop ? 5 : 3}
             sx={{
-                backgroundImage: "url('/images/background/homebg4.png')",
+                backgroundImage: "url('/images/background/homebg5.png')",
                 backgroundSize: isDesktop ? '100% 100%' : 'cover',
             }}
         >

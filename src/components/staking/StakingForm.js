@@ -25,7 +25,7 @@ const BoxGradientOpacityBorder = styled(Box)(({ theme }) => ({
 }));
 
 const fileds = [
-    { key: 'expectedAPY', label: 'Expected APY', format: (e) => `${e}%/year` },
+    { key: 'expectedAPY', label: 'Expected APY', format: (e) => `${e}%/daily` },
     {
         key: 'subscriptionDate',
         label: 'Subscript Date',
@@ -232,7 +232,7 @@ const CheckBoxLabel = () => {
         >
             I have read and agree to the
             <a
-                href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
+                href="https://yousui.io/whitepaper"
                 target="_blank"
                 rel="noreferrer"
             >
