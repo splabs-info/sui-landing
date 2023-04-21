@@ -692,26 +692,26 @@ export const wppContent = [
                 list: [
                     <></>,
                     <>
-                        <IconSquareCheck /> {`ETH (EVM) <-> SUI (Non EVM)`}
+                        <IconSquareCheck /> {`Ethereum (EVM) <-> SUI Network (Non EVM)`}
                     </>,
                     <>
-                        <IconSquareCheck /> {`Polygon (EVM) <-> SUI (Non EVM)`}
+                        <IconSquareCheck /> {`Polygon (EVM) <-> SUI Network (Non EVM)`}
                     </>,
                     <>
-                        <IconSquareCheck /> {`ETH (EVM) <-> Polygon (EVM)`}
+                        <IconSquareCheck /> {`Ethereum (EVM) <-> Polygon (EVM)`}
                     </>,
                     <>
-                        <IconSquareCheck /> {`BNB (EVM) <-> ETH (EVM)`}
+                        <IconSquareCheck /> {`BNB Chain (EVM) <-> Ethereum (EVM)`}
                     </>,
-                    <>
-                        <IconSquareCheck /> {`BNB <-> BNB Chain`}
-                    </>,
-                    <>
-                        <IconSquareCheck /> {`SUI <-> SUI Network`}
-                    </>,
-                    <>
-                        <IconSquareCheck /> {`ETH <-> Ethereum`}
-                    </>,
+                    // <>
+                    //     <IconSquareCheck /> {`BNB <-> BNB Chain`}
+                    // </>,
+                    // <>
+                    //     <IconSquareCheck /> {`SUI <-> SUI Network`}
+                    // </>,
+                    // <>
+                    //     <IconSquareCheck /> {`ETH <-> Ethereum`}
+                    // </>,
                 ],
             },
             {

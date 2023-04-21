@@ -12,7 +12,7 @@ Logo.propTypes = {
 export default function Logo({ disabledLink = false, sx }) {
 
   const logo = (
-    <Box component="img" src="/logo.png" sx={{ ...sx }} />
+    <Box component="img" src="/logo-1.png" sx={{ ...sx }} />
   );
 
   if (disabledLink) {
