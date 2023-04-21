@@ -8,7 +8,6 @@ import { SectionBox } from 'components/home-v2/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
 import moment from 'moment';
 import React, { useContext, useState } from 'react';
-import { useGetAccount, useLogin } from 'services/auth';
 import { get, post } from 'utils/api';
 import { setAccessToken } from 'utils/auth';
 import { ClaimAvailable } from './ClaimAvailable';
@@ -29,22 +28,24 @@ export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const { address } = useContext(WalletContext);
     const [userData, setUserData] = useState(null);
+    const [avatar, setAvatar] = useState('');
+    const [defaultInfo, setDefaultInfo] = useState(null); 
     const [tempData, setTempData] = useState(null);
     const [id, setId] = useState(null);
-
-    const { account } = useGetAccount(id);
-    const { mutateAsync: login, isLoading } = useLogin();
 
 
     React.useEffect(() => {
         if (address) {
             post('/login', { address: address }, (data) => {
                 const { account } = data;
-
+                console.log('account____', account)
+                setDefaultInfo(account)
+                setAvatar(account.avatar);
                 setAccessToken(data.token);
                 get(`/account/profile/${account.ID}`, (data) => {
                     console.log(data, 'data');
                     setTempData(data);
+                    setId(account.ID);
                     setUserData([
                         // { titleName: '--', title: data.ID, icon: <IcCopy /> },
                         {
@@ -87,7 +88,9 @@ export default function MyInfo() {
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
                         <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
-                            {userData && <AreaInformation onOpen={handleOpen} DATA_DEFAULT={userData} />}
+                            {userData && (
+                                <AreaInformation onOpen={handleOpen} DATA_DEFAULT={userData} id={id} avatar={avatar} />
+                            )}
                             <OverviewTabs />
                         </StyledResponsiveStack>
 
@@ -108,7 +111,13 @@ export default function MyInfo() {
                     </Stack>
                 </Container>
             </SectionBox>
-            <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} data={tempData} />
+            <CreateProfilePopup
+                open={openCreateProfile}
+                handleClose={setOpenCreateProfile}
+                data={defaultInfo}
+                id={id}
+                avatar={avatar}
+            />
         </>
     );
 }

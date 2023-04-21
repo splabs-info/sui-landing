@@ -15,7 +15,8 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     padding: '40px',
 }));
 
-export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
+export default function AreaInformation({ onOpen, DATA_DEFAULT, id, avatar }) {
+    console.log('avatar___', avatar)
     return (
         <WrapperAreaInformation>
             <Box
@@ -26,7 +27,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                     gap: '12px',
                 }}
             >
-                <UploadAvatar avatarUrl="" percent={''} />
+                <UploadAvatar avatarUrl={avatar} percent={''} id={id}/>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: 4 }}>
                     <Typography color={'#ffffff'} variant="h5" align="center">
                         YouSUI
