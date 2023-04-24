@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
-import { isNull } from 'lodash';
+import { isNil, isNull } from 'lodash';
 import React, { useContext, useState } from 'react';
 import { useGetProfile, useLogin } from 'services/auth';
 import { setAccessToken } from 'utils/auth';
@@ -15,7 +15,6 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('lg')]: {
         flexDirection: 'column',
@@ -28,7 +27,7 @@ export default function MyInfo() {
     const [id, setId] = useState(null);
     const [flag, setFlag] = React.useState(false);
 
-    const { mutateAsync: login, isLoading: isLoadingLogin } = useLogin();
+    const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
 
     const fetchData = React.useCallback(() => {
@@ -38,17 +37,17 @@ export default function MyInfo() {
             setDefaultInfo(result?.account);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [address]);
 
     React.useEffect(() => {
-        if (address) {
+        if (!isNil(address)) {
             fetchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
 
     React.useEffect(() => {
-        if (isGetProfileSuccess && !isNull(defaultInfo)) {
+        if (!isNull(id) && isGetProfileSuccess && !isNull(defaultInfo)) {
             setDefaultInfo((prev) => ({ ...prev, ...profile }));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,7 +66,7 @@ export default function MyInfo() {
             >
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
-                        {isLoadingLogin || isLoadingGetProfile ? (
+                        {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (
                             <CircularProgress sx={{ margin: '128px auto auto auto' }} />
                         ) : (
                             <>
@@ -97,13 +96,15 @@ export default function MyInfo() {
                     </Stack>
                 </Container>
             </SectionBox>
-            <CreateProfilePopup
-                open={openCreateProfile}
-                handleClose={setOpenCreateProfile}
-                data={defaultInfo}
-                id={id}
-                handleRefresh={() => setFlag(!flag)}
-            />
+            {!isNull(defaultInfo) && defaultInfo?.email && (
+                <CreateProfilePopup
+                    open={openCreateProfile}
+                    handleClose={setOpenCreateProfile}
+                    data={defaultInfo}
+                    id={id}
+                    handleRefresh={() => setFlag(!flag)}
+                />
+            )}
         </>
     );
 }

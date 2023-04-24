@@ -8,14 +8,14 @@ const authenticationKeys = {
     user: () => [...authenticationKeys.all(), 'user'],
     account: (id) => [authenticationKeys.all(), 'account', id],
     profile: (id) => [authenticationKeys.all(), 'profile', id],
+    logout: () => [...authenticationKeys.all(), 'logout'],
 };
 
 export const useLogin = (configs) => {
     const queryClient = useQueryClient();
     return useMutation((payload) => authApis.login(payload), {
-        ...configs,
         onSuccess: (...args) => {
-            queryClient.invalidateQueries([...authenticationKeys.all()]);
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
             configs?.onSuccess?.(...args);
         },
         onError: (err) => {
@@ -23,7 +23,13 @@ export const useLogin = (configs) => {
         },
     });
 };
-
+export const useLogout = () => {
+    const { data, ...others } = useQueryWithCache(authenticationKeys.logout(), () => authApis.logout(), {});
+    return {
+        logout: data || {},
+        ...others,
+    };
+};
 export const useSendOtp = (configs) => {
     const queryClient = useQueryClient();
     return useMutation((payload) => authApis.sendOtp(payload), {
@@ -82,8 +88,12 @@ export const useUploadAvatar = (configs) => {
 };
 
 export const useGetProfile = (id) => {
-    console.log('id___', id);
-    const { data, ...others } = useQueryWithCache(authenticationKeys.profile(id), () => authApis.getProfileById(id));
+    const { data, ...others } = useQueryWithCache(authenticationKeys.profile(id), () => {
+        if (id) {
+            return authApis.getProfileById(id);
+        }
+        return Promise.resolve(null);
+    });
     return {
         profile: data || {},
         ...others,

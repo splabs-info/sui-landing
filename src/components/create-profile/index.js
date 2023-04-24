@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { useUpdateEmailById, useUpdateInfo } from 'services/auth';
 import { put } from 'utils/api';
 import MultipleNationalSelect from './nationality';
+import { isNull } from 'lodash';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -84,11 +85,14 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh 
     const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById();
     const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo();
 
+    console.log('data__', data);
     const initValue = React.useMemo(() => {
-        return {
-            email_address: data?.email,
-            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
-        };
+        if (!isNull(data)) {
+            return {
+                email_address: data?.email,
+                date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
+            };
+        }
     }, [data]);
 
     console.log('initValue', initValue);

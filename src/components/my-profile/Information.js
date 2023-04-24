@@ -35,7 +35,7 @@ const Info = styled(Typography)(({ theme }) => ({
 
 export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
     const renderGender = () => {
-        switch (DATA_DEFAULT.gender) {
+        switch (DATA_DEFAULT?.gender) {
             case 1:
                 return <Info variant="subtitle2">Male</Info>;
             case 2:
@@ -72,7 +72,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
                 <InfoWrapper>
                     <IcPeople />
                     <InfoTitle variant="subtitle2">Day of birth:</InfoTitle>
-                    <Info>{moment(DATA_DEFAULT.dob).format('YYYY-MM-DD')}</Info>
+                    <Info>{moment(DATA_DEFAULT?.dob).format('YYYY-MM-DD')}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <IcSex />

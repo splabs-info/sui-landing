@@ -2,8 +2,10 @@ import axiosClient from './axiosClient';
 
 export const authApis = {
     login(data) {
-        console.log('data___login', data);
         return axiosClient.post('/api/v1/login', data);
+    },
+    logout() {
+        return axiosClient.get('/api/v1/logout');
     },
     getProfileById(id) {
         return axiosClient.get(`api/v1/account/profile/${id}`);

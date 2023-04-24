@@ -430,7 +430,7 @@ export default function HeaderHome() {
             </Drawer>
 
             {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
-            <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} />
+            {/* <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} /> */}
             <WalletDrawer
                 address={walletAddress}
                 open={openWalletDrawer}
