@@ -7,6 +7,7 @@ const authenticationKeys = {
     all: () => ['auth-services'],
     user: () => [...authenticationKeys.all(), 'user'],
     account: (id) => [authenticationKeys.all(), 'account', id],
+    profile: (id) => [authenticationKeys.all(), 'profile', id],
 };
 
 export const useLogin = (configs) => {
@@ -37,20 +38,56 @@ export const useSendOtp = (configs) => {
     });
 };
 
-export const useUploadAvatar = (configs) => {
+export const useUpdateEmailById = (configs) => {
     const queryClient = useQueryClient();
-    return useMutation((payload) => authApis.uploadAvatar(payload), {
+    return useMutation((payload) => authApis.updateEmailById(payload), {
         ...configs,
         onSuccess: (...args) => {
             queryClient.invalidateQueries([...authenticationKeys.user()]);
-            console.log('args', args);
-            console.log('configs', configs);
             configs?.onSuccess?.(...args);
         },
         onError: (err) => {
             toast.error(err?.response?.data?.message || err.message);
         },
     });
+};
+
+export const useUpdateInfo = (configs) => {
+    const queryClient = useQueryClient();
+    return useMutation((payload) => authApis.updateInfo(payload), {
+        ...configs,
+        onSuccess: (...args) => {
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
+            configs?.onSuccess?.(...args);
+            toast.success('Update successfully');
+        },
+        onError: (err) => {
+            toast.error(err?.response?.data?.message || err.message);
+        },
+    });
+};
+export const useUploadAvatar = (configs) => {
+    const queryClient = useQueryClient();
+    return useMutation((payload) => authApis.uploadAvatar(payload), {
+        ...configs,
+        onSuccess: (...args) => {
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
+
+            configs?.onSuccess?.(...args);
+        },
+        onError: (err) => {
+            toast.error(err?.response?.data?.message || err.message);
+        },
+    });
+};
+
+export const useGetProfile = (id) => {
+    console.log('id___', id);
+    const { data, ...others } = useQueryWithCache(authenticationKeys.profile(id), () => authApis.getProfileById(id));
+    return {
+        profile: data || {},
+        ...others,
+    };
 };
 
 export const useGetAccount = (id) => {

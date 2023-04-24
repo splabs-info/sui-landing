@@ -1,4 +1,4 @@
-import { TextField, InputLabel, Box } from '@mui/material';
+import { Box, InputLabel, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useController } from 'react-hook-form';
 import { Error } from './Error';
@@ -31,7 +31,7 @@ export const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
 
 export function InputField({ name, control, label, apiError, InputProps, passwordCriteria, onKeyUp, ...inputProps }) {
     const {
-        field: { value, onChange, onBlur, ref, getFieldState },
+        field: { value, onChange, onBlur, ref },
         fieldState: { invalid, error },
     } = useController({
         name,

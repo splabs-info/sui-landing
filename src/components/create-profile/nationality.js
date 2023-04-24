@@ -18,19 +18,6 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
-
 const CustomSelect = styled(Select)(({ theme }) => ({
     marginTop: 0,
     color: 'white',
@@ -71,7 +58,7 @@ export default function MultipleNationalSelect({ control }) {
         field: { value, onChange, onBlur, ref, getFieldState },
         fieldState: { invalid, error },
     } = useController({
-        name: 'national',
+        name: 'nationality',
         control,
     });
     const theme = useTheme();

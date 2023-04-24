@@ -19,7 +19,7 @@ import {
     _setWalletAddress,
     _setWalletName,
 } from '../store/user/userActions';
-import { UserConstant, UserEndpoint } from '../store/user/userConstants';
+import { UserConstant, UserEndpoint } from 'store/user/userConstants';
 import { post } from '../utils/api';
 import { logout, setAccessToken } from '../utils/auth';
 import ConfirmChangeChain from './header/ConfirmChangeChain';
