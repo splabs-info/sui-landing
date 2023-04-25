@@ -8,7 +8,7 @@ import { LeftToRightGradientBoxV2 } from 'components/left-to-right-gradient-box/
 import { UploadAvatarV2 } from 'components/upload-avatar/AvatarV2';
 import moment from 'moment';
 import { UpdateProfileSchema } from 'pages/validation';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useUpdateEmailById, useUpdateInfo } from 'services/auth';
 import { put } from 'utils/api';
@@ -80,32 +80,35 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
-export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh }) => {
+export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh, setDefaultInfo }) => {
     const [isFemale, setIsFemale] = React.useState(false);
     const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById();
     const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo();
 
-    console.log('data__', data);
-    const initValue = React.useMemo(() => {
-        if (!isNull(data)) {
-            return {
-                email_address: data?.email,
-                date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
-            };
-        }
-    }, [data]);
-
-    console.log('initValue', initValue);
+    console.log(data?.email, 'data');
 
     const {
         control,
         handleSubmit,
         formState: { isSubmitting, isValid },
+        reset,
     } = useForm({
         mode: 'onChange',
-        defaultValues: initValue,
+        defaultValues: {
+            email_address: data?.email || '',
+            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
+            nationality: 'Viet Nam',
+        },
         resolver: yupResolver(UpdateProfileSchema),
     });
+
+    useEffect(() => {
+        reset({
+            email_address: data?.email || '',
+            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
+            nationality: 'Viet Nam',
+        });
+    }, [data?.dob, data?.email, reset]);
 
     const handleFormSubmitV2 = async (formValues) => {
         updateEmail({
@@ -117,7 +120,18 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh 
                 Gender: isFemale ? 2 : 1,
                 Nationality: formValues.national,
                 Dob: moment(formValues.date_of_birth),
+            }).then(() => {
+                setDefaultInfo &&
+                    setDefaultInfo((preState) => {
+                        return {
+                            ...preState,
+                            dob: moment(formValues.date_of_birth),
+                            email: formValues.email_address,
+                            nationality: formValues.national,
+                        };
+                    });
             });
+
             handleClose();
             handleRefresh();
         });

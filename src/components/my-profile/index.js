@@ -103,6 +103,7 @@ export default function MyInfo() {
                     data={defaultInfo}
                     id={id}
                     handleRefresh={() => setFlag(!flag)}
+                    setDefaultInfo={setDefaultInfo}
                 />
             )}
         </>

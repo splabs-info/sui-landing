@@ -61,8 +61,9 @@ export default function MultipleNationalSelect({ control }) {
         name: 'nationality',
         control,
     });
+
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState('');
+    const [personName, setPersonName] = React.useState(value);
     const options = React.useMemo(() => countryList().getData(), []);
 
     const handleChange = (event) => {
