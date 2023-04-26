@@ -62,8 +62,8 @@ const statisticFields = [
 
 const packages = [
     {
-        time: 7,
-        expectedAPY: 4,
+        time: 1,
+        expectedAPY: 4.08,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(7, 'days'),
@@ -71,7 +71,7 @@ const packages = [
     },
     {
         time: 30,
-        expectedAPY: 6,
+        expectedAPY: 6.18,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(30, 'days'),
@@ -79,7 +79,7 @@ const packages = [
     },
     {
         time: 90,
-        expectedAPY: 8,
+        expectedAPY: 8.33,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(90, 'days'),
@@ -87,7 +87,7 @@ const packages = [
     },
     {
         time: 180,
-        expectedAPY: 15,
+        expectedAPY: 16.18,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(180, 'days'),

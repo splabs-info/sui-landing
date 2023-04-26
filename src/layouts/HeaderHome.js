@@ -64,7 +64,7 @@ const socials = [
 ];
 
 const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
-    background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 50%)',
+    background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
     borderRadius: '50px',
     fontWeight: 'bold',
     fontSize: 14,
@@ -75,9 +75,11 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     '::before': {
         content: "''",
         position: 'absolute',
-        background: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 50%)',
+        background: 'linear-gradient(180deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
         inset: '0px',
         zIndex: 1,
+        borderRadius: '50px',
+        padding: '2px',
         '-webkit-mask': 'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
         '-webkit-mask-composite': 'xor'
     },
