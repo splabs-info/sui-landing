@@ -62,8 +62,8 @@ const statisticFields = [
 
 const packages = [
     {
-        time: 7,
-        expectedAPY: 4,
+        time: 1,
+        expectedAPY: 4.07,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(7, 'days'),
@@ -71,7 +71,7 @@ const packages = [
     },
     {
         time: 30,
-        expectedAPY: 6,
+        expectedAPY: 6.18,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(30, 'days'),
@@ -79,7 +79,7 @@ const packages = [
     },
     {
         time: 90,
-        expectedAPY: 8,
+        expectedAPY: 8.33,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(90, 'days'),
@@ -87,7 +87,7 @@ const packages = [
     },
     {
         time: 180,
-        expectedAPY: 15,
+        expectedAPY: 16.18,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(180, 'days'),
@@ -115,7 +115,7 @@ export default function StakingPage() {
                 <Container maxWidth={'xl'}>
                     <Grid container direction={isTablet ? 'column' : ''} spacing={5}>
                         <Grid item xs={12}>
-                            <Grid container spacing={5}>
+                            <Grid container spacing={5} mt={5}>
                                 <Grid item md={4} xs={12}>
                                     <img
                                         src={XUILogo}
@@ -140,7 +140,7 @@ export default function StakingPage() {
                                             href={gateUrl}
                                             target="_blank"
                                         >
-                                            <Button
+                                            {/* <Button
                                                 sx={{
                                                     background:
                                                         'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
@@ -151,7 +151,7 @@ export default function StakingPage() {
                                                 size="large"
                                             >
                                                 Buy on
-                                            </Button>
+                                            </Button> */}
                                         </Link>
                                         <Box my={2}>
                                             <Grid container spacing={2}>
@@ -177,7 +177,7 @@ export default function StakingPage() {
                                         <BoxGradient>
                                             <Box>
                                                 <Typography textAlign="left" variant="h6" fontWeight={300}>
-                                                    Selected APR
+                                                    Selected APY
                                                 </Typography>
                                                 <Typography textAlign={'left'} variant="h3">
                                                     {verifyData.expectedAPY}%

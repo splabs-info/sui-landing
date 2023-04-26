@@ -7,14 +7,15 @@ const authenticationKeys = {
     all: () => ['auth-services'],
     user: () => [...authenticationKeys.all(), 'user'],
     account: (id) => [authenticationKeys.all(), 'account', id],
+    profile: (id) => [authenticationKeys.all(), 'profile', id],
+    logout: () => [...authenticationKeys.all(), 'logout'],
 };
 
 export const useLogin = (configs) => {
     const queryClient = useQueryClient();
     return useMutation((payload) => authApis.login(payload), {
-        ...configs,
         onSuccess: (...args) => {
-            queryClient.invalidateQueries([...authenticationKeys.all()]);
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
             configs?.onSuccess?.(...args);
         },
         onError: (err) => {
@@ -22,7 +23,13 @@ export const useLogin = (configs) => {
         },
     });
 };
-
+export const useLogout = () => {
+    const { data, ...others } = useQueryWithCache(authenticationKeys.logout(), () => authApis.logout(), {});
+    return {
+        logout: data || {},
+        ...others,
+    };
+};
 export const useSendOtp = (configs) => {
     const queryClient = useQueryClient();
     return useMutation((payload) => authApis.sendOtp(payload), {
@@ -37,20 +44,60 @@ export const useSendOtp = (configs) => {
     });
 };
 
-export const useUploadAvatar = (configs) => {
+export const useUpdateEmailById = (configs) => {
     const queryClient = useQueryClient();
-    return useMutation((payload) => authApis.uploadAvatar(payload), {
+    return useMutation((payload) => authApis.updateEmailById(payload), {
         ...configs,
         onSuccess: (...args) => {
             queryClient.invalidateQueries([...authenticationKeys.user()]);
-            console.log('args', args);
-            console.log('configs', configs);
             configs?.onSuccess?.(...args);
         },
         onError: (err) => {
             toast.error(err?.response?.data?.message || err.message);
         },
     });
+};
+
+export const useUpdateInfo = (configs) => {
+    const queryClient = useQueryClient();
+    return useMutation((payload) => authApis.updateInfo(payload), {
+        ...configs,
+        onSuccess: (...args) => {
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
+            configs?.onSuccess?.(...args);
+            toast.success('Update successfully');
+        },
+        onError: (err) => {
+            toast.error(err?.response?.data?.message || err.message);
+        },
+    });
+};
+export const useUploadAvatar = (configs) => {
+    const queryClient = useQueryClient();
+    return useMutation((payload) => authApis.uploadAvatar(payload), {
+        ...configs,
+        onSuccess: (...args) => {
+            queryClient.invalidateQueries([...authenticationKeys.user()]);
+
+            configs?.onSuccess?.(...args);
+        },
+        onError: (err) => {
+            toast.error(err?.response?.data?.message || err.message);
+        },
+    });
+};
+
+export const useGetProfile = (id) => {
+    const { data, ...others } = useQueryWithCache(authenticationKeys.profile(id), () => {
+        if (id) {
+            return authApis.getProfileById(id);
+        }
+        return Promise.resolve(null);
+    });
+    return {
+        profile: data || {},
+        ...others,
+    };
 };
 
 export const useGetAccount = (id) => {

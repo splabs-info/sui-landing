@@ -1,17 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, Divider, Modal, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Divider, Modal, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { InputField, SubmitButton, UploadAvatar } from 'components';
+import { InputField, SubmitButton } from 'components';
 import { LeftToRightGradientBoxV2 } from 'components/left-to-right-gradient-box/LeftToRightGradientBox';
 import { UploadAvatarV2 } from 'components/upload-avatar/AvatarV2';
-import { LoginSchema } from 'pages/validation';
-import React from 'react';
+import moment from 'moment';
+import { UpdateProfileSchema } from 'pages/validation';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import MultipleNationalSelect from './nationality';
+import { useUpdateEmailById, useUpdateInfo } from 'services/auth';
 import { put } from 'utils/api';
-import { toast } from 'react-toastify';
+import MultipleNationalSelect from './nationality';
+import { isNull } from 'lodash';
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -56,7 +58,7 @@ export const ButtonBtn = styled(Button)({
     textTransform: 'none',
     fontWeight: 'bold',
     marginRight: 16,
-    background: 'rgba(42, 78, 171, 0.12)',
+    // background: 'rgba(42, 78, 171, 0.12)',
     background: 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)',
     borderRadius: '10px',
     color: '#ffffff',
@@ -78,55 +80,111 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
-export const CreateProfilePopup = ({ open, handleClose, data }) => {
-  
-    const [files, setFiles] = React.useState([]);
+export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh, setDefaultInfo }) => {
     const [isFemale, setIsFemale] = React.useState(false);
-    // const { mutateAsync: login } = useLogin({});
+    const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById();
+    const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo();
+
+    console.log(data?.email, 'data');
 
     const {
         control,
         handleSubmit,
         formState: { isSubmitting, isValid },
+        reset,
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(LoginSchema),
+        defaultValues: {
+            email_address: data?.email || '',
+            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
+            nationality: 'Viet Nam',
+        },
+        resolver: yupResolver(UpdateProfileSchema),
     });
 
+    useEffect(() => {
+        reset({
+            email_address: data?.email || '',
+            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
+            nationality: 'Viet Nam',
+        });
+    }, [data?.dob, data?.email, reset]);
+
+    const handleFormSubmitV2 = async (formValues) => {
+        updateEmail({
+            id,
+            email: formValues.email_address,
+        }).then(() => {
+            updateInfo({
+                id,
+                Gender: isFemale ? 2 : 1,
+                Nationality: formValues.national,
+                Dob: moment(formValues.date_of_birth),
+            }).then(() => {
+                setDefaultInfo &&
+                    setDefaultInfo((preState) => {
+                        return {
+                            ...preState,
+                            dob: moment(formValues.date_of_birth),
+                            email: formValues.email_address,
+                            nationality: formValues.national,
+                        };
+                    });
+            });
+
+            handleClose();
+            handleRefresh();
+        });
+    };
+
     const handleFormSubmit = async (formValues) => {
+        console.log('formValues____', formValues);
         try {
             put(
-                `/account/email/${data.account_id}`,
+                `/account/email/${id}`,
                 { email: formValues.email_address },
                 () => {
+                    console.log({
+                        Gender: isFemale ? 2 : 1,
+                        // Nationality_code: 'VN',
+                        Nationality: formValues.national,
+                        Dob: formValues.date_of_birth,
+                    });
                     put(
-                        `/account/profile/${data.account_id}`,
+                        `/account/profile/${data.ID}`,
                         {
                             Gender: isFemale ? 2 : 1,
                             // Nationality_code: 'VN',
                             Nationality: formValues.national,
-                            Dob: formValues.date_of_birth,
+                            Dob: moment(formValues.date_of_birth),
                         },
-                        () => toast.error('Profile fail')
+                        (result) => {
+                            handleClose();
+                            handleRefresh();
+                            // toast.error('Profile fail');
+                            // console.log('result', result);
+                        }
+                        // () => toast.error('Profile fail')
                     );
                 },
-                () => toast.error('Email fail')
+                () => {
+                    // toast.error('Email fail');
+                }
             );
         } catch (error) {
             console.log('error', error);
         }
     };
 
-    const onDeleteAvatar = React.useCallback(() => {
-        setFiles([]);
-        // dispatch(updateProfileActions.deleteAvatar());
-    }, []);
+    // const onDeleteAvatar = React.useCallback(() => {
+    //     setFiles([]);
+    //     // dispatch(updateProfileActions.deleteAvatar());
+    // }, []);
 
     const onUploadAvatar = (e) => {
         const banner = e.target.files[0];
         const form = new FormData();
         form.append('avatar', banner);
-        // dispatch(updateProfileActions.uploadAvatar(form));
     };
 
     const handleClickSex = (type) => {
@@ -142,154 +200,159 @@ export const CreateProfilePopup = ({ open, handleClose, data }) => {
         >
             <>
                 <Box sx={style}>
-                    <Box
-                        onClick={() => handleClose(!open)}
-                        sx={{ position: 'absolute', top: '17px', right: '17px', color: '#ffffff', cursor: 'pointer' }}
-                    >
-                        X
-                    </Box>
-                    <Title sx={{ textShadow: '0px 0px 5px rgba(255, 255, 255, 0.5)' }}>Create Profile</Title>
-                    <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)' }} />
-
-                    <StyledForm onSubmit={handleSubmit(handleFormSubmit)}>
-                        <Box
-                            sx={{
-                                marginTop: '27px',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                width: '100%',
-                                padding: 6,
-                                paddingTop: 0,
-                                paddingBottom: 0,
-                                flexWrap: 'wrap',
-                            }}
-                        >
-                            <LeftToRightGradientBoxV2
+                    {isLoading || isLoadingInfo ? (
+                        <CircularProgress />
+                    ) : (
+                        <>
+                            <Box
+                                onClick={() => handleClose(!open)}
                                 sx={{
-                                    textAlign: 'center',
-                                    fontSize: 16,
-                                    color: 'white',
-                                    width: '100%',
-                                    margin: '0 auto',
-                                    height: 40,
-                                    borderRadius: '50px',
-                                    fontWeight: 700,
-                                    alignItems: 'center',
-                                    display: 'flex',
-                                    justifyContent: 'center',
+                                    position: 'absolute',
+                                    top: '17px',
+                                    right: '17px',
+                                    color: '#ffffff',
                                     cursor: 'pointer',
                                 }}
                             >
-                                Personal Info
-                            </LeftToRightGradientBoxV2>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <Box>
-                                    <Typography sx={{ color: 'white', marginBottom: 2, fontWeight: 'bold' }}>
-                                        Profile photo
-                                    </Typography>
+                                X
+                            </Box>
+                            <Title sx={{ textShadow: '0px 0px 5px rgba(255, 255, 255, 0.5)' }}>Create Profile</Title>
+                            <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)' }} />
 
-                                    <Box sx={{ display: 'flex' }}>
-                                        <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />}>
-                                            <StyledInputUpload
-                                                type="file"
-                                                accept="image/jpeg,image/png,image/svg,image/gif"
-                                                multiple
-                                                onChange={onUploadAvatar}
-                                            />
-                                            Login
-                                        </UploadBtn>
-                                        <DeletePhotoBtn
-                                            variant="outlined"
-                                            startIcon={<DeleteIcon />}
-                                            onClick={onDeleteAvatar}
-                                        >
-                                            Change
-                                        </DeletePhotoBtn>
+                            <StyledForm onSubmit={handleSubmit(handleFormSubmitV2)}>
+                                <Box
+                                    sx={{
+                                        marginTop: '27px',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        width: '100%',
+                                        padding: 6,
+                                        paddingTop: 0,
+                                        paddingBottom: 0,
+                                        flexWrap: 'wrap',
+                                    }}
+                                >
+                                    <LeftToRightGradientBoxV2
+                                        sx={{
+                                            textAlign: 'center',
+                                            fontSize: 16,
+                                            color: 'white',
+                                            width: '100%',
+                                            margin: '0 auto',
+                                            height: 40,
+                                            borderRadius: '50px',
+                                            fontWeight: 700,
+                                            alignItems: 'center',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Personal Info
+                                    </LeftToRightGradientBoxV2>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                        <Box>
+                                            <Typography sx={{ color: 'white', marginBottom: 2, fontWeight: 'bold' }}>
+                                                Profile photo
+                                            </Typography>
+
+                                            <Box sx={{ display: 'flex' }}>
+                                                <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />}>
+                                                    <StyledInputUpload
+                                                        type="file"
+                                                        accept="image/jpeg,image/png,image/svg,image/gif"
+                                                        multiple
+                                                        onChange={onUploadAvatar}
+                                                    />
+                                                    Upload
+                                                </UploadBtn>
+                                                <DeletePhotoBtn
+                                                    variant="outlined"
+                                                    startIcon={<DeleteIcon />}
+                                                    // onClick={onDeleteAvatar}
+                                                >
+                                                    Change
+                                                </DeletePhotoBtn>
+                                            </Box>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            </Box>
 
-                            <UploadAvatarV2 avatarUrl="" percent={''} />
-                        </Box>
-                        <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
-                        <Box sx={{ padding: 6, paddingTop: 0 }}>
-                            {/* <InputField
-                                id="username"
-                                name="username"
-                                control={control}
-                                label="User name"
-                                placeholder="User name"
-                            /> */}
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                }}
-                            >
-                                <Box sx={{ flexShrink: 1, flexBasis: '100%' }}>
-                                    <InputField
-                                        id="date_of_birth"
-                                        name="date_of_birth"
-                                        control={control}
-                                        label="Date of birth"
-                                        placeholder="Date of birth"
-                                    />
+                                    <UploadAvatarV2 avatarUrl={data?.avatar} percent={''} id={id} />
                                 </Box>
-
-                                <Box sx={{ flexShrink: 0, display: 'flex' }}>
-                                    <ButtonBtn
-                                        onClick={() => handleClickSex('Male')}
+                                <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
+                                <Box sx={{ padding: 6, paddingTop: 0 }}>
+                                    <Box
                                         sx={{
-                                            width: '123px',
-                                            background: !isFemale
-                                                ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
-                                                : 'rgba(42, 78, 171, 0.12)',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            gap: '12px',
                                         }}
-                                        variant={isFemale ? 'outlined' : 'contained'}
                                     >
-                                        Male
-                                    </ButtonBtn>
-                                    <ButtonBtn
-                                        onClick={() => handleClickSex('Female')}
-                                        sx={{
-                                            width: '123px',
-                                            background: isFemale
-                                                ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
-                                                : 'rgba(42, 78, 171, 0.12)',
-                                        }}
-                                        variant={!isFemale ? 'outlined' : 'contained'}
-                                    >
-                                        Female
-                                    </ButtonBtn>
-                                </Box>
-                            </Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-                                <Box sx={{ flexBasis: '100%' }}>
-                                    <InputField
-                                        id="email_address"
-                                        name="email_address"
-                                        control={control}
-                                        label="Email Address"
-                                        placeholder="Email address"
-                                    />
-                                </Box>
+                                        <Box sx={{ flexShrink: 1, flexBasis: '100%' }}>
+                                            <InputField
+                                                id="date_of_birth"
+                                                name="date_of_birth"
+                                                control={control}
+                                                label="Date of birth"
+                                                placeholder="Date of birth"
+                                            />
+                                        </Box>
 
-                                {/* <UploadBtn sx={{ width: '150px', margin: 0, flexShrink: 0 }} variant="contained">
+                                        <Box sx={{ flexShrink: 0, display: 'flex' }}>
+                                            <ButtonBtn
+                                                onClick={() => handleClickSex('Male')}
+                                                sx={{
+                                                    width: '123px',
+                                                    background: !isFemale
+                                                        ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
+                                                        : 'rgba(42, 78, 171, 0.12)',
+                                                }}
+                                                variant={isFemale ? 'outlined' : 'contained'}
+                                            >
+                                                Male
+                                            </ButtonBtn>
+                                            <ButtonBtn
+                                                onClick={() => handleClickSex('Female')}
+                                                sx={{
+                                                    width: '123px',
+                                                    background: isFemale
+                                                        ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
+                                                        : 'rgba(42, 78, 171, 0.12)',
+                                                }}
+                                                variant={!isFemale ? 'outlined' : 'contained'}
+                                            >
+                                                Female
+                                            </ButtonBtn>
+                                        </Box>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+                                        <Box sx={{ flexBasis: '100%' }}>
+                                            <InputField
+                                                id="email_address"
+                                                name="email_address"
+                                                control={control}
+                                                label="Email Address"
+                                                placeholder="Email address"
+                                            />
+                                        </Box>
+
+                                        {/* <UploadBtn sx={{ width: '150px', margin: 0, flexShrink: 0 }} variant="contained">
                                     Send OTP
                                 </UploadBtn> */}
-                            </Box>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                                {/* <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" /> */}
-                                <MultipleNationalSelect control={control} />
-                            </Box>
-                            <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>
-                                &nbsp;Save Changes
-                            </SubmitButton>
-                        </Box>
-                    </StyledForm>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                                        {/* <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" /> */}
+                                        <MultipleNationalSelect control={control} />
+                                    </Box>
+                                    <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>
+                                        &nbsp;Save Changes
+                                    </SubmitButton>
+                                </Box>
+                            </StyledForm>
+                        </>
+                    )}
                 </Box>
             </>
         </Modal>

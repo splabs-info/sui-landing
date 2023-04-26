@@ -1,10 +1,15 @@
 import styled from '@emotion/styled';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Stack } from '@mui/system';
+import IcPeople from 'components/asset/icon/IcPeople';
+import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
 import { UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
+import moment from 'moment';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',
@@ -15,7 +20,30 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     padding: '40px',
 }));
 
-export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
+const InfoWrapper = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    gap: '8px',
+    color: '#ffffff',
+}));
+
+const InfoTitle = styled(Typography)(({ theme }) => ({}));
+
+const Info = styled(Typography)(({ theme }) => ({
+    fontWeight: 400,
+    color: '#ffffff',
+}));
+
+export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
+    const renderGender = () => {
+        switch (DATA_DEFAULT?.gender) {
+            case 1:
+                return <Info variant="subtitle2">Male</Info>;
+            case 2:
+                return <Info variant="subtitle3">Female</Info>;
+            default:
+                return <Info variant="subtitle2">Other</Info>;
+        }
+    };
     return (
         <WrapperAreaInformation>
             <Box
@@ -26,7 +54,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                     gap: '12px',
                 }}
             >
-                <UploadAvatar avatarUrl="" percent={''} />
+                <UploadAvatar avatarUrl={DATA_DEFAULT?.avatar} percent={''} id={id} />
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: 4 }}>
                     <Typography color={'#ffffff'} variant="h5" align="center">
                         YouSUI
@@ -35,7 +63,30 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                 </Box>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Stack direction="column" spacing={2}>
+                <InfoWrapper>
+                    <MailOutlineIcon color="inherit" />
+                    <InfoTitle variant="subtitle2">Email:</InfoTitle>
+                    <Info variant="subtitle2">{DATA_DEFAULT?.email}</Info>
+                </InfoWrapper>
+                <InfoWrapper>
+                    <IcPeople />
+                    <InfoTitle variant="subtitle2">Day of birth:</InfoTitle>
+                    <Info>{moment(DATA_DEFAULT?.dob).format('YYYY-MM-DD')}</Info>
+                </InfoWrapper>
+                <InfoWrapper>
+                    <IcSex />
+                    <InfoTitle variant="subtitle2">Sex:</InfoTitle>
+                    <Info variant="subtitle2">{renderGender()}</Info>
+                </InfoWrapper>
+                <InfoWrapper>
+                    <PublicOutlinedIcon color="inherit" />
+                    <InfoTitle variant="subtitle2">Nationality:</InfoTitle>
+
+                    <Info variant="subtitle2">{DATA_DEFAULT?.nationality}</Info>
+                </InfoWrapper>
+            </Stack>
+            {/* <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {DATA_DEFAULT.map((el, i) => (
                     <Box sx={{ display: 'flex', gap: '8px', color: '#ffffff' }}>
                         <span>{el.icon}</span>
@@ -58,7 +109,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT }) {
                         )}
                     </Box>
                 ))}
-            </Box>
+            </Box> */}
 
             <Box sx={{ textAlign: 'center', margin: '24px 0' }}>
                 <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
