@@ -481,16 +481,9 @@ export default function HeaderHome() {
                         </Hidden>
                         <Divider />
                         <SocialHeaderBox />
-                        {/*{subMenus.map((menu, index) => (
-							<SubMenu menu={menu} key={index} library={library} />
-						))}
-						<Divider /> */}
                     </List>
                 </Box>
             </Drawer>
-
-            {/* <ConnectPopup open={openConnectPopup} handleClose={setOpenConnectPopup} /> */}
-            {/* <CreateProfilePopup open={openCreateProfile} handleClose={setOpenCreateProfile} /> */}
             <WalletDrawer
                 address={walletAddress}
                 open={openWalletDrawer}
