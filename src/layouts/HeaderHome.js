@@ -19,11 +19,10 @@ import {
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import { ApplyButton, Header, Navbar } from '../components/header/HeaderStyles';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Header, Navbar } from '../components/header/HeaderStyles';
 // import { ConnectPopup } from '../components/wallet/connect-popup';
 import { useWallet } from '@suiet/wallet-kit';
-import { CreateProfilePopup } from 'components';
 import Logo from 'components/common/Logo';
 import { WalletDrawer } from 'components/drawer';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
@@ -31,7 +30,10 @@ import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import { AppConfig } from '../setting';
 // import Languages from './Languages';
-
+import EmailIcon from '@mui/icons-material/Email';
+import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { FrameButton } from 'components/home-v2/HomeStyles';
 const config = [
     { label: 'key_2', link: '/ido-launchpad' },
     { label: 'key_3', link: '/coming-soon' },
@@ -44,22 +46,36 @@ const config = [
 
 const socials = [
     {
-        src: '/images/icon/logo-medium.png',
+        src: '/images/icon/logo-medium.svg',
         link: 'https://medium.com/@YouSUI',
     },
     {
-        src: '/images/icon/logo-twitter.png',
+        src: '/images/icon/logo-twitter.svg',
         link: 'https://twitter.com/YouSUI_Global',
     },
     {
-        src: '/images/icon/logo-discord.png',
+        src: '/images/icon/logo-discord.svg',
         link: 'https://discord.com/invite/yousui',
     },
     {
-        src: '/images/icon/logo-telegram.png',
+        src: '/images/icon/tele.svg',
         link: '',
     },
 ];
+
+const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
+    background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 50%)',
+    borderRadius: '50px',
+    // boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.3)',
+    fontWeight: 'bold',
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 1)',
+    // border: '2px solid',
+    paddingRight: 18,
+    paddingLeft: 18,
+    borderImage: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 50%) 1',
+}));
+
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
     const wallet = useWallet();
@@ -73,6 +89,8 @@ export default function HeaderHome() {
     const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+
+    const navigate = useNavigate();
 
     const open = Boolean(anchorEl);
 
@@ -257,7 +275,28 @@ export default function HeaderHome() {
 
     return (
         <>
-            <Header>
+            <Header sx={{ flexDirection: 'column' }}>
+                <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
+                    <Container
+                        maxWidth={'xl'}
+                        sx={{ display: 'flex', alignItems: 'center', height: 40, justifyContent: 'space-between' }}
+                    >
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <EmailIcon sx={{ color: 'rgba(255, 255, 255, 1)', fontSize: 18, marginRight: '8px' }} />
+                            <a
+                                href="mailto:business@yousui.io"
+                                style={{
+                                    fontSize: 14,
+                                    color: 'rgba(255, 255, 255, 1)',
+                                    lineHeight: '20px',
+                                }}
+                            >
+                                business@yousui.io
+                            </a>
+                        </Box>
+                        <Box>{SocialHeaderBox()}</Box>
+                    </Container>
+                </Box>
                 <Container
                     maxWidth={'xl'}
                     sx={{
@@ -290,15 +329,21 @@ export default function HeaderHome() {
                                     <MenuHeaderBox />
                                 </Box>
                                 {!walletAddress && (
-                                    <ApplyButton
-                                        sx={{ margin: 0 }}
+                                    <FrameButton
                                         onClick={handleOpenConnectPopup}
                                         open={openConnectPopup}
+                                        sx={{ fontSize: 14, width: 156, height: 64 }}
                                     >
                                         Connect Wallet
-                                    </ApplyButton>
+                                    </FrameButton>
                                 )}
-                                <SocialHeaderBox />
+                                {/* <SocialHeaderBox /> */}
+                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
+                                    Join YouSUI
+                                </StyledBtnBorderGreen>
+                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
+                                    Crew3
+                                </StyledBtnBorderGreen>
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
                                         <Avatar
@@ -321,13 +366,13 @@ export default function HeaderHome() {
                                         />
                                     </IconButton>
                                 ) : (
-                                    <ApplyButton
-                                        sx={{ margin: 0 }}
+                                    <FrameButton
                                         onClick={handleOpenConnectPopup}
                                         open={openConnectPopup}
+                                        sx={{ fontSize: 14, width: 156, height: 64 }}
                                     >
                                         Connect Wallet
-                                    </ApplyButton>
+                                    </FrameButton>
                                 )}
                                 <IconButton
                                     sx={{

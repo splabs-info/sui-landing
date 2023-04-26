@@ -161,6 +161,15 @@ export const wppContent = [
         ],
     },
     {
+        id: 'platform-overview',
+        category: 'Platform Overview',
+        description: [
+            {
+                content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
+            },
+        ],
+    },
+    {
         id: 'B',
         category: 'Vision & Mission',
         description: [
@@ -285,7 +294,7 @@ export const wppContent = [
                     'DEX Launch',
                     'Platform Expansion',
                     'NFT Marketplace Launch',
-                    'New Blochchain Integration Announcement',
+                    'New Blockchain Integration Announcement',
                 ],
             },
             {
@@ -675,6 +684,14 @@ export const wppContent = [
                     'Est. Received : Estimated number of final tokens you will receive after proceeding with the Swap',
                     'Min. Received : The minimum number of final tokens you will receive after proceeding with the Swap',
                     'Network fee : Estimated Gas Fee used for Swap Transaction. Depends on the per-block or blockchain state.',
+                    '',
+                    <b>Swap Fee</b>,
+                    'Basically, the swap fee is 0.3%, and it can change flexibly up to 0.2% depending on the liquidity capacity. More liquidity helps lower swap fees.',
+                    '',
+                    <b>Swap Fee Shares</b>,
+                    '20% of the Swap Fee is moved to the Treasury Pool and used for $XUI Buyback.',
+                    '20% of the Swap Fee will be an additional benefit to $XUI Staking participants.',
+                    '50% of the Swap Fee is paid to the Liquidity Provider as an token incentives and 10% of Swap Fee is allocated to the Team and used to create an insurance fund.',
                 ],
             },
         ],
@@ -1226,13 +1243,4 @@ export const wppContent = [
     //         },
     //     ],
     // },
-    {
-        id: 'platform-overview',
-        category: 'Platform Overview',
-        description: [
-            {
-                content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
-            },
-        ],
-    },
 ];
