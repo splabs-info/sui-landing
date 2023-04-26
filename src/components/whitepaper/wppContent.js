@@ -5,7 +5,7 @@ export const wppContent = [
         category: 'Introduction of YouSUI',
         description: [
             {
-                content: [<img src="/images/whitepaper/intro.png" alt="" />],
+                content: [<img src="/images/whitepaper/intro-ver2.png" alt="" />],
             },
             {
                 title: 'The History',
