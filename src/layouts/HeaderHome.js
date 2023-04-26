@@ -80,8 +80,9 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
         zIndex: 1,
         borderRadius: '50px',
         padding: '2px',
-        '-webkit-mask': 'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-        '-webkit-mask-composite': 'xor'
+        '-webkit-mask':
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        '-webkit-mask-composite': 'xor',
     },
 }));
 
@@ -350,16 +351,14 @@ export default function HeaderHome() {
                                 <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
                                     Join YouSUI
                                 </StyledBtnBorderGreen>
-                                <StyledBtnBorderGreen size="large">
-                                    <a
-                                        href="https://zealy.io/c/yousui"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        style={{ textDecoration: 'none' }}
-                                    >
-                                        Crew3
-                                    </a>
-                                </StyledBtnBorderGreen>
+                                <a
+                                    href="https://zealy.io/c/yousui"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
+                                </a>
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
                                         <Avatar
