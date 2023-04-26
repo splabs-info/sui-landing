@@ -115,7 +115,7 @@ export default function StakingPage() {
                 <Container maxWidth={'xl'}>
                     <Grid container direction={isTablet ? 'column' : ''} spacing={5}>
                         <Grid item xs={12}>
-                            <Grid container spacing={5}>
+                            <Grid container spacing={5} mt={5}>
                                 <Grid item md={4} xs={12}>
                                     <img
                                         src={XUILogo}
