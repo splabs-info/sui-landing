@@ -140,7 +140,7 @@ export default function StakingPage() {
                                             href={gateUrl}
                                             target="_blank"
                                         >
-                                            <Button
+                                            {/* <Button
                                                 sx={{
                                                     background:
                                                         'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
@@ -151,7 +151,7 @@ export default function StakingPage() {
                                                 size="large"
                                             >
                                                 Buy on
-                                            </Button>
+                                            </Button> */}
                                         </Link>
                                         <Box my={2}>
                                             <Grid container spacing={2}>

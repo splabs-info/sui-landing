@@ -66,14 +66,21 @@ const socials = [
 const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     background: 'linear-gradient(90deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 50%)',
     borderRadius: '50px',
-    // boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.3)',
     fontWeight: 'bold',
     fontSize: 14,
     color: 'rgba(255, 255, 255, 1)',
     // border: '2px solid',
     paddingRight: 18,
     paddingLeft: 18,
-    borderImage: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 50%) 1',
+    '::before': {
+        content: "''",
+        position: 'absolute',
+        background: 'linear-gradient(90deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 50%)',
+        inset: '0px',
+        zIndex: 1,
+        '-webkit-mask': 'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        '-webkit-mask-composite': 'xor'
+    },
 }));
 
 export default function HeaderHome() {
@@ -341,8 +348,15 @@ export default function HeaderHome() {
                                 <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
                                     Join YouSUI
                                 </StyledBtnBorderGreen>
-                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
-                                    Crew3
+                                <StyledBtnBorderGreen size="large">
+                                    <a
+                                        href="https://zealy.io/c/yousui"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{ textDecoration: 'none' }}
+                                    >
+                                        Crew3
+                                    </a>
                                 </StyledBtnBorderGreen>
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>

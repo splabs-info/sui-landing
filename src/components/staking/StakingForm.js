@@ -11,9 +11,8 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import moment from 'moment';
-import React from 'react';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 const BoxGradientOpacityBorder = styled(Box)(({ theme }) => ({
     padding: '2rem',
     borderRadius: '1rem',
@@ -24,7 +23,7 @@ const BoxGradientOpacityBorder = styled(Box)(({ theme }) => ({
     color: 'white',
 }));
 
-const fileds = [
+const fields = [
     { key: 'expectedAPY', label: 'Expected APY', format: (e) => `${e}%/daily` },
     {
         key: 'subscriptionDate',
@@ -61,7 +60,7 @@ export default function StakingForm({ verifyData, setVerifyData, packages }) {
             <Grid container justifyContent={'space-between'} spacing={5}>
                 <Grid item md={5.5} xs={12}>
                     <Stack direction={'column'} justifyContent="space-between" height={'100%'}>
-                        {fileds.map((field) => (
+                        {fields.map((field) => (
                             <Stack direction={'row'} justifyContent="space-between" alignItems={'center'}>
                                 <Typography variant="h6">{field.label}</Typography>
                                 <Typography>
