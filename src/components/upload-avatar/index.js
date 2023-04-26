@@ -48,7 +48,6 @@ const StyledAvatar = styled('img')(({ theme }) => ({
 export const UploadAvatar = ({ avatarUrl, id }) => {
     const [urlImageUser, setUrlImageUser] = React.useState('');
 
-    console.log('avatarUrl', avatarUrl);
     const { mutateAsync: uploadAvatar, isLoading } = useUploadAvatar({
         onSuccess: (args) => {
             // Update info avt in here
@@ -110,7 +109,10 @@ export const UploadAvatar = ({ avatarUrl, id }) => {
                         <CircularProgress size={32} color="primary" />
                     </div>
                 ) : (
-                    <aside>{thumbs}</aside>
+                    <aside>
+                        <input {...getInputProps()} />
+                        {thumbs}
+                    </aside>
                 )}
             </>
         );
@@ -123,10 +125,7 @@ export const UploadAvatar = ({ avatarUrl, id }) => {
                 {avatarUrl ? (
                     <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 ) : (
-                    <img
-                        src="/images/my-profile/default-avatar.png"
-                        style={{ borderRadius: '50%', width: 270, height: 270 }}
-                    />
+                    <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 )}
             </div>
         );
