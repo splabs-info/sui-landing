@@ -177,7 +177,7 @@ export default function StakingPage() {
                                         <BoxGradient>
                                             <Box>
                                                 <Typography textAlign="left" variant="h6" fontWeight={300}>
-                                                    Selected APR
+                                                    Selected APY
                                                 </Typography>
                                                 <Typography textAlign={'left'} variant="h3">
                                                     {verifyData.expectedAPY}%
