@@ -63,7 +63,7 @@ const statisticFields = [
 const packages = [
     {
         time: 1,
-        expectedAPY: 4.08,
+        expectedAPY: 4.07,
         subscriptionDate: moment(),
         firstRewardPayment: moment().add(1, 'days'),
         stakingExpirationDate: moment().add(7, 'days'),
