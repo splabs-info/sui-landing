@@ -19,8 +19,8 @@ export const authApis = {
     updateInfo(payload) {
         return axiosClient.put(`api/v1/account/profile/${payload?.id}`, {
             Gender: payload?.Gender,
-            Nationality: payload?.national,
-            Dob: payload?.date_of_birth,
+            Nationality: payload?.Nationality,
+            Dob: payload?.Dob,
         });
     },
     sendOtp(data) {
