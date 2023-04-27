@@ -15,6 +15,7 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
+import Typography from 'theme/overrides/Typography';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('lg')]: {
         flexDirection: 'column',
@@ -66,31 +67,45 @@ export default function MyInfo() {
             >
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
-                        {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (
-                            <CircularProgress sx={{ margin: '128px auto auto auto' }} />
+                        {!address ? (
+                            <Typography>Please connect wallet before</Typography>
                         ) : (
                             <>
-                                <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
-                                    {!isNull(defaultInfo) && (
-                                        <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
-                                    )}
-                                    <OverviewTabs />
-                                </StyledResponsiveStack>
+                                {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (
+                                    <CircularProgress sx={{ margin: '128px auto auto auto' }} />
+                                ) : (
+                                    <>
+                                        <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
+                                            {!isNull(defaultInfo) && (
+                                                <AreaInformation
+                                                    onOpen={handleOpen}
+                                                    DATA_DEFAULT={defaultInfo}
+                                                    id={id}
+                                                />
+                                            )}
+                                            <OverviewTabs />
+                                        </StyledResponsiveStack>
 
-                                <Stack direction="column">
-                                    <Stack
-                                        direction="row"
-                                        sx={{ marginBottom: 12, flexWrap: 'wrap', justifyContent: 'space-between' }}
-                                    >
-                                        <IDOParticipated />
-                                        <CurrentStakingPool />
-                                    </Stack>
+                                        <Stack direction="column">
+                                            <Stack
+                                                direction="row"
+                                                sx={{
+                                                    marginBottom: 12,
+                                                    flexWrap: 'wrap',
+                                                    justifyContent: 'space-between',
+                                                }}
+                                            >
+                                                <IDOParticipated />
+                                                <CurrentStakingPool />
+                                            </Stack>
 
-                                    <StakingBalance />
-                                    <MyIDOArea />
-                                    <MyINOArea />
-                                    <ClaimAvailable />
-                                </Stack>
+                                            <StakingBalance />
+                                            <MyIDOArea />
+                                            <MyINOArea />
+                                            <ClaimAvailable />
+                                        </Stack>
+                                    </>
+                                )}
                             </>
                         )}
                     </Stack>

@@ -349,8 +349,8 @@ export default function HeaderHome() {
                                     </FrameButton>
                                 )}
                                 {/* <SocialHeaderBox /> */}
-                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/coming-soon')}>
-                                    Join YouSUI
+                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/my-profile')}>
+                                    My Page
                                 </StyledBtnBorderGreen>
                                 <a
                                     href="https://zealy.io/c/yousui"
@@ -369,7 +369,7 @@ export default function HeaderHome() {
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
                                         <Avatar
                                             src="/images/icon/icon-user.png"
-                                            sx={{ borderRadius: '0', height: 'auto', width: 'auto' }}
+                                            sx={{ borderRadius: '0', width: 32, height: 32 }}
                                         />
                                     </IconButton>
                                 )}
