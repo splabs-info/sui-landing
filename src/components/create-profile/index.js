@@ -159,7 +159,7 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
         }
 
         setDataImageUpload(null);
-        handleClose(false);
+        handleClose(true);
         handleRefresh();
     };
 
@@ -303,13 +303,13 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                                     />
                                                     Upload
                                                 </UploadBtn>
-                                                <DeletePhotoBtn
+                                                {/* <DeletePhotoBtn
                                                     variant="outlined"
                                                     startIcon={<DeleteIcon />}
                                                     // onClick={onDeleteAvatar}
                                                 >
                                                     Change
-                                                </DeletePhotoBtn>
+                                                </DeletePhotoBtn> */}
                                             </Box>
                                         </Box>
                                     </Box>
