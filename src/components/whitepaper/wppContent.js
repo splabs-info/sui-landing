@@ -491,10 +491,10 @@ export const wppContent = [
             },
             {
                 content: [
-                    <highline>
-                        ** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of
-                        1% of the deposit amount may occur.
-                    </highline>,
+                    // <highline>
+                    //     ** When unstaking without completing the period in the Lock-Up Staking Pool, an Unstaking Fee of
+                    //     1% of the deposit amount may occur.
+                    // </highline>,
                     <highline>
                         ** In the case of unstaking without completing the period in Lock-Up Staking, 1% of the staked
                         XUI by the principal is deducted as the Unstaking Fee, and the rewards accumulated daily can be
@@ -843,7 +843,7 @@ export const wppContent = [
                 title: 'Token Vesting Schedule',
                 list: [
                     'Seed 4%: 5% TGE Unlock, 3 months cliff, Monthly vesting over 18 months',
-                    'Private 12%: 5% TGE Unlock, 3 months cliff, Monthly vesting over 24 months',
+                    'Private 12%: 5% TGE Unlock, 2 months cliff, Monthly vesting over 16 months',
                     'Marketing & Development 5%: 3 months cliff. Quaterly vesting over 24 months',
                     'Liquidity Fund 5%: 2% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
                     'Ecosystem Fund 2%: 6 months cliff. Monthly vesting over 48 months',
