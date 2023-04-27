@@ -10,10 +10,9 @@ import moment from 'moment';
 import { UpdateProfileSchema } from 'pages/validation';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useUpdateEmailById, useUpdateInfo } from 'services/auth';
-import { put } from 'utils/api';
+import { useUpdateEmailById, useUpdateInfo, useUploadAvatar } from 'services/auth';
 import MultipleNationalSelect from './nationality';
-import { isNull } from 'lodash';
+
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
     margin: '0 auto',
@@ -31,7 +30,7 @@ const style = {
     backdropFilter: 'blur(20px)',
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2), inset 0px 0px 25px rgba(158, 214, 255, 0.25)',
     maxHeight: '100%',
-    overflow: 'auto',
+    overflow: 'inherit',
 };
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -58,7 +57,6 @@ export const ButtonBtn = styled(Button)({
     textTransform: 'none',
     fontWeight: 'bold',
     marginRight: 16,
-    // background: 'rgba(42, 78, 171, 0.12)',
     background: 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)',
     borderRadius: '10px',
     color: '#ffffff',
@@ -80,12 +78,19 @@ export const StyledInputUpload = styled('input')(({ theme }) => ({
     zIndex: 1,
 }));
 
+const loading = {
+    background: 'transparent',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+}
+
 export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh, setDefaultInfo }) => {
-    const [isFemale, setIsFemale] = React.useState(false);
+    const [isFemale, setIsFemale] = React.useState(data?.gender !== 2);
+    const [dataImageUpload, setDataImageUpload] = React.useState(null);
     const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById();
     const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo();
-
-    console.log(data?.email, 'data');
+    const { mutateAsync: uploadAvatar, isLoading: isLoadingAvt } = useUploadAvatar();
 
     const {
         control,
@@ -96,85 +101,106 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
         mode: 'onChange',
         defaultValues: {
             email_address: data?.email || '',
-            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
-            nationality: 'Viet Nam',
+            // date_of_birth: moment(data?.dob).format('DD-MM-YYYY') || '01-01-2000',
+            nationality: data?.nationality || 'Viet Nam',
         },
         resolver: yupResolver(UpdateProfileSchema),
     });
 
     useEffect(() => {
+        if (!open) {
+            setDataImageUpload(null);
+        }
+    }, [open]);
+
+    useEffect(() => {
         reset({
             email_address: data?.email || '',
-            date_of_birth: moment(data?.dob).format('YYYY-MM-DD'),
-            nationality: 'Viet Nam',
+            date_of_birth: moment(data?.dob).format('DD-MM-YYYY') || '01-01-2000',
+            nationality: data?.nationality || 'Viet Nam',
         });
-    }, [data?.dob, data?.email, reset]);
+    }, [data?.dob, data?.email, data?.nationality, reset]);
 
     const handleFormSubmitV2 = async (formValues) => {
-        updateEmail({
-            id,
-            email: formValues.email_address,
-        }).then(() => {
-            updateInfo({
+        if (formValues.email_address !== data?.email) {
+            updateEmail({
                 id,
-                Gender: isFemale ? 2 : 1,
-                Nationality: formValues.national,
-                Dob: moment(formValues.date_of_birth),
-            }).then(() => {
+                email: formValues.email_address,
+            });
+        }
+
+        await updateInfo({
+            id,
+            Gender: isFemale ? 2 : 1,
+            Nationality: formValues.nationality,
+            // Dob: moment(formValues.date_of_birth),
+        });
+
+        setDefaultInfo &&
+            setDefaultInfo((preState) => {
+                return {
+                    ...preState,
+                    // dob: moment(formValues.date_of_birth).format('DD-MM-YYYY'),
+                    email: formValues.email_address,
+                    nationality: formValues.nationality,
+                    gender: isFemale ? 2 : 1,
+                };
+            });
+        if (dataImageUpload.form) {
+            await uploadAvatar({ form: dataImageUpload.form, id }).then((result) => {
                 setDefaultInfo &&
                     setDefaultInfo((preState) => {
                         return {
                             ...preState,
-                            dob: moment(formValues.date_of_birth),
-                            email: formValues.email_address,
-                            nationality: formValues.national,
+                            avatar: result.avatar,
                         };
                     });
             });
-
-            handleClose();
-            handleRefresh();
-        });
-    };
-
-    const handleFormSubmit = async (formValues) => {
-        console.log('formValues____', formValues);
-        try {
-            put(
-                `/account/email/${id}`,
-                { email: formValues.email_address },
-                () => {
-                    console.log({
-                        Gender: isFemale ? 2 : 1,
-                        // Nationality_code: 'VN',
-                        Nationality: formValues.national,
-                        Dob: formValues.date_of_birth,
-                    });
-                    put(
-                        `/account/profile/${data.ID}`,
-                        {
-                            Gender: isFemale ? 2 : 1,
-                            // Nationality_code: 'VN',
-                            Nationality: formValues.national,
-                            Dob: moment(formValues.date_of_birth),
-                        },
-                        (result) => {
-                            handleClose();
-                            handleRefresh();
-                            // toast.error('Profile fail');
-                            // console.log('result', result);
-                        }
-                        // () => toast.error('Profile fail')
-                    );
-                },
-                () => {
-                    // toast.error('Email fail');
-                }
-            );
-        } catch (error) {
-            console.log('error', error);
         }
+
+        setDataImageUpload(null);
+        handleClose(false);
+        handleRefresh();
     };
+
+    // const handleFormSubmit = async (formValues) => {
+    //     console.log('formValues____', formValues);
+    //     try {
+    //         put(
+    //             `/account/email/${id}`,
+    //             { email: formValues.email_address },
+    //             () => {
+    //                 console.log({
+    //                     Gender: isFemale ? 2 : 1,
+    //                     // Nationality_code: 'VN',
+    //                     Nationality: formValues.national,
+    //                     Dob: formValues.date_of_birth,
+    //                 });
+    //                 put(
+    //                     `/account/profile/${data.ID}`,
+    //                     {
+    //                         Gender: isFemale ? 2 : 1,
+    //                         // Nationality_code: 'VN',
+    //                         Nationality: formValues.national,
+    //                         Dob: moment(formValues.date_of_birth),
+    //                     },
+    //                     (result) => {
+    //                         handleClose();
+    //                         handleRefresh();
+    //                         // toast.error('Profile fail');
+    //                         // console.log('result', result);
+    //                     }
+    //                     // () => toast.error('Profile fail')
+    //                 );
+    //             },
+    //             () => {
+    //                 // toast.error('Email fail');
+    //             }
+    //         );
+    //     } catch (error) {
+    //         console.log('error', error);
+    //     }
+    // };
 
     // const onDeleteAvatar = React.useCallback(() => {
     //     setFiles([]);
@@ -183,8 +209,11 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
 
     const onUploadAvatar = (e) => {
         const banner = e.target.files[0];
+        const urlPreview = URL.createObjectURL(banner);
+
         const form = new FormData();
-        form.append('avatar', banner);
+        form.append('upload', banner);
+        setDataImageUpload({ form, urlPreview });
     };
 
     const handleClickSex = (type) => {
@@ -194,18 +223,25 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
     return (
         <Modal
             open={open}
-            onClose={() => handleClose(!open)}
+            onClose={() => handleClose(false)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
             <>
-                <Box sx={style}>
-                    {isLoading || isLoadingInfo ? (
-                        <CircularProgress />
+                <Box sx={isLoading || isLoadingInfo || isLoadingAvt ? loading : style}>
+                    {isLoading || isLoadingInfo || isLoadingAvt ? (
+                        <Box
+                            sx={{
+                                textAlign: 'center',
+                                background: 'transparent',
+                            }}
+                        >
+                            <CircularProgress />
+                        </Box>
                     ) : (
                         <>
                             <Box
-                                onClick={() => handleClose(!open)}
+                                onClick={() => handleClose(false)}
                                 sx={{
                                     position: 'absolute',
                                     top: '17px',
@@ -278,7 +314,13 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                         </Box>
                                     </Box>
 
-                                    <UploadAvatarV2 avatarUrl={data?.avatar} percent={''} id={id} />
+                                    <UploadAvatarV2
+                                        avatarUrl={
+                                            dataImageUpload?.urlPreview ? dataImageUpload?.urlPreview : data?.avatar
+                                        }
+                                        percent={''}
+                                        id={id}
+                                    />
                                 </Box>
                                 <Divider sx={{ background: 'rgba(255, 255, 255, 0.12)', marginBottom: 3 }} />
                                 <Box sx={{ padding: 6, paddingTop: 0 }}>
@@ -290,7 +332,7 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                             gap: '12px',
                                         }}
                                     >
-                                        <Box sx={{ flexShrink: 1, flexBasis: '100%' }}>
+                                        {/* <Box sx={{ flexShrink: 1, flexBasis: '100%', display: 'none' }}>
                                             <InputField
                                                 id="date_of_birth"
                                                 name="date_of_birth"
@@ -298,9 +340,9 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                                 label="Date of birth"
                                                 placeholder="Date of birth"
                                             />
-                                        </Box>
+                                        </Box> */}
 
-                                        <Box sx={{ flexShrink: 0, display: 'flex' }}>
+                                        <Box sx={{ flexShrink: 0, display: 'flex', marginBottom: 5, width: '100%' }}>
                                             <ButtonBtn
                                                 onClick={() => handleClickSex('Male')}
                                                 sx={{
@@ -308,6 +350,10 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                                     background: !isFemale
                                                         ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
                                                         : 'rgba(42, 78, 171, 0.12)',
+                                                    '&:hover': {
+                                                        background:
+                                                            'linear-gradient(178.73deg, #6D85DA 0%, #68E5B8 100%)',
+                                                    },
                                                 }}
                                                 variant={isFemale ? 'outlined' : 'contained'}
                                             >
@@ -320,6 +366,10 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                                     background: isFemale
                                                         ? 'linear-gradient(178.73deg, #68E5B8 0%, #6D85DA 100%)'
                                                         : 'rgba(42, 78, 171, 0.12)',
+                                                    '&:hover': {
+                                                        background:
+                                                            'linear-gradient(178.73deg, #6D85DA 0%, #68E5B8 100%)',
+                                                    },
                                                 }}
                                                 variant={!isFemale ? 'outlined' : 'contained'}
                                             >
@@ -342,13 +392,10 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                     Send OTP
                                 </UploadBtn> */}
                                     </Box>
-                                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                                        {/* <InputField id="otp" name="otp" control={control} placeholder="OTP code" label="OTP" /> */}
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
                                         <MultipleNationalSelect control={control} />
                                     </Box>
-                                    <SubmitButton disabled={!isValid || isSubmitting} loading={isSubmitting}>
-                                        &nbsp;Save Changes
-                                    </SubmitButton>
+                                    <SubmitButton>&nbsp;Save Changes</SubmitButton>
                                 </Box>
                             </StyledForm>
                         </>

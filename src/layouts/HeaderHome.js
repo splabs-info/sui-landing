@@ -72,6 +72,9 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     // border: '2px solid',
     paddingRight: 18,
     paddingLeft: 18,
+    '&:hover': {
+        color: 'rgba(255, 255, 255, 1)',
+    },
     '::before': {
         content: "''",
         position: 'absolute',
@@ -147,8 +150,6 @@ export default function HeaderHome() {
     }, []);
 
     useEffect(() => {
-        // console.log('address', address)
-        // console.log(' wallet?.address', wallet?.address)
         if (address || wallet?.address) {
             setWallet(address || wallet?.address);
             setOpenConnectPopup(false);
@@ -355,9 +356,14 @@ export default function HeaderHome() {
                                     href="https://zealy.io/c/yousui"
                                     target="_blank"
                                     rel="noreferrer"
-                                    style={{ textDecoration: 'none' }}
+                                    style={{
+                                        textDecoration: 'none',
+                                        '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
+                                    }}
                                 >
-                                    <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
+                                    <StyledBtnBorderGreen size="large">
+                                        Crew3
+                                    </StyledBtnBorderGreen>
                                 </a>
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>

@@ -96,16 +96,14 @@ export default function MyInfo() {
                     </Stack>
                 </Container>
             </SectionBox>
-            {!isNull(defaultInfo) && defaultInfo?.email && (
-                <CreateProfilePopup
-                    open={openCreateProfile}
-                    handleClose={setOpenCreateProfile}
-                    data={defaultInfo}
-                    id={id}
-                    handleRefresh={() => setFlag(!flag)}
-                    setDefaultInfo={setDefaultInfo}
-                />
-            )}
+            <CreateProfilePopup
+                open={openCreateProfile}
+                handleClose={setOpenCreateProfile}
+                data={defaultInfo}
+                id={id}
+                handleRefresh={() => setFlag(!flag)}
+                setDefaultInfo={setDefaultInfo}
+            />
         </>
     );
 }

@@ -10,7 +10,7 @@ export const wppContent = [
             {
                 title: 'The History',
                 content: [
-                    'Splabs.info has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces. There were tens of thousands of people in the communities of various projects, and most users of the projects were not able to participate in Private Sale or IDO. Even related influencers could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets. So, we are going to provide users with experiences and opportunities such as INO, IDO, and IGO for the convenience of users, focusing on projects that we are incubating or developed in the future.',
+                    'YouSUI team has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces. There were tens of thousands of people in the communities of various projects, and most users of the projects were not able to participate in Private Sale or IDO. Even related influencers could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets. So, we are going to provide users with experiences and opportunities such as INO, IDO, and IGO for the convenience of users, focusing on projects that we are incubating or developed in the future.',
                 ],
             },
             {
