@@ -21,7 +21,7 @@ export default function Intro() {
             Become{' '}
             <TypographyGradient
                 sx={{
-                    fontSize: isMobile ? '1.5rem' : '2.25rem',
+                    fontSize: isMobile ? '1.25rem' : '2.25rem',
                     fontWeight: 'bold',
                 }}
             >
@@ -31,13 +31,13 @@ export default function Intro() {
         <>in the scalable Launchpad</>,
         <>
             to participate in{' '}
-            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>
+            <TypographyGradient sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}>
                 all Games
             </TypographyGradient>{' '}
             ,
         </>,
         <>
-            <TypographyGradient sx={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 'bold' }}>
+            <TypographyGradient sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}>
                 NFTs and Metaverse
             </TypographyGradient>{' '}
             in the world.
@@ -68,12 +68,21 @@ export default function Intro() {
                             },
                         }}
                     >
-                        <Box mt={isMobile ? 5 : 8}>
+                        <Box
+                            mt={isMobile ? 5 : 8}
+                            sx={{
+                                [theme.breakpoints.down(600)]: {
+                                    marginTop: 10,
+                                },
+                            }}
+                        >
                             {Title.map((item, i) => (
                                 <TitleTypography
                                     key={i}
                                     variant="h1"
-                                    sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem' }}
+                                    sx={{
+                                        fontSize: isMobile ? '1.55rem' : '2.25rem',
+                                    }}
                                 >
                                     {item}
                                     <br />
@@ -90,7 +99,7 @@ export default function Intro() {
                         >
                             <TextTypography
                                 variant={'body1'}
-                                fontSize={isMobile && '0.9rem'}
+                                fontSize={isMobile && '0.65rem'}
                                 fontWeight="500"
                                 maxWidth={640}
                             >
@@ -126,6 +135,9 @@ export default function Intro() {
                             mt={'3rem'}
                             sx={{
                                 color: 'white',
+                                [theme.breakpoints.down(600)]: {
+                                    marginTop: 4,
+                                }
                             }}
                         >
                             <Typography variant="body1" mr={2} fontSize={isMobile && '0.9rem'}>
@@ -138,17 +150,23 @@ export default function Intro() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     marginBottom: 2,
+                                    [theme.breakpoints.down(600)]: {
+                                        marginBottom: 1,
+                                    }
                                 }}
                             >
                                 {/* <img alt="gatekeeper" src="/images/home/Sui Blockchain.png" height={isMobile ? 40 : 60} />
                 <img alt="gatekeeper" src="/images/home/gateio.png" height={isMobile ? 40 : 60} /> */}
-                                <img alt="sui" src="/whitelogo.png" width={80} />
+                                <img alt="sui" src="/whitelogo.png" width={isMobile ? 60: 80}/>
                             </Box>
                         </Box>
                         <Box
                             mt={'3rem'}
                             sx={{
                                 color: 'white',
+                                [theme.breakpoints.down(600)]: {
+                                    marginTop: 4,
+                                }
                             }}
                         >
                             <Typography variant="body1" mr={2} fontSize={isMobile && '0.9rem'}>
@@ -163,8 +181,8 @@ export default function Intro() {
                                     gap: '33px',
                                 }}
                             >
-                                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 40 : 80} />
-                                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 40 : 80} />
+                                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 60 : 80} />
+                                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 60 : 80} />
                                 {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
                             </Box>
                         </Box>
@@ -226,6 +244,9 @@ export default function Intro() {
                     className={'imgSui'}
                     style={{
                         position: 'absolute',
+                        // width: '20%',
+                        // top: 'max(256px, 70%)',
+                        // right: 215,
                     }}
                 />
             </Box>

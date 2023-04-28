@@ -22,7 +22,7 @@ const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
 }));
 export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
-    const { address } = useContext(WalletContext);
+    const { address, active } = useContext(WalletContext);
     const [defaultInfo, setDefaultInfo] = useState(null);
     const [id, setId] = useState(null);
     const [flag, setFlag] = React.useState(false);
@@ -40,10 +40,10 @@ export default function MyInfo() {
     }, [address]);
 
     React.useEffect(() => {
-        if (!isNil(address)) {
+        console.log('!isNil(address)', !address)
+        if (address) {
             fetchData();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
 
     React.useEffect(() => {
@@ -57,6 +57,7 @@ export default function MyInfo() {
         setOpenCreateProfile(true);
     };
 
+    console.log('address___', address);
     return (
         <>
             <SectionBox
@@ -67,11 +68,17 @@ export default function MyInfo() {
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
                         {!address ? (
-                            <Typography>Please connect wallet before</Typography>
+                            <>
+                                <Typography
+                                    sx={{ margin: '180px auto', color: '#fff', fontWeight: 'bold', fontSize: 18 }}
+                                >
+                                    Please connect wallet before
+                                </Typography>
+                            </>
                         ) : (
                             <>
                                 {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (
-                                    <CircularProgress sx={{ margin: '128px auto auto auto' }} />
+                                    <CircularProgress sx={{ margin: '128px auto 128px auto' }} />
                                 ) : (
                                     <>
                                         <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>

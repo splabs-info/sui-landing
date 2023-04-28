@@ -89,6 +89,13 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     },
 }));
 
+const BlankLink = styled('a')(({ theme }) => ({
+    margin: '0 !important',
+    color: 'rgba(255, 255, 255, 1)',
+    textDecoration: 'none',
+    '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
+}));
+
 export default function HeaderHome() {
     const { address } = useContext(WalletContext);
     const wallet = useWallet();
@@ -349,24 +356,18 @@ export default function HeaderHome() {
                                     </FrameButton>
                                 )}
                                 {/* <SocialHeaderBox /> */}
-                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/my-profile')}>
+                                <StyledBtnBorderGreen
+                                    size="large"
+                                    onClick={() => navigate('/my-profile')}
+                                    sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
+                                >
                                     My Page
                                 </StyledBtnBorderGreen>
-                                <a
-                                    href="https://zealy.io/c/yousui"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    style={{
-                                        textDecoration: 'none',
-                                        '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
-                                    }}
-                                >
-                                    <StyledBtnBorderGreen size="large">
-                                        Crew3
-                                    </StyledBtnBorderGreen>
-                                </a>
+                                <BlankLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
+                                    <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
+                                </BlankLink>
                                 {walletAddress && (
-                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
+                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
                                         <Avatar
                                             src="/images/icon/icon-user.png"
                                             sx={{ borderRadius: '0', width: 32, height: 32 }}
