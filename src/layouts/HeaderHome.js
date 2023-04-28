@@ -69,12 +69,9 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     fontWeight: 'bold',
     fontSize: 14,
     color: 'rgba(255, 255, 255, 1)',
-    // border: '2px solid',
     paddingRight: 18,
     paddingLeft: 18,
-    '&:hover': {
-        color: 'rgba(255, 255, 255, 1)',
-    },
+
     '::before': {
         content: "''",
         position: 'absolute',
@@ -87,6 +84,14 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
             'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
         '-webkit-mask-composite': 'xor',
     },
+}));
+
+const BlankLink = styled(Link)(({ theme }) => ({
+    margin: '0 !important',
+    color: 'rgba(255, 255, 255, 1)',
+    textDecoration: 'none',
+    '-webkit-text-fill-color': 'rgba(255, 255, 255, 1) !important',
+    '&:hover': { color: 'rgba(255, 255, 255, 1) !important', },
 }));
 
 export default function HeaderHome() {
@@ -349,24 +354,19 @@ export default function HeaderHome() {
                                     </FrameButton>
                                 )}
                                 {/* <SocialHeaderBox /> */}
-                                <StyledBtnBorderGreen size="large" onClick={() => navigate('/my-profile')}>
+                                <StyledBtnBorderGreen
+                                    size="large"
+                                    onClick={() => navigate('/my-profile')}
+                                    sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
+                                >
                                     My Page
                                 </StyledBtnBorderGreen>
-                                <a
-                                    href="https://zealy.io/c/yousui"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    style={{
-                                        textDecoration: 'none',
-                                        '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
-                                    }}
-                                >
-                                    <StyledBtnBorderGreen size="large">
-                                        Crew3
-                                    </StyledBtnBorderGreen>
-                                </a>
+                                <BlankLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
+                                    <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
+                                </BlankLink>
+
                                 {walletAddress && (
-                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
+                                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
                                         <Avatar
                                             src="/images/icon/icon-user.png"
                                             sx={{ borderRadius: '0', width: 32, height: 32 }}

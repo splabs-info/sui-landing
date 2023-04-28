@@ -17,7 +17,7 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     backdropFilter: 'blur(50px)',
     borderRadius: '15px',
     height: '750px',
-    // padding: '40px',
+    minWidth: 320,
     paddingTop: 128,
     paddingRight: 32,
     paddingLeft: 32,
@@ -68,8 +68,10 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
             </Box>
 
             <Stack direction="column" spacing={2}>
-                <InfoWrapper>
-                    <MailOutlineIcon color="inherit" />
+                <InfoWrapper sx={{alignItems: 'center'}}>
+                    <MailOutlineIcon color="inherit" fontSize="26px" sx={{
+                        fontSize: 20,
+                    }}/>
                     <InfoTitle variant="subtitle2">Email:</InfoTitle>
                     <Info variant="subtitle2">{DATA_DEFAULT?.email}</Info>
                 </InfoWrapper>
@@ -78,13 +80,13 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
                     <InfoTitle variant="subtitle2">Day of birth:</InfoTitle>
                     <Info>{moment(DATA_DEFAULT?.dob).format('DD-MM-YYYY')}</Info>
                 </InfoWrapper> */}
-                <InfoWrapper>
-                    <IcSex />
+                <InfoWrapper sx={{alignItems: 'center'}}>
+                    <IcSex fontSize="20px"/>
                     <InfoTitle variant="subtitle2">Sex:</InfoTitle>
                     <Info variant="subtitle2">{renderGender()}</Info>
                 </InfoWrapper>
-                <InfoWrapper>
-                    <PublicOutlinedIcon fontSize="20px" color="inherit" />
+                <InfoWrapper  sx={{alignItems: 'center'}}>
+                    <PublicOutlinedIcon fontSize="20px" color="inherit"  sx={{fontSize: 20}}/>
                     <InfoTitle variant="subtitle2">Nationality:</InfoTitle>
 
                     <Info variant="subtitle2">{DATA_DEFAULT?.nationality}</Info>

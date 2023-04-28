@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, CircularProgress, Divider, Modal, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { InputField, SubmitButton } from 'components';
@@ -83,13 +82,21 @@ const loading = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-}
+};
 
 export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh, setDefaultInfo }) => {
     const [isFemale, setIsFemale] = React.useState(data?.gender !== 2);
     const [dataImageUpload, setDataImageUpload] = React.useState(null);
-    const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById();
-    const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo();
+    const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById({
+        onSuccess: () => {
+            handleClose(true);
+        },
+    });
+    const { mutateAsync: updateInfo, isLoading: isLoadingInfo } = useUpdateInfo({
+        onSuccess: () => {
+            handleClose(true);
+        },
+    });
     const { mutateAsync: uploadAvatar, isLoading: isLoadingAvt } = useUploadAvatar();
 
     const {
@@ -126,6 +133,8 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
             updateEmail({
                 id,
                 email: formValues.email_address,
+            }).then(() => {
+                handleClose(false);
             });
         }
 
@@ -156,56 +165,13 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                         };
                     });
             });
+            handleClose(false);
         }
 
         setDataImageUpload(null);
-        handleClose(true);
+        handleClose(false);
         handleRefresh();
     };
-
-    // const handleFormSubmit = async (formValues) => {
-    //     console.log('formValues____', formValues);
-    //     try {
-    //         put(
-    //             `/account/email/${id}`,
-    //             { email: formValues.email_address },
-    //             () => {
-    //                 console.log({
-    //                     Gender: isFemale ? 2 : 1,
-    //                     // Nationality_code: 'VN',
-    //                     Nationality: formValues.national,
-    //                     Dob: formValues.date_of_birth,
-    //                 });
-    //                 put(
-    //                     `/account/profile/${data.ID}`,
-    //                     {
-    //                         Gender: isFemale ? 2 : 1,
-    //                         // Nationality_code: 'VN',
-    //                         Nationality: formValues.national,
-    //                         Dob: moment(formValues.date_of_birth),
-    //                     },
-    //                     (result) => {
-    //                         handleClose();
-    //                         handleRefresh();
-    //                         // toast.error('Profile fail');
-    //                         // console.log('result', result);
-    //                     }
-    //                     // () => toast.error('Profile fail')
-    //                 );
-    //             },
-    //             () => {
-    //                 // toast.error('Email fail');
-    //             }
-    //         );
-    //     } catch (error) {
-    //         console.log('error', error);
-    //     }
-    // };
-
-    // const onDeleteAvatar = React.useCallback(() => {
-    //     setFiles([]);
-    //     // dispatch(updateProfileActions.deleteAvatar());
-    // }, []);
 
     const onUploadAvatar = (e) => {
         const banner = e.target.files[0];

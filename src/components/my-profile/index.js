@@ -1,4 +1,4 @@
-import { CircularProgress, Container, Stack } from '@mui/material';
+import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home-v2/HomeStyles';
@@ -15,7 +15,6 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-import Typography from 'theme/overrides/Typography';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('lg')]: {
         flexDirection: 'column',
@@ -23,7 +22,7 @@ const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
 }));
 export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
-    const { address } = useContext(WalletContext);
+    const { address, active } = useContext(WalletContext);
     const [defaultInfo, setDefaultInfo] = useState(null);
     const [id, setId] = useState(null);
     const [flag, setFlag] = React.useState(false);
@@ -41,10 +40,10 @@ export default function MyInfo() {
     }, [address]);
 
     React.useEffect(() => {
-        if (!isNil(address)) {
+        console.log('!isNil(address)', !address);
+        if (address) {
             fetchData();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
 
     React.useEffect(() => {
@@ -58,6 +57,7 @@ export default function MyInfo() {
         setOpenCreateProfile(true);
     };
 
+    console.log('address___', address);
     return (
         <>
             <SectionBox
@@ -68,11 +68,18 @@ export default function MyInfo() {
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
                         {!address ? (
-                            <Typography>Please connect wallet before</Typography>
+                            <Box sx={{ display: 'flex', position: 'relative' }}>
+                                <img src="/token-1.svg" style={{ opacity: 0.25, width: 500, height: 500, position: 'absolute', top: '5%', left: '32%' }} />
+                                <Typography
+                                    sx={{ margin: '240px auto 190px auto', color: '#fff', fontWeight: 'bold', fontSize: 28 }}
+                                >
+                                    PlEASE CONNECT WALLET BEFORE
+                                </Typography>
+                            </Box>
                         ) : (
                             <>
                                 {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (
-                                    <CircularProgress sx={{ margin: '128px auto auto auto' }} />
+                                    <CircularProgress sx={{ margin: '128px auto 128px auto' }} />
                                 ) : (
                                     <>
                                         <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
