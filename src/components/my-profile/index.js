@@ -1,4 +1,4 @@
-import { CircularProgress, Container, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home-v2/HomeStyles';
@@ -40,7 +40,7 @@ export default function MyInfo() {
     }, [address]);
 
     React.useEffect(() => {
-        console.log('!isNil(address)', !address)
+        console.log('!isNil(address)', !address);
         if (address) {
             fetchData();
         }
@@ -68,13 +68,14 @@ export default function MyInfo() {
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
                         {!address ? (
-                            <>
+                            <Box sx={{ display: 'flex', position: 'relative' }}>
+                                <img src="/token-1.svg" style={{ opacity: 0.25, width: 500, height: 500, position: 'absolute', top: '5%', left: '32%' }} />
                                 <Typography
-                                    sx={{ margin: '180px auto', color: '#fff', fontWeight: 'bold', fontSize: 18 }}
+                                    sx={{ margin: '240px auto 190px auto', color: '#fff', fontWeight: 'bold', fontSize: 28 }}
                                 >
-                                    Please connect wallet before
+                                    PlEASE CONNECT WALLET BEFORE
                                 </Typography>
-                            </>
+                            </Box>
                         ) : (
                             <>
                                 {isLoadingLogin || isLoadingGetProfile || !isLoginSuccess ? (

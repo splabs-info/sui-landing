@@ -69,12 +69,9 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     fontWeight: 'bold',
     fontSize: 14,
     color: 'rgba(255, 255, 255, 1)',
-    // border: '2px solid',
     paddingRight: 18,
     paddingLeft: 18,
-    '&:hover': {
-        color: 'rgba(255, 255, 255, 1)',
-    },
+
     '::before': {
         content: "''",
         position: 'absolute',
@@ -89,11 +86,12 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     },
 }));
 
-const BlankLink = styled('a')(({ theme }) => ({
+const BlankLink = styled(Link)(({ theme }) => ({
     margin: '0 !important',
     color: 'rgba(255, 255, 255, 1)',
     textDecoration: 'none',
-    '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
+    '-webkit-text-fill-color': 'rgba(255, 255, 255, 1)',
+    '&:hover': { color: 'rgba(255, 255, 255, 1) !important', },
 }));
 
 export default function HeaderHome() {
@@ -366,6 +364,7 @@ export default function HeaderHome() {
                                 <BlankLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
                                     <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
                                 </BlankLink>
+
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
                                         <Avatar
