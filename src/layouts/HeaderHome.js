@@ -90,7 +90,7 @@ const BlankLink = styled(Link)(({ theme }) => ({
     margin: '0 !important',
     color: 'rgba(255, 255, 255, 1)',
     textDecoration: 'none',
-    '-webkit-text-fill-color': 'rgba(255, 255, 255, 1)',
+    '-webkit-text-fill-color': 'rgba(255, 255, 255, 1) !important',
     '&:hover': { color: 'rgba(255, 255, 255, 1) !important', },
 }));
 
