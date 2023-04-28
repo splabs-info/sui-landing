@@ -1,4 +1,4 @@
-import { CircularProgress, Container, Stack } from '@mui/material';
+import { CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home-v2/HomeStyles';
@@ -15,7 +15,6 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-import Typography from 'theme/overrides/Typography';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('lg')]: {
         flexDirection: 'column',
