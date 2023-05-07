@@ -11,6 +11,7 @@ import Whitepaper from './pages/Whitepaper';
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 const IDO = React.lazy(() => import('./pages/IDODetail'));
+const TestPage = React.lazy(() => import('./pages/Test'));
 
 export default function Router() {
     return useRoutes([
@@ -45,6 +46,14 @@ export default function Router() {
                 },
                 { path: 'whitepaper', element: <Whitepaper /> },
                 { path: 'staking', element: <StakingPage /> },
+                {
+                    path: 'test-page',
+                    element: (
+                        <React.Suspense>
+                            <TestPage />
+                        </React.Suspense>
+                    ),
+                },
             ],
         },
         {

@@ -118,7 +118,7 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'Suppported Wallets',
+                title: 'Supported Wallets',
                 checklist: true,
                 list: [
                     <>

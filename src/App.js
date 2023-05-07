@@ -1,8 +1,13 @@
-import { SuiWallet, WalletProvider as SUIWalletProvider, SuietWallet } from '@suiet/wallet-kit';
+import {
+    WalletProvider as SUIWalletProvider,
+    SuiDevnetChain,
+    SuiTestnetChain,
+    SuiWallet,
+    SuietWallet,
+} from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BaseOptionChartStyle } from './components/chart/BaseOptionChart';
@@ -16,6 +21,8 @@ import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
 const queryClient = new QueryClient();
+
+const SupportedChains = [SuiDevnetChain, SuiTestnetChain];
 
 export default function App() {
     // const dispatch = useDispatch();
@@ -31,8 +38,8 @@ export default function App() {
 
     return (
         <ThemeProvider>
-            <WalletProvider>
-                <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]}>
+            <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains}>
+                <WalletProvider>
                     <QueryClientProvider client={queryClient}>
                         <ScrollToTop />
                         <BaseOptionChartStyle />
@@ -53,8 +60,8 @@ export default function App() {
                             pauseOnHover
                         />
                     </QueryClientProvider>
-                </SUIWalletProvider>
-            </WalletProvider>
+                </WalletProvider>
+            </SUIWalletProvider>
         </ThemeProvider>
     );
 }
