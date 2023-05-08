@@ -12,6 +12,7 @@ const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 const IDO = React.lazy(() => import('./pages/IDODetail'));
 const TestPage = React.lazy(() => import('./pages/Test'));
+const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
     return useRoutes([
@@ -33,6 +34,14 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <IDOList />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ino-launchpad',
+                    element: (
+                        <Suspense>
+                            <INOLaunchPad />
                         </Suspense>
                     ),
                 },
