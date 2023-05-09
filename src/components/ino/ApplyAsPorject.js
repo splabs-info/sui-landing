@@ -2,12 +2,16 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const Wrapper = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
     boxShadow: 'inset 3px 5px 10px rgba(0, 0, 0, 0.2)',
     borderRadius: '16px',
     padding: '48px 32px',
     display: 'flex',
     justifyContent: 'space-between',
+    background: `url('/apply-as-project.svg')`,
+    backgroundRepeat: 'no-repeat',
+    objectFit: 'contain',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
