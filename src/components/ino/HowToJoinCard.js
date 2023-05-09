@@ -1,5 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+
 const HowToJoinCardWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
@@ -34,6 +36,16 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 }));
 
 export const HowToJoinCard = ({ icon, title, caption, direction, btnDirection }) => {
+    const navigate = useNavigate();
+
+    const handleDirect = () => {
+        if (btnDirection === 'Start Now') {
+            navigate('/staking');
+        }
+        if (btnDirection === 'Apply Now') {
+            navigate('/coming-son');
+        }
+    };
     return (
         <HowToJoinCardWrapper>
             <img
@@ -48,7 +60,13 @@ export const HowToJoinCard = ({ icon, title, caption, direction, btnDirection })
             <Title>{title}</Title>
 
             <Caption>{caption}</Caption>
-            {direction ? <SubmitButton sx={{ marginBottom: 5 }}>{btnDirection}</SubmitButton> : <></>}
+            {direction ? (
+                <SubmitButton sx={{ marginBottom: 5 }} onClick={handleDirect}>
+                    {btnDirection}
+                </SubmitButton>
+            ) : (
+                <></>
+            )}
         </HowToJoinCardWrapper>
     );
 };

@@ -40,7 +40,6 @@ const ApplyButton = styled(Button)(({ theme }) => ({
 }));
 
 const ApplyAsProject = () => {
-    const navigate = useNavigate();
     return (
         <Wrapper>
             <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
@@ -50,12 +49,14 @@ const ApplyAsProject = () => {
                         Do you have an amazing collection that you would love to launch with YouSUI? Apply today!
                     </Caption>
                 </Box>
-                <ApplyButton
-                    startIcon={<img src="/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}
-                    onClick={() => navigate('/coming-soon')}
-                >
-                    Apply Now
-                </ApplyButton>
+                <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
+                    <ApplyButton
+                        startIcon={<img src="/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}
+                        // onClick={() => navigate('/')}
+                    >
+                        Apply Now
+                    </ApplyButton>
+                </a>
             </Stack>
         </Wrapper>
     );
