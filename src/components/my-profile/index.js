@@ -57,7 +57,6 @@ export default function MyInfo() {
         setOpenCreateProfile(true);
     };
 
-    console.log('address___', address);
     return (
         <>
             <SectionBox
@@ -69,9 +68,25 @@ export default function MyInfo() {
                     <Stack direction="column">
                         {!address ? (
                             <Box sx={{ display: 'flex', position: 'relative' }}>
-                                <img src="/token-1.svg" style={{ opacity: 0.25, width: 500, height: 500, position: 'absolute', top: '5%', left: '32%' }} />
+                                <img
+                                    src="/token-1.svg"
+                                    style={{
+                                        opacity: 0.25,
+                                        width: 500,
+                                        height: 500,
+                                        position: 'absolute',
+                                        top: '5%',
+                                        left: '32%',
+                                    }}
+                                    atl="token"
+                                />
                                 <Typography
-                                    sx={{ margin: '240px auto 190px auto', color: '#fff', fontWeight: 'bold', fontSize: 28 }}
+                                    sx={{
+                                        margin: '240px auto 190px auto',
+                                        color: '#fff',
+                                        fontWeight: 'bold',
+                                        fontSize: 28,
+                                    }}
                                 >
                                     PlEASE CONNECT WALLET BEFORE
                                 </Typography>

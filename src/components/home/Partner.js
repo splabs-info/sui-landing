@@ -7,6 +7,7 @@ import useResponsive from '../../hooks/useResponsive';
 const ContainerPartner = styled(Box)(({ theme }) => ({
     display: 'grid',
     width: '100%',
+    gap: '1rem',
     gridTemplateColumns: 'repeat(5, 1fr)',
     [theme.breakpoints.down('md')]: {
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -32,6 +33,14 @@ const partners = [
     },
     {
         label: 'okx-wallet',
+        link: 'https://www.okx.com/web3',
+    },
+    // {
+    //     label: 'sui-station',
+    //     link: 'https://www.okx.com/web3',
+    // },
+    {
+        label: 'move-studio',
         link: 'https://www.okx.com/web3',
     },
     // {
@@ -215,7 +224,7 @@ export default function Partner() {
                                 rel="noreferrer"
                                 key={index}
                                 style={{
-                                    background: "url('/images/home/frame-partner.png')",
+                                    background: "url('/images/home/new-frame.svg')",
                                     backgroundSize: '100% 100%',
                                     margin: '0.1rem',
                                     backgroundRepeat: 'no-repeat',
@@ -226,7 +235,7 @@ export default function Partner() {
                                     minHeight: '130px',
                                 }}
                             >
-                                <CustomLogo src={`./images/partners/${partner.label}.png`} alt={partner.label} />
+                                <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
                             </a>
                         ))}
                     </ContainerPartner>

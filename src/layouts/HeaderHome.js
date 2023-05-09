@@ -36,10 +36,10 @@ import { styled } from '@mui/material/styles';
 import { FrameButton } from 'components/home-v2/HomeStyles';
 const config = [
     { label: 'key_2', link: '/ido-launchpad' },
-    { label: 'key_3', link: '/coming-soon' },
+    { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
-    { label: 'key_6', link: '/coming-soon' },
+    { label: 'key_6', link: '/coming-soon' },   
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
 ];
@@ -86,7 +86,7 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     },
 }));
 
-const BlankLink = styled(Link)(({ theme }) => ({
+const CustomLink = styled('a')(({ theme }) => ({
     margin: '0 !important',
     color: 'rgba(255, 255, 255, 1)',
     textDecoration: 'none',
@@ -361,9 +361,9 @@ export default function HeaderHome() {
                                 >
                                     My Page
                                 </StyledBtnBorderGreen>
-                                <BlankLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
+                                <CustomLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
                                     <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
-                                </BlankLink>
+                                </CustomLink>
 
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
