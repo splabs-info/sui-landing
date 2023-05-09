@@ -70,27 +70,15 @@
             "react-app/jest"
         ]
     },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all",
-            "chrome >= 67",
-            "edge >= 79",
-            "firefox >= 68",
-            "opera >= 54",
-            "safari >= 14"
-        ],
-        "development": [
-            "last 2 chrome version",
-            "last 2 firefox version",
-            "last 2 safari version",
-            "last 2 edge version",
-            "chrome >= 67",
-            "edge >= 79",
-            "firefox >= 68",
-            "opera >= 54",
-            "safari >= 14"
-        ]
-    }
+    "browserslist": [
+        "last 2 chrome version",
+        "last 2 firefox version",
+        "last 2 safari version",
+        "last 2 edge version",
+        "chrome >= 67",
+        "edge >= 79",
+        "firefox >= 68",
+        "opera >= 54",
+        "safari >= 14"
+    ]
 }
