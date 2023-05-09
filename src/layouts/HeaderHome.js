@@ -36,7 +36,7 @@ import { styled } from '@mui/material/styles';
 import { FrameButton } from 'components/home-v2/HomeStyles';
 const config = [
     { label: 'key_2', link: '/ido-launchpad' },
-    { label: 'key_3', link: '/coming-soon' },
+    { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
     { label: 'key_6', link: '/coming-soon' },
