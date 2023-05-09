@@ -35,6 +35,9 @@ const Caption = styled(Typography)(({ theme }) => ({
     fontSize: 16,
     width: '35%',
     marginBottom: '32px',
+    [theme.breakpoints.down(900)]: {
+        width: '100%',
+    },
 }));
 
 const INOLaunchPad = () => {

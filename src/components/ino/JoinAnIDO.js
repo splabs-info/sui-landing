@@ -43,7 +43,7 @@ const howToJoinData = [
     },
 ];
 export default function JoinAnIDO() {
-    const isMobile = useResponsive('down', 'sm');
+    const isMobile = useResponsive('down', 1440);
 
     return (
         <Box mb={20} mt={10} position="relative">
@@ -79,6 +79,7 @@ export default function JoinAnIDO() {
                     style={{
                         width: 720,
                         height: 560,
+                        margin: isMobile ? 'auto' : '',
                     }}
                 />
             </Stack>
