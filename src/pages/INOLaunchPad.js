@@ -1,4 +1,4 @@
-import { Box, Container, styled, Typography, Stack } from '@mui/material';
+import { Box, Container, Stack, Typography, styled } from '@mui/material';
 import Page from 'components/common/Page';
 import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home-v2/HomeStyles';
 import ApplyAsProject from 'components/ino/ApplyAsPorject';
@@ -80,7 +80,7 @@ const INOLaunchPad = () => {
                                 </Link>
                             </ButtonTitleBox>
                         </Box>
-                        <img src="/ino-banner.svg" alt="" style={{ width: '70%', height: '70%', margin: 'auto' }} />
+                        <img src="/ino-banner.png" alt="" style={{ width: '70%', height: '70%', margin: 'auto' }} />
                     </Stack>
                     <UpComing />
                     <JoinAnIDO />
