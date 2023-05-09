@@ -58,6 +58,7 @@ export default function JoinAnIDO() {
                 flexWrap="wrap"
                 justifyContent="space-between"
                 alignItems="center"
+                sx={{ paddingLeft: 3 }}
             >
                 <Grid container spacing={2} mt={4} sx={{ width: isMobile ? '100%' : '50%' }}>
                     {howToJoinData.map((item) => (

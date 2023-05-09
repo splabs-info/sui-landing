@@ -57,7 +57,7 @@ const INOLaunchPad = () => {
             >
                 <Container maxWidth="xl" sx={{ paddingBottom: '108px' }}>
                     <Stack direction={{ lg: 'row' }} sx={{ pt: isDesktop ? 20 : 15 }}>
-                        <Box sx={{ position: 'relative', zIndex: 1, color: 'white', marginTop: '108px' }}>
+                        <Box sx={{ position: 'relative', zIndex: 1, color: 'white' }}>
                             <Title variant="h1">
                                 <p className="linear" style={{ fontSize: 72, fontWeight: 'bold' }}>
                                     INO
@@ -71,7 +71,7 @@ const INOLaunchPad = () => {
                                 promises that only high-value NFTs will be sold through strong DD Regulation.
                             </Caption>
 
-                            <ButtonTitleBox sx={{ gap: '1rem' }}>
+                            <ButtonTitleBox sx={{ gap: '1rem', marginBottom: isDesktop ? 20 : 10 }}>
                                 <Link to={'/coming-soon'}>
                                     <FrameButton>Stake $XUI</FrameButton>
                                 </Link>
@@ -80,7 +80,17 @@ const INOLaunchPad = () => {
                                 </Link>
                             </ButtonTitleBox>
                         </Box>
-                        <img src="/ino-banner.png" alt="" style={{ width: '70%', height: '70%', margin: 'auto' }} />
+                        <img
+                            src="/ino-banner.png"
+                            alt=""
+                            style={{
+                                width: '60%',
+                                height: '60%',
+                                margin: 'auto',
+                                objectFit: 'cover',
+                                marginBottom: isDesktop ? '48px' : '',
+                            }}
+                        />
                     </Stack>
                     <UpComing />
                     <JoinAnIDO />

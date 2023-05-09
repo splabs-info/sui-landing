@@ -35,10 +35,10 @@ const partners = [
         label: 'okx-wallet',
         link: 'https://www.okx.com/web3',
     },
-    {
-        label: 'sui-station',
-        link: 'https://www.okx.com/web3',
-    },
+    // {
+    //     label: 'sui-station',
+    //     link: 'https://www.okx.com/web3',
+    // },
     {
         label: 'move-studio',
         link: 'https://www.okx.com/web3',
