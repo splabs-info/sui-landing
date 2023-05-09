@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled(Box)(({ theme }) => ({
     boxShadow: 'inset 3px 5px 10px rgba(0, 0, 0, 0.2)',
@@ -39,6 +40,7 @@ const ApplyButton = styled(Button)(({ theme }) => ({
 }));
 
 const ApplyAsProject = () => {
+    const navigate = useNavigate();
     return (
         <Wrapper>
             <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
@@ -48,7 +50,10 @@ const ApplyAsProject = () => {
                         Do you have an amazing collection that you would love to launch with YouSUI? Apply today!
                     </Caption>
                 </Box>
-                <ApplyButton startIcon={<img src="/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}>
+                <ApplyButton
+                    startIcon={<img src="/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}
+                    onClick={() => navigate('/coming-soon')}
+                >
                     Apply Now
                 </ApplyButton>
             </Stack>

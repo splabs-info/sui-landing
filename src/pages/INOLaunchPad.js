@@ -1,4 +1,4 @@
-import { Box, Container, styled, Typography } from '@mui/material';
+import { Box, Container, styled, Typography, Stack } from '@mui/material';
 import Page from 'components/common/Page';
 import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home-v2/HomeStyles';
 import ApplyAsProject from 'components/ino/ApplyAsPorject';
@@ -33,7 +33,7 @@ const Launchpad = styled(Typography)(({ theme }) => ({
 const Caption = styled(Typography)(({ theme }) => ({
     fontWeight: 500,
     fontSize: 16,
-    width: '35%',
+    width: '70%',
     marginBottom: '32px',
     [theme.breakpoints.down(900)]: {
         width: '100%',
@@ -46,40 +46,56 @@ const INOLaunchPad = () => {
 
     return (
         <Page title="INO">
-            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
-                <Container maxWidth="xl">
-                    <Box sx={{ position: 'relative', zIndex: 1, pt: isDesktop ? 20 : 15, color: 'white' }}>
-                        <Title variant="h1">
-                            <p className="linear" style={{ fontSize: 72, fontWeight: 'bold' }}>
-                                INO
-                            </p>{' '}
-                            <br />
-                        </Title>
-                        <Launchpad>Launchpad</Launchpad>
+            <SectionBox
+                sx={{
+                    backgroundImage: "url('/full-ino.png')",
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'top',
+                    color: 'white',
+                }}
+            >
+                <Container maxWidth="xl" sx={{ paddingBottom: '108px' }}>
+                    <Stack direction={{ lg: 'row' }} sx={{ pt: isDesktop ? 20 : 15 }}>
+                        <Box sx={{ position: 'relative', zIndex: 1, color: 'white', marginTop: '108px' }}>
+                            <Title variant="h1">
+                                <p className="linear" style={{ fontSize: 72, fontWeight: 'bold' }}>
+                                    INO
+                                </p>{' '}
+                                <br />
+                            </Title>
+                            <Launchpad>Launchpad</Launchpad>
 
-                        <Caption>
-                            Don't miss the opportunity to buy NFTs at even cheaper prices by staking XUI. YouSUI
-                            promises that only high-value NFTs will be sold through strong DD Regulation.
-                        </Caption>
-                    </Box>
-                    <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <Link to={'/coming-soon'}>
-                            <FrameButton>Stake $XUI</FrameButton>
-                        </Link>
-                        <Link to={'/coming-soon'}>
-                            <FrameButton>KYC Checklist</FrameButton>
-                        </Link>
-                    </ButtonTitleBox>
-                </Container>
-            </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
-                <Container maxWidth="xl">
+                            <Caption>
+                                Don't miss the opportunity to buy NFTs at even cheaper prices by staking XUI. YouSUI
+                                promises that only high-value NFTs will be sold through strong DD Regulation.
+                            </Caption>
+
+                            <ButtonTitleBox sx={{ gap: '1rem' }}>
+                                <Link to={'/coming-soon'}>
+                                    <FrameButton>Stake $XUI</FrameButton>
+                                </Link>
+                                <Link to={'/coming-soon'}>
+                                    <FrameButton>KYC Checklist</FrameButton>
+                                </Link>
+                            </ButtonTitleBox>
+                        </Box>
+                        <img src="/ino-banner.svg" alt="" style={{ width: '70%', height: '70%', margin: 'auto' }} />
+                    </Stack>
                     <UpComing />
                     <JoinAnIDO />
                     <WhyJoin />
                     <ApplyAsProject />
                 </Container>
             </SectionBox>
+            {/* <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
+                <Container maxWidth="xl">
+                    <UpComing />
+                    <JoinAnIDO />
+                    <WhyJoin />
+                    <ApplyAsProject />
+                </Container>
+            </SectionBox> */}
         </Page>
     );
 };
