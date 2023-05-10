@@ -50,7 +50,7 @@ export default function JoinAnIDO() {
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>How to</Typography>
-                <TypographyGradient>Join An INO Launchpad</TypographyGradient>
+                <TypographyGradient>Join INO Launchpad</TypographyGradient>
             </TitleBox>
             <Stack
                 direction={{ xs: 'column', lg: 'row' }}
