@@ -122,6 +122,9 @@ export const wppContent = [
                 checklist: true,
                 list: [
                     <>
+                        <IconSquareCheck /> OKX wallet
+                    </>,
+                    <>
                         <IconSquareCheck /> Metamask
                     </>,
                     <>
@@ -140,9 +143,6 @@ export const wppContent = [
                         {' '}
                         <IconSquare />
                         Trust Wallet
-                    </>,
-                    <>
-                        <IconSquareCheck /> OKX wallet
                     </>,
                 ],
             },
@@ -753,14 +753,14 @@ export const wppContent = [
                     '** Creator Fee cannot be more than 7.5%, and 3000 XUI is consumed to create a Collection Page.',
                     '5. The NFT transaction fee is fixed at 2%.',
                     '** Transaction fees may change depending on special events.',
-                    "**NFT Marketplace's 2% transaction fee will be distributed as follows:" ,
+                    "**NFT Marketplace's 2% transaction fee will be distributed as follows:",
                     '1% of the transaction fee will be attributed to the Project Team, and 1% of the transaction fee will be returned to the Reserve Funds for activation and safety of the NFT Marketplace.',
                 ],
             },
             {
                 title: 'NFT Minting',
                 content: [
-                    'If you want to have your own collection page and NFT, try YouSUI NFT Minting. We can give you all the support in creating your collection page. Regardless of whether you are an artist, a YouTuber, or an owner of another chain`s NFT project, anyone can own a collection page and trade NFTs as long as they pay a certain amount of XUI tokens. If you own NFTs from other chains and also own the Collection page, we can support Blockchain Migration by providing a service fee. Ask your questions via Business@yousui.io. we`ll make your dreams come true',
+                    'If you want to have your own collection page and NFT, try YouSUI NFT Minting. We can give you all the support in creating your collection page. Regardless of whether you are an artist, a YouTuber, or an owner of another chain`s NFT project, anyone can own a collection page and trade NFTs as long as they pay a certain amount of XUI tokens. If you own NFTs from other chains and also own the Collection page, we can support Blockchain Migration by providing a service fee. Ask your questions via business@yousui.io. we`ll make your dreams come true',
                 ],
             },
         ],
@@ -874,7 +874,7 @@ export const wppContent = [
                     'Seed 4%: 5% TGE Unlock, 3 months cliff, Monthly vesting over 18 months',
                     'Private 12%: 5% TGE Unlock, 2 months cliff, Monthly vesting over 16 months',
                     'Marketing & Development 5%: 3 months cliff. Quaterly vesting over 24 months',
-                    'Liquidity Fund 5%: 20% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
+                    'Liquidity Fund 5%: 2% ~ 20% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
                     'Ecosystem Fund 2%: 6 months cliff. Monthly vesting over 48 months',
                     'Insurance & Reserve 3%: 12 months cliff. Monthly vesting over 48 months',
                     'Team 10%: 12 months cliff. Monthly vesting over 48 months',
@@ -1158,7 +1158,7 @@ export const wppContent = [
             },
         ],
     },
-   
+
     // {
     //     id: 'Q',
     //     category: 'Connect Wallet',
