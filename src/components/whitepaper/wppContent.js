@@ -56,7 +56,7 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'Suppported Blockchain',
+                title: 'Supported Blockchain',
                 checklist: true,
                 list: [
                     <>
@@ -82,7 +82,7 @@ export const wppContent = [
                     </>,
                     <>
                         {' '}
-                        <IconSquare /> Avalanche
+                        <IconSquareCheck /> Avalanche
                     </>,
                     <>
                         {' '}
@@ -102,12 +102,12 @@ export const wppContent = [
                     </>,
                     <>
                         {' '}
-                        <IconSquare />
+                        <IconSquareCheck />
                         Optimism
                     </>,
                     <>
                         {' '}
-                        <IconSquare />
+                        <IconSquareCheck />
                         Arbitrum
                     </>,
                     <>
@@ -140,6 +140,9 @@ export const wppContent = [
                         {' '}
                         <IconSquare />
                         Trust Wallet
+                    </>,
+                    <>
+                        <IconSquareCheck /> OKX wallet
                     </>,
                 ],
             },
@@ -834,7 +837,7 @@ export const wppContent = [
                     'Ticker : XUI',
                     'Standard : Sui Blockchain Based',
                     'Max Supply & Total Supply : 100,000,000 XUI',
-                    'Initial Circulating Supply on Day 1 : 1,100,000 XUI',
+                    'Initial Circulating Supply on Day 1 : 2,000,000 XUI',
                     'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
                     'Public Launch price: $ 0.25',
                 ],
@@ -845,7 +848,7 @@ export const wppContent = [
                     'Seed 4%: 5% TGE Unlock, 3 months cliff, Monthly vesting over 18 months',
                     'Private 12%: 5% TGE Unlock, 2 months cliff, Monthly vesting over 16 months',
                     'Marketing & Development 5%: 3 months cliff. Quaterly vesting over 24 months',
-                    'Liquidity Fund 5%: 2% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
+                    'Liquidity Fund 5%: 20% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
                     'Ecosystem Fund 2%: 6 months cliff. Monthly vesting over 48 months',
                     'Insurance & Reserve 3%: 12 months cliff. Monthly vesting over 48 months',
                     'Team 10%: 12 months cliff. Monthly vesting over 48 months',

@@ -9,7 +9,7 @@ const howToJoinData = [
         icon: '/wallet-ino.svg',
         title: 'Purchase XUI Token ',
         caption:
-            "XUI is YouSUI's ecosystem token that will empower its holders to join IGOs and INOs and enjoy passive income through Staking/Farming",
+            "XUI is YouSUI's ecosystem token that will empower its holders to join IGOs and INOs and enjoy tremendous advantages through Staking/Farming",
         direction: true,
         btnDirection: 'Buy XUI',
     },
@@ -50,7 +50,7 @@ export default function JoinAnIDO() {
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>How to</Typography>
-                <TypographyGradient>Join An IDO</TypographyGradient>
+                <TypographyGradient>Join An INO Launchpad</TypographyGradient>
             </TitleBox>
             <Stack
                 direction={{ xs: 'column', lg: 'row' }}
