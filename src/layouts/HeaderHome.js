@@ -39,9 +39,10 @@ const config = [
     { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
-    { label: 'key_6', link: '/coming-soon' },   
+    { label: 'key_6', link: '/coming-soon' },
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
+    { label: 'key_crew3', link: 'https://zealy.io/c/yousui' },
 ];
 
 const socials = [
@@ -91,7 +92,7 @@ const CustomLink = styled('a')(({ theme }) => ({
     color: 'rgba(255, 255, 255, 1)',
     textDecoration: 'none',
     '-webkit-text-fill-color': 'rgba(255, 255, 255, 1) !important',
-    '&:hover': { color: 'rgba(255, 255, 255, 1) !important', },
+    '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
 }));
 
 export default function HeaderHome() {
