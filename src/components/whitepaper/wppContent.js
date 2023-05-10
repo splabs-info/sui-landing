@@ -1132,6 +1132,32 @@ export const wppContent = [
             },
         ],
     },
+    {
+        id: 'Q',
+        category: 'Whitepaper NFT Marketplace',
+        description: [
+            {
+                title: 'YouSUI NFT Marketplace',
+                content: [
+                    '1. Able to check the properties and information of the NFT.',
+                    '2. Multiple NFTs can be traded with one signature by supporting Multi-Transaction.',
+                    '3. Able to check Total Volume, Floor Price, The number of NFT owners, Unique Owners, and Analytics functions.',
+                    '4. Able to create your own NFT Collection or mint NFTs.',
+                    '** Creator Fee cannot be more than 7.5%, and 3000 XUI is consumed to create a Collection Page.',
+                    '5. The NFT transaction fee is fixed at 2%.',
+                    '** Transaction fees may change depending on special events.',
+                    "**NFT Marketplace's 2% transaction fee will be distributed as follows:" ,
+                    '1% of the transaction fee will be attributed to the Project Team, and 1% of the transaction fee will be returned to the Reserve Funds for activation and safety of the NFT Marketplace.',
+                ],
+            },
+            {
+                title: 'NFT Minting',
+                content: [
+                    'If you want to have your own collection page and NFT, try YouSUI NFT Minting. We can give you all the support in creating your collection page. Regardless of whether you are an artist, a YouTuber, or an owner of another chain`s NFT project, anyone can own a collection page and trade NFTs as long as they pay a certain amount of XUI tokens. If you own NFTs from other chains and also own the Collection page, we can support Blockchain Migration by providing a service fee. Ask your questions via Business@yousui.io. we`ll make your dreams come true',
+                ],
+            },
+        ],
+    },
     // {
     //     id: 'Q',
     //     category: 'Connect Wallet',
