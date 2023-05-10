@@ -67,16 +67,17 @@ const INOLaunchPad = () => {
                             <Launchpad>Launchpad</Launchpad>
 
                             <Caption>
-                                Don't miss the opportunity to buy NFTs at even cheaper prices by staking XUI. YouSUI
-                                promises that only high-value NFTs will be sold through strong DD Regulation.
+                                Don't miss out the opportunity to buy Special NFT at even cheaper prices Through INO
+                                Launchpad. YouSUI promises that only High-Value NFTs will be on sale throught String DD
+                                Regulation and Screening System.
                             </Caption>
 
                             <ButtonTitleBox sx={{ gap: '1rem', marginBottom: isDesktop ? 20 : 10 }}>
-                                <Link to={'/coming-soon'}>
+                                <Link to={'/staking'}>
                                     <FrameButton>Stake $XUI</FrameButton>
                                 </Link>
-                                <Link to={'/coming-soon'}>
-                                    <FrameButton>KYC Checklist</FrameButton>
+                                <Link to={'/my-profile'}>
+                                    <FrameButton>My Page</FrameButton>
                                 </Link>
                             </ButtonTitleBox>
                         </Box>
