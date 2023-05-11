@@ -84,19 +84,6 @@ export default function JoinAnIDO() {
                     }}
                 />
             </Stack>
-            {/* <Stack direction="row">
-                <Stack direction="row">
-                    <Stack direction="column">
-                        <HowToJoinCard />
-                        <HowToJoinCard />
-                    </Stack>
-                    <Stack>
-                        <HowToJoinCard />
-                        <HowToJoinCard />
-                    </Stack>
-                </Stack>
-                
-            </Stack> */}
         </Box>
     );
 }
