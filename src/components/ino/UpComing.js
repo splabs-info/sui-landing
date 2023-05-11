@@ -1,8 +1,9 @@
-import { Box, Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Stack, Typography, Button } from '@mui/material';
+import { useTheme, styled } from '@mui/material/styles';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { UpComingINOCard } from './UpComingINOCard';
+import { useNavigate } from 'react-router-dom';
 
 const upComingItem = [
     {
@@ -23,11 +24,35 @@ const upComingItem = [
     },
 ];
 
+const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
+    background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
+    borderRadius: '50px',
+    fontWeight: 'bold',
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 1)',
+    paddingRight: 18,
+    paddingLeft: 18,
+
+    '::before': {
+        content: "''",
+        position: 'absolute',
+        background: 'linear-gradient(180deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
+        inset: '0px',
+        zIndex: 1,
+        borderRadius: '50px',
+        padding: '2px',
+        '-webkit-mask':
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        '-webkit-mask-composite': 'xor',
+    },
+}));
+
 export default function UpComing() {
     const isMobile = useResponsive('down', 'sm');
     const isDesktop = useResponsive('up', 'md');
     const theme = useTheme();
 
+    const navigate = useNavigate();
     return (
         <Box mb={20} mt={10} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -48,18 +73,28 @@ export default function UpComing() {
                     padding: '32px 64px',
                     [theme.breakpoints.down(1400)]: {
                         justifyContent: 'center',
-                    }
+                    },
                 }}
             >
-                <Box sx={{
-                     [theme.breakpoints.down(1400)]: {
-                        marginBottom: '64px',
-                    }
-                }}>
+                <Box
+                    sx={{
+                        [theme.breakpoints.down(1400)]: {
+                            marginBottom: '64px',
+                        },
+                    }}
+                >
                     <img src="/upcoming-banner.svg" style={{ width: '100%' }} />
                 </Box>
-                <Box>
+                <Box sx={{ marginBottom: 3, textAlign: 'center' }}>
                     <img src="/upcoming-banner-2.svg" style={{ width: '100%' }} />
+
+                    <StyledBtnBorderGreen
+                        size="large"
+                        onClick={() => navigate('/coming-soon')}
+                        sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
+                    >
+                        Coming Soon
+                    </StyledBtnBorderGreen>
                 </Box>
                 {/* {upComingItem.map((item) => (
                     <UpComingINOCard avatar={item.avatar} />
