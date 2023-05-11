@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useWallet } from '@suiet/wallet-kit';
 import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
-import { isNil, isNull } from 'lodash';
+import { isNull } from 'lodash';
 import React, { useContext, useState } from 'react';
 import { useGetProfile, useLogin } from 'services/auth';
 import { setAccessToken } from 'utils/auth';
@@ -23,6 +25,7 @@ const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
 export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const { address, active } = useContext(WalletContext);
+    const wallet = useWallet();
     const [defaultInfo, setDefaultInfo] = useState(null);
     const [id, setId] = useState(null);
     const [flag, setFlag] = React.useState(false);
@@ -30,21 +33,28 @@ export default function MyInfo() {
     const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
 
-    const fetchData = React.useCallback(() => {
-        login({ address: address }).then((result) => {
-            setId(result?.account.ID);
-            setAccessToken(result?.token);
-            setDefaultInfo(result?.account);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [address]);
+    console.log(' wallet?.address',  wallet?.address)
+    const fetchData = React.useCallback(async () => {
+        const targetAddress = wallet?.address || address;
+        console.log('targetAddress', targetAddress)
+        if (targetAddress) {
+            try {
+                const result = await login({ address: targetAddress });
+                const { account, token } = result || {};
+                setId(account?.ID);
+                setAccessToken(token);
+                setDefaultInfo(account);
+            } catch (error) {
+                // Xử lý lỗi ở đây (nếu cần)
+            }
+        }
+    }, [address, login, wallet?.address]);
 
     React.useEffect(() => {
-        console.log('!isNil(address)', !address);
-        if (address) {
+        if (address || wallet?.address) {
             fetchData();
         }
-    }, [address]);
+    }, [address, fetchData, wallet?.address]);
 
     React.useEffect(() => {
         if (!isNull(id) && isGetProfileSuccess && !isNull(defaultInfo)) {
@@ -66,7 +76,7 @@ export default function MyInfo() {
             >
                 <Container maxWidth={'xl'}>
                     <Stack direction="column">
-                        {!address ? (
+                        {!address && !wallet?.address ? (
                             <Box sx={{ display: 'flex', position: 'relative' }}>
                                 <img
                                     src="/token-1.svg"
@@ -88,7 +98,7 @@ export default function MyInfo() {
                                         fontSize: 28,
                                     }}
                                 >
-                                    PlEASE CONNECT WALLET BEFORE
+                                    PLEASE CONNECT WALLET BEFORE
                                 </Typography>
                             </Box>
                         ) : (
