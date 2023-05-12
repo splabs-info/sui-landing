@@ -65,7 +65,7 @@ export default function UpcomingPools() {
                         },
                     }}
                 >
-                    <img src="images/ino/upcoming.svg" alt=''/>
+                    <img src="images/ino/upcoming-2.svg" alt=''/>
                 </Box>
                 <Box
                     sx={{
