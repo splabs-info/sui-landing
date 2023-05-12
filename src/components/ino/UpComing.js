@@ -99,9 +99,6 @@ export default function UpComing() {
                         <></>
                     )}
                 </Box>
-                {/* {upComingItem.map((item) => (
-                    <UpComingINOCard avatar={item.avatar} />
-                ))} */}
             </Stack>
         </Box>
     );

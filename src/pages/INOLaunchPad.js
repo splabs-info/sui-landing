@@ -99,14 +99,6 @@ const INOLaunchPad = () => {
                     <ApplyAsProject />
                 </Container>
             </SectionBox>
-            {/* <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
-                <Container maxWidth="xl">
-                    <UpComing />
-                    <JoinAnIDO />
-                    <WhyJoin />
-                    <ApplyAsProject />
-                </Container>
-            </SectionBox> */}
         </Page>
     );
 };
