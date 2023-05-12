@@ -3,46 +3,46 @@ import { Box, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
+import { ComingSoonIDOCard } from './ComingSoon';
+// const data = [
+//     {
+//         img: '/images/pools/pools-1.jpg',
+//         title: 'Coming soon',
+//         description: '',
+//     },
+//     {
+//         img: '/images/pools/pools-2.jpg',
 
-const data = [
-    {
-        img: '/images/pools/pools-1.jpg',
-        title: 'Coming soon',
-        description: '',
-    },
-    {
-        img: '/images/pools/pools-2.jpg',
+//         title: 'Coming soon',
+//         description: '',
+//     },
+//     {
+//         img: '/images/pools/pools-3.jpg',
 
-        title: 'Coming soon',
-        description: '',
-    },
-    {
-        img: '/images/pools/pools-3.jpg',
+//         title: 'Coming soon',
+//         description: '',
+//     },
+//     {
+//         img: '/images/pools/pools-4.jpg',
 
-        title: 'Coming soon',
-        description: '',
-    },
-    {
-        img: '/images/pools/pools-4.jpg',
-
-        title: 'Coming soon',
-        description: '',
-    },
-];
-const dataComing = [
-    {
-        img: '/images/comingsoon/coming-2.png',
-    },
-    {
-        img: '/images/comingsoon/coming-2.png',
-    },
-    {
-        img: '/images/comingsoon/coming-2.png',
-    },
-    {
-        img: '/images/comingsoon/coming-2.png',
-    },
-];
+//         title: 'Coming soon',
+//         description: '',
+//     },
+// ];
+// const dataComing = [
+//     {
+//         img: '/images/comingsoon/coming-2.png',
+//     },
+//     {
+//         img: '/images/comingsoon/coming-2.png',
+//     },
+//     {
+//         img: '/images/comingsoon/coming-2.png',
+//     },
+//     {
+//         img: '/images/comingsoon/coming-2.png',
+//     },
+// ];
 
 export default function UpComingPools() {
     const isDesktop = useResponsive('up', 'md');
@@ -78,9 +78,11 @@ export default function UpComingPools() {
                         },
                     }}
                 >
-                    <img src="images/ino/upcoming.svg" alt="" />
+                    <img src="images/ido/up-coming.svg" alt="" />
                 </Box>
-                <Box
+                <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+                <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+                {/* <Box
                     sx={{
                         [theme.breakpoints.down(1400)]: {
                             marginBottom: '64px',
@@ -88,16 +90,7 @@ export default function UpComingPools() {
                     }}
                 >
                     <img src="images/ino/upcoming-1.svg" alt="" />
-                </Box>
-                <Box
-                    sx={{
-                        [theme.breakpoints.down(1400)]: {
-                            marginBottom: '64px',
-                        },
-                    }}
-                >
-                    <img src="images/ino/upcoming-1.svg" alt="" />
-                </Box>
+                </Box> */}
             </Stack>
             {/* <Grid
         container

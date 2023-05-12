@@ -76,27 +76,6 @@ export default function UpComing() {
                     },
                 }}
             >
-                {/* <Box
-                    sx={{
-                        [theme.breakpoints.down(1400)]: {
-                            marginBottom: '64px',
-                        },
-                    }}
-                >
-                    <img src="images/ino/upcoming.svg" />
-                </Box>
-                <Box
-                    sx={{
-                        [theme.breakpoints.down(1400)]: {
-                            marginBottom: '64px',
-                        },
-                    }}
-                >
-                    <img src="images/ino/upcoming-1.svg" />
-                </Box>
-                <Box>
-                    <img src="images/ino/upcoming-1.svg" />
-                </Box> */}
                 <Box
                     sx={{
                         [theme.breakpoints.down(1400)]: {
@@ -120,9 +99,6 @@ export default function UpComing() {
                         <></>
                     )}
                 </Box>
-                {/* {upComingItem.map((item) => (
-                    <UpComingINOCard avatar={item.avatar} />
-                ))} */}
             </Stack>
         </Box>
     );
