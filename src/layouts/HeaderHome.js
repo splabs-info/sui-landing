@@ -109,6 +109,8 @@ export default function HeaderHome() {
     const [showSidebar, setShowSidebar] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const isDesktop = useResponsive('up', 'md');
+
     const navigate = useNavigate();
 
     const open = Boolean(anchorEl);
@@ -164,6 +166,7 @@ export default function HeaderHome() {
 
     const activeRoute = '/coming-soons';
 
+    
     const MenuHeaderBox = () => (
         <>
             {AppConfig?.mainMenus?.map((menu, index) => (
@@ -186,10 +189,14 @@ export default function HeaderHome() {
                                 fontSize: '0.9rem',
                             }}
                         >
-                            <NavLink to={item.link} key={index} className={item.customStyle || ''}>
-                                {library[item.label]}
-                                {item.icon}
-                            </NavLink>
+                            {isDesktop && library[item.label] === 'Crew3' ? (
+                                <></>
+                            ) : (
+                                <NavLink to={item.link} key={index} className={item.customStyle || ''}>
+                                    {library[item.label]}
+                                    {item.icon}
+                                </NavLink>
+                            )}
                         </Box>
                     );
                 } else
