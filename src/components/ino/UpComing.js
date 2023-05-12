@@ -1,28 +1,28 @@
-import { Box, Stack, Typography, Button } from '@mui/material';
-import { useTheme, styled } from '@mui/material/styles';
+/* eslint-disable jsx-a11y/alt-text */
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { UpComingINOCard } from './UpComingINOCard';
 import { useNavigate } from 'react-router-dom';
 
-const upComingItem = [
-    {
-        id: '1',
-        avatar: '/coming-1.svg',
-    },
-    {
-        id: '2',
-        avatar: '/coming-2.svg',
-    },
-    {
-        id: '3',
-        avatar: '/coming-3.svg',
-    },
-    {
-        id: '4',
-        avatar: '/coming-4.svg',
-    },
-];
+// const upComingItem = [
+//     {
+//         id: '1',
+//         avatar: '/coming-1.svg',
+//     },
+//     {
+//         id: '2',
+//         avatar: '/coming-2.svg',
+//     },
+//     {
+//         id: '3',
+//         avatar: '/coming-3.svg',
+//     },
+//     {
+//         id: '4',
+//         avatar: '/coming-4.svg',
+//     },
+// ];
 
 const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
@@ -87,14 +87,17 @@ export default function UpComing() {
                 </Box>
                 <Box sx={{ marginBottom: 3, textAlign: 'center' }}>
                     <img src="/upcoming-banner-2.svg" style={{ width: '100%' }} />
-
-                    <StyledBtnBorderGreen
-                        size="large"
-                        onClick={() => navigate('/coming-soon')}
-                        sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
-                    >
-                        Coming Soon
-                    </StyledBtnBorderGreen>
+                    {isDesktop ? (
+                        <StyledBtnBorderGreen
+                            size="large"
+                            disabled
+                            sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
+                        >
+                            Official Launch : July 25th
+                        </StyledBtnBorderGreen>
+                    ) : (
+                        <></>
+                    )}
                 </Box>
                 {/* {upComingItem.map((item) => (
                     <UpComingINOCard avatar={item.avatar} />
