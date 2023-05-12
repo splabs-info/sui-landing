@@ -67,16 +67,16 @@ export default function UpComing() {
                 flexWrap="wrap"
                 sx={{
                     marginTop: 4,
-                    // background: 'linear-gradient(0deg, rgba(234, 204, 248, 0.15) 0%, rgba(150, 224, 218, 0.15) 100%)',
-                    // boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+                    background: 'linear-gradient(0deg, rgba(234, 204, 248, 0.15) 0%, rgba(150, 224, 218, 0.15) 100%)',
+                    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
                     borderRadius: '16px',
-                    // padding: '32px 64px',
+                    padding: '32px 64px',
                     [theme.breakpoints.down(1400)]: {
                         justifyContent: 'center',
                     },
                 }}
             >
-                <Box
+                {/* <Box
                     sx={{
                         [theme.breakpoints.down(1400)]: {
                             marginBottom: '64px',
@@ -96,8 +96,8 @@ export default function UpComing() {
                 </Box>
                 <Box>
                     <img src="images/ino/upcoming-1.svg" />
-                </Box>
-                {/* <Box
+                </Box> */}
+                <Box
                     sx={{
                         [theme.breakpoints.down(1400)]: {
                             marginBottom: '64px',
@@ -119,7 +119,7 @@ export default function UpComing() {
                     ) : (
                         <></>
                     )}
-                </Box> */}
+                </Box>
                 {/* {upComingItem.map((item) => (
                     <UpComingINOCard avatar={item.avatar} />
                 ))} */}
