@@ -45,7 +45,8 @@ const StyledAvatarBox = styled('div')(({ theme }) => ({
 const StyledAvatar = styled('img')(({ theme }) => ({
     width: '100%',
     borderRadius: '50%',
-    objectFit: 'contain',
+    objectFit: 'cover',
+    height: '100%',
 }));
 
 export const UploadAvatarV2 = ({ avatarUrl, id }) => {

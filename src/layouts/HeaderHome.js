@@ -139,6 +139,9 @@ export default function HeaderHome() {
         setShowSidebar(false);
     };
 
+
+    const [prevScrollpos, setPrevScrollpos] = useState(0);
+
     const handleScroll = () => {
         const position = window.pageYOffset;
         if (position > 75) {
@@ -146,7 +149,23 @@ export default function HeaderHome() {
         } else {
             setScrollPositionToggle(false);
         }
+        const header = window.document.getElementById("header");
+        if (prevScrollpos > position) {
+            if (header !== null) header.style.top = "0";
+        } else {
+            if (header !== null) header.style.top = "-130px";
+        }
+        setPrevScrollpos(position);
     };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [prevScrollpos]);
+
 
     const handleOpenConnectPopup = () => setOpenWalletDrawer(true);
     useEffect(() => {
@@ -166,7 +185,7 @@ export default function HeaderHome() {
 
     const activeRoute = '/coming-soons';
 
-    
+
     const MenuHeaderBox = () => (
         <>
             {AppConfig?.mainMenus?.map((menu, index) => (
@@ -299,7 +318,7 @@ export default function HeaderHome() {
 
     return (
         <>
-            <Header sx={{ flexDirection: 'column' }}>
+            <Header sx={{ flexDirection: 'column' }} id="header">
                 <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
                     <Container
                         maxWidth={'xl'}
