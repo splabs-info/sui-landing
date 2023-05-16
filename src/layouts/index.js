@@ -5,10 +5,12 @@ import HeaderHome from './HeaderHome';
 
 const RootStyle = styled('div')({
     background: '#121A27',
-    // background: 'transparent',
 });
 const MainStyle = styled('div')(({ theme }) => ({
-    paddingTop: { md: '4rem', xs: 0 },
+    paddingTop: '3rem',
+    [theme.breakpoints.down('md')]: {
+        paddingTop: 0
+    }
 }));
 
 export default function ClientLayout() {
@@ -18,7 +20,6 @@ export default function ClientLayout() {
             <MainStyle>
                 <Outlet />
             </MainStyle>
-            {/* <FooterHome /> */}
             <FooterV2 />
         </RootStyle>
     );

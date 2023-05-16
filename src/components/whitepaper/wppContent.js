@@ -753,6 +753,8 @@ export const wppContent = [
                     '** Creator Fee cannot be more than 7.5%, and 3000 XUI is consumed to create a Collection Page.',
                     '5. The NFT transaction fee is fixed at 2%.',
                     '** Transaction fees may change depending on special events.',
+                    '',
+                    '',
                     "**NFT Marketplace's 2% transaction fee will be distributed as follows:",
                     '1% of the transaction fee will be attributed to the Project Team, and 1% of the transaction fee will be returned to the Reserve Funds for activation and safety of the NFT Marketplace.',
                 ],

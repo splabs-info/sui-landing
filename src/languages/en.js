@@ -18,6 +18,7 @@ export const en = {
   key_Bridge: "Bridge",
   key_marketplace: "NFT Marketplace",
   key_crew3: 'Crew3',
+  key_Terms: 'Terms of Services',
 
   key_9: "Contact",
 
