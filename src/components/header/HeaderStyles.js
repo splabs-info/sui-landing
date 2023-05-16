@@ -20,6 +20,9 @@ export const Header = styled(Box)(({ theme }) => ({
         position: 'absolute',
         bottom: 0,
     },
+    "&#header": {
+        transition: "all 0.4s ease!important",
+    },
     [theme.breakpoints.down('md')]: {
         minHeight: '3rem',
     },
