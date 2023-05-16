@@ -20,6 +20,9 @@
 .wkit-dialog__close {
     color: white;
 }
+.wkit-select__scroll {
+    width: 100%;
+}
 .wkit-button {
     width: 100%;
     max-width: 324px;
@@ -41,6 +44,7 @@
 
 .wkit-select__container {
     color: white;
+    /* display: block !important; */
 }
 .wkit-select-item {
     color: white;

@@ -231,7 +231,7 @@ const CheckBoxLabel = () => {
         >
             I have read and agree to the
             <a
-                href="https://yousui.io/whitepaper"
+                href="https://docs.google.com/document/d/1JzcDYZby0DkeSJFM2uyqRMlf6UMY2GKuO7wXaIH6NXQ/"
                 target="_blank"
                 rel="noreferrer"
             >

@@ -45,11 +45,12 @@ const StyledAvatarBox = styled('div')(({ theme }) => ({
 const StyledAvatar = styled('img')(({ theme }) => ({
     width: '100%',
     borderRadius: '50%',
-    objectFit: 'contain',
+    objectFit: 'cover',
+    height: '100%',
 }));
 
 export const UploadAvatarV2 = ({ avatarUrl, id }) => {
-    const [urlImageUser, setUrlImageUser] = React.useState('');
+    const [urlImageUser, setUrlImageUser] = React.useState('/default-avatar.svg');
     const { mutateAsync: uploadAvatar, isLoading } = useUploadAvatar({
         onSuccess: (args) => {
             console.log(args);
@@ -120,11 +121,14 @@ export const UploadAvatarV2 = ({ avatarUrl, id }) => {
         return (
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <img src="/images/default-avatar.png" style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                {avatarUrl ? (
+                    <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                ) : (
+                    <img src='/default-avatar.svg' style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                )}
             </div>
         );
     }, [getInputProps, getRootProps, style]);
-
     return (
         <Box sx={{ display: 'flex', backgroundColor: 'transparent' }}>
             {files.length > 0 ? renderPreview() : renderUploadArea()}

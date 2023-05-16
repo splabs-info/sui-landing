@@ -2,8 +2,6 @@ import { Box, Container, Grid, MenuItem, Typography } from '@mui/material';
 import { IconBrandTelegram } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CusLink } from '../components/common/LogoSPlabs';
-import { Link } from 'react-router-dom';
 import {
     EndBox,
     Footer,
@@ -47,15 +45,19 @@ const joinGateKeeper = [
 const aboutGateKeeper = [
     {
         label: 'key_11',
-        link: '/coming-soon',
+        link: '/whitepaper',
     },
     {
         label: 'key_12',
         link: '/coming-soon',
     },
     {
+        label: 'key_Terms',
+        link: 'https://docs.google.com/document/d/1RRO6w77nJyHE7LwGwLsSgr4GKcuMVSwQ6DinGnDi96s/',
+    },
+    {
         label: 'key_13',
-        link: '/coming-soon',
+        link: 'https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/',
     },
     {
         label: 'WHITEPAPER',

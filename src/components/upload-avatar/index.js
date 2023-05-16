@@ -46,7 +46,7 @@ const StyledAvatar = styled('img')(({ theme }) => ({
 }));
 
 export const UploadAvatar = ({ avatarUrl, id }) => {
-    const [urlImageUser, setUrlImageUser] = React.useState('');
+    const [urlImageUser, setUrlImageUser] = React.useState('/default-avatar.svg');
 
     const { mutateAsync: uploadAvatar, isLoading } = useUploadAvatar({
         onSuccess: (args) => {
@@ -97,6 +97,7 @@ export const UploadAvatar = ({ avatarUrl, id }) => {
 
     const thumbs = files.map((file) => (
         <StyledAvatarBox key={file?.upload}>
+            {console.log('default-avatar.svg', urlImageUser)}
             <StyledAvatar src={!isEmpty(avatarUrl) ? avatarUrl : urlImageUser} alt={file.path} />
         </StyledAvatarBox>
     ));
@@ -125,7 +126,7 @@ export const UploadAvatar = ({ avatarUrl, id }) => {
                 {avatarUrl ? (
                     <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 ) : (
-                    <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                    <img src='/default-avatar.svg' style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 )}
             </div>
         );

@@ -36,12 +36,13 @@ import { styled } from '@mui/material/styles';
 import { FrameButton } from 'components/home-v2/HomeStyles';
 const config = [
     { label: 'key_2', link: '/ido-launchpad' },
-    { label: 'key_3', link: '/coming-soon' },
+    { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/coming-soon' },
     { label: 'key_6', link: '/coming-soon' },
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
+    { label: 'key_crew3', link: 'https://zealy.io/c/yousui' },
 ];
 
 const socials = [
@@ -86,12 +87,12 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
     },
 }));
 
-const BlankLink = styled(Link)(({ theme }) => ({
+const CustomLink = styled('a')(({ theme }) => ({
     margin: '0 !important',
     color: 'rgba(255, 255, 255, 1)',
     textDecoration: 'none',
     '-webkit-text-fill-color': 'rgba(255, 255, 255, 1) !important',
-    '&:hover': { color: 'rgba(255, 255, 255, 1) !important', },
+    '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
 }));
 
 export default function HeaderHome() {
@@ -107,6 +108,8 @@ export default function HeaderHome() {
     const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+
+    const isDesktop = useResponsive('up', 'md');
 
     const navigate = useNavigate();
 
@@ -136,6 +139,9 @@ export default function HeaderHome() {
         setShowSidebar(false);
     };
 
+
+    const [prevScrollpos, setPrevScrollpos] = useState(0);
+
     const handleScroll = () => {
         const position = window.pageYOffset;
         if (position > 75) {
@@ -143,7 +149,23 @@ export default function HeaderHome() {
         } else {
             setScrollPositionToggle(false);
         }
+        const header = window.document.getElementById("header");
+        if (prevScrollpos > position) {
+            if (header !== null) header.style.top = "0";
+        } else {
+            if (header !== null) header.style.top = "-130px";
+        }
+        setPrevScrollpos(position);
     };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [prevScrollpos]);
+
 
     const handleOpenConnectPopup = () => setOpenWalletDrawer(true);
     useEffect(() => {
@@ -162,6 +184,7 @@ export default function HeaderHome() {
     }, [address, wallet?.address]);
 
     const activeRoute = '/coming-soons';
+
 
     const MenuHeaderBox = () => (
         <>
@@ -185,10 +208,14 @@ export default function HeaderHome() {
                                 fontSize: '0.9rem',
                             }}
                         >
-                            <NavLink to={item.link} key={index} className={item.customStyle || ''}>
-                                {library[item.label]}
-                                {item.icon}
-                            </NavLink>
+                            {isDesktop && library[item.label] === 'Crew3' ? (
+                                <></>
+                            ) : (
+                                <NavLink to={item.link} key={index} className={item.customStyle || ''}>
+                                    {library[item.label]}
+                                    {item.icon}
+                                </NavLink>
+                            )}
                         </Box>
                     );
                 } else
@@ -291,7 +318,7 @@ export default function HeaderHome() {
 
     return (
         <>
-            <Header sx={{ flexDirection: 'column' }}>
+            <Header sx={{ flexDirection: 'column' }} id="header">
                 <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
                     <Container
                         maxWidth={'xl'}
@@ -361,9 +388,9 @@ export default function HeaderHome() {
                                 >
                                     My Page
                                 </StyledBtnBorderGreen>
-                                <BlankLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
+                                <CustomLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
                                     <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
-                                </BlankLink>
+                                </CustomLink>
 
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
