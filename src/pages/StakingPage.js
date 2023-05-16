@@ -7,7 +7,7 @@ import { fCurrency } from 'utils/format';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import moment from 'moment';
-const XUILogo = '/images/coins/XUI.png';
+const XUILogo = '/images/coins/XUI-2.png';
 const gateUrl = 'https://www.gate.io';
 const data = {
     symbol: 'XUI',
