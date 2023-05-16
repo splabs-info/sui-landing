@@ -277,6 +277,9 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                                     Change
                                                 </DeletePhotoBtn> */}
                                             </Box>
+                                            <Typography sx={{ color: 'white', }} variant='caption'>
+                                                Recommended image size 250x250
+                                            </Typography>
                                         </Box>
                                     </Box>
 
