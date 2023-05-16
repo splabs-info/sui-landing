@@ -7,7 +7,9 @@ const RootStyle = styled('div')({
     background: '#121A27',
     // background: 'transparent',
 });
-const MainStyle = styled('div')(({ theme }) => ({}));
+const MainStyle = styled('div')(({ theme }) => ({
+    paddingTop: { md: '4rem', xs: 0 },
+}));
 
 export default function ClientLayout() {
     return (
