@@ -37,11 +37,15 @@ const partners = [
     },
     {
         label: 'bitkeep',
-        link: '',
+        link: 'https://bitkeep.com/',
     },
     {
-        label: 'move-studio',
-        link: 'https://www.okx.com/web3',
+        label: 'move-studio-ide',
+        link: 'https://www.movestudio.dev/',
+    },
+    {
+        label: 'scallop',
+        link: 'https://www.scallopx.com/',
     },
     // {
     //     label: 'POLYGONSTUDIO',
