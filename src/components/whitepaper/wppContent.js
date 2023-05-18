@@ -191,6 +191,74 @@ export const wppContent = [
             },
         ],
     },
+
+    {
+        id: 'road-map',
+        category: 'ROADMAP - YouSUI',
+        description: [
+            {
+                title: 'Q1 2022 - DONE',
+                content: [
+                    'Smart-Contract Deployment (Test-net)',
+                    'Whitepaper',
+                    'Initiate Development',
+                    'Web3 Build-Up',
+                ],
+            },
+            {
+                title: 'Q2 2023 - ONGOING',
+                content: [
+                    'Platform Development',
+                    'Wallet Integration',
+                    'IDO, INO Launchpad',
+                    'Staking Service',
+                    'Multi-Chain Announcement',
+                    'Staking Open',
+                    'Bridge Development',
+                    'Community Open',
+                ],
+            },
+            {
+                title: 'Q3 2023 - PENDING',
+                content: [
+                    'Staking & XUI First IDO',
+                    'Soft-Launching',
+                    'New Governance',
+                    'First Launchpad & Incubation Program',
+                    'New Block-Chain Integration Announcement',
+                    'Bridge & Cross-Chain Swap',
+                ],
+            },
+            {
+                title: 'Q4 2023 - PENDING',
+                content: [
+                    'Guild Assemble & IGO',
+                    'First IGO Launch',
+                    'DEX Launch',
+                    'First Launchpad & Incubation Program',
+                    'NFT Marketplace Launch',
+                    'New Blockchain Integration Announcement',
+                ],
+            },
+            {
+                title: 'Q1 2024 - PENDING',
+                content: [
+                    'DAO Governed IDO',
+                    'Ecosystem Expansion',
+                    'Platform Mega-Update',
+                    'Guild System Launch',
+                    'Migration Incentive Program',
+                    'NFT Enabled Wallet',
+                ],
+            },
+            {
+                title: 'Master Product (2023~2027)',
+                content: [
+                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
+                ],
+            },
+        ],
+    },
     {
         id: 'C',
         category: 'Meet The Team',
@@ -1164,73 +1232,6 @@ export const wppContent = [
         ],
     },
 
-    {
-        id: 'road-map',
-        category: 'ROADMAP - YouSUI',
-        description: [
-            {
-                title: 'Q1 2022 - DONE',
-                content: [
-                    'Smart-Contract Deployment (Test-net)',
-                    'Whitepaper',
-                    'Initiate Development',
-                    'Web3 Build-Up',
-                ],
-            },
-            {
-                title: 'Q2 2023 - ONGOING',
-                content: [
-                    'Platform Development',
-                    'Wallet Integration',
-                    'IDO, INO Launchpad',
-                    'Staking Service',
-                    'Multi-Chain Announcement',
-                    'Staking Open',
-                    'Bridge Development',
-                    'Community Open',
-                ],
-            },
-            {
-                title: 'Q3 2023 - PENDING',
-                content: [
-                    'Staking & XUI First IDO',
-                    'Soft-Launching',
-                    'New Governance',
-                    'First Launchpad & Incubation Program',
-                    'New Block-Chain Integration Announcement',
-                    'Bridge & Cross-Chain Swap',
-                ],
-            },
-            {
-                title: 'Q4 2023 - PENDING',
-                content: [
-                    'Guild Assemble & IGO',
-                    'First IGO Launch',
-                    'DEX Launch',
-                    'First Launchpad & Incubation Program',
-                    'NFT Marketplace Launch',
-                    'New Blockchain Integration Announcement',
-                ],
-            },
-            {
-                title: 'Q1 2024 - PENDING',
-                content: [
-                    'DAO Governed IDO',
-                    'Ecosystem Expansion',
-                    'Platform Mega-Update',
-                    'Guild System Launch',
-                    'Migration Incentive Program',
-                    'NFT Enabled Wallet',
-                ],
-            },
-            {
-                title: 'Master Product (2023~2027)',
-                content: [
-                    `is a platform that can encompass everything related to Defi, Web3.0, and Game within the Sui Blockchain ecosystem. Starting from Launchpad, it provides an incubation program, multi-chain bridge, and NFT Enabled Wallet. It is also a master product to provide Sui Blockchain's Layer 2 or side chain to games. The first goal was to strengthen utility by providing abundant liquidity to the XUI Token and XUI Token Pool, and the second goal was the scalability of Sui Blockchain through bridge swap. Finally, the third goal is to dramatically increase the activities of users and companies on Sui Blockchain through NFT activation.`,
-                ],
-            },
-        ],
-    },
     // {
     //     id: 'Q',
     //     category: 'Connect Wallet',
