@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
-import { ConnectButton } from '@suiet/wallet-kit';
+import { useWallet } from '@suiet/wallet-kit';
 import { WalletContext } from 'hooks/use-connect';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -30,6 +30,12 @@ export const ChooseWalletModal = () => {
     const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
+    const {
+        select, // select
+        configuredWallets, // default wallets
+        detectedWallets, // Sui-standard wallets detected from browser env
+        allAvailableWallets, // all the installed Sui-standard wallets
+    } = useWallet();
 
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
@@ -42,6 +48,8 @@ export const ChooseWalletModal = () => {
             setIsInstallOkx(true);
         }
     }, []);
+
+    // console.log(configuredWallets);
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -67,16 +75,44 @@ export const ChooseWalletModal = () => {
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
-                <ConnectButton style={{ display: 'flex', alignItems: 'center' }}>
-                    {/* <Box className="img-box" sx={{background: '#22272d', borderRadius: '50%'}}> */}
+                {[...configuredWallets].map((wallet) => (
+                    <WalletButton
+                        onClick={() => {
+                            if (!wallet.installed) {
+                                return;
+                            }
+                            try {
+                                select(wallet.name);
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }}
+                    >
+                        <Box className="img-box">
+                            <img src={wallet.iconUrl} alt="logo metamask" />
+                        </Box>
+                        <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
+                            {wallet.name}
+                        </Typography>
+                        {!wallet.installed && (
+                            <InstallButton component={Link} href={wallet.downloadUrl.browserExtension} target="_blank">
+                                <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                                    INSTALL
+                                </Typography>
+                            </InstallButton>
+                        )}
+                    </WalletButton>
+                ))}
+                {/* <ConnectButton style={{ display: 'flex', alignItems: 'center' }}>
+                    <Box className="img-box" sx={{background: '#22272d', borderRadius: '50%'}}>
                     <img
                         src="/Token-YouSUI.png"
                         alt="logo metamask"
                         style={{ width: 56, height: 56, marginLeft: '4px', marginRight: '16px' }}
                     />
-                    {/* </Box> */}
+                    </Box>
                     SUI Wallet
-                </ConnectButton>
+                </ConnectButton> */}
                 <WalletButton
                     onClick={
                         isInstalledOkx
