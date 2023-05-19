@@ -883,12 +883,7 @@ export const wppContent = [
                 title: 'XUI Token Overview',
                 content: [
                     <>
-                        The XUI Token is the platform's governance token, and by staking it, you get the opportunity to
-                        participate in IDO and INO. In addition, you can participate in the governance that determines
-                        the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT
-                        Marketplace, and liquidity can be supplied along with YouXUI. On social platforms, it can be
-                        used when clicking likes or making donations. By staking XUI Tokens, you not only get staking
-                        rewards, but also become an early investor in cutting-edge and high-potential projects.
+                        $XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. YouSUI governance determines the direction of the community and is directly used for voting or governance to make reasonable decisions. By staking $XUI, the community can give their opinions or make suggestions to the community. When users stake $XUI, they are given a "Tier" to participate in IDO and INO Launchpad. A portion of the revenue generated from using DEX, NFT Marketplace and Bridge goes to $XUI stakers, and the rest goes to $XUI "Burn and Buyback".
                     </>,
                     <>
                         <b>Name :</b> YouSUI
