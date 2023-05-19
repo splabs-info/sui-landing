@@ -194,7 +194,7 @@ export const wppContent = [
 
     {
         id: 'road-map',
-        category: 'ROADMAP - YouSUI',
+        category: 'ROADMAP',
         description: [
             {
                 title: 'Q1 2022 - DONE',
