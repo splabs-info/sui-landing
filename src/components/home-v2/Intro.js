@@ -4,6 +4,8 @@ import { TypographyGradient } from 'components/home/HomeStyles';
 import { Link } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, CenterBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
+import { formatAddress } from 'setting/format';
+import CopyComponent from 'components/common/CopyComponent';
 
 const SubTitle = [
   'YouSUI works with projects with a high probability of success',
@@ -196,12 +198,11 @@ export default function Intro() {
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '33px',
+                  gap: '20px',
                 }}
               >
-                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 60 : 80} />
-                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 60 : 80} />
-                {/* <img alt="sui" src="/bnb-white.png" height={isMobile ? 15 : 30} /> */}
+                <img alt="sui" src="/images/home/feature1.png" height={isMobile ? 50 : 80} />
+                <img alt="sui" src="/images/home/feature2.png" height={isMobile ? 50 : 80} />
               </Box>
             </Box>
             <Box
@@ -213,17 +214,15 @@ export default function Intro() {
                 }
               }}
             >
-              <Typography variant="body1" mr={2} fontSize={isMobile && '0.9rem'}>
-                {`Contract Address (SUI)`}
-              </Typography>
-              <ContractBox >
-                <Typography variant="body1" mr={2} fontWeight={'bold'} >
+              <TypographyGradient fontWeight={'bold'} fontSize={isMobile && '0.9rem'}> View XUI on explorer</TypographyGradient>
 
-                  <TypographyGradient> XUI</TypographyGradient>
-                </Typography>
-                <Typography variant="body1" mr={2} >
-                  0x25Ce5f4tg53rc00ccc6c00D34ew46f0
-                </Typography>
+              <ContractBox >
+                <a href='https://suiexplorer.com/object/0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84?network=mainnet'
+                  target='_blank' rel='noreferrer' >
+                  {!isDesktop ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84', 12)
+                    : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84'}
+                </a>
+                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84`} />
               </ContractBox>
             </Box>
           </Grid>

@@ -408,6 +408,10 @@ export const ContractBox = styled(Box)(({ theme }) => ({
     padding: '0.75rem 1.5rem',
     width: 'max-content',
     marginTop: '1rem',
+    '& a': {
+        zIndex: '1',
+        marginRight: '0.5rem'
+    },
     '&::before': {
         content: "''",
         position: 'absolute',
@@ -420,4 +424,8 @@ export const ContractBox = styled(Box)(({ theme }) => ({
         WebkitMaskComposite: 'xor',
         zIndex: '0',
     },
+    [theme.breakpoints.down('sm')]: {
+        margin: 'auto',
+        marginTop: '1rem',
+    }
 }));
