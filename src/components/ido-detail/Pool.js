@@ -1,24 +1,39 @@
 import { Box, Grid, Stack, Tab, alpha, styled } from '@mui/material';
+import PropTypes from 'prop-types';
 import useResponsive from 'hooks/useResponsive';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { TabContext, TabList } from '@mui/lab';
 import { useState } from 'react';
 import { PublicRound } from './round/PublicRound';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
+    position: 'relative',
+    borderRadius: '12px',
+    '&::before': {
+        content: "''",
+        position: 'absolute',
+        inset: '0px',
+        borderRadius: '12px',
+        padding: ' 2px',
+        background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
+        WebkitMask:
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        WebkitMaskComposite: 'xor',
+        zIndex: '1',
+    },
     '& button': {
-        padding: '1.75rem',
+        padding: '0.75rem 1rem',
         zIndex: '1',
         textShadow: '0 0 10px rgb(255,255,255,0.7)',
         color: alpha('#fff', 0.5),
-        fontWeight: 700,
         opacity: 1,
-        fontSize: '1.25rem',
+        fontSize: '1rem',
         '& span': {
-            background: 'linear-gradient(0deg, #8CC0CC 0%, rgb(41,31,65,0) 20%);',
+            background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
         },
+
     },
     '& .MuiTabs-flexContainer': {
         justifyContent: { md: 'center', xs: 'flex-start' },
@@ -29,8 +44,9 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
     },
     '& button.Mui-selected': {
         color: alpha('#fff', 1),
+        fontWeight: 700,
         '& span': {
-            background: 'linear-gradient(0deg, #8CC0CC 0%, rgb(90,111,134,0.5) 50%, transparent 100%);',
+            background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
             zIndex: -1,
         },
     },
@@ -52,6 +68,38 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
         },
     },
 }));
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ mt: 5 }}>
+                    {children}
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 export const Pool = () => {
     const isMobile = useResponsive('down', 'sm');
 
@@ -72,13 +120,14 @@ export const Pool = () => {
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <CustomTabList
                                 onChange={handleChange}
-                                indicatorColor="none"
+                                indicatorColor="transparent"
+                                indicator={false}
                                 variant={isDesktop ? 'fullWidth' : 'scrollable'}
                                 scrollButtons="auto"
                             >
-                                <Tab label="OG ROUND" />
-                                <Tab label="PUBLIC ROUND 1" />
-                                <Tab label="PUBLIC ROUND 2" />
+                                <Tab label="OG ROUND"  {...a11yProps(0)} />
+                                <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
+                                <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} />
                             </CustomTabList>
                         </Box>
                         <TabPanel value={value} index={0}>

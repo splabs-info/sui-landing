@@ -38,7 +38,7 @@ export default function IDOList() {
                         <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                             <FrameButton>Apply for Launchpad</FrameButton>
                         </a>
-                        <Link to={'/coming-soon'}>
+                        <Link to={'/ido-launchpad/buy-token'}>
                             <FrameButton>Buy $ XUI</FrameButton>
                         </Link>
                         <Link to={'/whitepaper'}>
