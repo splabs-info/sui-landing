@@ -45,7 +45,6 @@ export default function IDOList() {
                             <FrameButton>Whitepaper</FrameButton>
                         </Link>
                     </ButtonTitleBox>
-
                     <Questions />
                 </Container>
             </SectionBox>

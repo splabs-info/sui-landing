@@ -8,6 +8,7 @@ const RootStyle = styled('div')({
 });
 const MainStyle = styled('div')(({ theme }) => ({
     paddingTop: '3rem',
+    minHeight: '80vh',
     [theme.breakpoints.down('md')]: {
         paddingTop: 0
     }

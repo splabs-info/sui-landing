@@ -1,13 +1,14 @@
 
 import { Box } from '@mui/material';
 import useResponsive from 'hooks/useResponsive';
-import { ProcessBox } from './ProcessBox';
-import { BuyToken } from './BuyToken';
+import { BuyTokenPublic } from './BuyTokenPublic';
+import { CircleBox } from './CircleBox';
 export const PublicRound = () => {
     const isMobile = useResponsive('down', 'sm');
     return (
         <Box>
-            <BuyToken />
+            <CircleBox />
+            <BuyTokenPublic />
         </Box>
     );
 };

@@ -50,8 +50,8 @@ export default function Router() {
                     path: 'ido-launchpad/buy-token',
                     element: (
                         <Suspense>
-                            {/* <IDODetail /> */}
-                            <ComingSoon />
+                            <IDODetail />
+                            {/* <ComingSoon /> */}
                         </Suspense>
                     ),
                 },

@@ -6,10 +6,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IdoSchema } from '../validations';
 import { useTheme } from '@mui/material/styles';
+import useResponsive from 'hooks/useResponsive';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
-    padding: 40,
+    padding: '64px 40px',
     color: 'white',
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -51,7 +52,7 @@ const CheckBoxLabel = () => {
         </Typography>
     );
 };
-export const BuyToken = () => {
+export const BuyTokenOG = () => {
     const theme = useTheme();
 
     const {
@@ -63,6 +64,7 @@ export const BuyToken = () => {
         defaultValues: '',
         resolver: yupResolver(IdoSchema),
     });
+    const isMobile = useResponsive('down', 'sm');
     return (
         <StyledBuyTokenBox>
             <Stack>
@@ -84,8 +86,8 @@ export const BuyToken = () => {
                         }}
                     />
                 </Box>
-                <Stack direction="row" justifyContent="space-between">
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Stack direction={isMobile ? 'column' : "row"} justifyContent="space-between">
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: isMobile ? '1rem' : '0' }}>
                         <CheckboxFiled />
                         <Typography>
                             I’ve read and accepted all the{' '}

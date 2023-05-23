@@ -28,7 +28,7 @@ const CustomInput = styled(TextField)(({ theme }) => ({
     },
     '& .MuiOutlinedInput-root': {
         height: 48,
-        borderRadius: 50,
+        borderRadius: 12,
         borderColor: `white`,
     },
     '& input:valid + fieldset': {
