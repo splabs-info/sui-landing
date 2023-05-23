@@ -399,3 +399,25 @@ export const QuestionsButton = styled(Button)(({ theme }) => ({
 export const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
     padding: '2rem 0',
 }));
+
+export const ContractBox = styled(Box)(({ theme }) => ({
+    background: 'rgba(20, 36, 54, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: '12px', position: 'relative',
+    padding: '0.75rem 1.5rem',
+    width: 'max-content',
+    marginTop: '1rem',
+    '&::before': {
+        content: "''",
+        position: 'absolute',
+        inset: '0px',
+        borderRadius: '12px',
+        padding: ' 1px',
+        background: 'linear-gradient(0deg, #00C5D3 81.61%, #42EECF 94.62%)',
+        WebkitMask:
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        WebkitMaskComposite: 'xor',
+        zIndex: '0',
+    },
+}));

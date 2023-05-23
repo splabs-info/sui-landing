@@ -10,7 +10,7 @@ const ContainerPartner = styled(Box)(({ theme }) => ({
     gap: '1rem',
     gridTemplateColumns: 'repeat(5, 1fr)',
     [theme.breakpoints.down('md')]: {
-        gridTemplateColumns: 'repeat(4, 1fr)',
+        gridTemplateColumns: 'repeat(3, 1fr)',
     },
     [theme.breakpoints.down('sm')]: {
         gridTemplateColumns: 'repeat(2, 1fr)',
@@ -46,6 +46,10 @@ const partners = [
     {
         label: 'scallop',
         link: 'https://www.scallopx.com/',
+    },
+    {
+        label: 'movement',
+        link: '/',
     },
     // {
     //     label: 'POLYGONSTUDIO',

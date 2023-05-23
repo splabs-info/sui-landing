@@ -59,6 +59,12 @@ a {
   }
 }
 
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 157;
+  }
+}
+
 /* .wkit-dialog__content .wkit-select__container:last-of-type {
   display: none;
 } */

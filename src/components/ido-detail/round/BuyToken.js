@@ -4,7 +4,7 @@ import { InputField } from 'components/base/InputFieldV2';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IdoSchema } from './validations';
+import { IdoSchema } from '../validations';
 import { useTheme } from '@mui/material/styles';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
@@ -14,6 +14,7 @@ const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     position: 'relative',
+    marginTop: '1rem'
 }));
 
 const StyledBuyTokenBtn = styled(Button)(({ them }) => ({

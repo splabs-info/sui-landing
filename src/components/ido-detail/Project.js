@@ -31,10 +31,33 @@ const StyledProjectCard = styled(Box)(({ theme }) => ({
 }));
 
 const StyledDivider = styled(Divider)(({ theme }) => ({
+    marginTop: 32,
     width: '100%',
     borderColor: 'rgba(255, 255, 255, 0.2)',
 }));
 
+const projectContent = [
+    {
+        title: "Token Distribution",
+        content: "Date UTC"
+    },
+    {
+        title: "Min. Allocation",
+        content: "250 USD"
+    },
+    {
+        title: "Max. Allocation",
+        content: "10,000 USD"
+    },
+    {
+        title: "Token Price",
+        content: "4 XUI = 1 USD"
+    },
+    {
+        title: "Access Type",
+        content: "Public"
+    }
+]
 export const ProjectInfo = () => {
     const [expanded, setExpanded] = React.useState(false);
 
@@ -46,20 +69,12 @@ export const ProjectInfo = () => {
         <>
             <TitleSection title="ABOUT THE PROJECT" />
             <StyledProjectCard>
-                <Typography color="white" textAlign="left">
-                    A project is a challenging fitness app with game-fi features. You wear trendy virtual sneakers and
-                    take a walk or jog to earn AMT tokens. GAMEPLAY   The earning system that AMAZY built using the
-                    Move-to-Earn model works based on a few simple steps:  
-                    <br />
-                    <Typography sx={{ marginTop: 2 }}>
-                        1. CHOOSE THE RIGHT NFT SNEAKER FOR YOUR ABILITIES. Users will be able to purchase sneakers or
-                        rent them from other players.  
-                    </Typography>
-                    <br />
-                    <Typography sx={{ marginTop: 2, marginBottom: 2 }}>
-                        2. ACCESS SNEAKERS FROM THE APP MARKETPLACE
-                    </Typography>
+                <Typography color="white" textAlign="left" lineHeight={'32px'} mb={2}>
+                    The XUI Token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with YouXUI. On social platforms, it can be used when clicking likes or making donations. By staking XUI Tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.
                 </Typography>
+                <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ color: 'white', lineHeight: '32px' }}>
+                    The XUI Token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with YouXUI. On social platforms, it can be used when clicking likes or making donations. By staking XUI Tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.
+                </Collapse>
                 <StyledDivider />
                 <ExpandMore
                     expand={expanded}
@@ -68,11 +83,9 @@ export const ProjectInfo = () => {
                     aria-label="show more"
                     sx={{ textAlign: 'center' }}
                 >
-                    See more
+                    {expanded ? 'See less' : 'See more'}
                 </ExpandMore>
-                <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ color: 'white' }}>
-                    abc
-                </Collapse>
+
             </StyledProjectCard>
         </>
     );

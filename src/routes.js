@@ -10,7 +10,7 @@ import Whitepaper from './pages/Whitepaper';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-const IDO = React.lazy(() => import('./pages/IDODetail'));
+const IDODetail = React.lazy(() => import('./pages/IDODetail'));
 const TestPage = React.lazy(() => import('./pages/Test'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
@@ -36,6 +36,7 @@ export default function Router() {
                             <IDOList />
                         </Suspense>
                     ),
+
                 },
                 {
                     path: 'ino-launchpad',
@@ -46,10 +47,11 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'pjt',
+                    path: 'ido-launchpad/buy-token',
                     element: (
                         <Suspense>
-                            <IDO />
+                            {/* <IDODetail /> */}
+                            <ComingSoon />
                         </Suspense>
                     ),
                 },
