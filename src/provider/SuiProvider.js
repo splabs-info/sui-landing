@@ -1,127 +1,72 @@
-// import { Sui } from '@mysten/sui.js@experimental';
-// import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
-// import WalletConnectProvider from '@walletconnect/web3-provider';
-// import React, { useState } from 'react';
-// import Web3 from 'web3';
+import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, TransactionBlock, testnetConnection } from '@mysten/sui.js';
+import { useWallet } from '@suiet/wallet-kit';
+import { ethers } from 'ethers';
+import React from 'react';
+const provider = new JsonRpcProvider(testnetConnection);
 
-// export const SUIContext = React.createContext();
+export const SuiContext = React.createContext({});
 
-// const SUIProvider = ({ children }) => {
-//     const [isConnect, setIsConnect] = useState(false);
-//     const [walletAddress, setWalletAddress] = useState('');
-//     const [balance, setBalance] = useState(0);
-//     const [web3, setWeb3] = useState(null);
-//     const [sui, setSui] = useState(null);
-//     const [wallet, setWallet] = useState(null);
+export const SUIWalletContext = ({ children }) => {
+    const [allObjectsId, setAllObjects] = React.useState();
+    const [balances, setBalance] = React.useState();
 
-//     const connectSui = async () => {
-//         const provider = new WalletConnectProvider({
-//             rpc: 'https://fullnode.devnet.sui.io:443',
-//         });
-//         await provider.enable();
-//         const web3 = new Web3(provider);
-//         const sui = new Sui(web3);
-//         const wallet = sui.getWallet();
-//         const walletAddress = await wallet.getAddress();
-//         const balance = await wallet.getBalance();
-//         setIsConnect(true);
-//         setWeb3(web3);
-//         setSui(sui);
-//         setWallet(wallet);
-//         setWalletAddress(walletAddress);
-//         setBalance(balance);
-//     };
+    const wallet = useWallet();
 
-//     const disconnect = () => {
-//         wallet?.disconnect();
-//         setIsConnect(false);
-//         setWeb3(null);
-//         setSui(null);
-//         setWallet(null);
-//         setWalletAddress('');
-//         setBalance(0);
-//     };
+    console.log('wallet', wallet?.address);
+    const keypair = new Ed25519Keypair();
+    const signer = new RawSigner(keypair, provider);
+    const tx = new TransactionBlock();
 
-//     const getBalance = async () => {
-//         const balance = await wallet?.getBalance();
-//         setBalance(balance);
-//     };
+    React.useEffect(() => {
+        if (!provider || !wallet.address) return;
 
-//     const getAccount = async () => {
-//         const walletAddress = await wallet?.getAddress();
-//         setWalletAddress(walletAddress);
-//     };
+        (async () => {
+            const objects = await provider.getOwnedObjects({
+                owner: wallet?.address,
+                options: { showContent: true },
+            });
+            const allObjectsId = objects.data.filter((obj) => Coin.isSUI(obj));
 
-//     const sendToken = async (to, amount) => {
-//         const amountInWei = web3.utils.toWei(amount.toString(), 'ether');
-//         const tx = await wallet.send(to, amountInWei);
-//         console.log('Transaction hash:', tx.transactionHash);
-//     };
+            const suiBalance = await provider.getBalance({
+                owner: wallet?.address,
+                options: { showContent: true },
+            });
 
-//     const approveToken = async (spender, amount) => {
-//         const amountInWei = web3.utils.toWei(amount.toString(), 'ether');
-//         const tx = await wallet.approve(spender, amountInWei);
-//         console.log('Transaction hash:', tx.transactionHash);
-//     };
+            setBalance(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
+            setAllObjects(allObjectsId);
 
-//     // const transferTokenFrom = async (from, to, amount) => {
-//     //     try {
-//     //         const provider = new SuiProvider();
-//     //         const wallet = await provider.getWallet();
+            // const txn = await provider.getObject({
+            //     id: '0x72574b9b84499d0ea4521a67fd8c3ef8439e5065264a87969d3cfb86a6d7e1ef',
 
-//     //         // Kiểm tra xem tài khoản có đủ token để chuyển không
-//     //         const tokenContract = new ethers.Contract(tokenContractAddress, tokenContractABI, wallet);
-//     //         const balance = await tokenContract.balanceOf(from);
-//     //         if (balance.lt(amount)) {
-//     //             throw new Error('Insufficient balance');
-//     //         }
+            //     options: { showContent: true },
+            // });
 
-//     //         // Lấy thông tin contract
-//     //         const contractAddress = '0x...';
-//     //         const contractABI = [];
-//     //         const contract = new ethers.Contract(contractAddress, contractABI, wallet);
-//     //         const overrides = {
-//     //             gasLimit: 500000,
-//     //             gasPrice: ethers.utils.parseUnits('10', 'gwei'),
-//     //         };
+            // const allBalances = await provider.getAllBalances({
+            //     owner: wallet?.address,
+            // });
 
-//     //         // Thực hiện gọi hàm transferFrom trong smart contract
-//     //         const tx = await contract.transferFrom(from, to, amount, overrides);
+            // const balances = await provider.getBalance({
+            //     owner: wallet?.address,
+            // });
 
-//     //         // Chờ đợi giao dịch được xác nhận
-//     //         const receipt = await tx.wait();
+            // const allCoins = await provider.getAllCoins({
+            //     owner: wallet?.address,
+            // });
+        })();
+    }, [wallet.address]);
 
-//     //         // Trả về kết quả giao dịch
-//     //         return {
-//     //             txHash: receipt.transactionHash,
-//     //             status: receipt.status,
-//     //             blockNumber: receipt.blockNumber,
-//     //             timestamp: receipt.timestamp,
-//     //             confirmations: receipt.confirmations,
-//     //         };
-//     //     } catch (error) {
-//     //         console.error(error);
-//     //         return null;
-//     //     }
-//     // };
-
-//     return (
-//         <SUIContext.Provider
-//             value={{
-//                 isConnect,
-//                 walletAddress,
-//                 balance,
-//                 connectSui,
-//                 disconnect,
-//                 getBalance,
-//                 getAccount,
-//             }}
-//         >
-//             {children}
-//         </SUIContext.Provider>
-//     );
-// };
-
-// export default SUIProvider;
-
-export {};
+    return (
+        <SuiContext.Provider
+            value={{
+                balances,
+                provider,
+                signer,
+                tx,
+                keypair,
+                allObjectsId,
+            }}
+        >
+            {children}
+        </SuiContext.Provider>
+    );
+};

@@ -1,7 +1,7 @@
-import { Error } from './Error';
 import { Box, InputLabel, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useController } from 'react-hook-form';
+import { Error } from './Error';
 
 const CustomInput = styled(TextField)(({ theme }) => ({
     color: 'white',
@@ -20,6 +20,9 @@ const CustomInput = styled(TextField)(({ theme }) => ({
     },
     '& .MuiInputBase-root': {
         color: 'white',
+    },
+    '& .MuiFormControl-root': {
+        margin: 0,
     },
     '& .MuiOutlinedInput-root.Mui-focused': {
         '& > fieldset': {

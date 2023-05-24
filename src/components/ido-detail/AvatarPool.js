@@ -4,7 +4,7 @@ export const AvatarPool = () => {
         <Box position={'relative'}>
             <Box
                 component={'img'}
-                src="/images/ido/sui-sale.jpg"
+                src="https://bafkreidexlvadheiqm4esn5bnyruob5olhynfedidkt3o2cl77mypzqhvi.ipfs.dweb.link/"
                 sx={{ width: '100%', height: '100%', borderRadius: '20px' }} />
             <Box
                 sx={{

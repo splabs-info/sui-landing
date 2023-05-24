@@ -20,6 +20,7 @@ import Routers from './routes';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
+import { SUIWalletContext } from 'provider/SuiProvider';
 const queryClient = new QueryClient();
 
 const SupportedChains = [SuiDevnetChain, SuiTestnetChain];
@@ -39,29 +40,31 @@ export default function App() {
     return (
         <ThemeProvider>
             <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains}>
-                <WalletProvider>
-                    <QueryClientProvider client={queryClient}>
-                        <ScrollToTop />
-                        <BaseOptionChartStyle />
+                <SUIWalletContext>
+                    <WalletProvider>
+                        <QueryClientProvider client={queryClient}>
+                            <ScrollToTop />
+                            <BaseOptionChartStyle />
 
-                        <Routers />
+                            <Routers />
 
-                        <ShowErrorComponent />
-                        <BackgroundJob />
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                        />
-                    </QueryClientProvider>
-                </WalletProvider>
+                            <ShowErrorComponent />
+                            <BackgroundJob />
+                        </QueryClientProvider>
+                    </WalletProvider>
+                </SUIWalletContext>
             </SUIWalletProvider>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </ThemeProvider>
     );
 }

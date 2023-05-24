@@ -49,23 +49,23 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
 const tokenContent = [
     {
         title: "Name",
-        content: "YOUSUI PROJECT"
+        content: "SUA TOKEN"
     },
     {
         title: "Symbol",
-        content: "XUI"
+        content: "SUA"
     },
     {
         title: "Decimals",
-        content: "18"
+        content: "9"
     },
     {
         title: "Address",
-        content: "TBA"
+        content: "0x5f9b04....3b293804"
     },
     {
         title: "Private Round Allocation",
-        content: "4.000.000"
+        content: "50,000"
     }
 ]
 

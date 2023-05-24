@@ -1,6 +1,9 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
-
+import { useWallet } from '@suiet/wallet-kit';
 import { styled } from '@mui/material/styles';
+import React from 'react';
+import { ethers } from 'ethers';
+import { SuiContext } from 'provider/SuiProvider';
 
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -9,7 +12,7 @@ const StyledProcessBox = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     position: 'relative',
-    marginTop: 32
+    marginTop: 32,
 }));
 
 const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -33,9 +36,35 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
 }));
 
 export const ProcessBox = () => {
+    const [ratio, setRadio] = React.useState();
+
+    const wallet = useWallet();
+    const { provider } = React.useContext(SuiContext);
+    React.useEffect(() => {
+        if (!wallet?.address) return;
+        else {
+            (async () => {
+                // If coin type is not specified, it defaults to 0x2::sui::SUI
+                const txn = await provider.getObject({
+                    id: '0xe9e2a6278c49d2628493ee6bbb8663f6c37aab41435b75e44f83494040adabaf',
+                    // fetch the object content field
+                    options: { showContent: true },
+                });
+
+                const round = txn?.data?.content?.fields;
+
+                const suiRatio = ethers.utils.formatUnits(
+                    round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
+                    9
+                );
+                setRadio(suiRatio);
+            })();
+        }
+    }, [provider, wallet?.address]);
+
     return (
         <StyledProcessBox>
-            <StyledExchangeRate>1 XUI = 0.25 SUI</StyledExchangeRate>
+            <StyledExchangeRate>{`1 SUA = ${ratio} SUI`}</StyledExchangeRate>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1.5 }}>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
@@ -54,4 +83,3 @@ export const ProcessBox = () => {
         </StyledProcessBox>
     );
 };
-
