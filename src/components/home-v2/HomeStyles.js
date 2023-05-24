@@ -8,8 +8,9 @@ export const SectionBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
-    paddingTop: 70,
+    paddingTop: 132,
     paddingBottom: 20,
+    minHeight: '80vh',
     [theme.breakpoints.up('lg')]: {
         paddingTop: 108,
         paddingBottom: 50,

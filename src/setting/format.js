@@ -1,5 +1,9 @@
+import moment from 'moment';
 import { AppConfig } from '.';
 
+export const _formatUtcUnix = (time) => {
+    return moment.utc(time).unix();
+};
 export const _formatNumber = (str, length = 8) => {
     if (str) {
         //just 8 decimals when number
