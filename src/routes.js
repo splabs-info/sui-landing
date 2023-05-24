@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, redirect, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
 import HomepageV2 from './pages/Homepage-v2';
@@ -36,7 +36,6 @@ export default function Router() {
                             <IDOList />
                         </Suspense>
                     ),
-
                 },
                 {
                     path: 'ino-launchpad',
@@ -55,7 +54,8 @@ export default function Router() {
                         </Suspense>
                     ),
                 },
-                { path: 'whitepaper', element: <Whitepaper /> },
+                { path: 'whitepaper/:sub', element: <Whitepaper /> },
+                { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
                 { path: 'staking', element: <StakingPage /> },
                 {
                     path: 'test-page',
