@@ -1,11 +1,11 @@
 import { Box, Container, Divider, Tab, Tabs, alpha } from '@mui/material';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
+import { TitleBox, TypographyGradient } from '../home/HomeStyles';
 import { wppContent } from './wppContent';
 import { NormalText, NormalTextList, TitleText, WppContentBox } from './wppStyled';
-import { TitleBox, TypographyGradient } from '../home/HomeStyles';
-import { useState } from 'react';
-import { IconSquareCheck } from '@tabler/icons';
 
 TabPanel.propTypes = {
     children: PropTypes.node,
@@ -31,6 +31,22 @@ export default function WhitepaperContent() {
     const isDesktop = useResponsive('up', 'md');
     const isMobile = useResponsive('down', 'sm');
     const [value, setValue] = useState(0);
+    const { sub } = useParams();
+    const navigate = useNavigate();
+    console.log(sub);
+
+    React.useEffect(() => {
+        if (sub) {
+            const findIndex = wppContent.findIndex((c) => c.id === sub);
+            if (findIndex > -1) {
+                setValue(findIndex);
+            } else {
+                navigate('/whitepaper/introduction-of-yousui');
+            }
+        } else {
+            navigate('/whitepaper/introduction-of-yousui');
+        }
+    }, [navigate, sub]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -78,7 +94,7 @@ export default function WhitepaperContent() {
                         }}
                     >
                         {wppContent.map((item, i) => (
-                            <Tab label={item.category} key={i} />
+                            <Tab label={item.category} key={i} onClick={() => navigate(`/whitepaper/${item.id}`)} />
                         ))}
                     </Tabs>
                     {wppContent.map((item, i) => (

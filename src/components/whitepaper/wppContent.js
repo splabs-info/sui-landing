@@ -1,7 +1,7 @@
 import { IconSquare, IconSquareCheck } from '@tabler/icons';
 export const wppContent = [
     {
-        id: 'A',
+        id: 'introduction-of-yousui',
         category: 'Introduction of YouSUI',
         description: [
             {
@@ -173,7 +173,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'B',
+        id: 'vision-mission',
         category: 'Vision & Mission',
         description: [
             { content: [<img src="/images/whitepaper/Vision-Mission.jpg" alt="" />] },
@@ -260,7 +260,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'C',
+        id: 'meet-the-team',
         category: 'Meet The Team',
         description: [
             {
@@ -390,7 +390,7 @@ export const wppContent = [
     //     ],
     // },
     {
-        id: 'E',
+        id: 'about-sui',
         category: ' About SUI',
         description: [
             {
@@ -421,7 +421,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'F',
+        id: 'launchpad',
         category: 'Launchpad',
         description: [
             {
@@ -533,7 +533,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'G',
+        id: 'staking',
         category: 'Staking',
         description: [
             {
@@ -582,7 +582,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'H',
+        id: 'tier',
         category: 'Tier',
         description: [
             {
@@ -689,7 +689,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'I',
+        id: 'social-platform',
         category: 'Social Platform',
         description: [
             {
@@ -715,7 +715,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'J',
+        id: 'swap',
         category: 'Swap',
         description: [
             {
@@ -768,7 +768,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'K',
+        id: 'bridge',
         category: 'Bridge',
         description: [
             {
@@ -808,7 +808,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'Q',
+        id: 'nft-marketplace',
         category: 'NFT Marketplace',
         description: [
             {
@@ -836,7 +836,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'L',
+        id: 'governance',
         category: 'Governance',
         description: [
             {
@@ -854,7 +854,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'M',
+        id: 'venture-sides',
         category: ' Venture Sides',
         description: [
             {
@@ -876,7 +876,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'N',
+        id: 'tokenomics',
         category: 'Tokenomics',
         description: [
             {
@@ -996,7 +996,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'O',
+        id: 'ido-ino-regulation',
         category: 'IDO & INO Regulation',
         description: [
             {
@@ -1117,7 +1117,7 @@ export const wppContent = [
         ],
     },
     {
-        id: 'P',
+        id: 'policy',
         category: 'Policy',
         description: [
             {
