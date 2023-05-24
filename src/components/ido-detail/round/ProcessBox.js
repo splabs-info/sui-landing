@@ -6,7 +6,8 @@ import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 
 const StyledProcessBox = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
+    background:
+        'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '56px 40px',
     color: 'white',
     borderRadius: 10,
@@ -37,7 +38,8 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
 
 export const ProcessBox = () => {
     const [ratio, setRadio] = React.useState();
-
+    const [round, setRound] = React.useState();
+    const [currentParticipants, setParticipants] = React.useState();
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
     React.useEffect(() => {
@@ -52,6 +54,9 @@ export const ProcessBox = () => {
                 });
 
                 const round = txn?.data?.content?.fields;
+                setRound(round);
+                const participants = round?.participants?.fields?.contents.length;
+                setParticipants(participants);
 
                 const suiRatio = ethers.utils.formatUnits(
                     round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
@@ -65,19 +70,46 @@ export const ProcessBox = () => {
     return (
         <StyledProcessBox>
             <StyledExchangeRate>{`1 SUA = ${ratio} SUI`}</StyledExchangeRate>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1.5 }}>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: 1.5,
+                }}
+            >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    Max Participants: 4527
+                    Process
+                </Typography>
+                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                    {`Current Participants : ${currentParticipants}`}
                 </Typography>
             </Box>
 
-            <StyledLinearProgress variant="determinate" component="p" />
+            <StyledLinearProgress
+                variant="determinate"
+                component="p"
+                value={round ? round?.total_sold / round?.total_supply : 0}
+            />
 
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 1.5 }}>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>100.00%</Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: 1.5,
+                }}
+            >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    9499897.78/9500000 ATK
+                    {round ? `${round?.total_sold / round?.total_supply} %` : 'Loading'}
+                </Typography>
+                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                    {round
+                        ? `${ethers.utils.formatUnits(
+                              round?.total_sold,
+                              9
+                          )} / ${ethers.utils.formatUnits(round?.total_supply, 9)} `
+                        : 'Loading'}
                 </Typography>
             </Box>
         </StyledProcessBox>

@@ -17,7 +17,8 @@ import { toast } from 'react-toastify';
 import { IdoSchema } from '../validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
+    background:
+        'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '40px 40px',
     color: 'white',
     borderRadius: 10,
@@ -29,7 +30,8 @@ const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
 const StyledBuyTokenBtn = styled(Button)(({ them }) => ({
     // background:
     //     'linear-gradient(178.73deg, rgba(32, 123, 191, 1) 2.08%, rgba(74, 148, 203, 1)  32.81%, rgba(92, 186, 242, 1) 100%)',
-    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+    background:
+        'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
     color: 'white',
     height: 48,
     width: 156,
@@ -95,7 +97,6 @@ export const BuyTokenOG = () => {
                 });
 
                 const round = txn?.data?.content?.fields;
-                console.log('round___', round)
                 if (round) {
                     const suiRatio = ethers.utils.formatUnits(
                         round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
@@ -121,7 +122,9 @@ export const BuyTokenOG = () => {
             // optioins pass usdt or other token
         });
 
-        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), 9).toString();
+        const balanceSplit = ethers.utils
+            .parseUnits((data?.amount * toNumber(ratio)).toString(), 9)
+            .toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
@@ -160,10 +163,24 @@ export const BuyTokenOG = () => {
         <StyledBuyTokenBox>
             <Stack>
                 <form onSubmit={handleSubmit(handleSales)}>
-                    <Typography sx={{ textAlign: 'end', marginRight: 0.5, fontWeight: 'bold', fontSize: 14 }}>
+                    <Typography
+                        sx={{
+                            textAlign: 'end',
+                            marginRight: 0.5,
+                            fontWeight: 'bold',
+                            fontSize: 14,
+                        }}
+                    >
                         {balances ? `Your balance: ${balances}` : 'Loading'}
                     </Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 80 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            height: 80,
+                        }}
+                    >
                         <Typography sx={{ marginRight: 2 }}>Amount:</Typography>
                         <InputField
                             id="amount"
@@ -180,7 +197,7 @@ export const BuyTokenOG = () => {
                                             },
                                         }}
                                     >
-                                        XUI
+                                        SUA
                                     </InputAdornment>
                                 ),
                             }}
@@ -197,7 +214,13 @@ export const BuyTokenOG = () => {
                         />
                     </Box>
 
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
                         <Typography sx={{ marginRight: 2 }}>Retrieve:</Typography>
                         <NormalInputField
                             value={watchAmount * toNumber(ratio) || 0}
@@ -225,7 +248,13 @@ export const BuyTokenOG = () => {
                         />
                     </Box>
                     <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
-                        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: isMobile ? '1rem' : '0' }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: isMobile ? '1rem' : '0',
+                            }}
+                        >
                             <CheckboxFiled handleChecked={handleChecked} />
                             <Typography>
                                 I’ve read and accepted all the{' '}
