@@ -50,9 +50,9 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 24,
   boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
   marginTop: '24px',
-  '& .MuiLinearProgress-bar1': {
+  '& .MuiLinearProgress-bar': {
     background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
-    borderRadius: '50px',
+    borderRadius: 32,
   },
   position: 'relative',
   '::before': {
@@ -61,7 +61,7 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
     background: 'linear-gradient(0deg, #00C5D3 81.61%, #96E0DA 95.07%)',
     inset: '0px',
     zIndex: 1,
-    borderRadius: '50px',
+    borderRadius: 32,
     padding: '2px',
     '-webkit-mask':
       'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',

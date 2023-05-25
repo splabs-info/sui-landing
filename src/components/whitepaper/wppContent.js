@@ -10,37 +10,55 @@ export const wppContent = [
             {
                 title: 'The History',
                 content: [
-                    'YouSUI team has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces. There were tens of thousands of people in the communities of various projects, and most users of the projects were not able to participate in Private Sale or IDO. Even related influencers could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets. So, we are going to provide users with experiences and opportunities such as INO, IDO, and IGO for the convenience of users, focusing on projects that we are incubating or developed in the future.',
+                    <>YouSUI team has accumulated various experiences by launching various M2E, T2E, Social-Fi, Game-Fi, and DEX and NFT Marketplaces as Incubators and Developers. There were tens of thousands of people in the communities of various projects and most users of the projects were not able to participate in Private Sale or IDO Launchpad. Even early adopters could not easily participate in other Launchpad platforms, and demanded new Launchpad platforms suitable for the Korean, Japanese and Vietnamese markets.<b> We especially felt the need for customized Launchpads in these markets and wanted to have a high market share in the relatively new Layer 1 SUI Network.</b> So, we are going to provide users with opportunities to invest High Quality Projects such as INO, IDO, and IGO Launchpad for the convenience of users. We are focusing on projects that we are incubating or developed in the future on SUI Network.</>
+                ],
+            },
+            {
+                title: 'The Global',
+                content: [
+                    <>YouSUI plans to induce users to use all functions within one platform by adding Launchpad, DEX, Bridge, and NFT Marketplace so that SUI Network can be widely used in Korea, Japan, and Vietnam and become familiar with users. In addition, it will be a platform that educates users to deep-dive into SUI so that YouSUI and SUI Network can become the strongest platform and blockchain in the Japanese, Korean and Vietnamese markets at the same time.Through the localization strategy, we will support developmental support and incubation programs so that more developers and project builders can use YouSUI and SUI Network. We will support the Incubation Program and Migration Program so that other Layer 1 projects can migrate to the SUI Network and succeed.</>
                 ],
             },
             {
                 title: 'Features of YouSUI',
                 list: [
-                    'YouSUI is a transparent and rational launchpad with smart contracts',
-                    'YouSUI is not limited to one area and welcomes all projects',
-                    'YouSUI was born to activate Sui Blockchain',
+                    'YouSUI is a transparent and rational Launchpad with smart contracts',
+                    'YouSUI is not limited to one area and welcomes all projects which wants to migrate to SUI Network.',
+                    'YouSUI has operated Incubation Program and Development assistance.',
                     'YouSUI works with projects with a high probability of success with enhanced Due Diligence and Regulation.',
-                    'YouSUI supports multiple chains and has bridge technology as well',
+                    'YouSUI supports Cross-Chain Swap and has Non-Evm Bridge to get more liquidity on SUI Network.',
+                ],
+            },
+            // {
+            //     title: 'YouSUI Summary',
+            //     content: [
+            //         'YouSUI is a launchpad platform born to expand the ecosystem of Sui blockchain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with YouSUI',
+            //     ],
+            // },
+            // {
+            //     title: 'Cryptocurrency and NFT',
+            //     content: [
+            //         'The Basics about Cryptocurrency : Cryptocurrency comes under many names. You have probably read about some of the most popular types of cryptocurrencies such as Bitcoin, Litecoin, and Ethereum. Cryptocurrencies are increasingly popular alternatives for online payments. Before converting real dollars, euros, pounds, or other traditional currencies into ₿ (the symbol for Bitcoin, the most popular cryptocurrency), you should understand what cryptocurrencies are, what the risks are in using cryptocurrencies, and how to protect your investment.',
+            //         'What is cryptocurrency? A cryptocurrency is a digital currency, which is an alternative form of payment created using encryption algorithms. The use of encryption technologies means that cryptocurrencies function both as a currency and as a virtual accounting system. To use cryptocurrencies, you need a cryptocurrency wallet. These wallets can be software that is a cloud-based service or is stored on your computer or on your mobile device. The wallets are the tool through which you store your encryption keys that confirm your identity and link to your cryptocurrency.',
+            //     ],
+            // },
+            // {
+            //     title: 'NFTs (Non-fungible tokens)',
+            //     content: [
+            //         'NFTs are a relatively new type of digital asset that are a popular topic of conversation in the blockchain world today. Unlike fungible tokens, like bitcoin and ethereum, where one token is indistinguishable from another, NFTs are designed to represent ownership of a digital asset that is unique and scarce.',
+            //         'With the overall popularity of video games and the idea that NFTs could replace the in-game virtual items, many video game developers started to look at this new opportunity to attract game players around the idea of real ownership of their virtual assets. Furthermore, as a reaction to the trending market, many protocol chains dedicated hundreds of millions of dollars of investment to NFTs and video games.',
+            //     ],
+            // },
+            {
+                title: 'Our vision',
+                content: [
+                    'Our Vision is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the YouSUI community will join us to make us stronger when we work together. The YouSUI team creates an environment where tokens and NFTs that users choose directly through Governance can be traded on YouSUI Launchpad, DEX, and NFT Marketplace.',
                 ],
             },
             {
-                title: 'YouSUI Summary',
+                title: 'Our mission',
                 content: [
-                    'YouSUI is a launchpad platform born to expand the ecosystem of Sui blockchain, and is a social platform that presents games, NFTs, DeFi and Metaverse projects running on Sui Blockchain to the public through IGO and INO. We are collaborating with dozens of game development partners, and it is a platform that collaborates and supports projects beyond Sui Blockchain such as Polygon, Binance, Klaytn, Solana and Ethereum to enter the Sui Blockchain ecosystem. The XUI token used on the platform is a utility token used on the Launchpad platform along with YouSUI',
-                ],
-            },
-            {
-                title: 'Cryptocurrency and NFT',
-                content: [
-                    'The Basics about Cryptocurrency : Cryptocurrency comes under many names. You have probably read about some of the most popular types of cryptocurrencies such as Bitcoin, Litecoin, and Ethereum. Cryptocurrencies are increasingly popular alternatives for online payments. Before converting real dollars, euros, pounds, or other traditional currencies into ₿ (the symbol for Bitcoin, the most popular cryptocurrency), you should understand what cryptocurrencies are, what the risks are in using cryptocurrencies, and how to protect your investment.',
-                    'What is cryptocurrency? A cryptocurrency is a digital currency, which is an alternative form of payment created using encryption algorithms. The use of encryption technologies means that cryptocurrencies function both as a currency and as a virtual accounting system. To use cryptocurrencies, you need a cryptocurrency wallet. These wallets can be software that is a cloud-based service or is stored on your computer or on your mobile device. The wallets are the tool through which you store your encryption keys that confirm your identity and link to your cryptocurrency.',
-                ],
-            },
-            {
-                title: 'NFTs (Non-fungible tokens)',
-                content: [
-                    'NFTs are a relatively new type of digital asset that are a popular topic of conversation in the blockchain world today. Unlike fungible tokens, like bitcoin and ethereum, where one token is indistinguishable from another, NFTs are designed to represent ownership of a digital asset that is unique and scarce.',
-                    'With the overall popularity of video games and the idea that NFTs could replace the in-game virtual items, many video game developers started to look at this new opportunity to attract game players around the idea of real ownership of their virtual assets. Furthermore, as a reaction to the trending market, many protocol chains dedicated hundreds of millions of dollars of investment to NFTs and video games.',
+                    'Our Mission is to activate the Sui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Sui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on YouSUI.',
                 ],
             },
             {
@@ -60,58 +78,46 @@ export const wppContent = [
                 checklist: true,
                 list: [
                     <>
-                        {' '}
                         <IconSquareCheck /> Sui blockchain
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck /> Ethereum
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck /> Binance
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck /> Polygon
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck />
                         Solana
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck /> Avalanche
                     </>,
                     <>
-                        {' '}
                         <IconSquare />
                         Klaytn
                     </>,
 
                     <>
-                        {' '}
                         <IconSquare />
                         Fantom
                     </>,
                     <>
-                        {' '}
                         <IconSquare />
                         Harmony
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck />
                         Optimism
                     </>,
                     <>
-                        {' '}
                         <IconSquareCheck />
                         Arbitrum
                     </>,
                     <>
-                        {' '}
                         <IconSquare />
                         Tron
                     </>,
@@ -124,9 +130,9 @@ export const wppContent = [
                     <>
                         <IconSquareCheck /> OKX wallet
                     </>,
-                    <>
-                        <IconSquareCheck /> Metamask
-                    </>,
+                    // <>
+                    //     <IconSquareCheck /> Metamask
+                    // </>,
                     <>
                         <IconSquareCheck /> Bitkeep
                     </>,
@@ -139,11 +145,10 @@ export const wppContent = [
                     // <>
                     //     <IconSquareCheck /> Coin98
                     // </>,
-                    <>
-                        {' '}
-                        <IconSquare />
-                        Trust Wallet
-                    </>,
+                    // <>
+                    //     <IconSquare />
+                    //     Trust Wallet
+                    // </>,
                 ],
             },
             {
@@ -152,43 +157,54 @@ export const wppContent = [
                     <b> Launchpad Platform</b>,
                     'YouSUI is a blockchain-based platform that helps independent game developers and Blockchain Project team to raise funds by selling and pre-selling their in-game tokens or in-game NFTs, including unique ones, in the form of NFTs.',
                     <b> NFT marketplace</b>,
-                    'YouSUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once.',
-                    <b>Beyond Sui blockchain </b>,
-                    'YouSUI wants to grow into a multi-chain launchpad platform that goes beyond Sui Blockchain. We will provide one additional blockchain every quarter, and create one launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Sui Blockchain.',
+                    'YouSUI provides the NFT Marketplace so that users can trade NFTs purchased through INO without having to move to another NFT-Marketplace. It also provides multiple transactions so that you can buy or sell multiple NFTs at once. It is designed to allow artists and general users to create their own collection pages or mint NFTs.',
+                    <b>Beyond Sui Network </b>,
+                    'YouSUI wants to grow into a multi-chain launchpad platform that goes beyond Sui Blockchain. We will provide additional blockchain every quarter, and create 1 launchpad that integrates all blockchains. In addition, we support incubation and technical assistance so that many other blockchain games and projects can migrate into Sui Blockchain.',
                     <b>Liquidity Supply </b>,
-                    'YouSUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits, and they will be able to share a portion of the fees for activities performed within the DEX.',
+                    'YouSUI creates an environment where users can provide liquidity on their own. Liquidity providers (LPs) will receive various rewards and benefits and they will be able to share a portion of the fees for activities performed within the DEX. General users can supply liquidity to selected LPs, and new LPs are created through review by the project team.',
                     <b>Participation of ventures and DAOs</b>,
                     'Through our own Due Diligence, YouSUI matches ventures and DAOs that can invest in order for users to succeed in investment and to fully integrate with the project community. Not only general users, but also ventures and DAO users can help the success of the project as they are simultaneously influxed into the new project.',
                 ],
             },
         ],
     },
+    // {
+    //     id: 'platform-overview',
+    //     category: 'Platform Overview',
+    //     description: [
+    //         {
+    //             content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
+    //         },
+    //     ],
+    // },
     {
-        id: 'platform-overview',
-        category: 'Platform Overview',
+        id: 'target-market',
+        category: 'Target Market',
         description: [
+            { content: [<img src="/images/whitepaper/target-market.jpg" alt="" />] },
+
             {
-                content: [<img src="/images/whitepaper/overview-yousui-1.jpg" alt="" />],
-            },
-        ],
-    },
-    {
-        id: 'vision-mission',
-        category: 'Vision & Mission',
-        description: [
-            { content: [<img src="/images/whitepaper/Vision-Mission.jpg" alt="" />] },
-            {
-                title: 'Our vision',
+                title: 'Target Market',
                 content: [
-                    'is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the YouSUI community will join us to make us stronger when we work together.',
+                    'YouSUI team is based in Korea, Japan, Vietnam and Nigeria, respectively and Marketing Managers and BD Managers are working on localization in each country.',
+                    'Japan is one of the countries where NFTs are emerging as the most popular investment products and have not yet become WEB 3 Mass Adoption. Patrick Kim, who leads the Japan Team, is focusing on localization so that various NFT projects can be onboarded to the SUI Network and Blockchain Migration can proceed.',
+                    'Korea is a market where the enthusiasm for NFT has cooled down and is still enthusiastic about cryptocurrency (Token Investment). Currently, there are many localized and domestic cryptocurrency exchanges, but in Launchpad, DEX, and NFT Marketplace, they do not show the same amount of cryptocurrency trading volume.',
+                    `Vietnam is one of the countries where various projects, large and small, have been successful enough to be called the hub of Web 3.0. Vietnam is one of the countries with the largest number of transactions on the SUI Network. The younger generation has begun to invest intensively in cryptocurrency and NFTs, but most of projects fail in globalization.India and Nigeria have large populations, but few people know about cryptocurrencies and NFTs. India and Nigeria are YouSUI's most anticipated target markets, and the largest number of people will come to SUI Network and YouSUI platform. Currently, it is gradually increasing its market share through the Ambassador program.`,
                 ],
             },
-            {
-                title: 'Our mission',
-                content: [
-                    'is to activate the Sui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Sui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on YouSUI.',
-                ],
-            },
+            // { content: [<img src="/images/whitepaper/Vision-Mission.jpg" alt="" />] },
+            // {
+            //     title: 'Our vision',
+            //     content: [
+            //         'Our Vision is to remove all barriers, build decentralized technologies for financial services and make them accessible to all global users. Also, everyone in the YouSUI community will join us to make us stronger when we work together. The YouSUI team creates an environment where tokens and NFTs that users choose directly through Governance can be traded on YouSUI Launchpad, DEX, and NFT Marketplace.',
+            //     ],
+            // },
+            // {
+            //     title: 'Our mission',
+            //     content: [
+            //         'Our Mission is to activate the Sui Blockchain and help Dapps and WEB 3 projects on other blockchains migrate to Sui Blockchain, and allow more transactions to occur through interactions between games, guilds and communities. Our goal is to simultaneously operate a Cross-Swap, Multi-Chain Bridge, and Community-based Launchpad platform on YouSUI.',
+            //     ],
+            // },
         ],
     },
 
@@ -281,7 +297,7 @@ export const wppContent = [
                 list: ['COO Splabs', 'COO YouSUI', 'COO InfinityAngel, Stepwatch project'],
             },
             {
-                title: 'CMO - Sim Sang Jin',
+                title: 'CMO - Patrick Kim',
                 list: [
                     'CEO Nettiss',
                     'Infinity Angel, Stepwatch, Immortal wars Head of Partnership',
@@ -932,7 +948,22 @@ export const wppContent = [
                     'Initial Circulating Supply on Day 1 : 2,000,000 XUI',
                     'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
                     'Public Launch price: $ 0.25',
-                    'Initial Marketcap : 500,000 USD',
+                    // 'Initial Marketcap : 500,000 USD',
+                ],
+            },
+            {
+                title: 'Token Utility',
+                list: [
+                    'Stake XUI-X LP Token to obtain Swap fee Shares',
+                    'Stake XUI and Get Tier',
+                    'Stake XUI and have the right to join IDO / INO Launchpad',
+                    'Pay XUI to make your own NFT collection',
+                    'Pay XUI to Mint your own NFTs on SUI Network',
+                    'Stake XUI and Get the discount of Swap Fee',
+                    'Stake XUI and Get the discount of NFT Trade fee',
+                    'Pay XUI to use of Non-EVM Bridge',
+                    'Donate XUI on YouSUI Social Platform',
+                    'Governance',
                 ],
             },
             {
@@ -966,6 +997,8 @@ export const wppContent = [
                     'Incubation Program : Service Fee + Token Investment',
                     'Liquidity Providing Program : Service Fee',
                 ],
+            }, {
+                content: [[<img src="/images/whitepaper/business-model.png" alt="" />]],
             },
             // {
             //     title: 'About XUI Token',
@@ -1222,6 +1255,25 @@ export const wppContent = [
                 content: [
                     'Using proven and audited technology and best practices is the way to maximize security. The basic infrastructure on YouSUI is built by integrating already existing solutions and practices that have been proven over time.',
                     'The encrypted seed phrase, along with other sensitive data like addresses, keys, and account data, is securely saved in the browser’s local storage. No online app, website, or provider can access any of that secured data - the user remains with total control over their wallet. We leverage audited and proven open source solutions to minimize the possibility of error.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'brand-kit-and-community',
+        category: 'Brand Kit and Community',
+        description: [
+            {
+                content: [
+                    <a href='https://twitter.com/YouSUI_Global' target='_blank' rel="noreferrer">
+                        ✅ Twitter (+48K Followers)
+                    </a>,
+                    <a href='https://medium.com/@YouSUI' target='_blank' rel="noreferrer">
+                        ✅ Medium
+                    </a>,
+                    <a href='https://discord.gg/yousui' target='_blank' rel="noreferrer">
+                        ✅ Discord (20K+ Members)
+                    </a>,
                 ],
             },
         ],
