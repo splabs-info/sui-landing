@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Navigate, redirect, useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
 import HomepageV2 from './pages/Homepage-v2';
@@ -7,6 +7,7 @@ import IDOList from './pages/IDOList';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
+import FreeMinting from './pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -50,6 +51,15 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <IDODetail />
+                            {/* <ComingSoon /> */}
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'free-claim-nft',
+                    element: (
+                        <Suspense>
+                            <FreeMinting />
                             {/* <ComingSoon /> */}
                         </Suspense>
                     ),
