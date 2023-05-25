@@ -68,6 +68,15 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
         },
     },
 }));
+
+const AvatarBox = styled(Box)(({ theme }) => ({
+    position: 'relative',
+    borderRadius: 24,
+    padding: 24,
+    background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
+}));
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -108,7 +117,9 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants }) 
     return (
         <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
             <Grid xs={12} md={6} item>
-                <AvatarPool />
+                <AvatarBox>
+                    <AvatarPool />
+                </AvatarBox>
             </Grid>
             <Grid width="100%" xs={12} md={6} item>
                 <Box sx={{ width: '100%' }}>

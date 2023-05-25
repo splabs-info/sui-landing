@@ -1,11 +1,11 @@
 import { Box, Grid, MenuItem, Typography } from '@mui/material';
+import { IconBrandTelegram } from '@tabler/icons';
+import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { TitleSection } from 'components/my-profile/TitleSection';
+import { socials } from 'layouts/Footer-v2';
+import { useState } from 'react';
 import { PoolInformationCard } from './PoolInfoCard';
 import { TokenInformationCard } from './TokenInfoCard';
-import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
-import { socials } from 'layouts/Footer-v2';
-import { IconBrandTelegram } from '@tabler/icons';
-import { useState } from 'react';
 export const PoolInformation = ({ minPurchase, maxPerUser }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -82,6 +82,11 @@ export const PoolInformation = ({ minPurchase, maxPerUser }) => {
                         </a>
                     </MenuCustom>
                 </SocialBox>
+                <Typography variant='body1' color={'white'} mt={3}>
+                    SUA is a token of Meta version. It has no intrinsic value or expectation of financial return.
+                    There is no official team or roadmap.
+                </Typography>
+
             </Grid>
             <Grid sx={{ width: '100%' }} md={6} sm={12} item>
                 <TitleSection title="POOL INFORMATION" />

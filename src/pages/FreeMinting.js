@@ -1,6 +1,7 @@
 import { Box, Container, Grid, LinearProgress, Typography, styled } from '@mui/material';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
 import Page from 'components/common/Page';
+import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
@@ -17,9 +18,6 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   '& div': {
     zIndex: 1,
-  },
-  '& .MuiTypography-body1': {
-    marginTop: '16px',
   },
   '::before': {
     content: "''",
@@ -50,9 +48,9 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 24,
   boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
   marginTop: '24px',
-  '& .MuiLinearProgress-bar1': {
+  '& .MuiLinearProgress-bar': {
     background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
-    borderRadius: '50px',
+    borderRadius: 32,
   },
   position: 'relative',
   '::before': {
@@ -61,7 +59,7 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
     background: 'linear-gradient(0deg, #00C5D3 81.61%, #96E0DA 95.07%)',
     inset: '0px',
     zIndex: 1,
-    borderRadius: '50px',
+    borderRadius: 32,
     padding: '2px',
     '-webkit-mask':
       'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
@@ -90,7 +88,11 @@ export default function FreeMinting() {
         <Container maxWidth={'xl'}>
           <FreeMintingBox>
             <Grid container>
-              <Grid item md={6} xs={12}>
+              <Grid item md={6} xs={12} sx={{
+                '& .MuiTypography-body1': {
+                  marginTop: '16px',
+                },
+              }}>
                 <Box mb={3}>
                   <Typography variant="h1" fontWeight={700} color={'white'}>
                     Free
@@ -140,15 +142,18 @@ export default function FreeMinting() {
 
                 </Box>
                 <NFTSlider /> */}
-                <StyledLinearProgress variant="determinate" component="p" value={62.5} />
-                <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} gap={3} mb={3}>
-                  <Typography variant="body1" color={'white'}>
-                    1250
-                  </Typography>
-                  <Typography variant="body1" color={'white'}>
-                    TOTAL: 2000
-                  </Typography>
-                </Box>
+                <ProcessBarBox
+                  percent={62.5}
+                  subtitle={<>
+                    <Typography variant="body1" color={'white'}>
+                      1250
+                    </Typography>
+                    <Typography variant="body1" color={'white'}>
+                      TOTAL: 2000
+                    </Typography>
+                  </>}
+                  sx={{ margin: '24px 0' }}
+                />
                 <Box
                   display={'flex'}
                   flexDirection={'row'}
