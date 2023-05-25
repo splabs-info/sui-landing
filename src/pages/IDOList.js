@@ -19,28 +19,73 @@ import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useWallet } from '@suiet/wallet-kit';
 export default function IDOList() {
     const isDesktop = useResponsive('up', 'md');
     const isMobile = useResponsive('down', 'sm');
 
+    const wallet = useWallet();
+
+    // onClick={() => {
+    //     if (!wallet.installed) {
+    //         return;
+    //     }
+    //     try {
+    //         select(wallet.name);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }}
+
+    console.log('wallet', wallet);
     return (
         <Page title="IDO list">
-            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
+            <SectionBox
+                sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}
+            >
                 <Container maxWidth="xl">
-                    <Box sx={{ position: 'relative', zIndex: 1, pt: isDesktop ? 20 : 15, color: 'white' }}>
+                    <Box
+                        sx={{
+                            position: 'relative',
+                            zIndex: 1,
+                            pt: isDesktop ? 20 : 15,
+                            color: 'white',
+                        }}
+                    >
                         <Title variant="h2">
-                            Enter {isMobile && <br />} <p className="linear">the multi chain</p> <br />
+                            Enter {isMobile && <br />} <p className="linear">the multi chain</p>{' '}
+                            <br />
                             based Launchpad
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
+                        <a
+                            href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <FrameButton>Apply for Launchpad</FrameButton>
                         </a>
-                        <Link to={'/ido-launchpad/buy-token'}>
-                            <FrameButton>Buy $ XUI</FrameButton>
-                        </Link>
+                        {!wallet?.connected || wallet?.status === 'disconnected' ? (
+                            <FrameButton
+                                onClick={() => {
+                                    if (!wallet.installed) {
+                                        return;
+                                    }
+                                    try {
+                                        wallet.select('Suiet');
+                                    } catch (error) {
+                                        console.log(error);
+                                    }
+                                }}
+                            >
+                                Buy $ XUI
+                            </FrameButton>
+                        ) : (
+                            <Link to={'/ido-launchpad/buy-token'}>
+                                <FrameButton>Buy $ XUI</FrameButton>
+                            </Link>
+                        )}
                         <Link to={'/whitepaper'}>
                             <FrameButton>Whitepaper</FrameButton>
                         </Link>
@@ -48,7 +93,13 @@ export default function IDOList() {
                     <Questions />
                 </Container>
             </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/bg-ido.png')", color: 'white', paddingTop: 0 }}>
+            <SectionBox
+                sx={{
+                    backgroundImage: "url('/images/background/bg-ido.png')",
+                    color: 'white',
+                    paddingTop: 0,
+                }}
+            >
                 <Container maxWidth="xl">
                     <OnGoingPools />
                     <UpComingPools />
@@ -63,7 +114,8 @@ const Title = styled(Typography)(({ theme }) => ({
     textTransform: 'uppercase',
     '& .linear': {
         display: 'initial',
-        background: 'linear-gradient(rgba(129, 236, 197, 1), rgba(148, 203, 255, 1), rgba(133, 150, 255, 1))',
+        background:
+            'linear-gradient(rgba(129, 236, 197, 1), rgba(148, 203, 255, 1), rgba(133, 150, 255, 1))',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         lineHeight: '1.3',

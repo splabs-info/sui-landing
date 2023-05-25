@@ -1,10 +1,10 @@
-import { Box, Grid, Stack, Tab, alpha, styled } from '@mui/material';
-import PropTypes from 'prop-types';
+import { TabContext, TabList } from '@mui/lab';
+import { Box, Grid, Tab, alpha, styled } from '@mui/material';
 import useResponsive from 'hooks/useResponsive';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
-import { TabContext, TabList } from '@mui/lab';
-import { useState } from 'react';
 import { PublicRound } from './round/PublicRound';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
@@ -31,9 +31,9 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
         opacity: 1,
         fontSize: '1rem',
         '& span': {
-            background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
+            background:
+                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
         },
-
     },
     '& .MuiTabs-flexContainer': {
         justifyContent: { md: 'center', xs: 'flex-start' },
@@ -79,11 +79,7 @@ function TabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && (
-                <Box sx={{ mt: 2 }}>
-                    {children}
-                </Box>
-            )}
+            {value === index && <Box sx={{ mt: 2 }}>{children}</Box>}
         </div>
     );
 }
@@ -100,7 +96,7 @@ function a11yProps(index) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-export const Pool = () => {
+export const Pool = ({ balances, totalSold, totalSupply, ratio, participants }) => {
     const isMobile = useResponsive('down', 'sm');
 
     const [value, setValue] = useState(0);
@@ -125,13 +121,19 @@ export const Pool = () => {
                                 variant={isDesktop ? 'fullWidth' : 'scrollable'}
                                 scrollButtons="auto"
                             >
-                                <Tab label="OG ROUND"  {...a11yProps(0)} />
+                                <Tab label="OG ROUND" {...a11yProps(0)} />
                                 <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
                                 <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} />
                             </CustomTabList>
                         </Box>
                         <TabPanel value={value} index={0}>
-                            <OGRound />
+                            <OGRound
+                                balances={balances}
+                                totalSold={totalSold}
+                                totalSupply={totalSupply}
+                                ratio={ratio}
+                                participants={participants}
+                            />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <PublicRound />

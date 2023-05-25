@@ -12,7 +12,6 @@ export const SUIWalletContext = ({ children }) => {
 
     const wallet = useWallet();
 
-    console.log('wallet', wallet?.address);
     const keypair = new Ed25519Keypair();
     const signer = new RawSigner(keypair, provider);
     const tx = new TransactionBlock();
@@ -34,26 +33,8 @@ export const SUIWalletContext = ({ children }) => {
 
             setBalance(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
             setAllObjects(allObjectsId);
-
-            // const txn = await provider.getObject({
-            //     id: '0x72574b9b84499d0ea4521a67fd8c3ef8439e5065264a87969d3cfb86a6d7e1ef',
-
-            //     options: { showContent: true },
-            // });
-
-            // const allBalances = await provider.getAllBalances({
-            //     owner: wallet?.address,
-            // });
-
-            // const balances = await provider.getBalance({
-            //     owner: wallet?.address,
-            // });
-
-            // const allCoins = await provider.getAllCoins({
-            //     owner: wallet?.address,
-            // });
         })();
-    }, [wallet.address]);
+    }, [wallet.address, balances]);
 
     return (
         <SuiContext.Provider

@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Box, Stack, Typography, Button } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled, useTheme } from '@mui/material/styles';
 import { useWallet } from '@suiet/wallet-kit';
@@ -15,7 +16,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { IdoSchema } from '../validations';
-import { LoadingButton } from '@mui/lab';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background:
@@ -63,14 +63,16 @@ const CheckBoxLabel = () => {
         </Typography>
     );
 };
-export const BuyTokenOG = () => {
+
+const MaxButton = styled(Button)(({ theme }) => ({}));
+
+export const BuyTokenOG = ({ ratio, balances }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
-    const [ratio, setRadio] = React.useState();
 
     const theme = useTheme();
     const wallet = useWallet();
-    const { provider, balances, tx, allObjectsId } = React.useContext(SuiContext);
+    const { provider, tx, allObjectsId } = React.useContext(SuiContext);
 
     const {
         control,
@@ -87,28 +89,6 @@ export const BuyTokenOG = () => {
     const isMobile = useResponsive('down', 'sm');
 
     const watchAmount = watch('amount');
-
-    React.useEffect(() => {
-        if (!wallet?.address) return;
-        else {
-            (async () => {
-                // If coin type is not specified, it defaults to 0x2::sui::SUI
-                const txn = await provider.getObject({
-                    id: '0xe9e2a6278c49d2628493ee6bbb8663f6c37aab41435b75e44f83494040adabaf',
-                    options: { showContent: true },
-                });
-
-                const round = txn?.data?.content?.fields;
-                if (round) {
-                    const suiRatio = ethers.utils.formatUnits(
-                        round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
-                        9
-                    );
-                    setRadio(suiRatio);
-                }
-            })();
-        }
-    }, [provider, wallet?.address, balances]);
 
     const handleChecked = (event) => {
         setChecked(event.target.checked);
@@ -153,6 +133,7 @@ export const BuyTokenOG = () => {
             }
         } catch (e) {
             toast.error(e);
+            setLoading(false);
         }
     };
 
@@ -219,6 +200,7 @@ export const BuyTokenOG = () => {
                                 },
                             }}
                         />
+                        <MaxButton>Max</MaxButton>
                     </Box>
 
                     <Box

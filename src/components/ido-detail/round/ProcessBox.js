@@ -1,9 +1,7 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
-import { useWallet } from '@suiet/wallet-kit';
 import { styled } from '@mui/material/styles';
-import React from 'react';
 import { ethers } from 'ethers';
-import { SuiContext } from 'provider/SuiProvider';
+import React from 'react';
 
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background:
@@ -35,41 +33,22 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
     top: -20,
     right: 16,
 }));
-
-export const ProcessBox = () => {
-    const [ratio, setRadio] = React.useState();
-    const [round, setRound] = React.useState();
-    const [currentParticipants, setParticipants] = React.useState();
-    const wallet = useWallet();
-    const { provider } = React.useContext(SuiContext);
-    React.useEffect(() => {
-        if (!wallet?.address) return;
-        else {
-            (async () => {
-                // If coin type is not specified, it defaults to 0x2::sui::SUI
-                const txn = await provider.getObject({
-                    id: '0xe9e2a6278c49d2628493ee6bbb8663f6c37aab41435b75e44f83494040adabaf',
-                    // fetch the object content field
-                    options: { showContent: true },
-                });
-
-                const round = txn?.data?.content?.fields;
-                setRound(round);
-                const participants = round?.participants?.fields?.contents.length;
-                setParticipants(participants);
-
-                const suiRatio = ethers.utils.formatUnits(
-                    round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
-                    9
-                );
-                setRadio(suiRatio);
-            })();
-        }
-    }, [provider, wallet?.address]);
+export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
+    const progress = React.useMemo(() => totalSold / totalSupply, [totalSold, totalSupply]);
+    const currentParticipants = React.useMemo(() => participants, [participants]);
+    const formattedTotalSold = React.useMemo(() => {
+        if (totalSold) return ethers.utils.formatUnits(totalSold, 9);
+    }, [totalSold]);
+    const formattedTotalSupply = React.useMemo(() => {
+        if (totalSupply) return ethers.utils.formatUnits(totalSupply, 9);
+    }, [totalSupply]);
+    const exchangeRate = React.useMemo(() => ratio, [ratio]);
 
     return (
         <StyledProcessBox>
-            <StyledExchangeRate>{`1 SUA = ${ratio} SUI`}</StyledExchangeRate>
+            <StyledExchangeRate>
+                {exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}
+            </StyledExchangeRate>
             <Box
                 sx={{
                     display: 'flex',
@@ -82,15 +61,13 @@ export const ProcessBox = () => {
                     Process
                 </Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {`Current Participants : ${currentParticipants}`}
+                    {currentParticipants
+                        ? `Current Participants : ${currentParticipants}`
+                        : 'Loading'}
                 </Typography>
             </Box>
 
-            <StyledLinearProgress
-                variant="determinate"
-                component="p"
-                value={round ? round?.total_sold / round?.total_supply : 0}
-            />
+            <StyledLinearProgress variant="determinate" component="p" value={progress} />
 
             <Box
                 sx={{
@@ -101,17 +78,14 @@ export const ProcessBox = () => {
                 }}
             >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {round ? `${round?.total_sold / round?.total_supply} %` : 'Loading'}
+                    {progress ? `${progress} %` : 'Loading'}
                 </Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {round
-                        ? `${ethers.utils.formatUnits(
-                              round?.total_sold,
-                              9
-                          )} / ${ethers.utils.formatUnits(round?.total_supply, 9)} `
+                    {formattedTotalSold && formattedTotalSupply
+                        ? `${formattedTotalSold} / ${formattedTotalSupply} `
                         : 'Loading'}
                 </Typography>
             </Box>
         </StyledProcessBox>
     );
-};
+});
