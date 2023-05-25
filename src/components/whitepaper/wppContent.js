@@ -998,7 +998,7 @@ export const wppContent = [
                     'Liquidity Providing Program : Service Fee',
                 ],
             }, {
-                content: [[<img src="/images/whitepaper/business-model.png" alt="" />]],
+                content: [[<img src="/images/whitepaper/business-model.jpg" alt="" />]],
             },
             // {
             //     title: 'About XUI Token',

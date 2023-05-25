@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
+import { ProcessBarBox } from 'components/common/ProcessBarBox';
 
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background:
@@ -70,48 +71,30 @@ export const ProcessBox = () => {
     return (
         <StyledProcessBox>
             <StyledExchangeRate>{`1 SUA = ${ratio} SUI`}</StyledExchangeRate>
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: 1.5,
-                }}
-            >
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    Process
-                </Typography>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {`Current Participants : ${currentParticipants}`}
-                </Typography>
-            </Box>
-
-            <StyledLinearProgress
-                variant="determinate"
-                component="p"
-                value={round ? round?.total_sold / round?.total_supply : 0}
+            <ProcessBarBox
+                title={<>
+                    <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                        Process
+                    </Typography>
+                    <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                        {`Current Participants : ${currentParticipants}`}
+                    </Typography>
+                </>}
+                percent={round ? round?.total_sold / round?.total_supply : 100}
+                subtitle={<>
+                    <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                        {round ? `${round?.total_sold / round?.total_supply} %` : 'Loading'}
+                    </Typography>
+                    <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                        {round
+                            ? `${ethers.utils.formatUnits(
+                                round?.total_sold,
+                                9
+                            )} / ${ethers.utils.formatUnits(round?.total_supply, 9)} `
+                            : 'Loading'}
+                    </Typography>
+                </>}
             />
-
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginTop: 1.5,
-                }}
-            >
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {round ? `${round?.total_sold / round?.total_supply} %` : 'Loading'}
-                </Typography>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {round
-                        ? `${ethers.utils.formatUnits(
-                              round?.total_sold,
-                              9
-                          )} / ${ethers.utils.formatUnits(round?.total_supply, 9)} `
-                        : 'Loading'}
-                </Typography>
-            </Box>
         </StyledProcessBox>
     );
 };
