@@ -6,7 +6,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { ACCOUNT_STORAGE, NAME, PACKAGE, PROJECT, TOKEN_TYPE } from 'constant';
+import { NAME, PACKAGE, PROJECT, TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -15,6 +15,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { IdoSchema } from '../validations';
+import { LoadingButton } from '@mui/lab';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background:
@@ -27,7 +28,7 @@ const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     marginTop: '1rem',
 }));
 
-const StyledBuyTokenBtn = styled(Button)(({ them }) => ({
+const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
     // background:
     //     'linear-gradient(178.73deg, rgba(32, 123, 191, 1) 2.08%, rgba(74, 148, 203, 1)  32.81%, rgba(92, 186, 242, 1) 100%)',
     background:
@@ -64,7 +65,7 @@ const CheckBoxLabel = () => {
 };
 export const BuyTokenOG = () => {
     const [checked, setChecked] = React.useState();
-
+    const [loading, setLoading] = React.useState(false);
     const [ratio, setRadio] = React.useState();
 
     const theme = useTheme();
@@ -76,6 +77,7 @@ export const BuyTokenOG = () => {
         handleSubmit,
         formState: { isValid },
         watch,
+        reset,
     } = useForm({
         mode: 'onChange',
         defaultValues: '',
@@ -106,13 +108,14 @@ export const BuyTokenOG = () => {
                 }
             })();
         }
-    }, [provider, wallet?.address]);
+    }, [provider, wallet?.address, balances]);
 
     const handleChecked = (event) => {
         setChecked(event.target.checked);
     };
 
     const handleSales = async (data) => {
+        setLoading(true);
         const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
 
         tx.setGasPayment(coinSuiObjectData);
@@ -140,10 +143,14 @@ export const BuyTokenOG = () => {
         });
 
         try {
-            const resData = await wallet.signAndExecuteTransactionBlock({
+            const result = await wallet.signAndExecuteTransactionBlock({
                 transactionBlock: tx,
             });
-            console.log('PreSales !', resData);
+            if (result) {
+                setLoading(false);
+                toast.success('Buy token success');
+                reset({ amount: '' });
+            }
         } catch (e) {
             toast.error(e);
         }
@@ -273,7 +280,11 @@ export const BuyTokenOG = () => {
                                 </a>
                             </Typography>
                         </Box>
-                        <StyledBuyTokenBtn type="submit" disabled={!isValid || !checked || !canBuy}>
+                        <StyledBuyTokenBtn
+                            type="submit"
+                            disabled={!isValid || !checked || !canBuy}
+                            loading={loading}
+                        >
                             Buy Now
                         </StyledBuyTokenBtn>
                     </Stack>
