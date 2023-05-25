@@ -42,38 +42,6 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
   }
 }));
 
-const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  background: 'transparent',
-  borderRadius: 32,
-  height: 24,
-  boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
-  marginTop: '24px',
-  '& .MuiLinearProgress-bar': {
-    background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
-    borderRadius: 32,
-  },
-  position: 'relative',
-  '::before': {
-    content: "''",
-    position: 'absolute',
-    background: 'linear-gradient(0deg, #00C5D3 81.61%, #96E0DA 95.07%)',
-    inset: '0px',
-    zIndex: 1,
-    borderRadius: 32,
-    padding: '2px',
-    '-webkit-mask':
-      'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-    '-webkit-mask-composite': 'xor',
-  },
-
-  [theme.breakpoints.down('sm')]: {
-    height: 16,
-    '::before': {
-      padding: '1px',
-    },
-  }
-}));
-
 
 export default function FreeMinting() {
   const isMobile = useResponsive('down', 'sm');
@@ -135,13 +103,9 @@ export default function FreeMinting() {
                 </GradientLoadingButton>
               </Grid>
               <Grid item md={6} xs={12}>
-                {/* <Box sx={{
-                  height: '100%', padding: { md: '2rem', xs: '1rem' },
-                  display: 'flex', flexDirection: 'column', justifyContent: 'center'
-                }}>
-
+                <Box>
+                  <NFTSlider />
                 </Box>
-                <NFTSlider /> */}
                 <ProcessBarBox
                   percent={62.5}
                   subtitle={<>
@@ -200,31 +164,14 @@ const nftImage = [
 
 export const SliderCustom = styled(Slider)(({ theme }) => ({
   "& .slick-track": {
-    width: '100%!important',
   },
   "& .slick-slide": {
-    width: ' 100%!important',
-    position: 'relative',
-    display: 'flex!important',
-    justifyContent: 'center',
-    transition: "all 0.3s ease-in-out",
-    padding: "15px 10px!important",
-    opacity: "0.5",
-    transform: 'scale(0.8)',
-    zIndex: 1,
-    "& .puzzles-image": {
-      filter: 'blur(5px)',
-      minWidth: '300px',
+
+    "& img": {
+      width: 'min(100%,300px)',
     },
     "&.slick-active.slick-current": {
-      transition: "all 0.3s ease-in-out",
-      opacity: "1",
-      justifyContent: 'center',
-      transform: 'scale(1)',
-      zIndex: 2,
-      "& .puzzles-image": {
-        filter: 'blur(5px)',
-      },
+
     },
 
   },
@@ -249,12 +196,8 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
   },
 
   [theme.breakpoints.down("sm")]: {
-    "& .slick-slide": {
-      "& .puzzles-image": {
-        minWidth: '200px',
-      },
-    },
-  },
+  }
+
 }));
 
 function NFTSlider() {
@@ -269,6 +212,7 @@ function NFTSlider() {
     autoplay: false,
     arrows: true,
     centerMode: true,
+    className: "center",
     afterChange: function (index) {
       setSelectedNft(index);
     },
