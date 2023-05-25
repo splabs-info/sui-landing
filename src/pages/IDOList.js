@@ -1,9 +1,8 @@
-import { TabContext } from '@mui/lab';
-import { Box, Container, Stack, styled, Tab, Typography } from '@mui/material';
+import { Box, Container, Stack, styled, Typography } from '@mui/material';
+import { useWallet } from '@suiet/wallet-kit';
 import Page from 'components/common/Page';
 import {
     ButtonTitleBox,
-    CustomTabList,
     FrameButton,
     ImgTitleBox,
     QuestionsButton,
@@ -17,32 +16,20 @@ import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { useWallet } from '@suiet/wallet-kit';
+import { WalletDrawer } from 'components/drawer';
+import React from 'react';
+
 export default function IDOList() {
     const isDesktop = useResponsive('up', 'md');
     const isMobile = useResponsive('down', 'sm');
+    const [openWalletDrawer, setOpenWalletDrawer] = React.useState();
 
     const wallet = useWallet();
 
-    // onClick={() => {
-    //     if (!wallet.installed) {
-    //         return;
-    //     }
-    //     try {
-    //         select(wallet.name);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }}
-
-    console.log('wallet', wallet);
     return (
         <Page title="IDO list">
-            <SectionBox
-                sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}
-            >
+            <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
                 <Container maxWidth="xl">
                     <Box
                         sx={{
@@ -53,34 +40,16 @@ export default function IDOList() {
                         }}
                     >
                         <Title variant="h2">
-                            Enter {isMobile && <br />} <p className="linear">the multi chain</p>{' '}
-                            <br />
+                            Enter {isMobile && <br />} <p className="linear">the multi chain</p> <br />
                             based Launchpad
                         </Title>
                     </Box>
                     <ButtonTitleBox sx={{ gap: '1rem' }}>
-                        <a
-                            href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
+                        <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                             <FrameButton>Apply for Launchpad</FrameButton>
                         </a>
                         {!wallet?.connected || wallet?.status === 'disconnected' ? (
-                            <FrameButton
-                                onClick={() => {
-                                    if (!wallet.installed) {
-                                        return;
-                                    }
-                                    try {
-                                        wallet.select('Suiet');
-                                    } catch (error) {
-                                        console.log(error);
-                                    }
-                                }}
-                            >
-                                Buy $ XUI
-                            </FrameButton>
+                            <FrameButton onClick={() => setOpenWalletDrawer(!openWalletDrawer)}>Buy $ XUI</FrameButton>
                         ) : (
                             <Link to={'/ido-launchpad/buy-token'}>
                                 <FrameButton>Buy $ XUI</FrameButton>
@@ -106,6 +75,16 @@ export default function IDOList() {
                     <PreviousPools />
                 </Container>
             </SectionBox>
+
+            {wallet?.status === 'disconnected' &&
+                (!wallet?.connected && (
+                    <WalletDrawer
+                        address={wallet?.address}
+                        open={openWalletDrawer}
+                        handleClose={setOpenWalletDrawer}
+                        disconnectSui={wallet?.disconnectSui}
+                    />
+                ))}
         </Page>
     );
 }
@@ -114,8 +93,7 @@ const Title = styled(Typography)(({ theme }) => ({
     textTransform: 'uppercase',
     '& .linear': {
         display: 'initial',
-        background:
-            'linear-gradient(rgba(129, 236, 197, 1), rgba(148, 203, 255, 1), rgba(133, 150, 255, 1))',
+        background: 'linear-gradient(rgba(129, 236, 197, 1), rgba(148, 203, 255, 1), rgba(133, 150, 255, 1))',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         lineHeight: '1.3',
