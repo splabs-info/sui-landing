@@ -85,6 +85,8 @@ export const BuyTokenOG = ({ ratio, balances }) => {
     formState: { isValid },
     watch,
     reset,
+    setValue,
+    trigger,
   } = useForm({
     mode: 'onChange',
     defaultValues: '',
@@ -99,7 +101,10 @@ export const BuyTokenOG = ({ ratio, balances }) => {
     setChecked(event.target.checked);
   };
 
+  console.log('isValid___', isValid);
+
   const handleSales = async (data) => {
+    console.log('data____', data);
     setLoading(true);
     const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
 
@@ -150,7 +155,10 @@ export const BuyTokenOG = ({ ratio, balances }) => {
 
   const canBuy = isCanBuy();
 
-  const handleSelectMax = () => {};
+  const handleSelectMax = () => {
+    setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+    trigger('amount');
+  };
 
   return (
     <StyledBuyTokenBox>
@@ -207,7 +215,7 @@ export const BuyTokenOG = ({ ratio, balances }) => {
             />
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-            <MaxButton>Max</MaxButton>
+            <MaxButton onClick={handleSelectMax}>Max</MaxButton>
           </Box>
           <Box
             sx={{
