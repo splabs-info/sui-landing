@@ -56,7 +56,7 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'free-claim-nft',
+                    path: 'free-nft-claim',
                     element: (
                         <Suspense>
                             <FreeMinting />

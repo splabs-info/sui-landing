@@ -62,7 +62,7 @@ export default function FreeMinting() {
                     Free
                   </Typography>
                   <TypographyGradient variant="h1" fontWeight={700} fontSize={!isMobile ? '88px!important' : '48px'}>
-                    Claim NFT
+                    NFT Claim
                   </TypographyGradient>
                 </Box>
                 <Hidden smUp>
