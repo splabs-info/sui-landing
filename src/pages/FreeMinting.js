@@ -90,34 +90,34 @@ export default function FreeMinting() {
                     mb={2}
                   >
                     <BorderGradientButton>
-                      <img src="/images/icon/icon-twitter-normal.png" alt="twitter" />
-                      Share on Twitter
+                      {/* <img src="/images/icon/icon-twitter-normal.png" alt="twitter" /> */}
+                      Join Discord
                     </BorderGradientButton>
                     <BorderGradientButton>
-                      <img src="/images/icon/icon-global.png" alt="global" />
-                      View on Explore
+                      {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
+                      Crew3
                     </BorderGradientButton>
                   </Box>
                 </Hidden>
-                {/* <Typography variant="h6" fontWeight={700} color={'white'}>
+                <Typography variant="h6" fontWeight={700} color={'white'}>
                   Start time:
                 </Typography>
                 <MintingCountdown
                   endTime={'2023-05-31T00:00:00'}
-                /> */}
-                <Typography variant="h6" fontWeight={700} color={'white'}>
+                />
+                {/* <Typography variant="h6" fontWeight={700} color={'white'}>
                   End time:
                 </Typography>
                 <MintingCountdown
                   endTime={'2023-06-15T00:00:00'}
-                />
+                /> */}
 
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}>
                   *** Claim schedule: 31st May, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
-                  Click <b>“Claim Now”</b>  button to receive a free YouSUI benefit.<br />
-                  (Gas fee is not included)
+                  Click <b>“Claim Now”</b> to Receive Free YouSUI NFTs.<br />
+                  (Ready for Next Move, Check you own SUI on wallet)
                 </Typography>
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}
                   sx={{
@@ -157,12 +157,12 @@ export default function FreeMinting() {
                     gap={isMobile ? 1 : 5}
                   >
                     <BorderGradientButton>
-                      <img src="/images/icon/icon-twitter-normal.png" alt="twitter" />
-                      Share on Twitter
+                      {/* <img src="/images/icon/icon-twitter-normal.png" alt="twitter" /> */}
+                      Join Discord
                     </BorderGradientButton>
                     <BorderGradientButton>
-                      <img src="/images/icon/icon-global.png" alt="global" />
-                      View on Explore
+                      {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
+                      Crew3
                     </BorderGradientButton>
                   </Box>
                 </Hidden>
@@ -331,7 +331,7 @@ function NFTSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     autoplay: true,
     arrows: true,
     afterChange: function (index) {
