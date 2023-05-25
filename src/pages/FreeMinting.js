@@ -55,13 +55,13 @@ export default function FreeMinting() {
       >
         <Container maxWidth={'xl'}>
           <FreeMintingBox>
-            <Grid container>
+            <Grid container spacing={3}>
               <Grid item md={6} xs={12}>
                 <Box mb={3}>
-                  <Typography variant="h1" fontWeight={700} color={'white'}>
+                  <Typography variant="h1" fontWeight={700} color={'white'} fontSize={!isMobile ? '88px!important' : '48px'}>
                     Free
                   </Typography>
-                  <TypographyGradient variant="h1" fontWeight={700}>
+                  <TypographyGradient variant="h1" fontWeight={700} fontSize={!isMobile ? '88px!important' : '48px'}>
                     Claim NFT
                   </TypographyGradient>
                 </Box>
@@ -217,6 +217,11 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       opacity: '1!important',
       zIndex: 2,
       transition: 'all 0.5s',
+      "& img": {
+        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.4) -8.02%, rgba(109, 133, 218, 0.4) 98.69%)',
+        backdropFilter: 'blur(15spx)',
+        borderRadius: '10px',
+      },
     },
     "&.slick-active.slick-current + .slick-slide + .slick-slide": {
       transform: 'scale(0.75) translateX(-100%)',
