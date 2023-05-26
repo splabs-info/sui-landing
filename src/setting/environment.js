@@ -10,7 +10,9 @@ const Production = {
 };
 
 export const isProduction =
-    window.location.hostname.indexOf('stepwatch.io') >= 0 || window.location.hostname.indexOf('stepwatchjp.io') >= 0;
+    window.location.hostname.indexOf('yousui.io') >= 0;
+export const isBeta =
+    window.location.hostname.indexOf('beta.yousui.io') >= 0;
 
 export const API = isProduction ? Production.API : Local.API;
 

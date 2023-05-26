@@ -90,7 +90,7 @@ export default function FreeMinting() {
                     mb={2}
                   >
                     <BorderGradientButton>
-                      {/* <img src="/images/icon/icon-twitter-normal.png" alt="twitter" /> */}
+                      <img src="/images/icon/logo-discord.svg" alt="discord" />
                       Join Discord
                     </BorderGradientButton>
                     <BorderGradientButton>
