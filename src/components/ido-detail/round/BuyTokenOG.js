@@ -104,7 +104,6 @@ export const BuyTokenOG = ({ ratio, balances }) => {
   console.log('isValid___', isValid);
 
   const handleSales = async (data) => {
-    console.log('data____', data);
     setLoading(true);
     const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
 

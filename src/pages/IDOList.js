@@ -27,6 +27,9 @@ export default function IDOList() {
 
     const wallet = useWallet();
 
+    const handleConnect = () => {
+        
+    }
     return (
         <Page title="IDO list">
             <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
