@@ -39,7 +39,7 @@ export default function App() {
 
     return (
         <ThemeProvider>
-            <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains}>
+            <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains} autoConnect>
                 <SUIWalletContext>
                     <WalletProvider>
                         <QueryClientProvider client={queryClient}>
