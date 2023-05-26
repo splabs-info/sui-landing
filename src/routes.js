@@ -50,8 +50,8 @@ export default function Router() {
                     path: 'ido-launchpad/buy-token',
                     element: (
                         <Suspense>
-                            <IDODetail />
-                            {/* <ComingSoon /> */}
+                            {/* <IDODetail /> */}
+                            <ComingSoon />
                         </Suspense>
                     ),
                 },
@@ -59,8 +59,8 @@ export default function Router() {
                     path: 'free-nft-claim',
                     element: (
                         <Suspense>
-                            <FreeMinting />
-                            {/* <ComingSoon /> */}
+                            {/* <FreeMinting /> */}
+                            <ComingSoon />
                         </Suspense>
                     ),
                 },

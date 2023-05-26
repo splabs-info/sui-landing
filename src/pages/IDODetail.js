@@ -8,6 +8,7 @@ import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 
+
 export default function IDODetail() {
     const [ratio, setRadio] = React.useState();
     const [participants, setParticipants] = React.useState();
