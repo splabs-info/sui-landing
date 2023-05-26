@@ -12,7 +12,7 @@ export const Footer = styled(Box)(({ theme }) => ({
     '& a': {
         paddingBottom: '0.25rem',
     },
-    '& a:hover': {
+    '& a:not(.logo):hover': {
         borderBottom: '2px solid #1DD7D1',
         fontWeight: 700,
     },

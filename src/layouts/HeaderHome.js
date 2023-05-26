@@ -38,7 +38,7 @@ const config = [
     { label: 'key_2', link: '/ido-launchpad' },
     { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
-    { label: 'key_5', link: '/free-claim-nft' },
+    { label: 'key_5', link: '/free-nft-claim' },
     { label: 'key_6', link: '/coming-soon' },
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
