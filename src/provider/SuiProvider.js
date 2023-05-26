@@ -1,8 +1,8 @@
-import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, TransactionBlock, testnetConnection } from '@mysten/sui.js';
+import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { ethers } from 'ethers';
 import React from 'react';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
 
 const provider = new JsonRpcProvider(testnetConnection);
 
@@ -17,7 +17,6 @@ export const SUIWalletContext = ({ children }) => {
 
     const keypair = new Ed25519Keypair();
     const signer = new RawSigner(keypair, provider);
-    const tx = new TransactionBlock();
 
     React.useEffect(() => {
         if (!provider || !wallet.address || !wallet?.connected) return;
@@ -82,7 +81,6 @@ export const SUIWalletContext = ({ children }) => {
                 balances,
                 provider,
                 signer,
-                tx,
                 keypair,
                 allObjectsId,
             }}

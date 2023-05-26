@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
-import { Box, Stack, Typography, Button } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled, useTheme } from '@mui/material/styles';
+import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
@@ -77,7 +78,7 @@ export const BuyTokenOG = ({ ratio, balances }) => {
 
     const theme = useTheme();
     const wallet = useWallet();
-    const { provider, tx, allObjectsId } = React.useContext(SuiContext);
+    const { provider, allObjectsId } = React.useContext(SuiContext);
 
     const {
         control,
@@ -102,6 +103,8 @@ export const BuyTokenOG = ({ ratio, balances }) => {
     };
 
     const handleSales = async (data) => {
+        const tx = new TransactionBlock();
+
         setLoading(true);
         const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
 
