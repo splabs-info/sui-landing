@@ -142,7 +142,7 @@ export const ChooseWalletModal = () => {
                         </InstallButton>
                     )}
                 </WalletButton>
-                <WalletButton onClick={connectToWallet}>
+                {/* <WalletButton onClick={connectToWallet}>
                     <Box className="img-box">
                         <img src="/images/icon/metamask.png" alt="logo metamask" />
                     </Box>
@@ -151,13 +151,12 @@ export const ChooseWalletModal = () => {
                     </Typography>
                     {error && (
                         <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
-                            {/* <Typography variant="caption">{library.INSTALL}</Typography> */}
                             <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
                                 INSTALL
                             </Typography>
                         </InstallButton>
                     )}
-                </WalletButton>
+                </WalletButton> */}
                 <WalletButton
                     onClick={
                         isInstalledBitKeep ? (
