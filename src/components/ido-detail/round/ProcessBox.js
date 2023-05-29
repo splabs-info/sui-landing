@@ -1,10 +1,9 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ethers, BigNumber } from 'ethers';
+import { ethers } from 'ethers';
 import React from 'react';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { toNumber } from 'lodash';
-import { ProcessBarBox } from 'components/common/ProcessBarBox';
+
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '56px 40px',
