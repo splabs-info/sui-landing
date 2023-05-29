@@ -23,11 +23,11 @@ export const PoolInformation = ({ ratio, minPurchase, maxPerUser }) => {
                 <Typography variant="h3" color={'white'} mb={3}>
                     YOUSUI PJT
                 </Typography>
-                <Typography variant="body1" color={'white'} mb={3}>
+                {/* <Typography variant="body1" color={'white'} mb={3}>
                     A is the easiest and fastest way to approach for developers who want to experime
                     Web3, enabling the best addition of blockchain features to their games in a few
                     minutes for the future of gaming…
-                </Typography>
+                </Typography> */}
 
                 <SocialBox>
                     {socials.map((item, index) =>
