@@ -46,7 +46,7 @@ export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
             >
                 <StyledItemStack>
                     <StyledTitleInfo>Token Distribution</StyledTitleInfo>
-                    <StyledInfo>5,000,000 SUA</StyledInfo>
+                    <StyledInfo>1,000 SUA</StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Min. Purchase</StyledTitleInfo>

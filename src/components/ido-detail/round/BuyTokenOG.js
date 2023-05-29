@@ -200,7 +200,6 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                             id="amount"
                             name="amount"
                             control={control}
-                            // value={1}
                             disabled
                             InputProps={{
                                 endAdornment: (

@@ -117,10 +117,10 @@ export default function OnGoingPools() {
                   <Typography>Participants: {participants}</Typography>
                 </>
               }
-              percent={progress}
+              percent={progress * 100}
               subtitle={
                 <>
-                  <Typography>{progress ? progress.toFixed(7) : 'Loading'} %</Typography>
+                  <Typography>{progress ? progress.toFixed(3) * 100 : 'Loading'} %</Typography>
                   <Typography>
                     {(totalSold && totalSupply) || totalSold === 0 ? (
                       <>
