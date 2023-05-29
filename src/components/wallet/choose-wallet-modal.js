@@ -151,7 +151,6 @@ export const ChooseWalletModal = () => {
                     </Typography>
                     {error && (
                         <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
-                            <Typography variant="caption">{library.INSTALL}</Typography>
                             <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
                                 INSTALL
                             </Typography>
