@@ -8,8 +8,9 @@ export const SectionBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
-    paddingTop: 70,
+    paddingTop: 132,
     paddingBottom: 20,
+    minHeight: '80vh',
     [theme.breakpoints.up('lg')]: {
         paddingTop: 108,
         paddingBottom: 50,
@@ -332,13 +333,14 @@ export const QuestionsButton = styled(Button)(({ theme }) => ({
         width: '47%',
     },
     [theme.breakpoints.down('sm')]: {
-        width: '45%',
+        width: '50%',
+        height: 80,
         padding: '.75rem 0.75rem',
         '& .MuiTypography-body1': {
-            fontSize: '0.8rem',
+            fontSize: '12px',
         },
         '& .MuiTypography-body2': {
-            fontSize: '0.6rem',
+            fontSize: '11px',
         },
     },
     // padding: '1.5rem',

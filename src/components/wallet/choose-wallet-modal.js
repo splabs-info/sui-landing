@@ -118,10 +118,10 @@ export const ChooseWalletModal = () => {
                         isInstalledOkx
                             ? connectOkxWallet
                             : () => {
-                                  window.open(
-                                      'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge'
-                                  );
-                              }
+                                window.open(
+                                    'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge'
+                                );
+                            }
                     }
                 >
                     <Box className="img-box">

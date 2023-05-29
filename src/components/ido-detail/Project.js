@@ -20,7 +20,8 @@ const ExpandMore = styled((props) => {
 }));
 
 const StyledProjectCard = styled(Box)(({ theme }) => ({
-    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
+    background:
+        'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '24px',
     padding: 40,
@@ -38,26 +39,26 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
 
 const projectContent = [
     {
-        title: "Token Distribution",
-        content: "Date UTC"
+        title: 'Token Distribution',
+        content: 'Date UTC',
     },
     {
-        title: "Min. Allocation",
-        content: "250 USD"
+        title: 'Min. Allocation',
+        content: '250 USD',
     },
     {
-        title: "Max. Allocation",
-        content: "10,000 USD"
+        title: 'Max. Allocation',
+        content: '10,000 USD',
     },
     {
-        title: "Token Price",
-        content: "4 XUI = 1 USD"
+        title: 'Token Price',
+        content: '4 XUI = 1 USD',
     },
     {
-        title: "Access Type",
-        content: "Public"
-    }
-]
+        title: 'Access Type',
+        content: 'Public',
+    },
+];
 export const ProjectInfo = () => {
     const [expanded, setExpanded] = React.useState(false);
 
@@ -70,10 +71,17 @@ export const ProjectInfo = () => {
             <TitleSection title="ABOUT THE PROJECT" />
             <StyledProjectCard>
                 <Typography color="white" textAlign="left" lineHeight={'32px'} mb={2}>
-                    The XUI Token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with YouXUI. On social platforms, it can be used when clicking likes or making donations. By staking XUI Tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.
+                    SUA is a token of Meta version. It has no intrinsic value or expectation of
+                    financial return. There is no official team or roadmap.
                 </Typography>
-                <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ color: 'white', lineHeight: '32px' }}>
-                    The XUI Token is the platform's governance token, and by staking it, you get the opportunity to participate in IDO and INO. In addition, you can participate in the governance that determines the direction of the project by using the XUI Token. It can be used as currency in DEX and NFT Marketplace, and liquidity can be supplied along with YouXUI. On social platforms, it can be used when clicking likes or making donations. By staking XUI Tokens, you not only get staking rewards, but also become an early investor in cutting-edge and high-potential projects.
+                <Collapse
+                    in={expanded}
+                    timeout="auto"
+                    unmountOnExit
+                    sx={{ color: 'white', lineHeight: '32px' }}
+                >
+                    SUA is a token of Meta version. It has no intrinsic value or expectation of
+                    financial return. There is no official team or roadmap.
                 </Collapse>
                 <StyledDivider />
                 <ExpandMore
@@ -85,7 +93,6 @@ export const ProjectInfo = () => {
                 >
                     {expanded ? 'See less' : 'See more'}
                 </ExpandMore>
-
             </StyledProjectCard>
         </>
     );

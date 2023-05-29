@@ -38,7 +38,7 @@ const config = [
     { label: 'key_2', link: '/ido-launchpad' },
     { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
-    { label: 'key_5', link: '/coming-soon' },
+    { label: 'key_5', link: '/free-nft-claim' },
     { label: 'key_6', link: '/coming-soon' },
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
@@ -139,7 +139,6 @@ export default function HeaderHome() {
         setShowSidebar(false);
     };
 
-
     const [prevScrollpos, setPrevScrollpos] = useState(0);
 
     const handleScroll = () => {
@@ -149,23 +148,22 @@ export default function HeaderHome() {
         } else {
             setScrollPositionToggle(false);
         }
-        const header = window.document.getElementById("header");
+        const header = window.document.getElementById('header');
         if (prevScrollpos > position) {
-            if (header !== null) header.style.top = "0";
+            if (header !== null) header.style.top = '0';
         } else {
-            if (header !== null) header.style.top = "-130px";
+            if (header !== null) header.style.top = '-130px';
         }
         setPrevScrollpos(position);
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [prevScrollpos]);
-
 
     const handleOpenConnectPopup = () => setOpenWalletDrawer(true);
     useEffect(() => {
@@ -177,14 +175,13 @@ export default function HeaderHome() {
     }, []);
 
     useEffect(() => {
-        if (address || wallet?.address) {
+        if (address || wallet?.address || !wallet?.connected || wallet?.status === 'disconnected') {
             setWallet(address || wallet?.address);
             setOpenConnectPopup(false);
         }
     }, [address, wallet?.address]);
 
     const activeRoute = '/coming-soons';
-
 
     const MenuHeaderBox = () => (
         <>
@@ -394,10 +391,7 @@ export default function HeaderHome() {
 
                                 {walletAddress && (
                                     <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center', padding: 0 }}>
-                                        <Avatar
-                                            src="/images/icon/icon-user.png"
-                                            sx={{ borderRadius: '0', width: 32, height: 32 }}
-                                        />
+                                        <Avatar src="/images/icon/icon-user.png" sx={{ borderRadius: '0', width: 32, height: 32 }} />
                                     </IconButton>
                                 )}
                                 {/* <Languages sx={{ color: 'white' }} /> */}
@@ -448,8 +442,7 @@ export default function HeaderHome() {
                 onClose={handleClose}
                 sx={{
                     '& .MuiPaper-root': {
-                        background:
-                            'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
+                        background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
                         backdropFilter: 'blur(10px)',
                     },
                 }}

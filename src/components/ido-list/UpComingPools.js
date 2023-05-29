@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
@@ -45,54 +45,60 @@ import { ComingSoonIDOCard } from './ComingSoon';
 // ];
 
 export default function UpComingPools() {
-    const isDesktop = useResponsive('up', 'md');
-    const theme = useTheme();
-    return (
-        <Box my={20} position="relative">
-            <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-            <TitleBox>
-                <Typography>Upcoming</Typography>
-                <TypographyGradient>Pools</TypographyGradient>
-            </TitleBox>
-            <Stack
-                direction={{ lg: 'row', md: 'row', sm: 'column' }}
-                justifyContent={{ lg: 'space-between', md: 'center' }}
-                alignItems="center"
-                flexWrap="wrap"
-                sx={{
-                    marginTop: 4,
-                    // background:
-                    //     'linear-gradient(0deg, rgba(234, 204, 248, 0.15) 0%, rgba(150, 224, 218, 0.15) 100%)',
-                    // boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-                    borderRadius: '16px',
-                    // padding: '32px 64px',
-                    [theme.breakpoints.down(1400)]: {
-                        justifyContent: 'center',
-                    },
-                }}
-            >
-                <Box
-                    sx={{
-                        [theme.breakpoints.down(1400)]: {
-                            marginBottom: '64px',
-                        },
-                    }}
-                >
-                    <img src="images/ido/up-coming.svg" alt="" />
-                </Box>
-                <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
-                <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
-                {/* <Box
-                    sx={{
-                        [theme.breakpoints.down(1400)]: {
-                            marginBottom: '64px',
-                        },
-                    }}
-                >
-                    <img src="images/ino/upcoming-1.svg" alt="" />
-                </Box> */}
-            </Stack>
-            {/* <Grid
+  const isDesktop = useResponsive('up', 'md');
+  const theme = useTheme();
+  return (
+    <Box my={20} position="relative">
+      <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+      <TitleBox>
+        <Typography>Upcoming</Typography>
+        <TypographyGradient>Pools</TypographyGradient>
+      </TitleBox>
+
+      <Grid container spacing={2}>
+        <Grid item md={4} xs={12} sx={{
+          [theme.breakpoints.down('sm')]: {
+            marginTop: '64px',
+          },
+        }}> <img src="images/ido/up-coming.svg" alt="" />
+        </Grid>
+        <Grid item md={4} xs={12}>
+          <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+        </Grid>
+        <Grid item md={4} xs={12}>
+          <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+        </Grid>
+      </Grid>
+      {/* <Stack
+        direction={{ lg: 'row', md: 'row', sm: 'column' }}
+        justifyContent={{ lg: 'space-between', md: 'center' }}
+        alignItems="center"
+        flexWrap="wrap"
+        sx={{
+          marginTop: 4,
+          // background:
+          //     'linear-gradient(0deg, rgba(234, 204, 248, 0.15) 0%, rgba(150, 224, 218, 0.15) 100%)',
+          // boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+          borderRadius: '16px',
+          // padding: '32px 64px',
+          [theme.breakpoints.down(1400)]: {
+            justifyContent: 'center',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            [theme.breakpoints.down(1400)]: {
+              marginBottom: '16px',
+            },
+          }}
+        >
+          <img src="images/ido/up-coming.svg" alt="" />
+        </Box>
+        <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+        <ComingSoonIDOCard avatar="images/ido/coming-soon.svg" />
+      </Stack> */}
+      {/* <Grid
         container
         spacing={2}
         mt={5}
@@ -122,8 +128,8 @@ export default function UpComingPools() {
               </Stack>
             </Box>
           </Grid> */}
-            {/* ))} */}
-            {/* {data.map((item) => (
+      {/* ))} */}
+      {/* {data.map((item) => (
           <Grid
             item
             md={3}
@@ -204,7 +210,7 @@ export default function UpComingPools() {
             </Box>
           </Grid>
         ))} */}
-            {/* </Grid> */}
-        </Box>
-    );
+      {/* </Grid> */}
+    </Box>
+  );
 }

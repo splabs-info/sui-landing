@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { ethers } from 'ethers';
 import { PoolInfoBox } from './IDODetailStyled';
-
 
 const StyledTitleInfo = styled(Typography)(({ theme }) => ({
     fontWeight: 'normal',
@@ -35,40 +35,40 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 }));
 
-
-const poolContent = [
-    {
-        title: "Token Distribution",
-        content: "Date UTC"
-    },
-    {
-        title: "Min. Allocation",
-        content: "250 USD"
-    },
-    {
-        title: "Max. Allocation",
-        content: "10,000 USD"
-    },
-    {
-        title: "Token Price",
-        content: "4 XUI = 1 USD"
-    },
-    {
-        title: "Access Type",
-        content: "Public"
-    }
-]
-
-export const PoolInformationCard = () => {
+export const PoolInformationCard = ({ minPurchase, maxPerUser }) => {
     return (
         <PoolInfoBox>
-            <StyledStack direction="column" alignItems="center" spacing={3} divider={<StyledDivider flexItem />}>
-                {poolContent.map((item, index) => (
-                    <StyledItemStack key={index}>
-                        <StyledTitleInfo>{item.title}</StyledTitleInfo>
-                        <StyledInfo>{item.content}</StyledInfo>
-                    </StyledItemStack>
-                ))}
+            <StyledStack
+                direction="column"
+                alignItems="center"
+                spacing={3}
+                divider={<StyledDivider flexItem />}
+            >
+                <StyledItemStack>
+                    <StyledTitleInfo>Token Distribution</StyledTitleInfo>
+                    <StyledInfo>50,000 SUA</StyledInfo>
+                </StyledItemStack>
+                <StyledItemStack>
+                    <StyledTitleInfo>Min. Purchase</StyledTitleInfo>
+                    <StyledInfo>
+                        {minPurchase ? ethers.utils.formatUnits(minPurchase, 9) : 'Loading'} SUA
+                    </StyledInfo>
+                </StyledItemStack>
+                <StyledItemStack>
+                    <StyledTitleInfo>Max. Purchase</StyledTitleInfo>
+                    <StyledInfo>
+                        {maxPerUser ? ethers.utils.formatUnits(maxPerUser, 9) : 'Loading'} SUA
+                    </StyledInfo>
+                </StyledItemStack>
+                <StyledItemStack>
+                    <StyledTitleInfo>Token Price</StyledTitleInfo>
+                    <StyledInfo>0.08</StyledInfo>
+                </StyledItemStack>
+
+                <StyledItemStack>
+                    <StyledTitleInfo>Access Type</StyledTitleInfo>
+                    <StyledInfo>Publish</StyledInfo>
+                </StyledItemStack>
             </StyledStack>
         </PoolInfoBox>
     );

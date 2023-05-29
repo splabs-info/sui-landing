@@ -82,7 +82,7 @@ export default function TitleMain() {
               {/* <img alt="gatekeeper" src="/images/home/gatekeeper-rotate.gif" width={'30%'} /> */}
             </Box>
             <ButtonTitleBox>
-              <Link to={'/ido-launchpad/buy-token'}>
+              <Link to={'/coming-soon'}>
                 <ApplyButton>Buy XUI</ApplyButton>
               </Link>
               <ApplyButton>

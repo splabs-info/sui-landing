@@ -1,7 +1,10 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
-
 import { styled } from '@mui/material/styles';
-
+import { ethers, BigNumber } from 'ethers';
+import React from 'react';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
+import { toNumber } from 'lodash';
+import { ProcessBarBox } from 'components/common/ProcessBarBox';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '56px 40px',
@@ -9,14 +12,19 @@ const StyledProcessBox = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     position: 'relative',
-    marginTop: 32
+    marginTop: 32,
 }));
 
 const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+    
+    
     borderRadius: 32,
     height: 24,
     boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
+    '& .MuiLinearProgress-barColorPrimary': {
+        background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+        // backgroundColor: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+    }
 }));
 
 const StyledExchangeRate = styled(Box)(({ theme }) => ({
@@ -31,27 +39,67 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
     top: -20,
     right: 16,
 }));
+export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
 
-export const ProcessBox = () => {
+    console.log('participants__', participants)
+    const [update, setUpdate] = React.useState(false);
+    const { soled } = useYouSuiStore((state) => state.sold);
+
+    React.useEffect(() => {
+        if (soled) {
+            setUpdate(true);
+        }
+    }, [soled]);
+
+    const progress = React.useMemo(() => {
+        if (totalSold && totalSupply) {
+            return ethers.utils.formatUnits(totalSold, 9) / ethers.utils.formatUnits(totalSupply, 9);
+        }
+    }, [totalSold, totalSupply]);
+
+    const currentParticipants = React.useMemo(() => participants, [participants]);
+    const formattedTotalSold = React.useMemo(() => {
+        if (totalSold) return ethers.utils.formatUnits(totalSold, 9);
+    }, [totalSold]);
+    const formattedTotalSupply = React.useMemo(() => {
+        if (totalSupply) return ethers.utils.formatUnits(totalSupply, 9);
+    }, [totalSupply]);
+    const exchangeRate = React.useMemo(() => ratio, [ratio]);
+
     return (
         <StyledProcessBox>
-            <StyledExchangeRate>1 XUI = 0.25 SUI</StyledExchangeRate>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1.5 }}>
+            <StyledExchangeRate>{exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}</StyledExchangeRate>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: 1.5,
+                }}
+            >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    Max Participants: 4527
+                    {currentParticipants || currentParticipants === 0 ? `Current Participants : ${currentParticipants}` : 'Loading'}
                 </Typography>
             </Box>
 
-            <StyledLinearProgress variant="determinate" component="p" />
+            <StyledLinearProgress variant="determinate" component="p" value={progress} />
 
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 1.5 }}>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>100.00%</Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: 1.5,
+                }}
+            >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    9499897.78/9500000 ATK
+                    {progress || progress === 0 ? `${progress.toFixed(7)} %` : 'Loading'}
+                </Typography>
+                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
+                    {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
                 </Typography>
             </Box>
         </StyledProcessBox>
     );
-};
-
+});
