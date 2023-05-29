@@ -7,7 +7,7 @@ import IDOList from './pages/IDOList';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
-import FreeMinting from './pages/FreeMinting';
+// import FreeMinting from './pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -50,8 +50,8 @@ export default function Router() {
                     path: 'ido-launchpad/buy-token',
                     element: (
                         <Suspense>
-                            {/* <IDODetail /> */}
-                            <ComingSoon />
+                            <IDODetail />
+                            {/* <ComingSoon /> */}
                         </Suspense>
                     ),
                 },

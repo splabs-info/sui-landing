@@ -22,12 +22,13 @@ export default function IDODetail() {
     React.useEffect(() => {
         const fetchPoolData = async () => {
             const txn = await provider.getObject({
-                id: '0xe9e2a6278c49d2628493ee6bbb8663f6c37aab41435b75e44f83494040adabaf',
+                id: '0x52fd9b063775816f32825c4429d1543cdf01695d25270d0c03943f3f2d06b181',
                 options: { showContent: true },
             });
 
             const round = txn?.data?.content?.fields;
 
+            // console.log('round___', round);
             if (round) {
                 const suiRatio = ethers.utils.formatUnits(
                     round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,

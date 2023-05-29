@@ -8,7 +8,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { NAME, PACKAGE, PROJECT, TOKEN_TYPE } from 'constant';
+import { CLOCK, NAME, PACKAGE, PROJECT, TOKEN_TYPE, PAYMENT_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -110,10 +110,10 @@ export const BuyTokenOG = ({ ratio, balances }) => {
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const coinBalance = await provider.getBalance({
-            owner: '0xca3c9173560027e258bb016ff76f1c9fcbe926769c591e835995d6ee54482aa2',
-            // optioins pass usdt or other token
-        });
+        // const coinBalance = await provider.getBalance({
+        //     owner: '0xca3c9173560027e258bb016ff76f1c9fcbe926769c591e835995d6ee54482aa2',
+        //     // optioins pass usdt or other token
+        // });
 
         const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), 9).toString();
 
@@ -126,8 +126,8 @@ export const BuyTokenOG = ({ ratio, balances }) => {
 
         tx.moveCall({
             target: `${PACKAGE}::launchpad_presale::purchase`,
-            typeArguments: [TOKEN_TYPE, '0x2::sui::SUI'],
-            arguments: [tx.object(PROJECT), tx.pure(NAME), vec, tx.pure(parseAmount)],
+            typeArguments: [TOKEN_TYPE, PAYMENT_TYPE],
+            arguments: [tx.object(CLOCK), tx.object(PROJECT), tx.pure(NAME), vec, tx.pure(parseAmount)],
         });
 
         try {
@@ -138,6 +138,9 @@ export const BuyTokenOG = ({ ratio, balances }) => {
                 setLoading(false);
                 toast.success('Buy token success');
                 reset({ amount: '' });
+            } else {
+                setLoading(false);
+                toast.error('Transaction rejected');
             }
         } catch (e) {
             toast.error(e);

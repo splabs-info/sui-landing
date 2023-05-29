@@ -52,11 +52,11 @@ export const SUIWalletContext = ({ children }) => {
 
                 // Return new Asset object
                 return {
-                    id: metadata.id,
-                    decimals: metadata.decimals,
-                    description: metadata.description,
-                    iconUrl: metadata.iconUrl,
-                    name: metadata.name,
+                    id: metadata?.id,
+                    decimals: metadata?.decimals,
+                    description: metadata?.description,
+                    iconUrl: metadata?.iconUrl,
+                    name: metadata?.name,
                     symbol: metadata.symbol,
                     balance: balanceObj ? parseInt(balanceObj.totalBalance) : 0, // assumes balance is in smallest unit of coin
                 };
