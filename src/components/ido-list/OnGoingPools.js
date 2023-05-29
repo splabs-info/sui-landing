@@ -7,7 +7,8 @@ import useResponsive from 'hooks/useResponsive';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SUA_PRESALE_OG } from 'constant/sui-chain';
+// import { SUA_PRESALE_OG } from 'constant/sui-chain';
+import * as moment from 'moment';
 const img = '/images/ido/sua-sale.jpg';
 
 const AvatarBox = styled(Box)(({ theme }) => ({
@@ -43,6 +44,8 @@ export default function OnGoingPools() {
 
   const { provider, balances } = React.useContext(SuiContext);
 
+  console.log('tiemmmmm',  moment(1685340000000).format('Do MMMM YYYY, h:mm:ss a'))
+ 
   React.useEffect(() => {
     const fetchPoolData = async () => {
       const txn = await provider.getObject({
@@ -106,7 +109,7 @@ export default function OnGoingPools() {
             </AvatarBox>
           </Grid>
           <Grid item md={8} xs={12}>
-            <Typography variant="h4">PUBLIC ROUND (Beta)</Typography>
+            <Typography variant="h4">IDO TEST ROUND (SUA TOKEN)</Typography>
             <ProcessBarBox
               title={
                 <>
@@ -119,7 +122,7 @@ export default function OnGoingPools() {
                 <>
                   <Typography>{progress ? progress.toFixed(7) : 'Loading'} %</Typography>
                   <Typography>
-                    {totalSold && totalSupply ? (
+                    {(totalSold && totalSupply) || totalSold === 0 ? (
                       <>
                         {`${ethers.utils.formatUnits(totalSold, 9)} / ${ethers.utils.formatUnits(totalSupply, 9)}`} XUI
                       </>
@@ -154,18 +157,18 @@ export default function OnGoingPools() {
                     </Stack>
                     <Stack direction="row" justifyContent={'space-between'}>
                       <Typography>Start at:</Typography>
-                      <Typography fontWeight={'bold'}>2023/04/20 17:00 (UTC +9)</Typography>
+                      <Typography fontWeight={'bold'}>{moment(1685340000000).format('LLL')}</Typography>
                     </Stack>
                     <Stack direction="row" justifyContent={'space-between'}>
                       <Typography>End at:</Typography>
-                      <Typography fontWeight={'bold'}>2023/04/20 17:00 (UTC +9)</Typography>
+                      <Typography fontWeight={'bold'}>{moment(1686441600000).format('LLL')}</Typography>
                     </Stack>
                   </Stack>
                 </Grid>
                 <Divider flexItem orientation={isMobile ? 'horizontal' : 'vertical'} />
                 <Grid item xs={12} sm={3}>
                   <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
-                    <Typography fontWeight={'bold'}>07D 12:31:12</Typography>
+                    {/* <Typography fontWeight={'bold'}>07D 12:31:12</Typography> */}
                     <Button
                       onClick={() => navigate('/ido-launchpad/sua')}
                       sx={{

@@ -132,7 +132,7 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
                                 variant={isDesktop ? 'fullWidth' : 'scrollable'}
                                 scrollButtons="auto"
                             >
-                                <Tab label="OG ROUND" {...a11yProps(0)} />
+                                <Tab label="IDO TEST ROUND (SUA TOKEN)" {...a11yProps(0)} />
                                 {/* <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
                                 <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} /> */}
                             </CustomTabList>

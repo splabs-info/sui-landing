@@ -6,7 +6,7 @@ import { socials } from 'layouts/Footer-v2';
 import { useState } from 'react';
 import { PoolInformationCard } from './PoolInfoCard';
 import { TokenInformationCard } from './TokenInfoCard';
-export const PoolInformation = ({ minPurchase, maxPerUser }) => {
+export const PoolInformation = ({ ratio, minPurchase, maxPerUser }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -90,7 +90,7 @@ export const PoolInformation = ({ minPurchase, maxPerUser }) => {
             </Grid>
             <Grid sx={{ width: '100%' }} md={6} sm={12} item>
                 <TitleSection title="POOL INFORMATION" />
-                <PoolInformationCard minPurchase={minPurchase} maxPerUser={maxPerUser} />
+                <PoolInformationCard ratio={ratio} minPurchase={minPurchase} maxPerUser={maxPerUser} />
             </Grid>
             <Grid sx={{ width: '100%' }} md={6} sm={12} item>
                 <TitleSection title="TOKEN INFORMATION" />

@@ -74,7 +74,7 @@ export const ProjectInfo = () => {
                     SUA is a token of Meta version. It has no intrinsic value or expectation of
                     financial return. There is no official team or roadmap.
                 </Typography>
-                <Collapse
+                {/* <Collapse
                     in={expanded}
                     timeout="auto"
                     unmountOnExit
@@ -82,9 +82,9 @@ export const ProjectInfo = () => {
                 >
                     SUA is a token of Meta version. It has no intrinsic value or expectation of
                     financial return. There is no official team or roadmap.
-                </Collapse>
+                </Collapse> */}
                 <StyledDivider />
-                <ExpandMore
+                {/* <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
@@ -92,7 +92,7 @@ export const ProjectInfo = () => {
                     sx={{ textAlign: 'center' }}
                 >
                     {expanded ? 'See less' : 'See more'}
-                </ExpandMore>
+                </ExpandMore> */}
             </StyledProjectCard>
         </>
     );
