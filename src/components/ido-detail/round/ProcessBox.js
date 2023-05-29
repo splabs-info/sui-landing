@@ -81,7 +81,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                 </Typography>
             </Box>
 
-            <StyledLinearProgress variant="determinate" component="p" value={progress} />
+            <StyledLinearProgress variant="determinate" component="p" value={progress * 100} />
 
             <Box
                 sx={{
@@ -92,7 +92,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                 }}
             >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {progress || progress === 0 ? `${progress.toFixed(2) * 100} %` : 'Loading'}
+                    {progress || progress === 0 ? `${progress.toFixed(3) * 100} %` : 'Loading'}
                 </Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
                     {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
