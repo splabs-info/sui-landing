@@ -239,7 +239,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography sx={{ marginRight: 2 }}>Payment is required:</Typography>
+                        <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
                             value={watchAmount * toNumber(ratio) || 0}
                             disabled

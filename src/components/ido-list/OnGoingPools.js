@@ -124,7 +124,7 @@ export default function OnGoingPools() {
                   <Typography>
                     {(totalSold && totalSupply) || totalSold === 0 ? (
                       <>
-                        {`${ethers.utils.formatUnits(totalSold, 9)} / ${ethers.utils.formatUnits(totalSupply, 9)}`} XUI
+                        {`${ethers.utils.formatUnits(totalSold, 9)} / ${ethers.utils.formatUnits(totalSupply, 9)}`} SUA
                       </>
                     ) : (
                       'Loading'
