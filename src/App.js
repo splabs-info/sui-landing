@@ -4,6 +4,7 @@ import {
     SuiTestnetChain,
     SuiWallet,
     SuietWallet,
+    SuiMainnetChain
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -23,7 +24,7 @@ import ThemeProvider from './theme';
 import { SUIWalletContext } from 'provider/SuiProvider';
 const queryClient = new QueryClient();
 
-const SupportedChains = [SuiDevnetChain, SuiTestnetChain];
+const SupportedChains = [SuiMainnetChain, SuiDevnetChain, SuiTestnetChain];
 
 export default function App() {
     // const dispatch = useDispatch();

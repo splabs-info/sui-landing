@@ -7,12 +7,12 @@ import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-
+import { SUA_PRESALE_OG } from 'constant/sui-chain';
 
 export default function IDODetail() {
     const [ratio, setRadio] = React.useState();
-    const [participants, setParticipants] = React.useState();
-    const [participantsWallet, setParticipantsWallet] = React.useState();
+    const [participants, setParticipants] = React.useState(0);
+    const [participantsWallet, setParticipantsWallet] = React.useState([]);
     const [totalSold, setTotalSold] = React.useState();
     const [totalSupply, setTotalSupply] = React.useState();
     const [minPurchase, setMinPurchase] = React.useState();
@@ -22,9 +22,11 @@ export default function IDODetail() {
     React.useEffect(() => {
         const fetchPoolData = async () => {
             const txn = await provider.getObject({
-                id: '0x52fd9b063775816f32825c4429d1543cdf01695d25270d0c03943f3f2d06b181',
+                id: '0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c',
                 options: { showContent: true },
             });
+
+            console.log('txn___', txn)
 
             const round = txn?.data?.content?.fields;
 

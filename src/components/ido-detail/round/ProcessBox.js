@@ -40,6 +40,8 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
     right: 16,
 }));
 export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
+
+    console.log('participants__', participants)
     const [update, setUpdate] = React.useState(false);
     const { soled } = useYouSuiStore((state) => state.sold);
 
@@ -77,7 +79,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
             >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {currentParticipants ? `Current Participants : ${currentParticipants}` : 'Loading'}
+                    {currentParticipants || currentParticipants === 0 ? `Current Participants : ${currentParticipants}` : 'Loading'}
                 </Typography>
             </Box>
 
@@ -92,7 +94,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                 }}
             >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {progress ? `${progress.toFixed(7)} %` : 'Loading'}
+                    {progress || progress === 0 ? `${progress.toFixed(7)} %` : 'Loading'}
                 </Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
                     {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}

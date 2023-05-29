@@ -1,10 +1,10 @@
-import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection } from '@mysten/sui.js';
+import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection, mainnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { ethers } from 'ethers';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const provider = new JsonRpcProvider(testnetConnection);
+const provider = new JsonRpcProvider(mainnetConnection);
 
 export const SuiContext = React.createContext({});
 
