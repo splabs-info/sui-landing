@@ -8,7 +8,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { CLOCK, NAME, PACKAGE, PROJECT, TOKEN_TYPE, PAYMENT_TYPE } from 'constant';
+import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -17,6 +17,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { IdoSchema } from '../validations';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -72,13 +73,16 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ ratio, balances }) => {
+export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
     const theme = useTheme();
     const wallet = useWallet();
-    const { provider, allObjectsId } = React.useContext(SuiContext);
+
+    const { sold } = useYouSuiStore(state => state.sold);
+
+    const { allObjectsId } = React.useContext(SuiContext);
 
     const {
         control,
@@ -86,11 +90,11 @@ export const BuyTokenOG = ({ ratio, balances }) => {
         formState: { isValid },
         watch,
         reset,
-        setValue,
-        trigger,
     } = useForm({
         mode: 'onChange',
-        defaultValues: '',
+        defaultValues: {
+            amount: 1,
+        },
         resolver: yupResolver(IdoSchema),
     });
 
@@ -109,11 +113,6 @@ export const BuyTokenOG = ({ ratio, balances }) => {
         const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
 
         tx.setGasPayment(coinSuiObjectData);
-
-        // const coinBalance = await provider.getBalance({
-        //     owner: '0xca3c9173560027e258bb016ff76f1c9fcbe926769c591e835995d6ee54482aa2',
-        //     // optioins pass usdt or other token
-        // });
 
         const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), 9).toString();
 
@@ -138,12 +137,13 @@ export const BuyTokenOG = ({ ratio, balances }) => {
                 setLoading(false);
                 toast.success('Buy token success');
                 reset({ amount: '' });
+                sold(true)
             } else {
                 setLoading(false);
                 toast.error('Transaction rejected');
             }
         } catch (e) {
-            toast.error(e);
+            toast.error('Transaction failed');
             setLoading(false);
         }
     };
@@ -158,17 +158,17 @@ export const BuyTokenOG = ({ ratio, balances }) => {
 
     const canBuy = isCanBuy();
 
-    const handleSelectMax = () => {
-        setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
-        trigger('amount');
-    };
+    // const handleSelectMax = () => {
+    //     setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+    //     trigger('amount');
+    // };
 
     const renderStatusBalance = React.useCallback(() => {
         if (!wallet?.address || !wallet?.connected) {
             return 'Connect your wallet before';
         }
         if (balances) {
-            return `Your balance: ${balances}`;
+            return `Your balance: ${balances} SUI`;
         }
     }, [balances, wallet?.address, wallet?.connected]);
 
@@ -199,6 +199,8 @@ export const BuyTokenOG = ({ ratio, balances }) => {
                             id="amount"
                             name="amount"
                             control={control}
+                            // value={1}
+                            disabled
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment
@@ -226,9 +228,9 @@ export const BuyTokenOG = ({ ratio, balances }) => {
                             }}
                         />
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+                    {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
                         <MaxButton onClick={handleSelectMax}>Max</MaxButton>
-                    </Box>
+                    </Box> */}
                     <Box
                         sx={{
                             display: 'flex',

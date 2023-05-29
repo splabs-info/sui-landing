@@ -47,7 +47,7 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'ido-launchpad/buy-token',
+                    path: 'ido-launchpad/sua',
                     element: (
                         <Suspense>
                             <IDODetail />

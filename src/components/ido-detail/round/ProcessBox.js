@@ -1,11 +1,12 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ethers } from 'ethers';
+import { ethers, BigNumber } from 'ethers';
 import React from 'react';
-
+import { useYouSuiStore } from 'zustand-store/yousui_store';
+import { toNumber } from 'lodash';
+import { ProcessBarBox } from 'components/common/ProcessBarBox';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
-    background:
-        'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
+    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '56px 40px',
     color: 'white',
     borderRadius: 10,
@@ -15,10 +16,15 @@ const StyledProcessBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+    
+    
     borderRadius: 32,
     height: 24,
     boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
+    '& .MuiLinearProgress-barColorPrimary': {
+        background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+        // backgroundColor: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+    }
 }));
 
 const StyledExchangeRate = styled(Box)(({ theme }) => ({
@@ -34,7 +40,21 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
     right: 16,
 }));
 export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
-    const progress = React.useMemo(() => totalSold / totalSupply, [totalSold, totalSupply]);
+    const [update, setUpdate] = React.useState(false);
+    const { soled } = useYouSuiStore((state) => state.sold);
+
+    React.useEffect(() => {
+        if (soled) {
+            setUpdate(true);
+        }
+    }, [soled]);
+
+    const progress = React.useMemo(() => {
+        if (totalSold && totalSupply) {
+            return ethers.utils.formatUnits(totalSold, 9) / ethers.utils.formatUnits(totalSupply, 9);
+        }
+    }, [totalSold, totalSupply]);
+
     const currentParticipants = React.useMemo(() => participants, [participants]);
     const formattedTotalSold = React.useMemo(() => {
         if (totalSold) return ethers.utils.formatUnits(totalSold, 9);
@@ -46,9 +66,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
 
     return (
         <StyledProcessBox>
-            <StyledExchangeRate>
-                {exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}
-            </StyledExchangeRate>
+            <StyledExchangeRate>{exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}</StyledExchangeRate>
             <Box
                 sx={{
                     display: 'flex',
@@ -57,13 +75,9 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                     marginBottom: 1.5,
                 }}
             >
+                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    Process
-                </Typography>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {currentParticipants
-                        ? `Current Participants : ${currentParticipants}`
-                        : 'Loading'}
+                    {currentParticipants ? `Current Participants : ${currentParticipants}` : 'Loading'}
                 </Typography>
             </Box>
 
@@ -78,12 +92,10 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                 }}
             >
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {progress ? `${progress} %` : 'Loading'}
+                    {progress ? `${progress.toFixed(7)} %` : 'Loading'}
                 </Typography>
                 <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {formattedTotalSold && formattedTotalSupply
-                        ? `${formattedTotalSold} / ${formattedTotalSupply} `
-                        : 'Loading'}
+                    {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
                 </Typography>
             </Box>
         </StyledProcessBox>

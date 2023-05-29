@@ -12,11 +12,11 @@ import React from 'react';
 export default function IDODetail() {
     const [ratio, setRadio] = React.useState();
     const [participants, setParticipants] = React.useState();
+    const [participantsWallet, setParticipantsWallet] = React.useState();
     const [totalSold, setTotalSold] = React.useState();
     const [totalSupply, setTotalSupply] = React.useState();
     const [minPurchase, setMinPurchase] = React.useState();
     const [maxPerUser, setMaxPerUser] = React.useState();
-
     const { provider, balances } = React.useContext(SuiContext);
 
     React.useEffect(() => {
@@ -28,7 +28,6 @@ export default function IDODetail() {
 
             const round = txn?.data?.content?.fields;
 
-            // console.log('round___', round);
             if (round) {
                 const suiRatio = ethers.utils.formatUnits(
                     round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
@@ -38,7 +37,8 @@ export default function IDODetail() {
             }
 
             const participants = round?.participants?.fields?.contents.length;
-
+            const participantsWallet = round?.participants?.fields?.contents;
+            setParticipantsWallet(participantsWallet);
             setParticipants(participants);
             setTotalSold(round?.total_sold);
             setTotalSupply(round?.total_supply);
@@ -63,6 +63,7 @@ export default function IDODetail() {
                         totalSupply={totalSupply}
                         ratio={ratio}
                         participants={participants}
+                        participantsWallet={participantsWallet}
                     />
                     <PoolInformation minPurchase={minPurchase} maxPerUser={maxPerUser} />
                     <ProjectInfo />

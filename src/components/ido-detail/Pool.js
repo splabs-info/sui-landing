@@ -105,7 +105,7 @@ function a11yProps(index) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-export const Pool = ({ balances, totalSold, totalSupply, ratio, participants }) => {
+export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, participantsWallet }) => {
     const isMobile = useResponsive('down', 'sm');
 
     const [value, setValue] = useState(0);
@@ -133,8 +133,8 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants }) 
                                 scrollButtons="auto"
                             >
                                 <Tab label="OG ROUND" {...a11yProps(0)} />
-                                <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
-                                <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} />
+                                {/* <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
+                                <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} /> */}
                             </CustomTabList>
                         </Box>
                         <TabPanel value={value} index={0}>
@@ -144,6 +144,7 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants }) 
                                 totalSupply={totalSupply}
                                 ratio={ratio}
                                 participants={participants}
+                                participantsWallet={participantsWallet}
                             />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
