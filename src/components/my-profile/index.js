@@ -33,10 +33,8 @@ export default function MyInfo() {
     const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
 
-    console.log(' wallet?.address',  wallet?.address)
     const fetchData = React.useCallback(async () => {
         const targetAddress = wallet?.address || address;
-        console.log('targetAddress', targetAddress)
         if (targetAddress) {
             try {
                 const result = await login({ address: targetAddress });

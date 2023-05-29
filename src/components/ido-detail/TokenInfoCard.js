@@ -64,8 +64,8 @@ const tokenContent = [
         content: "0xe5bad555...cd18cda4f::sua::SUA"
     },
     {
-        title: "Private Round Allocation",
-        content: "5,000,000"
+        title: "Round Allocation",
+        content: "1,000"
     }
 ]
 
