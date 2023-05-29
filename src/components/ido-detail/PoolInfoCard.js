@@ -35,7 +35,7 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 }));
 
-export const PoolInformationCard = ({ minPurchase, maxPerUser }) => {
+export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
     return (
         <PoolInfoBox>
             <StyledStack
@@ -46,7 +46,7 @@ export const PoolInformationCard = ({ minPurchase, maxPerUser }) => {
             >
                 <StyledItemStack>
                     <StyledTitleInfo>Token Distribution</StyledTitleInfo>
-                    <StyledInfo>50,000 SUA</StyledInfo>
+                    <StyledInfo>5,000,000 SUA</StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Min. Purchase</StyledTitleInfo>
@@ -62,7 +62,7 @@ export const PoolInformationCard = ({ minPurchase, maxPerUser }) => {
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Token Price</StyledTitleInfo>
-                    <StyledInfo>0.08</StyledInfo>
+                    <StyledInfo>{ratio} SUI</StyledInfo>
                 </StyledItemStack>
 
                 <StyledItemStack>

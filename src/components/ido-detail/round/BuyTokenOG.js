@@ -143,8 +143,9 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                 toast.error('Transaction rejected');
             }
         } catch (e) {
-            toast.error('Transaction failed');
             setLoading(false);
+            
+            // toast.error('Transaction failed');
         }
     };
 

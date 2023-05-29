@@ -61,11 +61,11 @@ const tokenContent = [
     },
     {
         title: "Address",
-        content: "0x5f9b04....3b293804"
+        content: "0xe5bad555...cd18cda4f::sua::SUA"
     },
     {
         title: "Private Round Allocation",
-        content: "50,000"
+        content: "5,000,000"
     }
 ]
 

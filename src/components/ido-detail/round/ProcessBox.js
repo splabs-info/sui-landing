@@ -41,7 +41,6 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
 }));
 export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
 
-    console.log('participants__', participants)
     const [update, setUpdate] = React.useState(false);
     const { soled } = useYouSuiStore((state) => state.sold);
 

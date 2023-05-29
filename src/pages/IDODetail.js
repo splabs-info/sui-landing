@@ -67,7 +67,7 @@ export default function IDODetail() {
                         participants={participants}
                         participantsWallet={participantsWallet}
                     />
-                    <PoolInformation minPurchase={minPurchase} maxPerUser={maxPerUser} />
+                    <PoolInformation ratio={ratio} minPurchase={minPurchase} maxPerUser={maxPerUser} />
                     <ProjectInfo />
                 </Container>
             </SectionBox>
