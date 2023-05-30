@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const provider = new JsonRpcProvider(mainnetConnection);
 
-const investmentCertificate = '0xe5bad555746563f1429f651a0dc79d47f0cbf68a84349e85ea7882bcd18cda4f::launchpad_presale::InvestmentCertificate'
+
 export const SuiContext = React.createContext({});
 
 export const SUIWalletContext = ({ children }) => {
@@ -23,20 +23,7 @@ export const SUIWalletContext = ({ children }) => {
         if (!provider || !wallet.address || !wallet?.connected) return;
 
         (async () => {
-            // const otherObjects = await provider.getOwnedObjects({
-            //     owner: '0x187ddc06de7b0eca49797f3e95050a8234afd51e054c489b9b71b710d92ea815',
-            //     options: { showContent: true },
-            // })
 
-            // const certificateObjects = otherObjects?.data.find((item) => {
-            //     if( item?.data?.content?.type === investmentCertificate) {
-            //         return item?.data?.content
-            //     }
-            // })
-
-            // console.log('certificateObjects___', certificateObjects)
-
-            // console.log('otherObjects__', otherObjects)
             const objects = await provider.getOwnedObjects({
                 owner: wallet?.address,
                 options: { showContent: true },
@@ -89,6 +76,7 @@ export const SUIWalletContext = ({ children }) => {
         })();
     }, [wallet.address, balances, wallet?.connected]);
 
+    // console.log('asssetssss______', assets)
     return (
         <SuiContext.Provider
             value={{
