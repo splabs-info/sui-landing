@@ -1,13 +1,23 @@
-import { Box, Container, Grid, Hidden, LinearProgress, Typography, styled } from '@mui/material';
+import { Box, Container, Grid, Hidden, Typography, styled } from '@mui/material';
+import { JsonRpcProvider, TransactionBlock, devnetConnection } from '@mysten/sui.js';
+import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
 import Page from 'components/common/Page';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
+import { toast } from 'react-toastify';
 
+const addresses = {
+  package: `0xcd3886a6d6798d6b2f5594aef6bec83cc8d74e56ec75dbf26aa4bec828b26f2c`,
+  objectFreeMint: `0xf14286e3d9acad1688b99261a4653f73fe4d61b13ad19752c29119bd18d97351`,
+  objectInformation: `0x713ab0c4f67e26826f304ffe29019a9867daafc29d550d42ecb6c57aa4935e98`,
+};
+
+const provider = new JsonRpcProvider(devnetConnection);
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
   background:
@@ -22,7 +32,8 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
   '::before': {
     content: "''",
     position: 'absolute',
-    background: 'linear-gradient(330.98deg, rgba(24, 161, 220, 0.2) -1.28%, rgba(95, 172, 242, 0.2) -1.27%, rgba(20, 64, 88, 0.14) 49.25%, rgba(49, 173, 243, 0.2) 101.94%)',
+    background:
+      'linear-gradient(330.98deg, rgba(24, 161, 220, 0.2) -1.28%, rgba(95, 172, 242, 0.2) -1.27%, rgba(20, 64, 88, 0.14) 49.25%, rgba(49, 173, 243, 0.2) 101.94%)',
     inset: '0px',
     zIndex: 0,
     borderRadius: '20px',
@@ -39,12 +50,87 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
     '::before': {
       padding: '0px',
     },
-  }
+  },
 }));
-
 
 export default function FreeMinting() {
   const isMobile = useResponsive('down', 'sm');
+  const wallet = useWallet();
+  const [loading, setLoading] = React.useState(false);
+  const [total, setTotal] = React.useState(0);
+  const [minted, setMinted] = React.useState(0);
+  const [owned, setOwned] = React.useState(0);
+  const [flag, setFlag] = React.useState(false);
+
+  React.useEffect(() => {
+    if (provider) {
+      (async () => {
+        const result = await provider.getObject({
+          id: addresses.objectFreeMint,
+          options: { showContent: true },
+        });
+        setTotal(result?.data?.content?.fields?.max_number);
+        setMinted(result?.data?.content?.fields?.number);
+      })();
+    }
+  }, [flag]);
+
+  React.useEffect(() => {
+    if (provider && wallet.address) {
+      (async () => {
+        const balance = await provider.getOwnedObjects({
+          owner: wallet.address,
+          filter: { Package: addresses.package },
+        });
+        if (balance) {
+          setOwned(balance.data.length);
+        }
+      })();
+    }
+  }, [wallet.address, flag]);
+
+  const handleFreeMinting = () =>
+    (async () => {
+      setLoading(true);
+      try {
+        const tx = new TransactionBlock();
+
+        tx.moveCall({
+          target: `${addresses.package}::freemint::freemint`,
+          arguments: [addresses.objectFreeMint, addresses.objectInformation].map((arg) => tx.pure(arg)),
+        });
+
+        const result = await wallet.signAndExecuteTransactionBlock({
+          transactionBlock: tx,
+        });
+        if (result) {
+          toast.success('NFT mint success');
+        } else {
+          toast.error('Transaction rejected');
+        }
+        setTimeout(() => {
+          setLoading(false);
+          setFlag(!flag);
+        }, 5000);
+      } catch (error) {
+        const errorString = error.toString();
+        console.log(errorString);
+        const errorCode = [
+          { key: 1, code: 'ENOT_AUTHORIZED' },
+          {
+            key: 2,
+            code: 'EWHITELIST_EXIST',
+          },
+          { key: 3, code: 'EWHITELIST_EXIST' },
+          { key: 4, code: 'EWHITELIST_NOTEXIST' },
+          { key: 4, code: 'EMAX_MINT_PER_ADDRESS' },
+          { key: 5, code: 'EMAX_MINT' },
+        ].find((item) => errorString.includes(`${item.key.toString()})`));
+        console.log(errorCode);
+        toast.error(errorCode ? errorCode.code : errorString);
+        setLoading(false);
+      }
+    })();
 
   return (
     <Page title="Free Minting">
@@ -58,7 +144,12 @@ export default function FreeMinting() {
             <Grid container spacing={3}>
               <Grid item md={6} xs={12}>
                 <Box mb={3}>
-                  <Typography variant="h1" fontWeight={700} color={'white'} fontSize={!isMobile ? '88px!important' : '48px'}>
+                  <Typography
+                    variant="h1"
+                    fontWeight={700}
+                    color={'white'}
+                    fontSize={!isMobile ? '88px!important' : '48px'}
+                  >
                     Free
                   </Typography>
                   <TypographyGradient variant="h1" fontWeight={700} fontSize={!isMobile ? '88px!important' : '48px'}>
@@ -70,15 +161,17 @@ export default function FreeMinting() {
                     <NFTSlider />
                   </Box>
                   <ProcessBarBox
-                    percent={62.5}
-                    subtitle={<>
-                      <Typography variant="body1" color={'white'}>
-                        1250
-                      </Typography>
-                      <Typography variant="body1" color={'white'}>
-                        TOTAL: 2000
-                      </Typography>
-                    </>}
+                    percent={minted / total ? (minted / total) * 100 : 0}
+                    subtitle={
+                      <>
+                        <Typography variant="body1" color={'white'}>
+                          {minted}
+                        </Typography>
+                        <Typography variant="body1" color={'white'}>
+                          TOTAL: {total}
+                        </Typography>
+                      </>
+                    }
                     sx={{ margin: '16px 0' }}
                   />
                   <Box
@@ -102,9 +195,7 @@ export default function FreeMinting() {
                 <Typography variant="h6" fontWeight={700} color={'white'}>
                   Start time:
                 </Typography>
-                <MintingCountdown
-                  endTime={'2023-05-31T00:00:00'}
-                />
+                <MintingCountdown endTime={'2023-05-31T00:00:00'} />
                 {/* <Typography variant="h6" fontWeight={700} color={'white'}>
                   End time:
                 </Typography>
@@ -116,10 +207,15 @@ export default function FreeMinting() {
                   *** Claim schedule: 31st May, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
-                  Click <b>“Claim Now”</b> to Receive Free YouSUI NFTs.<br />
+                  Click <b>“Claim Now”</b> to Receive Free YouSUI NFTs.
+                  <br />
                   (Ready for Next Move, Check you own SUI on wallet)
                 </Typography>
-                <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}
+                <Typography
+                  variant="body1"
+                  color={'#A0FFF4'}
+                  fontStyle={'italic'}
+                  mt={2}
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -128,7 +224,12 @@ export default function FreeMinting() {
                 >
                   Claim available: <img src="/images/icon/icon-check.png" alt="check" />
                 </Typography>
-                <GradientLoadingButton sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}>
+                <GradientLoadingButton
+                  sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
+                  onClick={handleFreeMinting}
+                  loading={loading}
+                  disabled={owned === 5}
+                >
                   Claim Now (5)
                 </GradientLoadingButton>
               </Grid>
@@ -138,15 +239,17 @@ export default function FreeMinting() {
                     <NFTSlider />
                   </Box>
                   <ProcessBarBox
-                    percent={62.5}
-                    subtitle={<>
-                      <Typography variant="body1" color={'white'}>
-                        1250
-                      </Typography>
-                      <Typography variant="body1" color={'white'}>
-                        TOTAL: 2000
-                      </Typography>
-                    </>}
+                    percent={minted / total ? (minted / total) * 100 : 0}
+                    subtitle={
+                      <>
+                        <Typography variant="body1" color={'white'}>
+                          {minted}
+                        </Typography>
+                        <Typography variant="body1" color={'white'}>
+                          TOTAL: {total}
+                        </Typography>
+                      </>
+                    }
                     sx={{ margin: '24px 0' }}
                   />
                   <Box
@@ -171,7 +274,7 @@ export default function FreeMinting() {
           </FreeMintingBox>
         </Container>
       </SectionBox>
-    </Page >
+    </Page>
   );
 }
 
@@ -192,38 +295,37 @@ const nftImage = [
     src: '/images/nfts/yousui-beta-nft-4.png',
     label: 'NFT 4',
   },
-]
+];
 export const SliderCustom = styled(Slider)(({ theme }) => ({
-
-  "& .slick-track": {
-    marginLeft: '-100%'
+  '& .slick-track': {
+    marginLeft: '-100%',
   },
-  "& .slick-slide": {
+  '& .slick-slide': {
     display: 'flex!important',
     justifyContent: 'center',
     position: 'relative',
-    "& img": {
+    '& img': {
       width: 'min(100%,300px)',
     },
-    "&.slick-active.slick-current": {
+    '&.slick-active.slick-current': {
       transform: 'scale(0.75) translateX(100%)',
       transition: 'all 0.25s',
       filter: 'blur(3px)',
       opacity: 0.8,
-      zIndex: 1
+      zIndex: 1,
     },
-    "&.slick-active.slick-current + .slick-slide": {
+    '&.slick-active.slick-current + .slick-slide': {
       transform: 'scale(1)',
       opacity: '1!important',
       zIndex: 2,
       transition: 'all 0.5s',
-      "& img": {
+      '& img': {
         background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.4) -8.02%, rgba(109, 133, 218, 0.4) 98.69%)',
         backdropFilter: 'blur(15spx)',
         borderRadius: '10px',
       },
     },
-    "&.slick-active.slick-current + .slick-slide + .slick-slide": {
+    '&.slick-active.slick-current + .slick-slide + .slick-slide': {
       transform: 'scale(0.75) translateX(-100%)',
       filter: 'blur(3px)',
       opacity: 0.8,
@@ -231,12 +333,12 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       transition: 'all 0.25s',
     },
   },
-  "& .slick-arrow.slick-next": {
+  '& .slick-arrow.slick-next': {
     right: 0,
     zIndex: 3,
     width: '36px',
     height: '36px',
-    "&:after": {
+    '&:after': {
       content: "''",
       inset: '0px',
       position: 'absolute',
@@ -247,7 +349,7 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       zIndex: '0',
       border: '1px solid #22DAD1',
     },
-    "&:before": {
+    '&:before': {
       color: '#22DAD1',
       fontSize: '24px',
       content: "'\\276F'",
@@ -257,21 +359,21 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       left: '50%',
       transform: 'translate(-50%, -60%)',
     },
-    "&:hover": {
-      "&:before": {
+    '&:hover': {
+      '&:before': {
         color: '#041224',
       },
-      "&:after": {
+      '&:after': {
         background: 'linear-gradient(0deg, #00C5D3 81.61%, #42EECF 94.62%)',
       },
     },
   },
-  "& .slick-arrow.slick-prev": {
+  '& .slick-arrow.slick-prev': {
     left: 0,
     zIndex: 3,
     width: '36px',
     height: '36px',
-    "&:before": {
+    '&:before': {
       color: '#22DAD1',
       fontSize: '24px',
       content: "'\\276E'",
@@ -281,7 +383,7 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       left: '50%',
       transform: 'translate(-50%, -60%)',
     },
-    "&:after": {
+    '&:after': {
       content: "''",
       inset: '0px',
       position: 'absolute',
@@ -292,35 +394,33 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
       zIndex: '0',
       border: '1px solid #22DAD1',
     },
-    "&:hover": {
-      "&:before": {
+    '&:hover': {
+      '&:before': {
         color: '#041224',
       },
-      "&:after": {
+      '&:after': {
         background: 'linear-gradient(0deg, #00C5D3 81.61%, #42EECF 94.62%)',
       },
     },
-
   },
 
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down('sm')]: {
     // marginTop: 32,
-    "& .slick-slide": {
-      "& img": {
+    '& .slick-slide': {
+      '& img': {
         width: 'min(100%,200px)',
       },
-      "&.slick-active.slick-current": {
+      '&.slick-active.slick-current': {
         transform: 'scale(0.65) translateX(110%)',
       },
-      "&.slick-active.slick-current + .slick-slide": {
+      '&.slick-active.slick-current + .slick-slide': {
         transform: 'scale(1)',
       },
-      "&.slick-active.slick-current + .slick-slide + .slick-slide": {
+      '&.slick-active.slick-current + .slick-slide + .slick-slide': {
         transform: 'scale(0.65) translateX(-110%)',
       },
     },
-  }
-
+  },
 }));
 
 function NFTSlider() {
@@ -342,12 +442,9 @@ function NFTSlider() {
     <SliderCustom {...nftSliderSettings}>
       {nftImage.map((item, index) => (
         <Box sx={{ position: 'relative', display: 'flex!important', justifyContent: 'center' }} key={index}>
-          <img
-            alt={item.label}
-            src={item.src}
-          />
+          <img alt={item.label} src={item.src} />
         </Box>
       ))}
     </SliderCustom>
-  )
+  );
 }
