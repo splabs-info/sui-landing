@@ -1,5 +1,6 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ethers } from 'ethers';
 import React from 'react';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
@@ -15,8 +16,6 @@ const StyledProcessBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    
-    
     borderRadius: 32,
     height: 24,
     boxShadow: '0px 0px 10px 2px rgba(152, 255, 230, 0.7)',
@@ -67,37 +66,26 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
     return (
         <StyledProcessBox>
             <StyledExchangeRate>{exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}</StyledExchangeRate>
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: 1.5,
-                }}
-            >
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Process</Typography>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {currentParticipants || currentParticipants === 0 ? `Current Participants : ${currentParticipants}` : 'Loading'}
-                </Typography>
-            </Box>
+            <ProcessBarBox
+                title={
+                    <>
+                        <Typography>Progress</Typography>
+                        <Typography>
+                            {currentParticipants || currentParticipants === 0 ? `Current Participants : ${currentParticipants}` : 'Loading'}
+                        </Typography>
+                    </>
+                }
+                percent={progress * 100}
+                subtitle={
+                    <>
+                        <Typography> {progress || progress === 0 ? `${progress.toFixed(3) * 100} %` : 'Loading'}</Typography>
+                        <Typography>
+                            {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
+                        </Typography>
+                    </>
+                }
+            />
 
-            <StyledLinearProgress variant="determinate" component="p" value={progress * 100} />
-
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginTop: 1.5,
-                }}
-            >
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {progress || progress === 0 ? `${progress.toFixed(3) * 100} %` : 'Loading'}
-                </Typography>
-                <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>
-                    {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
-                </Typography>
-            </Box>
         </StyledProcessBox>
     );
 });
