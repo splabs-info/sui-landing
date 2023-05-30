@@ -112,6 +112,7 @@ export default function FreeMinting() {
         setFlag(!flag);
       } catch (error) {
         const errorString = error.toString();
+        console.log(errorString);
         const errorCode = [
           { key: 1, code: 'ENOT_AUTHORIZED' },
           {
@@ -122,7 +123,7 @@ export default function FreeMinting() {
           { key: 4, code: 'EWHITELIST_NOTEXIST' },
           { key: 4, code: 'EMAX_MINT_PER_ADDRESS' },
           { key: 5, code: 'EMAX_MINT' },
-        ].find((item) => errorString.includes(item.key.toString()));
+        ].find((item) => errorString.includes(`${item.key.toString()})`));
         console.log(errorCode);
         toast.error(errorCode ? errorCode.code : errorString);
         setLoading(false);
