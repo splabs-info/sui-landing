@@ -14,7 +14,7 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'The Global',
+                title: 'The Goal',
                 content: [
                     <>YouSUI plans to induce users to use all functions within one platform by adding Launchpad, DEX, Bridge, and NFT Marketplace so that SUI Network can be widely used in Korea, Japan, and Vietnam and become familiar with users. In addition, it will be a platform that educates users to deep-dive into SUI so that YouSUI and SUI Network can become the strongest platform and blockchain in the Japanese, Korean and Vietnamese markets at the same time.Through the localization strategy, we will support developmental support and incubation programs so that more developers and project builders can use YouSUI and SUI Network. We will support the Incubation Program and Migration Program so that other Layer 1 projects can migrate to the SUI Network and succeed.</>
                 ],
@@ -189,7 +189,8 @@ export const wppContent = [
                     'YouSUI team is based in Korea, Japan, Vietnam and Nigeria, respectively and Marketing Managers and BD Managers are working on localization in each country.',
                     'Japan is one of the countries where NFTs are emerging as the most popular investment products and have not yet become WEB 3 Mass Adoption. Patrick Kim, who leads the Japan Team, is focusing on localization so that various NFT projects can be onboarded to the SUI Network and Blockchain Migration can proceed.',
                     'Korea is a market where the enthusiasm for NFT has cooled down and is still enthusiastic about cryptocurrency (Token Investment). Currently, there are many localized and domestic cryptocurrency exchanges, but in Launchpad, DEX, and NFT Marketplace, they do not show the same amount of cryptocurrency trading volume.',
-                    `Vietnam is one of the countries where various projects, large and small, have been successful enough to be called the hub of Web 3.0. Vietnam is one of the countries with the largest number of transactions on the SUI Network. The younger generation has begun to invest intensively in cryptocurrency and NFTs, but most of projects fail in globalization.India and Nigeria have large populations, but few people know about cryptocurrencies and NFTs. India and Nigeria are YouSUI's most anticipated target markets, and the largest number of people will come to SUI Network and YouSUI platform. Currently, it is gradually increasing its market share through the Ambassador program.`,
+                    `Vietnam is one of the countries where various projects, large and small, have been successful enough to be called the hub of Web 3.0. Vietnam is one of the countries with the largest number of transactions on the SUI Network. The younger generation has begun to invest intensively in cryptocurrency and NFTs, but most of projects fail in globalization.India and Nigeria have large populations, but few people know about cryptocurrencies and NFTs.`,
+                    `India and Nigeria are YouSUI's most anticipated target markets, and the largest number of people will come to SUI Network and YouSUI platform. Currently, it is gradually increasing its market share through the Ambassador program.`,
                 ],
             },
             // { content: [<img src="/images/whitepaper/Vision-Mission.jpg" alt="" />] },
@@ -280,11 +281,21 @@ export const wppContent = [
         category: 'Meet The Team',
         description: [
             {
-                title: 'CEO - Kyle Kim',
+                title:
+                    <p className='flex'> CEO - Kyle Kim
+                        <a href='https://www.linkedin.com/in/kyle-kim-02b20b16b/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: ['CEO SPLabs.', 'COO/Co-Founder Sp-exchange.'],
             },
             {
-                title: 'CTO - Bill Nguyen',
+                title:
+                    <p className='flex'> CTO - Bill Nguyen
+                        <a href='https://www.linkedin.com/in/phuc-nguyen-253a2082' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
                     'CTO at BTVLab (Laboritoy and blockchain project development)',
                     'Server lead at Where.Place ( Indoor digital maps service)',
@@ -293,20 +304,34 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'COO - Tracy Nguyen',
+                title:
+                    <p className='flex'> COO - Tracy Nguyen
+                        <a href='https://www.linkedin.com/in/tracy-nguyen-81b306109/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: ['COO Splabs', 'COO YouSUI', 'COO InfinityAngel, Stepwatch project'],
             },
             {
-                title: 'CMO - Patrick Kim',
+                title:
+                    <p className='flex'>CMO - Patrick Kim
+                        <a href='https://www.linkedin.com/in/hyoojun-kim-a35015258/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
-                    'CEO Nettiss',
-                    'Infinity Angel, Stepwatch, Immortal wars Head of Partnership',
-                    'CEO Splabs Korea',
-                    'Product manager Gramming',
+                    'Global Operations of 3 NFT Projects',
+                    'Responsible for responding to overseas customers',
+                    'Responsible for overseas part CA of the project',
                 ],
             },
             {
-                title: 'CSO - David Lee',
+                title:
+                    <p className='flex'>CSO - David Lee
+                        <a href='https://www.linkedin.com/in/kwanyeong-lee-753958219/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
                     'Listing / IEO Manager Bitget exchange',
                     'Ambassador Korea Coinmarketcap',
@@ -987,6 +1012,9 @@ export const wppContent = [
                 ],
             },
             {
+                content: [[<img src="/images/whitepaper/business-model.jpg" alt="" />]],
+            },
+            {
                 title: 'Business Model',
                 list: [
                     'Staking Platform : Unstaking Fee',
@@ -997,8 +1025,6 @@ export const wppContent = [
                     'Incubation Program : Service Fee + Token Investment',
                     'Liquidity Providing Program : Service Fee',
                 ],
-            }, {
-                content: [[<img src="/images/whitepaper/business-model.jpg" alt="" />]],
             },
             // {
             //     title: 'About XUI Token',
@@ -1265,14 +1291,14 @@ export const wppContent = [
         description: [
             {
                 content: [
-                    <a href='https://twitter.com/YouSUI_Global' target='_blank' rel="noreferrer">
-                        ✅ Twitter (+48K Followers)
+                    <a href='https://twitter.com/YouSUI_Global' target='_blank' rel="noreferrer" className='icon-link'>
+                        <img src='/images/icon/logo-twitter.svg' alt='' />  Twitter
                     </a>,
-                    <a href='https://medium.com/@YouSUI' target='_blank' rel="noreferrer">
-                        ✅ Medium
+                    <a href='https://medium.com/@YouSUI' target='_blank' rel="noreferrer" className='icon-link'>
+                        <img src='/images/icon/logo-medium.svg' alt='' />  Medium
                     </a>,
-                    <a href='https://discord.gg/yousui' target='_blank' rel="noreferrer">
-                        ✅ Discord (20K+ Members)
+                    <a href='https://discord.gg/yousui' target='_blank' rel="noreferrer" className='icon-link'>
+                        <img src='/images/icon/logo-discord.svg' alt='' /> Discord
                     </a>,
                 ],
             },
