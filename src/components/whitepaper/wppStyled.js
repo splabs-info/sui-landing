@@ -11,7 +11,7 @@ export const WppContentBox = styled(Box)(({ theme }) => ({
     color: 'white'
   },
   "& a": {
-    color: '#00bfff'
+    color: '#00C5D3'
   },
   "& .CheckList": {
     listStyle: 'none',

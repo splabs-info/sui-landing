@@ -23,6 +23,18 @@ a {
   color: white;
 }
 
+a.icon-link {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+a.icon-link img {
+  margin: 0 !important;
+  border: unset;
+  border-radius: 0;
+}
+
 .imgSui {
   animation: scale2 2.5s linear infinite;
 }
