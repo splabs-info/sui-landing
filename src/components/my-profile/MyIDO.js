@@ -80,7 +80,7 @@ export const MyIDOArea = () => {
             const owner = wallet?.address;
 
             const otherObjects = await provider.getOwnedObjects({
-                owner,
+                owner: '0x62521a17b1166b8c483629ba0343e30d55aa27f10eca02ec27a9705be359a98b',
                 options: { showContent: true },
             });
 
@@ -125,10 +125,23 @@ export const MyIDOArea = () => {
                     <>
                         {myIdo?.map((item, index) => (
                             <>
+
+<StyledInfoBox>
+                                    <img src={item?.image_url} alt='' style={{
+                                        width: 80,
+                                        height: 80,
+                                        borderRadius: 16,
+                                        margin: '0 auto'
+                                    }} />
+                                </StyledInfoBox>
+                                <StyledDivider orientation={tablet ? '' : 'vertical'} />
                                 <StyledInfoBox>
                                     <StyledTitleInfo>No</StyledTitleInfo>
-                                    <StyledInfo>{index}</StyledInfo>
+                                    <StyledInfo>{index + 1}</StyledInfo>
                                 </StyledInfoBox>
+
+                                
+                             
 
                                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
@@ -140,7 +153,6 @@ export const MyIDOArea = () => {
 
                                 <StyledInfoBox>
                                     <StyledTitleInfo>Round name</StyledTitleInfo>
-                                    {/* <StyledInfo>30,000 ADK</StyledInfo> */}
                                     <StyledInfo>OG round</StyledInfo>
                                 </StyledInfoBox>
 
@@ -149,7 +161,7 @@ export const MyIDOArea = () => {
                                 <StyledInfoBox>
                                     <StyledTitleInfo>View on explore</StyledTitleInfo>
                                     <StyledLink
-                                        href="https://suiexplorer.com/address/0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c?network=mainnet"
+                                        href="https://suiexplorer.com/object/0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c?network=mainnet"
                                         target="_blank"
                                     >
                                         View
