@@ -4,6 +4,7 @@ import {
     SuiTestnetChain,
     SuiWallet,
     SuietWallet,
+
     SuiMainnetChain
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';

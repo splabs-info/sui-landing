@@ -12,9 +12,9 @@ import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 
 const addresses = {
-  package: `0x4e03956fbe9c7c148eaf30773a1bbb532c203bd80f4995e1a1f425034a9db519`,
-  objectFreeMint: `0x9148408a99cbea295a4e8bb5fff9229b7b677e53d78e55850b8e48442d40f717`,
-  objectInformation: `0xf544dd3bd95cb1f7425fdc1ba77d2ec4e409c8d82d70f29adfec40000bcc4de9`,
+  package: `0xcd3886a6d6798d6b2f5594aef6bec83cc8d74e56ec75dbf26aa4bec828b26f2c`,
+  objectFreeMint: `0xf14286e3d9acad1688b99261a4653f73fe4d61b13ad19752c29119bd18d97351`,
+  objectInformation: `0x713ab0c4f67e26826f304ffe29019a9867daafc29d550d42ecb6c57aa4935e98`,
 };
 
 const provider = new JsonRpcProvider(devnetConnection);
@@ -108,8 +108,10 @@ export default function FreeMinting() {
         } else {
           toast.error('Transaction rejected');
         }
-        setLoading(false);
-        setFlag(!flag);
+        setTimeout(() => {
+          setLoading(false);
+          setFlag(!flag);
+        }, 5000);
       } catch (error) {
         const errorString = error.toString();
         console.log(errorString);
@@ -226,8 +228,9 @@ export default function FreeMinting() {
                   sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
+                  disabled={owned === 5}
                 >
-                  Claim Now ({owned})
+                  Claim Now (5)
                 </GradientLoadingButton>
               </Grid>
               <Grid item md={6} xs={12}>
