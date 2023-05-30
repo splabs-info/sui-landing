@@ -34,7 +34,7 @@ export const ChooseWalletModal = () => {
         select, // select
         configuredWallets, // default wallets
         detectedWallets, // Sui-standard wallets detected from browser env
-        allAvailableWallets, // all the installed Sui-standard wallets
+        // allAvailableWallets, // all the installed Sui-standard wallets
     } = useWallet();
 
     useEffect(() => {
@@ -48,8 +48,6 @@ export const ChooseWalletModal = () => {
             setIsInstallOkx(true);
         }
     }, []);
-
-    // console.log(configuredWallets);
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -75,7 +73,7 @@ export const ChooseWalletModal = () => {
                 {/* {library.MY_WALLET_NOTE_1} */}
             </Typography>
             <Box p={3}>
-                {[...configuredWallets].map((wallet) => (
+                {[...configuredWallets, ...detectedWallets].map((wallet) => (
                     <WalletButton
                         onClick={() => {
                             if (!wallet.installed) {
@@ -103,103 +101,49 @@ export const ChooseWalletModal = () => {
                         )}
                     </WalletButton>
                 ))}
-                {/* <ConnectButton style={{ display: 'flex', alignItems: 'center' }}>
-                    <Box className="img-box" sx={{background: '#22272d', borderRadius: '50%'}}>
-                    <img
-                        src="/Token-YouSUI.png"
-                        alt="logo metamask"
-                        style={{ width: 56, height: 56, marginLeft: '4px', marginRight: '16px' }}
-                    />
-                    </Box>
-                    SUI Wallet
-                </ConnectButton> */}
-                <WalletButton
-                    onClick={
-                        isInstalledOkx
-                            ? connectOkxWallet
-                            : () => {
-                                window.open(
-                                    'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge'
-                                );
-                            }
-                    }
-                >
-                    <Box className="img-box">
-                        <img src="/images/icon/okx-wallet.png" alt="logo metamask" />
-                    </Box>
-                    <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
-                        OKX
-                    </Typography>
-                    {!isInstalledOkx && (
+
+                {!isInstalledBitKeep ? (
+                    <WalletButton>
+                        <Box className="img-box">
+                            <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
+                        </Box>
+                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                            BitKeep Wallet
+                        </Typography>
+                        <InstallButton component={Link} href="https://bitkeep.com/download?type=2&theme=light" target="_blank">
+                            <Typography variant="caption">{library.INSTALL}</Typography>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
+                                Install
+                            </Typography>
+                        </InstallButton>
+                    </WalletButton>
+                ) : (
+                    <></>
+                )}
+                {!isInstalledOkx ? (
+                    <WalletButton>
+                        <Box className="img-box">
+                            <img src="/images/icon/okx-wallet.png" alt="logo okx" />
+                        </Box>
+                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                            OKX Wallet
+                        </Typography>
                         <InstallButton
                             component={Link}
                             href="https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge"
                             target="_blank"
                         >
-                            <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                                INSTALL
-                            </Typography>
-                        </InstallButton>
-                    )}
-                </WalletButton>
-                {/* <WalletButton onClick={connectToWallet}>
-                    <Box className="img-box">
-                        <img src="/images/icon/metamask.png" alt="logo metamask" />
-                    </Box>
-                    <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
-                        Metamask
-                    </Typography>
-                    {error && (
-                        <InstallButton component={Link} href="https://metamask.io/download/" target="_blank">
-                            <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                                INSTALL
-                            </Typography>
-                        </InstallButton>
-                    )}
-                </WalletButton> */}
-                <WalletButton
-                    onClick={
-                        isInstalledBitKeep ? (
-                            connectBitkeepWallet
-                        ) : (
-                            <Link href="https://bitkeep.com/download?type=2&theme=light"></Link>
-                        )
-                    }
-                >
-                    <Box className="img-box">
-                        <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
-                    </Box>
-                    <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
-                        Bitkeep
-                    </Typography>
-                    {!isInstalledBitKeep && (
-                        <InstallButton
-                            component={Link}
-                            href="https://bitkeep.com/download?type=2&theme=light"
-                            target="_blank"
-                        >
                             <Typography variant="caption">{library.INSTALL}</Typography>
-                            <Typography
-                                variant="caption"
-                                sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}
-                            >
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
                                 Install
                             </Typography>
                         </InstallButton>
-                    )}
-                </WalletButton>
+                    </WalletButton>
+                ) : (
+                    <></>
+                )}
             </Box>
             <Box pl={3} pr={3}>
-                <Typography variant="body2" className="mt-20">
-                    {/* {library.MY_WALLET_NOTE_2} */}
-                </Typography>
-                <Typography variant="body2" sx={{ textAlign: 'left', marginBottom: '16px' }}>
-                    {/* {library.SEE}{' '} */}
-                    <strong>Note:</strong>If you have previously installed SuiWallet extensions, please consider
-                    removing them. Doing so may prevent you from being able to connect to Sui wallet on our system, due
-                    to technical aspects of the library we are using. We apologize for any inconvenience this may cause
-                    and are actively working to resolve the issue
-                </Typography>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}
                     We do not own private keys and cannot access your funds without your confirmation <br /> See {''}
