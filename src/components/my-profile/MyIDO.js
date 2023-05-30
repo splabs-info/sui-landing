@@ -80,7 +80,7 @@ export const MyIDOArea = () => {
             const owner = wallet?.address;
 
             const otherObjects = await provider.getOwnedObjects({
-                owner: '0x62521a17b1166b8c483629ba0343e30d55aa27f10eca02ec27a9705be359a98b',
+                owner,
                 options: { showContent: true },
             });
 
