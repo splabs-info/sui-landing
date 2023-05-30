@@ -281,11 +281,21 @@ export const wppContent = [
         category: 'Meet The Team',
         description: [
             {
-                title: 'CEO - Kyle Kim',
+                title:
+                    <p className='flex'> CEO - Kyle Kim
+                        <a href='https://www.linkedin.com/in/kyle-kim-02b20b16b/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: ['CEO SPLabs.', 'COO/Co-Founder Sp-exchange.'],
             },
             {
-                title: 'CTO - Bill Nguyen',
+                title:
+                    <p className='flex'> CTO - Bill Nguyen
+                        <a href='https://www.linkedin.com/in/phuc-nguyen-253a2082' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
                     'CTO at BTVLab (Laboritoy and blockchain project development)',
                     'Server lead at Where.Place ( Indoor digital maps service)',
@@ -294,11 +304,21 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'COO - Tracy Nguyen',
+                title:
+                    <p className='flex'> COO - Tracy Nguyen
+                        <a href='https://www.linkedin.com/in/tracy-nguyen-81b306109/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: ['COO Splabs', 'COO YouSUI', 'COO InfinityAngel, Stepwatch project'],
             },
             {
-                title: 'CMO - Patrick Kim',
+                title:
+                    <p className='flex'>CMO - Patrick Kim
+                        <a href='https://www.linkedin.com/in/hyoojun-kim-a35015258/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
                     'Global Operations of 3 NFT Projects',
                     'Responsible for responding to overseas customers',
@@ -306,7 +326,12 @@ export const wppContent = [
                 ],
             },
             {
-                title: 'CSO - David Lee',
+                title:
+                    <p className='flex'>CSO - David Lee
+                        <a href='https://www.linkedin.com/in/kwanyeong-lee-753958219/' target='_blank' rel="noreferrer" className='icon-linked'>
+                            <img src='/images/whitepaper/icon-linked.png' alt='' />
+                        </a >
+                    </p>,
                 list: [
                     'Listing / IEO Manager Bitget exchange',
                     'Ambassador Korea Coinmarketcap',
