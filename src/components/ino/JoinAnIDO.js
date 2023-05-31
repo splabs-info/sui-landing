@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Hidden, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { HowToJoinCard } from './HowToJoinCard';
@@ -74,7 +74,7 @@ export default function JoinAnIDO() {
                         </Grid>
                     ))}
                 </Grid>
-                <img
+                <Hidden smDown> <img
                     src="/how-join.svg"
                     alt=""
                     style={{
@@ -82,7 +82,7 @@ export default function JoinAnIDO() {
                         height: 560,
                         margin: isMobile ? 'auto' : '',
                     }}
-                />
+                /></Hidden>
             </Stack>
         </Box>
     );

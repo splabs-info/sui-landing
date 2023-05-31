@@ -53,6 +53,7 @@ export const BorderGradientButton = styled(Button)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   '& img': {
+    width: '32px',
     paddingRight: '10px',
   },
 
