@@ -96,7 +96,6 @@ export default function OverviewTabs() {
     const [sua, setSua] = React.useState();
     const { assets } = React.useContext(SuiContext);
 
-    console.log('assets__', assets);
     const isDesktop = useResponsive('up', 'md');
 
     const handleChange = (event, newValue) => {
@@ -112,8 +111,6 @@ export default function OverviewTabs() {
         });
     }, [assets]);
 
-    console.log('sui__', sui);
-    console.log('sua__', sui);
     return (
         <Box sx={{ width: '100%' }}>
             <TabContext value={value}>
@@ -136,7 +133,7 @@ export default function OverviewTabs() {
                         sx={{ marginBottom: 4, flexWrap: 'wrap' }}
                     >
                         <AssetCard balance={'0'} currency="USDT" />
-                        <AssetCard balance={sua ? Number(sua).toFixed(3) : 0} currency="SUA" />
+                        <AssetCard balance={'0'} currency="XUI" />
                         <AssetCard balance={sui ? Number(sui).toFixed(5) : 0} currency="SUI" />
                     </Stack>
 

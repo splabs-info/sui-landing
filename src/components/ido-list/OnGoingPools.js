@@ -42,9 +42,7 @@ export default function OnGoingPools() {
   const [minPurchase, setMinPurchase] = React.useState();
   const [maxPerUser, setMaxPerUser] = React.useState();
 
-  const { provider, balances } = React.useContext(SuiContext);
-
-  console.log('tiemmmmm',  moment(1685340000000).format('Do MMMM YYYY, h:mm:ss a'))
+  const { provider } = React.useContext(SuiContext);
  
   React.useEffect(() => {
     const fetchPoolData = async () => {

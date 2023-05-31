@@ -51,7 +51,7 @@
 }
 
 .wkit-select__title {
-    display: none;
+    /* display: none; */
 }
 
 .wkit-connected-button {

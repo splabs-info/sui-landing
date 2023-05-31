@@ -7,7 +7,6 @@ import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { SUA_PRESALE_OG } from 'constant/sui-chain';
 
 export default function IDODetail() {
     const [ratio, setRadio] = React.useState();
@@ -25,8 +24,6 @@ export default function IDODetail() {
                 id: '0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c',
                 options: { showContent: true },
             });
-
-            console.log('txn___', txn)
 
             const round = txn?.data?.content?.fields;
 

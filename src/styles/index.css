@@ -23,6 +23,44 @@ a {
   color: white;
 }
 
+a.icon-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+a.icon-link img {
+  margin: 0 !important;
+  border: unset;
+  border-radius: 0;
+}
+
+a.icon-linked {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+a.icon-linked img {
+  margin: 0 !important;
+  border: unset;
+  border-radius: 0;
+  width: 20px;
+  height: 20px;
+}
+
+a.icon-linked img:hover {
+  border-radius: 50%;
+  box-shadow: 0 0 5px 2px #fff9;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .imgSui {
   animation: scale2 2.5s linear infinite;
 }
