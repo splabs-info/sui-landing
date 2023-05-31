@@ -69,19 +69,23 @@ export default function UpComing() {
                     backdropFilter: 'blur(25px)',
                     borderRadius: isMobile ? '10px' : '15px',
                     padding: isMobile ? '32px' : '64px',
-                    mt: 5,
+                    mt: isMobile ? 5 : 7,
                     '& img': { padding: isMobile ? '0 10%' : '0' },
+
                 }}
             >
                 <Grid container alignItems={'center'} spacing={5}>
-                    <Grid item md={5} xs={12} sx={{ position: 'relative' }}>
-                        <img src={'/images/ino/nft.png'} style={{ width: '100%', height: '100%' }} alt="" />
+                    <Grid item md={5} xs={12} sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={'/images/ino/nft.png'} style={{ width: 'min(400px, 100%)', height: '100%' }} alt="" />
                     </Grid>
                     <Grid item md={7} xs={12}>
-                        <Typography textAlign={'center'} fontSize={isMobile ? '24px' : '84px'} fontWeight={'bold'} mb={3}>
+                        <Typography textAlign={'center'} fontSize={isMobile ? '24px' : '72px'} fontWeight={'bold'}>
                             <ShadowTypography variant='span' > Free </ShadowTypography>
                             <GradientShadowTypography variant='span'>Minting</GradientShadowTypography>
                         </Typography>
+                        <ShadowTypography variant='h6' fontWeight={'bold'} textAlign={'center'} mb={1}>
+                            Scheduled: from 10th June 11:00 UTC ( ~ 20:00 UTC+9 )
+                        </ShadowTypography>
                         <ProcessBarBox
                             title={
                                 <>
@@ -114,7 +118,7 @@ export default function UpComing() {
                     backdropFilter: 'blur(25px)',
                     borderRadius: isMobile ? '10px' : '15px',
                     padding: isMobile ? '32px' : '64px',
-                    mt: 5,
+                    mt: isMobile ? 5 : 7,
                     '& img': { padding: isMobile ? '0 10%' : '0' },
                 }}
             >
@@ -129,7 +133,7 @@ export default function UpComing() {
                             <ShadowTypography variant='span' > on SUI Network </ShadowTypography>
                         </Typography>
                         <Stack spacing={1.5} alignItems={'center'}>
-                            <img src={'/images/ino/logo-hood.png'} alt="" />
+                            <img src={'/images/ino/logo-hood.png'} alt="" sx={{ padding: '0 25%' }} />
                             <BorderGradientButton
                                 disabled={true}
                             >
