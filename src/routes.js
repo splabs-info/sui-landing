@@ -8,6 +8,7 @@ import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 import FreeMinting from 'pages/FreeMinting';
+import Claims from 'pages/Claims';
 // import FreeMinting from './pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
@@ -68,7 +69,7 @@ export default function Router() {
                 { path: 'whitepaper/:sub', element: <Whitepaper /> },
                 { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
                 { path: 'staking', element: <StakingPage /> },
-                { path: 'claim-tokens', element: <ComingSoon /> },
+                { path: 'claim-tokens', element: <Claims /> },
                 {
                     path: 'test-page',
                     element: (

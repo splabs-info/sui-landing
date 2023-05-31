@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Box, Grid, Stack, Typography } from '@mui/material';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { GradientShadowTypography, ShadowTypography } from 'components/common/CustomTypography';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
@@ -8,47 +7,6 @@ import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/Ho
 import useResponsive from 'hooks/useResponsive';
 import { useNavigate } from 'react-router-dom';
 
-// const upComingItem = [
-//     {
-//         id: '1',
-//         avatar: '/coming-1.svg',
-//     },
-//     {
-//         id: '2',
-//         avatar: '/coming-2.svg',
-//     },
-//     {
-//         id: '3',
-//         avatar: '/coming-3.svg',
-//     },
-//     {
-//         id: '4',
-//         avatar: '/coming-4.svg',
-//     },
-// ];
-
-const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
-    background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
-    borderRadius: '50px',
-    fontWeight: 'bold',
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 1)',
-    paddingRight: 18,
-    paddingLeft: 18,
-
-    '::before': {
-        content: "''",
-        position: 'absolute',
-        background: 'linear-gradient(180deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
-        inset: '0px',
-        zIndex: 1,
-        borderRadius: '50px',
-        padding: '2px',
-        '-webkit-mask':
-            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box,linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-        '-webkit-mask-composite': 'xor',
-    },
-}));
 
 export default function UpComing() {
     const isMobile = useResponsive('down', 'sm');
