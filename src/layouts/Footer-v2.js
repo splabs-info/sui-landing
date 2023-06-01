@@ -100,16 +100,6 @@ export default function FooterV2() {
 	const isMobile = useResponsive('down', 'sm');
 	const isTablet = useResponsive('down', 'lg');
 
-	const [anchorEl, setAnchorEl] = useState(null);
-	const open = Boolean(anchorEl);
-
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleCloseMenu = () => {
-		setAnchorEl(null);
-	};
-
 	useEffect(() => {
 		dispatch(_changeLanguage(localStorage.getItem('lang')));
 	}, [dispatch]);
@@ -133,7 +123,7 @@ export default function FooterV2() {
 							sx={{
 								fontSize: '0.95rem',
 								textAlign: isMobile && 'center',
-								padding: isMobile ? '0 10%' : '0 20% 0 0 ',
+								padding: { xs: '0 10%', sm: '0 15%', md: '0 20% 0 0' },
 							}}
 						>
 							The YouSUI is a user-friendly platform that runs on Sui blockchain as a multi-chain platform
@@ -181,8 +171,8 @@ export default function FooterV2() {
 						md={3}
 						lg={2}
 						mt={isTablet && 3}
-						textAlign={isMobile ? 'end' : 'start'}
-						pr={isMobile && 2}
+						textAlign={'start'}
+						pl={isMobile && 5}
 						sx={{ height: '100%', wordBreak: 'break-all' }}
 					>
 						<FooterTitle>{library.key_10}</FooterTitle>
@@ -228,54 +218,7 @@ export default function FooterV2() {
 						textAlign={useResponsive('down', 'md') && 'center'}
 					>
 						<FooterTitle>{library.key_20}</FooterTitle>
-						<SocialBox>
-							{socials.map((item, index) =>
-								item.link ? (
-									<Box key={index} component="a" href={item.link} target={'_blank'}>
-										<Box component="img" src={item.src} />
-									</Box>
-								) : (
-									<Box key={index} component="a" onClick={handleClick} sx={{ cursor: 'pointer' }}>
-										<Box component="img" src={item.src} />
-									</Box>
-								)
-							)}
-							<MenuCustom
-								id="basic-menu"
-								anchorEl={anchorEl}
-								open={open}
-								onClose={handleCloseMenu}
-								MenuListProps={{
-									'aria-labelledby': 'basic-button',
-								}}
-								className="Menu"
-								sx={{
-									background: 'transparent!important',
-									border: '1px solid black',
-									color: 'white',
-									marginTop: '15px',
-									'& a': {
-										color: 'white',
-										textDecoration: 'none',
-									},
-									'& .MuiMenu-paper': {
-										background: '#0a0a0a!important',
-									},
-								}}
-							>
-								<a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
-									<MenuItem onClick={handleCloseMenu}>
-										<IconBrandTelegram /> YouSUI Official{' '}
-									</MenuItem>
-								</a>
-								<a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
-									{' '}
-									<MenuItem onClick={handleCloseMenu}>
-										<IconBrandTelegram /> YouSUI Chat
-									</MenuItem>
-								</a>
-							</MenuCustom>
-						</SocialBox>
+						<SocialFooter />
 
 						<FooterTitle mt={3}>{library.key_21}</FooterTitle>
 						<GetIntoButton>Get into Social Platform</GetIntoButton>
@@ -287,4 +230,66 @@ export default function FooterV2() {
 			</EndBox>
 		</Footer>
 	);
+}
+export const SocialFooter = () => {
+
+	const [anchorEl, setAnchorEl] = useState(null);
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleCloseMenu = () => {
+		setAnchorEl(null);
+	};
+	return (
+		<SocialBox>
+			{socials.map((item, index) =>
+				item.link ? (
+					<Box key={index} component="a" href={item.link} target={'_blank'}>
+						<Box component="img" src={item.src} />
+					</Box>
+				) : (
+					<Box key={index} component="a" onClick={handleClick} sx={{ cursor: 'pointer' }}>
+						<Box component="img" src={item.src} />
+					</Box>
+				)
+			)}
+			<MenuCustom
+				id="basic-menu"
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleCloseMenu}
+				MenuListProps={{
+					'aria-labelledby': 'basic-button',
+				}}
+				className="Menu"
+				sx={{
+					background: 'transparent!important',
+					border: '1px solid black',
+					color: 'white',
+					marginTop: '15px',
+					'& a': {
+						color: 'white',
+						textDecoration: 'none',
+					},
+					'& .MuiMenu-paper': {
+						background: '#0a0a0a!important',
+					},
+				}}
+			>
+				<a href="https://t.me/YouSUI" target="_blank" rel="noreferrer">
+					<MenuItem onClick={handleCloseMenu}>
+						<IconBrandTelegram /> YouSUI Official{' '}
+					</MenuItem>
+				</a>
+				<a href="https://t.me/YouSUIchat" target="_blank" rel="noreferrer">
+					{' '}
+					<MenuItem onClick={handleCloseMenu}>
+						<IconBrandTelegram /> YouSUI Chat
+					</MenuItem>
+				</a>
+			</MenuCustom>
+		</SocialBox>
+	)
 }

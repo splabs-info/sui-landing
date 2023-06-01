@@ -106,3 +106,11 @@ a.icon-linked img:hover {
 /* .wkit-dialog__content .wkit-select__container:last-of-type {
   display: none;
 } */
+
+@media (max-width: 576px) {
+
+  .MuiTypography-body1 {
+    font-size: 14px;
+  }
+
+}
