@@ -7,7 +7,7 @@ const StyledCheckBox = styled(Checkbox)((theme) => ({
     fontWeight: 'normal',
 }));
 
-export const CheckboxFiled = ({ label, handleChecked }) => {
+export const CheckboxFiled = ({ label, handleChecked, sx }) => {
     return (
         <FormGroup
             sx={{
@@ -18,16 +18,18 @@ export const CheckboxFiled = ({ label, handleChecked }) => {
             }}
         >
             <FormControlLabel
-                control={<StyledCheckBox onChange={handleChecked}/>}
+                control={<StyledCheckBox onChange={handleChecked} />}
                 label={label}
                 sx={{
                     '& .MuiFormControlLabel-label': {
                         fontSize: 16,
                         marginRight: 0,
+                        color: 'white'
                     },
                     '& svg': {
-                        color: '#28A3AB',
+                        color: '#31c4cdb3',
                     },
+                    ...sx
                 }}
             />
         </FormGroup>

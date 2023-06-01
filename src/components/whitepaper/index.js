@@ -33,7 +33,7 @@ export default function WhitepaperContent() {
     const [value, setValue] = useState(0);
     const { sub } = useParams();
     const navigate = useNavigate();
-    console.log(sub);
+    // console.log(sub);
 
     React.useEffect(() => {
         if (sub) {

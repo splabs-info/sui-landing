@@ -16,7 +16,7 @@ export const SectionBox = styled(Box)(({ theme }) => ({
         paddingBottom: 50,
     },
     [theme.breakpoints.down('md')]: {
-        backgroundSize: 'cover',
+        // backgroundSize: 'cover',
     },
 }));
 
@@ -36,14 +36,15 @@ export const TitleBox = styled(Box)(({ theme }) => ({
     marginLeft: '5rem',
     zIndex: 2,
     '& .MuiTypography-root': {
-        fontFamily: 'SVN-Gilroy-heavy',
         color: 'white',
-        fontSize: '3rem',
-        textTransform: 'capital',
+        fontSize: 64,
+        fontWeight: 600,
     },
     [theme.breakpoints.down('md')]: {
+        marginLeft: '2.5rem',
         '& .MuiTypography-root': {
-            fontSize: '2rem',
+            fontSize: 32,
+            lineHeight: '1.2',
         },
     },
 }));
@@ -52,8 +53,12 @@ export const ImgTitleBox = styled(Box)(({ theme }) => ({
     width: '200px',
     position: 'absolute',
     left: '0rem',
-    top: '-3rem',
+    top: '-1.5rem',
     zIndex: 0,
+    [theme.breakpoints.down('md')]: {
+        width: '100px',
+        top: '-1.25rem',
+    }
 }));
 
 export const TypographyGradient = styled(Typography)(({ theme }) => ({

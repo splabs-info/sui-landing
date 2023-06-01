@@ -61,6 +61,7 @@ export default function FreeMinting() {
   const [minted, setMinted] = React.useState(0);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
+  const [hasInTimes, setHasInTimes] = React.useState(false);
 
   React.useEffect(() => {
     if (provider) {
@@ -84,6 +85,7 @@ export default function FreeMinting() {
         });
         if (balance) {
           setOwned(balance.data.length);
+          console.log(balance.data);
         }
       })();
     }
@@ -132,6 +134,45 @@ export default function FreeMinting() {
       }
     })();
 
+  const NFTGroup = () =>
+  (<>
+    <Box>
+      <NFTSlider />
+    </Box>
+    <ProcessBarBox
+      percent={minted / total ? (minted / total) * 100 : 0}
+      subtitle={
+        <>
+          <Typography variant="body1" color={'white'}>
+            {minted}
+          </Typography>
+          <Typography variant="body1" color={'white'}>
+            TOTAL: {total}
+          </Typography>
+        </>
+      }
+      sx={{ margin: '24px 0' }}
+    />
+    <Box
+      display={'flex'}
+      flexDirection={'row'}
+      alignItems={'center'}
+      justifyContent={isMobile ? 'space-between' : 'center'}
+      gap={isMobile ? 1 : 5}
+      mb={isMobile ? 3 : 0}
+    >
+      <BorderGradientButton>
+        <img src="/images/icon/logo-discord.svg" alt="discord" />
+        Join Discord
+      </BorderGradientButton>
+      <BorderGradientButton>
+        <img src="/images/icon/icon-global.png" alt="global" />
+        View on Explore
+      </BorderGradientButton>
+    </Box>
+  </>);
+
+
   return (
     <Page title="Free Minting">
       <SectionBox
@@ -153,63 +194,24 @@ export default function FreeMinting() {
                     Free
                   </Typography>
                   <TypographyGradient variant="h1" fontWeight={700} fontSize={!isMobile ? '88px!important' : '48px'}>
-                    NFT Claim
+                    Minting NFT
                   </TypographyGradient>
                 </Box>
                 <Hidden smUp>
-                  <Box>
-                    <NFTSlider />
-                  </Box>
-                  <ProcessBarBox
-                    percent={minted / total ? (minted / total) * 100 : 0}
-                    subtitle={
-                      <>
-                        <Typography variant="body1" color={'white'}>
-                          {minted}
-                        </Typography>
-                        <Typography variant="body1" color={'white'}>
-                          TOTAL: {total}
-                        </Typography>
-                      </>
-                    }
-                    sx={{ margin: '16px 0' }}
-                  />
-                  <Box
-                    display={'flex'}
-                    flexDirection={'row'}
-                    alignItems={'center'}
-                    justifyContent={isMobile ? 'space-between' : 'center'}
-                    gap={isMobile ? 1 : 5}
-                    mb={2}
-                  >
-                    <BorderGradientButton>
-                      <img src="/images/icon/logo-discord.svg" alt="discord" />
-                      Join Discord
-                    </BorderGradientButton>
-                    <BorderGradientButton>
-                      {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
-                      Crew3
-                    </BorderGradientButton>
-                  </Box>
+                  <NFTGroup />
                 </Hidden>
-                <Typography variant="h6" fontWeight={700} color={'white'}>
+                {!hasInTimes && <Typography variant="h6" fontWeight={700} color={'white'}>
                   Start time:
-                </Typography>
-                <MintingCountdown endTime={'2023-05-31T00:00:00'} />
-                {/* <Typography variant="h6" fontWeight={700} color={'white'}>
-                  End time:
-                </Typography>
-                <MintingCountdown
-                  endTime={'2023-06-15T00:00:00'}
-                /> */}
+                </Typography>}
+                <MintingCountdown endTime={'2023-06-10T11:00:00'} _handleComplete={() => setHasInTimes(true)} />
 
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}>
-                  *** Claim schedule: 31st May, 2023
+                  *** Claim schedule: 11:00 (UTC) 10th June, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
-                  Click <b>“Claim Now”</b> to Receive Free YouSUI NFTs.
+                  Click <b>“Claim Now”</b>button to receive a free YouSUI benefit.
                   <br />
-                  (Ready for Next Move, Check you own SUI on wallet)
+                  (Gas fee is not included)
                 </Typography>
                 <Typography
                   variant="body1"
@@ -235,39 +237,7 @@ export default function FreeMinting() {
               </Grid>
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
-                  <Box>
-                    <NFTSlider />
-                  </Box>
-                  <ProcessBarBox
-                    percent={minted / total ? (minted / total) * 100 : 0}
-                    subtitle={
-                      <>
-                        <Typography variant="body1" color={'white'}>
-                          {minted}
-                        </Typography>
-                        <Typography variant="body1" color={'white'}>
-                          TOTAL: {total}
-                        </Typography>
-                      </>
-                    }
-                    sx={{ margin: '24px 0' }}
-                  />
-                  <Box
-                    display={'flex'}
-                    flexDirection={'row'}
-                    alignItems={'center'}
-                    justifyContent={isMobile ? 'space-between' : 'center'}
-                    gap={isMobile ? 1 : 5}
-                  >
-                    <BorderGradientButton>
-                      {/* <img src="/images/icon/icon-twitter-normal.png" alt="twitter" /> */}
-                      Join Discord
-                    </BorderGradientButton>
-                    <BorderGradientButton>
-                      {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
-                      Crew3
-                    </BorderGradientButton>
-                  </Box>
+                  <NFTGroup />
                 </Hidden>
               </Grid>
             </Grid>
@@ -280,20 +250,28 @@ export default function FreeMinting() {
 
 const nftImage = [
   {
-    src: '/images/nfts/yousui-beta-nft-1.png',
+    src: '/images/nfts/yousui-nft-1.png',
     label: 'NFT 1',
   },
   {
-    src: '/images/nfts/yousui-beta-nft-2.png',
+    src: '/images/nfts/yousui-nft-2.png',
     label: 'NFT 2',
   },
   {
-    src: '/images/nfts/yousui-beta-nft-3.png',
+    src: '/images/nfts/yousui-nft-3.png',
     label: 'NFT 3',
   },
   {
-    src: '/images/nfts/yousui-beta-nft-4.png',
+    src: '/images/nfts/yousui-nft-4.png',
     label: 'NFT 4',
+  },
+  {
+    src: '/images/nfts/yousui-nft-5.png',
+    label: 'NFT 5',
+  },
+  {
+    src: '/images/nfts/yousui-nft-6.png',
+    label: 'NFT 6',
   },
 ];
 export const SliderCustom = styled(Slider)(({ theme }) => ({

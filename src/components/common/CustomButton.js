@@ -53,6 +53,7 @@ export const BorderGradientButton = styled(Button)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   '& img': {
+    width: '32px',
     paddingRight: '10px',
   },
 
@@ -78,5 +79,25 @@ export const BorderGradientButton = styled(Button)(({ theme }) => ({
     '::before': {
       padding: '1px',
     },
+  },
+}));
+
+export const GradientButton = styled(Button)(({ theme }) => ({
+  background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%);',
+  borderRadius: '50px',
+  color: "#fff",
+  padding: '12px 24px',
+  boxShadow: '0px 0px 7px #4191C9',
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  minWidth: 160,
+  '&.Mui-disabled': {
+    background: 'linear-gradient(180deg, #112A3E 0%, #03121D 100%)',
+    boxShadow: '0px 0px 7px rgba(65, 145, 201, 0.5)',
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: '8px 24px',
+    minWidth: 100,
   },
 }));
