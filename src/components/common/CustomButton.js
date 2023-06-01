@@ -38,6 +38,10 @@ export const GradientLoadingButton = styled(LoadingButton)(({ theme }) => ({
   borderRadius: '50px',
   padding: '12px 24px',
   color: "#fff",
+  '&.Mui-disabled': {
+    background: 'linear-gradient(180deg, #112A3E 0%, #03121D 100%)',
+    boxShadow: '0px 0px 7px rgba(65, 145, 201, 0.5)',
+  },
   [theme.breakpoints.down("sm")]: {
     padding: '8px 16px',
     fontSize: '14px',
