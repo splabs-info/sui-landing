@@ -11,10 +11,10 @@ export const Footer = styled(Box)(({ theme }) => ({
     color: 'white',
     '& a': {
         paddingBottom: '0.25rem',
+
     },
-    '& a:not(.logo):hover': {
-        borderBottom: '2px solid #1DD7D1',
-        fontWeight: 700,
+    '& a:hover': {
+        color: '#1DD7D1'
     },
 }));
 

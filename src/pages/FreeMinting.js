@@ -85,6 +85,7 @@ export default function FreeMinting() {
         });
         if (balance) {
           setOwned(balance.data.length);
+          console.log(balance.data);
         }
       })();
     }

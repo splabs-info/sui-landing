@@ -9,6 +9,7 @@ import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 import FreeMinting from 'pages/FreeMinting';
 import Claims from 'pages/Claims';
+import ClaimsDetail from 'pages/ClaimsDetail';
 // import FreeMinting from './pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
@@ -70,6 +71,7 @@ export default function Router() {
                 { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
                 { path: 'staking', element: <StakingPage /> },
                 { path: 'claim-tokens', element: <Claims /> },
+                { path: '/claim-tokens/:sub', element: <ClaimsDetail /> },
                 {
                     path: 'test-page',
                     element: (
