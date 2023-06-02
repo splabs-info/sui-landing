@@ -2,7 +2,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { useNavigate } from 'react-router-dom';
 import { UpComingINOCard } from './UpComingINOCard';
 const upComingINOList = [
     {
@@ -11,6 +10,9 @@ const upComingINOList = [
         hardCap: '2000',
         access: 'WL',
         releaseTime: 'Official Launch: June 10th',
+        status: true,
+        link: '/ino-launchpad/free-minting-nft',
+
     },
     {
         title: 'HooD',
@@ -18,6 +20,8 @@ const upComingINOList = [
         hardCap: '2000',
         access: 'Tier 1-5',
         releaseTime: 'Official Launch: July 25th',
+        status: false,
+        link: '',
     },
     {
         title: 'Vibe Fi',
@@ -25,6 +29,8 @@ const upComingINOList = [
         hardCap: '2000',
         access: '',
         releaseTime: 'Upcoming',
+        status: false,
+        link: '',
     },
     {
         title: 'Galactic',
@@ -32,6 +38,8 @@ const upComingINOList = [
         hardCap: '2000',
         access: '',
         releaseTime: 'Upcoming',
+        status: false,
+        link: '',
     },
     {
         title: 'Stellar Sagas',
@@ -39,6 +47,8 @@ const upComingINOList = [
         hardCap: '2000',
         access: '',
         releaseTime: 'Upcoming',
+        status: false,
+        link: '',
     },
 ]
 

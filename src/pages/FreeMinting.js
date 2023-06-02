@@ -12,9 +12,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 
-const addresses = {
+export const addresses = {
   package: `0x4a73863c9ba3311050d4bac61f6adf0c30c8630815029918875a8d79f08c980e`,
-  objectFreeMint: `0xc12836121c340b7f80ab922790188670095a1d2886af690c71f716689616a7cf `,
+  objectFreeMint: `0xc12836121c340b7f80ab922790188670095a1d2886af690c71f716689616a7cf`,
   objectInformation: `0x7db44371691fb6a95f48f9d87691860cbfd6bc291031250330a9f10460e566da`,
 };
 
@@ -152,7 +152,7 @@ export default function FreeMinting() {
       <NFTSlider />
     </Box>
     <ProcessBarBox
-      percent={minted / total ? (minted / total) * 100 : 0}
+      percent={minted ? (minted / total) * 100 : 0}
       subtitle={
         <>
           <Typography variant="body1" color={'white'}>
@@ -175,15 +175,15 @@ export default function FreeMinting() {
       mb={isMobile ? 3 : 2}
     >
       <BorderGradientButton>
-        {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
+        <img src="/images/icon/logo-crew3.png" alt="global" />
         Crew3
       </BorderGradientButton>
       <BorderGradientButton>
-        <img src="/images/icon/logo-twitter.svg" alt="discord" />
+        <img src="/images/icon/logo-twitter.png" alt="discord" />
         Twitter
       </BorderGradientButton>
       <BorderGradientButton>
-        <img src="/images/icon/logo-discord.svg" alt="discord" />
+        <img src="/images/icon/logo-discord.png" alt="discord" />
         Discord
       </BorderGradientButton>
       <BorderGradientButton>

@@ -1,17 +1,35 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Grid, Stack, Typography } from '@mui/material';
+import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { GradientShadowTypography, ShadowTypography } from 'components/common/CustomTypography';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
+import { addresses } from 'pages/FreeMinting';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+const provider = new JsonRpcProvider(devnetConnection);
 export default function OnGoing() {
     const isMobile = useResponsive('down', 'sm');
-
     const navigate = useNavigate();
+    const [total, setTotal] = useState(0);
+    const [minted, setMinted] = useState(0);
+
+    useEffect(() => {
+        if (provider) {
+            (async () => {
+                const result = await provider.getObject({
+                    id: addresses.objectFreeMint,
+                    options: { showContent: true },
+                });
+                setTotal(result?.data?.content?.fields?.max_number);
+                setMinted(result?.data?.content?.fields?.number);
+            })();
+        }
+    }, []);
     return (
         <Box mb={20} mt={10} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -48,10 +66,10 @@ export default function OnGoing() {
                             title={
                                 <>
                                     <Typography>Progress</Typography>
-                                    <Typography>Total amount: 2000</Typography>
+                                    <Typography>Total amount: {total}</Typography>
                                 </>
                             }
-                            percent={57}
+                            percent={minted / total ? (minted / total) * 100 : 0}
 
                             sx={{ margin: isMobile ? '24px 0px' : '0px' }}
                         />

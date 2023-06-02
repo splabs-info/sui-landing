@@ -94,7 +94,7 @@ const INOLaunchPad = () => {
                             }}
                         />
                     </Stack>
-                    <OnGoing />
+                    {/* <OnGoing /> */}
                     <UpComing />
                     <JoinAnIDO />
                     <WhyJoin />
