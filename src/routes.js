@@ -90,14 +90,6 @@ export default function Router() {
                 { path: 'staking', element: <StakingPage /> },
                 { path: 'claim-tokens', element: <Claims /> },
                 { path: '/claim-tokens/:sub', element: <ClaimsDetail /> },
-                {
-                    path: 'test-page',
-                    element: (
-                        <React.Suspense>
-                            <TestPage />
-                        </React.Suspense>
-                    ),
-                },
             ],
         },
         {
