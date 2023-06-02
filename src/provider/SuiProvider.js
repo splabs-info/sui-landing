@@ -33,7 +33,6 @@ export const SUIWalletContext = ({ children }) => {
 
             const allCoinObjectsId = objects.data.filter((obj) => Coin.isSUI(obj));
 
-
             const projects = await provider.getObject(({
                 id: TXUI_PROJECT_STORAGE,
                 options: { showContent: true },

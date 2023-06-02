@@ -81,6 +81,8 @@ export default function ClaimsDetail() {
             const yourVestings = await Promise.all(promises);
             const filteredVestings = yourVestings.filter((vesting) => vesting !== null);
 
+            if(!filteredVestings || filteredVestings.length <= 0) return;
+
             setPeriodList(flattenDeep(filteredVestings.map((vesting) => vesting.data?.content?.fields?.value?.fields?.period_list)));
 
             filteredVestings.forEach((vesting) => {

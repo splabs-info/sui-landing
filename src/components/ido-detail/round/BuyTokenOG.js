@@ -61,7 +61,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
 
     const { sold } = useYouSuiStore(state => state.sold);
 
-    const { allObjectsId } = React.useContext(SuiContext);
+    const { allCoinObjectsId } = React.useContext(SuiContext);
 
     const {
         control,
@@ -91,7 +91,8 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
         const tx = new TransactionBlock();
 
         setLoading(true);
-        const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
+
+        const coinSuiObjectData = allCoinObjectsId.map((coin) => coin?.data);
 
         tx.setGasPayment(coinSuiObjectData);
 
