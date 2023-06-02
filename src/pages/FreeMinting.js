@@ -1,7 +1,8 @@
-import { Box, Container, Grid, Hidden, Typography, styled } from '@mui/material';
+import { Box, Container, Grid, Hidden, Stack, Typography, styled } from '@mui/material';
 import { JsonRpcProvider, TransactionBlock, devnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
+import CustomModal from 'components/common/CustomModal';
 import Page from 'components/common/Page';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
@@ -62,6 +63,8 @@ export default function FreeMinting() {
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
   const [hasInTimes, setHasInTimes] = React.useState(false);
+  const [myNftList, setMyNftList] = React.useState([]);
+  const [openMyNft, setOpenMyNft] = React.useState(false);
 
   React.useEffect(() => {
     if (provider) {
@@ -85,7 +88,16 @@ export default function FreeMinting() {
         });
         if (balance) {
           setOwned(balance.data.length);
-          console.log(balance.data);
+          let arrNft = [];
+          for (const iterator of balance.data) {
+            const result = await provider.getObject({
+              id: iterator.data.objectId,
+              options: { showContent: true },
+            });
+            arrNft.push(result?.data?.content?.fields);
+          }
+          setMyNftList(arrNft)
+          console.log(arrNft);
         }
       })();
     }
@@ -226,14 +238,22 @@ export default function FreeMinting() {
                 >
                   Claim available: <img src="/images/icon/icon-check.png" alt="check" />
                 </Typography>
-                <GradientLoadingButton
-                  sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
-                  onClick={handleFreeMinting}
-                  loading={loading}
-                  disabled={owned === 5}
-                >
-                  Claim Now (5)
-                </GradientLoadingButton>
+                {owned !== 5 ?
+                  <GradientLoadingButton
+                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
+                    onClick={handleFreeMinting}
+                    loading={loading}
+                    disabled={owned === 5}
+                  >
+                    Minting Now (5)
+                  </GradientLoadingButton> :
+                  <GradientLoadingButton
+                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
+                    loading={loading}
+                    onClick={() => setOpenMyNft(true)}
+                  >
+                    My NFT
+                  </GradientLoadingButton>}
               </Grid>
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
@@ -242,6 +262,11 @@ export default function FreeMinting() {
               </Grid>
             </Grid>
           </FreeMintingBox>
+          {myNftList.length > 0 && <MyNFT
+            open={openMyNft}
+            handleClose={() => setOpenMyNft(false)}
+            myNftList={myNftList}
+          />}
         </Container>
       </SectionBox>
     </Page>
@@ -402,7 +427,7 @@ export const SliderCustom = styled(Slider)(({ theme }) => ({
 }));
 
 function NFTSlider() {
-  const [selectedNft, setSelectedNft] = useState(0);
+  // const [selectedNft, setSelectedNft] = useState(0);
   const nftSliderSettings = {
     dots: false,
     infinite: true,
@@ -412,9 +437,9 @@ function NFTSlider() {
     autoplaySpeed: 4000,
     autoplay: true,
     arrows: true,
-    afterChange: function (index) {
-      setSelectedNft(index);
-    },
+    // afterChange: function (index) {
+    //   setSelectedNft(index);
+    // },
   };
   return (
     <SliderCustom {...nftSliderSettings}>
@@ -424,5 +449,31 @@ function NFTSlider() {
         </Box>
       ))}
     </SliderCustom>
+  );
+}
+
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+  const isMobile = useResponsive('down', 'sm');
+  return (
+    <CustomModal
+      open={open}
+      _close={() => handleClose()}
+      isShowCloseButton={true}
+    >
+
+      <Stack>
+        <Typography variant={isMobile ? 'h5' : 'h3'}>My NFT</Typography>
+      </Stack>
+      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3, }}>
+        {myNftList?.map((item, index) => (
+          <Box component={'img'}
+            alt={item.name}
+            src={item.image_url}
+            key={index}
+            sx={{ width: 'min(25%,200px)' }}
+          />
+        ))}
+      </Stack>
+    </CustomModal>
   );
 }
