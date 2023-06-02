@@ -3,14 +3,13 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
 import HomepageV2 from './pages/Homepage-v2';
-import IDOList from './pages/IDOList';
+import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 import FreeMinting from 'pages/FreeMinting';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
-// import FreeMinting from './pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -37,7 +36,7 @@ export default function Router() {
                     path: 'ido-launchpad',
                     element: (
                         <Suspense>
-                            <IDOList />
+                            <IDOLaunchpad />
                         </Suspense>
                     ),
                 },
