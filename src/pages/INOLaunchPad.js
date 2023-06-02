@@ -69,7 +69,7 @@ const INOLaunchPad = () => {
 
                             <Caption>
                                 Don't miss out the opportunity to buy Special NFT at even cheaper prices Through INO
-                                Launchpad. YouSUI promises that only High-Value NFTs will be on sale throught String DD
+                                Launchpad. YouSUI promises that only High-Value NFTs will be on sale through strong DD
                                 Regulation and Screening System.
                             </Caption>
 

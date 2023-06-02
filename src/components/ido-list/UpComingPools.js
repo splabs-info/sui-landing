@@ -7,7 +7,7 @@ const upComingIDOList = [
   {
     title: 'TXUI (BETA IDO)',
     avatar: '/images/ido/ido-upcoming-1.jpg',
-    releaseTime: 'Official Launch: June 10th',
+    releaseTime: 'Coming Soon',
     salePeriod: 'TBA',
     status: false,
     link: '',
