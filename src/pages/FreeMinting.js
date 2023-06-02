@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Hidden, Stack, Typography, styled } from '@mui/material';
+import { Box, Container, Grid, Hidden, Link, Stack, Typography, styled } from '@mui/material';
 import { JsonRpcProvider, TransactionBlock, devnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
@@ -29,6 +29,9 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   '& div': {
     zIndex: 1,
+  },
+  '& a': {
+    textDecoration: 'unset',
   },
   '::before': {
     content: "''",
@@ -174,22 +177,29 @@ export default function FreeMinting() {
       gap={isMobile ? 1 : 2}
       mb={isMobile ? 3 : 2}
     >
-      <BorderGradientButton>
-        <img src="/images/icon/logo-crew3.png" alt="global" />
-        Crew3
-      </BorderGradientButton>
-      <BorderGradientButton>
-        <img src="/images/icon/logo-twitter.png" alt="discord" />
-        Twitter
-      </BorderGradientButton>
-      <BorderGradientButton>
-        <img src="/images/icon/logo-discord.png" alt="discord" />
-        Discord
-      </BorderGradientButton>
-      <BorderGradientButton>
+      <Link href={`https://zealy.io/c/yousui`} target='_blank' >
+        <BorderGradientButton>
+          <img src="/images/icon/logo-crew3.png" alt="global" />
+          Crew3
+        </BorderGradientButton>
+      </Link>
+      <Link href={`https://twitter.com/YouSUI_Global`} target='_blank' >
+        <BorderGradientButton>
+          <img src="/images/icon/logo-twitter.png" alt="discord" />
+          Twitter
+        </BorderGradientButton>
+      </Link>
+
+      <Link href={`https://discord.com/invite/yousui`} target='_blank' >
+        <BorderGradientButton>
+          <img src="/images/icon/logo-discord.png" alt="discord" />
+          Discord
+        </BorderGradientButton>
+      </Link>
+      {/* <BorderGradientButton>
         <img src="/images/icon/icon-global.png" alt="global" />
         View on Explore
-      </BorderGradientButton>
+      </BorderGradientButton> */}
     </Box>
   </>);
 
@@ -230,7 +240,7 @@ export default function FreeMinting() {
                   *** Claim schedule: 11:00 (UTC) 10th June, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
-                  Click <b>“Claim Now”</b>button to receive a free YouSUI.
+                  Click <b>“Claim Now”</b>button to receive a free YouSUI NFT.
                   <br />
                   (Prepare Gas Fee on your Wallet)
                 </Typography>
