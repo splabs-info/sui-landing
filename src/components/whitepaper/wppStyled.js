@@ -62,7 +62,8 @@ export const NormalTextList = styled(Typography)(({ theme }) => ({
   fontSize: '0.98rem',
   display: 'flex',
   "& .icon": {
-    marginRight: '0.5rem'
+    marginRight: '0.5rem',
+    minWidth: '24px'
   },
 
 }));

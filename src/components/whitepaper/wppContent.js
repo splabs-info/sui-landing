@@ -574,6 +574,45 @@ export const wppContent = [
         ],
     },
     {
+        id: 'refund-policy',
+        category: 'Refund Policy',
+        description: [
+            {
+                checklist: true,
+                list: [
+                    <>
+                        <IconSquareCheck /> Investor Protection: Ensuring Liquidity and Lockup: <br />
+                        At YouSUI, investor security is paramount. Projects must contribute a minimum of $400–500k to the liquidity pool, locked for 12 months. Non-compliant projects risk their raised tokens being retained in stable coins, protecting investors from potential losses.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Timely Listing and Investor Choice:<br />
+                        YouSUI maintains accountability and transparency by enforcing a maximum one-month gap between the IDO and listing date. If this timeline is exceeded, the community participates in a poll to decide whether to continue with the project or issue a full refund.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Price Stability and Refunds:<br />
+                        Price volatility is a concern, especially in the early stages. YouSUI requires projects to stay above the IDO price until 50% of tokens are distributed to the community. Falling below the IDO price for a week qualifies investors for a refund, reducing the risk of early token price drops.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Simultaneous Distribution for Fairness:<br />
+                        To ensure fairness, YouSUI verifies distribution times among all parties involved. All participants receive distributions simultaneously. Non-compliance may result in penalties or refunds, promoting equal opportunities for all investors.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Full Token Delivery and Vesting:<br />
+                        YouSUI emphasizes transparency by requiring projects to deliver full token amounts before launch. However, prior vesting contracts with agreed-upon distribution dates are allowed, with YouSUI verifying their immutability.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Secure Funds Management:<br />
+                        YouSUI takes a responsible approach to funds management. Raised funds during IDOs or from VCs are held in a secure vault, safeguarding against rug pulls or failures caused by incompetent management.
+                    </>,
+                    <>
+                        <IconSquareCheck /> Smart Contract Audits and Token Restrictions:<br />
+                        YouSUI prioritizes the integrity of project smart contracts. Thorough audits are conducted to ensure no blacklisting or restrictions that harm token distribution and the community.
+                    </>,
+                ],
+            },
+        ],
+    },
+    {
         id: 'staking',
         category: 'Staking',
         description: [
@@ -1058,6 +1097,7 @@ export const wppContent = [
         id: 'ido-ino-regulation',
         category: 'IDO & INO Regulation',
         description: [
+            { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />], },
             {
                 title: 'YouSUI Introduces New IDO Regulations Aimed To Protect The Community',
                 content: ['Effective from October 1, 2022, YouSUI introduces new policies to protect the community.'],
