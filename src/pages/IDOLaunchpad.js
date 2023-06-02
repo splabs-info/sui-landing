@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import { WalletDrawer } from 'components/drawer';
 import React from 'react';
 
-export default function IDOList() {
+export default function IDOLaunchpad() {
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
   const [openWalletDrawer, setOpenWalletDrawer] = React.useState();

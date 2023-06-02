@@ -1,8 +1,6 @@
 import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
-import { useSelector } from 'react-redux';
-import useResponsive from '../../hooks/useResponsive';
 
 const ContainerPartner = styled(Box)(({ theme }) => ({
     display: 'grid',
@@ -51,164 +49,13 @@ const partners = [
         label: 'movement',
         link: '/',
     },
-    // {
-    //     label: 'POLYGONSTUDIO',
-    //     link: 'https://polygonstudios.com/',
-    // },
-    // {
-    //     label: 'POLYGON',
-    //     link: 'https://polygon.technology/',
-    // },
-    // {
-    //     label: 'BITKEEP_P',
-    //     link: 'https://bitkeep.com/',
-    // },
-    // {
-    //     label: 'BLOCKWIZ',
-    //     link: 'https://blockwiz.com/',
-    // },
-    // {
-    //     label: 'DWF',
-    //     link: 'https://www.dwf-labs.com/',
-    // },
-    // {
-    //     label: 'Kross',
-    //     link: 'https://www.krosslab.io/',
-    // },
-    // {
-    //     label: 'NFTB',
-    //     link: 'https://nftb.io/',
-    // },
-    // {
-    //     label: 'CHAINLINK',
-    //     link: 'https://chain.link/',
-    // },
-    // {
-    //     label: 'chaindustry',
-    //     link: 'https://www.chaindustry.io/',
-    // },
-    // {
-    //     label: 'CLS',
-    //     link: 'https://www.cls.global/',
-    // },
-    // {
-    //     label: 'nslogo',
-    //     link: 'http://www.nsstudio.co.kr/',
-    // },
-    // {
-    //     label: 'Kiaydice',
-    //     link: 'https://klaydice.io/',
-    // },
-    // {
-    //     label: 'kaikas',
-    //     link: 'https://docs.kaikas.io/',
-    // },
-    // {
-    //     label: 'SOKEN',
-    //     link: 'https://soken.io/',
-    // },
-    // {
-    //     label: 'Houbi-NFT',
-    //     link: 'https://tmg35s.d1verse.io/#/home',
-    // },
-    // {
-    //     label: 'tofu',
-    //     link: 'https://tofunft.com/',
-    // },
-    // {
-    //     label: 'SIGNVM',
-    //     link: 'https://www.signvm.io/',
-    // },
-    // {
-    //     label: 'MK',
-    //     link: 'https://game.mk.co.kr/',
-    // },
-    // {
-    //     label: 'MOON-KNIGHT',
-    //     link: 'https://moonknightlabs.com/',
-    // },
-    // {
-    //     label: 'Gramming',
-    //     link: 'https://www.p-gramming.com/main/main.php',
-    // },
-    // {
-    //     label: 'GAMETREE',
-    //     link: 'https://gametree.me/',
-    // },
-    // {
-    //     label: 'gate-io',
-    //     link: 'https://www.Sui.io/',
-    // },
-    // // {
-    // //   label: 'gate-labs',
-    // //   link: 'https://www.Sui.io/',
-    // // },
-    // {
-    //     label: 'Pixel',
-    //     link: 'https://www.pixelplay.com/',
-    // },
-    // {
-    //     label: 'Linx',
-    //     link: '/',
-    // },
-    // {
-    //     label: 'Sunmiya',
-    //     link: 'https://sunmiya.club/',
-    // },
-    // {
-    //     label: 'sotatek',
-    //     link: 'https://www.sotatek.com/',
-    // },
-    // {
-    //     label: 'Natus-Alien-Club',
-    //     link: 'https://natusalienclub.com/',
-    // },
-    // {
-    //     label: 'Teddybear-Labs',
-    //     link: 'https://teddybearlabs.io/',
-    // },
-    // {
-    //     label: 'Aquapnix',
-    //     link: 'https://aquapnix.com/',
-    // },
-    // {
-    //     label: 'Game-on',
-    //     link: 'https://gameon.vc/',
-    // },
-    // {
-    //     label: 'Parable',
-    //     link: 'https://parable-asia.com/',
-    // },
-    // {
-    //     label: 'EARNBOX',
-    //     link: '/',
-    // },
-    // {
-    //     label: 'Travel-Tracks',
-    //     link: 'https://traveltracks.com.vn/',
-    // },
-    // {
-    //     label: '8_FINANCE',
-    //     link: 'https://8.finance/',
-    // },
-    // {
-    //     label: 'KATA_1',
-    //     link: 'https://www.kata.or.kr/v2/',
-    // },
-    // {
-    //     label: 'Influencer',
-    //     link: 'https://www.itfluencer.co.kr/',
-    // },
-    // {
-    //     label: 'KLT',
-    //     link: 'https://www.saramin.co.kr/zf_user/company-info/view/csn/SmUra3BsZ25CL2F4YmFHaTJGU1IrUT09/company_nm/Korea%20Land%20Tour%20KLT',
-    // },
+    {
+        label: 'releap',
+        link: 'https://releap.xyz/',
+    },
 ];
 
 export default function Partner() {
-    const isDesktop = useResponsive('up', 'md');
-    const { setting } = useSelector((state) => state);
-    const { library } = setting;
     return (
         <SectionBox
             sx={{

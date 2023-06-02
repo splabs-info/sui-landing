@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const CopyComponent = ({ content, children }) => {
     const handleCopy = () => {
-        toast.success('Copped');
+        toast.success('Copied');
     };
 
     return (
