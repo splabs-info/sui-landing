@@ -1,11 +1,11 @@
 import { Box, Divider, styled, Typography } from '@mui/material';
-import useResponsive from 'hooks/useResponsive';
-import { TitleSection } from './TitleSection';
-import React from 'react';
-import { SuiContext } from 'provider/SuiProvider';
 import { useWallet } from '@suiet/wallet-kit';
-import { TXUI_PACKAGE, investCertificate } from 'constant';
+import { investCertificate, TXUI_PROJECT } from 'constant';
+import useResponsive from 'hooks/useResponsive';
+import { SuiContext } from 'provider/SuiProvider';
+import React from 'react';
 import { findCertificate } from 'utils/util';
+import { TitleSection } from './TitleSection';
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -119,7 +119,6 @@ export const MyIDOArea = () => {
         fetchData();
     }, [provider, wallet?.address, wallet?.connected]);
 
-    console.log('ido', myIdo);
     return (
         <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="MY IDO PARTICIPATED" />
@@ -160,7 +159,7 @@ export const MyIDOArea = () => {
                                 <StyledInfoBox>
                                     <StyledTitleInfo>View on explore</StyledTitleInfo>
                                     <StyledLink
-                                        href="https://suiexplorer.com/object/0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c?network=mainnet"
+                                        href={`https://suiexplorer.com/object/${TXUI_PROJECT}?network=testnet`}
                                         target="_blank"
                                     >
                                         View

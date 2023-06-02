@@ -64,8 +64,8 @@ export default function Router() {
                     path: 'ido-launchpad/sua',
                     element: (
                         <Suspense>
-                            <IDODetail />
-                            {/* <ComingSoon /> */}
+                            {/* <IDODetail /> */}
+                            <ComingSoon />
                         </Suspense>
                     ),
                 },

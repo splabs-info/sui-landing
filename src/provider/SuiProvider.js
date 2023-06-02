@@ -44,14 +44,6 @@ export const SUIWalletContext = ({ children }) => {
                 options: { showContent: true },
             });
 
-            // // Refactor
-            // const roundId = await provider.getObject({
-            //     id: TXUI_PROJECT,
-            //     options: { showContent: true }
-            // })
-
-            // console.log('roundId___', roundId)
-
             const allBalances = await provider.getAllBalances({
                 owner: wallet?.address,
             });

@@ -7,11 +7,21 @@ import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
+import { SUA_PRESALE_OG } from 'constant/sui-chain';
 
 export default function IDODetail() {
     const titleTab="IDO TEST ROUND (SUA TOKEN)"
 
-    const [ratio, setRadio] = React.useState();
+   const [ratio, setRadio] = React.useState();
+    const [avatar, setAvatar] = React.useState();
+    const [tokenName, setTokenName] = React.useState();
+    const [symbol, setSymbol] = React.useState();
+    const [tokenAddress, setTokenAddress] = React.useState();
+    const [decimals, setDecimals] = React.useState();
+    const [telegram, setTelegram] = React.useState();
+    const [discord, setDiscord] = React.useState();
+    const [tokenDescription, setTokenDescription] = React.useState();
+
     const [participants, setParticipants] = React.useState(0);
     const [participantsWallet, setParticipantsWallet] = React.useState([]);
     const [totalSold, setTotalSold] = React.useState();
@@ -23,7 +33,7 @@ export default function IDODetail() {
     React.useEffect(() => {
         const fetchPoolData = async () => {
             const txn = await provider.getObject({
-                id: '0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c',
+                id: SUA_PRESALE_OG,
                 options: { showContent: true },
             });
 
@@ -34,11 +44,27 @@ export default function IDODetail() {
                     round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
                     9
                 );
+
+                console.log('round__', round)
+                setTokenAddress(`0x${round?.token_type}`);
+
+                const tokenType = await provider.getCoinMetadata({
+                    coinType: `0x${round?.token_type}`,
+                });
+
+                setTokenName(tokenType?.name);
+                setDecimals(tokenType?.decimals);
+                setTokenDescription(tokenType?.description);
+                setSymbol(tokenType?.symbol);
                 setRadio(suiRatio);
             }
 
             const participants = round?.participants?.fields?.contents.length;
             const participantsWallet = round?.participants?.fields?.contents;
+
+            setAvatar(round?.project?.fields?.image_url);
+            setTelegram(round?.project?.fields?.telegram);
+            setDiscord(round?.project?.fields?.discord);
             setParticipantsWallet(participantsWallet);
             setParticipants(participants);
             setTotalSold(round?.total_sold);
@@ -50,6 +76,7 @@ export default function IDODetail() {
         fetchPoolData();
     }, [provider]);
 
+
     return (
         <Page title="IDO - Detail">
             <SectionBox
@@ -59,16 +86,30 @@ export default function IDODetail() {
             >
                 <Container maxWidth="xl">
                     <Pool
+                        avatar={avatar}
                         balances={balances}
+                        decimals={decimals}
                         titleTab={titleTab}
+                        maxPerUser={maxPerUser}
                         totalSold={totalSold}
                         totalSupply={totalSupply}
                         ratio={ratio}
+                        symbol={symbol}
                         participants={participants}
                         participantsWallet={participantsWallet}
                     />
-                    <PoolInformation ratio={ratio} minPurchase={minPurchase} maxPerUser={maxPerUser} />
-                    <ProjectInfo />
+                    <PoolInformation
+                        tokenAddress={tokenAddress}
+                        tokenName={tokenName}
+                        ratio={ratio}
+                        symbol={symbol}
+                        totalSupply={totalSupply}
+                        decimals={decimals}
+                        description={tokenDescription}
+                        minPurchase={minPurchase}
+                        maxPerUser={maxPerUser}
+                    />
+                    <ProjectInfo description={tokenDescription} />
                 </Container>
             </SectionBox>
         </Page>
