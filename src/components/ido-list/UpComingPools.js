@@ -4,25 +4,25 @@ import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/Ho
 import { UpComingIDOCard } from './UpComingIDOCard';
 
 const upComingIDOList = [
-  {
-    title: 'TXUI (BETA IDO)',
-    avatar: '/images/ido/ido-upcoming-1.jpg',
-    releaseTime: 'Coming Soon',
-    salePeriod: 'TBA',
-    status: false,
-    link: '',
-    description: [
-      <>
-        <p>TBA</p>
-        <p>Valuation</p>
-      </>,
-      <>
-        <p>TBA</p>
-        <p>Ticket Size</p>
-      </>,
-    ]
+  // {
+  //   title: 'TXUI (BETA IDO)',
+  //   avatar: '/images/ido/ido-upcoming-1.jpg',
+  //   releaseTime: 'Coming Soon',
+  //   salePeriod: 'TBA',
+  //   status: false,
+  //   link: '',
+  //   description: [
+  //     <>
+  //       <p>TBA</p>
+  //       <p>Valuation</p>
+  //     </>,
+  //     <>
+  //       <p>TBA</p>
+  //       <p>Ticket Size</p>
+  //     </>,
+  //   ]
 
-  },
+  // },
   {
     title: 'YouSUI - XUI',
     avatar: '/images/ido/ido-upcoming-2.jpg',
