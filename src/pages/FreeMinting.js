@@ -8,14 +8,14 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 
 const addresses = {
-  package: `0xcd3886a6d6798d6b2f5594aef6bec83cc8d74e56ec75dbf26aa4bec828b26f2c`,
-  objectFreeMint: `0xf14286e3d9acad1688b99261a4653f73fe4d61b13ad19752c29119bd18d97351`,
-  objectInformation: `0x713ab0c4f67e26826f304ffe29019a9867daafc29d550d42ecb6c57aa4935e98`,
+  package: `0x4a73863c9ba3311050d4bac61f6adf0c30c8630815029918875a8d79f08c980e`,
+  objectFreeMint: `0xc12836121c340b7f80ab922790188670095a1d2886af690c71f716689616a7cf `,
+  objectInformation: `0x7db44371691fb6a95f48f9d87691860cbfd6bc291031250330a9f10460e566da`,
 };
 
 const provider = new JsonRpcProvider(devnetConnection);
@@ -170,12 +170,21 @@ export default function FreeMinting() {
       flexDirection={'row'}
       alignItems={'center'}
       justifyContent={isMobile ? 'space-between' : 'center'}
-      gap={isMobile ? 1 : 5}
-      mb={isMobile ? 3 : 0}
+      flexWrap={'wrap'}
+      gap={isMobile ? 1 : 2}
+      mb={isMobile ? 3 : 2}
     >
       <BorderGradientButton>
+        {/* <img src="/images/icon/icon-global.png" alt="global" /> */}
+        Crew3
+      </BorderGradientButton>
+      <BorderGradientButton>
+        <img src="/images/icon/logo-twitter.svg" alt="discord" />
+        Twitter
+      </BorderGradientButton>
+      <BorderGradientButton>
         <img src="/images/icon/logo-discord.svg" alt="discord" />
-        Join Discord
+        Discord
       </BorderGradientButton>
       <BorderGradientButton>
         <img src="/images/icon/icon-global.png" alt="global" />
@@ -213,7 +222,7 @@ export default function FreeMinting() {
                   <NFTGroup />
                 </Hidden>
                 {!hasInTimes && <Typography variant="h6" fontWeight={700} color={'white'}>
-                  Start time:
+                  Start at:
                 </Typography>}
                 <MintingCountdown endTime={'2023-06-10T11:00:00'} _handleComplete={() => setHasInTimes(true)} />
 
@@ -221,9 +230,9 @@ export default function FreeMinting() {
                   *** Claim schedule: 11:00 (UTC) 10th June, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
-                  Click <b>“Claim Now”</b>button to receive a free YouSUI benefit.
+                  Click <b>“Claim Now”</b>button to receive a free YouSUI.
                   <br />
-                  (Gas fee is not included)
+                  (Prepare Gas Fee on your Wallet)
                 </Typography>
                 <Typography
                   variant="body1"
@@ -245,7 +254,7 @@ export default function FreeMinting() {
                     loading={loading}
                     disabled={owned === 5}
                   >
-                    Minting Now (5)
+                    Claim Now
                   </GradientLoadingButton> :
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}

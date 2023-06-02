@@ -3,6 +3,7 @@ import Page from 'components/common/Page';
 import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home-v2/HomeStyles';
 import ApplyAsProject from 'components/ino/ApplyAsPorject';
 import JoinAnIDO from 'components/ino/JoinAnIDO';
+import OnGoing from 'components/ino/OnGoing';
 import UpComing from 'components/ino/UpComing';
 import WhyJoin from 'components/ino/WhyJoin';
 import useResponsive from 'hooks/useResponsive';
@@ -93,6 +94,7 @@ const INOLaunchPad = () => {
                             }}
                         />
                     </Stack>
+                    <OnGoing />
                     <UpComing />
                     <JoinAnIDO />
                     <WhyJoin />
