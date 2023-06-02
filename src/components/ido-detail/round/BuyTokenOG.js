@@ -8,10 +8,10 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
+import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE, TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PROJECT, TXUI_PAYMENT_TYPE, TXUI_TOKEN_TYPE} from 'constant';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -43,27 +43,6 @@ const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
     },
 }));
 
-const CheckBoxLabel = () => {
-    return (
-        <Typography
-            sx={{
-                color: 'white',
-                '& a': { textDecorationColor: '#28A3AB', color: 'white', fontWeight: 700 },
-            }}
-            variant="body2"
-        >
-            I have read and agree to the
-            <a
-                href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
-                target="_blank"
-                rel="noreferrer"
-            >
-                {' '}
-                YouSUI Staking Service Agreement.
-            </a>
-        </Typography>
-    );
-};
 
 const MaxButton = styled(Button)(({ theme }) => ({
     background: 'rgba(255, 255, 255, 0.1)',
@@ -73,7 +52,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
+export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
@@ -90,10 +69,12 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
         formState: { isValid },
         watch,
         reset,
+        setValue,
+        trigger
     } = useForm({
         mode: 'onChange',
         defaultValues: {
-            amount: 1,
+            amount: 20,
         },
         resolver: yupResolver(IdoSchema),
     });
@@ -124,9 +105,9 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
         });
 
         tx.moveCall({
-            target: `${PACKAGE}::launchpad_presale::purchase`,
-            typeArguments: [TOKEN_TYPE, PAYMENT_TYPE],
-            arguments: [tx.object(CLOCK), tx.object(PROJECT), tx.pure(NAME), vec, tx.pure(parseAmount)],
+            target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
+            typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(TXUI_NAME), vec, tx.pure(parseAmount)],
         });
 
         try {
@@ -144,8 +125,6 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
             }
         } catch (e) {
             setLoading(false);
-            
-            // toast.error('Transaction failed');
         }
     };
 
@@ -159,10 +138,11 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
 
     const canBuy = isCanBuy();
 
-    // const handleSelectMax = () => {
-    //     setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
-    //     trigger('amount');
-    // };
+    const handleSelectMax = () => {
+        // setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+        setValue('amount', ethers.utils.formatUnits(maxPerUser, decimals))
+        trigger('amount');
+    };
 
     const renderStatusBalance = React.useCallback(() => {
         if (!wallet?.address || !wallet?.connected) {
@@ -200,7 +180,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                             id="amount"
                             name="amount"
                             control={control}
-                            disabled
+                            // disabled
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment
@@ -212,7 +192,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                                             },
                                         }}
                                     >
-                                        SUA
+                                        {symbol}
                                     </InputAdornment>
                                 ),
                             }}
@@ -228,9 +208,9 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                             }}
                         />
                     </Box>
-                    {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
                         <MaxButton onClick={handleSelectMax}>Max</MaxButton>
-                    </Box> */}
+                    </Box>
                     <Box
                         sx={{
                             display: 'flex',
@@ -240,7 +220,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                     >
                         <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
-                            value={watchAmount * toNumber(ratio) || 0}
+                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
                             disabled
                             sx={{
                                 fontWeight: 'bold',

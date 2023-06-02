@@ -4,11 +4,8 @@ import { TitleSection } from './TitleSection';
 import React from 'react';
 import { SuiContext } from 'provider/SuiProvider';
 import { useWallet } from '@suiet/wallet-kit';
-import { Link } from 'react-router-dom';
-
-const investmentCertificate =
-    '0xe5bad555746563f1429f651a0dc79d47f0cbf68a84349e85ea7882bcd18cda4f::launchpad_presale::InvestmentCertificate';
-
+import { TXUI_PACKAGE, investCertificate } from 'constant';
+import { findCertificate } from 'utils/util';
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -30,6 +27,7 @@ const StyledTitleInfo = styled(Typography)(({ theme }) => ({
     textAlign: 'center',
     fontSize: 24,
     textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+    marginBottom: 24,
 }));
 
 const StyledInfo = styled(Typography)(({ theme }) => ({
@@ -68,6 +66,7 @@ const StyledInfoBox = styled(Box)(({ theme }) => ({
 
 export const MyIDOArea = () => {
     const tablet = useResponsive('down', 'md');
+
     const [myIdo, setMyIdo] = React.useState([]);
 
     const wallet = useWallet();
@@ -86,18 +85,19 @@ export const MyIDOArea = () => {
 
             if (otherObjects?.data?.length === 0) return;
 
-            const certificateObjects = otherObjects?.data.find((item) => item?.data?.content?.type === investmentCertificate);
+            const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
+
             if (!certificateObjects) return;
 
-            const certificate = await provider.getObject({
-                id: certificateObjects.data.objectId,
-                options: { showContent: true },
-            });
+            const promises = certificateObjects.map(async (item) => {
+                const certificate = await provider.getObject({
+                    id: item.data.objectId,
+                    options: { showContent: true },
+                });
 
-            const projectFields = certificate?.data?.content?.fields?.project?.fields;
+                const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-            const formattedMyIdo = [
-                {
+                return {
                     description: projectFields?.description || '',
                     discord: projectFields?.discord || '',
                     image_url: projectFields?.image_url || '',
@@ -108,9 +108,12 @@ export const MyIDOArea = () => {
                     telegram: projectFields?.telegram || '',
                     twitter: projectFields?.twitter || '',
                     website: projectFields?.website || '',
-                },
-            ];
-            setMyIdo(formattedMyIdo);
+                };
+            });
+
+            const formattedMyIdo = await Promise.all(promises);
+
+            setMyIdo([...formattedMyIdo]);
         };
 
         fetchData();
@@ -125,11 +128,11 @@ export const MyIDOArea = () => {
                     <>
                         {myIdo?.map((item, index) => (
                             <>
-
-<StyledInfoBox>
+                                <StyledInfoBox>
+                                <StyledTitleInfo>Avatar</StyledTitleInfo>
                                     <img src={item?.image_url} alt='' style={{
-                                        width: 80,
-                                        height: 80,
+                                        width: 42,
+                                        height: 42,
                                         borderRadius: 16,
                                         margin: '0 auto'
                                     }} />
@@ -139,10 +142,6 @@ export const MyIDOArea = () => {
                                     <StyledTitleInfo>No</StyledTitleInfo>
                                     <StyledInfo>{index + 1}</StyledInfo>
                                 </StyledInfoBox>
-
-                                
-                             
-
                                 <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
                                 <StyledInfoBox>

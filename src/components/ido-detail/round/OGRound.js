@@ -1,16 +1,34 @@
 import { Box } from '@mui/material';
-import { ProcessBox } from './ProcessBox';
 import { BuyTokenOG } from './BuyTokenOG';
-export const OGRound = ({ balances, totalSold, totalSupply, ratio, participants, participantsWallet }) => {
+import { ProcessBox } from './ProcessBox';
+export const OGRound = ({
+    balances,
+    decimals,
+    totalSold,
+    totalSupply,
+    symbol,
+    ratio,
+    maxPerUser,
+    participants,
+    participantsWallet,
+}) => {
     return (
         <Box>
             <ProcessBox
                 totalSold={totalSold}
                 totalSupply={totalSupply}
                 ratio={ratio}
+                symbol={symbol}
                 participants={participants}
             />
-            <BuyTokenOG balances={balances} ratio={ratio} participantsWallet={participantsWallet} />
+            <BuyTokenOG
+                balances={balances}
+                decimals={decimals}
+                symbol={symbol}
+                maxPerUser={maxPerUser}
+                ratio={ratio}
+                participantsWallet={participantsWallet}
+            />
         </Box>
     );
 };

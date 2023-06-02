@@ -3,7 +3,8 @@ import { TitleSection } from 'components/my-profile/TitleSection';
 import { SocialFooter } from 'layouts/Footer-v2';
 import { PoolInformationCard } from './PoolInfoCard';
 import { TokenInformationCard } from './TokenInfoCard';
-export const PoolInformation = ({ ratio, minPurchase, maxPerUser }) => {
+export const PoolInformation = ({ tokenAddress, tokenName, decimals, description, ratio, symbol, minPurchase, maxPerUser, totalSupply }) => {
+    console.log('decimals___', decimals)
     return (
         <Grid container spacing={5} justifyContent="space-between" sx={{ marginBottom: 10 }}>
             <Grid sx={{ width: '100%', '& a': { marginRight: '16px' } }} xs={12} item>
@@ -17,18 +18,17 @@ export const PoolInformation = ({ ratio, minPurchase, maxPerUser }) => {
                 </Typography> */}
                 <SocialFooter />
                 <Typography variant='body1' color={'white'} mt={3}>
-                    SUA is a token of Meta version. It has no intrinsic value or expectation of financial return.
-                    There is no official team or roadmap.
+                   {description}
                 </Typography>
 
             </Grid>
             <Grid sx={{ width: '100%' }} md={6} sm={12} item>
                 <TitleSection title="POOL INFORMATION" />
-                <PoolInformationCard ratio={ratio} minPurchase={minPurchase} maxPerUser={maxPerUser} />
+                <PoolInformationCard decimals={decimals} ratio={ratio} symbol={symbol} minPurchase={minPurchase} maxPerUser={maxPerUser} />
             </Grid>
             <Grid sx={{ width: '100%' }} md={6} sm={12} item>
                 <TitleSection title="TOKEN INFORMATION" />
-                <TokenInformationCard />
+                <TokenInformationCard tokenAddress={tokenAddress} tokenName={tokenName} decimals={decimals} symbol={symbol} totalSupply={totalSupply} />
             </Grid>
         </Grid>
     );

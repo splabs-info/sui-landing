@@ -31,8 +31,7 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
         opacity: 1,
         fontSize: '1rem',
         '& span': {
-            background:
-                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
+            background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
         },
     },
     '& .MuiTabs-flexContainer': {
@@ -105,7 +104,20 @@ function a11yProps(index) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, participantsWallet }) => {
+export const Pool = ({
+    avatar,
+    balances,
+    decimals,
+    description,
+    totalSold,
+    totalSupply,
+    titleTab,
+    ratio,
+    symbol,
+    maxPerUser,
+    participants,
+    participantsWallet,
+}) => {
     const isMobile = useResponsive('down', 'sm');
 
     const [value, setValue] = useState(0);
@@ -118,7 +130,7 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
         <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
             <Grid xs={12} md={6} item>
                 <AvatarBox>
-                    <AvatarPool />
+                    <AvatarPool avatar={avatar} />
                 </AvatarBox>
             </Grid>
             <Grid width="100%" xs={12} md={6} item>
@@ -132,7 +144,7 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
                                 variant={isDesktop ? 'fullWidth' : 'scrollable'}
                                 scrollButtons="auto"
                             >
-                                <Tab label="IDO TEST ROUND (SUA TOKEN)" {...a11yProps(0)} />
+                                <Tab label={titleTab} {...a11yProps(0)} />
                                 {/* <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} /> */}
                                 {/* <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} /> */}
                             </CustomTabList>
@@ -140,9 +152,12 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
                         <TabPanel value={value} index={0}>
                             <OGRound
                                 balances={balances}
+                                decimals={decimals}
                                 totalSold={totalSold}
+                                maxPerUser={maxPerUser}
                                 totalSupply={totalSupply}
                                 ratio={ratio}
+                                symbol={symbol}
                                 participants={participants}
                                 participantsWallet={participantsWallet}
                             />

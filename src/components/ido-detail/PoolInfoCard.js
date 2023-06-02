@@ -35,7 +35,7 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 }));
 
-export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
+export const PoolInformationCard = ({ decimals, ratio, symbol, minPurchase, maxPerUser }) => {
     return (
         <PoolInfoBox>
             <StyledStack
@@ -46,23 +46,23 @@ export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
             >
                 <StyledItemStack>
                     <StyledTitleInfo>Token Distribution</StyledTitleInfo>
-                    <StyledInfo>1,000 SUA</StyledInfo>
+                    <StyledInfo>1,000 {symbol}</StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Min. Purchase</StyledTitleInfo>
                     <StyledInfo>
-                        {minPurchase ? ethers.utils.formatUnits(minPurchase, 9) : 'Loading'} SUA
+                        {minPurchase ? ethers.utils.formatUnits(minPurchase, decimals) : 'Loading'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Max. Purchase</StyledTitleInfo>
                     <StyledInfo>
-                        {maxPerUser ? ethers.utils.formatUnits(maxPerUser, 9) : 'Loading'} SUA
+                        {maxPerUser ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(ethers.utils.formatUnits(maxPerUser, decimals)) : 'Loading'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Token Price</StyledTitleInfo>
-                    <StyledInfo>{ratio} SUI</StyledInfo>
+                    <StyledInfo>{ratio} {symbol}</StyledInfo>
                 </StyledItemStack>
 
                 <StyledItemStack>

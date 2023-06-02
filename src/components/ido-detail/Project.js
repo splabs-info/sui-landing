@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button, Box, Collapse, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TitleSection } from 'components/my-profile/TitleSection';
+import React from 'react';
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <Button {...other} variant="text" />;
@@ -59,7 +59,7 @@ const projectContent = [
         content: 'Public',
     },
 ];
-export const ProjectInfo = () => {
+export const ProjectInfo = ({ description }) => {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -71,8 +71,7 @@ export const ProjectInfo = () => {
             <TitleSection title="ABOUT THE PROJECT" />
             <StyledProjectCard>
                 <Typography color="white" textAlign="left" lineHeight={'32px'} mb={2}>
-                    SUA is a token of Meta version. It has no intrinsic value or expectation of
-                    financial return. There is no official team or roadmap.
+                    {description}
                 </Typography>
                 {/* <Collapse
                     in={expanded}

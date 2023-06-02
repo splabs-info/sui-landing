@@ -3,21 +3,23 @@ import { useWallet } from '@suiet/wallet-kit';
 import { ethers } from 'ethers';
 import React from 'react';
 import { toast } from 'react-toastify';
-
-const provider = new JsonRpcProvider(mainnetConnection);
+import { TXUI_PROJECT, TXUI_PROJECT_STORAGE } from 'constant/sui-chain'
+const provider = new JsonRpcProvider(testnetConnection);
 
 
 export const SuiContext = React.createContext({});
 
 export const SUIWalletContext = ({ children }) => {
-    const [allObjectsId, setAllObjects] = React.useState();
+    const [allCoinObjectsId, setAllObjects] = React.useState();
     const [balances, setBalance] = React.useState();
     const [assets, setAssets] = React.useState();
+    const [projects, setProjects] = React.useState();
 
     const wallet = useWallet();
 
     const keypair = new Ed25519Keypair();
     const signer = new RawSigner(keypair, provider);
+
 
     React.useEffect(() => {
         if (!provider || !wallet.address || !wallet?.connected) return;
@@ -29,12 +31,26 @@ export const SUIWalletContext = ({ children }) => {
                 options: { showContent: true },
             });
 
-            const allObjectsId = objects.data.filter((obj) => Coin.isSUI(obj));
+            const allCoinObjectsId = objects.data.filter((obj) => Coin.isSUI(obj));
+
+
+            const projects = await provider.getObject(({
+                id: TXUI_PROJECT_STORAGE,
+                options: { showContent: true },
+            }))
 
             const suiBalance = await provider.getBalance({
                 owner: wallet?.address,
                 options: { showContent: true },
             });
+
+            // // Refactor
+            // const roundId = await provider.getObject({
+            //     id: TXUI_PROJECT,
+            //     options: { showContent: true }
+            // })
+
+            // console.log('roundId___', roundId)
 
             const allBalances = await provider.getAllBalances({
                 owner: wallet?.address,
@@ -71,21 +87,23 @@ export const SUIWalletContext = ({ children }) => {
                     toast.error('Error fetching assets')
                 });
 
+            setProjects(projects?.data?.content?.fields?.projects)
             setBalance(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
-            setAllObjects(allObjectsId);
+            setAllObjects(allCoinObjectsId);
         })();
     }, [wallet.address, balances, wallet?.connected]);
 
-    // console.log('asssetssss______', assets)
+
     return (
         <SuiContext.Provider
             value={{
                 assets,
+                allCoinObjectsId,
                 balances,
                 provider,
+                projects,
                 signer,
                 keypair,
-                allObjectsId,
             }}
         >
             {children}
