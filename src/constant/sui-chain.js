@@ -10,22 +10,22 @@ export const SUA_PRESALE_OG = '0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72d
 
 
 // Prefix
-export const TXUI_PACKAGE = '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea';
-export const TXUI_ADMIN_STORAGE = '0x87eaa1060bd1e730e6d09ff4ceb401fce92e57269630710cee94e2d3397562be';
-export const TXUI_PROJECT_STORAGE = '0xfdfc229abb6564cb46fa79fb6f6cc6e54a0763054da109e4bcc4ccc4216bf220';
+export const TXUI_PACKAGE = '0x9e509661f3193cc45a32eddd846597ff48dc2c8164159880e9221423ba3276b6';
+export const TXUI_ADMIN_STORAGE = '0x7f410fd29f15b3f3a8d4a5829d1080eab5654a406f6f5fdc17b16de875246505';
+export const TXUI_PROJECT_STORAGE = '0xccd9401406be33fde609dde428213cb4e1802560ec17d13e555ad418d4c6b0ed';
 export const TXUI_CLOCK = '0x6';
 
 
-export const TXUI_ROUND_INFO = '0xe77f7b3d079a8f96ecd04f582a2591336b8ba15f43c299dbceac8516dce29d01';
-export const TXUI_PROJECT = '0xfb16033f01719b9ecbfadf30d8143bf6c1b4da454b34863a86a5c07caf951f74';
+export const TXUI_ROUND_INFO = '0x502f11fb2a7242671e09966552179ab320359651dcf4c1c5850dc81037813c4d';
+export const TXUI_PROJECT = '0xf3251d45e60f7391417784d2f87fd0c09e5eafb718bc2f4de3706b72d734960a';
 export const TXUI_NAME = 'OG_ROUND';
-export const TXUI_TOKEN_TYPE = '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea::txui::TXUI';
+export const TXUI_TOKEN_TYPE = '0x9e509661f3193cc45a32eddd846597ff48dc2c8164159880e9221423ba3276b6::txui::TXUI';
 
 
 export const TXUI_PAYMENT_TYPE = '0x2::sui::SUI';
 
-export const TXUI_ROUND =
-  '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea::launchpad_presale::Round';
+// export const TXUI_ROUND =
+//   '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea::launchpad_presale::Round';
 
 
 export const investCertificate = [`${TXUI_PACKAGE}::launchpad_presale::InvestmentCertificate`]

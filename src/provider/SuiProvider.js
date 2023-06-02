@@ -1,9 +1,9 @@
-import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection, mainnetConnection } from '@mysten/sui.js';
+import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
+import { TXUI_PROJECT_STORAGE } from 'constant/sui-chain';
 import { ethers } from 'ethers';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { TXUI_PROJECT, TXUI_PROJECT_STORAGE } from 'constant/sui-chain'
 const provider = new JsonRpcProvider(testnetConnection);
 
 
@@ -25,7 +25,6 @@ export const SUIWalletContext = ({ children }) => {
         if (!provider || !wallet.address || !wallet?.connected) return;
 
         (async () => {
-
             const objects = await provider.getOwnedObjects({
                 owner: wallet?.address,
                 options: { showContent: true },

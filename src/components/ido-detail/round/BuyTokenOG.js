@@ -59,7 +59,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
     const theme = useTheme();
     const wallet = useWallet();
 
-    const { sold } = useYouSuiStore(state => state.sold);
+    const { sold } = useYouSuiStore((state) => state.sold);
 
     const { allCoinObjectsId } = React.useContext(SuiContext);
 
@@ -96,11 +96,12 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), 9).toString();
+        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), decimals).toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
-        const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), 9).toString();
+        const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();
+
         const vec = tx.makeMoveVec({
             objects: [coin],
         });
@@ -221,7 +222,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
                     >
                         <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
-                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
+                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0 }
                             disabled
                             sx={{
                                 fontWeight: 'bold',

@@ -41,7 +41,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, symbol,ratio, pa
 
     const [update, setUpdate] = React.useState(false);
     const { soled } = useYouSuiStore((state) => state.sold);
-
+    console.log('soled', soled);
     React.useEffect(() => {
         if (soled) {
             setUpdate(true);
