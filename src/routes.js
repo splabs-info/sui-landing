@@ -70,8 +70,21 @@ export default function Router() {
                 { path: 'whitepaper/:sub', element: <Whitepaper /> },
                 { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
                 { path: 'staking', element: <StakingPage /> },
-                { path: 'claim-tokens', element: <Claims /> },
-                { path: '/claim-tokens/:sub', element: <ClaimsDetail /> },
+                {
+                    path: 'claim-tokens',
+                    element:
+                        <Suspense>
+                            {/* <Claims /> */}
+                            <ComingSoon />
+                        </Suspense>
+                },
+                {
+                    path: '/claim-tokens/:sub',
+                    element: <Suspense>
+                        {/* <ClaimsDetail />*/}
+                        <ComingSoon />
+                    </Suspense>
+                },
                 {
                     path: 'test-page',
                     element: (

@@ -19,7 +19,7 @@ export default function UpComing() {
         <TypographyGradient>INOs</TypographyGradient>
       </TitleBox>
 
-      <Box
+      {/* <Box
         sx={{
           background: 'linear-gradient(323.96deg, rgba(45, 126, 200, 0.1) 0%, rgba(181, 255, 211, 0.1) 89.18%)',
           boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.15)',
@@ -54,7 +54,7 @@ export default function UpComing() {
                   <Typography>Total amount: 2000</Typography>
                 </>
               }
-              percent={57}
+              percent={0}
               sx={{ margin: isMobile ? '24px 0px' : '0px' }}
             />
             <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '24px' }}>
@@ -64,7 +64,7 @@ export default function UpComing() {
             </Stack>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           background: 'linear-gradient(323.96deg, rgba(45, 126, 200, 0.1) 0%, rgba(181, 255, 211, 0.1) 89.18%)',
