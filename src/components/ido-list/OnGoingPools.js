@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { toNumber } from 'lodash';
 const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
     borderRadius: 24,
@@ -18,6 +18,9 @@ const AvatarBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
+    height: 448,
+    width: 448,
+    display: 'flex'
 }));
 
 export default function OnGoingPools() {
@@ -27,6 +30,10 @@ export default function OnGoingPools() {
 
     const isMobile = useResponsive('down', 'sm');
 
+    const [start, setStart] = React.useState();
+    const [end, setEnd] = React.useState();
+    const [decimals, setDecimals] = React.useState();
+    const [symbol, setSymbol] = React.useState();
     const [avatar, setAvatar] = React.useState();
     const [ratio, setRadio] = React.useState();
     const [participants, setParticipants] = React.useState();
@@ -51,11 +58,20 @@ export default function OnGoingPools() {
                     round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
                     9
                 );
+
+                const tokenType = await provider.getCoinMetadata({
+                    coinType: `0x${round?.token_type}`,
+                });
+
+                setDecimals(tokenType?.decimals);
+                setSymbol(tokenType?.symbol);
                 setRadio(suiRatio);
             }
 
             const participants = round?.participants?.fields?.contents.length;
 
+            setStart(toNumber(round?.start_at));
+            setEnd(toNumber(round?.end_at));
             setAvatar(round?.project?.fields?.image_url);
             setParticipants(participants);
             setTotalSold(round?.total_sold);
@@ -109,6 +125,9 @@ export default function OnGoingPools() {
                                         justifyContent: 'center',
                                         width: '100%',
                                         height: '100%',
+                                        '& .MuiCircularProgress-root': {
+                                            margin: 'auto',
+                                        },
                                     }}
                                 />
                             )}
@@ -130,7 +149,10 @@ export default function OnGoingPools() {
                                     <Typography>
                                         {(totalSold && totalSupply) || totalSold === 0 ? (
                                             <>
-                                                {`${ethers.utils.formatUnits(totalSold, 9)} / ${ethers.utils.formatUnits(totalSupply, 9)}`} SUA
+                                                {`${ethers.utils.formatUnits(totalSold, decimals)} / ${Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                                    ethers.utils.formatUnits(totalSupply, decimals)
+                                                )}`}{' '}
+                                                {symbol}
                                             </>
                                         ) : (
                                             'Loading'
@@ -159,15 +181,20 @@ export default function OnGoingPools() {
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Minimum Purchase:</Typography>
-                                            <Typography fontWeight={'bold'}>1,000 SUA</Typography>
+                                            <Typography fontWeight={'bold'}>
+                                                {minPurchase ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                                    ethers.utils.formatUnits(minPurchase, decimals)
+                                                ) : 'Loading'}
+                                                {' '}{symbol}
+                                            </Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>Start at:</Typography>
-                                            <Typography fontWeight={'bold'}>{moment(1685340000000).format('LLL')}</Typography>
+                                            <Typography fontWeight={'bold'}>{moment(start).format('LLLL')}</Typography>
                                         </Stack>
                                         <Stack direction="row" justifyContent={'space-between'}>
                                             <Typography>End at:</Typography>
-                                            <Typography fontWeight={'bold'}>{moment(1686441600000).format('LLL')}</Typography>
+                                            <Typography fontWeight={'bold'}>{moment(end).format('LLLL')}</Typography>
                                         </Stack>
                                     </Stack>
                                 </Grid>
@@ -176,7 +203,7 @@ export default function OnGoingPools() {
                                     <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
                                         {/* <Typography fontWeight={'bold'}>07D 12:31:12</Typography> */}
                                         <Button
-                                            onClick={() => navigate('/ido-launchpad/sua')}
+                                            onClick={() => navigate('/ido-launchpad/txui')}
                                             sx={{
                                                 background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
                                                 borderRadius: '50px',

@@ -1,15 +1,24 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styled from '@emotion/styled';
-import { Box, Divider, Grid, Hidden, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import {
+    Box,
+    CircularProgress,
+    Divider,
+    Grid,
+    Hidden,
+    InputAdornment,
+    Stack,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { IconSearch } from '@tabler/icons';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { GradientButton } from 'components/common/CustomButton';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
+import { lowerCase } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { lowerCase } from 'lodash';
-import { CircularProgress } from '@mui/material';
 
 export const TokenPoolContent = [
     {
@@ -63,6 +72,7 @@ export const TokenPoolBox = styled(Box)(({ theme }) => ({
         },
     },
 }));
+
 export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
@@ -119,14 +129,14 @@ export default function ClaimTokens({ myIDOs }) {
                     }}
                 />
             </Stack>
-            {myIDOs || myIDOs?.length === 0 ? (
+            {myIDOs?.length !== 0 ? (
                 <>
                     {myIDOs.map((item, index) => (
                         <TokenPool key={index} avatar={item?.image_url} name={item?.name} description={item?.description} />
                     ))}
                 </>
             ) : (
-                <CircularProgress />
+            <CircularProgress sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', margin: 'auto' }} />
             )}
         </Box>
     );
@@ -147,7 +157,17 @@ function TokenPool({ avatar, name, description }) {
                         <Typography variant={isMobile ? 'h6' : 'h5'} color={'white'}>
                             {name}
                         </Typography>
-                        <Typography color={'#999'}>{description}</Typography>
+                        <Typography
+                            color={'#999'}
+                            sx={{
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                width: '35%',
+                            }}
+                        >
+                            {description}
+                        </Typography>
                     </Box>
                 </Grid>
                 <Hidden mdUp>
@@ -155,13 +175,17 @@ function TokenPool({ avatar, name, description }) {
                         <Divider flexItem orientation={'horizontal'} sx={{ color: 'white' }} />
                     </Grid>
                 </Hidden>
-                {/* <Grid item md={4} xs={6}
-                    sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Box>
+                <Grid
+                    item
+                    md={4}
+                    xs={6}
+                    sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    {/* <Box>
                         <Typography color={'#999'}>Claim Start Date</Typography>
                         <Typography color={'white'}>{startDate}</Typography>
-                    </Box>
-                </Grid> */}
+                    </Box> */}
+                </Grid>
                 <Grid
                     item
                     md={3}

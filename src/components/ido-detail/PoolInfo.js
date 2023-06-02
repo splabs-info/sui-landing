@@ -4,7 +4,6 @@ import { SocialFooter } from 'layouts/Footer-v2';
 import { PoolInformationCard } from './PoolInfoCard';
 import { TokenInformationCard } from './TokenInfoCard';
 export const PoolInformation = ({ tokenAddress, tokenName, decimals, description, ratio, symbol, minPurchase, maxPerUser, totalSupply }) => {
-    console.log('decimals___', decimals)
     return (
         <Grid container spacing={5} justifyContent="space-between" sx={{ marginBottom: 10 }}>
             <Grid sx={{ width: '100%', '& a': { marginRight: '16px' } }} xs={12} item>

@@ -24,6 +24,7 @@ export default function ClaimsDetail() {
 
             const promises = projects.map(async (project) => {
                 const allOfProjectDetail = await provider.getDynamicFields({
+                    // Get parent id by url
                     parentId: project,
                     options: { showContent: true },
                 });

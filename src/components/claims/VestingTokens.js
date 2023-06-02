@@ -19,7 +19,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
                     <Box position={'relative'}>
                         <Box
                             component={'img'}
-                            src="/images/claims/claim-yousui.jpg"
+                            src="https://kts3.s3.ap-northeast-1.amazonaws.com/T-XUI.png"
                             sx={{
                                 width: '100%',
                                 borderRadius: '10px',
@@ -67,7 +67,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
                                                 ethers.utils.formatUnits(totalUnlockAmount, 9)
                                             )
                                             : 'Loading'}
-                                        XUI
+                                        {' '}XUI
                                     </Typography>
                                     <Typography>
                                         {totalLockMount
@@ -75,7 +75,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
                                                 ethers.utils.formatUnits(totalLockMount, 9)
                                             )
                                             : 'Loading'}
-                                        XUI
+                                       {' '}XUI
                                     </Typography>
                                 </>
                             }
@@ -106,7 +106,6 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
 function VestingList({ id, isWithdrawal, releaseTime, unlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
-    console.log('releaseTime___', moment(toNumber(releaseTime)).format('LLLL'));
     return (
         <TokenPoolBox>
             <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>
@@ -171,7 +170,7 @@ function VestingList({ id, isWithdrawal, releaseTime, unlockAmount }) {
                         >
                             {unlockAmount
                                 ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
-                                    ethers.utils.formatUnits(unlockAmount, 9)) + ' TXUI'
+                                    ethers.utils.formatUnits(unlockAmount, 9)) + ' ' + 'TXUI'
                                 : 'Loading'}
                         </Typography>
                     </Box>

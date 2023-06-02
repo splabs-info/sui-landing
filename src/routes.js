@@ -14,10 +14,8 @@ import ClaimsDetail from 'pages/ClaimsDetail';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-const IDODetail = React.lazy(() => import('./pages/IDODetail'));
+// const IDODetail = React.lazy(() => import('./pages/IDODetail'));
 const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
-const Vesting = React.lazy(() => import('./pages/Vesting'));
-const TestPage = React.lazy(() => import('./pages/Test'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
@@ -60,28 +58,20 @@ export default function Router() {
                         </Suspense>
                     ),
                 },
-                {
-                    path: 'ido-launchpad/sua',
-                    element: (
-                        <Suspense>
-                            {/* <IDODetail /> */}
-                            <ComingSoon />
-                        </Suspense>
-                    ),
-                },
+                // {
+                //     path: 'ido-launchpad/sua',
+                //     element: (
+                //         <Suspense>
+                //             {/* <IDODetail /> */}
+                //             <ComingSoon />
+                //         </Suspense>
+                //     ),
+                // },
                 {
                     path: 'ido-launchpad/txui',
                     element: (
                         <Suspense>
                             <TXUIIDO />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'vesting',
-                    element: (
-                        <Suspense>
-                            <Vesting />
                         </Suspense>
                     ),
                 },
