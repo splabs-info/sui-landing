@@ -6,6 +6,8 @@ import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { findCertificate } from 'utils/util';
 import { TitleSection } from './TitleSection';
+
+
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -15,6 +17,7 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
     border: '1px solid #00C5D3',
     alignItems: 'center',
+    marginBottom: 24,
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
         padding: '24px 48px',
@@ -104,6 +107,7 @@ export const MyIDOArea = () => {
                     link_url: projectFields?.link_url || '',
                     medium: projectFields?.medium || '',
                     name: projectFields?.name || '',
+                    eventName: certificate?.data?.content?.fields?.event_name || '',
                     project_id: projectFields?.project_id || '',
                     telegram: projectFields?.telegram || '',
                     twitter: projectFields?.twitter || '',
@@ -122,59 +126,59 @@ export const MyIDOArea = () => {
     return (
         <Box sx={{ marginBottom: 12 }}>
             <TitleSection title="MY IDO PARTICIPATED" />
-            <StyledMyIDOBox>
-                {myIdo?.length > 0 ? (
-                    <>
-                        {myIdo?.map((item, index) => (
-                            <>
-                                <StyledInfoBox>
+            {myIdo?.length !== 0 ? (
+                <>
+                    {myIdo?.map((item, index) => (
+                        <StyledMyIDOBox>
+                            <StyledInfoBox>
                                 <StyledTitleInfo>Avatar</StyledTitleInfo>
-                                    <img src={item?.image_url} alt='' style={{
+                                <img
+                                    src={item?.image_url}
+                                    alt=""
+                                    style={{
                                         width: 42,
                                         height: 42,
                                         borderRadius: 16,
-                                        margin: '0 auto'
-                                    }} />
-                                </StyledInfoBox>
-                                <StyledDivider orientation={tablet ? '' : 'vertical'} />
-                                <StyledInfoBox>
-                                    <StyledTitleInfo>No</StyledTitleInfo>
-                                    <StyledInfo>{index + 1}</StyledInfo>
-                                </StyledInfoBox>
-                                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+                                        margin: '0 auto',
+                                    }}
+                                />
+                            </StyledInfoBox>
+                            <StyledDivider orientation={tablet ? '' : 'vertical'} />
+                            <StyledInfoBox>
+                                <StyledTitleInfo>No</StyledTitleInfo>
+                                <StyledInfo>{index + 1}</StyledInfo>
+                            </StyledInfoBox>
+                            <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                                <StyledInfoBox>
-                                    <StyledTitleInfo>Project</StyledTitleInfo>
-                                    <StyledInfo>{item?.name}</StyledInfo>
-                                </StyledInfoBox>
-                                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+                            <StyledInfoBox>
+                                <StyledTitleInfo>Project</StyledTitleInfo>
+                                <StyledInfo>{item?.name}</StyledInfo>
+                            </StyledInfoBox>
+                            <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                                <StyledInfoBox>
-                                    <StyledTitleInfo>Round name</StyledTitleInfo>
-                                    <StyledInfo>OG round</StyledInfo>
-                                </StyledInfoBox>
+                            <StyledInfoBox>
+                                <StyledTitleInfo>Round name</StyledTitleInfo>
+                                <StyledInfo>{item?.eventName}</StyledInfo>
+                            </StyledInfoBox>
 
-                                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+                            <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                                <StyledInfoBox>
-                                    <StyledTitleInfo>View on explore</StyledTitleInfo>
-                                    <StyledLink
-                                        href={`https://suiexplorer.com/object/${TXUI_PROJECT}?network=testnet`}
-                                        target="_blank"
-                                    >
-                                        View
-                                    </StyledLink>
-                                </StyledInfoBox>
-                            </>
-                        ))}
-                    </>
-                ) : (
+                            <StyledInfoBox>
+                                <StyledTitleInfo>View on explore</StyledTitleInfo>
+                                <StyledLink href={`https://suiexplorer.com/object/${TXUI_PROJECT}?network=testnet`} target="_blank">
+                                    View
+                                </StyledLink>
+                            </StyledInfoBox>
+                        </StyledMyIDOBox>
+                    ))}
+                </>
+            ) : (
+                <StyledMyIDOBox>
                     <StyledInfoBox>
                         <StyledTitleInfo>It appears that you have not joined any IDOs at this time.</StyledTitleInfo>
-
                     </StyledInfoBox>
-                )}
-            </StyledMyIDOBox>
+                </StyledMyIDOBox>
+            )}
         </Box>
     );
 };

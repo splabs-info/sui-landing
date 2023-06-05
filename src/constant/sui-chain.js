@@ -28,4 +28,4 @@ export const TXUI_PAYMENT_TYPE = '0x2::sui::SUI';
 //   '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea::launchpad_presale::Round';
 
 
-export const investCertificate = [`${TXUI_PACKAGE}::launchpad_presale::InvestmentCertificate`]
+export const investCertificate = [`${TXUI_PACKAGE}::launchpad_presale::InvestmentCertificate`, `${TXUI_PACKAGE}::launchpad_ido::InvestmentCertificate`]

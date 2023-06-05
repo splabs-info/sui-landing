@@ -8,16 +8,16 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
+import { TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
-import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE, TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PROJECT, TXUI_PAYMENT_TYPE, TXUI_TOKEN_TYPE} from 'constant';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { IdoSchema } from '../validations';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
+import { IdoSchema } from '../validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -52,7 +52,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, participantsWallet }) => {
+export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
@@ -142,7 +142,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
 
     const handleSelectMax = () => {
         // setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
-        setValue('amount', ethers.utils.formatUnits(maxPerUser, decimals))
+        setValue('amount', ethers.utils.formatUnits(maxAllocation, decimals))
         trigger('amount');
     };
 
@@ -211,7 +211,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
                         />
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-                        <MaxButton onClick={handleSelectMax}>Max</MaxButton>
+                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
                     </Box>
                     <Box
                         sx={{
@@ -222,7 +222,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
                     >
                         <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
-                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0 }
+                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
                             disabled
                             sx={{
                                 fontWeight: 'bold',

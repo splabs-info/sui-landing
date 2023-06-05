@@ -35,7 +35,7 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 }));
 
-export const PoolInformationCard = ({ decimals, ratio, symbol, minPurchase, maxPerUser }) => {
+export const PoolInformationCard = ({ decimals, ratio, symbol, minAllocation, maxAllocation }) => {
     return (
         <PoolInfoBox>
             <StyledStack
@@ -46,18 +46,18 @@ export const PoolInformationCard = ({ decimals, ratio, symbol, minPurchase, maxP
             >
                 <StyledItemStack>
                     <StyledTitleInfo>Token Distribution</StyledTitleInfo>
-                    <StyledInfo>1,000 {symbol}</StyledInfo>
+                    <StyledInfo>- {symbol}</StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
-                    <StyledTitleInfo>Min. Purchase</StyledTitleInfo>
+                    <StyledTitleInfo>Min. Allocation</StyledTitleInfo>
                     <StyledInfo>
-                        {minPurchase ? ethers.utils.formatUnits(minPurchase, decimals) : 'Loading'} {symbol}
+                        {minAllocation ? ethers.utils.formatUnits(minAllocation, decimals) : '-'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
-                    <StyledTitleInfo>Max. Purchase</StyledTitleInfo>
+                    <StyledTitleInfo>Max. Allocation</StyledTitleInfo>
                     <StyledInfo>
-                        {maxPerUser ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(ethers.utils.formatUnits(maxPerUser, decimals)) : 'Loading'} {symbol}
+                        {maxAllocation ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(ethers.utils.formatUnits(maxAllocation, decimals)) : '-'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>

@@ -24,10 +24,10 @@ const InstallButton = styled(Button)(({ theme }) => ({
 }));
 
 export const ChooseWalletModal = () => {
-    const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
+    // const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
     const [isInstalledOkx, setIsInstallOkx] = useState(false);
-    const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
+    // const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     const {
@@ -38,9 +38,9 @@ export const ChooseWalletModal = () => {
     } = useWallet();
 
     useEffect(() => {
-        if (typeof window.ethereum !== 'undefined') {
-            setIsInstalledMetamask(true);
-        }
+        // if (typeof window.ethereum !== 'undefined') {
+        //     // setIsInstalledMetamask(true);
+        // }
         if (typeof window.bitkeep !== 'undefined') {
             setIsInstalledBitKeep(true);
         }

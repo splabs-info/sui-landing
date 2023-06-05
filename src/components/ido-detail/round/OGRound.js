@@ -8,13 +8,14 @@ export const OGRound = ({
     totalSupply,
     symbol,
     ratio,
-    maxPerUser,
+    maxAllocation,
     participants,
     participantsWallet,
 }) => {
     return (
         <Box>
             <ProcessBox
+                decimals={decimals}
                 totalSold={totalSold}
                 totalSupply={totalSupply}
                 ratio={ratio}
@@ -25,7 +26,7 @@ export const OGRound = ({
                 balances={balances}
                 decimals={decimals}
                 symbol={symbol}
-                maxPerUser={maxPerUser}
+                maxAllocation={maxAllocation}
                 ratio={ratio}
                 participantsWallet={participantsWallet}
             />
