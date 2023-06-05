@@ -93,14 +93,15 @@ export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, part
                         <img src='/images/icon/icon-package.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Hard Cap</Typography>
-                            <Typography variant='body1'>{Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(formattedTotalSupply)} {symbol}</Typography>
+                            <Typography variant='body1'>{(formattedTotalSupply * exchangeRate).toFixed(3)}</Typography>
+
                         </Stack>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <img src='/images/icon/icon-data.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Amount for Sale</Typography>
-                            <Typography variant='body1'>{(formattedTotalSupply * exchangeRate).toFixed(3)}</Typography>
+                            <Typography variant='body1'>{Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(formattedTotalSupply)} {symbol}</Typography>
                         </Stack>
                     </Box>
 
