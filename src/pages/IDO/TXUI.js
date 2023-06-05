@@ -7,73 +7,77 @@ import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { TXUI_ROUND_INFO } from 'constant/sui-chain';
 
 export default function TXUI() {
     const titleTab = 'TXUI IDO TEST';
 
-    const [ratio, setRadio] = React.useState();
-    const [avatar, setAvatar] = React.useState();
-    const [tokenName, setTokenName] = React.useState();
-    const [symbol, setSymbol] = React.useState();
-    const [tokenAddress, setTokenAddress] = React.useState();
-    const [decimals, setDecimals] = React.useState();
-    const [telegram, setTelegram] = React.useState();
-    const [discord, setDiscord] = React.useState();
-    const [tokenDescription, setTokenDescription] = React.useState();
+    const [infoRound, setInfoRound] = React.useState({
+        ratio: '',
+        avatar: '',
+        tokenName: '',
+        symbol: '',
+        tokenAddress: '',
+        decimals: '',
+        telegram: '',
+        discord: '',
+        tokenDescription: '',
+        participants: 0,
+        participantsWallet: [],
+        totalSold: '',
+        totalSupply: '',
+        minPurchase: '',
+        maxPerUser: ''
+    })
 
-    const [participants, setParticipants] = React.useState(0);
-    const [participantsWallet, setParticipantsWallet] = React.useState([]);
-    const [totalSold, setTotalSold] = React.useState();
-    const [totalSupply, setTotalSupply] = React.useState();
-    const [minPurchase, setMinPurchase] = React.useState();
-    const [maxPerUser, setMaxPerUser] = React.useState();
-    const { provider, balances } = React.useContext(SuiContext);
+    const { provider, allRound } = React.useContext(SuiContext);
 
+    const currentRound = React.useMemo(() => allRound?.find((round) => round?.name?.value === 'OG_ROUND'), [allRound]);
     React.useEffect(() => {
         const fetchPoolData = async () => {
+            if (!currentRound) return;
+
             const txn = await provider.getObject({
-                id: TXUI_ROUND_INFO,
+                id: currentRound?.objectId,
                 options: { showContent: true },
             });
 
             const round = txn?.data?.content?.fields;
 
             if (round) {
-                const suiRatio = ethers.utils.formatUnits(
-                    round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
-                    9
-                );
-
-                setTokenAddress(`0x${round?.token_type}`);
-
                 const tokenType = await provider.getCoinMetadata({
                     coinType: `0x${round?.token_type}`,
                 });
 
-                setTokenName(tokenType?.name);
-                setDecimals(tokenType?.decimals);
-                setTokenDescription(tokenType?.description);
-                setSymbol(tokenType?.symbol);
-                setRadio(suiRatio);
+                const suiRatio = ethers.utils.formatUnits(
+                    round?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
+                    tokenType?.decimals
+                );
+
+                const newState = {
+                    ...infoRound,
+                    tokenAddress: `0x${round?.token_type}`,
+                    tokenName: tokenType?.name,
+                    decimals: tokenType?.decimals,
+                    tokenDescription: tokenType?.description,
+                    symbol: tokenType?.symbol,
+                    ratio: suiRatio,
+                    avatar: round?.project?.fields?.image_url,
+                    telegram: round?.project?.fields?.telegram,
+                    discord: round?.project?.fields?.discord,
+                    participantsWallet: round?.participants?.fields?.contents,
+                    participants: round?.participants?.fields?.contents.length,
+                    totalSold: round?.total_sold,
+                    totalSupply: round?.total_supply,
+                    minPurchase: round?.min_purchase,
+                    maxPerUser: round?.max_per_user
+                };
+
+                setInfoRound(newState);
             }
-
-            const participants = round?.participants?.fields?.contents.length;
-            const participantsWallet = round?.participants?.fields?.contents;
-
-            setAvatar(round?.project?.fields?.image_url);
-            setTelegram(round?.project?.fields?.telegram);
-            setDiscord(round?.project?.fields?.discord);
-            setParticipantsWallet(participantsWallet);
-            setParticipants(participants);
-            setTotalSold(round?.total_sold);
-            setTotalSupply(round?.total_supply);
-            setMinPurchase(round?.min_purchase);
-            setMaxPerUser(round?.max_per_user);
         };
 
         fetchPoolData();
-    }, [provider]);
+    }, [currentRound]);
 
     return (
         <Page title="TXUI">
@@ -84,30 +88,30 @@ export default function TXUI() {
             >
                 <Container maxWidth="xl">
                     <Pool
-                        avatar={avatar}
-                        balances={balances}
-                        decimals={decimals}
-                        titleTab={titleTab}
-                        maxPerUser={maxPerUser}
-                        totalSold={totalSold}
-                        totalSupply={totalSupply}
-                        ratio={ratio}
-                        symbol={symbol}
-                        participants={participants}
-                        participantsWallet={participantsWallet}
+                        avatar={infoRound?.avatar}
+                        balances={infoRound?.balances}
+                        decimals={infoRound?.decimals}
+                        titleTab={infoRound?.titleTab}
+                        maxPerUser={infoRound?.maxPerUser}
+                        totalSold={infoRound?.totalSold}
+                        totalSupply={infoRound?.totalSupply}
+                        ratio={infoRound?.ratio}
+                        symbol={infoRound?.symbol}
+                        participants={infoRound?.participants}
+                        participantsWallet={infoRound?.participantsWallet}
                     />
                     <PoolInformation
-                        tokenAddress={tokenAddress}
-                        tokenName={tokenName}
-                        ratio={ratio}
-                        symbol={symbol}
-                        totalSupply={totalSupply}
-                        decimals={decimals}
-                        description={tokenDescription}
-                        minPurchase={minPurchase}
-                        maxPerUser={maxPerUser}
+                        tokenAddress={infoRound?.tokenAddress}
+                        tokenName={infoRound?.tokenName}
+                        ratio={infoRound?.ratio}
+                        symbol={infoRound?.symbol}
+                        totalSupply={infoRound?.totalSupply}
+                        decimals={infoRound?.decimals}
+                        description={infoRound?.tokenDescription}
+                        minPurchase={infoRound?.minPurchase}
+                        maxPerUser={infoRound?.maxPerUser}
                     />
-                    <ProjectInfo description={tokenDescription} />
+                    <ProjectInfo description={infoRound?.tokenDescription} />
                 </Container>
             </SectionBox>
         </Page>

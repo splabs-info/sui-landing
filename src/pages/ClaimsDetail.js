@@ -42,7 +42,9 @@ export default function ClaimsDetail() {
             });
 
             const vestingElements = await Promise.all(promises);
+
             const filteredVestingElements = vestingElements.filter((element) => element !== null);
+
             setVesting(filteredVestingElements[0]);
         };
 
