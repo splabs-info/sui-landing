@@ -10,6 +10,7 @@ import Whitepaper from './pages/Whitepaper';
 import FreeMinting from 'pages/FreeMinting';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
+import PreSales from 'pages/PreSales';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -71,6 +72,14 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <TXUIIDO />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'pre-sales',
+                    element: (
+                        <Suspense>
+                            <PreSales />
                         </Suspense>
                     ),
                 },

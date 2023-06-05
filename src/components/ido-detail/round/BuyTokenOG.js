@@ -11,7 +11,7 @@ import { NormalInputField } from 'components/base/NormalInput';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
-import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE, TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PROJECT, TXUI_PAYMENT_TYPE, TXUI_TOKEN_TYPE} from 'constant';
+import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE, TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PROJECT, TXUI_PAYMENT_TYPE, TXUI_TOKEN_TYPE } from 'constant';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -222,7 +222,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
                     >
                         <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
-                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0 }
+                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
                             disabled
                             sx={{
                                 fontWeight: 'bold',
@@ -258,7 +258,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxPerUser, part
                             <Typography>
                                 I’ve read and accepted all the{' '}
                                 <a
-                                    href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
+                                    href="/"
                                     target="_blank"
                                     rel="noreferrer"
                                     style={{

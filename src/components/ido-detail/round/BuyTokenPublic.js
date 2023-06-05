@@ -141,7 +141,7 @@ export const BuyTokenPublic = () => {
           <Typography>
             I’ve read and accepted all the{' '}
             <a
-              href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
+              href="/"
               target="_blank"
               rel="noreferrer"
               style={{
