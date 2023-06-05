@@ -7,7 +7,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -102,9 +102,15 @@ const CheckBoxLabel = () => {
         >
             I have read and agree to the
             <a
-                href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
+                href="/"
                 target="_blank"
                 rel="noreferrer"
+                style={{
+                    color: 'rgba(91, 184, 240, 1)',
+                    '&:hover': {
+                        textDecoration: 'underline',
+                    },
+                }}
             >
                 {' '}
                 YouSUI Staking Service Agreement.
