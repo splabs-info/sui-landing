@@ -53,6 +53,10 @@ const partners = [
         label: 'releap',
         link: 'https://releap.xyz/',
     },
+    {
+        label: 'blockchain-vision',
+        link: 'https://blockvision.org/',
+    },
 ];
 
 export default function Partner() {
