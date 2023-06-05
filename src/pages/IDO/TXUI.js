@@ -32,6 +32,8 @@ export default function TXUI() {
     const { provider, balances, allRound } = React.useContext(SuiContext);
 
     const currentRound = React.useMemo(() => allRound?.find((round) => round?.name?.value === 'OG_ROUND'), [allRound]);
+
+    
     React.useEffect(() => {
         const fetchPoolData = async () => {
             if (!currentRound) return;
@@ -53,7 +55,6 @@ export default function TXUI() {
                     tokenType?.decimals
                 );
 
-                console.log('round___', round)
                 const newState = {
                     ...infoRound,
                     tokenAddress: `0x${round?.token_type}`,

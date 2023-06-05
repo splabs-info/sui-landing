@@ -35,9 +35,9 @@ export default function App() {
     // console.log("Version: 0.0.2")
     // }, []);
 
-    useEffect(() => {
-        localStorage.removeItem('lang');
-    }, []);
+    // useEffect(() => {
+    //     localStorage.removeItem('lang');
+    // }, []);
 
     return (
         <ThemeProvider>
