@@ -29,7 +29,7 @@ export default function TXUI() {
         maxPerUser: ''
     })
 
-    const { provider, allRound } = React.useContext(SuiContext);
+    const { provider, balances, allRound } = React.useContext(SuiContext);
 
     const currentRound = React.useMemo(() => allRound?.find((round) => round?.name?.value === 'OG_ROUND'), [allRound]);
     React.useEffect(() => {
@@ -53,6 +53,7 @@ export default function TXUI() {
                     tokenType?.decimals
                 );
 
+                console.log('round___', round)
                 const newState = {
                     ...infoRound,
                     tokenAddress: `0x${round?.token_type}`,
@@ -79,6 +80,7 @@ export default function TXUI() {
         fetchPoolData();
     }, [currentRound]);
 
+    console.log('maxPerUser__', infoRound)
     return (
         <Page title="TXUI">
             <SectionBox
@@ -89,9 +91,9 @@ export default function TXUI() {
                 <Container maxWidth="xl">
                     <Pool
                         avatar={infoRound?.avatar}
-                        balances={infoRound?.balances}
+                        balances={balances}
                         decimals={infoRound?.decimals}
-                        titleTab={infoRound?.titleTab}
+                        titleTab={titleTab}
                         maxPerUser={infoRound?.maxPerUser}
                         totalSold={infoRound?.totalSold}
                         totalSupply={infoRound?.totalSupply}
