@@ -10,6 +10,8 @@ import React, { useState } from 'react';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -110,7 +112,9 @@ function a11yProps(index) {
 }
 
 export const Pool = () => {
-    const [value, setValue] = useState(0);
+    const location = useLocation();
+    const tab = parseInt(queryString.parse(location.search).tab) || 0;
+    const [value, setValue] = useState(tab);
 
     const { provider, balances, allRound } = React.useContext(SuiContext);
     const isDesktop = useResponsive('up', 'md');

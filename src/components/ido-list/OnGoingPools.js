@@ -3,14 +3,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Stack } from '@mui/system';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
-import { TXUI_ROUND_INFO } from 'constant/sui-chain';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import * as moment from 'moment';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toNumber } from 'lodash';
+import { trim } from 'lodash';
+
 const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
     borderRadius: 24,
@@ -29,19 +29,6 @@ export default function OnGoingPools() {
     const titleTab = 'TXUI IDO TEST';
 
     const isMobile = useResponsive('down', 'sm');
-
-    const [start, setStart] = React.useState();
-    const [end, setEnd] = React.useState();
-    const [decimals, setDecimals] = React.useState();
-    const [symbol, setSymbol] = React.useState();
-    const [avatar, setAvatar] = React.useState();
-    const [ratio, setRadio] = React.useState();
-    const [participants, setParticipants] = React.useState();
-    const [totalSold, setTotalSold] = React.useState();
-    const [totalSupply, setTotalSupply] = React.useState();
-    const [minPurchase, setMinPurchase] = React.useState();
-    const [maxPerUser, setMaxPerUser] = React.useState();
-
     const [infoRounds, setInfoRounds] = React.useState([]);
     const { provider, allRound } = React.useContext(SuiContext);
 
@@ -64,7 +51,6 @@ export default function OnGoingPools() {
                 tokenType?.decimals
             );
 
-            // console.log('roundData___', roundData?.name)
             const newState = {
                 ...round,
                 tokenAddress: `0x${roundData?.token_type}`,
@@ -101,12 +87,6 @@ export default function OnGoingPools() {
     }, [allRound]);
 
 
-    const progress = React.useMemo(() => {
-        if (totalSold && totalSupply) {
-            return ethers.utils.formatUnits(totalSold, 9) / ethers.utils.formatUnits(totalSupply, 9);
-        }
-    }, [totalSold, totalSupply]);
-
     return (
         <Box mb={20} mt={10} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -114,7 +94,7 @@ export default function OnGoingPools() {
                 <Typography>On-going</Typography>
                 <TypographyGradient>Pools</TypographyGradient>
             </TitleBox>
-            {infoRounds.map((round) => (
+            {infoRounds.map((round, index) => (
                 <Box
                     sx={{
                         background: 'linear-gradient(128.67deg, rgba(104, 230, 184, 0.2) 10.81%, rgba(109, 133, 218, 0.2) 75.48%)',
@@ -129,7 +109,6 @@ export default function OnGoingPools() {
                     }}
                 >
                     <Grid container alignItems={'center'} spacing={5}>
-                        {/* Tu day */}
                         <Grid item md={4} xs={12} sx={{ position: 'relative' }}>
                             <AvatarBox>
                                 {round?.avatar ? (
@@ -153,7 +132,7 @@ export default function OnGoingPools() {
                             </AvatarBox>
                         </Grid>
                         <Grid item md={8} xs={12}>
-                            <Typography variant="h4">{titleTab}</Typography>
+                            <Typography variant="h4">{trim(round?.name, '_')}</Typography>
                             <ProcessBarBox
                                 title={
                                     <>
@@ -201,28 +180,27 @@ export default function OnGoingPools() {
                                             <Stack direction="row" justifyContent={'space-between'}>
                                                 <Typography>Minimum Purchase:</Typography>
                                                 <Typography fontWeight={'bold'}>
-                                                    {minPurchase ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
-                                                        ethers.utils.formatUnits(round?.minPurchase, decimals)
+                                                    {round?.minPurchase ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                                        ethers.utils.formatUnits(round?.minPurchase, round?.decimals)
                                                     ) : 'Loading'}
-                                                    {' '}{symbol}
+                                                    {' '}{round?.symbol}
                                                 </Typography>
                                             </Stack>
                                             <Stack direction="row" justifyContent={'space-between'}>
                                                 <Typography>Start at:</Typography>
-                                                <Typography fontWeight={'bold'}>{moment(start).format('LLLL')}</Typography>
+                                                <Typography fontWeight={'bold'}>{moment(round?.startAt).format('LLLL')}</Typography>
                                             </Stack>
                                             <Stack direction="row" justifyContent={'space-between'}>
                                                 <Typography>End at:</Typography>
-                                                <Typography fontWeight={'bold'}>{moment(end).format('LLLL')}</Typography>
+                                                <Typography fontWeight={'bold'}>{moment(round?.endAt).format('LLLL')}</Typography>
                                             </Stack>
                                         </Stack>
                                     </Grid>
                                     <Divider flexItem orientation={isMobile ? 'horizontal' : 'vertical'} />
                                     <Grid item xs={12} sm={3}>
                                         <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
-                                            {/* <Typography fontWeight={'bold'}>07D 12:31:12</Typography> */}
                                             <Button
-                                                onClick={() => navigate('/ido-launchpad/txui')}
+                                                onClick={() => navigate(`/ido-launchpad/txui?tab=${index}`)}
                                                 sx={{
                                                     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
                                                     borderRadius: '50px',

@@ -58,15 +58,6 @@ export default function Router() {
                         </Suspense>
                     ),
                 },
-                // {
-                //     path: 'ido-launchpad/sua',
-                //     element: (
-                //         <Suspense>
-                //             {/* <IDODetail /> */}
-                //             <ComingSoon />
-                //         </Suspense>
-                //     ),
-                // },
                 {
                     path: 'ido-launchpad/txui',
                     element: (
