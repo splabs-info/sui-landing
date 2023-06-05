@@ -54,8 +54,6 @@ export const SUIWalletContext = ({ children }) => {
                         const typeRoundElements = foundElements.filter(
                             (element) => element.name?.value.split(' <> ').length === 2
                         );
-
-                        console.log('typeRoundElements__', typeRoundElements)
                         setAllRound((prev) => uniq([...prev, ...roundElements], 'digest'));
                         setAllTypeRound((prev) => uniq([...prev, ...typeRoundElements]), 'digest');
                     }

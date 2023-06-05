@@ -1,11 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material';
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
+import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { ethers } from 'ethers'
-import { symbol } from 'prop-types';
-import { ConstructionOutlined } from '@mui/icons-material';
+import React from 'react';
+import * as moment from 'moment';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
     padding: "64px 40px 40px 40px ",
@@ -33,9 +32,15 @@ const LiveBox = styled(Box)(({ theme }) => ({
     }
 }));
 
-
+const calculateDuration = eventTime => moment.duration(Math.max(eventTime - (Math.floor(Date.now())), 0), 'milliseconds');
 export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, participants, symbol }) => {
+    const interval = 1000;
     const isMobile = useResponsive('down', 'sm');
+    const [duration, setDuration] = React.useState(calculateDuration(endAt));
+    const timerRef = React.useRef(0);
+    const timerCallback = React.useCallback(() => {
+        setDuration(calculateDuration(endAt));
+    }, [endAt])
 
     const progress = React.useMemo(() => {
         if (totalSold && totalSupply) {
@@ -52,6 +57,15 @@ export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, part
     }, [decimals, totalSupply]);
     const exchangeRate = React.useMemo(() => ratio, [ratio]);
 
+
+    React.useEffect(() => {
+        timerRef.current = setInterval(timerCallback, interval);
+
+        return () => {
+            clearInterval(timerRef.current);
+        }
+    }, [endAt]);
+
     return (
         <StyledProcessBox>
             <LiveBox>
@@ -61,7 +75,7 @@ export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, part
                         <Typography sx={{ fontSize: 14, lineHeight: '24px', color: '#1FD8D1' }}>Live</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in 00D: 00H: 50M: 13S</Typography>
+                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in {duration.days()} D: {duration.hours()} H: {duration.minutes()} M: {duration.seconds()} S</Typography>
                     </Box>
                 </Stack>
             </LiveBox>

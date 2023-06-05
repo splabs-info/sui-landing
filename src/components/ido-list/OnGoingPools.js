@@ -5,11 +5,11 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
+import { toNumber, trim } from 'lodash';
 import * as moment from 'moment';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { trim } from 'lodash';
 
 const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
@@ -25,8 +25,6 @@ const AvatarBox = styled(Box)(({ theme }) => ({
 
 export default function OnGoingPools() {
     const navigate = useNavigate();
-
-    const titleTab = 'TXUI IDO TEST';
 
     const isMobile = useResponsive('down', 'sm');
     const [infoRounds, setInfoRounds] = React.useState([]);
@@ -81,6 +79,7 @@ export default function OnGoingPools() {
             return newState;
         }
     };
+
 
     React.useEffect(() => {
         Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
@@ -188,11 +187,11 @@ export default function OnGoingPools() {
                                             </Stack>
                                             <Stack direction="row" justifyContent={'space-between'}>
                                                 <Typography>Start at:</Typography>
-                                                <Typography fontWeight={'bold'}>{moment(round?.startAt).format('LLLL')}</Typography>
+                                                <Typography fontWeight={'bold'}>{moment(toNumber(round?.startAt)).format('LLLL')}</Typography>
                                             </Stack>
                                             <Stack direction="row" justifyContent={'space-between'}>
                                                 <Typography>End at:</Typography>
-                                                <Typography fontWeight={'bold'}>{moment(round?.endAt).format('LLLL')}</Typography>
+                                                <Typography fontWeight={'bold'}>{moment(toNumber(round?.endAt)).format('LLLL')}</Typography>
                                             </Stack>
                                         </Stack>
                                     </Grid>
