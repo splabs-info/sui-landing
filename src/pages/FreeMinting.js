@@ -77,34 +77,34 @@ export default function FreeMinting() {
           options: { showContent: true },
         });
         setTotal(result?.data?.content?.fields?.max_number);
-        setMinted(result?.data?.content?.fields?.number);
+        // setMinted(result?.data?.content?.fields?.number);
       })();
     }
   }, [flag]);
 
-  React.useEffect(() => {
-    if (provider && wallet.address) {
-      (async () => {
-        const balance = await provider.getOwnedObjects({
-          owner: wallet.address,
-          filter: { Package: addresses.package },
-        });
-        if (balance) {
-          setOwned(balance.data.length);
-          let arrNft = [];
-          for (const iterator of balance.data) {
-            const result = await provider.getObject({
-              id: iterator.data.objectId,
-              options: { showContent: true },
-            });
-            arrNft.push(result?.data?.content?.fields);
-          }
-          setMyNftList(arrNft)
-          console.log(arrNft);
-        }
-      })();
-    }
-  }, [wallet.address, flag]);
+  // React.useEffect(() => {
+  //   if (provider && wallet.address) {
+  //     (async () => {
+  //       const balance = await provider.getOwnedObjects({
+  //         owner: wallet.address,
+  //         filter: { Package: addresses.package },
+  //       });
+  //       if (balance) {
+  //         setOwned(balance.data.length);
+  //         let arrNft = [];
+  //         for (const iterator of balance.data) {
+  //           const result = await provider.getObject({
+  //             id: iterator.data.objectId,
+  //             options: { showContent: true },
+  //           });
+  //           arrNft.push(result?.data?.content?.fields);
+  //         }
+  //         setMyNftList(arrNft)
+  //         console.log(arrNft);
+  //       }
+  //     })();
+  //   }
+  // }, [wallet.address, flag]);
 
   const handleFreeMinting = () =>
     (async () => {
@@ -262,7 +262,8 @@ export default function FreeMinting() {
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     onClick={handleFreeMinting}
                     loading={loading}
-                    disabled={owned === 5}
+                    // disabled={owned === 5}
+                    disabled
                   >
                     Claim Now
                   </GradientLoadingButton> :

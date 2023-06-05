@@ -73,7 +73,7 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          <OnGoingPools />
+          {/* <OnGoingPools /> */}
           <UpComingPools />
           <PreviousPools />
         </Container>

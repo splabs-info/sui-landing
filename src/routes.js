@@ -52,8 +52,8 @@ export default function Router() {
                     path: 'ino-launchpad/free-minting-nft',
                     element: (
                         <Suspense>
-                            {/* <FreeMinting /> */}
-                            <ComingSoon />
+                            <FreeMinting />
+                            {/* <ComingSoon /> */}
                         </Suspense>
                     ),
                 },

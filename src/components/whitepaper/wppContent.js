@@ -575,7 +575,7 @@ export const wppContent = [
     },
     {
         id: 'refund-policy',
-        category: 'Refund Policy',
+        category: 'Investor Protection',
         description: [
             {
                 checklist: true,
