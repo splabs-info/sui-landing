@@ -19,12 +19,12 @@ import { PublicRoundSchema } from '../validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
-    padding: '32px 40px',
+    padding: '24px 32px',
     color: 'white',
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     position: 'relative',
-    marginTop: '2rem',
+    marginTop: 16,
     [theme.breakpoints.down('sm')]: {
         padding: '32px 24px',
     },
@@ -89,7 +89,8 @@ const MaxButton = styled(Button)(({ theme }) => ({
     color: 'white',
     display: 'flex',
     alignItems: 'center',
-    borderRadius: 16,
+    borderRadius: 8,
+    fontSize: 12,
 }));
 const CheckBoxLabel = () => {
     return (
@@ -231,16 +232,21 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
         <StyledBuyTokenBox>
             <Stack>
                 <form onSubmit={handleSubmit(handleSales)}>
-                    <Typography
-                        sx={{
-                            textAlign: 'end',
-                            marginRight: 0.5,
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                        }}
-                    >
-                        {renderStatusBalance()}
-                    </Typography>
+                    <Stack direction="row" justifyContent="flex-end" spacing={1} alignItems="center">
+                        <Typography
+                            sx={{
+                                textAlign: 'end',
+                                marginRight: 0.5,
+                                fontWeight: 'bold',
+                                fontSize: 14,
+
+                            }}
+                        >
+                            {renderStatusBalance()}
+                        </Typography>
+                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
+                    </Stack>
+
                     <Box
                         sx={{
                             display: 'flex',
@@ -282,9 +288,7 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
                             }}
                         />
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
-                    </Box>
+
                     <Box
                         sx={{
                             display: 'flex',

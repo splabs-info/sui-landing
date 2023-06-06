@@ -37,28 +37,6 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
     borderColor: 'rgba(255, 255, 255, 0.2)',
 }));
 
-const projectContent = [
-    {
-        title: 'Token Distribution',
-        content: 'Date UTC',
-    },
-    {
-        title: 'Min. Allocation',
-        content: '250 USD',
-    },
-    {
-        title: 'Max. Allocation',
-        content: '10,000 USD',
-    },
-    {
-        title: 'Token Price',
-        content: '4 XUI = 1 USD',
-    },
-    {
-        title: 'Access Type',
-        content: 'Public',
-    },
-];
 export const ProjectInfo = ({ description }) => {
     const [expanded, setExpanded] = React.useState(false);
 

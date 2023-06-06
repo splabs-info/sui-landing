@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import React from 'react';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
-    padding: "64px 40px 40px 40px ",
+    padding: "32px 32px 24px 32px",
     color: 'white',
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -79,7 +79,7 @@ export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, part
                     </Box>
                 </Stack>
             </LiveBox>
-            <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'}>
+            <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'} sx={{marginTop: 2}}>
                 <Stack justifyContent={'center'} mb={isMobile ? 2 : 0} alignItems={'center'}>
                     <ProcessCircleBox
                         radius={75} percent={progress * 100}

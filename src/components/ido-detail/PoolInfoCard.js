@@ -62,7 +62,7 @@ export const PoolInformationCard = ({ decimals, ratio, symbol, minAllocation, ma
                 </StyledItemStack>
                 <StyledItemStack>
                     <StyledTitleInfo>Token Price</StyledTitleInfo>
-                    <StyledInfo>{ratio} {symbol}</StyledInfo>
+                    <StyledInfo>{ratio} SUI</StyledInfo>
                 </StyledItemStack>
 
                 <StyledItemStack>
