@@ -61,7 +61,7 @@ export default function FreeMinting() {
   const isMobile = useResponsive('down', 'sm');
   const wallet = useWallet();
   const [loading, setLoading] = React.useState(false);
-  const [total, setTotal] = React.useState(0);
+  const [total, setTotal] = React.useState(2000);
   const [minted, setMinted] = React.useState(0);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
@@ -69,18 +69,18 @@ export default function FreeMinting() {
   const [myNftList, setMyNftList] = React.useState([]);
   const [openMyNft, setOpenMyNft] = React.useState(false);
 
-  React.useEffect(() => {
-    if (provider) {
-      (async () => {
-        const result = await provider.getObject({
-          id: addresses.objectFreeMint,
-          options: { showContent: true },
-        });
-        setTotal(result?.data?.content?.fields?.max_number);
-        // setMinted(result?.data?.content?.fields?.number);
-      })();
-    }
-  }, [flag]);
+  // React.useEffect(() => {
+  //   if (provider) {
+  //     (async () => {
+  //       const result = await provider.getObject({
+  //         id: addresses.objectFreeMint,
+  //         options: { showContent: true },
+  //       });
+  //       setTotal(result?.data?.content?.fields?.max_number);
+  //       setMinted(result?.data?.content?.fields?.number);
+  //     })();
+  //   }
+  // }, [flag]);
 
   // React.useEffect(() => {
   //   if (provider && wallet.address) {

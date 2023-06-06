@@ -54,7 +54,7 @@ const partners = [
         link: 'https://releap.xyz/',
     },
     {
-        label: 'blockchain-vision',
+        label: 'bc-vs',
         link: 'https://blockvision.org/',
     },
 ];
