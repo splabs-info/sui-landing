@@ -57,6 +57,10 @@ const partners = [
         label: 'bc-vs',
         link: 'https://blockvision.org/',
     },
+    {
+        label: 'bv-name',
+        link: 'https://turbos.finance/',
+    },
 ];
 
 export default function Partner() {
