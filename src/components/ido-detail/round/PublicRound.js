@@ -17,7 +17,7 @@ export const PublicRound = ({
 }) => {
     const isMobile = useResponsive('down', 'sm');
 
-    console.log('decimals__', decimals);
+    
     return (
         <Box>
             <CircleBox

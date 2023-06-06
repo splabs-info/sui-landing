@@ -7,7 +7,7 @@ import useResponsive from 'hooks/useResponsive';
 import { flattenDeep } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 export default function ClaimsDetail() {
     const isMobile = useResponsive('down', 'sm');
     const [vesting, setVesting] = React.useState();
@@ -21,9 +21,7 @@ export default function ClaimsDetail() {
     const { projectId } = useParams();
     const decodedProjectId = decodeURIComponent(projectId);
 
-    const location = useLocation();
 
-    const event = location.state?.eventName;
 
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
@@ -35,7 +33,7 @@ export default function ClaimsDetail() {
                 options: { showContent: true },
             });
 
-            console.log('allOfProjectDetail___', allOfProjectDetail)
+
             if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return;
 
             const vestingElement = allOfProjectDetail?.data.filter((element) => {
@@ -43,7 +41,6 @@ export default function ClaimsDetail() {
                 return found && found.includes('Vesting');
             });
 
-            console.log('vestingElement___', vestingElement)
             if (vestingElement.length > 0) {
                 setVesting(vestingElement);
             }
@@ -67,8 +64,6 @@ export default function ClaimsDetail() {
                     options: { showContent: true },
                 });
 
-                // console.log('dynamicFiledVesting__', dynamicFiledVesting)
-
                 if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
 
                 const foundUserVesting = dynamicFiledVesting.data.find((item) => item?.name?.value === wallet?.address);
@@ -86,7 +81,7 @@ export default function ClaimsDetail() {
             const yourVestings = await Promise.all(promises);
             const filteredVestings = yourVestings.filter((vesting) => vesting !== null);
 
-        
+
             if (!filteredVestings || filteredVestings.length <= 0) return;
 
             setPeriodList(flattenDeep(filteredVestings.map((vesting) => vesting.data?.content?.fields?.value?.fields?.period_list)));

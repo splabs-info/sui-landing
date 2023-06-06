@@ -5,7 +5,7 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { toNumber, trim } from 'lodash';
+import { replace, toNumber } from 'lodash';
 import * as moment from 'moment';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
@@ -39,7 +39,7 @@ export default function OnGoingPools() {
         });
         const roundData = txn?.data?.content?.fields;
 
-        console.log('roundData__', roundData)
+        console.log('roundData___', roundData)
         if (roundData) {
             const tokenType = await provider.getCoinMetadata({
                 coinType: `0x${roundData?.token_type}`,
@@ -72,6 +72,7 @@ export default function OnGoingPools() {
                 isPause: roundData?.is_pause || null,
                 maxAllocation: roundData?.max_allocation || null,
                 minAllocation: roundData?.min_allocation || null,
+                projectName: roundData?.project?.fields?.name,
                 name: roundData?.name,
                 startAt: roundData?.start_at || null,
                 endAt: roundData?.end_at || null,
@@ -86,7 +87,6 @@ export default function OnGoingPools() {
     React.useEffect(() => {
         Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
     }, [allRound]);
-
 
 
     const handleNavigate = (projectId, index) => {
@@ -138,7 +138,7 @@ export default function OnGoingPools() {
                             </AvatarBox>
                         </Grid>
                         <Grid item md={8} xs={12}>
-                            <Typography variant="h4">{trim(round?.name, '_')}</Typography>
+                            <Typography variant="h4">{round?.projectName} - {replace(round?.name, '_', ' ')}</Typography>
                             <ProcessBarBox
                                 title={
                                     <>

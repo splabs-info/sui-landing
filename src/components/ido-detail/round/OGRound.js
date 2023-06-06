@@ -4,6 +4,7 @@ import { ProcessBox } from './ProcessBox';
 export const OGRound = ({
     balances,
     decimals,
+    payments,
     totalSold,
     totalSupply,
     symbol,
@@ -12,6 +13,7 @@ export const OGRound = ({
     participants,
     participantsWallet,
 }) => {
+
     return (
         <Box>
             <ProcessBox
@@ -24,6 +26,7 @@ export const OGRound = ({
             />
             <BuyTokenOG
                 balances={balances}
+                payments={payments}
                 decimals={decimals}
                 symbol={symbol}
                 maxAllocation={maxAllocation}

@@ -15,10 +15,10 @@ import { CheckboxFiled } from 'components/base/CheckField';
 import { GradientButton } from 'components/common/CustomButton';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-
+import { replace, toNumber } from 'lodash';
+import * as moment from 'moment';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 export const TokenPoolContent = [
     {
         id: 1,
@@ -76,7 +76,6 @@ export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 
-    console.log('myIDOs__', myIDOs);
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -161,7 +160,7 @@ export default function ClaimTokens({ myIDOs }) {
     );
 }
 
-function TokenPool({ avatar, eventName, name, projectId, description }) {
+function TokenPool({ avatar, eventName, name, projectId, description, issueDate }) {
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
@@ -180,7 +179,7 @@ function TokenPool({ avatar, eventName, name, projectId, description }) {
                     <Box component={'img'} src={avatar} alt="" width={isMobile ? 50 : 100} />
                     <Box ml={isMobile ? 2 : 5}>
                         <Typography variant={isMobile ? 'h6' : 'h5'} color={'white'}>
-                            {name} - {eventName}
+                            {name} - {replace(eventName, '_', ' ')}
                         </Typography>
                         <Typography
                             color={'#999'}
@@ -206,10 +205,10 @@ function TokenPool({ avatar, eventName, name, projectId, description }) {
                     xs={6}
                     sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    {/* <Box>
-                        <Typography color={'#999'}>Claim Start Date</Typography>
-                        <Typography color={'white'}>{startDate}</Typography>
-                    </Box> */}
+                    <Box>
+                        <Typography color={'#999'} sx={{ textAlign: 'center' }}>Issue date</Typography>
+                        <Typography color={'white'}>{moment(toNumber(issueDate)).format('LLLL')}</Typography>
+                    </Box>
                 </Grid>
                 <Grid
                     item

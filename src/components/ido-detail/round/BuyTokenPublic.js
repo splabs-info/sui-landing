@@ -7,7 +7,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -180,7 +180,6 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
             decimals
         ).toString();
 
-        console.log('balanceSplit___ne', balanceSplit);
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
         const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();

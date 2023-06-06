@@ -1,5 +1,5 @@
 import { TabContext, TabList } from '@mui/lab';
-import { Box, Grid, Tab, alpha, styled } from '@mui/material';
+import { Box, Grid, Tab, alpha, styled, CircularProgress } from '@mui/material';
 import { PoolInformation } from 'components/ido-detail/PoolInfo';
 import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
@@ -127,136 +127,143 @@ export const Pool = () => {
         setValue(newValue);
     };
 
-    const fetchPoolData = async (round) => {
-        if (!round) return;
+    const fetchPoolData = React.useCallback(
+        async (round) => {
+            if (!round) return;
 
-        const txn = await provider.getObject({
-            id: round?.objectId,
-            options: { showContent: true },
-        });
-        const roundData = txn?.data?.content?.fields;
-
-        if (roundData) {
-            const tokenType = await provider.getCoinMetadata({
-                coinType: `0x${roundData?.token_type}`,
+            const txn = await provider.getObject({
+                id: round?.objectId,
+                options: { showContent: true },
             });
+            const roundData = txn?.data?.content?.fields;
 
-            const suiRatio = ethers.utils.formatUnits(
-                roundData?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
-                tokenType?.decimals
-            );
+            if (roundData) {
+                const tokenType = await provider.getCoinMetadata({
+                    coinType: `0x${roundData?.token_type}`,
+                });
 
-            const newState = {
-                ...round,
-                tokenAddress: `0x${roundData?.token_type}`,
-                tokenName: tokenType?.name,
-                decimals: tokenType?.decimals,
-                tokenDescription: tokenType?.description,
-                symbol: tokenType?.symbol,
-                ratio: suiRatio,
-                avatar: roundData?.project?.fields?.image_url,
-                telegram: roundData?.project?.fields?.telegram,
-                discord: roundData?.project?.fields?.discord,
-                participantsWallet: roundData?.participants?.fields?.contents,
-                participants: roundData?.participants?.fields?.contents.length,
-                totalSold: roundData?.total_sold || null,
-                totalSupply: roundData?.total_supply || null,
-                minPurchase: roundData?.min_purchase || null,
-                isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
-                isOpenClaimRefund: roundData?.is_open_claim_refund || null,
-                isPause: roundData?.is_pause || null,
-                maxAllocation: roundData?.max_allocation || null,
-                minAllocation: roundData?.min_allocation || null,
-                name: roundData?.name,
-                startAt: roundData?.start_at || null,
-                endAt: roundData?.end_at || null,
-                type: roundData?.type || null,
-            };
+                const suiRatio = ethers.utils.formatUnits(
+                    roundData?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
+                    tokenType?.decimals
+                );
 
-            return newState;
-        }
-    };
+                const newState = {
+                    ...round,
+                    tokenAddress: `0x${roundData?.token_type}`,
+                    tokenName: tokenType?.name,
+                    decimals: tokenType?.decimals,
+                    tokenDescription: tokenType?.description,
+                    symbol: tokenType?.symbol,
+                    ratio: suiRatio || null,
+                    avatar: roundData?.project?.fields?.image_url,
+                    telegram: roundData?.project?.fields?.telegram,
+                    discord: roundData?.project?.fields?.discord,
+                    participantsWallet: roundData?.participants?.fields?.contents || null,
+                    participants: roundData?.participants?.fields?.contents.length,
+                    totalSold: roundData?.total_sold || null,
+                    totalSupply: roundData?.total_supply || null,
+                    minPurchase: roundData?.min_purchase || null,
+                    isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
+                    isOpenClaimRefund: roundData?.is_open_claim_refund || null,
+                    isPause: roundData?.is_pause || null,
+                    maxAllocation: roundData?.max_allocation || null,
+                    minAllocation: roundData?.min_allocation || null,
+                    name: roundData?.name,
+                    payments: roundData?.payments?.fields?.contents || [],
+                    startAt: roundData?.start_at || null,
+                    endAt: roundData?.end_at || null,
+                    type: roundData?.type || null,
+                };
+
+                return newState;
+            }
+        },
+        [provider]
+    );
 
     React.useEffect(() => {
         Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allRound]);
-
 
     return (
         <>
-            <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
-                <Grid xs={12} md={6} item>
-                    <AvatarBox>
-                        <AvatarPool avatar={infoRounds[value]?.avatar} />
-                    </AvatarBox>
-                </Grid>
-                <Grid width="100%" xs={12} md={6} item>
-                    <Box sx={{ width: '100%' }}>
-                        <TabContext value={value}>
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <CustomTabList
-                                    onChange={handleChange}
-                                    indicatorColor="transparent"
-                                    indicator={false}
-                                    variant={isDesktop ? 'fullWidth' : 'scrollable'}
-                                    scrollButtons="auto"
-                                >
-                                    {allRound.map((round, index) => {
-                                        return <Tab label={round?.name?.value} {...a11yProps(index)} />;
-                                    })}
-                                </CustomTabList>
-                            </Box>
-                            {infoRounds.map((round, index) => (
-                                <TabPanel value={value} index={index}>
-                                    {round?.type === 'FCFS' ? (
-                                        <OGRound
-                                            balances={balances}
-                                            decimals={round?.decimals}
-                                            totalSold={round?.totalSold}
-                                            maxAllocation={round?.maxAllocation}
-                                            minAllocation={round?.minAllocation}
-                                            totalSupply={round?.totalSupply}
-                                            ratio={round?.ratio}
-                                            symbol={round?.symbol}
-                                            participants={round?.participants}
-                                            participantsWallet={round?.participantsWallet}
-                                        />
-                                    ) : (
-                                        <PublicRound
-                                            balances={balances}
-                                            minPurchase={round?.minPurchase}
-                                            decimals={round?.decimals}
-                                            totalSold={round?.totalSold}
-                                            minAllocation={round?.minAllocation}
-                                            totalSupply={round?.totalSupply}
-                                            ratio={round?.ratio}
-                                            endAt={round?.endAt}
-                                            name={round?.name}
-                                            symbol={round?.symbol}
-                                            participants={round?.participants}
-                                            participantsWallet={round?.participantsWallet}
-                                        />
-                                    )}
-                                </TabPanel>
-                            ))}
-                        </TabContext>
-                    </Box>
-                </Grid>
-            </Grid>
 
-            <PoolInformation
-                tokenAddress={infoRounds[value]?.tokenAddress}
-                tokenName={infoRounds[value]?.tokenName}
-                ratio={infoRounds[value]?.ratio}
-                symbol={infoRounds[value]?.symbol}
-                totalSupply={infoRounds[value]?.totalSupply}
-                decimals={infoRounds[value]?.decimals}
-                description={infoRounds[value]?.tokenDescription}
-                minAllocation={infoRounds[value]?.minAllocation}
-                maxAllocation={infoRounds[value]?.maxAllocation}
-            />
-            <ProjectInfo description={infoRounds[value]?.tokenDescription} />
+            <>
+                <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
+                    <Grid xs={12} md={6} item>
+                        <AvatarBox>
+                            <AvatarPool avatar={infoRounds[value]?.avatar} />
+                        </AvatarBox>
+                    </Grid>
+                    <Grid width="100%" xs={12} md={6} item>
+                        <Box sx={{ width: '100%' }}>
+                            <TabContext value={value}>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <CustomTabList
+                                        onChange={handleChange}
+                                        indicatorColor="transparent"
+                                        indicator={false}
+                                        variant={isDesktop ? 'fullWidth' : 'scrollable'}
+                                        scrollButtons="auto"
+                                    >
+                                        {allRound.map((round, index) => {
+                                            return <Tab label={round?.name?.value} {...a11yProps(index)} />;
+                                        })}
+                                    </CustomTabList>
+                                </Box>
+                                {infoRounds.map((round, index) => (
+                                    <TabPanel value={value} index={index}>
+                                        {round?.type === 'FCFS' ? (
+                                            <OGRound
+                                                balances={balances}
+                                                payments={round?.payments}
+                                                decimals={round?.decimals}
+                                                totalSold={round?.totalSold}
+                                                maxAllocation={round?.maxAllocation}
+                                                minAllocation={round?.minAllocation}
+                                                totalSupply={round?.totalSupply}
+                                                ratio={round?.ratio}
+                                                symbol={round?.symbol}
+                                                participants={round?.participants}
+                                                participantsWallet={round?.participantsWallet}
+                                            />
+                                        ) : (
+                                            <PublicRound
+                                                balances={balances}
+                                                payments={round?.payments}
+                                                minPurchase={round?.minPurchase}
+                                                decimals={round?.decimals}
+                                                totalSold={round?.totalSold}
+                                                minAllocation={round?.minAllocation}
+                                                totalSupply={round?.totalSupply}
+                                                ratio={round?.ratio}
+                                                endAt={round?.endAt}
+                                                name={round?.name}
+                                                symbol={round?.symbol}
+                                                participants={round?.participants}
+                                                participantsWallet={round?.participantsWallet}
+                                            />
+                                        )}
+                                    </TabPanel>
+                                ))}
+                            </TabContext>
+                        </Box>
+                    </Grid>
+                </Grid>
+
+                <PoolInformation
+                    tokenAddress={infoRounds[value]?.tokenAddress}
+                    tokenName={infoRounds[value]?.tokenName}
+                    ratio={infoRounds[value]?.ratio}
+                    symbol={infoRounds[value]?.symbol}
+                    totalSupply={infoRounds[value]?.totalSupply}
+                    decimals={infoRounds[value]?.decimals}
+                    description={infoRounds[value]?.tokenDescription}
+                    minAllocation={infoRounds[value]?.minAllocation}
+                    maxAllocation={infoRounds[value]?.maxAllocation}
+                />
+                <ProjectInfo description={infoRounds[value]?.tokenDescription} />
+            </>
         </>
     );
 };

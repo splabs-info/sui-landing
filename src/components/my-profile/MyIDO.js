@@ -7,7 +7,6 @@ import React from 'react';
 import { findCertificate } from 'utils/util';
 import { TitleSection } from './TitleSection';
 
-
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

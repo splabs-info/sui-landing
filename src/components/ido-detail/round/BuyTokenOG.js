@@ -8,7 +8,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_NAME, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_NAME, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -53,7 +53,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, participantsWallet }) => {
+export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, payments, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
@@ -64,7 +64,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
 
     const { sold } = useYouSuiStore((state) => state.sold);
 
-    const { allCoinObjectsId } = React.useContext(SuiContext);
+    const { provider, allCoinObjectsId } = React.useContext(SuiContext);
 
     const {
         control,
@@ -85,6 +85,17 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
     const isMobile = useResponsive('down', 'sm');
 
     const watchAmount = watch('amount');
+
+
+    // Handle payments token
+    React.useEffect(() => {
+        payments?.map(async (token) => {
+            const payment = await provider.getCoinMetadata(({
+                coinType: `0x${token?.fields?.value?.fields?.method_type}`,
+            }))
+
+        })
+    }, [payments, provider]);
 
     const handleChecked = (event) => {
         setChecked(event.target.checked);
