@@ -24,8 +24,6 @@ export default function ClaimsDetail() {
     const { projectId } = useParams();
     const decodedProjectId = decodeURIComponent(projectId);
 
-
-
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
 
@@ -35,7 +33,6 @@ export default function ClaimsDetail() {
                 parentId: decodedProjectId,
                 options: { showContent: true },
             });
-
 
             if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return;
 
@@ -50,17 +47,13 @@ export default function ClaimsDetail() {
         };
 
         fetchData();
-    }, [provider, decodedProjectId]);
+    }, [provider, decodedProjectId, event]);
 
     React.useEffect(() => {
         if (!vesting || vesting.length <= 0) return;
 
         const fetchData = async () => {
             const promises = vesting.map(async (element) => {
-                const vestingDetail = await provider.getObject({
-                    id: element.objectId,
-                    options: { showContent: true },
-                });
 
                 const dynamicFiledVesting = await provider.getDynamicFields({
                     parentId: element.objectId,
@@ -78,7 +71,6 @@ export default function ClaimsDetail() {
                     options: { showContent: true },
                 });
 
-                console.log('')
                 return yourVesting;
             });
 

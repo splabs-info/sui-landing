@@ -39,7 +39,6 @@ export default function OnGoingPools() {
         });
         const roundData = txn?.data?.content?.fields;
 
-        console.log('roundData___', roundData)
         if (roundData) {
             const tokenType = await provider.getCoinMetadata({
                 coinType: `0x${roundData?.token_type}`,
@@ -89,8 +88,12 @@ export default function OnGoingPools() {
     }, [allRound]);
 
 
-    const handleNavigate = (projectId, index) => {
-        navigate(`/ido-launchpad/${projectId}?tab=${index}`);
+    const handleNavigate = (projectId, eventName, index) => {
+        navigate(`/ido-launchpad/${projectId}?tab=${index}`, {
+            state: {
+                eventName: eventName
+            }
+        });
     }
 
     return (
@@ -206,7 +209,7 @@ export default function OnGoingPools() {
                                     <Grid item xs={12} sm={3}>
                                         <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
                                             <Button
-                                                onClick={() => handleNavigate(round?.projectId, index)}
+                                                onClick={() => handleNavigate(round?.projectId, round?.name, index)}
                                                 sx={{
                                                     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
                                                     borderRadius: '50px',

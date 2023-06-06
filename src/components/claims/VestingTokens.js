@@ -5,13 +5,12 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/Footer-v2';
 import { toNumber } from 'lodash';
 import * as moment from 'moment';
-import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useLocation, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -19,6 +18,7 @@ import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
 export default function VestingTokens({ periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
+
     return (
         <Box position="relative">
             <Grid container spacing={4} mb={isMobile ? 1 : 4}>
@@ -126,8 +126,6 @@ function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount
 
     const event = location.state?.eventName;
     const canClaim = canClaimVesting(releaseTime)
-
-    // const { provider } = React.useContext(SuiContext)
 
     const handleClaim = async () => {
         setLoading(true)

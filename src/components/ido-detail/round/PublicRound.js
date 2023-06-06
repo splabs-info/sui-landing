@@ -11,6 +11,7 @@ export const PublicRound = ({
     symbol,
     name,
     ratio,
+    tokenType,
     minPurchase,
     participants,
     participantsWallet,
@@ -30,6 +31,7 @@ export const PublicRound = ({
                 participants={participants}
             />
             <BuyTokenPublic
+                tokenType={tokenType}
                 minPurchase={minPurchase}
                 balances={balances}
                 decimals={decimals}
