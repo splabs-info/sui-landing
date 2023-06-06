@@ -56,7 +56,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
 export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, payments, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
-
+    const [listPayments, setListPayments] = React.useState([]);
     const location = useLocation();
 
     const theme = useTheme();
@@ -89,10 +89,14 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
 
     // Handle payments token
     React.useEffect(() => {
-        payments?.map(async (token) => {
+        if (!payments || payments?.length === 0) return;
+
+        payments?.forEach(async (token) => {
             const payment = await provider.getCoinMetadata(({
                 coinType: `0x${token?.fields?.value?.fields?.method_type}`,
             }))
+
+            setListPayments((prev) => [...prev, payment])
 
         })
     }, [payments, provider]);
@@ -117,6 +121,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
+        console.log('coin___', coin)
         const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();
 
         const vec = tx.makeMoveVec({

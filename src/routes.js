@@ -82,7 +82,7 @@ export default function Router() {
                         </Suspense>
                 },
                 {
-                    path: '/claim-tokens/:projectId',
+                    path: 'claim-tokens/:projectId',
                     element:
                         <Suspense>
                             <ClaimsDetail />

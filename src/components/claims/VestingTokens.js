@@ -5,7 +5,7 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/Footer-v2';
@@ -17,7 +17,6 @@ import { useLocation, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
-import { toString } from 'lodash';
 export default function VestingTokens({ periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
     return (
@@ -116,6 +115,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
 function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
+    const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
     const wallet = useWallet();
     const [loading, setLoading] = React.useState(false);
 
@@ -127,22 +127,16 @@ function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount
     const event = location.state?.eventName;
     const canClaim = canClaimVesting(releaseTime)
 
-    const { provider } = React.useContext(SuiContext)
-
-    const PERIOD_ID_LIST = [toString(indexVesting)];
+    // const { provider } = React.useContext(SuiContext)
 
     const handleClaim = async () => {
         setLoading(true)
         const tx = new TransactionBlock();
 
-        const vec = tx.makeMoveVec({
-            objects: ['0'],
-        });
-
         tx.moveCall({
-            target: `${TXUI_PACKAGE}::launchpad_presale::claim_vesting`,
-            typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(toString(decodedProjectId)), tx.pure(event), PERIOD_ID_LIST, vec],
+            target: `${'0x913eec9939553db60c8ac348fb010641a891e567d54e34d5af251f0499ac14b3'}::launchpad_presale::claim_vesting`,
+            typeArguments: [TXUI_TOKEN_TYPE],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(event), tx.pure([indexVesting])],
         });
 
         try {
@@ -163,7 +157,7 @@ function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount
     }
 
     return (
-        <TokenPoolBox>
+        <TokenPoolBox isWithdrawal={withdrawal}>
             <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>
                 <Grid item md={1} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant={isMobile ? 'h5' : 'h3'}>{toNumber(id) + 1}</Typography>
@@ -247,8 +241,8 @@ function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount
                         justifyContent: isMobile ? 'center' : 'flex-end',
                     }}
                 >
-                    <BorderGradientButton sx={{ minWidth: 160 }} disabled={!canClaim} onClick={handleClaim} loading={loading}>
-                        Claim
+                    <BorderGradientButton sx={{ minWidth: 160 }} disabled={!canClaim || isWithdrawal} onClick={handleClaim} loading={loading}>
+                        {isWithdrawal ? 'Claimed' : 'Claim'}
                     </BorderGradientButton>
                 </Grid>
             </Grid>
