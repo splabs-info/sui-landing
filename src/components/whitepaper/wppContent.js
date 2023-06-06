@@ -640,10 +640,13 @@ export const wppContent = [
     category: 'Investor Protection',
     description: [
       {
+        content: [<img src="/images/whitepaper/investor-protection.jpg" alt="" />],
+      },
+      {
         checklist: true,
         list: [
           <>
-            <IconSquareCheck /> Investor Protection:<br /> Ensuring Liquidity and Lockup. <br />
+            <IconSquareCheck /> Ensuring Liquidity and Lockup: <br />
             At YouSUI, investor security is paramount. Projects must contribute a minimum of $400–500k to the liquidity
             pool, locked for 12 months. Non-compliant projects risk their raised tokens being retained in stable coins,
             protecting investors from potential losses.

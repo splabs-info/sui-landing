@@ -143,6 +143,7 @@ import { Stack } from '@mui/system';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import CustomSlider from './CustomSlider';
+import { Navigate, useNavigate } from 'react-router-dom';
 const data = [
     {
         img: '/images/ido/sua-sale.jpg',
@@ -167,6 +168,7 @@ const AvatarBox = styled(Box)(({ theme }) => ({
 
 export default function PreviousPools() {
     const isMobile = useResponsive('down', 'sm');
+    const navigate = useNavigate();
     return (
         <Box mt={20} pb={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -183,6 +185,10 @@ export default function PreviousPools() {
                                 border: '1px solid #42EECF',
                                 background: 'linear-gradient(323.96deg, #5394CF 0%, #8CE9C7 89.18%)',
                                 borderRadius: '10px',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => {
+                                navigate('/ido-launchpad/sua')
                             }}
                         >
                             <Box
