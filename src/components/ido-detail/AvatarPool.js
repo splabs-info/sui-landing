@@ -1,13 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 export const AvatarPool = ({ avatar }) => {
     return (
         <Box position={'relative'} sx={{ width: 686, height: 640, display: 'flex' }}>
-            {/* {avatar ? (
-                
+            {avatar ? (
+                <Box component={'img'} src={avatar} sx={{ width: 686, height: 597, objectFit: 'contain' }} />
             ) : (
                 <CircularProgress sx={{ textAlign: 'center', margin: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }} />
-            )} */}
-            <Box component={'img'} src={avatar} sx={{ width: 686, height: 597, objectFit: 'contain' }} />
+            )}
+
             <Box
                 sx={{
                     background: 'linear-gradient(255deg, #207BBF 0%, #5CBAF2 100%)',
