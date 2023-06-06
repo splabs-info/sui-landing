@@ -175,8 +175,12 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), decimals).toString();
+        const balanceSplit = ethers.utils.parseUnits(
+            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
+            decimals
+        ).toString();
 
+        console.log('balanceSplit___ne', balanceSplit);
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
         const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();
@@ -186,7 +190,7 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
         });
 
         tx.moveCall({
-            target: `${TXUI_PACKAGE}::launchpad_ido::purchase`,
+            target: `${0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af}::launchpad_ido::purchase`,
             typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
             arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(name), vec, tx.pure(parseAmount)],
         });

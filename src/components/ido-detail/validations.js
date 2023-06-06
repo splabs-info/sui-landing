@@ -13,7 +13,7 @@ export const IdoSchema = yup.object().shape({
 export const PublicRoundSchema = yup.object().shape({
     amount: yup
         .number()
-        .min(20, 'Min purchase must be 20 T-XUI')
+        .min(10, 'Min purchase must be 10 T-XUI')
         .required('Amount is required')
         .typeError('Must be number'),
 });

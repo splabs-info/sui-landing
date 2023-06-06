@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import queryString from 'query-string';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
@@ -113,6 +113,9 @@ function a11yProps(index) {
 
 export const Pool = () => {
     const location = useLocation();
+    const { projectId } = useParams();
+    const decodedProjectId = decodeURIComponent(projectId);
+
     const tab = parseInt(queryString.parse(location.search).tab) || 0;
     const [value, setValue] = useState(tab);
 
@@ -143,7 +146,6 @@ export const Pool = () => {
                 tokenType?.decimals
             );
 
-            // console.log('roundData___', roundData?.name)
             const newState = {
                 ...round,
                 tokenAddress: `0x${roundData?.token_type}`,
@@ -177,6 +179,7 @@ export const Pool = () => {
 
     React.useEffect(() => {
         Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allRound]);
 
 

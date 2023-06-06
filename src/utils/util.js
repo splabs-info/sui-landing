@@ -1,3 +1,5 @@
+import { toNumber } from 'lodash';
+import * as moment from 'moment';
 export const getVideoCover = async (file, seekTo = 0.0) => {
     return new Promise((resolve, reject) => {
         // load the file to a video player
@@ -72,3 +74,19 @@ export const findCertificate = (arrayA, arrayB) => {
 
     return commonElements;
 };
+
+
+export function canClaimVesting(inputTimeInMillis) {
+    
+    // Convert the current time and input time to seconds
+    const nowInSeconds = moment().utc().unix();
+    const inputTimeInSeconds = moment(toNumber(inputTimeInMillis)).utc().unix();
+
+
+    // Compare the current time and the input time
+    if (nowInSeconds >= inputTimeInSeconds) {
+        return true;
+    } else {
+        return false;
+    }
+}

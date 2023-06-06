@@ -1,55 +1,56 @@
 import { Box, Container } from '@mui/material';
+import { useWallet } from '@suiet/wallet-kit';
 import VestingTokens from 'components/claims/VestingTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import React from 'react';
-import { useWallet } from '@suiet/wallet-kit';
+import { flattenDeep } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
-import {flattenDeep} from 'lodash'
+import React from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 export default function ClaimsDetail() {
     const isMobile = useResponsive('down', 'sm');
     const [vesting, setVesting] = React.useState();
+
     const [periodList, setPeriodList] = React.useState();
     const [totalLockMount, setLockMount] = React.useState();
     const [totalUnlockAmount, setUnLockMount] = React.useState();
     const [allVestingDetail, setAllVestingDetail] = React.useState();
 
+
+    const { projectId } = useParams();
+    const decodedProjectId = decodeURIComponent(projectId);
+
+    const location = useLocation();
+
+    const event = location.state?.eventName;
+
     const wallet = useWallet();
-    const { provider, projects } = React.useContext(SuiContext);
+    const { provider } = React.useContext(SuiContext);
 
     React.useEffect(() => {
         const fetchData = async () => {
-            if (!projects || projects.length <= 0) return;
-
-            const promises = projects.map(async (project) => {
-                const allOfProjectDetail = await provider.getDynamicFields({
-                    // Get parent id by url
-                    parentId: project,
-                    options: { showContent: true },
-                });
-
-                if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return null;
-
-                const vestingElement = allOfProjectDetail.data.filter((element) => {
-                    const found = element.name?.value.split(' <> ');
-                    return found && found.includes('Vesting');
-                });
-
-                if (vestingElement.length > 0) {
-                    return vestingElement;
-                }
+            const allOfProjectDetail = await provider.getDynamicFields({
+                parentId: decodedProjectId,
+                options: { showContent: true },
             });
 
-            const vestingElements = await Promise.all(promises);
+            console.log('allOfProjectDetail___', allOfProjectDetail)
+            if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return;
 
-            const filteredVestingElements = vestingElements.filter((element) => element !== null);
+            const vestingElement = allOfProjectDetail?.data.filter((element) => {
+                const found = element.name?.value.split(' <> ');
+                return found && found.includes('Vesting');
+            });
 
-            setVesting(filteredVestingElements[0]);
+            console.log('vestingElement___', vestingElement)
+            if (vestingElement.length > 0) {
+                setVesting(vestingElement);
+            }
         };
 
         fetchData();
-    }, [projects, provider]);
+    }, [provider, decodedProjectId]);
 
     React.useEffect(() => {
         if (!vesting || vesting.length <= 0) return;
@@ -65,6 +66,8 @@ export default function ClaimsDetail() {
                     parentId: element.objectId,
                     options: { showContent: true },
                 });
+
+                // console.log('dynamicFiledVesting__', dynamicFiledVesting)
 
                 if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
 
@@ -83,7 +86,8 @@ export default function ClaimsDetail() {
             const yourVestings = await Promise.all(promises);
             const filteredVestings = yourVestings.filter((vesting) => vesting !== null);
 
-            if(!filteredVestings || filteredVestings.length <= 0) return;
+        
+            if (!filteredVestings || filteredVestings.length <= 0) return;
 
             setPeriodList(flattenDeep(filteredVestings.map((vesting) => vesting.data?.content?.fields?.value?.fields?.period_list)));
 
@@ -97,6 +101,8 @@ export default function ClaimsDetail() {
 
         fetchData();
     }, [provider, vesting, wallet?.address]);
+
+
 
     return (
         <Page title="Vesting Token">

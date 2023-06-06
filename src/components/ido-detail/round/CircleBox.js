@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import React from 'react';
 import * as moment from 'moment';
+import React from 'react';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
     padding: "64px 40px 40px 40px ",

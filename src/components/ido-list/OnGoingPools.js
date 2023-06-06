@@ -9,7 +9,7 @@ import { toNumber, trim } from 'lodash';
 import * as moment from 'moment';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
@@ -25,7 +25,7 @@ const AvatarBox = styled(Box)(({ theme }) => ({
 
 export default function OnGoingPools() {
     const navigate = useNavigate();
-
+    const location = useLocation();
     const isMobile = useResponsive('down', 'sm');
     const [infoRounds, setInfoRounds] = React.useState([]);
     const { provider, allRound } = React.useContext(SuiContext);
@@ -39,6 +39,7 @@ export default function OnGoingPools() {
         });
         const roundData = txn?.data?.content?.fields;
 
+        console.log('roundData__', roundData)
         if (roundData) {
             const tokenType = await provider.getCoinMetadata({
                 coinType: `0x${roundData?.token_type}`,
@@ -57,6 +58,7 @@ export default function OnGoingPools() {
                 tokenDescription: tokenType?.description,
                 symbol: tokenType?.symbol,
                 ratio: suiRatio,
+                projectId: roundData?.project?.fields?.project_id,
                 avatar: roundData?.project?.fields?.image_url,
                 telegram: roundData?.project?.fields?.telegram,
                 discord: roundData?.project?.fields?.discord,
@@ -85,6 +87,11 @@ export default function OnGoingPools() {
         Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
     }, [allRound]);
 
+
+
+    const handleNavigate = (projectId, index) => {
+        navigate(`/ido-launchpad/${projectId}?tab=${index}`);
+    }
 
     return (
         <Box mb={20} mt={10} position="relative">
@@ -142,7 +149,7 @@ export default function OnGoingPools() {
                                 percent={(round?.totalSold / round?.totalSupply) * 100}
                                 subtitle={
                                     <>
-                                        <Typography>{round?.totalSold && round?.totalSupply ? (round?.totalSold / round?.totalSupply).toFixed(3) * 100 : 'Loading'} %</Typography>
+                                        <Typography>{round?.totalSold && round?.totalSupply ? (round?.totalSold / round?.totalSupply).toFixed(3) * 100 : 'TBA'} %</Typography>
                                         <Typography>
                                             {(round?.totalSold && round?.totalSupply) || round?.totalSold === 0 ? (
                                                 <>
@@ -152,7 +159,7 @@ export default function OnGoingPools() {
                                                     {round?.symbol}
                                                 </>
                                             ) : (
-                                                'Loading'
+                                                'TBA'
                                             )}{' '}
                                         </Typography>
                                     </>
@@ -181,7 +188,7 @@ export default function OnGoingPools() {
                                                 <Typography fontWeight={'bold'}>
                                                     {round?.minPurchase ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
                                                         ethers.utils.formatUnits(round?.minPurchase, round?.decimals)
-                                                    ) : 'Loading'}
+                                                    ) : 'TBA'}
                                                     {' '}{round?.symbol}
                                                 </Typography>
                                             </Stack>
@@ -199,7 +206,7 @@ export default function OnGoingPools() {
                                     <Grid item xs={12} sm={3}>
                                         <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
                                             <Button
-                                                onClick={() => navigate(`/ido-launchpad/txui?tab=${index}`)}
+                                                onClick={() => handleNavigate(round?.projectId, index)}
                                                 sx={{
                                                     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
                                                     borderRadius: '50px',

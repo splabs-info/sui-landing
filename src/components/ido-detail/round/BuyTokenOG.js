@@ -15,6 +15,7 @@ import { toNumber } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { IdoSchema } from '../validations';
@@ -56,6 +57,8 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
+    const location = useLocation();
+
     const theme = useTheme();
     const wallet = useWallet();
 
@@ -96,7 +99,10 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), decimals).toString();
+        const balanceSplit = ethers.utils.parseUnits(
+            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
+            decimals
+        ).toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
@@ -107,7 +113,7 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
         });
 
         tx.moveCall({
-            target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
+            target: `${0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af}::launchpad_presale::purchase`,
             typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
             arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(TXUI_NAME), vec, tx.pure(parseAmount)],
         });

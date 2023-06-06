@@ -59,7 +59,7 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'ido-launchpad/txui',
+                    path: 'ido-launchpad/:projectId',
                     element: (
                         <Suspense>
                             <TXUIIDO />
@@ -79,15 +79,13 @@ export default function Router() {
                     element:
                         <Suspense>
                             <Claims />
-                            {/* <ComingSoon /> */}
                         </Suspense>
                 },
                 {
-                    path: '/claim-tokens/:sub',
+                    path: '/claim-tokens/:projectId',
                     element:
                         <Suspense>
                             <ClaimsDetail />
-                            {/* <ComingSoon /> */}
                         </Suspense>
                 },
                 {

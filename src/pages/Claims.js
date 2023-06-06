@@ -1,13 +1,13 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
+import { useWallet } from '@suiet/wallet-kit';
 import ClaimTokens from 'components/claims/ClaimTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
-import useResponsive from 'hooks/useResponsive';
-import { useWallet } from '@suiet/wallet-kit';
-import React from 'react';
-import { SuiContext } from 'provider/SuiProvider';
-import { findCertificate } from 'utils/util';
 import { investCertificate } from 'constant';
+import useResponsive from 'hooks/useResponsive';
+import { SuiContext } from 'provider/SuiProvider';
+import React from 'react';
+import { findCertificate } from 'utils/util';
 export default function Claims() {
     const isMobile = useResponsive('down', 'sm');
     const [myIdo, setMyIdo] = React.useState([]);
@@ -41,6 +41,8 @@ export default function Claims() {
                 const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
                 return {
+                    eventName: certificate?.data?.content?.fields?.event_name,
+                    issue_date: certificate?.data?.content?.fields?.issue_date || '',
                     description: projectFields?.description || '',
                     discord: projectFields?.discord || '',
                     image_url: projectFields?.image_url || '',
@@ -62,7 +64,6 @@ export default function Claims() {
         fetchData();
     }, [provider, wallet?.address, wallet?.connected]);
 
-    console.log('myIdo', myIdo);
     return (
         <Page title="Claim Tokens">
             <SectionBox
@@ -82,7 +83,24 @@ export default function Claims() {
                     }}
                 />
                 <Container maxWidth={'xl'}>
-                    <ClaimTokens myIDOs={myIdo} />
+                    {!wallet?.address || !wallet?.connected ? (
+                        <Typography
+                            sx={{
+                                margin: '240px auto 190px auto',
+                                fontWeight: 'bold',
+                                fontSize: 32,
+                                color: 'white',
+                                width: '100%',
+                                textAlign: 'center',
+                            }}
+                        >
+                            Please Connect Your Wallet Before
+                        </Typography>
+                    ) : (
+                        <>
+                            <ClaimTokens myIDOs={myIdo} />
+                        </>
+                    )}
                 </Container>
             </SectionBox>
         </Page>

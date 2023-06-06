@@ -12,11 +12,12 @@ export const PublicRound = ({
     name,
     ratio,
     minPurchase,
-    maxPerUser,
     participants,
     participantsWallet,
 }) => {
     const isMobile = useResponsive('down', 'sm');
+
+    console.log('decimals__', decimals);
     return (
         <Box>
             <CircleBox

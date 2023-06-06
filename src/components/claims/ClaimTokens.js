@@ -2,21 +2,20 @@
 import styled from '@emotion/styled';
 import {
     Box,
-    CircularProgress,
     Divider,
     Grid,
     Hidden,
     InputAdornment,
     Stack,
     TextField,
-    Typography,
+    Typography
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { GradientButton } from 'components/common/CustomButton';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { lowerCase } from 'lodash';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -77,6 +76,7 @@ export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 
+    console.log('myIDOs__', myIDOs);
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -132,22 +132,47 @@ export default function ClaimTokens({ myIDOs }) {
             {myIDOs?.length !== 0 ? (
                 <>
                     {myIDOs.map((item, index) => (
-                        <TokenPool key={index} avatar={item?.image_url} name={item?.name} description={item?.description} />
+                        <TokenPool
+                            key={index}
+                            avatar={item?.image_url}
+                            issueDate={item?.issue_date}
+                            projectId={item?.project_id}
+                            eventName={item?.eventName}
+                            name={item?.name}
+                            description={item?.description}
+                        />
                     ))}
                 </>
             ) : (
-            <CircularProgress sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', margin: 'auto' }} />
+                <Typography
+                    sx={{
+                        margin: '240px auto 190px auto',
+                        fontWeight: 'bold',
+                        fontSize: 32,
+                        color: 'white',
+                        width: '100%',
+                        textAlign: 'center',
+                    }}
+                >
+                    You don't have any IDOs tokens
+                </Typography>
             )}
         </Box>
     );
 }
 
-function TokenPool({ avatar, name, description }) {
+function TokenPool({ avatar, eventName, name, projectId, description }) {
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
-    // const subLink = (name.toLowerCase().replace(/ - /gi, "-")).replace(/ /gi, "-")
-    // console.log(subLink);
+
+    const handleNavigate = () => {
+        navigate(`/claim-tokens/${projectId}`, {
+            state: {
+                eventName: eventName,
+            }
+        });
+    };
     return (
         <TokenPoolBox>
             <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>
@@ -155,7 +180,7 @@ function TokenPool({ avatar, name, description }) {
                     <Box component={'img'} src={avatar} alt="" width={isMobile ? 50 : 100} />
                     <Box ml={isMobile ? 2 : 5}>
                         <Typography variant={isMobile ? 'h6' : 'h5'} color={'white'}>
-                            {name}
+                            {name} - {eventName}
                         </Typography>
                         <Typography
                             color={'#999'}
@@ -197,7 +222,7 @@ function TokenPool({ avatar, name, description }) {
                         justifyContent: isMobile ? 'center' : 'flex-end',
                     }}
                 >
-                    <GradientButton onClick={() => navigate(`/claim-tokens/${lowerCase(name)}}`)} sx={{ minWidth: 160 }}>
+                    <GradientButton onClick={() => handleNavigate()} sx={{ minWidth: 160 }}>
                         Detail
                     </GradientButton>
                 </Grid>
