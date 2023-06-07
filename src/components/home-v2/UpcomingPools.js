@@ -5,18 +5,14 @@ import useResponsive from '../../hooks/useResponsive';
 import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from './HomeStyles';
 const upComingList = [
     {
-        label: 'upcoming',
-        src: 'images/home/suitoken-card.svg',
+        label: 'Go to Launchpad ››',
+        src: 'images/home/upcoming-ido.png',
         link: '/ido-launchpad'
     },
     {
-        label: 'upcoming',
-        src: 'images/home/upcoming-2.svg',
+        label: 'Go to Launchpad ››',
+        src: 'images/home/upcoming-ino.png',
         link: '/ino-launchpad'
-    },
-    {
-        label: 'upcoming',
-        src: 'images/home/upcoming-1.svg'
     },
 
 ];
@@ -33,14 +29,36 @@ export default function UpcomingPools() {
             </Box>
             <Grid container spacing={3} mt={4}>
                 {upComingList.map((item, index) => (
-                    <Grid item key={index} sm={4} xs={12}>
-                        <Link to={item.link}>
+                    <Grid item key={index} sm={3.5} xs={12}>
+                        <Box position={'relative'}
+
+                            sx={{
+                                '& a': {
+                                    background: 'linear-gradient(100deg, #68E6B8 -10%, #6D85DA 100%)',
+                                    boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.5)',
+                                    borderRadius: '10px',
+                                    padding: '10px 20px',
+                                    margin: '10%',
+                                    width: '80%',
+                                    position: 'absolute',
+                                    textAlign: 'center',
+                                    bottom: '2%',
+                                    '&:hover': {
+                                        background: 'linear-gradient(160deg, #68E6B8 0%, #6D85DA 100%)',
+                                        boxShadow: ' 0px 5px 20px rgba(0, 0, 0, 0.5)',
+                                    }
+                                }
+                            }}>
+
                             <img
                                 src={item.src}
                                 alt={item.label}
                                 width={'100%'}
                             />
-                        </Link>
+                            <Link to={item.link}>
+                                <Typography fontWeight='700'> {item.label}</Typography>
+                            </Link>
+                        </Box>
                     </Grid>
                 ))}
             </Grid>

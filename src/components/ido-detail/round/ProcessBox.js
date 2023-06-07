@@ -71,16 +71,24 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                     <>
                         <Typography>Progress</Typography>
                         <Typography>
-                            {currentParticipants || currentParticipants === 0 ? `Current Participants : ${currentParticipants}` : 'Loading'}
+                            {currentParticipants || currentParticipants === 0 ?
+                                currentParticipants > formattedTotalSupply ? `Current Participants : ${formattedTotalSupply}`
+                                    : `Current Participants : ${currentParticipants}`
+                                : 'Loading'}
                         </Typography>
                     </>
                 }
                 percent={progress * 100}
                 subtitle={
                     <>
-                        <Typography> {progress || progress === 0 ? `${progress.toFixed(3) * 100} %` : 'Loading'}</Typography>
+                        <Typography> {progress || progress === 0 ?
+                            currentParticipants > formattedTotalSupply ? '100%' :
+                                `${progress.toFixed(3) * 100} %`
+                            : 'Loading'}</Typography>
                         <Typography>
-                            {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
+                            {formattedTotalSold && formattedTotalSupply ?
+                                currentParticipants > formattedTotalSupply ? `${formattedTotalSupply} / ${formattedTotalSupply} `
+                                    : `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
                         </Typography>
                     </>
                 }

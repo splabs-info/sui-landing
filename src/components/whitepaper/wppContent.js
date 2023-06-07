@@ -1150,6 +1150,7 @@ export const wppContent = [
           'Liquidity Providing Program : Service Fee',
         ],
       },
+      { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
       // {
       //     title: 'About XUI Token',
       //     subtitle: 'Sui blockchain',
@@ -1182,7 +1183,6 @@ export const wppContent = [
     id: 'ido-ino-regulation',
     category: 'IDO & INO Regulation',
     description: [
-      { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
       {
         title: 'YouSUI Introduces New IDO Regulations Aimed To Protect The Community',
         content: ['Effective from October 1, 2022, YouSUI introduces new policies to protect the community.'],

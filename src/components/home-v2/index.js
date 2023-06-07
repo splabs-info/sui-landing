@@ -6,5 +6,4 @@ export { default as UpcomingPools } from './UpcomingPools';
 export { default as StakingPools } from './StakingPools';
 export { default as Questions } from './Questions';
 export { default as StakingTier } from './StakingTier';
-
 export { default as Partner } from './Partner';

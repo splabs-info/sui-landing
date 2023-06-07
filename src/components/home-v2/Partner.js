@@ -65,6 +65,10 @@ const partners = [
         label: 'suins',
         link: 'https://suins.io/',
     },
+    {
+        label: 'interest',
+        link: 'https://interestprotocol.io/',
+    },
 ];
 
 export default function Partner() {
