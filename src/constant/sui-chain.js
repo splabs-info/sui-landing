@@ -10,14 +10,13 @@ export const SUA_PRESALE_OG = '0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72d
 
 
 // Prefix
-export const TXUI_PACKAGE = '0xd0291b939fb336d7b0c9fcaaec6a708f673c98fbca077044b76e3a056aca81cc';
+export const TXUI_PACKAGE = '0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af';
 export const TXUI_ADMIN_STORAGE = '0x07ca1e1e498be07f471a9751ad351563c1dcebadb1e7c497cbd5f653d5be3ed6';
 export const TXUI_PROJECT_STORAGE = '0xf450c5fa0c1c85df1dcc116d11cff29331a35ffbbc8e61ac4855186ce8e4c08e';
 export const TXUI_CLOCK = '0x6';
 
 
 export const TXUI_PROJECT = '0x37ea4f2ed456b8cd90833261fdfab6956d99e44b3807bc47c1cbda08d8e2c49b';
-export const TXUI_TOKEN_TYPE = '0xd0291b939fb336d7b0c9fcaaec6a708f673c98fbca077044b76e3a056aca81cc::txui::TXUI';
 export const TXUI_PAYMENT_TYPE = '0x2::sui::SUI';
 
 

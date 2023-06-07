@@ -77,7 +77,7 @@ export const findCertificate = (arrayA, arrayB) => {
 
 
 export function canClaimVesting(inputTimeInMillis) {
-    
+
     // Convert the current time and input time to seconds
     const nowInSeconds = moment().utc().unix();
     const inputTimeInSeconds = moment(toNumber(inputTimeInMillis)).utc().unix();
@@ -89,4 +89,10 @@ export function canClaimVesting(inputTimeInMillis) {
     } else {
         return false;
     }
+}
+
+
+export const validateReferralCode = (referralCode, wallet) => {
+    const remaining = referralCode.slice(2);
+    return wallet.includes(remaining);
 }

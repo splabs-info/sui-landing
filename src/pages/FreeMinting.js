@@ -8,6 +8,7 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
+import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';

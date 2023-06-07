@@ -1,17 +1,17 @@
 import { TabContext, TabList } from '@mui/lab';
-import { Box, Grid, Tab, alpha, styled, CircularProgress } from '@mui/material';
+import { Box, Grid, Tab, alpha, styled } from '@mui/material';
 import { PoolInformation } from 'components/ido-detail/PoolInfo';
 import { ProjectInfo } from 'components/ido-detail/Project';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import PropTypes from 'prop-types';
 import { SuiContext } from 'provider/SuiProvider';
+import queryString from 'query-string';
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
-import { useLocation, useParams } from 'react-router-dom';
-import queryString from 'query-string';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -220,6 +220,7 @@ export const Pool = () => {
                                                 payments={round?.payments}
                                                 decimals={round?.decimals}
                                                 totalSold={round?.totalSold}
+                                                minPurchase={round?.minPurchase}
                                                 maxAllocation={round?.maxAllocation}
                                                 minAllocation={round?.minAllocation}
                                                 totalSupply={round?.totalSupply}

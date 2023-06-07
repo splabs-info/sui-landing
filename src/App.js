@@ -25,7 +25,8 @@ import ThemeProvider from './theme';
 import { SUIWalletContext } from 'provider/SuiProvider';
 const queryClient = new QueryClient();
 
-const SupportedChains = [SuiMainnetChain, SuiDevnetChain, SuiTestnetChain];
+
+const SupportedChains = [SuiTestnetChain];
 
 export default function App() {
     // const dispatch = useDispatch();

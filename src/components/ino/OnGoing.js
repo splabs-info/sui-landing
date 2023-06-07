@@ -7,8 +7,11 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { addresses } from 'pages/FreeMinting';
+import { SuiContext } from 'provider/SuiProvider';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useConnect } from 'wagmi';
+import React from 'react';
 
 
 const provider = new JsonRpcProvider(devnetConnection);

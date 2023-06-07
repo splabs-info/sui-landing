@@ -1,11 +1,9 @@
-import { Box, Container, Grid, Stack, Typography, styled } from '@mui/material';
+import { Box, Container, Stack, Typography, styled } from '@mui/material';
 import Page from 'components/common/Page';
-import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home-v2/HomeStyles';
 import { BuyToken } from 'components/presales/BuyToken';
-import { CircleBox } from 'components/presales/CircleBox';
 import { PresalesInformation } from 'components/presales/Information';
 import useResponsive from 'hooks/useResponsive';
-import { Link } from 'react-router-dom';
 
 const Title = styled(Typography)(({ theme }) => ({
     textTransform: 'uppercase',

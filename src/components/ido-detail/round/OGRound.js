@@ -12,10 +12,11 @@ export const OGRound = ({
     symbol,
     ratio,
     maxAllocation,
+    minAllocation,
+    minPurchase,
     participants,
     participantsWallet,
 }) => {
-
     return (
         <Box>
             <ProcessBox
@@ -28,11 +29,13 @@ export const OGRound = ({
             />
             <BuyTokenOG
                 name={name}
+                minPurchase={minPurchase}
                 tokenType={tokenType}
                 balances={balances}
                 payments={payments}
                 decimals={decimals}
                 symbol={symbol}
+                minAllocation={minAllocation}
                 maxAllocation={maxAllocation}
                 ratio={ratio}
                 participantsWallet={participantsWallet}

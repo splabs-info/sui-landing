@@ -7,16 +7,19 @@ import useResponsive from 'hooks/useResponsive';
 import { flattenDeep } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 export default function ClaimsDetail() {
     const isMobile = useResponsive('down', 'sm');
     const [vesting, setVesting] = React.useState();
 
-    const [periodList, setPeriodList] = React.useState();
-    const [totalLockMount, setLockMount] = React.useState();
-    const [totalUnlockAmount, setUnLockMount] = React.useState();
-    const [allVestingDetail, setAllVestingDetail] = React.useState();
-
+    const [vestingDetails, setVestingDetails] = React.useState({
+        periodList: [],
+        totalLockMount: '0',
+        totalUnlockAmount: '0',
+        numberOfCliffMonths: 0,
+        numberOfLinearMonth: 0,
+        tokenType: '',
+    });
 
     const location = useLocation();
     const event = location.state?.eventName;
@@ -55,10 +58,22 @@ export default function ClaimsDetail() {
         const fetchData = async () => {
             const promises = vesting.map(async (element) => {
 
+                const vestingDetail = await provider.getObject({
+                    id: element.objectId,
+                    options: { showContent: true },
+                });
+
                 const dynamicFiledVesting = await provider.getDynamicFields({
                     parentId: element.objectId,
                     options: { showContent: true },
                 });
+
+                setVestingDetails(prev => ({
+                    ...prev,
+                    tokenType: vestingDetail?.data?.content?.fields?.info?.fields?.token_type,
+                    numberOfCliffMonths: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_cliff_months,
+                    numberOfLinearMonth: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_linear_months,
+                }))
 
                 if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
 
@@ -74,25 +89,26 @@ export default function ClaimsDetail() {
                 return yourVesting;
             });
 
-            const yourVestings = await Promise.all(promises);
+            const yourVestings = await Promise.allSettled(promises);
             const filteredVestings = yourVestings.filter((vesting) => vesting !== null);
 
 
             if (!filteredVestings || filteredVestings.length <= 0) return;
 
-            setPeriodList(flattenDeep(filteredVestings.map((vesting) => vesting.data?.content?.fields?.value?.fields?.period_list)));
+            const periodList = flattenDeep(filteredVestings.map(vesting => vesting.data?.content?.fields?.value?.fields?.period_list));
 
             filteredVestings.forEach((vesting) => {
-                const lockMount = vesting.data?.content?.fields?.value?.fields?.total_lock_mount;
-                const unLockAmount = vesting.data?.content?.fields?.value?.fields?.total_unlock_amount;
-                setLockMount(lockMount);
-                setUnLockMount(unLockAmount);
+                setVestingDetails(prev => ({
+                    ...prev,
+                    periodList,
+                    totalLockMount: vesting.data?.content?.fields?.value?.fields?.total_lock_mount,
+                    totalUnlockAmount: vesting.data?.content?.fields?.value?.fields?.total_unlock_amount,
+                }));
             });
         };
 
         fetchData();
     }, [provider, vesting, wallet?.address]);
-
 
 
     return (
@@ -114,9 +130,10 @@ export default function ClaimsDetail() {
                 />
                 <Container maxWidth={'xl'}>
                     <VestingTokens
-                        periodList={periodList}
-                        totalLockMount={totalLockMount}
-                        totalUnlockAmount={totalUnlockAmount}
+                        tokenType={vestingDetails?.tokenType}
+                        periodList={vestingDetails?.periodList}
+                        totalLockMount={vestingDetails?.totalLockMount}
+                        totalUnlockAmount={vestingDetails?.totalUnlockAmount}
                     />
                 </Container>
             </SectionBox>

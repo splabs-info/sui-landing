@@ -7,7 +7,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_PACKAGE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
@@ -124,7 +124,7 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         });
 
         tx.moveCall({
-            target: `${'0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af'}::launchpad_ido::purchase`,
+            target: `${TXUI_PACKAGE}::launchpad_ido::purchase`,
             typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
             arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(name), vec, tx.pure(parseAmount)],
         });

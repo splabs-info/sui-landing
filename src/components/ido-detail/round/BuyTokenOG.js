@@ -8,14 +8,14 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_PAYMENT_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { IdoSchema } from '../validations';
@@ -53,11 +53,10 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, maxAllocation, payments, participantsWallet }) => {
+export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, maxAllocation, payments, minPurchase, minAllocation, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
     const [listPayments, setListPayments] = React.useState([]);
-    const location = useLocation();
 
     const theme = useTheme();
     const wallet = useWallet();
@@ -68,6 +67,9 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     const { sold } = useYouSuiStore((state) => state.sold);
 
     const { provider, allCoinObjectsId } = React.useContext(SuiContext);
+
+    const formattedMinAllocation = ethers.utils.formatUnits(minAllocation.toString(), decimals);
+    const convertNumberMinAllocation = toNumber(formattedMinAllocation);
 
     const {
         control,
@@ -80,7 +82,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     } = useForm({
         mode: 'onChange',
         defaultValues: {
-            amount: 20,
+            amount: convertNumberMinAllocation,
         },
         resolver: yupResolver(IdoSchema),
     });
@@ -88,7 +90,6 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     const isMobile = useResponsive('down', 'sm');
 
     const watchAmount = watch('amount');
-
 
     // Handle payments token
     React.useEffect(() => {
@@ -110,7 +111,6 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
 
     const handleSales = async (data) => {
         const tx = new TransactionBlock();
-
         setLoading(true);
 
         const coinSuiObjectData = allCoinObjectsId.map((coin) => coin?.data);
@@ -131,15 +131,16 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
         });
 
         tx.moveCall({
-            target: `${'0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af'}::launchpad_presale::purchase`,
+            target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
             typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount)],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('CN90213c5a660e1752c4315b513d6186f9b3')],
         });
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
                 transactionBlock: tx,
             });
+
             if (result) {
                 setLoading(false);
                 toast.success('Buy token success');
@@ -150,6 +151,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
                 toast.error('Transaction rejected');
             }
         } catch (e) {
+            console.log('err', e)
             setLoading(false);
         }
     };

@@ -5,7 +5,7 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { TXUI_CLOCK, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/Footer-v2';
@@ -16,7 +16,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
-export default function VestingTokens({ periodList, totalLockMount, totalUnlockAmount }) {
+export default function VestingTokens({ tokenType, periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
     return (
@@ -95,6 +95,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
                     {periodList.map((item, index) => (
                         <VestingList
                             key={index}
+                            tokenType={tokenType}
                             id={item?.fields.period_id}
                             indexVesting={index}
                             isWithdrawal={item?.fields.isWithdrawal}
@@ -112,7 +113,7 @@ export default function VestingTokens({ periodList, totalLockMount, totalUnlockA
     );
 }
 
-function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
+function VestingList({ id, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
     const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
@@ -133,7 +134,7 @@ function VestingList({ id, isWithdrawal, indexVesting, releaseTime, unlockAmount
 
         tx.moveCall({
             target: `${'0x913eec9939553db60c8ac348fb010641a891e567d54e34d5af251f0499ac14b3'}::launchpad_presale::claim_vesting`,
-            typeArguments: [TXUI_TOKEN_TYPE],
+            typeArguments: [`0x${tokenType}`],
             arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(event), tx.pure([indexVesting])],
         });
 
