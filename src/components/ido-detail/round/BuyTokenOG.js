@@ -290,7 +290,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                                 </a>
                             </Typography>
                         </Box>
-                        <StyledBuyTokenBtn type="submit" disabled={!isValid || !checked || !canBuy} loading={loading}>
+                        <StyledBuyTokenBtn type="submit" disabled={true} loading={loading}>
                             Buy Now
                         </StyledBuyTokenBtn>
                     </Stack>
