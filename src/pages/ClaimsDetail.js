@@ -7,7 +7,7 @@ import useResponsive from 'hooks/useResponsive';
 import { flattenDeep } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 export default function ClaimsDetail() {
     const isMobile = useResponsive('down', 'sm');
     const [vesting, setVesting] = React.useState();
@@ -18,10 +18,11 @@ export default function ClaimsDetail() {
     const [allVestingDetail, setAllVestingDetail] = React.useState();
 
 
+    const location = useLocation();
+    const event = location.state?.eventName;
+
     const { projectId } = useParams();
     const decodedProjectId = decodeURIComponent(projectId);
-
-
 
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
@@ -33,12 +34,11 @@ export default function ClaimsDetail() {
                 options: { showContent: true },
             });
 
-
             if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return;
 
             const vestingElement = allOfProjectDetail?.data.filter((element) => {
                 const found = element.name?.value.split(' <> ');
-                return found && found.includes('Vesting');
+                return found && found.includes('Vesting') && found.includes(event);
             });
 
             if (vestingElement.length > 0) {
@@ -47,17 +47,13 @@ export default function ClaimsDetail() {
         };
 
         fetchData();
-    }, [provider, decodedProjectId]);
+    }, [provider, decodedProjectId, event]);
 
     React.useEffect(() => {
         if (!vesting || vesting.length <= 0) return;
 
         const fetchData = async () => {
             const promises = vesting.map(async (element) => {
-                const vestingDetail = await provider.getObject({
-                    id: element.objectId,
-                    options: { showContent: true },
-                });
 
                 const dynamicFiledVesting = await provider.getDynamicFields({
                     parentId: element.objectId,

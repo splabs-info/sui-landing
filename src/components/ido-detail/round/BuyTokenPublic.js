@@ -44,46 +44,6 @@ const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
     },
 }));
 
-
-const BuyTokenButton = styled(Button)(({ them }) => ({
-    background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
-    color: 'white',
-    height: 48,
-    width: 156,
-    fontSize: 18,
-    borderRadius: 48,
-    alignItems: 'center',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-}));
-const TokenButton = styled(Button)(({ theme }) => ({
-    background: 'rgba(0, 0, 0, 0.2)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-    color: 'white',
-    padding: '0.75rem 1rem',
-    fontSize: 18,
-    borderRadius: 10,
-    marginRight: 16,
-    '&.active': {
-        background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
-    },
-    [theme.breakpoints.down('sm')]: {
-        marginRight: 8,
-    },
-}));
-
-const ExchangeRateBox = styled(Box)(({ theme }) => ({
-    position: 'absolute',
-    background:
-        'linear-gradient(178.73deg, rgba(32, 123, 191, 1) 2.08%, rgba(74, 148, 203, 1)  32.81%, rgba(92, 186, 242, 1) 100%)',
-    color: 'white',
-    fontSize: 18,
-    borderRadius: 10,
-    padding: '7px 18px',
-    fontWeight: 'bold',
-    top: -20,
-    left: 16,
-}));
-
 const MaxButton = styled(Button)(({ theme }) => ({
     background: 'rgba(255, 255, 255, 0.1)',
     color: 'white',
@@ -92,34 +52,8 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 8,
     fontSize: 12,
 }));
-const CheckBoxLabel = () => {
-    return (
-        <Typography
-            sx={{
-                color: 'white',
-                '& a': { textDecorationColor: '#28A3AB', color: 'white', fontWeight: 700 },
-            }}
-            variant="body2"
-        >
-            I have read and agree to the
-            <a
-                href="/"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                    color: 'rgba(91, 184, 240, 1)',
-                    '&:hover': {
-                        textDecoration: 'underline',
-                    },
-                }}
-            >
-                {' '}
-                YouSUI Staking Service Agreement.
-            </a>
-        </Typography>
-    );
-};
-export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, decimals }) => {
+
+export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, balances, decimals }) => {
     const [loading, setLoading] = React.useState();
     const [checked, setChecked] = React.useState();
     const wallet = useWallet();
@@ -190,8 +124,8 @@ export const BuyTokenPublic = ({ name, minPurchase, ratio, symbol, balances, dec
         });
 
         tx.moveCall({
-            target: `${0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af}::launchpad_ido::purchase`,
-            typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
+            target: `${'0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af'}::launchpad_ido::purchase`,
+            typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
             arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(name), vec, tx.pure(parseAmount)],
         });
 

@@ -8,14 +8,14 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_NAME, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PAYMENT_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { IdoSchema } from '../validations';
@@ -53,14 +53,17 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, payments, participantsWallet }) => {
+export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, maxAllocation, payments, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
-
+    const [listPayments, setListPayments] = React.useState([]);
     const location = useLocation();
 
     const theme = useTheme();
     const wallet = useWallet();
+
+    const { projectId } = useParams();
+    const decodedProjectId = decodeURIComponent(projectId);
 
     const { sold } = useYouSuiStore((state) => state.sold);
 
@@ -89,10 +92,14 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
 
     // Handle payments token
     React.useEffect(() => {
-        payments?.map(async (token) => {
+        if (!payments || payments?.length === 0) return;
+
+        payments?.forEach(async (token) => {
             const payment = await provider.getCoinMetadata(({
                 coinType: `0x${token?.fields?.value?.fields?.method_type}`,
             }))
+
+            setListPayments((prev) => [...prev, payment])
 
         })
     }, [payments, provider]);
@@ -124,9 +131,9 @@ export const BuyTokenOG = ({ decimals, ratio, symbol, balances, maxAllocation, p
         });
 
         tx.moveCall({
-            target: `${0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af}::launchpad_presale::purchase`,
-            typeArguments: [TXUI_TOKEN_TYPE, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(TXUI_NAME), vec, tx.pure(parseAmount)],
+            target: `${'0x28002e99f5ab21b1733245ac7824a75bf4f31e4f86dd3627f689f3c67e0625af'}::launchpad_presale::purchase`,
+            typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount)],
         });
 
         try {

@@ -16,16 +16,9 @@ export const TXUI_PROJECT_STORAGE = '0xf450c5fa0c1c85df1dcc116d11cff29331a35ffbb
 export const TXUI_CLOCK = '0x6';
 
 
-export const TXUI_ROUND_INFO = '0x502f11fb2a7242671e09966552179ab320359651dcf4c1c5850dc81037813c4d';
 export const TXUI_PROJECT = '0x37ea4f2ed456b8cd90833261fdfab6956d99e44b3807bc47c1cbda08d8e2c49b';
-export const TXUI_NAME = 'OG_ROUND';
 export const TXUI_TOKEN_TYPE = '0xd0291b939fb336d7b0c9fcaaec6a708f673c98fbca077044b76e3a056aca81cc::txui::TXUI';
-
-
 export const TXUI_PAYMENT_TYPE = '0x2::sui::SUI';
-
-// export const TXUI_ROUND =
-//   '0x07f827d9da61352b4368a3f144c6297a67174b9e1fdf60559f491bdb041011ea::launchpad_presale::Round';
 
 
 export const investCertificate = [`${TXUI_PACKAGE}::launchpad_presale::InvestmentCertificate`, `${TXUI_PACKAGE}::launchpad_ido::InvestmentCertificate`]

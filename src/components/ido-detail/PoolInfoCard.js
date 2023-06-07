@@ -8,7 +8,6 @@ const StyledTitleInfo = styled(Typography)(({ theme }) => ({
     color: 'white',
     fontSize: 18,
     lineHeight: '20px',
-    // textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
 }));
 
 const StyledInfo = styled(Typography)(({ theme }) => ({

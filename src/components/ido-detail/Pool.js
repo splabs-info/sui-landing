@@ -113,8 +113,6 @@ function a11yProps(index) {
 
 export const Pool = () => {
     const location = useLocation();
-    const { projectId } = useParams();
-    const decodedProjectId = decodeURIComponent(projectId);
 
     const tab = parseInt(queryString.parse(location.search).tab) || 0;
     const [value, setValue] = useState(tab);
@@ -152,6 +150,7 @@ export const Pool = () => {
                     tokenAddress: `0x${roundData?.token_type}`,
                     tokenName: tokenType?.name,
                     decimals: tokenType?.decimals,
+                    tokenType: roundData?.token_type,
                     tokenDescription: tokenType?.description,
                     symbol: tokenType?.symbol,
                     ratio: suiRatio || null,
@@ -216,6 +215,8 @@ export const Pool = () => {
                                         {round?.type === 'FCFS' ? (
                                             <OGRound
                                                 balances={balances}
+                                                name={round?.name}
+                                                tokenType={round?.tokenType}
                                                 payments={round?.payments}
                                                 decimals={round?.decimals}
                                                 totalSold={round?.totalSold}
@@ -230,6 +231,7 @@ export const Pool = () => {
                                         ) : (
                                             <PublicRound
                                                 balances={balances}
+                                                tokenType={round?.tokenType}
                                                 payments={round?.payments}
                                                 minPurchase={round?.minPurchase}
                                                 decimals={round?.decimals}

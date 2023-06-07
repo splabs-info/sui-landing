@@ -19,6 +19,7 @@ import { replace, toNumber } from 'lodash';
 import * as moment from 'moment';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { grey } from '@mui/material/colors'
 export const TokenPoolContent = [
     {
         id: 1,
@@ -38,23 +39,23 @@ export const TokenPoolContent = [
     },
 ];
 
-export const TokenPoolBox = styled(Box)(({ theme }) => ({
+
+export const TokenPoolBox = styled(Box)(({ theme, isWithdrawal }) => ({
     background:
-        'linear-gradient(330.98deg, rgba(95, 172, 242, 0.2) -1.27%, rgba(20, 64, 88, 0.14) 49.25%, rgba(49, 173, 243, 0.2) 101.94%)',
+        !isWithdrawal ? 'linear-gradient(330.98deg, rgba(95, 172, 242, 0.2) -1.27%, rgba(20, 64, 88, 0.14) 49.25%, rgba(49, 173, 243, 0.2) 101.94%)' : 'linear-gradient(330.98deg, rgba(95, 172, 242, 0.2) -1.27%, rgba(20, 64, 88, 0.14) 49.25%, rgba(49, 173, 243, 0.2) 101.94%)',
     padding: '40px 80px',
     borderRadius: '20px',
     backdropFilter: 'blur(5px)',
     position: 'relative',
     marginBottom: '40px',
-    color: 'white',
+    color: !isWithdrawal ? 'white' : grey[600],
     '& div': {
         zIndex: 1,
     },
     '::before': {
         content: "''",
         position: 'absolute',
-        background:
-            'linear-gradient(283.13deg, rgba(202, 242, 255, 0.25) -1.44%, rgba(17, 120, 216, 0.25) 53.5%, rgba(142, 220, 254, 0.25) 102.43%)',
+        background: 'linear-gradient(283.13deg, rgba(202, 242, 255, 0.25) -1.44%, rgba(22, 83, 140, 0.25) 53.5%, rgba(142, 220, 254, 0.25) 102.43%)',
         inset: '0px',
         zIndex: 0,
         borderRadius: '20px',
@@ -76,6 +77,7 @@ export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 
+    console.log('myIDOs__', myIDOs)
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -133,6 +135,7 @@ export default function ClaimTokens({ myIDOs }) {
                     {myIDOs.map((item, index) => (
                         <TokenPool
                             key={index}
+                            isWithdrawal={item?.isWithdrawal}
                             avatar={item?.image_url}
                             issueDate={item?.issue_date}
                             projectId={item?.project_id}
@@ -164,7 +167,6 @@ function TokenPool({ avatar, eventName, name, projectId, description, issueDate 
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
-
     const handleNavigate = () => {
         navigate(`/claim-tokens/${projectId}`, {
             state: {
@@ -172,8 +174,11 @@ function TokenPool({ avatar, eventName, name, projectId, description, issueDate 
             }
         });
     };
+
+
+
     return (
-        <TokenPoolBox>
+        <TokenPoolBox >
             <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>
                 <Grid item md={5} xs={12} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                     <Box component={'img'} src={avatar} alt="" width={isMobile ? 50 : 100} />
