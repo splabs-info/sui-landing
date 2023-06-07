@@ -1,11 +1,12 @@
 import { TabContext, TabList } from '@mui/lab';
-import { Box, Grid, Tab, alpha, styled } from '@mui/material';
+import { Box, Grid, Tab, Typography, alpha, styled } from '@mui/material';
 import useResponsive from 'hooks/useResponsive';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
+import { SocialFooter } from 'layouts/Footer-v2';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -73,6 +74,7 @@ const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
     borderRadius: 24,
     padding: 24,
+    width: '100%',
     background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
@@ -115,13 +117,21 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
         setValue(newValue);
     };
     return (
-        <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
-            <Grid xs={12} md={6} item>
+        <Grid container spacing={4} sx={{ marginTop: 12, marginBottom: 10 }}>
+            <Grid xs={12} md={5} item>
                 <AvatarBox>
                     <AvatarPool />
                 </AvatarBox>
+                <Typography variant="h3" color={'white'} mb={1} mt={2}>
+                    YOUSUI PJT
+                </Typography>
+                <Typography variant='body1' color={'white'} mb={2}>
+                    SUA is a token of Meta version. It has no intrinsic value or expectation of financial return.
+                    There is no official team or roadmap.
+                </Typography>
+                <SocialFooter />
             </Grid>
-            <Grid width="100%" xs={12} md={6} item>
+            <Grid width="100%" xs={12} md={7} item>
                 <Box sx={{ width: '100%' }}>
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

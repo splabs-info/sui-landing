@@ -55,7 +55,7 @@ export default function IDODetail() {
                     backgroundImage: "url('/images/background/homebg6.png')",
                 }}
             >
-                <Container maxWidth="xl">
+                <Container maxWidth="lg">
                     <Pool
                         balances={balances}
                         totalSold={totalSold}
