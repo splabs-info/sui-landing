@@ -133,7 +133,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
         tx.moveCall({
             target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
             typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('CN90213c5a660e1752c4315b513d6186f9b3')],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount)],
         });
 
         try {
