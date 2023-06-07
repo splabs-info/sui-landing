@@ -16,7 +16,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { PublicRoundSchema } from '../validations';
-
+import { useParams } from 'react-router-dom'
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '24px 32px',
@@ -60,6 +60,8 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
 
     const { allCoinObjectsId } = React.useContext(SuiContext);
 
+    const { projectId } = useParams();
+    const decodedProjectId = decodeURIComponent(projectId);
     const theme = useTheme();
 
 
@@ -126,7 +128,7 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         tx.moveCall({
             target: `${TXUI_PACKAGE}::launchpad_ido::purchase`,
             typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(TXUI_PROJECT), tx.pure(name), vec, tx.pure(parseAmount)],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount)],
         });
 
         try {
