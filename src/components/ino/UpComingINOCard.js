@@ -53,9 +53,9 @@ export const UpComingINOCard = ({ avatar, releaseTime, hardCap, access, title, s
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
                 <Typography> Hardcap: <span style={{ color: '#00C5D3', fontWeight: 700 }}> {hardCap}</span></Typography>
                 {access !== '' && <Typography>Access: <span style={{ color: '#00C5D3', fontWeight: 700 }}>{access}</span></Typography>}</Box>
-            <ReleaseBox className={status ? 'active' : ''}>
+            {releaseTime && <ReleaseBox className={status ? 'active' : ''}>
                 <Typography fontWeight={700} variant={'body2'}>{releaseTime}</Typography>
-            </ReleaseBox>
+            </ReleaseBox>}
         </UpComingINOBox>
     );
 };

@@ -1,18 +1,10 @@
-import { TabContext } from '@mui/lab';
-import { Box, Container, Stack, Tab, Typography } from '@mui/material';
-import { useState } from 'react';
-import useResponsive from '../../hooks/useResponsive';
+import { Box, Container, Stack, Typography } from '@mui/material';
 import {
-    CenterBox,
-    CustomTabList,
-    CustomTabPanel,
-    FrameButton,
     ImgTitleBox,
     QuestionsButton,
-    SectionBox,
     TextTypography,
     TitleBox,
-    TypographyGradient,
+    TypographyGradient
 } from './HomeStyles';
 
 export const questionsList = [
@@ -35,33 +27,25 @@ export const questionsList = [
 ];
 
 export default function Questions() {
-    const isDesktop = useResponsive('up', 'md');
-
     return (
-        <SectionBox
-            sx={{
-                backgroundImage: "url('/images/background/homebg5.png')",
-            }}
-        >
-            <Container maxWidth={'xl'}>
-                <Box mb={5} sx={{ position: 'relative' }}>
-                    <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                    <TitleBox>
-                        <Typography>Join and Understand</Typography>
-                        <TypographyGradient>YouSUI</TypographyGradient>
-                    </TitleBox>
-                </Box>
-                <Stack flexDirection="row" flexWrap={'wrap'} justifyContent="space-between">
-                    {questionsList.map((item, index) => (
-                        <QuestionsButton sx={{width: "23%"}} key={index} href={item.link} target={'_blank'}>
-                            <div>
-                                <TextTypography variant="body1" fontWeight={900}>{item.title} </TextTypography>
-                                <TextTypography variant="body2">Learn more</TextTypography>
-                            </div>
-                        </QuestionsButton>
-                    ))}
-                </Stack>
-            </Container>
-        </SectionBox>
+        <Container maxWidth={'xl'}>
+            <Box mb={5} sx={{ position: 'relative' }}>
+                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                <TitleBox>
+                    <Typography>Join and Understand</Typography>
+                    <TypographyGradient>YouSUI</TypographyGradient>
+                </TitleBox>
+            </Box>
+            <Stack flexDirection="row" flexWrap={'wrap'} justifyContent="space-between">
+                {questionsList.map((item, index) => (
+                    <QuestionsButton sx={{ width: "23%" }} key={index} href={item.link} target={'_blank'}>
+                        <div>
+                            <TextTypography variant="body1" fontWeight={900}>{item.title} </TextTypography>
+                            <TextTypography variant="body2">Learn more</TextTypography>
+                        </div>
+                    </QuestionsButton>
+                ))}
+            </Stack>
+        </Container>
     );
 }

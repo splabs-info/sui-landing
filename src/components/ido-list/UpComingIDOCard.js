@@ -36,7 +36,7 @@ const InfoBox = styled(Box)(({ theme }) => ({
     textAlign: 'center',
     width: '32%',
     minHeight: '64px',
-    fontSize: 12,
+    fontSize: 11,
     '& p:first-of-type': { fontWeight: 'bold' },
     [theme.breakpoints.down('sm')]: {
     },

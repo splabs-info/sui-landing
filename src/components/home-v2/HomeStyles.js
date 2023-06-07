@@ -5,15 +5,16 @@ import { TabList, TabPanel } from '@mui/lab';
 export const SectionBox = styled(Box)(({ theme }) => ({
     backgroundSize: '100% 100%',
     backgroundPosition: 'center',
-    display: 'flex',
-    alignItems: 'center',
     position: 'relative',
-    paddingTop: 132,
-    paddingBottom: 20,
-    minHeight: '80vh',
+    '& .MuiContainer-root': {
+        paddingTop: 96,
+        paddingBottom: 64,
+    },
     [theme.breakpoints.up('lg')]: {
-        paddingTop: 108,
-        paddingBottom: 50,
+        '& .MuiContainer-root': {
+            paddingTop: 96,
+            paddingBottom: 64,
+        },
     },
     [theme.breakpoints.down('md')]: {
         // backgroundSize: 'cover',

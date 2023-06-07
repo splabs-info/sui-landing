@@ -87,75 +87,60 @@ const TypographyTitle = styled(Typography)(({ theme }) => ({
 export default function MultiChain() {
     const isDesktop = useResponsive('up', 'md');
     return (
-        <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.png')", backgroundSize: isDesktop ? '100% 100%' : 'cover', }}>
-            {/* <Box
-                component={'img'}
-                src="/images/home/blur.png"
-                alt=""
-                sx={{
-                    width: isDesktop ? '450px' : '200px',
-                    position: 'absolute',
-                    right: isDesktop ? '-9rem' : '-5rem',
-                    top: isDesktop ? '0rem' : '2rem',
-                    zIndex: 0,
-                    b
-                }}
-            /> */}
-            <Container maxWidth={'xl'}>
-                <Box mb={5} sx={{ position: 'relative' }}>
-                    <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                    <TitleBox>
-                        <Typography> Multi-Chain</Typography>
-                        <TypographyGradient>Launchpad Platform</TypographyGradient>
-                    </TitleBox>
-                    <Grid container spacing={3} mt={4}>
-                        {teams.map((item, index) => (
-                            <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
-                                <CustomBox
-                                    sx={{
-                                        margin: 'auto 0',
-                                        '&:hover': {
-                                            '& h6': {
-                                                color: 'white',
-                                                background: 'white',
-                                                backgroundClip: 'text',
-                                            },
+        <Container maxWidth={'xl'}>
+            <Box mb={5} sx={{ position: 'relative' }}>
+                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                <TitleBox>
+                    <Typography> Multi-Chain</Typography>
+                    <TypographyGradient>Launchpad Platform</TypographyGradient>
+                </TitleBox>
+                <Grid container spacing={3} mt={4}>
+                    {teams.map((item, index) => (
+                        <Grid item key={index} md={6} xs={12} minHeight={'100%'}>
+                            <CustomBox
+                                sx={{
+                                    margin: 'auto 0',
+                                    '&:hover': {
+                                        '& h6': {
+                                            color: 'white',
+                                            background: 'white',
+                                            backgroundClip: 'text',
                                         },
+                                    },
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        width: 86,
+                                        height: 86,
+                                        background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
+                                        borderRadius: '16px',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        marginRight: 3,
                                     }}
                                 >
-                                    <Box
+                                    {item.photoUrl}
+                                </Box>
+                                <Box pl={1} className="TextBox" sx={{ margin: 'auto 0' }}>
+                                    <TypographyTitle variant="h6">{item.title}</TypographyTitle>
+                                    <Typography
+                                        variant="body2"
+                                        className="content"
                                         sx={{
-                                            width: 86,
-                                            height: 86,
-                                            background: 'linear-gradient(270deg, #00C5D3 0%, #42EECF 100%)',
-                                            borderRadius: '16px',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            marginRight: 3,
+                                            lineHeight: 'unset',
+                                            color: 'white',
                                         }}
                                     >
-                                        {item.photoUrl}
-                                    </Box>
-                                    <Box pl={1} className="TextBox" sx={{ margin: 'auto 0' }}>
-                                        <TypographyTitle variant="h6">{item.title}</TypographyTitle>
-                                        <Typography
-                                            variant="body2"
-                                            className="content"
-                                            sx={{
-                                                lineHeight: 'unset',
-                                                color: 'white',
-                                            }}
-                                        >
-                                            {item.text}
-                                        </Typography>
-                                    </Box>
-                                </CustomBox>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Box>
-            </Container>
-        </SectionBox>
+                                        {item.text}
+                                    </Typography>
+                                </Box>
+                            </CustomBox>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+        </Container>
     );
 }

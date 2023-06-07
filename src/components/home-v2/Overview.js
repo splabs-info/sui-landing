@@ -28,57 +28,47 @@ const networksNumber = [
 export default function Overview() {
     const isMobile = useResponsive('down', 'sm');
     return (
-            <Box
-                sx={{
-                    backgroundImage: "url('/images/background/homebg2.png')",
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                }}
-            >
-            <SectionBox>
-                <Container maxWidth={'xl'}>
-                    <Box mb={5} sx={{ position: 'relative' }}>
-                        <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                        <TitleBox>
-                            <Typography>YouSUI</Typography>
-                            <TypographyGradient>Overview</TypographyGradient>
-                        </TitleBox>
-                    </Box>
-                    <NetworksGrid>
-                        <Grid container>
-                            {networksNumber.map((detail, index) => (
-                                <Grid
-                                    item
-                                    xs={6}
-                                    sm={3}
-                                    key={index}
-                                    sx={{
-                                        padding: '0 0.5rem',
-                                        margin: '0.75rem 0',
-                                        color: 'white',
-                                        textAlign: 'center',
-                                        borderRight: isMobile
-                                            ? index % 2 === 0
-                                                ? '1px solid rgba(45,145,200,0.3)'
-                                                : 'none'
-                                            : networksNumber.length !== index + 1
-                                            ? '1px solid rgba(45,145,200,0.3)'
-                                            : 'none',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        flexDirection: 'column',
-                                    }}
-                                >
-                                    <img src={detail.src} alt={detail.label} width={'40%'} />
-                                    <Typography variant="h3">{detail.amount}</Typography>
-                                    <Typography variant="body1">{detail.label}</Typography>
-                                </Grid>
-                            ))}
+        <Container maxWidth={'xl'}>
+            <Box mb={5} sx={{ position: 'relative' }}>
+                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                <TitleBox>
+                    <Typography>YouSUI</Typography>
+                    <TypographyGradient>Overview</TypographyGradient>
+                </TitleBox>
+            </Box>
+            <NetworksGrid>
+                <Grid container>
+                    {networksNumber.map((detail, index) => (
+                        <Grid
+                            item
+                            xs={6}
+                            sm={3}
+                            key={index}
+                            sx={{
+                                padding: '0 0.5rem',
+                                margin: '0.75rem 0',
+                                color: 'white',
+                                textAlign: 'center',
+                                borderRight: isMobile
+                                    ? index % 2 === 0
+                                        ? '1px solid rgba(45,145,200,0.3)'
+                                        : 'none'
+                                    : networksNumber.length !== index + 1
+                                        ? '1px solid rgba(45,145,200,0.3)'
+                                        : 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <img src={detail.src} alt={detail.label} width={'40%'} />
+                            <Typography variant="h3">{detail.amount}</Typography>
+                            <Typography variant="body1">{detail.label}</Typography>
                         </Grid>
-                    </NetworksGrid>
-                </Container>
-            </SectionBox>
-            <Ecosystem />
-        </Box>
+                    ))}
+                </Grid>
+            </NetworksGrid>
+        </Container>
+
     );
 }

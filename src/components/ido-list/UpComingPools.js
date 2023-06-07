@@ -36,8 +36,8 @@ const upComingIDOList = [
         <p>Total Raise</p>
       </>,
       <>
-        <p>25M $</p>
-        <p>Valuation</p>
+        <p>0.25 USD</p>
+        <p>Price per Token</p>
       </>,
       <>
         <p>Access</p>
@@ -58,8 +58,8 @@ const upComingIDOList = [
         <p>Total Raise</p>
       </>,
       <>
-        <p>20M $</p>
-        <p>Valuation</p>
+        <p>0.2 USD</p>
+        <p>Price per Token</p>
       </>,
       <>
         <p>Access</p>

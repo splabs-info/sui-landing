@@ -172,36 +172,34 @@ export default function Ecosystem() {
     const isDesktop = useResponsive('up', 'md');
 
     return (
-        <SectionBox>
-            <Container maxWidth={'xl'}>
-                <Box mb={5} sx={{ position: 'relative' }}>
-                    <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                    <TitleBox>
-                        <Typography>Multi-Chain</Typography>
-                        <TypographyGradient>Ecosystem</TypographyGradient>
-                    </TitleBox>
-                </Box>
-                <TextTypography variant={'body1'}>
-                    Although it is a launchpad platform operated by YouSUI blockchain, various chains can be accessed
-                    with scalability through the bridge, <br />
-                    and users can easily access games and NFTs of various chains and get the opportunity to become early
-                    investors.
-                </TextTypography>
+        <Container maxWidth={'xl'}>
+            <Box mb={5} sx={{ position: 'relative' }}>
+                <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                <TitleBox>
+                    <Typography>Multi-Chain</Typography>
+                    <TypographyGradient>Ecosystem</TypographyGradient>
+                </TitleBox>
+            </Box>
+            <TextTypography variant={'body1'}>
+                Although it is a launchpad platform operated by YouSUI blockchain, various chains can be accessed
+                with scalability through the bridge, <br />
+                and users can easily access games and NFTs of various chains and get the opportunity to become early
+                investors.
+            </TextTypography>
 
-                <ContainerNetwork>
-                    {networks.map((network, index) => (
-                        <a href={network.link} target="_blank" rel="noreferrer" key={index}>
-                            {network?.label === 'Arbitrum' ? (
-                                <CustomLogoArt src={network.icon} alt={network.label} />
-                            ) : (
-                                <CustomLogo src={network.icon} alt={network.label} />
-                            )}
+            <ContainerNetwork>
+                {networks.map((network, index) => (
+                    <a href={network.link} target="_blank" rel="noreferrer" key={index}>
+                        {network?.label === 'Arbitrum' ? (
+                            <CustomLogoArt src={network.icon} alt={network.label} />
+                        ) : (
+                            <CustomLogo src={network.icon} alt={network.label} />
+                        )}
 
-                            <span style={{ minWidth: 80, marginLeft: 10 }}>{network.label}</span>
-                        </a>
-                    ))}
-                </ContainerNetwork>
-            </Container>
-        </SectionBox>
+                        <span style={{ minWidth: 80, marginLeft: 10 }}>{network.label}</span>
+                    </a>
+                ))}
+            </ContainerNetwork>
+        </Container>
     );
 }
