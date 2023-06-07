@@ -22,33 +22,33 @@ const upComingINOList = [
     status: false,
     link: '',
   },
-  {
-    title: 'Vibe Fi',
-    avatar: '/images/ino/ino-upcoming-3.jpg',
-    hardCap: '2000',
-    access: '',
-    releaseTime: '',
-    status: false,
-    link: '',
-  },
-  {
-    title: 'Galactic',
-    avatar: '/images/ino/ino-upcoming-4.jpg',
-    hardCap: '2000',
-    access: '',
-    releaseTime: '',
-    status: false,
-    link: '',
-  },
-  {
-    title: 'Stellar Sagas',
-    avatar: '/images/ino/ino-upcoming-5.jpg',
-    hardCap: '2000',
-    access: '',
-    releaseTime: '',
-    status: false,
-    link: '',
-  },
+  // {
+  //   title: 'Vibe Fi',
+  //   avatar: '/images/ino/ino-upcoming-3.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  // },
+  // {
+  //   title: 'Galactic',
+  //   avatar: '/images/ino/ino-upcoming-4.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  // },
+  // {
+  //   title: 'Stellar Sagas',
+  //   avatar: '/images/ino/ino-upcoming-5.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  // },
 ]
 
 export default function UpComing() {
@@ -59,7 +59,7 @@ export default function UpComing() {
         <Typography>Up-Coming</Typography>
         <TypographyGradient>INOs</TypographyGradient>
       </TitleBox>
-      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3, }}>
+      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, m: 3, }}>
         {upComingINOList?.map((item, index) => (
           <UpComingINOCard
             {...item}
