@@ -14,7 +14,7 @@ export const AvatarPool = () => {
 					borderRadius: '0 20px 0 20px', padding: '8px 24px'
 				}}
 			>
-				<Typography color={'white'} fontWeight={'bold'}>TBA</Typography>
+				<Typography color={'white'} fontWeight={'bold'}>CLOSED</Typography>
 			</Box>
 			{/* // PRODUCTION
 				<Box
