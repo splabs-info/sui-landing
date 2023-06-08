@@ -137,6 +137,9 @@ export const SlippageBox = styled(Box)(({ theme }) => ({
     marginTop: 16,
     display: 'flex',
     justifyContent: 'space-between',
+    '& .MuiStack-root': {
+        cursor: 'pointer',
+    },
     '& p': {
         padding: '12px 40px'
     },
@@ -149,6 +152,12 @@ export const SlippageBox = styled(Box)(({ theme }) => ({
             color: 'white',
             fontWeight: 700,
         }
+    },
+    [theme.breakpoints.down('sm')]: {
+        '& p': {
+            padding: '8px 12px'
+        },
+
     }
 }))
 
