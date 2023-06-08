@@ -55,36 +55,41 @@ export default function SwapPage() {
   React.useEffect(() => {
     (async () => {
       try {
-        if (SwapHelper.provider && wallet.address) {
-          sdk.senderAddress = wallet.address;
-          const tokenConfig = sdk.sdkOptions.token.config;
-          const tokenList = await sdk.Token.getAllRegisteredTokenList();
-          const { pool_list_owner, coin_list_owner } = tokenConfig;
-          const poolList = await sdk.Token.getOwnerPoolList(pool_list_owner, coin_list_owner);
-          const tempPoolList = [];
-          for (const iterator of poolList) {
-            if (!iterator.is_closed) {
-              const pool = await sdk.Pool.getPool(iterator.address);
-              tempPoolList.push(pool);
-            }
+        const tokenConfig = sdk.sdkOptions.token.config;
+        const tokenList = await sdk.Token.getAllRegisteredTokenList();
+        const { pool_list_owner, coin_list_owner } = tokenConfig;
+        const poolList = await sdk.Token.getOwnerPoolList(pool_list_owner, coin_list_owner);
+        const tempPoolList = [];
+        for (const iterator of poolList) {
+          if (!iterator.is_closed) {
+            const pool = await sdk.Pool.getPool(iterator.address);
+            tempPoolList.push(pool);
           }
-          const tempTokenList = [];
-          for (const iterator of tokenList) {
-            const balance = {
-              ...iterator,
-              ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
-            };
-            tempTokenList.push(balance);
-          }
-          setBalances(tempTokenList);
-          setPoolList(tempPoolList);
-          setTokenList(tokenList);
         }
+        setPoolList(tempPoolList);
+        setTokenList(tokenList);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [wallet, flag]);
+
+  React.useEffect(() => {
+    if (wallet.address) {
+      sdk.senderAddress = wallet.address;
+      (async () => {
+        const tempTokenList = [];
+        for (const iterator of tokenList) {
+          const balance = {
+            ...iterator,
+            ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
+          };
+          tempTokenList.push(balance);
+        }
+        setBalances(tempTokenList);
+      })();
+    }
+  }, [tokenList, wallet.address]);
 
   const handleSwap = async (e) => {
     e.preventDefault();
@@ -211,8 +216,6 @@ export default function SwapPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [a2b, byAmountIn, selectedPool, sendAmount]);
-
-  console.log(selectedPool);
 
   if (tokenList.length === 0)
     return (
