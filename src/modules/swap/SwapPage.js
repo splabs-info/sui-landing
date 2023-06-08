@@ -49,7 +49,7 @@ export default function SwapPage() {
   const [estimate, setEstimate] = React.useState(null);
   const [estimating, setEstimating] = React.useState(false);
   const [calculateResult, setCalculateResult] = React.useState(null);
-  const [slippageSetting, setSlippageSetting] = React.useState(0.5);
+  const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
 
   React.useEffect(() => {
@@ -255,8 +255,8 @@ export default function SwapPage() {
                 <IconButton>
                   <IconChartLine />
                 </IconButton>
-                <IconButton onClick={() => setOpenSettings(true)}>
-                  <IconSettings />
+                <Typography color={'#fff'} ml={1}> {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}</Typography>
+                <IconButton onClick={() => setOpenSettings(true)}><IconSettings />
                 </IconButton>
               </Stack>
             </Stack>
@@ -289,7 +289,7 @@ export default function SwapPage() {
                 <Typography color={'white'}>$ 0.00</Typography>
                 <AmountStack>
                   <img src="/images/icon/icon-wallet-green.png" alt="" />
-                  <Typography>$ 0.00</Typography>
+                  <Typography>{sendToken ? balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance : '--'}</Typography>
                 </AmountStack>
               </Stack>
             </AmountBox>
@@ -326,7 +326,7 @@ export default function SwapPage() {
                 <Typography color={'white'}>$ 0.00</Typography>
                 <AmountStack>
                   <img src="/images/icon/icon-wallet-green.png" alt="" />
-                  <Typography>$ 0.00</Typography>
+                  <Typography>{receiveToken ? balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance : '--'}</Typography>
                 </AmountStack>
               </Stack>
             </AmountBox>
@@ -368,7 +368,11 @@ export default function SwapPage() {
               </Box>
             </Stack>
           </SwapBox>
-          <SwapSettings open={openSettings} handleClose={() => setOpenSettings(false)} />
+          <SwapSettings
+            open={openSettings}
+            handleClose={() => setOpenSettings(false)}
+            handleChangeSlippage={(e) => setSlippageSetting(e)}
+          />
         </Container>
       </SectionBox>
     </Page>
