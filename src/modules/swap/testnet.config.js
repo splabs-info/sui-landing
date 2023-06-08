@@ -37,7 +37,7 @@ export const testnet = {
     faucet_router: '0x26b3bc67befc214058ca78ea9a2690298d731a2d4309485ec3d40198063c4abc',
   },
   simulationAccount: {
-    address: '0xcd0247d0b67e53dde69b285e7a748e3dc390e8a5244eb9dd9c5c53d95e4cf0aa',
+    address: '0x1e54e20d81876d65e52ac65ab9cca3260ede9671b0757a576d48aa0c0575b257',
   },
   token: {
     token_display: '0x171d9d43dbf30a0ab448a2e268c6708447aa89626153a2b647298ca6449fb718',

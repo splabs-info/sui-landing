@@ -1,7 +1,8 @@
-import SDK from '@cetusprotocol/cetus-sui-clmm-sdk';
+import SDK, { CetusClmmSDK } from '@cetusprotocol/cetus-sui-clmm-sdk';
 import { JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js';
 import { mainnet } from './mainnet.config';
 import { testnet } from './testnet.config';
+import { netConfig } from './config';
 const BN = require('bn.js');
 
 export const sdk = new SDK(testnet);

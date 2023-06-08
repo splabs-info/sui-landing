@@ -22,6 +22,7 @@ import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import { toast } from 'react-toastify';
+import CustomInput from './components/CustomInput';
 import { SwapHelper, sdk } from './init';
 
 export default function SwapPage() {
@@ -35,8 +36,14 @@ export default function SwapPage() {
   const [a2b, setA2B] = React.useState(true);
   const [selectedPool, setSelectedPool] = React.useState(null);
   const [sendAmount, setSendAmount] = React.useState('0');
+  const [receiveAmount, setReceiveAmount] = React.useState('0');
   const [flag, setFlag] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [byAmountIn, setByAmountInt] = React.useState(true);
+  const [estimate, setEstimate] = React.useState(null);
+  const [estimating, setEstimating] = React.useState(false);
+  const [calculateResult, setCalculateResult] = React.useState(null);
+  const [slippageSetting, setSlippageSetting] = React.useState(0.5);
 
   React.useEffect(() => {
     (async () => {
@@ -79,34 +86,26 @@ export default function SwapPage() {
       const coinAmount = new SwapHelper.BN(sendAmount).mul(
         new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
       );
-      const byAmountIn = true;
       const pool = selectedPool;
-      //       const slippage = Percentage.fromDecimal(d(5));
-      //       const res = await sdk.Swap.preswap({
-      //         pool: pool,
-      //         current_sqrt_price: pool.current_sqrt_price,
-      //         coinTypeA: pool.coinTypeA,
-      //         coinTypeB: pool.coinTypeB,
-      //         decimalsA: 6, // coin a 's decimals
-      //         decimalsB: 8, // coin b 's decimals
-      //         a2b,
-      //         byAmountIn,
-      //         coinAmount,
-      //       });
 
-      //       const toAmount = byAmountIn ? res.estimatedAmountOut : res.estimatedAmountIn;
-      //       const amountLimit = adjustForSlippage(toAmount, slippage, !byAmountIn);
-
-      // console.log(amountLimit);
+      console.log({
+        pool_id: pool.poolAddress,
+        coinTypeA: pool.coinTypeA,
+        coinTypeB: pool.coinTypeB,
+        a2b,
+        by_amount_in: byAmountIn,
+        amount: coinAmount.toString(),
+        amount_limit: estimate.amountLimit,
+      });
 
       const swapPayload = await sdk.Swap.createSwapTransactionPayload({
         pool_id: pool.poolAddress,
         coinTypeA: pool.coinTypeA,
         coinTypeB: pool.coinTypeB,
         a2b,
-        byAmountIn,
+        by_amount_in: byAmountIn,
         amount: coinAmount.toString(),
-        amount_limit: '0',
+        amount_limit: estimate.amountLimit.toString(),
       });
 
       const transferTxn = await wallet.signAndExecuteTransactionBlock({
@@ -139,13 +138,73 @@ export default function SwapPage() {
           );
           setA2B(false);
         }
-        if (selectPool) {
-          setSelectedPool(selectPool);
-        }
-        console.log(selectPool);
+        setSelectedPool(selectPool ? selectPool : null);
       }
     }
   }, [poolList, receiveToken, sendToken]);
+
+  React.useEffect(() => {
+    if (selectedPool && sendAmount) {
+      setEstimating(true);
+      (async () => {
+        try {
+          const coinAmount = new SwapHelper.BN(sendAmount).mul(
+            new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
+          );
+          const slippage = Percentage.fromDecimal(d(slippageSetting));
+
+          console.log({
+            pool: selectedPool,
+            current_sqrt_price: selectedPool.current_sqrt_price,
+            coinTypeA: selectedPool.coinTypeA,
+            coinTypeB: selectedPool.coinTypeB,
+            decimalsA: sendToken.decimals,
+            decimalsB: receiveToken.decimals,
+            a2b,
+            by_amount_in: byAmountIn,
+            amount: coinAmount.toString(),
+          });
+
+          const res = await sdk.Swap.preswap({
+            pool: selectedPool,
+            current_sqrt_price: selectedPool.current_sqrt_price,
+            coinTypeA: selectedPool.coinTypeA,
+            coinTypeB: selectedPool.coinTypeB,
+            decimalsA: sendToken.decimals,
+            decimalsB: receiveToken.decimals,
+            a2b,
+            by_amount_in: byAmountIn,
+            amount: coinAmount.toString(),
+          });
+
+          const tickData = await sdk.Pool.fetchTicksByRpc(selectedPool.ticks_handle);
+
+          const calculateResult = await sdk.Swap.calculateRates({
+            currentPool: selectedPool,
+            decimalsA: sendToken.decimals,
+            decimalsB: receiveToken.decimals,
+            a2b,
+            byAmountIn,
+            amount: coinAmount,
+            swapTicks: tickData,
+          });
+
+          console.log(calculateResult);
+
+          const toAmount = byAmountIn ? res.estimatedAmountOut : res.estimatedAmountIn;
+          const amountLimit = adjustForSlippage(new SwapHelper.BN(toAmount), slippage, !byAmountIn);
+          setEstimating(false);
+          setReceiveAmount(formatUnits(toAmount.toString(), receiveToken.decimals));
+          setEstimate({ ...res, amountLimit, slippage });
+          setCalculateResult(calculateResult);
+        } catch (error) {
+          console.log(error);
+          setEstimating(false);
+        }
+      })();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [a2b, byAmountIn, selectedPool, sendAmount]);
 
   if (tokenList.length === 0)
     return (
@@ -183,12 +242,14 @@ export default function SwapPage() {
                           ))}
                         </Select>
                       </FormControl>
-                      <TextField
+                      <CustomInput
                         sx={{ mt: 2 }}
                         label="Send amount"
                         fullWidth
-                        value={sendAmount}
-                        onChange={(e) => setSendAmount(e.target.value)}
+                        type="number"
+                        handleDone={(e) => {
+                          setSendAmount(e);
+                        }}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -207,7 +268,7 @@ export default function SwapPage() {
                           ))}
                         </Select>
                       </FormControl>{' '}
-                      <TextField sx={{ mt: 2 }} label="Receive amount" fullWidth />
+                      <TextField sx={{ mt: 2 }} label="Receive amount" fullWidth value={receiveAmount} />
                     </Grid>
                     <Grid item xs={12}>
                       <LoadingButton variant="contained" type="submit" loading={loading}>
@@ -217,12 +278,22 @@ export default function SwapPage() {
                   </Grid>
                 </Box>
               </Paper>
-              {/* <Paper sx={{ mt: 2 }}>
-                <Box p={2}>
-                  <Typography variant="body2">Send: {sendToken?.address}</Typography>
-                  <Typography variant="body2">Receive: {receiveToken?.address}</Typography>
-                </Box>
-              </Paper> */}
+              <Paper sx={{ mt: 2 }}>
+                {estimating ? (
+                  <CircularProgress />
+                ) : estimate ? (
+                  <Box p={2}>
+                    <Typography variant="body2">Price impact: {calculateResult.priceImpactPct.toFixed(2)}%</Typography>
+                    <Typography variant="body2">
+                      Minimum received: {formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}{' '}
+                      {receiveToken.official_symbol}
+                    </Typography>
+                    <Typography variant="body2">
+                      Fee: {formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} {sendToken.official_symbol}
+                    </Typography>
+                  </Box>
+                ) : null}
+              </Paper>
               <Paper sx={{ mt: 2 }}>
                 <Box pt={2} px={2}>
                   <Typography variant="body2">Name: {selectedPool?.name}</Typography>
@@ -235,19 +306,6 @@ export default function SwapPage() {
                   <Divider />
                 </Box>
               </Paper>
-              {/* <Paper sx={{ mt: 2 }}>
-                {poolList.map((pool, index) => (
-                  <Box pt={2} px={2} key={index}>
-                    <Typography variant="body2">Name: {pool.name}</Typography>
-                    <Typography variant="body2">Pool: {pool.poolAddress}</Typography>
-                    <Typography variant="body2">From: {pool.coinTypeA}</Typography>
-                    <Typography variant="body2">To: {pool.coinTypeB}</Typography>
-                    <Typography variant="body2">Ratio: {pool.current_sqrt_price}</Typography>
-                    <Box mt={2} />
-                    <Divider />
-                  </Box>
-                ))}
-              </Paper> */}
             </Grid>
             <Grid item xs={6}>
               <Paper>
