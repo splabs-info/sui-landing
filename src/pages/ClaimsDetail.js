@@ -26,7 +26,6 @@ export default function ClaimsDetail() {
 
     const { projectId } = useParams();
     const decodedProjectId = decodeURIComponent(projectId);
-
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
 
@@ -78,26 +77,25 @@ export default function ClaimsDetail() {
                 if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
 
                 const foundUserVesting = dynamicFiledVesting.data.find((item) => item?.name?.value === wallet?.address);
-
                 if (!foundUserVesting) return null;
 
                 const yourVesting = await provider.getObject({
-                    id: foundUserVesting.objectId,
+                    id: foundUserVesting?.objectId,
                     options: { showContent: true },
                 });
+
+                if(!yourVesting) return null;
 
                 return yourVesting;
             });
 
             const yourVestings = await Promise.allSettled(promises);
-            const filteredVestings = yourVestings.filter((vesting) => vesting !== null);
 
+            if (!yourVestings || yourVestings.length <= 0) return;
 
-            if (!filteredVestings || filteredVestings.length <= 0) return;
+            const periodList = flattenDeep(yourVestings.map(vesting => vesting?.value.data?.content?.fields?.value?.fields?.period_list));
 
-            const periodList = flattenDeep(filteredVestings.map(vesting => vesting.data?.content?.fields?.value?.fields?.period_list));
-
-            filteredVestings.forEach((vesting) => {
+            yourVestings.forEach((vesting) => {
                 setVestingDetails(prev => ({
                     ...prev,
                     periodList,

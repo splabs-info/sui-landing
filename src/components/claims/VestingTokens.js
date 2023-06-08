@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Divider, Grid, Hidden, Typography } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
 import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { TXUI_CLOCK } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/Footer-v2';
@@ -90,7 +89,7 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                     </TokenPoolBox>
                 </Grid>
             </Grid>
-            {periodList ? (
+            {periodList || periodList?.length >= 0 ? (
                 <>
                     {periodList.map((item, index) => (
                         <VestingList
@@ -105,9 +104,9 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                     ))}
                 </>
             ) : (
-                <CircularProgress
-                    sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto' }}
-                />
+                <Typography sx={{ textAlign: 'center', color: 'white' }}>
+                    You don't have any vesting tokens. Please contact the project owner to get more information.
+                </Typography>
             )}
         </Box>
     );
@@ -133,7 +132,7 @@ function VestingList({ id, tokenType, isWithdrawal, indexVesting, releaseTime, u
         const tx = new TransactionBlock();
 
         tx.moveCall({
-            target: `${'0x913eec9939553db60c8ac348fb010641a891e567d54e34d5af251f0499ac14b3'}::launchpad_presale::claim_vesting`,
+            target: `${TXUI_PACKAGE}::launchpad_presale::claim_vesting`,
             typeArguments: [`0x${tokenType}`],
             arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(event), tx.pure([indexVesting])],
         });
@@ -152,6 +151,7 @@ function VestingList({ id, tokenType, isWithdrawal, indexVesting, releaseTime, u
             }
         } catch (e) {
             setLoading(false);
+            toast.error('Transaction error');
         }
     }
 
