@@ -39,7 +39,7 @@ const config = [
     { label: 'key_3', link: '/ino-launchpad' },
     { label: 'key_4', link: '/staking' },
     { label: 'key_5', link: '/claim-tokens' },
-    { label: 'key_6', link: '/coming-soon' },
+    { label: 'key_6', link: '/swap' },
     { label: 'key_Bridge', link: '/coming-soon' },
     { label: 'key_marketplace', link: '/coming-soon' },
     { label: 'key_crew3', link: 'https://zealy.io/c/yousui' },
