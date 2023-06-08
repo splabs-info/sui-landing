@@ -1,12 +1,12 @@
 import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import { ImgTitleBox, SectionBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 
 const ContainerPartner = styled(Box)(({ theme }) => ({
     display: 'grid',
     width: '100%',
     gap: '1rem',
-    gridTemplateColumns: 'repeat(5, 1fr)',
+    gridTemplateColumns: 'repeat(6, 1fr)',
     [theme.breakpoints.down('md')]: {
         gridTemplateColumns: 'repeat(3, 1fr)',
     },
@@ -19,23 +19,20 @@ const CustomLogo = styled('img')(() => ({
     transition: 'transform 150ms ease-in-out',
     padding: 0,
     display: 'block',
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
 }));
 
 const partners = [
     {
-        label: 'okx',
-        link: 'https://www.okx.com/',
+        label: 'suiwallet',
+        link: '',
     },
     {
-        label: 'okx-wallet',
-        link: 'https://www.okx.com/web3',
+        label: 'suiet',
+        link: '',
     },
     {
-        label: 'bitkeep',
-        link: 'https://bitkeep.com/',
+        label: 'turbos',
+        link: 'https://turbos.finance/',
     },
     {
         label: 'move-studio-ide',
@@ -50,16 +47,16 @@ const partners = [
         link: '/',
     },
     {
-        label: 'releap',
-        link: 'https://releap.xyz/',
+        label: 'suiglobal',
+        link: '',
     },
     {
-        label: 'bc-vs',
-        link: 'https://blockvision.org/',
+        label: 'okx',
+        link: 'https://www.okx.com/',
     },
     {
-        label: 'bv-name',
-        link: 'https://turbos.finance/',
+        label: 'okx-wallet',
+        link: 'https://www.okx.com/web3',
     },
     {
         label: 'suins',
@@ -68,6 +65,22 @@ const partners = [
     {
         label: 'interest',
         link: 'https://interestprotocol.io/',
+    },
+    {
+        label: 'bitkeep',
+        link: 'https://bitkeep.com/',
+    },
+    {
+        label: 'bc-vs',
+        link: 'https://blockvision.org/',
+    },
+    {
+        label: 'releap',
+        link: 'https://releap.xyz/',
+    },
+    {
+        label: 'loa',
+        link: '',
     },
 ];
 
@@ -78,8 +91,7 @@ export default function Partner() {
                 <Box mb={5} sx={{ position: 'relative' }}>
                     <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                     <TitleBox>
-                        <Typography>Partner</Typography>
-                        <TypographyGradient></TypographyGradient>
+                        <TypographyGradient>Partner</TypographyGradient>
                     </TitleBox>
                 </Box>
                 <ContainerPartner mt={10}>
@@ -98,7 +110,7 @@ export default function Partner() {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                minHeight: '130px',
+                                minHeight: '80px',
                             }}
                         >
                             <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
