@@ -29,6 +29,7 @@ import {
 import React from 'react';
 import { toast } from 'react-toastify';
 import { SwapHelper, sdk } from './init';
+import CustomInput from './components/CustomInput';
 
 export default function SwapPage() {
   const isMobile = useResponsive('down', 'sm');
@@ -238,41 +239,36 @@ export default function SwapPage() {
           <SwapBox>
             <Box component={'form'} onSubmit={handleSwap}>
               <TypographyGradient variant="h2">Swap</TypographyGradient>
-              <PriceTypography>
-                <b>1 XUI</b> ($0.25) = <b>0.35 SUI</b> ($17.15)
-              </PriceTypography>
-              <Stack direction="row" justifyContent={'space-between'}>
-                {/* <SwapButton loading={loading} onClick={handleSwap}>
-                Swap
-              </SwapButton> */}
-                <Stack
-                  direction="row"
-                  justifyContent={'flex-end'}
-                  alignItems={'center'}
-                  sx={{
-                    '& svg': {
-                      color: '#fff',
-                    },
-                  }}
-                >
-                  <IconButton>
-                    <IconChartLine />
-                  </IconButton>
-                  <Typography color={'#fff'} ml={1}>
-                    {' '}
-                    {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
-                  </Typography>
-                  <IconButton onClick={() => setOpenSettings(true)}>
-                    <IconSettings />
-                  </IconButton>
-                </Stack>
+              {/* <PriceTypography>
+                <b>1 {sendToken?.official_symbol}</b> ($0.25) = <b>0.35 {receiveToken?.official_symbol}</b> ($17.15)
+              </PriceTypography> */}
+              <Stack
+                direction="row"
+                justifyContent={'flex-end'}
+                alignItems={'center'}
+                sx={{
+                  '& svg': {
+                    color: '#fff',
+                  },
+                }}
+              >
+                <IconButton>
+                  <IconChartLine />
+                </IconButton>
+                <Typography color={'#fff'} ml={1}>
+                  {' '}
+                  {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
+                </Typography>
+                <IconButton onClick={() => setOpenSettings(true)}>
+                  <IconSettings />
+                </IconButton>
               </Stack>
               <AmountBox>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                  <InputBase
+                  <CustomInput
                     variant="standard"
-                    value={sendAmount}
-                    onChange={(e) => setSendAmount(e.target.value)}
+                    // value={sendAmount}
+                    handleDone={(e) => setSendAmount(e)}
                     sx={{
                       color: 'white',
                       fontSize: isMobile ? 16 : 40,
@@ -368,44 +364,53 @@ export default function SwapPage() {
                 </Stack>
               </AmountBox>
 
-              <ConnectButton loading={loading} type="submit">
+              <ConnectButton loading={loading || estimating} type="submit">
                 Swap
               </ConnectButton>
-              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
-                <Box>
-                  <Typography variant="body2" fontWeight={600} color={'white'}>
-                    Price impact
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'}>
-                    Est. received
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'}>
-                    Min. received
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'}>
-                    Network fee
-                  </Typography>
-                </Box>
-                <Box textAlign={'right'}>
-                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
-                    {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
-                    --
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
-                    {estimate
-                      ? `${formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}
+              {estimating ? (
+                <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
+                  <CircularProgress />
+                </Stack>
+              ) : null}
+              {estimate && !estimating ? (
+                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
+                  <Box>
+                    <Typography variant="body2" fontWeight={600} color={'white'}>
+                      Price impact
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'}>
+                      Est. received
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'}>
+                      Min. received
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'}>
+                      Network fee
+                    </Typography>
+                  </Box>
+                  <Box textAlign={'right'}>
+                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
+                      {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
+                      --
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
+                      {estimate
+                        ? `${formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}
                       ${receiveToken.official_symbol}`
-                      : '--'}
-                  </Typography>
-                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
-                    {estimate
-                      ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol}`
-                      : '--'}
-                  </Typography>
-                </Box>
-              </Stack>
+                        : '--'}
+                    </Typography>
+                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
+                      {estimate
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
+                            sendToken.official_symbol
+                          }`
+                        : '--'}
+                    </Typography>
+                  </Box>
+                </Stack>
+              ) : null}
             </Box>
           </SwapBox>
           <SwapSettings
