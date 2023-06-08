@@ -89,7 +89,7 @@ export default function SwapPage() {
         setBalances(tempTokenList);
       })();
     }
-  }, [wallet.address]);
+  }, [tokenList, wallet.address]);
 
   const handleSwap = async (e) => {
     e.preventDefault();
