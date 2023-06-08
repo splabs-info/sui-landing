@@ -28,7 +28,6 @@ import {
 } from 'modules/swap-ui/SwapStyles';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { formatAmount, formatUSD } from 'setting/format';
 import { SwapHelper, sdk } from './init';
 
 export default function SwapPage() {
@@ -113,6 +112,7 @@ export default function SwapPage() {
         by_amount_in: byAmountIn,
         amount: coinAmount.toString(),
         amount_limit: estimate.amountLimit.toString(),
+        swap_partner: '0x62da05b0008c2a07edd407016fea0ba72fa27495d582f1c6209ff9fd7eca6bca',
       });
 
       const transferTxn = await wallet.signAndExecuteTransactionBlock({
@@ -211,6 +211,8 @@ export default function SwapPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [a2b, byAmountIn, selectedPool, sendAmount]);
 
+  console.log(selectedPool);
+
   if (tokenList.length === 0)
     return (
       <Page title="Swap">
@@ -264,7 +266,7 @@ export default function SwapPage() {
               <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
                 <InputBase
                   variant="standard"
-                  value={formatUSD(sendAmount)}
+                  value={sendAmount}
                   onChange={(e) => setSendAmount(e.target.value)}
                   sx={{
                     color: 'white',
@@ -349,7 +351,7 @@ export default function SwapPage() {
               </Box>
               <Box textAlign={'right'}>
                 <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
-                  {calculateResult ? `${calculateResult.priceImpactPct.toFixed(2)}%` : '--'}
+                  {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
                 </Typography>
                 <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
                   --
