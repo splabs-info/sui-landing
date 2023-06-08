@@ -1,12 +1,18 @@
 import { InputBase } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-function CustomInput({ handleDone, ...props }) {
-  const [inputValue, setInputValue] = useState('');
+function CustomInput({ handleDone, defaultValue, ...props }) {
+  const [inputValue, setInputValue] = useState('0');
   const typingTimerRef = useRef(null);
 
+  React.useEffect(() => {
+    if (defaultValue !== inputValue) {
+      setInputValue(defaultValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
+
   const handleInput = (value) => {
-    console.log('Input value:', value);
     handleDone(value);
   };
 

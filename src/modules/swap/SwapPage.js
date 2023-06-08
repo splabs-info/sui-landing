@@ -1,17 +1,17 @@
 import { Percentage, adjustForSlippage, d } from '@cetusprotocol/cetus-sui-clmm-sdk';
 import {
-  Backdrop,
   Box,
   CircularProgress,
   Container,
   IconButton,
   InputBase,
   MenuItem,
+  Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { IconChartLine, IconChevronDown, IconSettings } from '@tabler/icons';
+import { IconChartLine, IconSettings, IconSwitchVertical } from '@tabler/icons';
 import Page from 'components/common/Page';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
@@ -43,6 +43,7 @@ export default function SwapPage() {
   const [calculateResult, setCalculateResult] = React.useState(null);
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
+  const [error, setError] = React.useState('');
 
   React.useEffect(() => {
     (async () => {
@@ -58,8 +59,11 @@ export default function SwapPage() {
             tempPoolList.push(pool);
           }
         }
+        console.log(tokenList);
         setPoolList(tempPoolList);
         setTokenList(tokenList);
+        setSendToken(tokenList[4]);
+        setReceiveToken(tokenList[3]);
       } catch (error) {
         console.log(error);
       }
@@ -149,7 +153,7 @@ export default function SwapPage() {
   }, [poolList, receiveToken, sendToken]);
 
   React.useEffect(() => {
-    if (selectedPool && sendAmount) {
+    if (selectedPool && sendAmount && sendAmount !== '0') {
       setEstimating(true);
       (async () => {
         try {
@@ -157,18 +161,6 @@ export default function SwapPage() {
             new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
           );
           const slippage = Percentage.fromDecimal(d(slippageSetting));
-
-          console.log({
-            pool: selectedPool,
-            current_sqrt_price: selectedPool.current_sqrt_price,
-            coinTypeA: selectedPool.coinTypeA,
-            coinTypeB: selectedPool.coinTypeB,
-            decimalsA: sendToken.decimals,
-            decimalsB: receiveToken.decimals,
-            a2b,
-            by_amount_in: byAmountIn,
-            amount: coinAmount.toString(),
-          });
 
           const res = await sdk.Swap.preswap({
             pool: selectedPool,
@@ -205,24 +197,29 @@ export default function SwapPage() {
           setEstimating(false);
         }
       })();
+    } else {
+      setReceiveAmount('0');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [a2b, byAmountIn, selectedPool, sendAmount]);
 
-  if (tokenList.length === 0)
-    return (
-      <Page title="Swap">
-        <SectionBox
-          sx={{
-            backgroundImage: "url('/images/background/homebg6.png')",
-          }}
-        >
-          <Backdrop sx={{ zIndex: 99999 }} open={true}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        </SectionBox>
-      </Page>
-    );
+  React.useEffect(() => {
+    if (!wallet.address) {
+      setError('Please connect wallet');
+    } else if (!sendToken || !receiveToken) {
+      setError('Please select pair to swap');
+    } else if (!sendAmount || sendAmount === '0') {
+      setError('Please enter amount');
+    } else {
+      setError('');
+    }
+  }, [receiveToken, sendAmount, sendToken, wallet.address]);
+
+  const handleSwitch = () => {
+    setReceiveToken(sendToken);
+    setSendToken(receiveToken);
+    setSendAmount('0');
+  };
 
   return (
     <Page title="Swap">
@@ -252,7 +249,6 @@ export default function SwapPage() {
                   <IconChartLine />
                 </IconButton>
                 <Typography color={'#fff'} ml={1}>
-                  {' '}
                   {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
                 </Typography>
                 <IconButton onClick={() => setOpenSettings(true)}>
@@ -263,35 +259,47 @@ export default function SwapPage() {
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
                   <CustomInput
                     variant="standard"
-                    // value={sendAmount}
                     handleDone={(e) => setSendAmount(e)}
-                    // onChange={(e) => setSendAmount(e.target.value)}
                     sx={{
                       color: 'white',
                       fontSize: isMobile ? 16 : 40,
                     }}
+                    disabled={!sendToken}
+                    defaultValue={sendAmount}
                   />
-                  <SelectToken value={sendToken?.address}>
-                    {tokenList.map((token) => (
-                      <MenuItem
-                        value={token.address}
-                        key={token.address}
-                        onClick={() => {
-                          setSendToken(token);
-                          setSendAmount('0');
-                          setReceiveAmount('0');
-                        }}
-                      >
-                        <img
-                          src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
-                          alt={token.symbol}
-                          width={isMobile ? 24 : 32}
-                          style={{ marginRight: '8px' }}
-                        />
-                        {token.symbol}
-                      </MenuItem>
-                    ))}
-                  </SelectToken>
+                  {tokenList.length > 0 ? (
+                    <SelectToken value={sendToken?.address}>
+                      {tokenList.map((token) => (
+                        <MenuItem
+                          value={token.address}
+                          key={token.address}
+                          onClick={() => {
+                            setSendToken(token);
+                            setSendAmount('0');
+                            setReceiveAmount('0');
+                          }}
+                        >
+                          <img
+                            src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                            alt={token.symbol}
+                            width={isMobile ? 24 : 32}
+                            style={{ marginRight: '8px' }}
+                          />
+                          {token.symbol}
+                        </MenuItem>
+                      ))}
+                    </SelectToken>
+                  ) : (
+                    <Skeleton
+                      variant="rounded"
+                      width={120}
+                      height={56}
+                      sx={{
+                        background:
+                          'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
+                      }}
+                    />
+                  )}
                 </Stack>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
                   <Typography color={'white'}></Typography>
@@ -310,7 +318,9 @@ export default function SwapPage() {
               </AmountBox>
 
               <Stack alignItems={'center'} sx={{ '& svg': { color: '#14E3BE' } }}>
-                <IconChevronDown size={'36px'} />
+                <IconButton onClick={handleSwitch}>
+                  <IconSwitchVertical size={'36px'} />
+                </IconButton>
               </Stack>
 
               <AmountBox>
@@ -323,27 +333,39 @@ export default function SwapPage() {
                       fontSize: isMobile ? 16 : 40,
                     }}
                   />
-                  <SelectToken value={receiveToken?.address}>
-                    {tokenList.map((token) => (
-                      <MenuItem
-                        value={token.address}
-                        key={token.address}
-                        onClick={() => {
-                          setReceiveToken(token);
-                          setSendAmount('0');
-                          setReceiveAmount('0');
-                        }}
-                      >
-                        <img
-                          src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
-                          alt={token.symbol}
-                          width={isMobile ? 24 : 32}
-                          style={{ marginRight: '8px' }}
-                        />
-                        {token.symbol}
-                      </MenuItem>
-                    ))}
-                  </SelectToken>
+                  {tokenList.length > 0 ? (
+                    <SelectToken value={receiveToken?.address}>
+                      {tokenList.map((token) => (
+                        <MenuItem
+                          value={token.address}
+                          key={token.address}
+                          onClick={() => {
+                            setReceiveToken(token);
+                            setSendAmount('0');
+                            setReceiveAmount('0');
+                          }}
+                        >
+                          <img
+                            src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                            alt={token.symbol}
+                            width={isMobile ? 24 : 32}
+                            style={{ marginRight: '8px' }}
+                          />
+                          {token.symbol}
+                        </MenuItem>
+                      ))}
+                    </SelectToken>
+                  ) : (
+                    <Skeleton
+                      variant="rounded"
+                      width={120}
+                      height={56}
+                      sx={{
+                        background:
+                          'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
+                      }}
+                    />
+                  )}
                 </Stack>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
                   <Typography color={'white'}></Typography>
@@ -360,8 +382,10 @@ export default function SwapPage() {
                   </AmountStack>
                 </Stack>
               </AmountBox>
-              {!estimating && !selectedPool ? <Typography color="red">Route is not available</Typography> : null}
-              <ConnectButton loading={loading || estimating} type="submit" disabled={!Boolean(estimate)}>
+              <Typography color="red" textAlign={'center'} my={3}>
+                {error}
+              </Typography>
+              <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
                 Swap
               </ConnectButton>
               {estimating ? (
