@@ -269,10 +269,11 @@ export default function SwapPage() {
               </Stack>
               <AmountBox>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                  <CustomInput
+                  <InputBase
                     variant="standard"
-                    // value={sendAmount}
-                    handleDone={(e) => setSendAmount(e)}
+                    value={sendAmount}
+                    // handleDone={(e) => setSendAmount(e)}
+                    onChange={(e) => setSendAmount(e.target.value)}
                     sx={{
                       color: 'white',
                       fontSize: isMobile ? 16 : 40,
@@ -367,16 +368,15 @@ export default function SwapPage() {
                   </AmountStack>
                 </Stack>
               </AmountBox>
-
-              <ConnectButton loading={loading || estimating} type="submit">
+              {!estimating && !selectedPool ? <Typography color="red">Route is not available</Typography> : null}
+              <ConnectButton loading={loading || estimating} type="submit" disabled={!Boolean(estimate)}>
                 Swap
               </ConnectButton>
               {estimating ? (
                 <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
                   <CircularProgress />
                 </Stack>
-              ) : null}
-              {estimate && !estimating ? (
+              ) : (
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
                   <Box>
                     <Typography variant="body2" fontWeight={600} color={'white'}>
@@ -414,7 +414,7 @@ export default function SwapPage() {
                     </Typography>
                   </Box>
                 </Stack>
-              ) : null}
+              )}
             </Box>
           </SwapBox>
           <SwapSettings
