@@ -12,6 +12,7 @@ import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
 import PreSales from 'pages/PreSales';
 import SwapPage from 'modules/swap/SwapPage';
+import Bridge from 'modules/bridge/Bridge';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -27,86 +28,88 @@ export default function Router() {
       children: [
         { path: '/', element: <HomepageV2 /> },
         {
-            path: '/',
-            element: <ClientLayout />,
-            children: [
-                { path: '/', element: <HomepageV2 /> },
-                {
-                    path: 'my-profile',
-                    element: (
-                        <Suspense>
-                            <MyProfilePage />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'ido-launchpad',
-                    element: (
-                        <Suspense>
-                            <IDOLaunchpad />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'ino-launchpad',
-                    element: (
-                        <Suspense>
-                            <INOLaunchPad />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'ino-launchpad/free-minting-nft',
-                    element: (
-                        <Suspense>
-                            {/* <FreeMinting /> */}
-                            <ComingSoon />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'ido-launchpad/:projectId',
-                    element: (
-                        <Suspense>
-                            <TXUIIDO />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'pre-sales',
-                    element: (
-                        <Suspense>
-                            <PreSales />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: 'claim-tokens',
-                    element:
-                        <Suspense>
-                            <Claims />
-                        </Suspense>
-                },
-                {
-                    path: 'claim-tokens/:projectId',
-                    element:
-                        <Suspense>
-                            <ClaimsDetail />
-                        </Suspense>
-                },
-                {
-                    path: 'staking',
-                    element: <StakingPage />
-                },
-                {
-                    path: 'whitepaper',
-                    element: <Navigate to="/whitepaper/introduction-of-yousui" />
-                },
-                {
-                    path: 'whitepaper/:sub',
-                    element: <Whitepaper />
-                },
-            ],
+          path: '/',
+          element: <ClientLayout />,
+          children: [
+            { path: '/', element: <HomepageV2 /> },
+            {
+              path: 'my-profile',
+              element: (
+                <Suspense>
+                  <MyProfilePage />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'ido-launchpad',
+              element: (
+                <Suspense>
+                  <IDOLaunchpad />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'ino-launchpad',
+              element: (
+                <Suspense>
+                  <INOLaunchPad />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'ino-launchpad/free-minting-nft',
+              element: (
+                <Suspense>
+                  {/* <FreeMinting /> */}
+                  <ComingSoon />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'ido-launchpad/:projectId',
+              element: (
+                <Suspense>
+                  <TXUIIDO />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'pre-sales',
+              element: (
+                <Suspense>
+                  <PreSales />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'claim-tokens',
+              element: (
+                <Suspense>
+                  <Claims />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'claim-tokens/:projectId',
+              element: (
+                <Suspense>
+                  <ClaimsDetail />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'staking',
+              element: <StakingPage />,
+            },
+            {
+              path: 'whitepaper',
+              element: <Navigate to="/whitepaper/introduction-of-yousui" />,
+            },
+            {
+              path: 'whitepaper/:sub',
+              element: <Whitepaper />,
+            },
+          ],
         },
         {
           path: 'ido-launchpad',
@@ -180,6 +183,10 @@ export default function Router() {
         {
           path: 'swap',
           element: <SwapPage />,
+        },
+        {
+          path: 'bridge',
+          element: <Bridge />,
         },
       ],
     },
