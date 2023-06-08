@@ -236,139 +236,177 @@ export default function SwapPage() {
       >
         <Container maxWidth={'md'}>
           <SwapBox>
-            <TypographyGradient variant="h2">Swap</TypographyGradient>
-            <PriceTypography>
-              <b>1 XUI</b> ($0.25) = <b>0.35 SUI</b> ($17.15)
-            </PriceTypography>
-            <Stack direction="row" justifyContent={'space-between'}>
-              <SwapButton loading={loading} onClick={handleSwap}>
+            <Box component={'form'} onSubmit={handleSwap}>
+              <TypographyGradient variant="h2">Swap</TypographyGradient>
+              <PriceTypography>
+                <b>1 XUI</b> ($0.25) = <b>0.35 SUI</b> ($17.15)
+              </PriceTypography>
+              <Stack direction="row" justifyContent={'space-between'}>
+                {/* <SwapButton loading={loading} onClick={handleSwap}>
                 Swap
-              </SwapButton>
-              <Stack
-                direction="row"
-                justifyContent={'flex-end'}
-                alignItems={'center'}
-                sx={{
-                  '& svg': {
-                    color: '#fff',
-                  },
-                }}
-              >
-                <IconButton>
-                  <IconChartLine />
-                </IconButton>
-                <Typography color={'#fff'} ml={1}> {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}</Typography>
-                <IconButton onClick={() => setOpenSettings(true)}><IconSettings />
-                </IconButton>
-              </Stack>
-            </Stack>
-            <AmountBox>
-              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                <InputBase
-                  variant="standard"
-                  value={sendAmount}
-                  onChange={(e) => setSendAmount(e.target.value)}
+              </SwapButton> */}
+                <Stack
+                  direction="row"
+                  justifyContent={'flex-end'}
+                  alignItems={'center'}
                   sx={{
-                    color: 'white',
-                    fontSize: isMobile ? 16 : 40,
+                    '& svg': {
+                      color: '#fff',
+                    },
                   }}
-                />
-                <SelectToken value={sendToken?.address}>
-                  {tokenList.map((token) => (
-                    <MenuItem value={token.address} key={token.address} onClick={() => setSendToken(token)}>
-                      <img
-                        src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
-                        alt={token.symbol}
-                        width={isMobile ? 24 : 32}
-                        style={{ marginRight: '8px' }}
-                      />
-                      {token.symbol}
-                    </MenuItem>
-                  ))}
-                </SelectToken>
+                >
+                  <IconButton>
+                    <IconChartLine />
+                  </IconButton>
+                  <Typography color={'#fff'} ml={1}>
+                    {' '}
+                    {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
+                  </Typography>
+                  <IconButton onClick={() => setOpenSettings(true)}>
+                    <IconSettings />
+                  </IconButton>
+                </Stack>
               </Stack>
-              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                <Typography color={'white'}>$ 0.00</Typography>
-                <AmountStack>
-                  <img src="/images/icon/icon-wallet-green.png" alt="" />
-                  <Typography>{sendToken ? balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance : '--'}</Typography>
-                </AmountStack>
-              </Stack>
-            </AmountBox>
+              <AmountBox>
+                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
+                  <InputBase
+                    variant="standard"
+                    value={sendAmount}
+                    onChange={(e) => setSendAmount(e.target.value)}
+                    sx={{
+                      color: 'white',
+                      fontSize: isMobile ? 16 : 40,
+                    }}
+                  />
+                  <SelectToken value={sendToken?.address}>
+                    {tokenList.map((token) => (
+                      <MenuItem
+                        value={token.address}
+                        key={token.address}
+                        onClick={() => {
+                          setSendToken(token);
+                          setSendAmount('0');
+                          setReceiveAmount('0');
+                        }}
+                      >
+                        <img
+                          src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                          alt={token.symbol}
+                          width={isMobile ? 24 : 32}
+                          style={{ marginRight: '8px' }}
+                        />
+                        {token.symbol}
+                      </MenuItem>
+                    ))}
+                  </SelectToken>
+                </Stack>
+                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
+                  <Typography color={'white'}>$ 0.00</Typography>
+                  <AmountStack>
+                    <img src="/images/icon/icon-wallet-green.png" alt="" />
+                    <Typography>
+                      {sendToken
+                        ? formatUnits(
+                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                            sendToken.decimals
+                          )
+                        : '--'}
+                    </Typography>
+                  </AmountStack>
+                </Stack>
+              </AmountBox>
 
-            <Stack alignItems={'center'} sx={{ '& svg': { color: '#14E3BE' } }}>
-              <IconChevronDown size={'36px'} />
-            </Stack>
-
-            <AmountBox>
-              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                <InputBase
-                  variant="standard"
-                  value={receiveAmount}
-                  sx={{
-                    color: 'white',
-                    fontSize: isMobile ? 16 : 40,
-                  }}
-                />
-                <SelectToken value={receiveToken?.address}>
-                  {tokenList.map((token) => (
-                    <MenuItem value={token.address} key={token.address} onClick={() => setReceiveToken(token)}>
-                      <img
-                        src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
-                        alt={token.symbol}
-                        width={isMobile ? 24 : 32}
-                        style={{ marginRight: '8px' }}
-                      />
-                      {token.symbol}
-                    </MenuItem>
-                  ))}
-                </SelectToken>
+              <Stack alignItems={'center'} sx={{ '& svg': { color: '#14E3BE' } }}>
+                <IconChevronDown size={'36px'} />
               </Stack>
-              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                <Typography color={'white'}>$ 0.00</Typography>
-                <AmountStack>
-                  <img src="/images/icon/icon-wallet-green.png" alt="" />
-                  <Typography>{receiveToken ? balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance : '--'}</Typography>
-                </AmountStack>
-              </Stack>
-            </AmountBox>
 
-            <ConnectButton>Connect Wallet</ConnectButton>
-            <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
-              <Box>
-                <Typography variant="body2" fontWeight={600} color={'white'}>
-                  Price impact
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'}>
-                  Est. received
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'}>
-                  Min. received
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'}>
-                  Network fee
-                </Typography>
-              </Box>
-              <Box textAlign={'right'}>
-                <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
-                  {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
-                  --
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
-                  {estimate
-                    ? `${formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}
+              <AmountBox>
+                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
+                  <InputBase
+                    variant="standard"
+                    value={receiveAmount}
+                    sx={{
+                      color: 'white',
+                      fontSize: isMobile ? 16 : 40,
+                    }}
+                  />
+                  <SelectToken value={receiveToken?.address}>
+                    {tokenList.map((token) => (
+                      <MenuItem
+                        value={token.address}
+                        key={token.address}
+                        onClick={() => {
+                          setReceiveToken(token);
+                          setSendAmount('0');
+                          setReceiveAmount('0');
+                        }}
+                      >
+                        <img
+                          src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                          alt={token.symbol}
+                          width={isMobile ? 24 : 32}
+                          style={{ marginRight: '8px' }}
+                        />
+                        {token.symbol}
+                      </MenuItem>
+                    ))}
+                  </SelectToken>
+                </Stack>
+                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
+                  <Typography color={'white'}>$ 0.00</Typography>
+                  <AmountStack>
+                    <img src="/images/icon/icon-wallet-green.png" alt="" />
+                    <Typography>
+                      {receiveToken
+                        ? formatUnits(
+                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                            receiveToken.decimals
+                          )
+                        : '--'}
+                    </Typography>
+                  </AmountStack>
+                </Stack>
+              </AmountBox>
+
+              <ConnectButton loading={loading} type="submit">
+                Swap
+              </ConnectButton>
+              <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
+                <Box>
+                  <Typography variant="body2" fontWeight={600} color={'white'}>
+                    Price impact
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'}>
+                    Est. received
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'}>
+                    Min. received
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'}>
+                    Network fee
+                  </Typography>
+                </Box>
+                <Box textAlign={'right'}>
+                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
+                    {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
+                    --
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
+                    {estimate
+                      ? `${formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}
                       ${receiveToken.official_symbol}`
-                    : '--'}
-                </Typography>
-                <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
-                  {estimate
-                    ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol}`
-                    : '--'}
-                </Typography>
-              </Box>
-            </Stack>
+                      : '--'}
+                  </Typography>
+                  <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
+                    {estimate
+                      ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol}`
+                      : '--'}
+                  </Typography>
+                </Box>
+              </Stack>
+            </Box>
           </SwapBox>
           <SwapSettings
             open={openSettings}
