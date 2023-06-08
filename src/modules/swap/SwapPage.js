@@ -17,19 +17,11 @@ import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { SwapSettings } from 'modules/swap-ui/SwapSettingsPopup';
-import {
-  AmountBox,
-  AmountStack,
-  ConnectButton,
-  PriceTypography,
-  SelectToken,
-  SwapBox,
-  SwapButton,
-} from 'modules/swap-ui/SwapStyles';
+import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap-ui/SwapStyles';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { SwapHelper, sdk } from './init';
 import CustomInput from './components/CustomInput';
+import { SwapHelper, sdk } from './init';
 
 export default function SwapPage() {
   const isMobile = useResponsive('down', 'sm');
@@ -269,11 +261,11 @@ export default function SwapPage() {
               </Stack>
               <AmountBox>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                  <InputBase
+                  <CustomInput
                     variant="standard"
-                    value={sendAmount}
-                    // handleDone={(e) => setSendAmount(e)}
-                    onChange={(e) => setSendAmount(e.target.value)}
+                    // value={sendAmount}
+                    handleDone={(e) => setSendAmount(e)}
+                    // onChange={(e) => setSendAmount(e.target.value)}
                     sx={{
                       color: 'white',
                       fontSize: isMobile ? 16 : 40,
@@ -302,7 +294,7 @@ export default function SwapPage() {
                   </SelectToken>
                 </Stack>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                  <Typography color={'white'}>$ 0.00</Typography>
+                  <Typography color={'white'}></Typography>
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
                     <Typography>
@@ -354,7 +346,7 @@ export default function SwapPage() {
                   </SelectToken>
                 </Stack>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                  <Typography color={'white'}>$ 0.00</Typography>
+                  <Typography color={'white'}></Typography>
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
                     <Typography>

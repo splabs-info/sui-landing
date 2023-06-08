@@ -1,50 +1,27 @@
-import { InputBase, TextField } from '@mui/material';
+import { InputBase } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 
 function CustomInput({ handleDone, ...props }) {
-  const [inputValue, setInputValue] = useState('0');
-  const timeoutRef = useRef(null);
+  const [inputValue, setInputValue] = useState('');
+  const typingTimerRef = useRef(null);
 
-  useEffect(() => {
-    resetTimer(); // Start the initial timer
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
-  }, []);
-
-  function inputIdle() {
-    console.log(inputValue);
-    handleDone(inputValue);
-  }
-
-  function resetTimer() {
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(inputIdle, 500);
-  }
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-    resetTimer();
+  const handleInput = (value) => {
+    console.log('Input value:', value);
+    handleDone(value);
   };
 
-  function handleBlur() {
-    resetTimer();
-  }
+  useEffect(() => {
+    if (inputValue) {
+      clearTimeout(typingTimerRef.current);
 
-  //   return <TextField type="number" value={inputValue} onChange={handleChange} onBlur={handleBlur} {...props} />;
-  return (
-    <InputBase
-      type="number"
-      value={inputValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      {...props}
-      //   sx={{
-      //     color: 'white',
-      //     fontSize: isMobile ? 16 : 40,
-      //   }}
-    />
-  );
+      typingTimerRef.current = setTimeout(() => {
+        handleInput(inputValue);
+      }, 500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
+
+  return <InputBase type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} {...props} />;
 }
 
 export default CustomInput;
