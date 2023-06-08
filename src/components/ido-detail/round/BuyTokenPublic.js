@@ -7,16 +7,17 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { TXUI_CLOCK, TXUI_PAYMENT_TYPE, TXUI_PROJECT, TXUI_PACKAGE } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { PublicRoundSchema } from '../validations';
-import { useParams } from 'react-router-dom'
+import * as yup from 'yup';
+
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     padding: '24px 32px',
@@ -64,10 +65,21 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
     const decodedProjectId = decodeURIComponent(projectId);
     const theme = useTheme();
 
-
     const formattedPurchase = React.useMemo(() => {
         if (minPurchase) return ethers.utils.formatUnits(minPurchase, decimals);
     }, [decimals, minPurchase]);
+
+
+    const convertedMinPurchase = toNumber(formattedPurchase);
+
+    const PublicRoundSchema = yup.object().shape({
+        amount: yup
+            .number()
+            .min(convertedMinPurchase, `Min purchase must be  ${convertedMinPurchase} ${symbol}`)
+            .required('Amount is required')
+            .typeError('Must be number'),
+    });
+
 
     const {
         control,

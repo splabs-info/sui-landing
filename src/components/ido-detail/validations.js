@@ -6,7 +6,11 @@ export const IdoSchema = yup.object().shape({
         .min(1.5, 'Min purchase must be 1.5 T-XUI')
         .max(100, 'Per user can buy 100 maximum of T-XUI on this round.')
         .required('Amount is required')
-        .typeError('Must be number'),
+        .typeError('Must be number')
+        .test({
+            name: 'amount',
+            test: (value) => console.log('value', value),
+        }),
 });
 
 

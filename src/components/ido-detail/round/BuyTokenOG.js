@@ -17,8 +17,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { IdoSchema } from '../validations';
+// import { IdoSchema } from '../validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -68,8 +69,27 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
 
     const { provider, allCoinObjectsId } = React.useContext(SuiContext);
 
-    const formattedMinAllocation = ethers.utils.formatUnits(minAllocation.toString(), decimals);
+    const formattedMinAllocation = React.useMemo(() => {
+        if (minAllocation) return ethers.utils.formatUnits(minAllocation.toString(), decimals);
+    }, [decimals, minAllocation]);
+
     const convertNumberMinAllocation = toNumber(formattedMinAllocation);
+
+    const formattedMaxAllocation = React.useMemo(() => {
+        if (maxAllocation) return ethers.utils.formatUnits(maxAllocation.toString(), decimals);
+    }, [decimals, maxAllocation]);
+
+
+    const convertMaxAllocation = toNumber(formattedMaxAllocation);
+
+    const IdoSchema = yup.object().shape({
+        amount: yup
+            .number()
+            .min(convertNumberMinAllocation, `Min purchase must be ${convertNumberMinAllocation} ${symbol}`)
+            .max(convertMaxAllocation, `Per user can buy ${convertMaxAllocation} maximum of ${symbol} on this round.`)
+            .required('Amount is required')
+            .typeError('Must be number')
+    });
 
     const {
         control,
