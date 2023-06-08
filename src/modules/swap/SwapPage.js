@@ -72,7 +72,7 @@ export default function SwapPage() {
         console.log(error);
       }
     })();
-  }, [wallet, flag]);
+  }, [flag]);
 
   React.useEffect(() => {
     if (wallet.address) {
@@ -89,7 +89,7 @@ export default function SwapPage() {
         setBalances(tempTokenList);
       })();
     }
-  }, [tokenList, wallet.address]);
+  }, [wallet.address]);
 
   const handleSwap = async (e) => {
     e.preventDefault();
@@ -231,6 +231,7 @@ export default function SwapPage() {
         </SectionBox>
       </Page>
     );
+
   return (
     <Page title="Swap">
       <SectionBox
@@ -304,7 +305,7 @@ export default function SwapPage() {
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
                     <Typography>
-                      {sendToken
+                      {sendToken && balances.length > 0
                         ? formatUnits(
                             balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
                             sendToken.decimals
@@ -356,7 +357,7 @@ export default function SwapPage() {
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
                     <Typography>
-                      {receiveToken
+                      {balances.length > 0 && receiveToken
                         ? formatUnits(
                             balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
                             receiveToken.decimals
