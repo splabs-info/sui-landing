@@ -138,7 +138,15 @@ export default function SwapPage() {
     }
   };
 
+  const resetData = () => {
+    setEstimate(null);
+    setSendAmount('0');
+    setReceiveAmount('0');
+    setCalculateResult(null);
+  };
+
   React.useEffect(() => {
+    resetData();
     if (sendToken && receiveToken) {
       if (sendToken.address !== receiveToken.address) {
         setA2B(true);
@@ -163,9 +171,6 @@ export default function SwapPage() {
         try {
           const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
           const coinAmount = new SwapHelper.BN(parseFloat(amount));
-
-          // console.log(Number(sendAmount).toFixed(sendToken.decimals).replace('.', ''), coinAmount.toString());
-
           const slippage = Percentage.fromDecimal(d(slippageSetting));
 
           const res = await sdk.Swap.preswap({
