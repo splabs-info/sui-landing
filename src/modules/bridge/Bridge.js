@@ -2,16 +2,16 @@ import { Box, Container, styled } from '@mui/material';
 import WormholeBridge from '@wormhole-foundation/wormhole-connect';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
-import './index.css'
+import './index.css';
 
 const config = {
-  env: 'mainnet',
-  networks: ['ethereum', 'polygon', 'solana', 'bsc'],
-  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'WBNB', 'BNB'],
+  env: 'testnet',
+  networks: ['ethereum', 'polygon', 'solana', 'bsc', 'sui'],
+  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'BNB'],
   rpc: {
     ethereum: 'https://rpc.ankr.com/eth',
     solana: 'https://rpc.ankr.com/solana',
-    bsc: 'https://bsc-testnet.publicnode.com',
+    bsc: 'https://data-seed-prebsc-1-s1.binance.org:8545',
   },
 };
 
@@ -49,7 +49,7 @@ export default function Bridge() {
           backgroundImage: "url('/images/background/homebg6.png')",
         }}
       >
-        <Container maxWidth={'md'} className='bridge'>
+        <Container maxWidth={'md'} className="bridge">
           <BridgeBox>
             <WormholeBridge config={config} />
           </BridgeBox>
