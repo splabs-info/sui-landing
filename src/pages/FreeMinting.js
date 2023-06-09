@@ -14,9 +14,9 @@ import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 
 export const addresses = {
-  package: `0x4a73863c9ba3311050d4bac61f6adf0c30c8630815029918875a8d79f08c980e`,
-  objectFreeMint: `0xc12836121c340b7f80ab922790188670095a1d2886af690c71f716689616a7cf`,
-  objectInformation: `0x7db44371691fb6a95f48f9d87691860cbfd6bc291031250330a9f10460e566da`,
+  package: `0x9ef5ca51217672fcf0c0c612d1fa6179a2d8dc9ff7228217220340834fb4233f`,
+  objectFreeMint: `0x1018becf297c4218efe21d644e8d88cf7d79ebe3babe57e2cfbb713071780b26`,
+  objectInformation: `0xb3f6e385c6dba7695d455f0a12dbfdd3401b3a5c38a0eca777e203316121e570`,
 };
 
 const provider = new JsonRpcProvider(devnetConnection);

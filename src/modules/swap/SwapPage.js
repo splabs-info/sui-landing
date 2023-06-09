@@ -114,7 +114,7 @@ export default function SwapPage() {
         by_amount_in: byAmountIn,
         amount: coinAmount.toString(),
         amount_limit: estimate.amountLimit.toString(),
-        swap_partner: '0x62da05b0008c2a07edd407016fea0ba72fa27495d582f1c6209ff9fd7eca6bca',
+        swap_partner: SwapHelper.config.swapPartner,
       });
 
       const transferTxn = await wallet.signAndExecuteTransactionBlock({
