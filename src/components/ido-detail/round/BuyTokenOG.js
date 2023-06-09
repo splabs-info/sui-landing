@@ -54,7 +54,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, maxAllocation, payments, minPurchase, minAllocation, participantsWallet }) => {
+export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, payments, minPurchase, maxPurchase, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
     const [listPayments, setListPayments] = React.useState([]);
@@ -69,16 +69,15 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
 
     const { provider, allCoinObjectsId } = React.useContext(SuiContext);
 
-    const formattedMinAllocation = React.useMemo(() => {
-        if (minAllocation) return ethers.utils.formatUnits(minAllocation.toString(), decimals);
-    }, [decimals, minAllocation]);
+    const formattedMinPurchase = React.useMemo(() => {
+        if (minPurchase) return ethers.utils.formatUnits(minPurchase.toString(), decimals);
+    }, [decimals, minPurchase]);
 
-    const convertNumberMinAllocation = toNumber(formattedMinAllocation);
+    const convertNumberMinAllocation = toNumber(formattedMinPurchase);
 
     const formattedMaxAllocation = React.useMemo(() => {
-        if (maxAllocation) return ethers.utils.formatUnits(maxAllocation.toString(), decimals);
-    }, [decimals, maxAllocation]);
-
+        if (maxPurchase) return ethers.utils.formatUnits(maxPurchase.toString(), decimals);
+    }, [decimals, maxPurchase]);
 
     const convertMaxAllocation = toNumber(formattedMaxAllocation);
 
@@ -187,8 +186,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     const canBuy = isCanBuy();
 
     const handleSelectMax = () => {
-        // setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
-        setValue('amount', ethers.utils.formatUnits(maxAllocation, decimals))
+        setValue('amount', ethers.utils.formatUnits(minPurchase, decimals))
         trigger('amount');
     };
 

@@ -145,6 +145,8 @@ export const Pool = () => {
                     tokenType?.decimals
                 );
 
+                console.log('roundData___', roundData)
+
                 const newState = {
                     ...round,
                     tokenAddress: `0x${roundData?.token_type}`,
@@ -161,12 +163,13 @@ export const Pool = () => {
                     participants: roundData?.participants?.fields?.contents.length,
                     totalSold: roundData?.total_sold || null,
                     totalSupply: roundData?.total_supply || null,
-                    minPurchase: roundData?.min_purchase || null,
+                    minPurchase: roundData?.min_purchase || 0,
+                    maxPurchase: roundData?.max_purchase || 0,
                     isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
                     isOpenClaimRefund: roundData?.is_open_claim_refund || null,
                     isPause: roundData?.is_pause || null,
-                    maxAllocation: roundData?.max_allocation || null,
-                    minAllocation: roundData?.min_allocation || null,
+                    // maxAllocation: roundData?.max_allocation || null,
+                    // minAllocation: roundData?.min_allocation || null,
                     name: roundData?.name,
                     payments: roundData?.payments?.fields?.contents || [],
                     startAt: roundData?.start_at || null,
@@ -221,8 +224,9 @@ export const Pool = () => {
                                                 decimals={round?.decimals}
                                                 totalSold={round?.totalSold}
                                                 minPurchase={round?.minPurchase}
-                                                maxAllocation={round?.maxAllocation}
-                                                minAllocation={round?.minAllocation}
+                                                maxPurchase={round?.maxPurchase}
+                                                // maxAllocation={round?.maxAllocation}
+                                                // minAllocation={round?.minAllocation}
                                                 totalSupply={round?.totalSupply}
                                                 ratio={round?.ratio}
                                                 symbol={round?.symbol}
@@ -234,10 +238,11 @@ export const Pool = () => {
                                                 balances={balances}
                                                 tokenType={round?.tokenType}
                                                 payments={round?.payments}
-                                                minPurchase={round?.minPurchase}
                                                 decimals={round?.decimals}
                                                 totalSold={round?.totalSold}
-                                                minAllocation={round?.minAllocation}
+                                                minPurchase={round?.minPurchase}
+                                                maxPurchase={round?.maxPurchase}
+                                                // minAllocation={round?.minAllocation}
                                                 totalSupply={round?.totalSupply}
                                                 ratio={round?.ratio}
                                                 endAt={round?.endAt}

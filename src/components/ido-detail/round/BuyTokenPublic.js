@@ -69,7 +69,6 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         if (minPurchase) return ethers.utils.formatUnits(minPurchase, decimals);
     }, [decimals, minPurchase]);
 
-
     const convertedMinPurchase = toNumber(formattedPurchase);
 
     const PublicRoundSchema = yup.object().shape({
@@ -125,13 +124,15 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         tx.setGasPayment(coinSuiObjectData);
 
         const balanceSplit = ethers.utils.parseUnits(
-            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
+            (parseFloat(data?.amount * toNumber(ratio)).toFixed(3)).toString(),
             decimals
         ).toString();
 
+        console.log('parseAmount__', balanceSplit);
+
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
-        const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();
+        const parseAmount = ethers.utils.parseUnits(parseFloat((data?.amount)).toFixed(decimals).toString(), decimals).toString();
 
         const vec = tx.makeMoveVec({
             objects: [coin],
@@ -153,10 +154,11 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
                 reset({ amount: '' });
             } else {
                 setLoading(false);
-                toast.error('Transaction rejected');
+                toast.error('Some thing went wrong');
             }
         } catch (e) {
             setLoading(false);
+            toast.error('Transaction rejected');
         }
     };
 
@@ -173,7 +175,7 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
 
 
     const handleSelectMax = () => {
-        setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+        setValue('amount', ((balances - 0.05) / toNumber(ratio) ), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
         trigger('amount');
     };
     return (
