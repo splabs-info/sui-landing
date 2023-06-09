@@ -131,8 +131,8 @@ export default function SwapPage() {
       setFlag(!flag);
       setLoading(false);
     } catch (error) {
-      console.error(error);
-      toast.error(JSON.stringify(error));
+      console.log(error);
+      toast.error(error.toString());
       setLoading(false);
     }
   };
@@ -164,6 +164,7 @@ export default function SwapPage() {
   }, [poolList, receiveToken, sendToken]);
 
   React.useEffect(() => {
+    console.log('sendAmount', sendAmount);
     if (selectedPool && sendAmount && sendAmount !== '0') {
       setEstimating(true);
       (async () => {
@@ -208,7 +209,7 @@ export default function SwapPage() {
         }
       })();
     } else {
-      setReceiveAmount('0');
+      resetData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [a2b, byAmountIn, selectedPool, sendAmount]);
@@ -288,13 +289,14 @@ export default function SwapPage() {
       document.getElementById('refresh-button').classList.remove('rotate');
     }, 1000);
   };
+
   useEffect(() => {
     const intervalTime = setInterval(() => {
       handleReload();
     }, 20000);
     return () => {
       clearInterval(intervalTime);
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -332,7 +334,7 @@ export default function SwapPage() {
                   <IconSettings />
                 </IconButton>
                 <Tooltip title="Auto refresh in 20 seconds, you can click to update manually.">
-                  <IconButton onClick={handleReload} id='refresh-button' >
+                  <IconButton onClick={handleReload} id="refresh-button">
                     <IconRefresh />
                   </IconButton>
                 </Tooltip>
@@ -346,7 +348,7 @@ export default function SwapPage() {
                       color: 'white',
                       fontSize: isMobile ? 16 : 40,
                     }}
-                    disabled={!sendToken}
+                    disabled={!sendToken || estimating}
                     defaultValue={sendAmount}
                   />
                   {tokenList.length > 0 ? (
@@ -390,9 +392,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                          sendToken.decimals
-                        )
+                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                            sendToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -456,9 +458,9 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                          receiveToken.decimals
-                        )
+                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                            receiveToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -508,8 +510,9 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
-                        }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
+                            sendToken.official_symbol
+                          }`
                         : '--'}
                     </Typography>
                   </Box>
