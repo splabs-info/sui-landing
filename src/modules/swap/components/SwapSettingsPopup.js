@@ -13,12 +13,10 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
   const [slippageValue, setSlippageValue] = React.useState(0.5);
   const [slippageAuto, setSlippageAuto] = React.useState(false);
   useEffect(() => {
-    if (slippageAuto)
-      handleChangeSlippage(0.5)
-    else
-      handleChangeSlippage(slippageValue)
+    if (slippageAuto) handleChangeSlippage(0.5);
+    else handleChangeSlippage(slippageValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slippageValue, slippageAuto])
+  }, [slippageValue, slippageAuto]);
 
   return (
     <CustomModal open={open} _close={handleClose} isShowCloseButton={true}>
@@ -44,22 +42,21 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
               <Typography color={'white'} variant="h6">
                 Slippage
               </Typography>
-              {/* <Typography color={'white'} variant="h6">
-                {slippageValue === 'custom' ? '--' : slippageValue} %
-              </Typography> */}
               <InputBase
                 sx={{
                   color: 'white',
                   fontWeight: 'bold',
                   '& input': {
-                    textAlign: 'right'
-                  }
+                    textAlign: 'right',
+                  },
                 }}
                 value={slippageValue}
                 placeholder={slippageValue === 'custom' ? 'Enter slippage' : slippageValue}
                 endAdornment={
                   <InputAdornment position="end">
-                    <Typography color={'white'} variant="h6">%</Typography>
+                    <Typography color={'white'} variant="h6">
+                      %
+                    </Typography>
                   </InputAdornment>
                 }
                 onChange={(e) => setSlippageValue(e.target.value)}
@@ -90,13 +87,6 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
           </>
         )}
       </SettingBox>
-      {/* <Box textAlign={'right'}>
-        <SwapButton
-          sx={{ marginTop: '16px' }}
-          onClick={handleClose}>
-          Submit
-        </SwapButton>
-      </Box> */}
     </CustomModal>
   );
 }
