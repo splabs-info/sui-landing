@@ -68,14 +68,16 @@ export default function SwapPage() {
             tempPoolList.push(pool);
           }
         }
+        const filterTokenList = tokenList?.filter((c) => supportTokens.includes(c.official_symbol));
         setPoolList(tempPoolList);
-        setTokenList(tokenList);
-        setSendToken(tokenList[4]);
-        setReceiveToken(tokenList[3]);
+        setTokenList(filterTokenList);
+        setSendToken(filterTokenList[2]);
+        setReceiveToken(filterTokenList[3]);
       } catch (error) {
         console.log(error);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
 
   React.useEffect(() => {
@@ -84,15 +86,11 @@ export default function SwapPage() {
       (async () => {
         const tempTokenList = [];
         for (const iterator of tokenList) {
-          const check = supportTokens.findIndex((t) => t === iterator.official_symbol);
-          console.log(check);
-          if (check > -1) {
-            const balance = {
-              ...iterator,
-              ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
-            };
-            tempTokenList.push(balance);
-          }
+          const balance = {
+            ...iterator,
+            ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
+          };
+          tempTokenList.push(balance);
         }
         setBalances(tempTokenList);
       })();
@@ -392,7 +390,7 @@ export default function SwapPage() {
               </AmountBox>
               {error && (
                 <ErrorBox my={1}>
-                  <Typography textAlign={'center'}>{error}</Typography>
+                  <Typography textAlign={'left'}>{error}</Typography>
                 </ErrorBox>
               )}
 

@@ -131,11 +131,9 @@ export const AmountStack = styled(Stack)(({ theme }) => ({
 }));
 
 export const ErrorBox = styled(Box)(({ theme }) => ({
-  background: '#ECC8C5AB',
   padding: 12,
   color: '#B0312E',
   borderRadius: '10px',
-  border: '1px solid #B0312E70',
 }));
 
 export const SettingBox = styled(Box)(({ theme }) => ({
