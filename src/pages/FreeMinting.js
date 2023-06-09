@@ -76,7 +76,8 @@ export default function FreeMinting() {
           id: addresses.objectFreeMint,
           options: { showContent: true },
         });
-        setTotal(result?.data?.content?.fields?.max_number);
+        console.log(result);
+        setTotal(result?.data?.content?.fields?.max_mint);
         setMinted(result?.data?.content?.fields?.number);
       })();
     }
