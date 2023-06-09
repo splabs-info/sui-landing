@@ -17,7 +17,7 @@ import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
-import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
+import { AmountBox, AmountStack, ConnectButton, ErrorBox, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
 import React from 'react';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
@@ -303,9 +303,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                            sendToken.decimals
-                          )
+                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                          sendToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -369,23 +369,26 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                            receiveToken.decimals
-                          )
+                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                          receiveToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
                 </Stack>
               </AmountBox>
-              <Typography color="red" textAlign={'center'} my={3}>
-                {error}
-              </Typography>
+              {error && <ErrorBox my={1}>
+                <Typography textAlign={'center'}>
+                  {error}
+                </Typography>
+              </ErrorBox>}
+
               <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
                 Swap
               </ConnectButton>
               {estimating ? (
                 <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
-                  <CircularProgress />
+                  <CircularProgress color='primary' />
                 </Stack>
               ) : (
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
@@ -418,9 +421,8 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
-                            sendToken.official_symbol
-                          }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
+                        }`
                         : '--'}
                     </Typography>
                   </Box>
