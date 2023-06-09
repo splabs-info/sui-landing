@@ -17,7 +17,14 @@ import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
-import { AmountBox, AmountStack, ConnectButton, ErrorBox, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
+import {
+  AmountBox,
+  AmountStack,
+  ConnectButton,
+  ErrorBox,
+  SelectToken,
+  SwapBox,
+} from 'modules/swap/components/SwapStyles';
 import React from 'react';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
@@ -45,6 +52,8 @@ export default function SwapPage() {
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
 
+  const supportTokens = ['USDT', 'ETH', 'SUI', 'USDC'];
+
   React.useEffect(() => {
     (async () => {
       try {
@@ -59,14 +68,16 @@ export default function SwapPage() {
             tempPoolList.push(pool);
           }
         }
+        const filterTokenList = tokenList?.filter((c) => supportTokens.includes(c.official_symbol));
         setPoolList(tempPoolList);
-        setTokenList(tokenList);
-        setSendToken(tokenList[4]);
-        setReceiveToken(tokenList[3]);
+        setTokenList(filterTokenList);
+        setSendToken(filterTokenList[2]);
+        setReceiveToken(filterTokenList[3]);
       } catch (error) {
         console.log(error);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
 
   React.useEffect(() => {
@@ -113,8 +124,6 @@ export default function SwapPage() {
       });
       if (transferTxn) {
         toast.success('Success');
-        setSendAmount('0');
-        setReceiveAmount('0');
       } else {
         toast.error('Fail');
       }
@@ -127,11 +136,16 @@ export default function SwapPage() {
     }
   };
 
+  const resetData = () => {
+    setEstimate(null);
+    setSendAmount('0');
+    setReceiveAmount('0');
+    setCalculateResult(null);
+  };
+
   React.useEffect(() => {
+    resetData();
     if (sendToken && receiveToken) {
-      setReceiveAmount(0);
-      setEstimate(null);
-      setCalculateResult(null);
       if (sendToken.address !== receiveToken.address) {
         setA2B(true);
         let selectPool = poolList.find(
@@ -145,7 +159,6 @@ export default function SwapPage() {
         }
         setSelectedPool(selectPool ? selectPool : null);
       }
-
     }
   }, [poolList, receiveToken, sendToken]);
 
@@ -156,9 +169,6 @@ export default function SwapPage() {
         try {
           const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
           const coinAmount = new SwapHelper.BN(parseFloat(amount));
-
-          // console.log(Number(sendAmount).toFixed(sendToken.decimals).replace('.', ''), coinAmount.toString());
-
           const slippage = Percentage.fromDecimal(d(slippageSetting));
 
           const res = await sdk.Swap.preswap({
@@ -309,9 +319,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                          sendToken.decimals
-                        )
+                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                            sendToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -375,26 +385,26 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                          receiveToken.decimals
-                        )
+                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                            receiveToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
                 </Stack>
               </AmountBox>
-              {error && <ErrorBox my={1}>
-                <Typography>
-                  {error}
-                </Typography>
-              </ErrorBox>}
+              {error && (
+                <ErrorBox my={1}>
+                  <Typography textAlign={'left'}>{error}</Typography>
+                </ErrorBox>
+              )}
 
               <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
                 Swap
               </ConnectButton>
               {estimating ? (
                 <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
-                  <CircularProgress color='primary' />
+                  <CircularProgress color="primary" />
                 </Stack>
               ) : (
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
@@ -427,8 +437,9 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
-                        }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
+                            sendToken.official_symbol
+                          }`
                         : '--'}
                     </Typography>
                   </Box>
