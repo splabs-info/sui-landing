@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { IconChartLine, IconRefresh, IconSettings, IconSwitchVertical } from '@tabler/icons';
+import { IconRefresh, IconSettings, IconSwitchVertical } from '@tabler/icons';
 import Page from 'components/common/Page';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
@@ -26,11 +26,10 @@ import {
   SelectToken,
   SwapBox,
 } from 'modules/swap/components/SwapStyles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
 import { SwapHelper, sdk } from './init';
-import { useEffect } from 'react';
 
 export default function SwapPage() {
   const isMobile = useResponsive('down', 'sm');
