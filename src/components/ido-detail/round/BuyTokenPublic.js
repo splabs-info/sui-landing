@@ -128,8 +128,6 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
             decimals
         ).toString();
 
-        console.log('parseAmount__', balanceSplit);
-
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
         const parseAmount = ethers.utils.parseUnits(parseFloat((data?.amount)).toFixed(decimals).toString(), decimals).toString();
@@ -171,7 +169,6 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
     };
 
     const canBuy = isCanBuy();
-
 
 
     const handleSelectMax = () => {
