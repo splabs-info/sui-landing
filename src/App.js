@@ -1,11 +1,10 @@
 import {
-    WalletProvider as SUIWalletProvider,
-    SuiDevnetChain,
-    SuiTestnetChain,
-    SuiWallet,
-    SuietWallet,
-
-    SuiMainnetChain
+  WalletProvider as SUIWalletProvider,
+  SuiDevnetChain,
+  SuiMainnetChain,
+  SuiTestnetChain,
+  SuiWallet,
+  SuietWallet,
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -19,54 +18,55 @@ import ShowErrorComponent from './components/common/ShowErrorComponent';
 import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 // import { _changeLanguage } from './store/setting/settingActions';
+import { SUIWalletContext } from 'provider/SuiProvider';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
-import { SUIWalletContext } from 'provider/SuiProvider';
 const queryClient = new QueryClient();
 
 const SupportedChains = [SuiMainnetChain, SuiDevnetChain, SuiTestnetChain];
 
 export default function App() {
-    // const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-    // useEffect(() => {
-    // dispatch(_changeLanguage(localStorage.getItem('lang')));
-    // console.log("Version: 0.0.2")
-    // }, []);
+  // useEffect(() => {
+  // dispatch(_changeLanguage(localStorage.getItem('lang')));
+  // console.log("Version: 0.0.2")
+  // }, []);
 
-    useEffect(() => {
-        localStorage.removeItem('lang');
-    }, []);
+  useEffect(() => {
+    console.log('Version: 0.0.3');
+    localStorage.removeItem('lang');
+  }, []);
 
-    return (
-        <ThemeProvider>
-            <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains} autoConnect>
-                <SUIWalletContext>
-                    <WalletProvider>
-                        <QueryClientProvider client={queryClient}>
-                            <ScrollToTop />
-                            <BaseOptionChartStyle />
+  return (
+    <ThemeProvider>
+      <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains} autoConnect>
+        <SUIWalletContext>
+          <WalletProvider>
+            <QueryClientProvider client={queryClient}>
+              <ScrollToTop />
+              <BaseOptionChartStyle />
 
-                            <Routers />
+              <Routers />
 
-                            <ShowErrorComponent />
-                            <BackgroundJob />
-                        </QueryClientProvider>
-                    </WalletProvider>
-                </SUIWalletContext>
-            </SUIWalletProvider>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-        </ThemeProvider>
-    );
+              <ShowErrorComponent />
+              <BackgroundJob />
+            </QueryClientProvider>
+          </WalletProvider>
+        </SUIWalletContext>
+      </SUIWalletProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </ThemeProvider>
+  );
 }
