@@ -69,6 +69,14 @@ a.icon-linked img:hover {
   animation: scale 2.5s linear infinite;
 }
 
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+.rotate svg {
+  color: #14E3BE;
+}
+
 @keyframes scale {
 
   from,
@@ -100,6 +108,16 @@ a.icon-linked img:hover {
 @keyframes anim {
   100% {
     stroke-dashoffset: 157;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 

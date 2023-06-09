@@ -8,10 +8,11 @@ import {
   MenuItem,
   Skeleton,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { IconChartLine, IconSettings, IconSwitchVertical } from '@tabler/icons';
+import { IconChartLine, IconRefresh, IconSettings, IconSwitchVertical } from '@tabler/icons';
 import Page from 'components/common/Page';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
@@ -29,6 +30,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
 import { SwapHelper, sdk } from './init';
+import { useEffect } from 'react';
 
 export default function SwapPage() {
   const isMobile = useResponsive('down', 'sm');
@@ -232,6 +234,71 @@ export default function SwapPage() {
     setSendAmount('0');
   };
 
+  const handleReload = () => {
+    document.getElementById('refresh-button').classList.add('rotate');
+    if (selectedPool && sendAmount && sendAmount !== '0') {
+      setEstimating(true);
+      (async () => {
+        try {
+          const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
+          const coinAmount = new SwapHelper.BN(parseFloat(amount));
+
+          // console.log(Number(sendAmount).toFixed(sendToken.decimals).replace('.', ''), coinAmount.toString());
+
+          const slippage = Percentage.fromDecimal(d(slippageSetting));
+
+          const res = await sdk.Swap.preswap({
+            pool: selectedPool,
+            current_sqrt_price: selectedPool.current_sqrt_price,
+            coinTypeA: selectedPool.coinTypeA,
+            coinTypeB: selectedPool.coinTypeB,
+            decimalsA: sendToken.decimals,
+            decimalsB: receiveToken.decimals,
+            a2b,
+            by_amount_in: byAmountIn,
+            amount: coinAmount.toString(),
+          });
+
+          const tickData = await sdk.Pool.fetchTicksByRpc(selectedPool.ticks_handle);
+
+          const calculateResult = await sdk.Swap.calculateRates({
+            currentPool: selectedPool,
+            decimalsA: sendToken.decimals,
+            decimalsB: receiveToken.decimals,
+            a2b,
+            byAmountIn,
+            amount: coinAmount,
+            swapTicks: tickData,
+          });
+
+          const toAmount = byAmountIn ? res.estimatedAmountOut : res.estimatedAmountIn;
+          const amountLimit = adjustForSlippage(new SwapHelper.BN(toAmount), slippage, !byAmountIn);
+          setEstimating(false);
+          setReceiveAmount(formatUnits(toAmount.toString(), receiveToken.decimals));
+          setEstimate({ ...res, amountLimit, slippage });
+          setCalculateResult(calculateResult);
+        } catch (error) {
+          console.log(error);
+          setEstimating(false);
+        }
+      })();
+    } else {
+      setReceiveAmount('0');
+    }
+    setTimeout(() => {
+      document.getElementById('refresh-button').classList.remove('rotate');
+    }, 1000);
+  };
+  useEffect(() => {
+    const intervalTime = setInterval(() => {
+      handleReload();
+    }, 20000);
+    return () => {
+      clearInterval(intervalTime);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Page title="Swap">
       <SectionBox
@@ -256,15 +323,20 @@ export default function SwapPage() {
                   },
                 }}
               >
-                <IconButton>
+                {/* <IconButton>
                   <IconChartLine />
-                </IconButton>
+                </IconButton> */}
                 <Typography color={'#fff'} ml={1}>
                   {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
                 </Typography>
                 <IconButton onClick={() => setOpenSettings(true)}>
                   <IconSettings />
                 </IconButton>
+                <Tooltip title="Auto refresh in 20 seconds, you can click to update manually.">
+                  <IconButton onClick={handleReload} id='refresh-button' >
+                    <IconRefresh />
+                  </IconButton>
+                </Tooltip>
               </Stack>
               <AmountBox>
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
@@ -319,9 +391,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                            sendToken.decimals
-                          )
+                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                          sendToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -385,9 +457,9 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                            receiveToken.decimals
-                          )
+                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                          receiveToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -437,9 +509,8 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
-                            sendToken.official_symbol
-                          }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
+                        }`
                         : '--'}
                     </Typography>
                   </Box>
