@@ -5,13 +5,13 @@ import { SectionBox } from 'components/home-v2/HomeStyles';
 import './index.css';
 
 const config = {
-  env: 'testnet',
+  env: 'mainnet',
   networks: ['ethereum', 'polygon', 'solana', 'bsc', 'sui'],
-  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'BNB'],
-  rpc: {
-    ethereum: 'https://rpc.ankr.com/eth',
-    solana: 'https://rpc.ankr.com/solana',
-    bsc: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'BNB', 'WBNB', 'BUSDT', 'SUI', 'USDT', 'USDC'],
+  rpcs: {
+    // bsc: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+    // ethereum: 'https://rpc.ankr.com/eth',
+    // solana: 'https://rpc.ankr.com/solana',
   },
 };
 
