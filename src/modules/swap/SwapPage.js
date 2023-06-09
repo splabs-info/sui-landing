@@ -113,6 +113,8 @@ export default function SwapPage() {
       });
       if (transferTxn) {
         toast.success('Success');
+        setSendAmount('0');
+        setReceiveAmount('0');
       } else {
         toast.error('Fail');
       }
@@ -127,6 +129,9 @@ export default function SwapPage() {
 
   React.useEffect(() => {
     if (sendToken && receiveToken) {
+      setReceiveAmount(0);
+      setEstimate(null);
+      setCalculateResult(null);
       if (sendToken.address !== receiveToken.address) {
         setA2B(true);
         let selectPool = poolList.find(
@@ -140,6 +145,7 @@ export default function SwapPage() {
         }
         setSelectedPool(selectPool ? selectPool : null);
       }
+
     }
   }, [poolList, receiveToken, sendToken]);
 
@@ -378,7 +384,7 @@ export default function SwapPage() {
                 </Stack>
               </AmountBox>
               {error && <ErrorBox my={1}>
-                <Typography textAlign={'center'}>
+                <Typography>
                   {error}
                 </Typography>
               </ErrorBox>}
