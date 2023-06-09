@@ -17,7 +17,14 @@ import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
-import { AmountBox, AmountStack, ConnectButton, ErrorBox, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
+import {
+  AmountBox,
+  AmountStack,
+  ConnectButton,
+  ErrorBox,
+  SelectToken,
+  SwapBox,
+} from 'modules/swap/components/SwapStyles';
 import React from 'react';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
@@ -44,6 +51,8 @@ export default function SwapPage() {
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
+
+  const supportTokens = ['USDT', 'ETH', 'SUI', 'USDC'];
 
   React.useEffect(() => {
     (async () => {
@@ -75,11 +84,15 @@ export default function SwapPage() {
       (async () => {
         const tempTokenList = [];
         for (const iterator of tokenList) {
-          const balance = {
-            ...iterator,
-            ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
-          };
-          tempTokenList.push(balance);
+          const check = supportTokens.findIndex((t) => t === iterator.official_symbol);
+          console.log(check);
+          if (check > -1) {
+            const balance = {
+              ...iterator,
+              ...(await SwapHelper.provider.getBalance({ owner: wallet.address, coinType: iterator.address })),
+            };
+            tempTokenList.push(balance);
+          }
         }
         setBalances(tempTokenList);
       })();
@@ -303,9 +316,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                          sendToken.decimals
-                        )
+                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                            sendToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -369,26 +382,26 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                          receiveToken.decimals
-                        )
+                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                            receiveToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
                 </Stack>
               </AmountBox>
-              {error && <ErrorBox my={1}>
-                <Typography textAlign={'center'}>
-                  {error}
-                </Typography>
-              </ErrorBox>}
+              {error && (
+                <ErrorBox my={1}>
+                  <Typography textAlign={'center'}>{error}</Typography>
+                </ErrorBox>
+              )}
 
               <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
                 Swap
               </ConnectButton>
               {estimating ? (
                 <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
-                  <CircularProgress color='primary' />
+                  <CircularProgress color="primary" />
                 </Stack>
               ) : (
                 <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
@@ -421,8 +434,9 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
-                        }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
+                            sendToken.official_symbol
+                          }`
                         : '--'}
                     </Typography>
                   </Box>
