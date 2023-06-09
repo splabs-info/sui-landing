@@ -137,7 +137,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
         tx.setGasPayment(coinSuiObjectData);
 
         const balanceSplit = ethers.utils.parseUnits(
-            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
+            (parseFloat((data?.amount - 0.05) * toNumber(ratio)).toFixed(decimals)).toString(),
             decimals
         ).toString();
 
@@ -186,7 +186,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     const canBuy = isCanBuy();
 
     const handleSelectMax = () => {
-        setValue('amount', ethers.utils.formatUnits(minPurchase, decimals))
+        setValue('amount', ethers.utils.formatUnits(maxPurchase, decimals))
         trigger('amount');
     };
 
