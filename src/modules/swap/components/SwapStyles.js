@@ -49,6 +49,14 @@ export const ConnectButton = styled(LoadingButton)(({ theme }) => ({
   padding: '12px 32px',
   marginTop: 8,
   width: '100%',
+  '&.Mui-disabled': {
+    color: 'white',
+    background: 'linear-gradient(270deg, #207BBF50 18.51%, #4A94CB50 51.55%, #5CBAF250 87.9%)',
+    boxShadow: 'unset',
+  },
+  '& .MuiLoadingButton-loadingIndicator': {
+    color: 'white',
+  }
 }));
 
 export const AmountBox = styled(Box)(({ theme }) => ({
@@ -121,6 +129,15 @@ export const AmountStack = styled(Stack)(({ theme }) => ({
     marginRight: 8,
   },
 }));
+
+export const ErrorBox = styled(Box)(({ theme }) => ({
+  background: '#ECC8C5AB',
+  padding: 12,
+  color: '#B0312E',
+  borderRadius: '10px',
+  border: '1px solid #B0312E70',
+}));
+
 export const SettingBox = styled(Box)(({ theme }) => ({
   background: 'rgba(9, 23, 43, 0.6)',
   borderRadius: '15px',
