@@ -262,8 +262,7 @@ export default function FreeMinting() {
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     onClick={handleFreeMinting}
                     loading={loading}
-                    // disabled={owned === 5}
-                    disabled
+                    disabled={owned === 5 || !hasInTimes}
                   >
                     Claim Now
                   </GradientLoadingButton> :
