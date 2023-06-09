@@ -13,6 +13,7 @@ import ClaimsDetail from 'pages/ClaimsDetail';
 import PreSales from 'pages/PreSales';
 import SwapPage from 'modules/swap/SwapPage';
 import Bridge from 'modules/bridge/Bridge';
+import FreeMinting from 'pages/FreeMinting';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -61,8 +62,8 @@ export default function Router() {
               path: 'ino-launchpad/free-minting-nft',
               element: (
                 <Suspense>
-                  {/* <FreeMinting /> */}
-                  <ComingSoon />
+                  <FreeMinting />
+                  {/* <ComingSoon /> */}
                 </Suspense>
               ),
             },
