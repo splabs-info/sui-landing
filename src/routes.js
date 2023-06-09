@@ -12,7 +12,7 @@ import Bridge from 'modules/bridge/Bridge';
 import SwapPage from 'modules/swap/SwapPage';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
-import FreeMinting from 'pages/FreeMinting';
+import FreeMinting from 'modules/free-minting/FreeMinting';
 import PreSales from 'pages/PreSales';
 
 const Login = React.lazy(() => import('./pages/Login'));

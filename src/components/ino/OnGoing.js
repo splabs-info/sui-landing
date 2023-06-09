@@ -6,7 +6,7 @@ import { GradientShadowTypography, ShadowTypography } from 'components/common/Cu
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { addresses } from 'pages/FreeMinting';
+import { addresses } from 'modules/free-minting/FreeMinting';
 import { SuiContext } from 'provider/SuiProvider';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

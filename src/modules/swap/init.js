@@ -12,7 +12,7 @@ const config = {
   providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : testnetConnection,
 };
 
-console.log(config);
+console.log('swap-config', config);
 
 export const sdk = new SDK(config.sdkEnv);
 const provider = new JsonRpcProvider(config.providerConnection);

@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Hidden, Link, Stack, Typography, styled } from '@mui/material';
-import { JsonRpcProvider, TransactionBlock, testnetConnection } from '@mysten/sui.js';
+import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
 import CustomModal from 'components/common/CustomModal';
@@ -11,14 +11,9 @@ import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
+import { config, provider } from './init';
 
-export const addresses = {
-  package: `0x4a0de1e2b482da120f7d680e68df66fcb587b56cb89ba81b3322ccede49ed523`,
-  objectFreeMint: `0x71ebf2a4ff1e2d4073d1d3ba052e843720ce786b5d5d0746f1daa3a9bf1316b0`,
-  objectInformation: `0xa247ba5fc5b4346ecf72c5a1de92cae40071149811f08142820280a1cd323fb0`,
-};
-
-const provider = new JsonRpcProvider(testnetConnection);
+export const addresses = config.addresses;
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
   background:
