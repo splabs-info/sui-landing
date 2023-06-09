@@ -206,6 +206,7 @@ export default function SwapPage() {
         } catch (error) {
           console.log(error);
           setEstimating(false);
+          resetData();
         }
       })();
     } else {
