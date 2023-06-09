@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Hidden, Link, Stack, Typography, styled } from '@mui/material';
-import { JsonRpcProvider, TransactionBlock, devnetConnection } from '@mysten/sui.js';
+import { JsonRpcProvider, TransactionBlock, testnetConnection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton, GradientLoadingButton } from 'components/common/CustomButton';
 import CustomModal from 'components/common/CustomModal';
@@ -8,18 +8,17 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
-import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 
 export const addresses = {
-  package: `0x9ef5ca51217672fcf0c0c612d1fa6179a2d8dc9ff7228217220340834fb4233f`,
-  objectFreeMint: `0x1018becf297c4218efe21d644e8d88cf7d79ebe3babe57e2cfbb713071780b26`,
-  objectInformation: `0xb3f6e385c6dba7695d455f0a12dbfdd3401b3a5c38a0eca777e203316121e570`,
+  package: `0x4a0de1e2b482da120f7d680e68df66fcb587b56cb89ba81b3322ccede49ed523`,
+  objectFreeMint: `0x71ebf2a4ff1e2d4073d1d3ba052e843720ce786b5d5d0746f1daa3a9bf1316b0`,
+  objectInformation: `0xa247ba5fc5b4346ecf72c5a1de92cae40071149811f08142820280a1cd323fb0`,
 };
 
-const provider = new JsonRpcProvider(devnetConnection);
+const provider = new JsonRpcProvider(testnetConnection);
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
   background:
@@ -100,7 +99,7 @@ export default function FreeMinting() {
             });
             arrNft.push(result?.data?.content?.fields);
           }
-          setMyNftList(arrNft)
+          setMyNftList(arrNft);
           console.log(arrNft);
         }
       })();
@@ -150,60 +149,60 @@ export default function FreeMinting() {
       }
     })();
 
-  const NFTGroup = () =>
-  (<>
-    <Box>
-      <NFTSlider />
-    </Box>
-    <ProcessBarBox
-      percent={minted ? (minted / total) * 100 : 0}
-      subtitle={
-        <>
-          <Typography variant="body1" color={'white'}>
-            {minted}
-          </Typography>
-          <Typography variant="body1" color={'white'}>
-            TOTAL: {total}
-          </Typography>
-        </>
-      }
-      sx={{ margin: '24px 0' }}
-    />
-    <Box
-      display={'flex'}
-      flexDirection={'row'}
-      alignItems={'center'}
-      justifyContent={isMobile ? 'space-between' : 'center'}
-      flexWrap={'wrap'}
-      gap={isMobile ? 1 : 2}
-      mb={isMobile ? 3 : 2}
-    >
-      <Link href={`https://zealy.io/c/yousui`} target='_blank' >
-        <BorderGradientButton>
-          <img src="/images/icon/logo-crew3.png" alt="global" />
-          Crew3
-        </BorderGradientButton>
-      </Link>
-      <Link href={`https://twitter.com/YouSUI_Global`} target='_blank' >
-        <BorderGradientButton>
-          <img src="/images/icon/logo-twitter.png" alt="discord" />
-          Twitter
-        </BorderGradientButton>
-      </Link>
+  const NFTGroup = () => (
+    <>
+      <Box>
+        <NFTSlider />
+      </Box>
+      <ProcessBarBox
+        percent={minted ? (minted / total) * 100 : 0}
+        subtitle={
+          <>
+            <Typography variant="body1" color={'white'}>
+              {minted}
+            </Typography>
+            <Typography variant="body1" color={'white'}>
+              TOTAL: {total}
+            </Typography>
+          </>
+        }
+        sx={{ margin: '24px 0' }}
+      />
+      <Box
+        display={'flex'}
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={isMobile ? 'space-between' : 'center'}
+        flexWrap={'wrap'}
+        gap={isMobile ? 1 : 2}
+        mb={isMobile ? 3 : 2}
+      >
+        <Link href={`https://zealy.io/c/yousui`} target="_blank">
+          <BorderGradientButton>
+            <img src="/images/icon/logo-crew3.png" alt="global" />
+            Crew3
+          </BorderGradientButton>
+        </Link>
+        <Link href={`https://twitter.com/YouSUI_Global`} target="_blank">
+          <BorderGradientButton>
+            <img src="/images/icon/logo-twitter.png" alt="discord" />
+            Twitter
+          </BorderGradientButton>
+        </Link>
 
-      <Link href={`https://discord.com/invite/yousui`} target='_blank' >
-        <BorderGradientButton>
-          <img src="/images/icon/logo-discord.png" alt="discord" />
-          Discord
-        </BorderGradientButton>
-      </Link>
-      {/* <BorderGradientButton>
+        <Link href={`https://discord.com/invite/yousui`} target="_blank">
+          <BorderGradientButton>
+            <img src="/images/icon/logo-discord.png" alt="discord" />
+            Discord
+          </BorderGradientButton>
+        </Link>
+        {/* <BorderGradientButton>
         <img src="/images/icon/icon-global.png" alt="global" />
         View on Explore
       </BorderGradientButton> */}
-    </Box>
-  </>);
-
+      </Box>
+    </>
+  );
 
   return (
     <Page title="Free Minting">
@@ -232,9 +231,11 @@ export default function FreeMinting() {
                 <Hidden smUp>
                   <NFTGroup />
                 </Hidden>
-                {!hasInTimes && <Typography variant="h6" fontWeight={700} color={'white'}>
-                  Start at:
-                </Typography>}
+                {!hasInTimes && (
+                  <Typography variant="h6" fontWeight={700} color={'white'}>
+                    Start at:
+                  </Typography>
+                )}
                 <MintingCountdown endTime={'2023-06-10T11:00:00'} _handleComplete={() => setHasInTimes(true)} />
 
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}>
@@ -258,7 +259,7 @@ export default function FreeMinting() {
                 >
                   Claim available: <img src="/images/icon/icon-check.png" alt="check" />
                 </Typography>
-                {owned !== 5 ?
+                {owned !== 5 ? (
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     onClick={handleFreeMinting}
@@ -266,14 +267,16 @@ export default function FreeMinting() {
                     disabled={owned === 5}
                   >
                     Claim Now
-                  </GradientLoadingButton> :
+                  </GradientLoadingButton>
+                ) : (
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     loading={loading}
                     onClick={() => setOpenMyNft(true)}
                   >
                     My NFT
-                  </GradientLoadingButton>}
+                  </GradientLoadingButton>
+                )}
               </Grid>
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
@@ -282,11 +285,9 @@ export default function FreeMinting() {
               </Grid>
             </Grid>
           </FreeMintingBox>
-          {myNftList.length > 0 && <MyNFT
-            open={openMyNft}
-            handleClose={() => setOpenMyNft(false)}
-            myNftList={myNftList}
-          />}
+          {myNftList.length > 0 && (
+            <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
+          )}
         </Container>
       </SectionBox>
     </Page>
@@ -472,28 +473,18 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
-    <CustomModal
-      open={open}
-      _close={() => handleClose()}
-      isShowCloseButton={true}
-    >
-
+    <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
       <Stack>
         <Typography variant={isMobile ? 'h5' : 'h3'}>My NFT</Typography>
       </Stack>
-      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3, }}>
+      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3 }}>
         {myNftList?.map((item, index) => (
-          <Box component={'img'}
-            alt={item.name}
-            src={item.image_url}
-            key={index}
-            sx={{ width: 'min(25%,200px)' }}
-          />
+          <Box component={'img'} alt={item.name} src={item.image_url} key={index} sx={{ width: 'min(25%,200px)' }} />
         ))}
       </Stack>
     </CustomModal>
   );
-}
+};
