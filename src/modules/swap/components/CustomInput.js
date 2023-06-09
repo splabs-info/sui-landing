@@ -13,6 +13,7 @@ function CustomInput({ handleDone, defaultValue, ...props }) {
   }, [defaultValue]);
 
   const handleInput = (value) => {
+    console.log(value);
     handleDone(value);
   };
 

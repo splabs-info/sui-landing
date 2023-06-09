@@ -95,13 +95,6 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
           ))}
         </SlippageBox>
       </SettingBox>
-      {/* <Box textAlign={'right'}>
-        <SwapButton
-          sx={{ marginTop: '16px' }}
-          onClick={handleClose}>
-          Submit
-        </SwapButton>
-      </Box> */}
     </CustomModal>
   );
 }

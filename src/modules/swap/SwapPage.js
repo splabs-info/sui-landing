@@ -59,7 +59,6 @@ export default function SwapPage() {
             tempPoolList.push(pool);
           }
         }
-        console.log(tokenList);
         setPoolList(tempPoolList);
         setTokenList(tokenList);
         setSendToken(tokenList[4]);
@@ -91,20 +90,12 @@ export default function SwapPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const coinAmount = new SwapHelper.BN(sendAmount).mul(
-        new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
-      );
+      // const coinAmount = new SwapHelper.BN(sendAmount).mul(
+      //   new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
+      // );
+      const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
+      const coinAmount = new SwapHelper.BN(parseFloat(amount));
       const pool = selectedPool;
-
-      console.log({
-        pool_id: pool.poolAddress,
-        coinTypeA: pool.coinTypeA,
-        coinTypeB: pool.coinTypeB,
-        a2b,
-        by_amount_in: byAmountIn,
-        amount: coinAmount.toString(),
-        amount_limit: estimate.amountLimit,
-      });
 
       const swapPayload = await sdk.Swap.createSwapTransactionPayload({
         pool_id: pool.poolAddress,
@@ -157,9 +148,11 @@ export default function SwapPage() {
       setEstimating(true);
       (async () => {
         try {
-          const coinAmount = new SwapHelper.BN(sendAmount).mul(
-            new SwapHelper.BN(10).pow(new SwapHelper.BN(sendToken.decimals))
-          );
+          const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
+          const coinAmount = new SwapHelper.BN(parseFloat(amount));
+
+          // console.log(Number(sendAmount).toFixed(sendToken.decimals).replace('.', ''), coinAmount.toString());
+
           const slippage = Percentage.fromDecimal(d(slippageSetting));
 
           const res = await sdk.Swap.preswap({
@@ -208,12 +201,14 @@ export default function SwapPage() {
       setError('Please connect wallet');
     } else if (!sendToken || !receiveToken) {
       setError('Please select pair to swap');
+    } else if (!selectedPool) {
+      setError('Route is not found');
     } else if (!sendAmount || sendAmount === '0') {
       setError('Please enter amount');
     } else {
       setError('');
     }
-  }, [receiveToken, sendAmount, sendToken, wallet.address]);
+  }, [receiveToken, selectedPool, sendAmount, sendToken, wallet.address]);
 
   const handleSwitch = () => {
     setReceiveToken(sendToken);
@@ -308,9 +303,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                          sendToken.decimals
-                        )
+                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                            sendToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -374,9 +369,9 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                          receiveToken.decimals
-                        )
+                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                            receiveToken.decimals
+                          )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -398,9 +393,9 @@ export default function SwapPage() {
                     <Typography variant="body2" fontWeight={600} color={'white'}>
                       Price impact
                     </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
+                    {/* <Typography variant="body2" fontWeight={600} color={'white'}>
                       Est. received
-                    </Typography>
+                    </Typography> */}
                     <Typography variant="body2" fontWeight={600} color={'white'}>
                       Min. received
                     </Typography>
@@ -412,9 +407,9 @@ export default function SwapPage() {
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="price-impact">
                       {calculateResult ? `${calculateResult.priceImpactPct.toFixed(4)}%` : '--'}
                     </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
+                    {/* <Typography variant="body2" fontWeight={600} color={'white'} data-id="est-received">
                       --
-                    </Typography>
+                    </Typography> */}
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
                       {estimate
                         ? `${formatUnits(estimate.amountLimit.toString(), receiveToken.decimals)}
@@ -423,8 +418,9 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
-                        }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
+                            sendToken.official_symbol
+                          }`
                         : '--'}
                     </Typography>
                   </Box>
