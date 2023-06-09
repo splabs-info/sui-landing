@@ -14,7 +14,7 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
   const [slippageAuto, setSlippageAuto] = React.useState(false);
   useEffect(() => {
     if (slippageAuto)
-      handleChangeSlippage(slippageAuto)
+      handleChangeSlippage(0.5)
     else
       handleChangeSlippage(slippageValue)
     // eslint-disable-next-line react-hooks/exhaustive-deps

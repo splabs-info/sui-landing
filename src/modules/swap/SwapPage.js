@@ -280,7 +280,7 @@ export default function SwapPage() {
                           }}
                         >
                           <img
-                            src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                            src={token.logo_url}
                             alt={token.symbol}
                             width={isMobile ? 24 : 32}
                             style={{ marginRight: '8px' }}
@@ -308,9 +308,9 @@ export default function SwapPage() {
                     <Typography>
                       {sendToken && balances.length > 0
                         ? formatUnits(
-                            balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
-                            sendToken.decimals
-                          )
+                          balances.find((item) => item.symbol === sendToken?.symbol)?.totalBalance,
+                          sendToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -346,7 +346,7 @@ export default function SwapPage() {
                           }}
                         >
                           <img
-                            src={`https://archive.cetus.zone/assets/image/sui/${token.symbol.toLowerCase()}.png`}
+                            src={token.logo_url}
                             alt={token.symbol}
                             width={isMobile ? 24 : 32}
                             style={{ marginRight: '8px' }}
@@ -374,9 +374,9 @@ export default function SwapPage() {
                     <Typography>
                       {balances.length > 0 && receiveToken
                         ? formatUnits(
-                            balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
-                            receiveToken.decimals
-                          )
+                          balances.find((item) => item.symbol === receiveToken?.symbol)?.totalBalance,
+                          receiveToken.decimals
+                        )
                         : '--'}
                     </Typography>
                   </AmountStack>
@@ -423,9 +423,8 @@ export default function SwapPage() {
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {estimate
-                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${
-                            sendToken.official_symbol
-                          }`
+                        ? `${formatUnits(estimate?.estimatedFeeAmount, sendToken.decimals)} ${sendToken.official_symbol
+                        }`
                         : '--'}
                     </Typography>
                   </Box>
