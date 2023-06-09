@@ -13,12 +13,18 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
   const [slippageValue, setSlippageValue] = React.useState(0.5);
   const [slippageAuto, setSlippageAuto] = React.useState(false);
   useEffect(() => {
-    if (slippageAuto)
+    if (slippageAuto) {
       handleChangeSlippage(0.5)
+      setSlippageValue(0.5)
+    }
     else
       handleChangeSlippage(slippageValue)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slippageValue, slippageAuto])
+  useEffect(() => {
+    setSlippageAuto(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <CustomModal open={open} _close={handleClose} isShowCloseButton={true}>
@@ -37,58 +43,57 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
           </Box>
           <SlippageSwitch onChange={(e) => setSlippageAuto(e.target.checked)} />
         </Stack>
-        {!slippageAuto && (
-          <>
-            <Divider style={{ marginTop: 32 }} />
-            <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
-              <Typography color={'white'} variant="h6">
-                Slippage
-              </Typography>
-              {/* <Typography color={'white'} variant="h6">
+        <Divider style={{ marginTop: 32 }} />
+        <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
+          <Typography color={'white'} variant="h6">
+            Slippage
+          </Typography>
+          {/* <Typography color={'white'} variant="h6">
                 {slippageValue === 'custom' ? '--' : slippageValue} %
               </Typography> */}
-              <InputBase
+          <InputBase
+            sx={{
+              color: 'white',
+              fontWeight: 'bold',
+              '& input': {
+                textAlign: 'right'
+              }
+            }}
+            value={slippageValue}
+            placeholder={slippageValue === 'custom' ? 'Enter slippage' : slippageValue}
+            disabled={slippageAuto}
+            endAdornment={
+              <InputAdornment position="end">
+                <Typography color={'white'} variant="h6">%</Typography>
+              </InputAdornment>
+            }
+            onChange={(e) => setSlippageValue(e.target.value)}
+          />
+        </Stack>
+        <SlippageBox>
+          {slippageList.map((slippage) => (
+            <Stack
+              width={'33%'}
+              minWidth={'max-content'}
+              key={slippage.value}
+              className={slippageValue === slippage.value ? 'active' : ''}
+              onClick={() => {
+                if (!slippageAuto)
+                  setSlippageValue(slippage.value);
+              }}
+              sx={{ cursor: slippageAuto ? 'unset' : 'pointer' }}
+            >
+              <Typography
+                variant="body1"
                 sx={{
-                  color: 'white',
-                  fontWeight: 'bold',
-                  '& input': {
-                    textAlign: 'right'
-                  }
+                  color: '#9997',
                 }}
-                value={slippageValue}
-                placeholder={slippageValue === 'custom' ? 'Enter slippage' : slippageValue}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <Typography color={'white'} variant="h6">%</Typography>
-                  </InputAdornment>
-                }
-                onChange={(e) => setSlippageValue(e.target.value)}
-              />
+              >
+                {slippage.label}
+              </Typography>
             </Stack>
-            <SlippageBox>
-              {slippageList.map((slippage) => (
-                <Stack
-                  width={'33%'}
-                  minWidth={'max-content'}
-                  key={slippage.value}
-                  className={slippageValue === slippage.value ? 'active' : ''}
-                  onClick={() => {
-                    setSlippageValue(slippage.value);
-                  }}
-                >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: '#9997',
-                    }}
-                  >
-                    {slippage.label}
-                  </Typography>
-                </Stack>
-              ))}
-            </SlippageBox>
-          </>
-        )}
+          ))}
+        </SlippageBox>
       </SettingBox>
       {/* <Box textAlign={'right'}>
         <SwapButton
