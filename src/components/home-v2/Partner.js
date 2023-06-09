@@ -23,16 +23,16 @@ const CustomLogo = styled('img')(() => ({
 
 const partners = [
     {
-        label: 'suiwallet',
-        link: '',
-    },
-    {
-        label: 'suiet',
-        link: '',
+        label: 'navi',
+        link: 'https://www.naviprotocol.io/',
     },
     {
         label: 'turbos',
         link: 'https://turbos.finance/',
+    },
+    {
+        label: 'suiet',
+        link: 'https://suiet.app/',
     },
     {
         label: 'move-studio-ide',
@@ -48,7 +48,7 @@ const partners = [
     },
     {
         label: 'suiglobal',
-        link: '',
+        link: 'https://suiglobal.com/',
     },
     {
         label: 'okx',
@@ -80,7 +80,11 @@ const partners = [
     },
     {
         label: 'loa',
-        link: '',
+        link: 'https://legendofarcadia.io/',
+    },
+    {
+        label: 'suia',
+        link: 'https://suia.io/',
     },
 ];
 
