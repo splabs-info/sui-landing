@@ -8,12 +8,12 @@ import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 // import FreeMinting from 'pages/FreeMinting';
+import Bridge from 'modules/bridge/Bridge';
+import SwapPage from 'modules/swap/SwapPage';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
-import PreSales from 'pages/PreSales';
-import SwapPage from 'modules/swap/SwapPage';
-import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'pages/FreeMinting';
+import PreSales from 'pages/PreSales';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -29,6 +29,14 @@ export default function Router() {
       element: <ClientLayout />,
       children: [
         { path: '/', element: <HomepageV2 /> },
+        {
+          path: 'my-profile',
+          element: (
+            <Suspense>
+              <MyProfilePage />
+            </Suspense>
+          ),
+        },
         {
           path: 'ido-launchpad',
           element: (
