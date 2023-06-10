@@ -6,8 +6,8 @@ import './index.css';
 
 const config = {
   env: 'mainnet',
-  networks: ['ethereum', 'polygon', 'solana', 'bsc', 'sui'],
-  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'BNB', 'WBNB', 'BUSDT', 'SUI', 'USDT', 'USDC'],
+  networks: ['ethereum', 'polygon', 'solana', 'bsc', 'sui', "erc20"],
+  // tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC', 'BNB', 'WBNB', 'BUSDT', 'SUI', 'USDT', 'USDC'],
   rpcs: {
     // bsc: 'https://data-seed-prebsc-1-s1.binance.org:8545',
     // ethereum: 'https://rpc.ankr.com/eth',
