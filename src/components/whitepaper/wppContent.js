@@ -1100,6 +1100,7 @@ export const wppContent = [
           // 'Initial Marketcap : 500,000 USD',
         ],
       },
+      { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
       {
         title: 'Token Utility',
         list: [
@@ -1150,7 +1151,6 @@ export const wppContent = [
           'Liquidity Providing Program : Service Fee',
         ],
       },
-      { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
       // {
       //     title: 'About XUI Token',
       //     subtitle: 'Sui blockchain',

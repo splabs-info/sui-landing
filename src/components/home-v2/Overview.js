@@ -7,7 +7,7 @@ const networksNumber = [
     {
         src: '/images/icon/icon-overview-1.png',
         label: 'Blockchains',
-        amount: '18',
+        amount: '16',
     },
     {
         src: '/images/icon/icon-overview-2.png',

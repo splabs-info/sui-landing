@@ -33,7 +33,7 @@ const upComingIDOList = [
     description: [
       <>
         <p>1,000,000 SUI</p>
-        <p>Total Raise</p>
+        <p>TBA</p>
       </>,
       <>
         <p>0.25 USD</p>
@@ -55,7 +55,7 @@ const upComingIDOList = [
     description: [
       <>
         <p>600,000 SUI</p>
-        <p>Total Raise</p>
+        <p>TBA</p>
       </>,
       <>
         <p>0.2 USD</p>

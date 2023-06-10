@@ -1,3 +1,4 @@
+import FreeMinting from 'modules/free-minting/FreeMinting';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -7,9 +8,6 @@ import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
-import FreeMinting from 'pages/FreeMinting';
-import Claims from 'pages/Claims';
-import ClaimsDetail from 'pages/ClaimsDetail';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -53,7 +51,6 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <FreeMinting />
-                            {/* <ComingSoon /> */}
                         </Suspense>
                     ),
                 },

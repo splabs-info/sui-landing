@@ -27,15 +27,8 @@ const queryClient = new QueryClient();
 const SupportedChains = [SuiMainnetChain, SuiDevnetChain, SuiTestnetChain];
 
 export default function App() {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  // dispatch(_changeLanguage(localStorage.getItem('lang')));
-  // console.log("Version: 0.0.2")
-  // }, []);
-
   useEffect(() => {
-    console.log('Version: 0.0.3');
+    console.log('Version: 0.0.4 - Free-minting');
     localStorage.removeItem('lang');
   }, []);
 

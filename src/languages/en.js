@@ -11,7 +11,7 @@ export const en = {
   key_2: "IDO Launchpad",
   key_3: "INO Launchpad",
   key_4: "Staking",
-  key_5: "Claims",
+  key_5: "Claim",
   key_6: "SWAP",
   key_7: "Whitepaper",
   key_8: "Connect Wallet",
