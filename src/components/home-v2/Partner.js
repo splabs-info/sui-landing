@@ -118,7 +118,7 @@ export default function Partner() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                minHeight: '80px',
+                height: '88px',
               }}
             >
               <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
