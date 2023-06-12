@@ -13,22 +13,25 @@ function CustomInput({ handleDone, defaultValue, ...props }) {
   }, [defaultValue]);
 
   const handleInput = (value) => {
-    console.log(value);
     handleDone(value);
   };
 
   useEffect(() => {
-    if (inputValue) {
-      clearTimeout(typingTimerRef.current);
-
-      typingTimerRef.current = setTimeout(() => {
-        handleInput(inputValue);
-      }, 500);
-    }
+    clearTimeout(typingTimerRef.current);
+    typingTimerRef.current = setTimeout(() => {
+      handleInput(inputValue);
+    }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
-  return <InputBase type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} {...props} />;
+  return (
+    <InputBase
+      type="number"
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+      {...props}
+    />
+  );
 }
 
 export default CustomInput;
