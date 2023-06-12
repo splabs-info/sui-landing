@@ -124,7 +124,7 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         tx.setGasPayment(coinSuiObjectData);
 
         const balanceSplit = ethers.utils.parseUnits(
-            (parseFloat(data?.amount * toNumber(ratio)).toFixed(3)).toString(),
+            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
             decimals
         ).toString();
 
@@ -172,9 +172,37 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
 
 
     const handleSelectMax = () => {
-        setValue('amount', ((balances - 0.05) / toNumber(ratio) ), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+        setValue('amount', ((balances - 0.1) / toNumber(ratio)), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
         trigger('amount');
     };
+
+    const handleClaim = async () => {
+        const tx = new TransactionBlock();
+
+        tx.moveCall({
+            target: `${TXUI_PACKAGE}::launchpad_ido::claim_refund_payment_coin`,
+            typeArguments: [TXUI_PAYMENT_TYPE],
+            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name)],
+        });
+
+        try {
+            const result = await wallet.signAndExecuteTransactionBlock({
+                transactionBlock: tx,
+            });
+            if (result) {
+                setLoading(false);
+                toast.success('Buy token success');
+                reset({ amount: '' });
+            } else {
+                setLoading(false);
+                toast.error('Some thing went wrong');
+            }
+        } catch (e) {
+            setLoading(false);
+            toast.error('Transaction rejected');
+        }
+    }
+
     return (
         <StyledBuyTokenBox>
             <Stack>
@@ -300,6 +328,9 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
                         </StyledBuyTokenBtn>
                     </Stack>
                 </form>
+                <StyledBuyTokenBtn type="submit" onClick={handleClaim}>
+                    Claim
+                </StyledBuyTokenBtn>
             </Stack>
         </StyledBuyTokenBox>
     );

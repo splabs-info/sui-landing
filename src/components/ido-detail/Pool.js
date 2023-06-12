@@ -9,10 +9,10 @@ import { SuiContext } from 'provider/SuiProvider';
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
-
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     position: 'relative',
@@ -145,8 +145,6 @@ export const Pool = () => {
                     tokenType?.decimals
                 );
 
-                console.log('roundData___', roundData)
-
                 const newState = {
                     ...round,
                     tokenAddress: `0x${roundData?.token_type}`,
@@ -168,8 +166,6 @@ export const Pool = () => {
                     isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
                     isOpenClaimRefund: roundData?.is_open_claim_refund || null,
                     isPause: roundData?.is_pause || null,
-                    // maxAllocation: roundData?.max_allocation || null,
-                    // minAllocation: roundData?.min_allocation || null,
                     name: roundData?.name,
                     payments: roundData?.payments?.fields?.contents || [],
                     startAt: roundData?.start_at || null,
@@ -225,8 +221,7 @@ export const Pool = () => {
                                                 totalSold={round?.totalSold}
                                                 minPurchase={round?.minPurchase}
                                                 maxPurchase={round?.maxPurchase}
-                                                // maxAllocation={round?.maxAllocation}
-                                                // minAllocation={round?.minAllocation}
+
                                                 totalSupply={round?.totalSupply}
                                                 ratio={round?.ratio}
                                                 symbol={round?.symbol}
@@ -242,7 +237,6 @@ export const Pool = () => {
                                                 totalSold={round?.totalSold}
                                                 minPurchase={round?.minPurchase}
                                                 maxPurchase={round?.maxPurchase}
-                                                // minAllocation={round?.minAllocation}
                                                 totalSupply={round?.totalSupply}
                                                 ratio={round?.ratio}
                                                 endAt={round?.endAt}

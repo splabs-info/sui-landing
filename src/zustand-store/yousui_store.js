@@ -1,15 +1,33 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
-// import { createUserSlice } from './slices/user';
+import { devtools, persist } from 'zustand/middleware';
 import { createSaleSlice } from './slices/sales';
+import { createIdoSlice } from './slices/ido';
+const PERSISTED_KEYS = ['og-round'];
 
-export const useYouSuiStore= create()(
+export const localStorageMiddleware = (config) => (set, get, api) =>
+    config((args) => {
+        set(args);
+        localStorage.setItem('store', JSON.stringify(get(PERSISTED_KEYS)));
+    }, get, api);
+
+export const useYouSuiStore = create(
     devtools(
-        function (...a) {
-            return {
-                // ...createUserSlice(...a),
-                ...createSaleSlice(...a)
-            };
-        }
+        persist(
+            localStorageMiddleware((set, get, api) => {
+                let localStorageState = {};
+                try {
+                    localStorageState = JSON.parse(localStorage.getItem('yousui-storage')) ?? {};
+                } catch (e) {
+                    console.error("Can't access localStorage:", e);
+                }
+
+                return {
+                    ...localStorageState,
+                    ...createSaleSlice(set, get, api),
+                    ...createIdoSlice(set, get, api)
+                };
+            }),
+            { name: 'yousui-storage' }  // unique name
+        )
     )
 );

@@ -64,7 +64,6 @@ export const ImgTitleBox = styled(Box)(({ theme }) => ({
 export const TypographyGradient = styled(Typography)(({ theme }) => ({
     color: 'white',
     display: 'initial',
-    // background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
     background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',

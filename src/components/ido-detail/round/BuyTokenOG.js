@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-// import { IdoSchema } from '../validations';
+import { SaveObjectIDForm } from '../SaveObject';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -88,6 +88,11 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
             .max(convertMaxAllocation, `Per user can buy ${convertMaxAllocation} maximum of ${symbol} on this round.`)
             .required('Amount is required')
             .typeError('Must be number')
+            .test({
+                message: 'Your balance is not enough',
+                name: 'max',
+                test: (value) => parseFloat(value * toNumber(ratio)) < balances - 0.1,
+            })
     });
 
     const {
@@ -137,7 +142,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
         tx.setGasPayment(coinSuiObjectData);
 
         const balanceSplit = ethers.utils.parseUnits(
-            (parseFloat((data?.amount - 0.05) * toNumber(ratio)).toFixed(decimals)).toString(),
+            (parseFloat((data?.amount - 0.1) * toNumber(ratio)).toFixed(decimals)).toString(),
             decimals
         ).toString();
 
@@ -167,11 +172,12 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
                 sold(true)
             } else {
                 setLoading(false);
-                toast.error('Transaction rejected');
+                toast.error('Some thing went wrong');
             }
         } catch (e) {
             console.log('err', e)
             setLoading(false);
+            toast.error('Transaction rejected');
         }
     };
 
@@ -185,7 +191,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
 
     const canBuy = isCanBuy();
 
-    const handleSelectMax = () => {
+    const handleSelectMax = async () => {
         setValue('amount', ethers.utils.formatUnits(maxPurchase, decimals))
         trigger('amount');
     };
@@ -198,6 +204,8 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
             return `Your balance: ${balances} SUI`;
         }
     }, [balances, wallet?.address, wallet?.connected]);
+
+
 
     return (
         <StyledBuyTokenBox>
@@ -321,6 +329,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
                         </StyledBuyTokenBtn>
                     </Stack>
                 </form>
+                
             </Stack>
         </StyledBuyTokenBox>
     );
