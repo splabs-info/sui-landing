@@ -88,6 +88,8 @@ const partners = [
   },
   { label: 'wormhole', link: 'https://wormhole.com/' },
   { label: 'movebit', link: 'https://www.movebit.xyz/' },
+  { label: 'vedao', link: 'https://www.vedao.com/' },
+  { label: 'cubic', link: 'https://www.cubicgames.xyz/home' },
 ];
 
 export default function Partner() {
