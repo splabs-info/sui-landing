@@ -19,7 +19,7 @@ export default function Homepage_v2() {
                 <Ecosystem />
                 <Launchpad />
             </SectionBox>
-            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.png')", }}>
+            <SectionBox sx={{ backgroundImage: "url('/images/background/homebg3.png')", minHeight: '10vh' }}>
                 <Questions />
             </SectionBox>
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg4.png')", }}>

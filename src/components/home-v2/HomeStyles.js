@@ -6,6 +6,7 @@ export const SectionBox = styled(Box)(({ theme }) => ({
     backgroundSize: '100% 100%',
     backgroundPosition: 'center',
     position: 'relative',
+    minHeight: '80vh',
     '& .MuiContainer-root': {
         paddingTop: 96,
         paddingBottom: 64,
