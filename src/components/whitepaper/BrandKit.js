@@ -160,10 +160,20 @@ export function BrandKit() {
 
     return (
         <BrandKitBox>
-            <Typography variant="h3" color="white" fontWeight='700'>Brand Kit</Typography>
 
+            <Typography variant="h3" color="white" fontWeight='700' mb={2}>Community</Typography>
+            <Stack sx={{ flexDirection: { 'xs': 'column', 'sm': 'row' }, alignItems: 'flex-start' }}>
+                {socialList.map((item, index) =>
+                    <SocialLink key={index} href={item.link} target={'_blank'}>
+                        <Box component="img" src={item.src} alt={item.alt} />
+                        {item.alt}
+                    </SocialLink>
+                )}
+            </Stack>
+
+            <Typography variant="h3" color="white" fontWeight='700' mt={4} >Brand Kit</Typography>
             <Box mt={2} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Full Logo</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Full Logo</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={2}>
@@ -188,7 +198,7 @@ export function BrandKit() {
             </Grid>
 
             <Box mt={6} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Icon Only</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Icon Only</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={2}>
@@ -213,7 +223,7 @@ export function BrandKit() {
             </Grid>
 
             <Box mt={6} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Wordmark Only</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Wordmark Only</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={2}>
@@ -238,7 +248,7 @@ export function BrandKit() {
             </Grid>
 
             <Box mt={6} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Backgrounds</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Backgrounds</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={2}>
@@ -261,7 +271,7 @@ export function BrandKit() {
 
 
             <Box mt={6} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Brand Colors</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Brand Colors</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={2}>
@@ -269,7 +279,7 @@ export function BrandKit() {
                     <Grid item xs={12} sm={6} md={6} key={index}>
                         <BrandColorBox sx={{ background: item.hex }}>
                             <Box p={4}>
-                                <Typography variant="h6" fontWeight='600'>{item.name}</Typography>
+                                <Typography variant="h6" fontWeight='700'>{item.name}</Typography>
                                 <Typography variant="h6" fontWeight='800'>{item.hex}</Typography>
                             </Box>
                             <CopyComponent content={item.hex} />
@@ -283,7 +293,7 @@ export function BrandKit() {
                 ))}
                 <Grid item xs={12}>
                     <BrandGradientColorBox>
-                        <Typography variant="h6" fontWeight='600'>Primary Gradient</Typography>
+                        <Typography variant="h6" fontWeight='700'>Primary Gradient</Typography>
                         <Typography variant="h6" fontWeight='800'>#00F1F5 - #8A92FF</Typography>
                         <CopyComponent content={'linear-gradient(170deg, #00F1F5 0%, #8A92FF 80%)'} />
                     </BrandGradientColorBox>
@@ -292,7 +302,7 @@ export function BrandKit() {
 
 
             <Box mt={6} mb={4}>
-                <Typography variant="h4" color="white" fontWeight='600'>Typography</Typography>
+                <Typography variant="h4" color="white" fontWeight='700'>Typography</Typography>
                 <Divider sx={{ borderColor: 'white', borderWidth: '1px', width: '36px', mt: 1 }} />
             </Box>
             <Grid container spacing={4}>
@@ -315,15 +325,6 @@ export function BrandKit() {
                 </Grid>
             </Grid>
 
-            <Typography variant="h3" color="white" fontWeight='700' mt={6} mb={2}>Community</Typography>
-            <Stack sx={{ flexDirection: { 'xs': 'column', 'sm': 'row' }, alignItems: 'flex-start' }}>
-                {socialList.map((item, index) =>
-                    <SocialLink key={index} href={item.link} target={'_blank'}>
-                        <Box component="img" src={item.src} alt={item.alt} />
-                        {item.alt}
-                    </SocialLink>
-                )}
-            </Stack>
         </BrandKitBox>
     )
 

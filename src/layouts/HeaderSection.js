@@ -70,9 +70,8 @@ const StyledBtnBorderGreen = styled(Button)(({ theme }) => ({
   fontWeight: 'bold',
   fontSize: 14,
   color: 'rgba(255, 255, 255, 1)',
-  paddingRight: 18,
-  paddingLeft: 18,
-
+  padding: '8px 18px',
+  maxHeight: '40px',
   '::before': {
     content: "''",
     position: 'absolute',
@@ -103,7 +102,6 @@ export default function HeaderHome() {
   const isTablet = useResponsive(`down`, `md`);
   const [openConnectPopup, setOpenConnectPopup] = useState();
   const [walletAddress, setWallet] = useState();
-  const [openCreateProfile, setOpenCreateProfile] = useState();
   const [openWalletDrawer, setOpenWalletDrawer] = useState();
   const [scrollPositionToggle, setScrollPositionToggle] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -172,6 +170,7 @@ export default function HeaderHome() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -179,6 +178,7 @@ export default function HeaderHome() {
       setWallet(address || wallet?.address);
       setOpenConnectPopup(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, wallet?.address]);
 
   const activeRoute = '/coming-soons';
@@ -202,7 +202,7 @@ export default function HeaderHome() {
                 alignSelf: 'stretch',
                 alignItems: 'center',
                 textTransform: 'uppercase',
-                fontSize: '0.9rem',
+                fontSize: '14px',
               }}
             >
               {isDesktop && library[item.label] === 'Crew3' ? (
@@ -242,9 +242,9 @@ export default function HeaderHome() {
     >
       <SocialBox
         sx={{
-          gap: '1rem',
+          gap: '8px',
           '& img': {
-            width: '100%',
+            width: '90%',
           },
         }}
       >
@@ -319,7 +319,7 @@ export default function HeaderHome() {
         <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
           <Container
             maxWidth={'xl'}
-            sx={{ display: 'flex', alignItems: 'center', height: 40, justifyContent: 'space-between' }}
+            sx={{ display: 'flex', alignItems: 'center', height: 36, justifyContent: 'space-between' }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <EmailIcon sx={{ color: 'rgba(255, 255, 255, 1)', fontSize: 18, marginRight: '8px' }} />
@@ -347,7 +347,7 @@ export default function HeaderHome() {
           className={scrollPositionToggle ? 'sticky-scroll' : ''}
         >
           <Navbar>
-            <Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px', transform: 'scale(1.5)' } }} />
+            <Logo sx={{ width: { md: '120px', sm: '100px', xs: '100px', transform: 'scale(1.3)' } }} />
             <Box
               sx={{
                 display: 'inline-flex',
@@ -363,7 +363,7 @@ export default function HeaderHome() {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    mr: 5,
+                    mr: 2,
                   }}
                 >
                   <MenuHeaderBox />
@@ -372,7 +372,7 @@ export default function HeaderHome() {
                   <FrameButton
                     onClick={handleOpenConnectPopup}
                     open={openConnectPopup}
-                    sx={{ fontSize: 14, width: 156, height: 64 }}
+                    sx={{ fontSize: 14, width: 140, height: 56, }}
                   >
                     Connect Wallet
                   </FrameButton>
@@ -381,7 +381,6 @@ export default function HeaderHome() {
                 <StyledBtnBorderGreen
                   size="large"
                   onClick={() => navigate('/my-profile')}
-                  sx={{ paddingRight: 3.5, paddingLeft: 3.5 }}
                 >
                   My Page
                 </StyledBtnBorderGreen>

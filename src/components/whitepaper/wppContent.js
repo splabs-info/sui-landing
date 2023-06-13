@@ -1088,17 +1088,13 @@ export const wppContent = [
       {
         title: 'Token Distribution',
         list: [
-          <>
-            Token Details : <highline>**based on Total Supply at Genesis</highline>{' '}
-          </>,
           'Token Detail: **based on Total Supply at Genesis',
           'Ticker : XUI',
           'Standard : Sui Blockchain',
           'Max Supply & Total Supply : 100,000,000 XUI',
-          'Initial Circulating Supply on Day 1 : 2,000,000 XUI',
+          'Initial Circulating Supply on Day 1 : 1,960,000 XUI',
           'Public Launch Allocation (%) : 1,000,000 XUI (1%)',
           'Public Launch price: $ 0.25',
-          // 'Initial Marketcap : 500,000 USD',
         ],
       },
       { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
@@ -1120,18 +1116,17 @@ export const wppContent = [
       {
         title: 'Token Vesting Schedule',
         list: [
-          'Pre-Seed: 3% TGE Unlock, 5 months cliff, Monthly vesting over 18 months',
+          'Pre-Seed: 4% TGE Unlock, 4 months cliff, Monthly vesting over 18 months',
           'Seed: 4% TGE Unlock, 4 months cliff, Monthly vesting over 18 months',
           'Private: 5% TGE Unlock, 3 months cliff, Monthly vesting over 16 months',
           'Marketing & Development: 3 months cliff. Quaterly vesting over 24 months',
-          'Liquidity Fund: 20% TGE Unlock, 3 months cliff. Monthly vesting over 48 months',
+          'Liquidity Fund: 20% TGE Unlock. Monthly vesting over 36 months',
           'Ecosystem Fund: 6 months cliff. Monthly vesting over 48 months',
           'Insurance & Reserve: 12 months cliff. Monthly vesting over 48 months',
           'Team: 12 months cliff. Monthly vesting over 48 months',
-          'Advisory: Monthly vesting over 60 months',
+          'Advisory & Partners : 12 months cliff. Monthly vesting over 48 months',
           'Mining Pool: Monthly vesting over 60 months',
-          'Treasury Pool: Monthly vesting over 60 months',
-          'IDO: 20% TGE Unlock, Monthly vesting over 8 months',
+          'IDO: 20% TGE Unlock. Monthly vesting over 8 months',
           'CGF (Community Growth Fund): Monthly vesting over 60 months',
           'Ambassador & Yield Faming Incentives: Monthly vesting over 60 months',
           'Governance: 12 months cliff. Monthly vesting over 48 months',
@@ -1418,16 +1413,6 @@ export const wppContent = [
       {
         content: [
           <BrandKit />
-
-          // <a href="https://twitter.com/YouSUI_Global" target="_blank" rel="noreferrer" className="icon-link">
-          //   <img src="/images/icon/logo-twitter.svg" alt="" /> Twitter
-          // </a>,
-          // <a href="https://medium.com/@YouSUI" target="_blank" rel="noreferrer" className="icon-link">
-          //   <img src="/images/icon/logo-medium.svg" alt="" /> Medium
-          // </a>,
-          // <a href="https://discord.gg/yousui" target="_blank" rel="noreferrer" className="icon-link">
-          //   <img src="/images/icon/logo-discord.svg" alt="" /> Discord
-          // </a>,
         ],
       },
     ],

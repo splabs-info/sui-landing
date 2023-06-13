@@ -113,8 +113,8 @@ export const FrameButton = styled(Button)(({ theme }) => ({
     width: 220,
     height: 90,
     color: Color.text,
-    fontFamily: 'SVN-Gilroy-heavy',
     fontSize: '1rem',
+    fontWeight: 700,
     textDecoration: 'none',
     '&:hover': {
         background: 'url(/images/background/btn-sui.png)',
