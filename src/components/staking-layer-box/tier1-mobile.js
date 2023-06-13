@@ -118,7 +118,7 @@ export const Tier1Mobile = () => {
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <StakingAmount>120.000</StakingAmount>
                             <img
-                                src="/YouSUI-token.png"
+                                src="/images/home/YouSUI-token.png"
                                 alt="token"
                                 style={{
                                     width: isMobile ? 40 : 56,
@@ -131,7 +131,7 @@ export const Tier1Mobile = () => {
 
                 <Lottery>LOTTERY</Lottery>
                 <img
-                    src="Tier-1.png"
+                    src="/images/staking/tier-1.png"
                     alt="tier-1"
                     style={{
                         width: isMobile ? 180 : 240,

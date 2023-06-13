@@ -18,15 +18,15 @@ import Logo from 'components/common/Logo';
 const joinGateKeeper = [
 	{
 		label: 'key_15',
-		link: '/ido-launchpad',
+		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
 	},
 	{
 		label: 'key_16',
-		link: '/coming-soon',
+		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
 	},
 	{
 		label: 'key_17',
-		link: '/coming-soon',
+		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
 	},
 	{
 		label: 'key_Staking',
@@ -38,14 +38,14 @@ const joinGateKeeper = [
 	},
 	{
 		label: 'key_19',
-		link: '/coming-soon',
+		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
 	},
 ];
 
 const aboutGateKeeper = [
 	{
 		label: 'key_11',
-		link: '/whitepaper',
+		link: '/whitepaper/tokenomics',
 	},
 	{
 		label: 'key_12',
@@ -65,11 +65,11 @@ const aboutGateKeeper = [
 	},
 	{
 		label: 'MEDIA_KIT',
-		link: '/coming-soon',
+		link: '/whitepaper/brand-kit-and-community',
 	},
 	{
 		label: 'bridge',
-		link: '/coming-soon',
+		link: '/bridge',
 	},
 ];
 
@@ -92,7 +92,7 @@ export const socials = [
 	},
 ];
 
-export default function FooterV2() {
+export default function FooterSection() {
 	const dispatch = useDispatch();
 	const { setting } = useSelector((state) => state);
 	const { library } = setting;

@@ -147,9 +147,7 @@ export default function Intro() {
                     }
                   }}
                 >
-                  {/* <img alt="gatekeeper" src="/images/home/Sui Blockchain.png" height={isMobile ? 40 : 60} />
-                <img alt="gatekeeper" src="/images/home/gateio.png" height={isMobile ? 40 : 60} /> */}
-                  <img alt="sui" src="/whitelogo.png" width={isMobile ? 60 : 80} />
+                  <img alt="sui" src="/images/partner/sui.png" width={isMobile ? 60 : 80} />
                 </Box>
               </Box>
               <Box

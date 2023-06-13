@@ -9,7 +9,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
     padding: '48px 32px',
     display: 'flex',
     justifyContent: 'space-between',
-    background: `url('/apply-as-project.svg')`,
+    background: `url('/images/ino/apply-as-project.svg')`,
     backgroundRepeat: 'no-repeat',
     objectFit: 'contain',
     backgroundSize: 'cover',
@@ -61,7 +61,7 @@ const ApplyAsProject = () => {
                 </Box>
                 <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                     <ApplyButton
-                        startIcon={<img src="/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}
+                        startIcon={<img src="/images/ino/arrow.svg" alt="" style={{ width: 24, height: 24 }} />}
                     // onClick={() => navigate('/')}
                     >
                         Apply Now

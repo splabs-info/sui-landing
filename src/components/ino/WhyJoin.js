@@ -8,25 +8,25 @@ const whyJoinData = [
         id: 1,
         title: 'Early Access',
         caption: 'The best NFT collections, available to you before they grow popular and out of reach.',
-        icon: '/wallet.svg',
+        icon: '/images/ino/wallet.svg',
     },
     {
         id: 2,
         title: 'Best Prices',
         caption: 'By buying earlier you secure a low price that will make sure you maximize your returns.',
-        icon: '/money.svg',
+        icon: '/images/ino/money.svg',
     },
     {
         id: 3,
         title: 'Project Due Diligence',
         caption: 'Only the most solid projects with the best capacity to deliver are able to launch with us.',
-        icon: '/search.svg',
+        icon: '/images/ino/search.svg',
     },
     {
         id: 4,
         title: 'Exclusive Projects',
         caption: 'Some NFTs will be exclusive to our platform, so that is your only chance to get them.',
-        icon: '/medal.svg',
+        icon: '/images/ino/medal.svg',
     },
 ];
 export default function WhyJoin() {
@@ -35,7 +35,6 @@ export default function WhyJoin() {
 
     return (
         <Box mb={20} mt={10} position="relative">
-            {/* <Link to="/"> */}
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Why Join</Typography>

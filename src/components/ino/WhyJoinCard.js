@@ -25,12 +25,6 @@ const WhyJoinCardWrapper = styled(Box)(({ theme }) => ({
         '& div> svg> defs > linearGradient > stop': {
             stopColor: '#42EECF',
         },
-        // '&:before': {
-        //     position: 'absolute',
-        //     bottom: '1rem',
-        //     right: '1rem',
-        //     content: 'url("/images/home/arrow.png")',
-        // },
     },
     '& div> svg> defs > linearGradient > stop': {
         stopColor: '#000F28',

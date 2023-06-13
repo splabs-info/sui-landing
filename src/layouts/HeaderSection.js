@@ -94,7 +94,7 @@ const CustomLink = styled('a')(({ theme }) => ({
   '&:hover': { color: 'rgba(255, 255, 255, 1) !important' },
 }));
 
-export default function HeaderHome() {
+export default function HeaderSection() {
   const { address } = useContext(WalletContext);
   const wallet = useWallet();
   const { setting } = useSelector((state) => state);

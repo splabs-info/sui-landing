@@ -6,7 +6,7 @@ import { HowToJoinCard } from './HowToJoinCard';
 const howToJoinData = [
     {
         id: 1,
-        icon: '/wallet-ino.svg',
+        icon: '/images/ino/wallet-ino.svg',
         title: 'Purchase XUI Token ',
         caption:
             "XUI is YouSUI's ecosystem token that will empower its holders to join IGOs and INOs and enjoy tremendous advantages through Staking/Farming",
@@ -15,7 +15,7 @@ const howToJoinData = [
     },
     {
         id: 2,
-        icon: '/currency.svg',
+        icon: '/images/ino/currency.svg',
         title: 'Stake or Farm your XUI',
         caption:
             'By staking a large amount of XUI, you can qualify for a higher tier and participate in INO at a slightly more reasonable price.',
@@ -24,7 +24,7 @@ const howToJoinData = [
     },
     {
         id: 3,
-        icon: '/ticket.svg',
+        icon: '/images/ino/ticket.svg',
         title: 'Only Whitelisted Country',
         caption:
             'Complete the Pre-KYC process before participating in INO. There must be countries that cannot participate in INO through the Pre-KYC system.',
@@ -34,7 +34,7 @@ const howToJoinData = [
 
     {
         id: 4,
-        icon: '/check.svg',
+        icon: '/images/ino/check.svg',
         title: "You're all set!",
         caption:
             'Now you just need to wait for the release of the whitelist to purchase your favorite NFT at the best price',
@@ -42,7 +42,7 @@ const howToJoinData = [
         btnDirection: '',
     },
 ];
-export default function JoinAnIDO() {
+export default function HowToJoin() {
     const isMobile = useResponsive('down', 1440);
 
     return (
@@ -75,7 +75,7 @@ export default function JoinAnIDO() {
                     ))}
                 </Grid>
                 <Hidden smDown> <img
-                    src="/how-join.svg"
+                    src="/images/ino/how-join.svg"
                     alt=""
                     style={{
                         width: 720,

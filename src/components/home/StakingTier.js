@@ -62,14 +62,14 @@ export default function StakingTier() {
                     <Tier2n3
                         tier="Tier 2"
                         stakingAmount="40.000"
-                        logo="tier-2.png"
+                        logo="/images/staking/tier-2.png"
                         sx={{
                             [theme.breakpoints.down(1400)]: {
                                 marginBottom: '24px',
                             },
                         }}
                     />
-                    <Tier2n3 tier="Tier 3" stakingAmount="15.000" logo="tier-3.png" />
+                    <Tier2n3 tier="Tier 3" stakingAmount="15.000" logo="/images/staking/tier-3.png" />
                 </Box>
 
                 <Box
@@ -91,20 +91,20 @@ export default function StakingTier() {
                     <Tier4n5
                         tier="Tier 4"
                         stakingAmount="10.000"
-                        logo="tier-4.png"
+                        logo="/images/staking/tier-4.png"
                         sx={{
                             [theme.breakpoints.down(1400)]: {
                                 marginBottom: '24px',
                             },
                         }}
                     />
-                    <Tier4n5 tier="Tier 5" stakingAmount="3.000" logo="tier-5.png" />
+                    <Tier4n5 tier="Tier 5" stakingAmount="3.000" logo="/images/staking/tier-5.png" />
                 </Box>
             </Stack>
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
                 <StakingBtn onClick={() => navigate('/staking')}>
                     <img
-                        src="/YouSUI-token.png"
+                        src="/images/home/YouSUI-token.png"
                         alt="token"
                         style={{
                             width: 24,

@@ -2,7 +2,6 @@ import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
 import { IconDownload } from "@tabler/icons";
 import CopyComponent from "components/common/CopyComponent";
 import { BrandColorBox, BrandGradientColorBox, BrandKitBox, DownloadBox, DownloadButton, FontLink, SocialLink, TypographyBox } from "./wppStyled";
-import { SocialBox } from "components/footer/FooterStyles";
 
 const socialList = [
     {
