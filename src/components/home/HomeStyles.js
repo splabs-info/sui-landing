@@ -11,14 +11,7 @@ export const SectionBox = styled(Box)(({ theme }) => ({
         paddingTop: 96,
         paddingBottom: 64,
     },
-    [theme.breakpoints.up('lg')]: {
-        '& .MuiContainer-root': {
-            paddingTop: 96,
-            paddingBottom: 64,
-        },
-    },
     [theme.breakpoints.down('md')]: {
-        // backgroundSize: 'cover',
     },
 }));
 
@@ -66,7 +59,6 @@ export const ImgTitleBox = styled(Box)(({ theme }) => ({
 export const TypographyGradient = styled(Typography)(({ theme }) => ({
     color: 'white',
     display: 'initial',
-    // background: 'linear-gradient(to right, #81ECC5 0%, #94CBFF 100%)',
     background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
@@ -160,7 +152,6 @@ export const NetworkBox = styled(Box)(({ theme }) => ({
     marginTop: '2rem',
     '& a': {
         background: 'rgba(50,53,96,0.33)',
-        // margin: "0.3rem",
         padding: '1rem',
         display: 'flex',
         justifyContent: 'center',
@@ -265,7 +256,6 @@ export const CustomTabList = styled(TabList)(({ theme }) => ({
             inset: '0px',
             borderRadius: '8px',
             padding: ' 1px',
-            // background: Background.gradientBorder,
             background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
             WebkitMask:
                 'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
@@ -350,59 +340,6 @@ export const QuestionsButton = styled(Button)(({ theme }) => ({
             fontSize: '11px',
         },
     },
-    // padding: '1.5rem',
-    // color: alpha('#fff', 1),
-    // margin: '8px',
-    // borderRadius: '8px',
-    // zIndex: '1',
-    // boxShadow: '0 0 5px 2px rgba(45,145,200,0.3)',
-    // textAlign: 'center',
-    // width: '23%',
-    // '& span': {
-    //     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-    //     opacity: '0.3',
-    //     borderRadius: '8px',
-    // },
-    // '&::before': {
-    //     content: "''",
-    //     position: 'absolute',
-    //     inset: '0px',
-    //     borderRadius: '8px',
-    //     padding: ' 1px',
-    //     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-    //     WebkitMask:
-    //         'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-    //     WebkitMaskComposite: 'xor',
-    //     zIndex: '0',
-    // },
-    // '& .MuiTypography-body1': {
-    //     fontSize: '0.95rem',
-    //     fontWeight: 'bold',
-    //     whiteSpace: 'nowrap',
-    // },
-    // '& .MuiTypography-body2': {
-    //     fontSize: '0.8rem',
-    // },
-    // '&:hover': {
-    //     '& span': {
-    //         background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
-    //         opacity: '0.8',
-    //         zIndex: '-1',
-    //     },
-    // },
-    // [theme.breakpoints.down('md')]: {
-    //     width: '47%',
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //     width: '45%',
-    //     padding: '.75rem 0.75rem',
-    //     '& .MuiTypography-body1': {
-    //         fontSize: '0.8rem',
-    //     },
-    //     '& .MuiTypography-body2': {
-    //         fontSize: '0.6rem',
-    //     },
-    // },
 }));
 
 export const CustomTabPanel = styled(TabPanel)(({ theme }) => ({

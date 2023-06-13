@@ -238,7 +238,7 @@ export const wppContent = [
     category: 'Roadmap',
     description: [
       {
-        title: 'Q1 2022 - DONE',
+        title: 'Q1 2023 - DONE',
         content: ['Smart-Contract Deployment (Test-net)', 'Whitepaper', 'Initiate Development', 'Web3 Build-Up'],
       },
       {

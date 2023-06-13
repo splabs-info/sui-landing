@@ -1,5 +1,4 @@
 import { Box, Container, Stack, styled, Typography } from '@mui/material';
-import { useWallet } from '@suiet/wallet-kit';
 import Page from 'components/common/Page';
 import {
   ButtonTitleBox,
@@ -12,24 +11,14 @@ import {
   TypographyGradient,
 } from 'components/home/HomeStyles';
 import { questionsList } from 'components/home/Questions';
-import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import { Link } from 'react-router-dom';
-import { WalletDrawer } from 'components/drawer';
-import React from 'react';
 
 export default function IDOLaunchpad() {
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
-  const [openWalletDrawer, setOpenWalletDrawer] = React.useState();
-
-  const wallet = useWallet();
-
-  // const handleConnect = () => {
-
-  // }
   return (
     <Page title="IDO list">
       <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
@@ -51,13 +40,9 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            {/* {!wallet?.connected || wallet?.status === 'disconnected' ? (
-                            <FrameButton onClick={() => setOpenWalletDrawer(!openWalletDrawer)}>Buy $ XUI</FrameButton>
-                        ) : ( */}
             <Link to={'/ido-launchpad/buy-token'}>
               <FrameButton>Buy $ XUI</FrameButton>
             </Link>
-            {/* )} */}
             <Link to={'/whitepaper'}>
               <FrameButton>Whitepaper</FrameButton>
             </Link>
@@ -73,21 +58,10 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          {/* <OnGoingPools /> */}
           <UpComingPools />
           <PreviousPools />
         </Container>
       </SectionBox>
-      {/* 
-            {wallet?.status === 'disconnected' &&
-                (!wallet?.connected && (
-                    <WalletDrawer
-                        address={wallet?.address}
-                        open={openWalletDrawer}
-                        handleClose={setOpenWalletDrawer}
-                        disconnectSui={wallet?.disconnectSui}
-                    />
-                ))} */}
     </Page>
   );
 }

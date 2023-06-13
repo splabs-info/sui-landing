@@ -164,7 +164,7 @@ export function BrandKit() {
             <Typography variant="h3" color="white" fontWeight='700' mb={2}>Community</Typography>
             <Stack sx={{ flexDirection: { 'xs': 'column', 'sm': 'row' }, alignItems: 'flex-start' }}>
                 {socialList.map((item, index) =>
-                    <SocialLink key={index} href={item.link} target={'_blank'}>
+                    <SocialLink key={index} href={item.href} target="_blank" rel="noreferrer">
                         <Box component="img" src={item.src} alt={item.alt} />
                         {item.alt}
                     </SocialLink>
