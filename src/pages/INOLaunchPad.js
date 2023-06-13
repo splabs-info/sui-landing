@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Typography, styled } from '@mui/material';
 import Page from 'components/common/Page';
-import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home-v2/HomeStyles';
+import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home/HomeStyles';
 import ApplyAsProject from 'components/ino/ApplyAsPorject';
 import JoinAnIDO from 'components/ino/JoinAnIDO';
 import OnGoing from 'components/ino/OnGoing';

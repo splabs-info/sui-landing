@@ -5,7 +5,7 @@ import { BorderGradientButton, GradientLoadingButton } from 'components/common/C
 import CustomModal from 'components/common/CustomModal';
 import Page from 'components/common/Page';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
@@ -481,7 +481,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>

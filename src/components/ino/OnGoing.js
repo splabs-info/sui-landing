@@ -4,7 +4,7 @@ import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { GradientShadowTypography, ShadowTypography } from 'components/common/CustomTypography';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { FreeMintingHelper } from 'modules/free-minting/init';
 import { useEffect, useState } from 'react';

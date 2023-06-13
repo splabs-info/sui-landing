@@ -54,7 +54,7 @@ export default function WhitepaperContent() {
 
     return (
         <Box pt={isDesktop ? 15 : 10} pb={isDesktop ? 15 : 10}>
-            <Container>
+            <Container maxWidth={'xl'}>
                 <TitleBox textAlign={'center'} display={'flex'} flexDirection={'column'} alignItems={'center'}>
                     <TypographyGradient
                         sx={{
@@ -103,7 +103,7 @@ export default function WhitepaperContent() {
                                 <TitleText variant="h3" pt={'0!important'}>
                                     {item.category}
                                 </TitleText>
-                                <Divider sx={{ borderColor: '#D0C4FC', opacity: 0.7, mb: 2, mt: 1 }} />
+                                <Divider sx={{ borderColor: '#73A2FD', opacity: 0.7, mt: 1 }} />
                                 {item.description.map((desc, j) => (
                                     <Box key={j}>
                                         <TitleText variant="h5" color="secondary">

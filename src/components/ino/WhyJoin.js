@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { WhyJoinCard } from './WhyJoinCard';
 

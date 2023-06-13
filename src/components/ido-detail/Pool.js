@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
-import { SocialFooter } from 'layouts/Footer-v2';
+import { SocialFooter } from 'layouts/FooterSection';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',

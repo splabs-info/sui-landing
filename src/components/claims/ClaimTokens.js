@@ -4,7 +4,7 @@ import { Box, Divider, Grid, Hidden, InputAdornment, Stack, TextField, Typograph
 import { IconSearch } from '@tabler/icons';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { GradientButton } from 'components/common/CustomButton';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

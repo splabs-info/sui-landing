@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, Link, styled, Typography } from '@mui/material';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import StakingForm from 'components/staking/StakingForm';
 import useResponsive from 'hooks/useResponsive';
 import { fCurrency } from 'utils/format';

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Stack, Typography } from '@mui/material';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import { UpComingINOCard } from './UpComingINOCard';
 const upComingINOList = [
   {
@@ -14,15 +14,15 @@ const upComingINOList = [
     link: '/ino-launchpad/free-minting-nft',
 
   },
-//   {
-//     title: 'HooD',
-//     avatar: '/images/ino/ino-upcoming-2.jpg',
-//     hardCap: '2000',
-//     access: 'Tier 1-5',
-//     releaseTime: 'Official Launch: July 25th',
-//     status: false,
-//     link: '',
-//   },
+  //   {
+  //     title: 'HooD',
+  //     avatar: '/images/ino/ino-upcoming-2.jpg',
+  //     hardCap: '2000',
+  //     access: 'Tier 1-5',
+  //     releaseTime: 'Official Launch: July 25th',
+  //     status: false,
+  //     link: '',
+  //   },
   // {
   //   title: 'Vibe Fi',
   //   avatar: '/images/ino/ino-upcoming-3.jpg',

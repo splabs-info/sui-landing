@@ -1,4 +1,5 @@
 import { IconSquare, IconSquareCheck } from '@tabler/icons';
+import { BrandKit } from './BrandKit';
 export const wppContent = [
   {
     id: 'introduction-of-yousui',
@@ -1416,15 +1417,17 @@ export const wppContent = [
     description: [
       {
         content: [
-          <a href="https://twitter.com/YouSUI_Global" target="_blank" rel="noreferrer" className="icon-link">
-            <img src="/images/icon/logo-twitter.svg" alt="" /> Twitter
-          </a>,
-          <a href="https://medium.com/@YouSUI" target="_blank" rel="noreferrer" className="icon-link">
-            <img src="/images/icon/logo-medium.svg" alt="" /> Medium
-          </a>,
-          <a href="https://discord.gg/yousui" target="_blank" rel="noreferrer" className="icon-link">
-            <img src="/images/icon/logo-discord.svg" alt="" /> Discord
-          </a>,
+          <BrandKit />
+
+          // <a href="https://twitter.com/YouSUI_Global" target="_blank" rel="noreferrer" className="icon-link">
+          //   <img src="/images/icon/logo-twitter.svg" alt="" /> Twitter
+          // </a>,
+          // <a href="https://medium.com/@YouSUI" target="_blank" rel="noreferrer" className="icon-link">
+          //   <img src="/images/icon/logo-medium.svg" alt="" /> Medium
+          // </a>,
+          // <a href="https://discord.gg/yousui" target="_blank" rel="noreferrer" className="icon-link">
+          //   <img src="/images/icon/logo-discord.svg" alt="" /> Discord
+          // </a>,
         ],
       },
     ],

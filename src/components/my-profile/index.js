@@ -3,7 +3,7 @@ import { Box, CircularProgress, Container, Stack, Typography } from '@mui/materi
 import { styled } from '@mui/material/styles';
 import { useWallet } from '@suiet/wallet-kit';
 import { CreateProfilePopup } from 'components';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
 import { isNull } from 'lodash';
 import React, { useContext, useState } from 'react';

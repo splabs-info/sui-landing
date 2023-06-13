@@ -1,6 +1,6 @@
 import { Box, Container } from '@mui/material';
 import { styled } from '@mui/system';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 
 const ContainerPartner = styled(Box)(({ theme }) => ({
   display: 'grid',

@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material';
 import { TitleSection } from 'components/my-profile/TitleSection';
-import { SocialFooter } from 'layouts/Footer-v2';
+import { SocialFooter } from 'layouts/FooterSection';
 import { PoolInformationCard } from './PoolInfoCard';
 import { TokenInformationCard } from './TokenInfoCard';
 export const PoolInformation = ({ ratio, minPurchase, maxPerUser }) => {

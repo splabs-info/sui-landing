@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Outlet } from 'react-router-dom';
-import FooterV2 from './Footer-v2';
-import HeaderHome from './HeaderHome';
+import Footer from './FooterSection';
+import HeaderHome from './HeaderSection';
 
 const RootStyle = styled('div')({
     background: '#121A27',
@@ -21,7 +21,7 @@ export default function ClientLayout() {
             <MainStyle>
                 <Outlet />
             </MainStyle>
-            <FooterV2 />
+            <Footer />
         </RootStyle>
     );
 }

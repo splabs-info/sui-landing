@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import VestingTokens from 'components/claims/VestingTokens';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 export default function ClaimsDetail() {
 

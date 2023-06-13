@@ -10,8 +10,8 @@ import {
   TextTypography,
   TitleBox,
   TypographyGradient,
-} from 'components/home-v2/HomeStyles';
-import { questionsList } from 'components/home-v2/Questions';
+} from 'components/home/HomeStyles';
+import { questionsList } from 'components/home/Questions';
 import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';

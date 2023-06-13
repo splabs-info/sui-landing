@@ -3,7 +3,7 @@ import { Box, Divider, Grid, Hidden, Typography, styled } from '@mui/material';
 import { BorderGradientButton, GradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import useResponsive from 'hooks/useResponsive';
-import { SocialFooter } from 'layouts/Footer-v2';
+import { SocialFooter } from 'layouts/FooterSection';
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatAmount } from 'setting/format';
 import { TokenPoolBox } from './ClaimTokens';

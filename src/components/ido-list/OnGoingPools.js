@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Grid, Typography, styled } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SuiContext } from 'provider/SuiProvider';
@@ -43,7 +43,7 @@ export default function OnGoingPools() {
   const [maxPerUser, setMaxPerUser] = React.useState();
 
   const { provider } = React.useContext(SuiContext);
- 
+
   React.useEffect(() => {
     const fetchPoolData = async () => {
       const txn = await provider.getObject({

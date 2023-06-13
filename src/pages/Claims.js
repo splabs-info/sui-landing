@@ -2,7 +2,7 @@
 import { Box, Container } from '@mui/material';
 import ClaimTokens from 'components/claims/ClaimTokens';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 
 export default function Claims() {

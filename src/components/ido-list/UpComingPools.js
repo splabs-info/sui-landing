@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import { UpComingIDOCard } from './UpComingIDOCard';
 
 const upComingIDOList = [

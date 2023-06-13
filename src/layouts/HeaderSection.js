@@ -33,7 +33,7 @@ import { AppConfig } from '../setting';
 import EmailIcon from '@mui/icons-material/Email';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { FrameButton } from 'components/home-v2/HomeStyles';
+import { FrameButton } from 'components/home/HomeStyles';
 const config = [
   { label: 'key_2', link: '/ido-launchpad' },
   { label: 'key_3', link: '/ino-launchpad' },

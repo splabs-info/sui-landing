@@ -4,7 +4,7 @@ import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
-import HomepageV2 from './pages/Homepage-v2';
+import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
@@ -22,7 +22,7 @@ export default function Router() {
       path: '/',
       element: <ClientLayout />,
       children: [
-        { path: '/', element: <HomepageV2 /> },
+        { path: '/', element: <Homepage /> },
         {
           path: 'my-profile',
           element: (

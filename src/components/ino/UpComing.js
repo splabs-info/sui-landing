@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Stack, Typography } from '@mui/material';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import { UpComingINOCard } from './UpComingINOCard';
 const upComingINOList = [
   // {
