@@ -6,7 +6,7 @@ import useResponsive from 'hooks/useResponsive';
 const saleInformation = [
     {
         label: 'Condition:',
-        value: 'Buy by Ref Links',
+        value: 'Ref Links',
     },
     {
         label: 'Minimum Allcation:',

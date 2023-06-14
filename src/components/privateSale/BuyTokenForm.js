@@ -93,8 +93,8 @@ export const BuyTokenForm = () => {
         <Typography sx={{ marginRight: 2, minWidth: 64 }}>NOTICE:</Typography>
         <Box>
           <Typography variant='body2'>
-            Token Distribution Logic : FCFSTGE
-            <br />Claim time :
+            Token Distribution Logic : FCFS
+            <br />TGE Claim time :
             <br /> Time to swap BXUI to XUI:
             <br />Multiple purchases per wallet</Typography>
         </Box>

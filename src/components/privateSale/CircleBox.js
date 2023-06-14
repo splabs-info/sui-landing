@@ -55,7 +55,7 @@ export const CircleBox = () => {
                         radius={75} percent={60}
                     />
                     <Typography variant='body1' fontWeight={'bold'} textAlign={'center'}>
-                        <span style={{ color: '#1FD8D1' }}> 300,000 </span>/ 500,000 SUI
+                        <span style={{ color: '#1FD8D1' }}> 300,000 </span>/ 500,000 USDT
                     </Typography>
                 </Stack>
                 <Stack spacing={isMobile ? 1 : 3} >
@@ -63,14 +63,14 @@ export const CircleBox = () => {
                         <img src='/images/icon/icon-package.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Pool's remaining</Typography>
-                            <Typography variant='body1'>200,000 SUI</Typography>
+                            <Typography variant='body1'>200,000 USDT</Typography>
                         </Stack>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <img src='/images/icon/icon-data.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Amount for Sale</Typography>
-                            <Typography variant='body1'>500,000 SUI</Typography>
+                            <Typography variant='body1'>500,000 USDT</Typography>
                         </Stack>
                     </Box>
 
@@ -78,7 +78,7 @@ export const CircleBox = () => {
                         <img src='/images/icon/icon-dollar.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Price</Typography>
-                            <Typography variant='body1'>0.125 SUI</Typography>
+                            <Typography variant='body1'>0.125 USDT</Typography>
                         </Stack>
                     </Box>
 
