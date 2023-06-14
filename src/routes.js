@@ -1,6 +1,5 @@
 import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'modules/free-minting/FreeMinting';
-import SwapV3Page from 'modules/swap/SwapV3Page';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -10,6 +9,7 @@ import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
+import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
