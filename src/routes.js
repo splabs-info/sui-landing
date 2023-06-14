@@ -13,7 +13,7 @@ import SwapPage from 'modules/swap/SwapPage';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
 import FreeMinting from 'modules/free-minting/FreeMinting';
-import PreSales from 'pages/PreSales';
+import PrivateSale from 'pages/PrivateSale';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -71,10 +71,10 @@ export default function Router() {
                     ),
                 },
                 {
-                    path: 'pre-sales',
+                    path: 'private-sale',
                     element: (
                         <Suspense>
-                            <PreSales />
+                            <PrivateSale />
                         </Suspense>
                     ),
                 },

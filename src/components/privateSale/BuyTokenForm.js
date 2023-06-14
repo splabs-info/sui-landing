@@ -11,7 +11,7 @@ import { IdoSchema } from 'components/ido-detail/validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
-  padding: '32px 40px',
+  padding: '32px 32px',
   color: 'white',
   borderRadius: 10,
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -87,28 +87,38 @@ export const BuyTokenForm = () => {
           <TokenButton key={token} className={chosenToken === token ? "active" : ""}
             onClick={() => setChosenToken(token)}>{token}%</TokenButton>
         ))}
-
       </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 4, gap: 2, flexWrap: 'wrap' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <CheckboxFiled />
-          <Typography>
-            I’ve read and accepted all the{' '}
-            <a
-              href="/"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                color: 'rgba(91, 184, 240, 1)',
-                '&:hover': {
-                  textDecoration: 'underline',
-                },
-              }}
-            >
-              YouSUI's Agreement
-            </a>
-          </Typography>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-start', mt: 3 }}>
+        <Typography sx={{ marginRight: 2, minWidth: 64 }}>NOTICE:</Typography>
+        <Box>
+          <Typography variant='body2'>
+            Token Distribution Logic : FCFSTGE
+            <br />Claim time :
+            <br /> Time to swap BXUI to XUI:
+            <br />Multiple purchases per wallet</Typography>
         </Box>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, }}>
+        <CheckboxFiled />
+        <Typography variant='body2'>
+          I’ve read and accepted all the{' '}
+          <a
+            href="/"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              color: 'rgba(91, 184, 240, 1)',
+              '&:hover': {
+                textDecoration: 'underline',
+              },
+            }}
+          >
+            YouSUI Launchpad Privacy Policy, Terms of Service & Disclaimer
+          </a>
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, }}>
         <BuyTokenButton>Buy Now</BuyTokenButton>
       </Box>
     </StyledBuyTokenBox>

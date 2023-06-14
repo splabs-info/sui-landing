@@ -3,21 +3,22 @@ import { BuyTokenForm } from './BuyTokenForm';
 import { CircleBox } from './CircleBox';
 import { RefLink } from './RefLink';
 import { SaleInfo } from './SaleInfo';
+import { Rule } from './Rule';
 
 export const BuyToken = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
-        <SaleInfo />
+        <CircleBox />
       </Grid>
       <Grid item xs={12} md={6}>
-        <Stack height={'100%'} justifyContent={'flex-end'}>
+        <Stack height={'100%'} justifyContent={'space-between'} spacing={1}>
           <RefLink />
+          <SaleInfo />
         </Stack>
       </Grid>
-      <Grid item xs={12} my={2} />
       <Grid item xs={12} md={6}>
-        <CircleBox />
+        <Rule />
       </Grid>
       <Grid item xs={12} md={6}>
         <BuyTokenForm />

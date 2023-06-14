@@ -3,16 +3,20 @@ import { Box } from "@mui/material";
 
 
 export const ContentBox = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(98.21deg, rgba(104, 230, 184, 0.1) -9.15%, rgba(109, 133, 218, 0.1) 102.32%)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
+  background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.07) -8.02%, rgba(109, 133, 218, 0.07) 98.69%)',
+  backdropFilter: 'blur(5px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
   borderRadius: '15px',
   padding: 40,
   color: '#fff',
+  '&.height-100': {
+    height: '100%',
+  },
   '&.xui-info': {
-    height: '90%',
+    padding: '40px 40px 40px 56px',
   },
   '&.ref-link': {
-    padding: '20px 40px',
+    padding: '12px 24px',
     height: 'max-content',
   },
   '& .border-bottom': {
@@ -32,7 +36,7 @@ export const ContentBox = styled(Box)(({ theme }) => ({
     },
   },
   '& .sale-info': {
-    padding: '12px 0',
+    padding: '7px 0',
     '&:last-of-type': {
       paddingBottom: 0,
       borderBottom: 'unset'
@@ -51,6 +55,10 @@ export const ContentBox = styled(Box)(({ theme }) => ({
     padding: 20,
     '&.ref-link': {
       padding: 20,
+    },
+    '&.xui-info': {
+      padding: '20px 20px 20px 32px',
+      fontSize: 14,
     },
   },
 }));

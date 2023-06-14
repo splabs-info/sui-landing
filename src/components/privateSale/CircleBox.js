@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import useResponsive from 'hooks/useResponsive';
+import { PoolCountdown } from './PoolCountdown';
 
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
@@ -37,13 +38,14 @@ export const CircleBox = () => {
     return (
         <StyledProcessBox>
             <LiveBox>
-                <Stack direction={'row'} justifyContent={'space-between'}>
+                <Stack direction={'row'} justifyContent={'space-between'} gap={5}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <img src='/images/icon/icon-live.png' alt='' />
                         <Typography sx={{ fontSize: 14, lineHeight: '24px', color: '#1FD8D1' }}>Live</Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in 00D: 00H: 50M: 13S</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 1, flexDirection: isMobile ? 'column' : 'row' }}>
+                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in </Typography>
+                        <PoolCountdown endTime={'2023-06-21T11:00:00'} _handleComplete={() => { }} />
                     </Box>
                 </Stack>
             </LiveBox>

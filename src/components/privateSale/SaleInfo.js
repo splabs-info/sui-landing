@@ -10,7 +10,15 @@ const saleInformation = [
     },
     {
         label: 'Minimum Allcation:',
-        value: '100 SUI',
+        value: '100 USDT',
+    },
+    {
+        label: 'Paid Currency:',
+        value: 'BXUI / USDT',
+    },
+    {
+        label: 'Vesting Schedule:',
+        value: '15% TGE, Monthly Vesting for 10 Months',
     },
     {
         label: 'Start at:',
@@ -25,6 +33,7 @@ export const SaleInfo = () => {
     const isMobile = useResponsive('down', 'sm');
     return (
         <ContentBox className='ref-link'>
+            <Typography fontWeight={'bold'} mb={1.5}>PRIVATE SALE INFORMATION</Typography>
             {saleInformation.map((item, index) => (
                 <SpaceBetweenBox key={index} className='sale-info'>
                     <Typography >{item.label}</Typography>
