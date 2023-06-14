@@ -78,7 +78,7 @@ export const cetusLoad = async () => {
   sdk.Router.loadGraph(coins, paths);
 };
 
-await cetusLoad();
+cetusLoad();
 
 const provider = new JsonRpcProvider(config.providerConnection);
 
