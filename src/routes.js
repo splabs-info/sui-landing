@@ -1,5 +1,6 @@
 import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'modules/free-minting/FreeMinting';
+import SwapV3Page from 'modules/swap/SwapV3Page';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -96,6 +97,10 @@ export default function Router() {
         {
           path: 'bridge',
           element: <Bridge />,
+        },
+        {
+          path: 'swap',
+          element: <SwapV3Page />,
         },
       ],
     },
