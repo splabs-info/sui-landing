@@ -13,6 +13,8 @@ const config = {
   providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : mainnetConnection,
 };
 
+console.log('>> Cetus swap config', config);
+
 export const sdk = new SDK(config.sdkEnv);
 const coinMap = new Map();
 const poolMap = new Map();
@@ -94,7 +96,6 @@ export async function getBalance(address, coin) {
 }
 
 export function prettyAmount(amount, coin) {
-  console.log({ amount, coin });
   amount = Number(amount).toFixed(getDecimals(coin)).replace('.', '');
   const coinAmount = new BN(parseFloat(amount));
   return coinAmount.toString();

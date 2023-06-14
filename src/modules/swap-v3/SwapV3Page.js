@@ -91,7 +91,6 @@ export default function SwapV3Page() {
       (async () => {
         const balance = await getBalance(wallet.address, from);
         setBaseBalance(balance ? balance.totalBalance : 0);
-        console.log('base', balance);
       })();
     }
   }, [from, wallet.address, flag]);
@@ -101,7 +100,6 @@ export default function SwapV3Page() {
       (async () => {
         const balance = await getBalance(wallet.address, to);
         setQuoteBalance(balance ? balance.totalBalance : 0);
-        console.log('quote', balance);
       })();
     }
   }, [to, wallet.address, flag]);
@@ -152,8 +150,6 @@ export default function SwapV3Page() {
         const slippage = Percentage.fromDecimal(d(slippageSetting));
 
         const amountLimit = adjustForSlippage(coinAmount, slippage, !byAmountIn);
-
-        console.log(pool);
 
         const swapPayload = await sdk.Swap.createSwapTransactionPayload({
           pool_id: pool.poolAddress,
@@ -249,7 +245,7 @@ export default function SwapV3Page() {
           setPreSwapData(preSwapData);
         }
 
-        setBestRoute(swapRouter.amountIn === '0' ? null : swapRouter);
+        setBestRoute(swapRouter?.amountIn === '0' ? null : swapRouter);
         setEstimating(false);
         setFlag(!flag);
       }
