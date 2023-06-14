@@ -31,54 +31,57 @@ export function getToken(coinType) {
 }
 
 export const cetusLoad = async () => {
-  const pools = await sdk.Pool.getPools([], 0, 500);
+  try {
+    const pools = await sdk.Pool.getPools([], 0, 500);
 
-  const tokens = await sdk.Token.getAllRegisteredTokenList();
-  for (let i = 0; i < tokens.length; i += 1) {
-    tokenMap.set(tokens[i].address, tokens[i]);
-  }
-
-  for (let i = 0; i < pools.length; i += 1) {
-    if (pools[i].is_pause || pools[i].liquidity === '0') {
-      continue;
+    const tokens = await sdk.Token.getAllRegisteredTokenList();
+    for (let i = 0; i < tokens.length; i += 1) {
+      tokenMap.set(tokens[i].address, tokens[i]);
     }
 
-    let coin_a = pools[i].coinTypeA;
-    let coin_b = pools[i].coinTypeB;
+    for (let i = 0; i < pools.length; i += 1) {
+      if (pools[i].is_pause || pools[i].liquidity === '0') {
+        continue;
+      }
 
-    coinMap.set(coin_a, {
-      address: coin_a,
-      decimals: 9,
-    });
-    coinMap.set(coin_b, {
-      address: coin_b,
-      decimals: 9,
-    });
+      let coin_a = pools[i].coinTypeA;
+      let coin_b = pools[i].coinTypeB;
 
-    const pair = `${coin_a}-${coin_b}`;
-    const pathProvider = poolMap.get(pair);
-    if (pathProvider) {
-      pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
-    } else {
-      poolMap.set(pair, {
-        base: coin_a,
-        quote: coin_b,
-        addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
+      coinMap.set(coin_a, {
+        address: coin_a,
+        decimals: 9,
       });
+      coinMap.set(coin_b, {
+        address: coin_b,
+        decimals: 9,
+      });
+
+      const pair = `${coin_a}-${coin_b}`;
+      const pathProvider = poolMap.get(pair);
+      if (pathProvider) {
+        pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
+      } else {
+        poolMap.set(pair, {
+          base: coin_a,
+          quote: coin_b,
+          addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
+        });
+      }
     }
+
+    const coins = {
+      coins: Array.from(coinMap.values()),
+    };
+    const paths = {
+      paths: Array.from(poolMap.values()),
+    };
+
+    sdk.Router.loadGraph(coins, paths);
+    return;
+  } catch (error) {
+    return;
   }
-
-  const coins = {
-    coins: Array.from(coinMap.values()),
-  };
-  const paths = {
-    paths: Array.from(poolMap.values()),
-  };
-
-  sdk.Router.loadGraph(coins, paths);
 };
-
-cetusLoad();
 
 const provider = new JsonRpcProvider(config.providerConnection);
 

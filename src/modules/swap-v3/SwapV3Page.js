@@ -1,5 +1,6 @@
 import { Percentage, TransactionUtil, adjustForSlippage, d } from '@cetusprotocol/cetus-sui-clmm-sdk';
 import {
+  Backdrop,
   Box,
   CircularProgress,
   Container,
@@ -23,7 +24,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
-import { SwapHelper, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
+import { SwapHelper, cetusLoad, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
 
 function useQuery() {
   const { search } = useLocation();
@@ -57,8 +58,17 @@ export default function SwapV3Page() {
   const navigate = useNavigate();
   const [baseBalance, setBaseBalance] = React.useState(0);
   const [quoteBalance, setQuoteBalance] = React.useState(0);
+  const [loadingPage, setLoadingPage] = React.useState(true);
 
   const supportTokens = ['USDT', 'WETH', 'SUI', 'USDC', 'WBNB', 'WTBC'];
+
+  React.useEffect(() => {
+    (async () => {
+      setLoadingPage(true);
+      await cetusLoad();
+      setLoadingPage(false);
+    })();
+  }, []);
 
   React.useEffect(() => {
     setSendToken(from);
@@ -185,7 +195,7 @@ export default function SwapV3Page() {
   };
 
   const handleReload = async () => {
-    document.getElementById('refresh-button').classList.add('rotate');
+    if (document.getElementById('refresh-button')) document.getElementById('refresh-button').classList.add('rotate');
     try {
       if (receiveToken && sendToken) {
         const currentPool = await getPool(sendToken, receiveToken);
@@ -276,6 +286,21 @@ export default function SwapV3Page() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (loadingPage) {
+    return (
+      <Page title="Swap">
+        <SectionBox
+          sx={{
+            backgroundImage: "url('/images/background/homebg6.png')",
+          }}
+        >
+          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loadingPage}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        </SectionBox>
+      </Page>
+    );
+  }
   return (
     <Page title="Swap">
       <SectionBox
