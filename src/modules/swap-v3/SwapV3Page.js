@@ -266,15 +266,15 @@ export default function SwapV3Page() {
     }
   }, [receiveToken, bestRoute, sendAmount, sendToken, wallet.address]);
 
-  // React.useEffect(() => {
-  //   const intervalTime = setInterval(() => {
-  //     handleReload();
-  //   }, 20000);
-  //   return () => {
-  //     clearInterval(intervalTime);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  React.useEffect(() => {
+    const intervalTime = setInterval(() => {
+      handleReload();
+    }, 20000);
+    return () => {
+      clearInterval(intervalTime);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Page title="Swap">
