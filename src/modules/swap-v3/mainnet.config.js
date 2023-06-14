@@ -50,8 +50,8 @@ const SDKConfig = {
 
 export const mainnet = {
   //fullRpcUrl: 'https://sui-mainnet-endpoint.blockvision.org',
-  //fullRpcUrl: 'https://rpc-mainnet.suiscan.xyz:443',
-  fullRpcUrl: "https://fullnode.mainnet.sui.io",
+  fullRpcUrl: 'https://rpc-mainnet.suiscan.xyz:443',
+  // fullRpcUrl: "https://fullnode.mainnet.sui.io",
   faucetURL: "",
   faucet: {
     faucet_display:

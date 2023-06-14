@@ -18,19 +18,12 @@ import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
-import {
-  AmountBox,
-  AmountStack,
-  ConnectButton,
-  ErrorBox,
-  SelectToken,
-  SwapBox,
-} from 'modules/swap/components/SwapStyles';
+import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
-import { SwapHelper, getBalance, getDecimals, getPreSwapData, sdk } from './init';
+import { SwapHelper, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
 
 function useQuery() {
   const { search } = useLocation();
@@ -62,7 +55,8 @@ export default function SwapV3Page() {
   const from = query.get('from');
   const to = query.get('to');
   const navigate = useNavigate();
-  const [balances, setBalances] = React.useState(null);
+  const [baseBalance, setBaseBalance] = React.useState(0);
+  const [quoteBalance, setQuoteBalance] = React.useState(0);
 
   const supportTokens = ['USDT', 'WETH', 'SUI', 'USDC', 'WBNB', 'WTBC'];
 
@@ -72,47 +66,51 @@ export default function SwapV3Page() {
     setPreSwapData(null);
     setBestRoute(null);
     setReceiveAmount('0');
-    setBalances(null);
+    setBaseBalance(0);
+    setQuoteBalance(0);
   }, [from, to]);
 
   React.useEffect(() => {
-    if (wallet.address && from && to) {
+    if (wallet.address) {
+      sdk.senderAddress = wallet.address;
+    }
+  }, [wallet.address]);
+
+  React.useEffect(() => {
+    if (wallet.address && from) {
       (async () => {
-        setBalances({
-          from: await getBalance(wallet.address, from),
-          to: await getBalance(wallet.address, to),
-        });
+        const balance = await getBalance(wallet.address, from);
+        setBaseBalance(balance ? balance.totalBalance : 0);
+        console.log('base', balance);
       })();
     }
-  }, [from, to, wallet.address]);
+  }, [from, wallet.address, flag]);
+
+  React.useEffect(() => {
+    if (wallet.address && to) {
+      (async () => {
+        const balance = await getBalance(wallet.address, to);
+        setQuoteBalance(balance ? balance.totalBalance : 0);
+        console.log('quote', balance);
+      })();
+    }
+  }, [to, wallet.address, flag]);
 
   React.useEffect(() => {
     (async () => {
       try {
         const tokenList = await sdk.Token.getAllRegisteredTokenList();
-        const poolList = await sdk.Pool.getPools([], 0, 1000);
-        // const filterTokenList = tokenList?.filter((c) => supportTokens.includes(c.official_symbol));
-        const filterTokenList = tokenList;
-        setPoolList(poolList);
-        setTokenList(filterTokenList);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
-  React.useEffect(() => {
-    if (wallet.address) {
-      sdk.senderAddress = wallet.address;
-      (async () => {
         const tokenListObj = {};
         for (const iterator of tokenList) {
           tokenListObj[iterator.address] = iterator;
         }
         setTokenListObj(tokenListObj);
-      })();
-    }
-  }, [tokenList, wallet.address]);
+        setTokenList(tokenList);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const handleSwap = async (e) => {
     e.preventDefault();
@@ -140,23 +138,20 @@ export default function SwapV3Page() {
         const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
         const coinAmount = new SwapHelper.BN(parseFloat(amount));
         const pool = bestRoute;
-        console.log({
-          coinAmount,
-          slippageSetting,
-          byAmountIn,
-          bestRoute,
-        });
+
         const slippage = Percentage.fromDecimal(d(slippageSetting));
 
         const amountLimit = adjustForSlippage(coinAmount, slippage, !byAmountIn);
+
+        console.log(pool);
 
         const swapPayload = await sdk.Swap.createSwapTransactionPayload({
           pool_id: pool.poolAddress,
           coinTypeA: pool.coinTypeA,
           coinTypeB: pool.coinTypeB,
-          a2b,
-          by_amount_in: byAmountIn,
-          amount: coinAmount.toString(),
+          a2b: pool.coinTypeA === sendToken,
+          by_amount_in: true,
+          amount: pool.amountIn,
           amount_limit: amountLimit.toString(),
           swap_partner: SwapHelper.config.swapPartner,
         });
@@ -192,67 +187,68 @@ export default function SwapV3Page() {
   const handleReload = async () => {
     document.getElementById('refresh-button').classList.add('rotate');
     try {
-      if (poolList.length > 0 && sendToken && receiveToken && sendToken !== receiveToken) {
-        let tempA2B = true;
-        const byAmountIn = true;
+      if (receiveToken && sendToken) {
+        const currentPool = await getPool(sendToken, receiveToken);
+        const swapPool = currentPool ? await sdk.Pool.getPool([...currentPool.addressMap][0][1]) : null;
+
         setEstimating(true);
-        const amount = Number(sendAmount).toFixed(getDecimals(sendToken)).replace('.', '');
+        const amount = Number(sendAmount).toFixed(tokenListObj[sendToken].decimals).replace('.', '');
         const coinAmount = new SwapHelper.BN(parseFloat(amount));
 
-        let swapRouter = poolList.find((pool) => pool.coinTypeA === sendToken && pool.coinTypeB === receiveToken);
-        if (!swapRouter) {
-          tempA2B = false;
-          swapRouter = poolList.find((pool) => pool.coinTypeB === sendToken && pool.coinTypeA === receiveToken);
-        }
+        let swapRouter = await (async () => {
+          try {
+            return await sdk.Router.price(
+              sendToken,
+              receiveToken,
+              coinAmount,
+              true,
+              slippageSetting,
+              SwapHelper.config.swapPartner
+            );
+          } catch (error) {
+            return false;
+          }
+        })();
 
         if (!swapRouter) {
-          tempA2B = true;
-          swapRouter = await sdk.Router.price(
-            sendToken,
-            receiveToken,
-            coinAmount,
-            tempA2B,
-            slippageSetting,
-            SwapHelper.config.swapPartner
-          );
+          swapRouter = swapPool;
         }
 
-        if (!swapRouter.coinTypeC) {
-          const preSwap = await sdk.Swap.preswap({
-            pool: swapRouter,
-            current_sqrt_price: swapRouter.current_sqrt_price,
-            coinTypeA: swapRouter.coinTypeA,
-            coinTypeB: swapRouter.coinTypeB,
-            decimalsA: getDecimals(sendToken),
-            decimalsB: getDecimals(receiveToken),
-            a2b: tempA2B,
-            by_amount_in: byAmountIn,
-            amount: coinAmount.toString(),
-          });
-          swapRouter.amountOut = preSwap.estimatedAmountOut;
-          swapRouter.amountIn = preSwap.estimatedAmountIn;
-          swapRouter.a2b = tempA2B;
-        }
+        if (swapRouter) {
+          if (!swapRouter.coinTypeC) {
+            const preSwap = await sdk.Swap.preswap({
+              pool: swapRouter,
+              current_sqrt_price: swapRouter.current_sqrt_price,
+              coinTypeA: swapPool.coinTypeA,
+              coinTypeB: swapPool.coinTypeB,
+              decimalsA: getToken(swapPool.coinTypeA).decimals,
+              decimalsB: getToken(swapPool.coinTypeB).decimals,
+              a2b: swapPool.coinTypeA === sendToken ? true : false,
+              by_amount_in: true,
+              amount: coinAmount.toString(),
+            });
+            swapRouter.amountOut = preSwap.estimatedAmountOut;
+            swapRouter.amountIn = preSwap.estimatedAmountIn;
+            swapRouter.a2b = swapPool.coinTypeA === sendToken ? true : false;
+          }
 
+          setA2B(swapRouter.coinTypeA === sendToken ? true : false);
+          setReceiveAmount(formatUnits(swapRouter.amountOut.toString(), tokenListObj[receiveToken].decimals));
+
+          const preSwapData = await getPreSwapData(swapRouter, slippageSetting, true);
+          setPreSwapData(preSwapData);
+        }
         setBestRoute(swapRouter);
         setEstimating(false);
-        setA2B(tempA2B);
-        setReceiveAmount(
-          formatUnits(
-            byAmountIn ? swapRouter.amountOut.toString() : swapRouter.amountIn.toString(),
-            getDecimals(receiveToken)
-          )
-        );
-
-        const preSwapData = await getPreSwapData(swapRouter, slippageSetting, byAmountIn);
-        setPreSwapData(preSwapData);
+        setFlag(!flag);
       }
     } catch (error) {
       setEstimating(false);
       console.error(error);
     }
     setTimeout(() => {
-      document.getElementById('refresh-button').classList.remove('rotate');
+      if (document.getElementById('refresh-button'))
+        document.getElementById('refresh-button').classList.remove('rotate');
     }, 1000);
   };
 
@@ -262,7 +258,7 @@ export default function SwapV3Page() {
     } else if (!sendToken || !receiveToken) {
       setError('Please select pair to swap');
     } else if (!bestRoute || bestRoute?.is_pause || bestRoute?.isExceed) {
-      setError('Route is not found');
+      setError('No Available Route');
     } else if (!sendAmount || sendAmount === '0') {
       setError('Please enter amount');
     } else {
@@ -270,15 +266,15 @@ export default function SwapV3Page() {
     }
   }, [receiveToken, bestRoute, sendAmount, sendToken, wallet.address]);
 
-  React.useEffect(() => {
-    const intervalTime = setInterval(() => {
-      handleReload();
-    }, 20000);
-    return () => {
-      clearInterval(intervalTime);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // React.useEffect(() => {
+  //   const intervalTime = setInterval(() => {
+  //     handleReload();
+  //   }, 20000);
+  //   return () => {
+  //     clearInterval(intervalTime);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <Page title="Swap">
@@ -333,25 +329,30 @@ export default function SwapV3Page() {
                   />
                   {tokenList.length > 0 ? (
                     <SelectToken value={sendToken}>
-                      {tokenList.map((token) => (
-                        <MenuItem
-                          value={token.address}
-                          key={token.address}
-                          onClick={() => {
-                            navigate(`?from=${token.address}&to=${to}`);
-                            setSendAmount('0');
-                            setReceiveAmount('0');
-                          }}
-                        >
-                          <img
-                            src={token.logo_url}
-                            alt={token.symbol}
-                            width={isMobile ? 24 : 32}
-                            style={{ marginRight: '8px' }}
-                          />
-                          {token.symbol}
-                        </MenuItem>
-                      ))}
+                      {tokenList.map((token) => {
+                        const check = supportTokens.includes(token.official_symbol);
+                        return (
+                          check && (
+                            <MenuItem
+                              value={token.address}
+                              key={token.address}
+                              onClick={() => {
+                                navigate(`?from=${token.address}&to=${to}`);
+                                setSendAmount('0');
+                                setReceiveAmount('0');
+                              }}
+                            >
+                              <img
+                                src={token.logo_url}
+                                alt={token.symbol}
+                                width={isMobile ? 24 : 32}
+                                style={{ marginRight: '8px' }}
+                              />
+                              {token.symbol}
+                            </MenuItem>
+                          )
+                        );
+                      })}
                     </SelectToken>
                   ) : (
                     <Skeleton
@@ -369,9 +370,7 @@ export default function SwapV3Page() {
                   <Typography color={'white'}></Typography>
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
-                    <Typography>
-                      {balances?.from ? formatUnits(balances?.from?.totalBalance, getDecimals(sendToken)) : '--'}
-                    </Typography>
+                    <Typography>{sendToken ? formatUnits(baseBalance, getDecimals(sendToken)) : '--'}</Typography>
                   </AmountStack>
                 </Stack>
               </AmountBox>
@@ -394,25 +393,31 @@ export default function SwapV3Page() {
                   />
                   {tokenList.length > 0 ? (
                     <SelectToken value={receiveToken}>
-                      {tokenList.map((token) => (
-                        <MenuItem
-                          value={token.address}
-                          key={token.address}
-                          onClick={() => {
-                            navigate(`?from=${from}&to=${token.address}`);
-                            setSendAmount('0');
-                            setReceiveAmount('0');
-                          }}
-                        >
-                          <img
-                            src={token.logo_url}
-                            alt={token.symbol}
-                            width={isMobile ? 24 : 32}
-                            style={{ marginRight: '8px' }}
-                          />
-                          {token.symbol}
-                        </MenuItem>
-                      ))}
+                      {tokenList.map((token) => {
+                        const check = supportTokens.includes(token.official_symbol);
+                        return (
+                          check &&
+                          token.address !== sendToken && (
+                            <MenuItem
+                              value={token.address}
+                              key={token.address}
+                              onClick={() => {
+                                navigate(`?from=${from}&to=${token.address}`);
+                                setSendAmount('0');
+                                setReceiveAmount('0');
+                              }}
+                            >
+                              <img
+                                src={token.logo_url}
+                                alt={token.symbol}
+                                width={isMobile ? 24 : 32}
+                                style={{ marginRight: '8px' }}
+                              />
+                              {token.symbol}
+                            </MenuItem>
+                          )
+                        );
+                      })}
                     </SelectToken>
                   ) : (
                     <Skeleton
@@ -431,19 +436,19 @@ export default function SwapV3Page() {
                   <AmountStack>
                     <img src="/images/icon/icon-wallet-green.png" alt="" />
                     <Typography>
-                      {balances?.to ? formatUnits(balances?.to?.totalBalance, getDecimals(receiveToken)) : '--'}
+                      {receiveToken ? formatUnits(quoteBalance, getDecimals(receiveToken)) : '--'}
                     </Typography>
                   </AmountStack>
                 </Stack>
               </AmountBox>
-              {error && (
+              {/* {error && (
                 <ErrorBox my={1}>
                   <Typography textAlign={'left'}>{error}</Typography>
                 </ErrorBox>
-              )}
+              )} */}
 
               <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
-                Swap
+                {error ? error : `Swap`}
               </ConnectButton>
               {estimating ? (
                 <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
@@ -487,14 +492,14 @@ export default function SwapV3Page() {
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
                       {preSwapData
                         ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))}
-                      ${tokenListObj[receiveToken].official_symbol}`
+                      ${tokenListObj?.[receiveToken]?.official_symbol}`
                         : '--'}
                     </Typography>
                     <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                       {preSwapData
                         ? `${
                             preSwapData?.totalFee > -1
-                              ? `${preSwapData.totalFee} ${tokenListObj[sendToken].official_symbol}`
+                              ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
                               : 'Estimating'
                           }`
                         : '--'}
@@ -503,15 +508,15 @@ export default function SwapV3Page() {
                       {bestRoute ? (
                         a2b ? (
                           <>
-                            {tokenListObj[bestRoute?.coinTypeA]?.official_symbol}
-                            {bestRoute?.coinTypeB ? ` > ${tokenListObj[bestRoute?.coinTypeB]?.official_symbol}` : ''}
-                            {bestRoute?.coinTypeC ? ` > ${tokenListObj[bestRoute?.coinTypeC]?.official_symbol}` : ''}
+                            {tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}
+                            {bestRoute?.coinTypeB ? ` > ${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol}` : ''}
+                            {bestRoute?.coinTypeC ? ` > ${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol}` : ''}
                           </>
                         ) : (
                           <>
-                            {bestRoute?.coinTypeC ? `${tokenListObj[bestRoute?.coinTypeC]?.official_symbol} > ` : ''}
-                            {bestRoute?.coinTypeB ? `${tokenListObj[bestRoute?.coinTypeB]?.official_symbol} > ` : ''}
-                            {bestRoute?.coinTypeA ? `${tokenListObj[bestRoute?.coinTypeA]?.official_symbol}` : ''}
+                            {bestRoute?.coinTypeC ? `${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol} > ` : ''}
+                            {bestRoute?.coinTypeB ? `${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol} > ` : ''}
+                            {bestRoute?.coinTypeA ? `${tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}` : ''}
                           </>
                         )
                       ) : (
