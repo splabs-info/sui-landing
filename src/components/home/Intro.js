@@ -147,7 +147,7 @@ export default function Intro() {
                     }
                   }}
                 >
-                  <img alt="sui" src="/images/partner/sui.png" width={isMobile ? 60 : 80} />
+                  <img alt="sui" src="/images/partners/sui.png" width={isMobile ? 60 : 80} />
                 </Box>
               </Box>
               <Box

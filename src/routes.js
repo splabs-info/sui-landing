@@ -10,6 +10,7 @@ import NotFound from './pages/Page404';
 import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
+import StakingFarming from 'modules/staking/OverallPage';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -18,102 +19,107 @@ const TestPage = React.lazy(() => import('./pages/Test'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
-  return useRoutes([
-    {
-      path: '/',
-      element: <ClientLayout />,
-      children: [
-        { path: '/', element: <Homepage /> },
+    return useRoutes([
         {
-          path: 'my-profile',
-          element: (
-            <Suspense>
-              <MyProfilePage />
-            </Suspense>
-          ),
+            path: '/',
+            element: <ClientLayout />,
+            children: [
+                { path: '/', element: <Homepage /> },
+                {
+                    path: 'my-profile',
+                    element: (
+                        <Suspense>
+                            <MyProfilePage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ido-launchpad',
+                    element: (
+                        <Suspense>
+                            <IDOLaunchpad />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ino-launchpad',
+                    element: (
+                        <Suspense>
+                            <INOLaunchPad />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ino-launchpad/free-minting-nft',
+                    element: (
+                        <Suspense>
+                            <FreeMinting />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ido-launchpad/sua',
+                    element: (
+                        <Suspense>
+                            <IDODetail />
+                            {/* <ComingSoon /> */}
+                        </Suspense>
+                    ),
+                },
+                { path: 'whitepaper/:sub', element: <Whitepaper /> },
+                { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
+                {
+                    path: 'staking',
+                    element:
+                        // <StakingPage />
+                        <StakingFarming />
+                },
+                {
+                    path: 'claim-tokens',
+                    element: (
+                        <Suspense>
+                            {/* <Claims /> */}
+                            <ComingSoon />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: '/claim-tokens/:sub',
+                    element: (
+                        <Suspense>
+                            {/* <ClaimsDetail />*/}
+                            <ComingSoon />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'test-page',
+                    element: (
+                        <React.Suspense>
+                            <TestPage />
+                        </React.Suspense>
+                    ),
+                },
+                {
+                    path: 'bridge',
+                    element: <Bridge />,
+                },
+                {
+                    path: 'swap',
+                    element: <SwapV3Page />,
+                },
+            ],
         },
         {
-          path: 'ido-launchpad',
-          element: (
-            <Suspense>
-              <IDOLaunchpad />
-            </Suspense>
-          ),
+            path: '/login',
+            element: (
+                <React.Suspense>
+                    <Login />
+                </React.Suspense>
+            ),
         },
-        {
-          path: 'ino-launchpad',
-          element: (
-            <Suspense>
-              <INOLaunchPad />
-            </Suspense>
-          ),
-        },
-        {
-          path: 'ino-launchpad/free-minting-nft',
-          element: (
-            <Suspense>
-              <FreeMinting />
-            </Suspense>
-          ),
-        },
-        {
-          path: 'ido-launchpad/sua',
-          element: (
-            <Suspense>
-              <IDODetail />
-              {/* <ComingSoon /> */}
-            </Suspense>
-          ),
-        },
-        { path: 'whitepaper/:sub', element: <Whitepaper /> },
-        { path: 'whitepaper', element: <Navigate to="/whitepaper/introduction-of-yousui" /> },
-        { path: 'staking', element: <StakingPage /> },
-        {
-          path: 'claim-tokens',
-          element: (
-            <Suspense>
-              {/* <Claims /> */}
-              <ComingSoon />
-            </Suspense>
-          ),
-        },
-        {
-          path: '/claim-tokens/:sub',
-          element: (
-            <Suspense>
-              {/* <ClaimsDetail />*/}
-              <ComingSoon />
-            </Suspense>
-          ),
-        },
-        {
-          path: 'test-page',
-          element: (
-            <React.Suspense>
-              <TestPage />
-            </React.Suspense>
-          ),
-        },
-        {
-          path: 'bridge',
-          element: <Bridge />,
-        },
-        {
-          path: 'swap',
-          element: <SwapV3Page />,
-        },
-      ],
-    },
-    {
-      path: '/login',
-      element: (
-        <React.Suspense>
-          <Login />
-        </React.Suspense>
-      ),
-    },
-    { path: '404', element: <NotFound /> },
-    { path: 'coming-soon', element: <ComingSoon /> },
-    { path: '*', element: <Navigate to="/404" replace /> },
-  ]);
+        { path: '404', element: <NotFound /> },
+        { path: 'coming-soon', element: <ComingSoon /> },
+        { path: '*', element: <Navigate to="/404" replace /> },
+    ]);
 }
