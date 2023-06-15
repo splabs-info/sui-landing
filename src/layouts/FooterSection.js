@@ -231,7 +231,7 @@ export default function FooterSection() {
 		</Footer>
 	);
 }
-export const SocialFooter = () => {
+export const SocialFooter = ({ sx }) => {
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -243,7 +243,7 @@ export const SocialFooter = () => {
 		setAnchorEl(null);
 	};
 	return (
-		<SocialBox>
+		<SocialBox sx={sx}>
 			{socials.map((item, index) =>
 				item.link ? (
 					<Box key={index} component="a" href={item.link} target={'_blank'}>
