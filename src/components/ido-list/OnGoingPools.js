@@ -20,16 +20,6 @@ const AvatarBox = styled(Box)(({ theme }) => ({
   boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
 }));
 
-const StyledProcessBox = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
-  padding: '56px 40px',
-  color: 'white',
-  borderRadius: 10,
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-  position: 'relative',
-  marginTop: 32,
-}));
-
 export default function OnGoingPools() {
   const navigate = useNavigate();
 
@@ -81,7 +71,6 @@ export default function OnGoingPools() {
 
   return (
     <Box mb={20} mt={10} position="relative">
-      {/* <Link to="/"> */}
       <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
       <TitleBox>
         <Typography>On-going</Typography>
@@ -166,7 +155,6 @@ export default function OnGoingPools() {
                 <Divider flexItem orientation={isMobile ? 'horizontal' : 'vertical'} />
                 <Grid item xs={12} sm={3}>
                   <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '0px' }}>
-                    {/* <Typography fontWeight={'bold'}>07D 12:31:12</Typography> */}
                     <Button
                       onClick={() => navigate('/ido-launchpad/sua')}
                       sx={{
@@ -185,7 +173,6 @@ export default function OnGoingPools() {
           </Grid>
         </Grid>
       </Box>
-      {/* </Link> */}
     </Box>
   );
 }
