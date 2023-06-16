@@ -1,10 +1,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
   Avatar,
   Box,
-  Collapse,
   Container,
   Divider,
   Drawer,
@@ -12,33 +9,29 @@ import {
   IconButton,
   List,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
-  MenuItem,
+  MenuItem
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Header, Navbar } from '../components/header/HeaderStyles';
-// import { ConnectPopup } from '../components/wallet/connect-popup';
 import { useWallet } from '@suiet/wallet-kit';
 import Logo from 'components/common/Logo';
 import { WalletDrawer } from 'components/drawer';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
-import { AppConfig } from '../setting';
-// import Languages from './Languages';
 import EmailIcon from '@mui/icons-material/Email';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FrameButton } from 'components/home/HomeStyles';
+
 const config = [
   { label: 'key_2', link: '/ido-launchpad' },
   { label: 'key_3', link: '/ino-launchpad' },
   { label: 'key_4', link: '/staking' },
-  // { label: 'key_5', link: '/claim-tokens' },
   { label: 'key_6', link: '/swap' },
   { label: 'key_Bridge', link: '/bridge' },
   { label: 'key_marketplace', link: '/coming-soon' },
@@ -181,56 +174,34 @@ export default function HeaderSection() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, wallet?.address]);
 
-  const activeRoute = '/coming-soons';
+  const activeRoute = useLocation().pathname;
 
   const MenuHeaderBox = () => (
     <>
-      {AppConfig?.mainMenus?.map((menu, index) => (
-        <Link to={menu.link} key={index}>
-          {library[menu.label]}
-        </Link>
-      ))}
-      {config.map((item, index) => {
-        if (item.link.indexOf('#') <= -1) {
-          return (
-            <Box
-              id={item.id}
-              key={item.id}
-              className={`${item.link === activeRoute ? 'active' : ''}`}
-              sx={{
-                display: 'flex',
-                alignSelf: 'stretch',
-                alignItems: 'center',
-                textTransform: 'uppercase',
-                fontSize: '14px',
-              }}
-            >
-              {isDesktop && library[item.label] === 'Crew3' ? (
-                <></>
-              ) : (
-                <NavLink to={item.link} key={index} className={item.customStyle || ''}>
-                  {library[item.label]}
-                  {item.icon}
-                </NavLink>
-              )}
-            </Box>
-          );
-        } else
-          return (
-            <NavLink
-              to={item.link}
-              onClick={() => {
-                scroll(item);
-              }}
-              key={index}
-              className={item.link === activeRoute ? 'active' : ''}
-            >
+      {config.map((item, index) =>
+        <Box
+          id={item.id}
+          key={item.id}
+          className={`${item.link === activeRoute ? 'active' : ''}`}
+          sx={{
+            display: 'flex',
+            alignSelf: 'stretch',
+            alignItems: 'center',
+            textTransform: 'uppercase',
+            fontSize: '14px',
+          }}
+        >
+          {isDesktop && library[item.label] === 'Crew3' ? (
+            <></>
+          ) : (
+            <NavLink to={item.link} key={index} className={`${item.link === activeRoute ? 'animatedText' : ''}`}>
               {library[item.label]}
+              {item.icon}
             </NavLink>
-          );
-      })}
-    </>
-  );
+          )}
+        </Box>
+      )}
+    </>)
 
   const SocialHeaderBox = () => (
     <Box
@@ -337,6 +308,7 @@ export default function HeaderSection() {
             <Box>{SocialHeaderBox()}</Box>
           </Container>
         </Box>
+
         <Container
           maxWidth={'xl'}
           sx={{
@@ -377,7 +349,6 @@ export default function HeaderSection() {
                     Connect Wallet
                   </FrameButton>
                 )}
-                {/* <SocialHeaderBox /> */}
                 <StyledBtnBorderGreen size="large" onClick={() => navigate('/my-profile')}>
                   My Page
                 </StyledBtnBorderGreen>
@@ -390,11 +361,8 @@ export default function HeaderSection() {
                     <Avatar src="/images/icon/icon-user.png" sx={{ borderRadius: '0', width: 32, height: 32 }} />
                   </IconButton>
                 )}
-                {/* <Languages sx={{ color: 'white' }} /> */}
               </Hidden>
-              {/* <AccountPopover /> */}
 
-              {/* BUTTON MENU MOBILE */}
               <Hidden lgUp>
                 {walletAddress ? (
                   <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
@@ -426,12 +394,12 @@ export default function HeaderSection() {
                   <IconMenu2 size="25px" />
                 </IconButton>
               </Hidden>
+
             </Box>
           </Navbar>
         </Container>
       </Header>
 
-      {/* MENU MOBILE */}
       <Drawer
         open={showSidebar}
         anchor="right"
@@ -506,6 +474,7 @@ export default function HeaderSection() {
           </List>
         </Box>
       </Drawer>
+
       <WalletDrawer
         address={walletAddress}
         open={openWalletDrawer}
@@ -515,67 +484,3 @@ export default function HeaderSection() {
     </>
   );
 }
-
-const SubMenu = ({ menu, library }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
-  if (menu.items) {
-    return (
-      <>
-        <ListItemButton onClick={handleClick}>
-          <ListItemText primary={library[menu.label]} />
-          {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {menu?.items?.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  color: 'unset',
-                  textDecoration: 'unset',
-                }}
-              >
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 20,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '4px',
-                        height: '4px',
-                        borderRadius: '50%',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgb(145, 158, 171)',
-                        transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-                      }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </a>
-            ))}
-          </List>
-        </Collapse>
-      </>
-    );
-  } else {
-    return (
-      <a href={menu.link} style={{ textDecoration: 'none', color: '#212b36' }} target="_blank" rel="noreferrer">
-        <ListItemButton>
-          <ListItemText primary={library[menu.label]} />
-        </ListItemButton>
-      </a>
-    );
-  }
-};

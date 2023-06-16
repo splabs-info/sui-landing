@@ -54,12 +54,12 @@ export const Navbar = styled(Box)(({ theme }) => ({
         padding: '0',
         margin: '0',
     },
-    '& .active': {
-        background: 'linear-gradient(90deg, #EACCF8 0%, #96E0DA 100%)',
-        backgroundClip: 'text',
-        textFillColor: 'transparent',
-        position: 'relative',
-    },
+    // '& .active': {
+    //     background: 'linear-gradient(90deg, #EACCF8 0%, #96E0DA 100%)',
+    //     backgroundClip: 'text',
+    //     textFillColor: 'transparent',
+    //     position: 'relative',
+    // },
     // '& .active::before': {
     //     content: '" "',
     //     position: 'absolute',

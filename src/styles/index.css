@@ -97,15 +97,58 @@ a.icon-linked img:hover {
   }
 }
 
-@keyframes anim {
-  100% {
-    stroke-dashoffset: 157;
+@keyframes scale2 {
+
+  from,
+  to {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
   }
 }
 
-/* .wkit-dialog__content .wkit-select__container:last-of-type {
-  display: none;
-} */
+
+.animatedText {
+  animation: animatedText 2s linear infinite alternate-reverse;
+  background-clip: text;
+  background-image: linear-gradient(90deg, #68E5B8, #00F1F5, #8A92FF);
+  background-position: -100%;
+  background-size: 300%;
+  color: #0000;
+  font-weight: 600;
+}
+
+@keyframes animatedText {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
+}
+
+.animatedRotate {
+  animation: 30s linear 0s infinite normal none running rotate;
+}
+
+@keyframes animatedRotate {
+
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn);
+  }
+
+}
 
 @media (max-width: 576px) {
 

@@ -11,6 +11,7 @@ import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import StakingFarming from 'modules/staking/OverallPage';
+import IDORound from 'modules/ido-detail';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -62,6 +63,15 @@ export default function Router() {
                     element: (
                         <Suspense>
                             <IDODetail />
+                            {/* <ComingSoon /> */}
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: 'ido-launchpad/round',
+                    element: (
+                        <Suspense>
+                            <IDORound />
                             {/* <ComingSoon /> */}
                         </Suspense>
                     ),
