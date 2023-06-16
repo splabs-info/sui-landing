@@ -7,18 +7,33 @@ const ContainerPartner = styled(Box)(({ theme }) => ({
   width: '100%',
   gap: '1rem',
   gridTemplateColumns: 'repeat(6, 1fr)',
+  '& a': {
+    background: "url('/images/home/new-frame.svg')",
+    backgroundSize: '100% 100%',
+    margin: '2px',
+    backgroundRepeat: 'no-repeat',
+    padding: '0px 16px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: 'repeat(3, 1fr)',
   },
   [theme.breakpoints.down('sm')]: {
+    gap: '8px',
     gridTemplateColumns: 'repeat(2, 1fr)',
+    '& a': {
+      padding: '8px 16px',
+      height: '64px',
+    },
   },
 }));
 
 const CustomLogo = styled('img')(() => ({
   transition: 'transform 150ms ease-in-out',
-  padding: 0,
   display: 'block',
+  padding: '1rem',
 }));
 
 const partners = [
@@ -91,6 +106,9 @@ const partners = [
   { label: 'vedao', link: 'https://www.vedao.com/' },
   { label: 'cubic', link: 'https://www.cubicgames.xyz/home' },
   { label: 'flowx', link: 'https://flowx.finance' },
+  { label: 'abex', link: 'https://abex.fi/' },
+  { label: 'cetus', link: 'https://www.cetus.zone/' },
+  { label: 'pyth', link: 'https://pyth.network/' },
 ];
 
 export default function Partner() {
@@ -110,17 +128,6 @@ export default function Partner() {
               target="_blank"
               rel="noreferrer"
               key={index}
-              style={{
-                background: "url('/images/home/new-frame.svg')",
-                backgroundSize: '100% 100%',
-                margin: '0.1rem',
-                backgroundRepeat: 'no-repeat',
-                padding: '1rem',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '88px',
-              }}
             >
               <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
             </a>
