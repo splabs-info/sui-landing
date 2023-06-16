@@ -113,7 +113,7 @@ a.icon-linked img:hover {
 
 
 .animatedText {
-  animation: animatedText 2s linear infinite alternate-reverse;
+  animation: animatedText 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate-reverse;
   background-clip: text;
   background-image: linear-gradient(90deg, #68E5B8, #00F1F5, #8A92FF);
   background-position: -100%;
