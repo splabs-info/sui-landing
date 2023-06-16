@@ -1170,13 +1170,13 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cetusprotocol/cetus-sui-clmm-sdk@^2.7.2":
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/@cetusprotocol/cetus-sui-clmm-sdk/-/cetus-sui-clmm-sdk-2.7.2.tgz#e9324fc3fd346924b6a9bb5490ac11e6fe9a76ba"
-  integrity sha512-f8bSNKiQmuO0C1tALmV7vdN6kyz58zY+olGrm2Ln5Z0h5AbGbC5bt4V9PHeP+rDiarpYBafXPxjwgclwqeCLTA==
+"@cetusprotocol/cetus-sui-clmm-sdk@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@cetusprotocol/cetus-sui-clmm-sdk/-/cetus-sui-clmm-sdk-3.0.3.tgz#cb438acaba5489e7ef3870ed8b279ca3a3d6b8e7"
+  integrity sha512-dbAWQBfK3KqA87khChIw7MtKmftCXr0qQ8lsQmI1wVJDHVddqgEs9U4jEHTrlMEBAuJz6C3DKPe4SrdHVyjWUw==
   dependencies:
     "@mysten/bcs" "^0.7.1"
-    "@mysten/sui.js" "^0.34.1"
+    "@mysten/sui.js" "^0.35.1"
     "@suchipi/femver" "^1.0.0"
     "@syntsugar/cc-graph" "^0.1.1"
     "@types/bn.js" "^5.1.1"
@@ -2398,7 +2398,7 @@
   dependencies:
     bs58 "^5.0.0"
 
-"@mysten/sui.js@0.35.1":
+"@mysten/sui.js@0.35.1", "@mysten/sui.js@^0.35.1":
   version "0.35.1"
   resolved "https://registry.yarnpkg.com/@mysten/sui.js/-/sui.js-0.35.1.tgz#549cb937af21240938a0d19867f03d8995610e77"
   integrity sha512-1UQ65oJhO+G5Bt+EWYqMs5y3eqY1ZZxEdB2y4K+XJVeRZBOy32GjSLiYmZufUAR9o53gAlwAvvNRIzMzuiNQzw==

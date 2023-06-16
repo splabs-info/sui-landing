@@ -1,8 +1,8 @@
 import { Box, Container, Stack, Typography, styled } from '@mui/material';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home-v2/HomeStyles';
-import { BuyToken } from 'components/presales/BuyToken';
-import { PresalesInformation } from 'components/presales/Information';
+import { BuyToken } from 'components/privateSale/BuyToken';
+import { XUIUtility } from 'components/privateSale/XUIUtility';
 import useResponsive from 'hooks/useResponsive';
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -19,17 +19,17 @@ const Title = styled(Typography)(({ theme }) => ({
 const Caption = styled(Typography)(({ theme }) => ({
     fontWeight: 500,
     fontSize: 16,
-    marginTop: 32,
-    width: '60%',
+    marginTop: 24,
+    maxWidth: '400px',
     [theme.breakpoints.down(900)]: {
         width: '100%',
     },
 }));
-export default function PreSales() {
+export default function PrivateSale() {
     const isMobile = useResponsive('down', 'sm');
 
     return (
-        <Page title="Presales">
+        <Page title="Private Sale">
             <SectionBox
                 sx={{
                     backgroundImage: "url('/images/background/homebg3456.jpg')",
@@ -48,21 +48,21 @@ export default function PreSales() {
                     }}
                 />
                 <Container maxWidth={'xl'} sx={{ zIndex: 1 }}>
-                    <Stack direction={{ lg: 'row' }} sx={{ pt: isMobile ? 15 : 20, mb: isMobile ? 5 : 15 }}>
+                    <Stack direction={{ lg: 'row' }} sx={{ pt: isMobile ? 15 : 20, mb: isMobile ? 10 : 30 }}>
                         <Box sx={{ position: 'relative', zIndex: 1, color: 'white' }}>
-                            <Typography variant="h3">PRIVATE-SALE </Typography>
+                            <Typography variant="h2" fontWeight={600}>PRIVATE-SALE </Typography>
                             <Title variant="h1">
                                 <p className="linear" style={{ fontSize: 72, fontWeight: 'bold' }}>
                                     XUI
                                 </p>
                             </Title>
-                            <Caption>
+                            <Caption variant='h6'>
                                 Get early access to XUI tokens and participate in promising projects directly on YouSUI.
                             </Caption>
                         </Box>
                     </Stack>
                     <BuyToken />
-                    <PresalesInformation />
+                    <XUIUtility />
                 </Container>
             </SectionBox>
         </Page>

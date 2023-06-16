@@ -10,7 +10,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@cetusprotocol/cetus-sui-clmm-sdk": "^2.7.2",
+    "@cetusprotocol/cetus-sui-clmm-sdk": "^3.0.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@headlessui/react": "^1.7.10",
