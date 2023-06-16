@@ -13,6 +13,8 @@ const config = {
   providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : mainnetConnection,
 };
 
+console.log('>> Cetus swap config', config);
+
 export const sdk = new SDK(config.sdkEnv);
 const coinMap = new Map();
 const poolMap = new Map();
@@ -35,7 +37,6 @@ export const cetusLoad = async () => {
     const pools = await sdk.Pool.getPools([], 0, 500);
 
     const tokens = await sdk.Token.getAllRegisteredTokenList();
-
     for (let i = 0; i < tokens.length; i += 1) {
       tokenMap.set(tokens[i].address, tokens[i]);
     }
@@ -94,6 +95,12 @@ export async function getBalance(address, coin) {
   }
 }
 
+export function prettyAmount(amount, coin) {
+  amount = Number(amount).toFixed(getDecimals(coin)).replace('.', '');
+  const coinAmount = new BN(parseFloat(amount));
+  return coinAmount.toString();
+}
+
 export function getDecimals(coinType) {
   try {
     return tokenMap.get(coinType).decimals;
@@ -149,31 +156,6 @@ export async function getPreSwapData(swapRouter, slippage, byAmountIn) {
   return { minimumReceived, totalFee, impactPrice: impactPrice.toFixed(2) };
 }
 
-export function formatBigNumber(str) {
-  const num = Math.abs(Number(str)).toFixed(2);
-  let result;
-  if (num >= 1.0e9) {
-    // Nine Zeroes for Billions
-    const decimal = Math.floor((num - Math.floor(num / 1.0e9) * 1.0e9) / 1.0e7);
-    result = Math.floor(num / 1.0e9) + '.' + (decimal > 9 ? decimal : '0' + decimal) + 'B';
-  } else {
-    if (num >= 1.0e6) {
-      // Six Zeroes for Millions
-      const decimal = Math.floor((num - Math.floor(num / 1.0e6) * 1.0e6) / 1.0e4);
-      result = Math.floor(num / 1.0e6) + '.' + (decimal > 9 ? `${decimal}` : `0${decimal}`) + 'M';
-    } else {
-      if (num >= 1.0e3) {
-        // Three Zeroes for Thousands
-        const decimal = Math.floor((num - Math.floor(num / 1.0e3) * 1.0e3) / 1.0e1);
-        result = Math.floor(num / 1.0e3) + '.' + (decimal > 9 ? `${decimal}` : `0${decimal}`) + 'K';
-      } else {
-        return num;
-      }
-    }
-  }
-  return result;
-}
-
 export const SwapHelper = {
   sdk,
   provider,
@@ -181,7 +163,6 @@ export const SwapHelper = {
   Decimal,
   config,
   cetusLoad,
-  formatBigNumber,
   CetusHelper: {
     getPreSwapData,
     tokenMap,

@@ -24,7 +24,14 @@ function CustomInput({ handleDone, defaultValue, ...props }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
-  return <InputBase type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} {...props} />;
+  return (
+    <InputBase
+      type="number"
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+      {...props}
+    />
+  );
 }
 
 export default CustomInput;
