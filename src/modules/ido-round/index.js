@@ -1,9 +1,13 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Container, Stack, Tab, styled } from '@mui/material';
+import { Box, Button, Container, Stack, Tab, TextField, styled } from '@mui/material';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import Staking from 'modules/staking/Stacking';
 import { useState } from 'react';
+import { Round } from './components/Round';
+import { InputOutlined } from '@mui/icons-material';
+import { InputField } from 'components/base/InputFieldV2';
+import { SaveButton } from './components/RoundStyled';
 
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -59,10 +63,23 @@ export default function IDORound() {
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
-                <Container maxWidth="xl">
+                <Container maxWidth="lg">
                     <Box mt={2} color={'#fff'}>
                         <TabContext value={tabIndex}>
-                            <Stack direction={'row'} justifyContent={'space-between'}>
+                            <Stack direction={'row'}
+                                justifyContent={tabIndex === '0' ? 'space-between' : 'flex-end'}
+                                alignItems={'center'}
+                            >
+                                {tabIndex === '0' && <Stack direction={'row'} gap={2}>
+                                    <TextField
+                                        label="Input Object ID of OG ROLE NFT"
+                                        variant="outlined"
+                                        size="small"
+                                        sx={{ width: 300, fontSize: 14, color: '#fff' }}
+
+                                    />
+                                    <SaveButton>Save</SaveButton>
+                                </Stack>}
                                 <Stack alignItems={'flex-end'}>
                                     <SpecialTabList
                                         indicatorColor='none'
@@ -73,13 +90,8 @@ export default function IDORound() {
                                     </SpecialTabList>
                                 </Stack>
                             </Stack>
-                            <TabPanel value={'0'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Staking />
-                            </TabPanel>
-                            <TabPanel value={'1'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Box mt={5}>
-                                    <img src="/images/comingsoon/coming-soon.png" alt="" style={{ width: '35%', margin: '0 auto' }} />
-                                </Box>
+                            <TabPanel value={tabIndex} sx={{ padding: { md: '32px 0 0', xs: '32px 8px 0' } }}>
+                                <Round round={tabIndex} />
                             </TabPanel>
                         </TabContext>
                     </Box>

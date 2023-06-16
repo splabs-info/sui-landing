@@ -4,10 +4,10 @@ import { InputField } from 'components/base/InputFieldV2';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IdoSchema } from '../validations';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import useResponsive from 'hooks/useResponsive';
+import { IdoSchema } from 'components/ido-detail/validations';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',

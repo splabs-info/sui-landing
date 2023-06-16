@@ -8,6 +8,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
+import { IdoSchema } from 'components/ido-detail/validations';
 import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
@@ -16,7 +17,6 @@ import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { IdoSchema } from '../validations';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
@@ -73,7 +73,7 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
+export const BuyTokenOG = ({ ratio, balances, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
@@ -144,7 +144,7 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
             }
         } catch (e) {
             setLoading(false);
-            
+
             // toast.error('Transaction failed');
         }
     };
