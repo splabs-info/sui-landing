@@ -18,7 +18,7 @@ function TradingViewWidget({ coin }) {
       colorTheme: 'dark',
       isTransparent: true,
       autosize: false,
-      width: 1000,
+      width: 600,
       height: 200,
       largeChartUrl: '',
       noTimeScale: true,

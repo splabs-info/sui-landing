@@ -60,7 +60,7 @@ export default function Statistic() {
   }, [prices]);
 
   return (
-    <Box>
+    <Box overflow={'clip'}>
       <Grid container alignItems={'center'} spacing={2}>
         <Grid item xs={3}>
           <Typography variant="body2" fontWeight={600} color="white">
