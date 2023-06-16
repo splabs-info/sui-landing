@@ -58,7 +58,7 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
     const [listPayments, setListPayments] = React.useState([]);
-
+    const { objectIdOGRoleNft } = useYouSuiStore();
     const theme = useTheme();
     const wallet = useWallet();
 
@@ -154,11 +154,21 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
             objects: [coin],
         });
 
-        tx.moveCall({
-            target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
-            typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount)],
-        });
+        console.log('objectIdOGRoleNft__', objectIdOGRoleNft)
+        if (objectIdOGRoleNft) {
+            tx.moveCall({
+                target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
+                typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
+                arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('luuphuc'), tx.pure(objectIdOGRoleNft)],
+            });
+        } else {
+            console.log('abc')
+            tx.moveCall({
+                target: `${TXUI_PACKAGE}::launchpad_presale::purchase_without_nft`,
+                typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
+                arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('luuphuc')],
+            });
+        }
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
@@ -208,129 +218,134 @@ export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType,
 
 
     return (
-        <StyledBuyTokenBox>
-            <Stack>
-                <form onSubmit={handleSubmit(handleSales)}>
-                    <Typography
-                        sx={{
-                            textAlign: 'end',
-                            marginRight: 0.5,
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                        }}
-                    >
-                        {renderStatusBalance()}
-                    </Typography>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            height: 80,
-                        }}
-                    >
-                        <Typography sx={{ marginRight: 2 }}>Amount:</Typography>
-                        <InputField
-                            id="amount"
-                            name="amount"
-                            control={control}
-                            // disabled
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment
-                                        position="end"
-                                        sx={{
-                                            '& .MuiTypography-root': {
-                                                color: 'white',
-                                                fontWeight: 'bold',
-                                            },
-                                        }}
-                                    >
-                                        {symbol}
-                                    </InputAdornment>
-                                ),
-                            }}
+        <>
+            {/* <SaveObjectIDForm /> */}
+            <StyledBuyTokenBox>
+                <Stack>
+                    <form onSubmit={handleSubmit(handleSales)}>
+                        <Typography
                             sx={{
+                                textAlign: 'end',
+                                marginRight: 0.5,
                                 fontWeight: 'bold',
-                                color: 'white',
-                                [theme.breakpoints.down('sm')]: {
-                                    // width: 320,
-                                },
-                                [theme.breakpoints.down(480)]: {
-                                    // width: 280,
-                                },
+                                fontSize: 14,
                             }}
-                        />
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Typography sx={{ marginRight: 2 }}>Required:</Typography>
-                        <NormalInputField
-                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
-                            disabled
-                            sx={{
-                                fontWeight: 'bold',
-                                color: 'white',
-                                marginBottom: 4,
-                            }}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment
-                                        position="end"
-                                        sx={{
-                                            '& .MuiTypography-root': {
-                                                color: 'white',
-                                                fontWeight: 'bold',
-                                            },
-                                        }}
-                                    >
-                                        SUI
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Box>
-                    <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
+                        >
+                            {renderStatusBalance()}
+                        </Typography>
                         <Box
                             sx={{
                                 display: 'flex',
+                                justifyContent: 'space-between',
                                 alignItems: 'center',
-                                marginBottom: isMobile ? '1rem' : '0',
+                                height: 80,
                             }}
                         >
-                            <CheckboxFiled handleChecked={handleChecked} />
-                            <Typography>
-                                I’ve read and accepted all the{' '}
-                                <a
-                                    href="/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    style={{
-                                        color: 'rgba(91, 184, 240, 1)',
-                                        '&:hover': {
-                                            textDecoration: 'underline',
-                                        },
-                                    }}
-                                >
-                                    YouSUI's Agreement
-                                </a>
-                            </Typography>
+                            <Typography sx={{ marginRight: 2 }}>Amount:</Typography>
+                            <InputField
+                                id="amount"
+                                name="amount"
+                                control={control}
+                                // disabled
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment
+                                            position="end"
+                                            sx={{
+                                                '& .MuiTypography-root': {
+                                                    color: 'white',
+                                                    fontWeight: 'bold',
+                                                },
+                                            }}
+                                        >
+                                            {symbol}
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                sx={{
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    [theme.breakpoints.down('sm')]: {
+                                        // width: 320,
+                                    },
+                                    [theme.breakpoints.down(480)]: {
+                                        // width: 280,
+                                    },
+                                }}
+                            />
                         </Box>
-                        <StyledBuyTokenBtn type="submit" disabled={!isValid || !checked || !canBuy} loading={loading}>
-                            Buy Now
-                        </StyledBuyTokenBtn>
-                    </Stack>
-                </form>
-                
-            </Stack>
-        </StyledBuyTokenBox>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+                            <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Typography sx={{ marginRight: 2 }}>Required:</Typography>
+                            <NormalInputField
+                                value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
+                                disabled
+                                sx={{
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    marginBottom: 4,
+                                }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment
+                                            position="end"
+                                            sx={{
+                                                '& .MuiTypography-root': {
+                                                    color: 'white',
+                                                    fontWeight: 'bold',
+                                                },
+                                            }}
+                                        >
+                                            SUI
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Box>
+                        <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginBottom: isMobile ? '1rem' : '0',
+                                }}
+                            >
+                                <CheckboxFiled handleChecked={handleChecked} />
+                                <Typography>
+                                    I’ve read and accepted all the{' '}
+                                    <a
+                                        href="/"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{
+                                            color: 'rgba(91, 184, 240, 1)',
+                                            '&:hover': {
+                                                textDecoration: 'underline',
+                                            },
+                                        }}
+                                    >
+                                        YouSUI's Agreement
+                                    </a>
+                                </Typography>
+                            </Box>
+                            <StyledBuyTokenBtn type="submit" disabled={!isValid || !checked || !canBuy} loading={loading}>
+                                Buy Now
+                            </StyledBuyTokenBtn>
+                        </Stack>
+                    </form>
+
+                </Stack>
+            </StyledBuyTokenBox>
+
+        </>
+
     );
 };

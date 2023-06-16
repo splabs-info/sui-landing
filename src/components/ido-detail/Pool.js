@@ -147,6 +147,7 @@ export const Pool = () => {
 
                 const newState = {
                     ...round,
+                    roundId: roundData?.id?.id,
                     tokenAddress: `0x${roundData?.token_type}`,
                     tokenName: tokenType?.name,
                     decimals: tokenType?.decimals,
@@ -230,6 +231,7 @@ export const Pool = () => {
                                             />
                                         ) : (
                                             <PublicRound
+                                                roundId={round?.roundId}
                                                 balances={balances}
                                                 tokenType={round?.tokenType}
                                                 payments={round?.payments}

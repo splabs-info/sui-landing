@@ -54,12 +54,12 @@ const MaxButton = styled(Button)(({ theme }) => ({
     fontSize: 12,
 }));
 
-export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, balances, decimals }) => {
+export const BuyTokenPublic = ({ roundId, name, tokenType, minPurchase, ratio, symbol, balances, decimals }) => {
     const [loading, setLoading] = React.useState();
     const [checked, setChecked] = React.useState();
     const wallet = useWallet();
 
-    const { allCoinObjectsId } = React.useContext(SuiContext);
+    const { allCoinObjectsId, provider } = React.useContext(SuiContext);
 
     const { projectId } = useParams();
     const decodedProjectId = decodeURIComponent(projectId);
@@ -79,7 +79,6 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
             .typeError('Must be number'),
     });
 
-
     const {
         control,
         handleSubmit,
@@ -87,7 +86,7 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
         watch,
         reset,
         setValue,
-        trigger
+        trigger,
     } = useForm({
         mode: 'onChange',
         defaultValues: {
@@ -99,7 +98,6 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
     const watchAmount = watch('amount');
 
     const isMobile = useResponsive('down', 'sm');
-
 
     const handleChecked = (event) => {
         setChecked(event.target.checked);
@@ -123,14 +121,20 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils.parseUnits(
-            (parseFloat(data?.amount * toNumber(ratio)).toFixed(decimals)).toString(),
-            decimals
-        ).toString();
+        const balanceSplit = ethers.utils
+            .parseUnits(
+                parseFloat(data?.amount * toNumber(ratio))
+                    .toFixed(decimals)
+                    .toString(),
+                decimals
+            )
+            .toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
-        const parseAmount = ethers.utils.parseUnits(parseFloat((data?.amount)).toFixed(decimals).toString(), decimals).toString();
+        const parseAmount = ethers.utils
+            .parseUnits(parseFloat(data?.amount).toFixed(decimals).toString(), decimals)
+            .toString();
 
         const vec = tx.makeMoveVec({
             objects: [coin],
@@ -170,9 +174,12 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
 
     const canBuy = isCanBuy();
 
-
     const handleSelectMax = () => {
-        setValue('amount', ((balances - 0.1) / toNumber(ratio)), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+        setValue('amount', (balances - 0.1) / toNumber(ratio), {
+            shouldDirty: true,
+            shouldTouch: true,
+            shouldValidate: true,
+        });
         trigger('amount');
     };
 
@@ -201,8 +208,40 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
             setLoading(false);
             toast.error('Transaction rejected');
         }
-    }
+    };
 
+    React.useEffect(() => {
+        if (roundId) {
+            (async () => {
+                const publicRound = await provider.getObject({
+                    id: roundId,
+                    option: { showContent: true },
+                });
+
+                const dynamicFiled = await provider.getDynamicFields({
+                    parentId: roundId,
+                    option: { showContent: true },
+                });
+
+                const myInfo = dynamicFiled?.data?.filter((item) => item.name?.value === wallet?.address);
+
+                console.log('dynamicFiled__', dynamicFiled);
+                const investments = await provider.getObject({
+                    id: '0x656f540705f9597987eb090ee179de83bbfbf9e4babef7afd6ebcc7e6306f3f6',
+                    options: {
+                        showType: true,
+                        showContent: true,
+                        showOwner: true,
+                        showPreviousTransaction: true,
+                        showStorageRebate: true,
+                        showDisplay: true,
+                    },
+                });
+
+                // console.log('investments___', investments);
+            })();
+        }
+    }, [provider, roundId]);
     return (
         <StyledBuyTokenBox>
             <Stack>
@@ -214,12 +253,13 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
                                 marginRight: 0.5,
                                 fontWeight: 'bold',
                                 fontSize: 14,
-
                             }}
                         >
                             {renderStatusBalance()}
                         </Typography>
-                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
+                        <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>
+                            Max
+                        </MaxButton>
                     </Stack>
 
                     <Box
@@ -273,7 +313,9 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
                     >
                         <Typography sx={{ marginRight: 2 }}>Required:</Typography>
                         <NormalInputField
-                            value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
+                            value={
+                                Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0
+                            }
                             disabled
                             sx={{
                                 fontWeight: 'bold',
@@ -328,9 +370,9 @@ export const BuyTokenPublic = ({ name, tokenType, minPurchase, ratio, symbol, ba
                         </StyledBuyTokenBtn>
                     </Stack>
                 </form>
-                <StyledBuyTokenBtn type="submit" onClick={handleClaim}>
+                {/* <StyledBuyTokenBtn type="submit" onClick={handleClaim}>
                     Claim
-                </StyledBuyTokenBtn>
+                </StyledBuyTokenBtn> */}
             </Stack>
         </StyledBuyTokenBox>
     );

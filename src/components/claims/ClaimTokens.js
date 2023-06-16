@@ -77,7 +77,6 @@ export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 
-    console.log('myIDOs__', myIDOs)
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />

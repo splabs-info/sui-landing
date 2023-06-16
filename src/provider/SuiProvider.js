@@ -33,6 +33,7 @@ export const SUIWalletContext = ({ children }) => {
                     options: { showContent: true },
                 });
 
+                console.log('allProjects___', allProjects)
                 if (!allProjects?.data) return;
 
                 allProjects?.data?.content?.fields?.projects.map(

@@ -58,9 +58,6 @@ export function InputField({ id, name, control, label, InputProps, inputLabel, s
         fieldState: { invalid, error },
     } = useController({
         name,
-        defaultValue: {
-            amount: 20
-        },
         control,
     });
 

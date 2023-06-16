@@ -1,11 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
+import { useWallet } from '@suiet/wallet-kit';
 import { InputField } from 'components/base/InputFieldV2';
+import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { SaveObjectIdSchema } from './validation';
+
 const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
     color: 'white',
@@ -21,6 +24,9 @@ const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
 }));
 export const SaveObjectIDForm = () => {
     const { objectIdOGRoleNft, setObjectId } = useYouSuiStore();
+    const { provider } = React.useContext(SuiContext)
+    const wallet = useWallet();
+
 
     const {
         control,
@@ -29,13 +35,20 @@ export const SaveObjectIDForm = () => {
     } = useForm({
         mode: 'onChange',
         defaultValues: {
-            amount: '',
+            objectId: objectIdOGRoleNft || '',
         },
         resolver: yupResolver(SaveObjectIdSchema),
     });
 
-    const handleSave = (value) => {
-        console.log('value', value)
+    const handleSave = async (value) => {
+        setObjectId(value.objectId)
+
+        const validate = await provider.getObject({
+            id: value?.objectId,
+            options: { showContent: true },
+        })
+
+        
     }
 
     return (
@@ -45,7 +58,7 @@ export const SaveObjectIDForm = () => {
                 name="objectId"
                 control={control}
             />
-            <StyledBuyTokenBtn type="submit">Save</StyledBuyTokenBtn>
+            <StyledBuyTokenBtn type="submit" disable={!isValid}>Save</StyledBuyTokenBtn>
         </form>
     );
 };

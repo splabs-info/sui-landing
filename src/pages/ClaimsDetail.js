@@ -56,7 +56,6 @@ export default function ClaimsDetail() {
 
         const fetchData = async () => {
             const promises = vesting.map(async (element) => {
-
                 const vestingDetail = await provider.getObject({
                     id: element.objectId,
                     options: { showContent: true },
@@ -67,12 +66,12 @@ export default function ClaimsDetail() {
                     options: { showContent: true },
                 });
 
-                setVestingDetails(prev => ({
+                setVestingDetails((prev) => ({
                     ...prev,
                     tokenType: vestingDetail?.data?.content?.fields?.info?.fields?.token_type,
                     numberOfCliffMonths: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_cliff_months,
                     numberOfLinearMonth: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_linear_months,
-                }))
+                }));
 
                 if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
 
@@ -84,7 +83,7 @@ export default function ClaimsDetail() {
                     options: { showContent: true },
                 });
 
-                if(!yourVesting) return null;
+                if (!yourVesting) return null;
 
                 return yourVesting;
             });
@@ -93,10 +92,12 @@ export default function ClaimsDetail() {
 
             if (!yourVestings || yourVestings.length <= 0) return;
 
-            const periodList = flattenDeep(yourVestings.map(vesting => vesting?.value.data?.content?.fields?.value?.fields?.period_list));
+            const periodList = flattenDeep(
+                yourVestings.map((vesting) => vesting?.value.data?.content?.fields?.value?.fields?.period_list)
+            );
 
             yourVestings.forEach((vesting) => {
-                setVestingDetails(prev => ({
+                setVestingDetails((prev) => ({
                     ...prev,
                     periodList,
                     totalLockMount: vesting.data?.content?.fields?.value?.fields?.total_lock_mount,
@@ -127,12 +128,18 @@ export default function ClaimsDetail() {
                     }}
                 />
                 <Container maxWidth={'xl'}>
-                    <VestingTokens
-                        tokenType={vestingDetails?.tokenType}
-                        periodList={vestingDetails?.periodList}
-                        totalLockMount={vestingDetails?.totalLockMount}
-                        totalUnlockAmount={vestingDetails?.totalUnlockAmount}
-                    />
+                    {vestingDetails?.periodList?.length === 0 ? (
+                        <></>
+                    ) : (
+                        <>
+                            <VestingTokens
+                                tokenType={vestingDetails?.tokenType}
+                                periodList={vestingDetails?.periodList}
+                                totalLockMount={vestingDetails?.totalLockMount}
+                                totalUnlockAmount={vestingDetails?.totalUnlockAmount}
+                            />
+                        </>
+                    )}
                 </Container>
             </SectionBox>
         </Page>

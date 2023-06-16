@@ -58,12 +58,15 @@ export default function Claims() {
 
             const formattedMyIdo = await Promise.all(promises);
 
+
             setMyIdo([...formattedMyIdo]);
         };
 
         fetchData();
     }, [provider, wallet?.address, wallet?.connected]);
 
+
+    console.log('myIdo___', myIdo)
     return (
         <Page title="Claim Tokens">
             <SectionBox

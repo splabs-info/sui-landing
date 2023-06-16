@@ -3,6 +3,7 @@ import useResponsive from 'hooks/useResponsive';
 import { BuyTokenPublic } from './BuyTokenPublic';
 import { CircleBox } from './CircleBox';
 export const PublicRound = ({
+    roundId,
     balances,
     decimals,
     endAt,
@@ -18,7 +19,7 @@ export const PublicRound = ({
 }) => {
     const isMobile = useResponsive('down', 'sm');
 
-    
+
     return (
         <Box>
             <CircleBox
@@ -31,6 +32,7 @@ export const PublicRound = ({
                 participants={participants}
             />
             <BuyTokenPublic
+                roundId={roundId}
                 tokenType={tokenType}
                 minPurchase={minPurchase}
                 balances={balances}

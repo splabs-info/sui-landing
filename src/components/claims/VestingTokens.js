@@ -18,6 +18,7 @@ import { TokenPoolBox } from './ClaimTokens';
 export default function VestingTokens({ tokenType, periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
+    console.log('periodList__', periodList)
     return (
         <Box position="relative">
             <Grid container spacing={4} mb={isMobile ? 1 : 4}>
@@ -95,11 +96,12 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                         <VestingList
                             key={index}
                             tokenType={tokenType}
+                            periodId={item?.fields.period_id}
                             id={item?.fields.period_id}
                             indexVesting={index}
-                            isWithdrawal={item?.fields.isWithdrawal}
-                            releaseTime={item?.fields?.releaseTime}
-                            unlockAmount={item?.fields?.unlockAmount}
+                            isWithdrawal={item?.fields.is_withdrawal}
+                            releaseTime={item?.fields?.release_time}
+                            unlockAmount={item?.fields?.unlock_amount}
                         />
                     ))}
                 </>
@@ -112,7 +114,7 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
     );
 }
 
-function VestingList({ id, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
+function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
     const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
@@ -127,10 +129,13 @@ function VestingList({ id, tokenType, isWithdrawal, indexVesting, releaseTime, u
     const event = location.state?.eventName;
     const canClaim = canClaimVesting(releaseTime)
 
+
+    console.log('releaseTime__', releaseTime)
     const handleClaim = async () => {
         setLoading(true)
         const tx = new TransactionBlock();
 
+        console.log('indexVesting', indexVesting)
         tx.moveCall({
             target: `${TXUI_PACKAGE}::launchpad_presale::claim_vesting`,
             typeArguments: [`0x${tokenType}`],
