@@ -1,87 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon.ico" />
-  <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <meta name="theme-color" content="#000000" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      charset="UTF-8"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+    />
 
-  <link rel="stylesheet" type="text/css" charset="UTF-8"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <!-- Meta -->
+    <title>YouSUI</title>
+    <meta property="og:title" content="YouSUI - Due Diligence and Regulation." />
+    <meta
+      name="description"
+      content="Become an early investor in the scalable, Launchpad to participate in all Games, NFTs and Metaverse in the world."
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/images/meta.png" />
+    <meta property="og:url" content="%PUBLIC_URL%/" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Meta -->
-  <title>YouSUI</title>
-  <meta property="og:title" content="YouSUI - Due Diligence and Regulation." />
-  <meta name="description"
-    content="Become an early investor in the scalable, Launchpad to participate in all Games, NFTs and Metaverse in the world." />
-  <meta property="og:image" content="%PUBLIC_URL%/images/meta.png" />
-  <meta property="og:url" content="%PUBLIC_URL%/" />
-  <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      @font-face {
+        font-family: 'SVN-Gilroy-semi-bold';
+        src: url(%PUBLIC_URL%/fonts/Inter-SemiBold.ttf);
+      }
 
-  <style>
-    @font-face {
-      font-family: "SVN-Gilroy-semi-bold";
-      src: url(%PUBLIC_URL%/fonts/Inter-SemiBold.ttf);
-    }
+      @font-face {
+        font-family: 'SVN-Gilroy-black-italic';
+        src: url(%PUBLIC_URL%/fonts/Inter-Light.ttf);
+      }
 
-    @font-face {
-      font-family: "SVN-Gilroy-black-italic";
-      src: url(%PUBLIC_URL%/fonts/Inter-Light.ttf);
-    }
+      @font-face {
+        font-family: 'SVN-Gilroy-regular';
+        src: url(%PUBLIC_URL%/fonts/Inter-Regular.ttf);
+      }
 
-    @font-face {
-      font-family: "SVN-Gilroy-regular";
-      src: url(%PUBLIC_URL%/fonts/Inter-Regular.ttf);
-    }
+      @font-face {
+        font-family: 'SVN-Gilroy-heavy';
+        src: url(%PUBLIC_URL%/fonts/Inter-ExtraBold.ttf);
+      }
 
-    @font-face {
-      font-family: "SVN-Gilroy-heavy";
-      src: url(%PUBLIC_URL%/fonts/Inter-ExtraBold.ttf);
-    }
+      html {
+        scroll-behavior: smooth;
+        font-family: 'Inter', sans-serif;
+      }
 
-    html {
-      scroll-behavior: smooth;
-      font-family: 'Inter', sans-serif;
-    }
+      ::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: #f5f5f5;
+      }
 
-    ::-webkit-scrollbar-track {
-      border-radius: 8px;
-      background-color: #F5F5F5;
-    }
+      ::-webkit-scrollbar {
+        width: 8px;
+        background-color: #00c5d3;
+      }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-      background-color: #00C5D3;
-    }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: #00c5d3;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-      background-color: #00C5D3;
-    }
+      ::-webkit-scrollbar-thumb:hover {
+        /* background-color: linear-gradient(to bottom, #9162FE 25%, #00A5FF 100%); */
+      }
+    </style>
+  </head>
 
-    ::-webkit-scrollbar-thumb:hover {
-      /* background-color: linear-gradient(to bottom, #9162FE 25%, #00A5FF 100%); */
-    }
-  </style>
-</head>
+  <body>
+    <div id="root"></div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YHG83VXSGM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-<body>
-  <div id="root"></div>
-</body>
-
+      gtag('config', 'G-YHG83VXSGM');
+    </script>
+  </body>
 </html>
