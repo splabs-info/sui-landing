@@ -15,7 +15,7 @@ import useResponsive from '../hooks/useResponsive';
 import { _changeLanguage } from '../store/setting/settingActions';
 import Logo from 'components/common/Logo';
 
-const joinGateKeeper = [
+const joinYouSUI = [
 	{
 		label: 'key_15',
 		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
@@ -42,7 +42,7 @@ const joinGateKeeper = [
 	},
 ];
 
-const aboutGateKeeper = [
+const aboutYouSUI = [
 	{
 		label: 'key_11',
 		link: '/whitepaper/tokenomics',
@@ -116,7 +116,10 @@ export default function FooterSection() {
 							},
 						}}>
 						<Stack>
-							<Logo sx={{ width: { lg: 220, md: '160px', sm: '200px', xs: '200px' } }} />
+							<Logo sx={{
+								width: { lg: 220, md: '160px', sm: '200px', xs: '200px' },
+								transform: { md: 'translateY(-50px)', sm: 0, }
+							}} />
 						</Stack>
 						<Typography
 							variant="body1"
@@ -126,27 +129,8 @@ export default function FooterSection() {
 								padding: { xs: '0 10%', sm: '0 15%', md: '0 20% 0 0' },
 							}}
 						>
-							The YouSUI is a user-friendly platform that runs on Sui blockchain as a multi-chain platform
-							for Metaverse, Game, and WEB 3.0.
+							YouSUI is an All-In-One platform running on the Sui Network, featuring a comprehensive suite of services including a decentralized exchange (DEX), Launchpad, NFT marketplace, social platform, and bridge.
 						</Typography>
-						{/* <CusLink
-									href="https://splabs.info/"
-									target={'_blank'}
-									sx={{ marginTop: '2rem', marginBottom: '0.5rem' }}
-							>
-									<Box component="img" src="/logo-splabs.png" width={'150px'} />
-							</CusLink> */}
-						{/* <Typography
-								variant="body1"
-								sx={{
-										fontSize: '0.95rem',
-										textAlign: isMobile && 'center',
-										padding: isMobile ? '0 10%' : '0 20% 0 0 ',
-								}}
-						>
-								Splabs is a blockchain hub that provides global gamefi, metaverse, M2E, and Defi service
-								solutions.
-						</Typography> */}
 					</Grid>
 					<Grid item xs={12} sm={4} md={3} lg={2} mt={isTablet && 3} textAlign={isMobile && 'center'}>
 						<FooterTitle>{library.key_9}</FooterTitle>
@@ -178,7 +162,7 @@ export default function FooterSection() {
 						<FooterTitle>{library.key_10}</FooterTitle>
 
 						<UlCustom>
-							{aboutGateKeeper.map((item) => (
+							{aboutYouSUI.map((item) => (
 								<li key={item.label}>
 									<a href={item.link}>{library[item.label]}</a>
 								</li>
@@ -199,7 +183,7 @@ export default function FooterSection() {
 						<FooterTitle>{library.key_14}</FooterTitle>
 
 						<UlCustom>
-							{joinGateKeeper.map((item) => (
+							{joinYouSUI.map((item) => (
 								<li key={item.label}>
 									<a href={item.link} target="_blank" rel="noreferrer">
 										{library[item.label]}
@@ -220,8 +204,8 @@ export default function FooterSection() {
 						<FooterTitle>{library.key_20}</FooterTitle>
 						<SocialFooter />
 
-						<FooterTitle mt={3}>{library.key_21}</FooterTitle>
-						<GetIntoButton>Get into Social Platform</GetIntoButton>
+						{/* <FooterTitle mt={3}>{library.key_21}</FooterTitle>
+						<GetIntoButton>Get into Social Platform</GetIntoButton> */}
 					</Grid>
 				</Grid>
 			</Container>
