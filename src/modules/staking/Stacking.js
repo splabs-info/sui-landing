@@ -10,11 +10,7 @@ import { fCurrency } from 'utils/format';
 
 const data = {
     symbol: 'XUI',
-    description: `The $XUI token is a utility token of the YouSUI platform and is connected through a
-    bridge on BSC and SUI Chain. By staking $XUI, you can participate in IDO Launchpad
-    and INO Launchpad, and the more $XUI you stake, the higher tiers you receive. Higher
-    tiers are given a chance to obtain more allocations in Launchpad or to
-    participate in INO Launchpad at a lower price.`,
+    description: `$XUI is the utility token of the YouSUI platform, serving various purposes within the ecosystem. It can be utilized in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. Additionally, $XUI holds governance power, allowing token holders to participate in decision-making through voting and governance processes. Staking $XUI enables community members to express their opinions and provide suggestions. Users who stake $XUI are assigned a "Tier," granting them access to participate in IDO and INO Launchpad events. Furthermore, a portion of the revenue generated from activities such as DEX, NFT Marketplace, and Bridge is allocated to $XUI stakers, while the remaining amount is dedicated to the "Burn and Buyback" mechanism.`,
     price: 1.63307,
     holder: 200000,
     marketCap: 4533533,
@@ -131,7 +127,7 @@ export default function Staking() {
             <Grid item md={8} xs={12}>
                 <Stack spacing={2} justifyContent={'space-between'} height={'100%'}>
                     <Box>
-                        <Stack direction={'row'} justifyContent={'space-between'} mb={2}>
+                        <Stack direction={'row'} justifyContent={'space-between'} mb={1}>
                             <Typography variant="h3">{data.symbol}</Typography>
                             <SocialFooter sx={{ '& img': { width: '80%' } }} />
                         </Stack>

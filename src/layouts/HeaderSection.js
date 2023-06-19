@@ -34,7 +34,7 @@ const config = [
   { label: 'key_4', link: '/staking' },
   { label: 'key_6', link: '/swap' },
   { label: 'key_Bridge', link: '/bridge' },
-  { label: 'key_marketplace', link: '/coming-soon' },
+  { label: 'key_marketplace', link: '/nft-marketplace' },
   { label: 'key_crew3', link: 'https://zealy.io/c/yousui' },
 ];
 

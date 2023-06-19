@@ -29,7 +29,7 @@ const upComingIDOList = [
     releaseTime: 'Official Launch: June 21st',
     startAt: '21st June 12:00 UTC',
     status: true,
-    link: '',
+    link: '/ido-launchpad/round',
     description: [
       <>
         <p>1,000,000 SUI</p>

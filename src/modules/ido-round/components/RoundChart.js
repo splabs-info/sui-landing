@@ -25,7 +25,7 @@ export const RoundChart = ({ round }) => {
                         radius={100} percent={round?.totalSold ? round?.totalSold / round?.totalSale * 100 : 0}
                     />
                     <Typography variant='body1' fontWeight={'bold'} textAlign={'center'}>
-                        <span style={{ color: '#1FD8D1' }}> {fCurrency(round?.totalSold)} </span> / {fCurrency(round?.totalSale)}SUI
+                        <span style={{ color: '#1FD8D1' }}> {fCurrency(round?.totalSold)} </span> / {fCurrency(round?.totalSale)} SUI
                     </Typography>
                 </Stack>
                 <Box ml={isMobile ? 0 : 4}>
