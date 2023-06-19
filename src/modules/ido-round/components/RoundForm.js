@@ -67,14 +67,14 @@ export const RoundForm = ({ round, balances }) => {
                                     },
                                 }}
                             >
-                                SUA
+                                XUI
                             </InputAdornment>
                         ),
                     }}
                     value={value}
                     size="small"
                     fullWidth
-                    sx={{ margin: '16px 0', '& .MuiInputBase-root': { color: 'white' } }}
+                    sx={{ margin: '16px 0', '& .MuiInputBase-input': { color: 'white', } }}
                     onChange={(e) => handleChangeAmount(e)}
                 />
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
