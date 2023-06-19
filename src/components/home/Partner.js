@@ -10,6 +10,7 @@ const ContainerPartner = styled(Box)(({ theme }) => ({
   '& a': {
     background: "url('/images/home/new-frame.svg')",
     backgroundSize: '100% 100%',
+    minHeight: '90px',
     margin: '2px',
     backgroundRepeat: 'no-repeat',
     padding: '0px 16px',
@@ -109,6 +110,7 @@ const partners = [
   { label: 'abex', link: 'https://abex.fi/' },
   { label: 'cetus', link: 'https://www.cetus.zone/' },
   { label: 'pyth', link: 'https://pyth.network/' },
+  { label: 'coin98', link: 'https://coin98.net/' },
 ];
 
 export default function Partner() {

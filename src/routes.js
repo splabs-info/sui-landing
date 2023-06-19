@@ -93,6 +93,14 @@ export default function Router() {
           ),
         },
         {
+          path: '/nft-marketplace',
+          element: (
+            <Suspense>
+              <ComingSoon />
+            </Suspense>
+          ),
+        },
+        {
           path: 'test-page',
           element: (
             <React.Suspense>

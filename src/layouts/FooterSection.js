@@ -1,24 +1,55 @@
 import { Box, Container, Grid, MenuItem, Stack, Typography } from '@mui/material';
 import { IconBrandTelegram } from '@tabler/icons';
+import Logo from 'components/common/Logo';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	EndBox,
 	Footer,
 	FooterTitle,
-	GetIntoButton,
 	MenuCustom,
 	SocialBox,
-	UlCustom,
+	UlCustom
 } from '../components/footer/FooterStyles';
 import useResponsive from '../hooks/useResponsive';
 import { _changeLanguage } from '../store/setting/settingActions';
-import Logo from 'components/common/Logo';
+
+const aboutYouSUI = [
+	{
+		label: 'key_Launchpad',
+		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
+	},
+	{
+		label: 'key_Staking',
+		link: '/staking',
+	},
+	{
+		label: 'key_Swap',
+		link: '/bridge',
+	},
+	{
+		label: 'key_Bridge',
+		link: '/bridge',
+	},
+	{
+		label: 'key_marketplace',
+		link: '/nft-marketplace',
+	},
+
+	// {
+	// 	label: 'key_13',
+	// 	link: 'https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/',
+	// },
+];
 
 const joinYouSUI = [
 	{
-		label: 'key_15',
-		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
+		label: 'WHITEPAPER',
+		link: '/whitepaper',
+	},
+	{
+		label: 'Branding',
+		link: '/whitepaper/brand-kit-and-community',
 	},
 	{
 		label: 'key_16',
@@ -29,47 +60,8 @@ const joinYouSUI = [
 		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
 	},
 	{
-		label: 'key_Staking',
-		link: '/staking',
-	},
-	{
-		label: 'key_18',
-		link: '/coming-soon',
-	},
-	{
-		label: 'key_19',
-		link: 'https://1wcod92hu2t.typeform.com/to/yrmuPiG6',
-	},
-];
-
-const aboutYouSUI = [
-	{
-		label: 'key_11',
-		link: '/whitepaper/tokenomics',
-	},
-	{
-		label: 'key_12',
-		link: '/coming-soon',
-	},
-	{
 		label: 'key_Terms',
 		link: 'https://docs.google.com/document/d/1RRO6w77nJyHE7LwGwLsSgr4GKcuMVSwQ6DinGnDi96s/',
-	},
-	{
-		label: 'key_13',
-		link: 'https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/',
-	},
-	{
-		label: 'WHITEPAPER',
-		link: '/whitepaper',
-	},
-	{
-		label: 'MEDIA_KIT',
-		link: '/whitepaper/brand-kit-and-community',
-	},
-	{
-		label: 'bridge',
-		link: '/bridge',
 	},
 ];
 
@@ -97,9 +89,6 @@ export default function FooterSection() {
 	const { setting } = useSelector((state) => state);
 	const { library } = setting;
 
-	const isMobile = useResponsive('down', 'sm');
-	const isTablet = useResponsive('down', 'lg');
-
 	useEffect(() => {
 		dispatch(_changeLanguage(localStorage.getItem('lang')));
 	}, [dispatch]);
@@ -107,14 +96,8 @@ export default function FooterSection() {
 	return (
 		<Footer id="contact">
 			<Container maxWidth={'xl'}>
-				<Grid container>
-					<Grid item sm={12} md={12} lg={3} textAlign={isTablet && 'center'}
-						sx={{
-							'& a': {
-								display: isTablet && 'flex',
-								justifyContent: isTablet && 'center',
-							},
-						}}>
+				<Grid container spacing={2} >
+					<Grid item sm={12} md={5}>
 						<Stack>
 							<Logo sx={{
 								width: { lg: 220, md: '160px', sm: '200px', xs: '200px' },
@@ -125,14 +108,14 @@ export default function FooterSection() {
 							variant="body1"
 							sx={{
 								fontSize: '0.95rem',
-								textAlign: isMobile && 'center',
-								padding: { xs: '0 10%', sm: '0 15%', md: '0 20% 0 0' },
+								padding: { xs: '0', md: '0 20% 0 0' },
+								transform: { md: 'translateY(-70px)', xs: 'translateY(-20px)' }
 							}}
 						>
 							YouSUI is an All-In-One platform running on the Sui Network, featuring a comprehensive suite of services including a decentralized exchange (DEX), Launchpad, NFT marketplace, social platform, and bridge.
 						</Typography>
 					</Grid>
-					<Grid item xs={12} sm={4} md={3} lg={2} mt={isTablet && 3} textAlign={isMobile && 'center'}>
+					{/* <Grid item xs={12} sm={4} md={3} lg={2} mt={isTablet && 3} textAlign={isMobile && 'center'}>
 						<FooterTitle>{library.key_9}</FooterTitle>
 						<UlCustom>
 							<li>
@@ -146,17 +129,13 @@ export default function FooterSection() {
 								</a>
 							</li>
 						</UlCustom>
-					</Grid>
+					</Grid> */}
 
 					<Grid
 						item
 						xs={6}
 						sm={4}
-						md={3}
-						lg={2}
-						mt={isTablet && 3}
-						textAlign={'start'}
-						pl={isMobile && 5}
+						md={2}
 						sx={{ height: '100%', wordBreak: 'break-all' }}
 					>
 						<FooterTitle>{library.key_10}</FooterTitle>
@@ -174,11 +153,7 @@ export default function FooterSection() {
 						item
 						xs={6}
 						sm={4}
-						md={3}
-						lg={2}
-						mt={isTablet && 3}
-						pl={isMobile && 2}
-						sx={{ height: '100%', textAlign: 'start', wordBreak: 'break-all' }}
+						md={2}
 					>
 						<FooterTitle>{library.key_14}</FooterTitle>
 
@@ -196,13 +171,20 @@ export default function FooterSection() {
 					<Grid
 						item
 						xs={12}
-						md={3}
-						lg={3}
-						mt={isTablet && 3}
-						textAlign={useResponsive('down', 'md') && 'center'}
+						sm={4}
+						md={2}
 					>
-						<FooterTitle>{library.key_20}</FooterTitle>
-						<SocialFooter />
+						<FooterTitle>{library.key_9}</FooterTitle>
+						<a
+							href="mailto:business@yousui.io"
+							target="_blank"
+							rel="noreferrer"
+							style={{ fontSize: '1.125rem', textDecoration: 'underline', fontStyle: 'italic' }}
+						>
+							business@yousui.io
+						</a>
+						<FooterTitle mt={3}>{library.key_20}</FooterTitle>
+						<SocialFooter sx={{ justifyContent: 'flex-start' }} />
 
 						{/* <FooterTitle mt={3}>{library.key_21}</FooterTitle>
 						<GetIntoButton>Get into Social Platform</GetIntoButton> */}
