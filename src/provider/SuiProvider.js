@@ -22,6 +22,7 @@ export const SUIWalletContext = ({ children }) => {
     const signer = new RawSigner(keypair, provider);
 
 
+
     // Logic that only depends on the provider
     useEffect(() => {
         if (!provider) return;
@@ -33,7 +34,6 @@ export const SUIWalletContext = ({ children }) => {
                     options: { showContent: true },
                 });
 
-                console.log('allProjects___', allProjects)
                 if (!allProjects?.data) return;
 
                 allProjects?.data?.content?.fields?.projects.map(

@@ -164,7 +164,6 @@ export default function SwapPage() {
   }, [poolList, receiveToken, sendToken]);
 
   React.useEffect(() => {
-    console.log('sendAmount', sendAmount);
     if (selectedPool && sendAmount && sendAmount !== '0') {
       setEstimating(true);
       (async () => {

@@ -1,15 +1,13 @@
 import {
     WalletProvider as SUIWalletProvider,
     SuiDevnetChain,
+    SuiMainnetChain,
     SuiTestnetChain,
     SuiWallet,
     SuietWallet,
-
-    SuiMainnetChain
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BaseOptionChartStyle } from './components/chart/BaseOptionChart';
@@ -19,14 +17,14 @@ import ShowErrorComponent from './components/common/ShowErrorComponent';
 import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 // import { _changeLanguage } from './store/setting/settingActions';
+import { SUIWalletContext } from 'provider/SuiProvider';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
-import { SUIWalletContext } from 'provider/SuiProvider';
 const queryClient = new QueryClient();
 
 
-const SupportedChains = [SuiTestnetChain];
+const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
     // const dispatch = useDispatch();

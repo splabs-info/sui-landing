@@ -19,7 +19,7 @@ import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 // const IDODetail = React.lazy(() => import('./pages/IDODetail'));
-const Affiliate = React.lazy(() => import('./pages/Affiliate'));
+// const Affiliate = React.lazy(() => import('./pages/Affiliate'));
 const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 

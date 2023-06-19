@@ -2965,7 +2965,7 @@
   resolved "https://registry.yarnpkg.com/@suchipi/femver/-/femver-1.0.0.tgz#4909dcc069695e07bd23a64c4bfe411d11d9692f"
   integrity sha512-bprE8+K5V+DPX7q2e2K57ImqNBdfGHDIWaGI5xHxZoxbKOuQZn4wzPiUxOAHnsUr3w3xHrWXwN7gnG/iIuEMIg==
 
-"@suiet/wallet-kit@^0.2.11":
+"@suiet/wallet-kit@^0.2.12":
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/@suiet/wallet-kit/-/wallet-kit-0.2.13.tgz#b9a8efbeed63964540893cf1c009174a5c969118"
   integrity sha512-779nCBZy4TVHsaw0zraJjrM0xI+V4VZ7MQ3c6lmj4ZjVkNOULnBsnRiLX8qd4I9fAGAQZSorgp0hjH5mBMhMQQ==

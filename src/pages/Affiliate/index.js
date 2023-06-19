@@ -60,20 +60,20 @@ const Affiliate = () => {
             });
 
             const yourRef = dynamicFiledVesting?.data.find((item) => {
-                console.log('item___', item);
+                // console.log('item___', item);
 
                 const refCode = item?.name?.value;
-                console.log('refCode___', refCode)
-                console.log('wallet?.address__', wallet?.address)
+                // console.log('refCode___', refCode)
+                // console.log('wallet?.address__', wallet?.address)
                 const found = validateReferralCode(refCode, wallet?.address);
                 if(found) return found;
 
-                console.log('found___', found)
+                // console.log('found___', found)
                 return;
             })
             setYourRef(yourRef)
-            console.log('yourRef__', yourRef)
-            console.log('dynamicFiledVesting___', dynamicFiledVesting)
+            // console.log('yourRef__', yourRef)
+            // console.log('dynamicFiledVesting___', dynamicFiledVesting)
         })
 
         // const your 

@@ -71,7 +71,7 @@ export default function FreeMinting() {
           id: addresses.objectFreeMint,
           options: { showContent: true },
         });
-        console.log(result);
+        // console.log(result);
         setTotal(result?.data?.content?.fields?.max_mint);
         setMinted(result?.data?.content?.fields?.number);
       })();
@@ -96,7 +96,7 @@ export default function FreeMinting() {
             arrNft.push(result?.data?.content?.fields);
           }
           setMyNftList(arrNft);
-          console.log(arrNft);
+          // console.log(arrNft);
         }
       })();
     }
