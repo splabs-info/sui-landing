@@ -46,11 +46,12 @@ export const SocialBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     '& img': {
         width: '90%',
+        maxWidth: 40,
     },
     '& a:hover': {
         borderBottom: '0px',
         '& img': {
-            boxShadow: '0 0 10px white',
+            boxShadow: '0 0 5px 2px #fff4',
             borderRadius: '14px',
         },
     },

@@ -63,7 +63,7 @@ export default function IDORound() {
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
-                <Container maxWidth="lg">
+                <Container maxWidth="xl">
                     <Box mt={2} color={'#fff'}>
                         <TabContext value={tabIndex}>
                             <Stack direction={'row'}

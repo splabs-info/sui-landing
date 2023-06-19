@@ -1,3 +1,5 @@
+import { LoadingButton } from "@mui/lab";
+
 const { styled, Box, Button } = require("@mui/material");
 
 
@@ -67,6 +69,9 @@ export const RoundInfoBox = styled(Box)(({ theme }) => ({
     padding: '24px',
     height: '100%',
     position: 'relative',
+    '& div': {
+        zIndex: 1
+    },
     '&:before': {
         content: '""',
         position: 'absolute',
@@ -95,7 +100,7 @@ export const ImageBox = styled(Box)(({ theme }) => ({
 }));
 
 
-export const SaveButton = styled(Button)(({ them }) => ({
+export const SaveButton = styled(Button)(({ theme }) => ({
     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
     color: 'white',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -103,10 +108,92 @@ export const SaveButton = styled(Button)(({ them }) => ({
     borderRadius: 30,
 }));
 
-export const BuyTokenButton = styled(Button)(({ them }) => ({
+export const BuyTokenButton = styled(LoadingButton)(({ theme }) => ({
     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
     color: 'white',
     borderRadius: 30,
-    padding: '8px 16px',
+    padding: '12px 36px',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+}));
+
+export const TitleBackgroundBox = styled(Box)(({ theme }) => ({
+    background: 'linear-gradient(90deg, rgba(13, 33, 49, 0) 0%, rgba(55, 79, 164, 0.2) 14.58%, rgba(109, 133, 218, 0.4) 32.7%, rgba(107, 173, 204, 0.5) 68.75%, rgba(104, 230, 207, 0.81) 100%)',
+    padding: '12px 24px',
+    borderRadius: '0 15px 15px 0',
+    backdropFilter: 'blur(15px)',
+    position: 'relative',
+    marginLeft: '-24px',
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        background: 'linear-gradient(90deg, rgba(130, 130, 130, 0) 0%, #90FDF6 100%)',
+        borderRadius: '0 15px 15px 0',
+        padding: '1px',
+        inset: '0px',
+        WebkitMask:
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        WebkitMaskComposite: 'xor',
+        zIndex: 0,
+    },
+    [theme.breakpoints.down('sm')]: {
+        paddingRight: 16,
+        '& .MuiTypography-h5': { fontSize: 14, whiteSpace: 'nowrap' }
+    }
+}));
+
+export const SaleInfoBox = styled(Box)(({ theme }) => ({
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gridTemplateRows: 'repeat(3, 1fr)',
+    gap: theme.spacing(0),
+    padding: '12px 24px',
+    [theme.breakpoints.down('sm')]: {
+
+    }
+}));
+
+export const SaleFormBox = styled(Box)(({ theme }) => ({
+    background: ' linear-gradient(178.73deg, rgba(104, 230, 184, 0.2) -8.02%, rgba(109, 133, 218, 0.2) 98.69%)',
+    borderRadius: '15px',
+    backdropFilter: 'blur(15px)',
+    padding: '16px 24px',
+    boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+    marginTop: 32,
+    [theme.breakpoints.down('sm')]: {
+    }
+}));
+
+export const ClaimBox = styled(Box)(({ theme }) => ({
+    background: 'linear-gradient(90deg, rgba(109, 133, 218, 0.448) 0%, rgba(107, 173, 204, 0.497) 68.75%, rgba(104, 230, 207, 0.567) 100%);',
+    borderRadius: '15px',
+    backdropFilter: 'blur(8px)',
+    padding: '24px 24px 16px',
+    position: 'relative',
+    marginTop: 32,
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        background: 'linear-gradient(343.72deg, #2D7EC8 0%, #B5FFD3 135.05%)',
+        borderRadius: 15,
+        padding: '1px',
+        inset: '0px',
+        WebkitMask:
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        WebkitMaskComposite: 'xor',
+        zIndex: 0,
+    }, '& .border':
+    {
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        paddingBottom: 14,
+        marginBottom: 12,
+    },
+    '& .border:last-of-type':
+    {
+        borderBottom: 'none',
+        paddingBottom: 0,
+    },
+    [theme.breakpoints.down('sm')]: {
+    }
 }));
