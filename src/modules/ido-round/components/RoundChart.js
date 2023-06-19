@@ -25,7 +25,10 @@ export const RoundChart = ({ round }) => {
                         radius={100} percent={round?.totalSold ? round?.totalSold / round?.totalSale * 100 : 0}
                     />
                     <Typography variant='body1' fontWeight={'bold'} textAlign={'center'}>
-                        <span style={{ color: '#1FD8D1' }}> {fCurrency(round?.totalSold)} </span> / {fCurrency(round?.totalSale)} SUI
+                        {round?.totalSale === 0 ? '--' : <span style={{ color: '#1FD8D1' }}> {fCurrency(round?.totalSold)} </span>}
+                        {' / '}
+                        {round?.totalSale === 0 ? '--' : fCurrency(round?.totalSale)}
+                        {' SUI'}
                     </Typography>
                 </Stack>
                 <Box ml={isMobile ? 0 : 4}>
@@ -34,14 +37,14 @@ export const RoundChart = ({ round }) => {
                             <img src='/images/icon/icon-data.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Total Sale Amount</Typography>
-                                <Typography variant='body2'>{fCurrency(round?.totalSale)} SUI</Typography>
+                                <Typography variant='body2'>{round?.totalSale === 0 ? '--/--' : fCurrency(round?.totalSale)} SUI</Typography>
                             </Stack>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <img src='/images/icon/icon-dollar.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Price</Typography>
-                                <Typography variant='body2'>{round?.price}  SUI</Typography>
+                                <Typography variant='body2'>{round?.price} USD</Typography>
                             </Stack>
                         </Box>
 

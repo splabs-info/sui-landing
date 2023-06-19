@@ -17,7 +17,7 @@ const roundDetail = [
         minPurchase: 100,
         maxPurchase: 0,
         price: 0.25,
-        vesting: '30% TGE Unlock, Monthly Vesting 10% for 7 Months',
+        vesting: <>30% TGE Unlock,<br /> Monthly Vesting 10% for 7 Month</>,
         idoInfo: {
             logic: 'FCFS',
             tgeClaimTime: '13:00 22nd June, 2023 (UTC)'
@@ -34,9 +34,9 @@ const roundDetail = [
         minPurchase: 100,
         maxPurchase: 0,
         price: 0.25,
-        vesting: '20% TGE Unlock, Monthly Vesting 10% for 8 Months',
+        vesting: <>20% TGE Unlock,<br /> Monthly Vesting 10% for 8 Month</>,
         idoInfo: {
-            logic: 'Total paid SUI by Each Investor /Total Paid SUI by All Investors',
+            logic: <><br />Total paid SUI by Each Investor /Total Paid SUI by All Investors</>,
             tgeClaimTime: '13:00 22nd June, 2023 (UTC)'
         },
     }
