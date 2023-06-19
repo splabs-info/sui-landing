@@ -74,7 +74,7 @@ export const RoundForm = ({ round, balances }) => {
                     value={value}
                     size="small"
                     fullWidth
-                    sx={{ margin: '16px 0', '& .MuiInputBase-input': { color: 'white', } }}
+                    sx={{ margin: '24px 0', '& .MuiInputBase-input': { color: 'white', } }}
                     onChange={(e) => handleChangeAmount(e)}
                 />
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
@@ -83,33 +83,50 @@ export const RoundForm = ({ round, balances }) => {
                             onClick={() => setChosenToken(token)}>{token}%</TokenButton>
                     ))}
                 </Box>
-                <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between" mt={1}>
+                <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between" mt={2}>
                     <Box
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
                             marginBottom: isMobile ? '1rem' : '0',
+                            '& a': {
+                                fontStyle: 'italic',
+                                textDecoration: 'underline',
+                            },
+                            '& a:hover': {
+                                fontStyle: 'italic',
+                                textDecoration: 'underline',
+                                color: '#5CBAF2',
+                            }
                         }}
                     >
                         <CheckboxFiled handleChecked={handleChecked} />
                         <Typography variant="caption">
                             I've have read & accepted {' '}
                             <a
-                                href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
+                                href="https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/edit"
                                 target="_blank"
                                 rel="noreferrer"
-                                style={{
-                                    fontWeight: 'bold',
-                                    '&:hover': {
-                                        textDecoration: 'underline',
-                                    },
-                                }}
                             >
-                                YouSUI Launchpad Privacy Policy, Terms of Service & Disclaimer
+                                YouSUI Launchpad Privacy Policy
+                            </a> {', '}
+                            <a
+                                href="https://docs.google.com/document/d/1RRO6w77nJyHE7LwGwLsSgr4GKcuMVSwQ6DinGnDi96s/edit"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Terms of Service
+                            </a>{' & '}
+                            <a
+                                href="https://docs.google.com/document/d/1guvKALX-dLP_wH7YErnrS00WWZZzhARdSyl_pK3Es3o/edit?usp=sharing"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Disclaimer
                             </a>
                         </Typography>
                     </Box>
-                    <BuyTokenButton type="submit" loading={loading}>
+                    <BuyTokenButton type="submit" loading={loading} disabled>
                         Buy Now
                     </BuyTokenButton>
                 </Stack>

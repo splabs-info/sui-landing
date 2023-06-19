@@ -66,7 +66,7 @@ export const RoundChart = ({ round }) => {
                             <img src='/images/icon/icon-data.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Max Purchase Amount</Typography>
-                                <Typography variant='body2'>Unlimited</Typography>
+                                <Typography variant='body2'>--/--</Typography>
                             </Stack>
                         </Box>
                     </SaleInfoBox>
@@ -74,8 +74,8 @@ export const RoundChart = ({ round }) => {
                         <Typography variant='h6'> IDO Information</Typography>
                         <ul style={{ marginLeft: '24px' }}>
                             <li><Typography variant='body2'>IDO Launchpad Logic: {round?.idoInfo.logic}</Typography> </li>
-                            <li><Typography variant='body2'>TGE Claim Date & Time: {round?.idoInfo.tgeClaimTime}</Typography></li>
-                            <li><Typography variant='body2'>Unlimited Purchase </Typography></li>
+                            {/* <li><Typography variant='body2'>TGE Claim Date & Time: {round?.idoInfo.tgeClaimTime}</Typography></li> */}
+                            {/* <li><Typography variant='body2'>Unlimited Purchase </Typography></li> */}
                         </ul>
                     </Box>
                 </Box>

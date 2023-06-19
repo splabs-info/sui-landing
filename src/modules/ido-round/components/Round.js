@@ -55,7 +55,7 @@ export const Round = ({ round }) => {
                 <Grid item xs={12} md={4}>
                     <RoundIntro />
                 </Grid>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={8} alignItems={'space-between'}>
                     <RoundChart round={roundDetail[round]} />
                     <RoundForm round={round} />
                     <RoundClaim claimInfo={claimInfo} roundNumber={roundDetail[round].number} />
