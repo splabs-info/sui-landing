@@ -1,10 +1,6 @@
-import { Box, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import { CheckboxFiled, InputField } from "components";
-import React from "react";
-import { BuyTokenButton, ClaimBox, SaleFormBox, UtilityBox } from "./RoundStyled";
-import useResponsive from "hooks/useResponsive";
-import { useWallet } from "@suiet/wallet-kit";
+import { Stack, Typography } from "@mui/material";
 import { fCurrency } from "utils/format";
+import { ClaimBox, ClaimButton } from "./RoundStyled";
 
 
 
@@ -25,7 +21,7 @@ const fields = [
         format: (e) => <>{e ? fCurrency(e, 0) : '--'} XUI</>,
     },
 ];
-export const RoundClaim = ({ claimInfo }) => {
+export const RoundClaim = ({ claimInfo, roundNumber }) => {
 
     return (
         <ClaimBox>
@@ -37,6 +33,10 @@ export const RoundClaim = ({ claimInfo }) => {
                     </Typography>
                 </Stack>
             ))}
+            {roundNumber === 1 && <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className='border'>
+                <Typography variant="body2" fontWeight={600}>Redeem SUI and IDO token allocation</Typography>
+                <ClaimButton> CLAIM</ClaimButton>
+            </Stack>}
         </ClaimBox>
 
     );

@@ -1,14 +1,16 @@
 import { Box, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { CheckboxFiled, InputField } from "components";
 import React from "react";
-import { BuyTokenButton, SaleFormBox } from "./RoundStyled";
+import { BuyTokenButton, SaleFormBox, TokenButton } from "./RoundStyled";
 import useResponsive from "hooks/useResponsive";
 import { useWallet } from "@suiet/wallet-kit";
-
+import { fCurrency } from "utils/format";
 
 export const RoundForm = ({ round, balances }) => {
     const [checked, setChecked] = React.useState();
+    const [chosenToken, setChosenToken] = React.useState();
     const [loading, setLoading] = React.useState(false);
+    const [value, setValue] = React.useState(0);
     const isMobile = useResponsive('down', 'sm');
 
     const wallet = useWallet();
@@ -21,10 +23,13 @@ export const RoundForm = ({ round, balances }) => {
             return 'Connect your wallet before';
         }
         if (balances) {
-            return `Your balance: ${balances} SUI`;
+            return `Available SUI: ${balances} SUI`;
         }
     }, [balances, wallet?.address, wallet?.connected]);
 
+    const handleChangeAmount = (e) => {
+        setValue(fCurrency(e.target.value, 0));
+    };
     const handleSales = async (data) => {
 
     };
@@ -66,11 +71,19 @@ export const RoundForm = ({ round, balances }) => {
                             </InputAdornment>
                         ),
                     }}
+                    value={value}
                     size="small"
                     fullWidth
-                    sx={{ margin: '16px 0' }}
+                    sx={{ margin: '16px 0', '& .MuiInputBase-root': { color: 'white' } }}
+                    onChange={(e) => handleChangeAmount(e)}
                 />
-                <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                    {['10', '25', '50', '100'].map((token) => (
+                        <TokenButton key={token} className={chosenToken === token ? "active" : ""}
+                            onClick={() => setChosenToken(token)}>{token}%</TokenButton>
+                    ))}
+                </Box>
+                <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between" mt={1}>
                     <Box
                         sx={{
                             display: 'flex',

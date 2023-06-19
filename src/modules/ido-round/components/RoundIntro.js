@@ -39,7 +39,7 @@ export const RoundIntro = () => {
             <Stack direction='row' spacing={2} justifyContent={'space-between'} alignItems={'center'} my={3}>
 
                 <TitleBackgroundBox>
-                    <Typography variant="h5">{info.title}</Typography>
+                    <Typography variant="h5" >{info.title}</Typography>
                 </TitleBackgroundBox>
                 <SocialBox>
                     {socials.map((item, index) =>
@@ -49,7 +49,7 @@ export const RoundIntro = () => {
 
                     )}</SocialBox>
             </Stack>
-            <Typography variant="body2" lineHeight={1.8}>{info.description}</Typography>
+            <Typography variant="body2" lineHeight={2}>{info.description}</Typography>
 
         </RoundInfoBox>
     );

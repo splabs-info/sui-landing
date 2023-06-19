@@ -78,11 +78,11 @@ export const RoundInfo = ({
                             </Box>
                             {startTime && <Box>
                                 <Typography variant="body1" mb={0.5}>Pool Start Time</Typography>
-                                <Typography variant="body2">{fDateTime(startTime)}</Typography>
+                                <Typography variant="body2">{(startTime)}</Typography>
                             </Box>}
                             {endTime && <Box>
                                 <Typography variant="body1" mb={0.5}>Pool End Time</Typography>
-                                <Typography variant="body2"> {fDateTime(endTime)}</Typography>
+                                <Typography variant="body2"> {(endTime)}</Typography>
                             </Box>}
                         </TokenBox>
                         <UtilityBox>

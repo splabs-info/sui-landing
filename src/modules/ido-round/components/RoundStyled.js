@@ -123,6 +123,7 @@ export const TitleBackgroundBox = styled(Box)(({ theme }) => ({
     backdropFilter: 'blur(15px)',
     position: 'relative',
     marginLeft: '-24px',
+    '& .MuiTypography-h5': { fontSize: 16, whiteSpace: 'nowrap' },
     '&:before': {
         content: '""',
         position: 'absolute',
@@ -149,7 +150,8 @@ export const SaleInfoBox = styled(Box)(({ theme }) => ({
     gap: theme.spacing(0),
     padding: '12px 24px',
     [theme.breakpoints.down('sm')]: {
-
+        gridAutoFlow: 'row',
+        gridTemplateRows: 'repeat(5, 1fr)',
     }
 }));
 
@@ -159,7 +161,35 @@ export const SaleFormBox = styled(Box)(({ theme }) => ({
     backdropFilter: 'blur(15px)',
     padding: '16px 24px',
     boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
-    marginTop: 32,
+    marginTop: 24,
+    [theme.breakpoints.down('sm')]: {
+    }
+}));
+
+export const TokenButton = styled(Button)(({ theme }) => ({
+    background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
+    color: 'white',
+    padding: '0.25rem 0.75rem',
+    fontSize: 12,
+    borderRadius: 10,
+    position: 'relative',
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
+        borderRadius: 10,
+        padding: '1px',
+        inset: '0px',
+        WebkitMask:
+            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+        WebkitMaskComposite: 'xor',
+        zIndex: 0,
+    },
+
+    '&.active': {
+        background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
+    },
     [theme.breakpoints.down('sm')]: {
     }
 }));
@@ -170,7 +200,7 @@ export const ClaimBox = styled(Box)(({ theme }) => ({
     backdropFilter: 'blur(8px)',
     padding: '24px 24px 16px',
     position: 'relative',
-    marginTop: 32,
+    marginTop: 24,
     '&:before': {
         content: '""',
         position: 'absolute',
@@ -183,7 +213,8 @@ export const ClaimBox = styled(Box)(({ theme }) => ({
             'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
         WebkitMaskComposite: 'xor',
         zIndex: 0,
-    }, '& .border':
+    },
+    '& .border':
     {
         borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         paddingBottom: 14,
@@ -195,5 +226,41 @@ export const ClaimBox = styled(Box)(({ theme }) => ({
         paddingBottom: 0,
     },
     [theme.breakpoints.down('sm')]: {
+    }
+}));
+
+
+export const ClaimButton = styled(LoadingButton)(({ theme }) => ({
+    background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
+    color: 'white',
+    borderRadius: 50,
+    padding: '12px 36px',
+    boxShadow: '0px 0px 8px #4191C9',
+}));
+
+export const ChartBox = styled(Box)(({ theme }) => ({
+    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
+    padding: "64px 40px 40px 40px ",
+    color: 'white',
+    borderRadius: 10,
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+    position: 'relative',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    [theme.breakpoints.down('sm')]: {
+        padding: "64px 24px 40px 24px",
+    }
+}));
+export const LiveBox = styled(Box)(({ theme }) => ({
+    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
+    color: 'white',
+    borderRadius: 10,
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+    position: 'absolute',
+    width: '100%',
+    top: 0,
+    left: 0,
+    padding: '16px 36px',
+    [theme.breakpoints.down('sm')]: {
+        padding: "8px 24px",
     }
 }));

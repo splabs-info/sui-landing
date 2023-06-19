@@ -2,34 +2,43 @@ import { Box, Grid } from '@mui/material';
 import { RoundInfo } from './RoundInfo';
 import { RoundIntro } from './RoundIntro';
 import { RoundForm } from './RoundForm';
-import { BuyTokenOG } from './round/BuyTokenOG';
 import { RoundChart } from './RoundChart';
 import { RoundClaim } from './RoundClaim';
 
 const roundDetail = [
     {
-        number: '0',
+        number: 0,
         name: 'OG Round',
         address: '0x0000000000000000000000000000000000000000',
-        startTime: null,
-        endTime: null,
-        totalSale: 0,
-        minPurchase: 0,
+        startTime: '00:00 21st June (UTC)',
+        endTime: '12:00 21nd June (UTC)',
+        totalSale: 800000,
+        totalSold: 300000,
+        minPurchase: 100,
         maxPurchase: 0,
-        price: 0,
-        vesting: 0,
+        price: 0.25,
+        vesting: '30% TGE Unlock, Monthly Vesting 10% for 7 Months',
+        idoInfo: {
+            logic: 'FCFS',
+            tgeClaimTime: '13:00 22nd June, 2023 (UTC)'
+        },
     },
     {
-        number: '1',
+        number: 1,
         name: 'Public Round',
         address: '0x0000000000000000000000000000000000000000',
-        startTime: null,
-        endTime: null,
-        totalSale: 0,
-        minPurchase: 0,
+        startTime: '12:00 21st June (UTC)',
+        endTime: '12:00 22nd June (UTC)',
+        totalSale: 800000,
+        totalSold: 500000,
+        minPurchase: 100,
         maxPurchase: 0,
-        price: 0,
-        vesting: 0,
+        price: 0.25,
+        vesting: '20% TGE Unlock, Monthly Vesting 10% for 8 Months',
+        idoInfo: {
+            logic: 'Total paid SUI by Each Investor /Total Paid SUI by All Investors',
+            tgeClaimTime: '13:00 22nd June, 2023 (UTC)'
+        },
     }
 ]
 const claimInfo =
@@ -47,12 +56,15 @@ export const Round = ({ round }) => {
                     <RoundIntro />
                 </Grid>
                 <Grid item xs={12} md={8}>
-                    <RoundChart round={round} />
+                    <RoundChart round={roundDetail[round]} />
                     <RoundForm round={round} />
-                    <RoundClaim claimInfo={claimInfo} />
+                    <RoundClaim claimInfo={claimInfo} roundNumber={roundDetail[round].number} />
                 </Grid>
             </Grid>
-            <RoundInfo address='' startTime='' endTime='' />
+            <RoundInfo
+                address={roundDetail[round].address}
+                startTime={roundDetail[round].startTime}
+                endTime={roundDetail[round].endTime} />
         </Box>
     );
 };
