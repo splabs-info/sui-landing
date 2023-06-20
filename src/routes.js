@@ -11,6 +11,7 @@ import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
 import IDORound from 'modules/ido-round';
+import DemoNotifiNetwork from 'modules/notifi-network/DemoNotifiNetwork';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -67,17 +68,15 @@ export default function Router() {
         },
         {
           path: 'whitepaper',
-          element: <Navigate to="/whitepaper/introduction-of-yousui" />
+          element: <Navigate to="/whitepaper/introduction-of-yousui" />,
         },
         {
           path: 'whitepaper/:sub',
-          element: <Whitepaper />
+          element: <Whitepaper />,
         },
         {
           path: 'staking',
-          element: (
-            <StakingFarming />
-          ),
+          element: <StakingFarming />,
         },
         {
           path: 'bridge',
@@ -118,6 +117,14 @@ export default function Router() {
           element: (
             <Suspense>
               <ComingSoon />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/notifi-network',
+          element: (
+            <Suspense>
+              <DemoNotifiNetwork />
             </Suspense>
           ),
         },

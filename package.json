@@ -22,6 +22,7 @@
     "@mui/material": "^5.8.6",
     "@mysten/sui.js": "^0.34.1",
     "@mysten/wallet-standard": "^0.5.7",
+    "@notifi-network/notifi-frontend-client": "^0.73.4",
     "@pythnetwork/client": "^2.17.0",
     "@pythnetwork/pyth-evm-js": "^1.17.0",
     "@suiet/wallet-kit": "^0.2.11",
