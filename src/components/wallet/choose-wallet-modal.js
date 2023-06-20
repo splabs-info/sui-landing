@@ -135,7 +135,7 @@ export const ChooseWalletModal = () => {
                 {!isInstalledCoin98 ? (
                     <WalletButton>
                         <Box className="img-box">
-                            <img src="/images/icon/coin98.png" alt="logo coin98" style={{ textAlign: 'center' }} />
+                            <img src="/images/icon/icon-coin98.png" alt="logo coin98" style={{ textAlign: 'center' }} />
                         </Box>
                         <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
                             Coin98 Wallet
