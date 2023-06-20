@@ -101,7 +101,7 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src={wallet.iconUrl} alt="logo metamask" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} style={{ color: 'white' }}>
                             {wallet.name}
                         </Typography>
                         {!wallet.installed && (
@@ -119,7 +119,7 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
                             BitKeep Wallet
                         </Typography>
                         <InstallButton component={Link} href="https://bitkeep.com/download?type=2&theme=light" target="_blank">
@@ -137,8 +137,8 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src="/images/icon/coin98.png" alt="logo coin98" style={{ textAlign: 'center' }} />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
-                            Coin 98 Wallet
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
+                            Coin98 Wallet
                         </Typography>
                         <InstallButton
                             component={Link}
@@ -159,7 +159,7 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src="/images/icon/okx-wallet.png" alt="logo okx" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
                             OKX Wallet
                         </Typography>
                         <InstallButton
