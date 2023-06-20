@@ -36,7 +36,7 @@ export default function DemoNotifiNetwork() {
           address: wallet?.address,
           publicKey: wallet?.address,
         },
-        tenantId: '2e0dba2a3ecb46e6b7c0da951b0b9add',
+        tenantId: 'DemoRileyNotifi',
         env: 'Development',
         walletBlockchain: 'SUI',
       });
