@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Outlet } from 'react-router-dom';
-import Footer from './FooterSection';
-import HeaderHome from './HeaderSection';
+import FooterSection from './FooterSection';
+import HeaderSection from './HeaderSection';
 
 const RootStyle = styled('div')({
     background: 'linear-gradient(150deg, #0C202D 0%, #050C13 100%)',
@@ -17,11 +17,11 @@ const MainStyle = styled('div')(({ theme }) => ({
 export default function ClientLayout() {
     return (
         <RootStyle>
-            <HeaderHome />
+            <HeaderSection />
             <MainStyle>
                 <Outlet />
             </MainStyle>
-            <Footer />
+            <FooterSection />
         </RootStyle>
     );
 }

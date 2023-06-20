@@ -1,8 +1,8 @@
 import { Box, Container, styled } from '@mui/material';
 import WormholeBridge from '@wormhole-foundation/wormhole-connect';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
 import './index.css';
+import { SectionBox } from 'components/home/HomeStyles';
 
 const config = {
   env: 'mainnet',

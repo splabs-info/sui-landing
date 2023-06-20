@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import { Pool } from 'components/ido-detail/Pool';
 import { PoolInformation } from 'components/ido-detail/PoolInfo';
 import { ProjectInfo } from 'components/ido-detail/Project';
@@ -10,9 +10,9 @@ import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 
 export default function IDODetail() {
-    const titleTab="IDO TEST ROUND (SUA TOKEN)"
+    const titleTab = "IDO TEST ROUND (SUA TOKEN)"
 
-   const [ratio, setRadio] = React.useState();
+    const [ratio, setRadio] = React.useState();
     const [avatar, setAvatar] = React.useState();
     const [tokenName, setTokenName] = React.useState();
     const [symbol, setSymbol] = React.useState();
