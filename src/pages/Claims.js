@@ -3,10 +3,12 @@ import { useWallet } from '@suiet/wallet-kit';
 import ClaimTokens from 'components/claims/ClaimTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
+import { investCertificate } from 'constant';
 import useResponsive from 'hooks/useResponsive';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { findCertificate } from 'utils/util';
+// import { SocialFooter } from 'layouts/Footer-v2';
 export default function Claims() {
     const isMobile = useResponsive('down', 'sm');
     const [myIdo, setMyIdo] = React.useState([]);

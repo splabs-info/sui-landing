@@ -11,13 +11,13 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-// import Claims from 'pages/Claims';
-// import ClaimsDetail from 'pages/ClaimsDetail';
+import Claims from 'pages/Claims';
+import ClaimsDetail from 'pages/ClaimsDetail';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-// const IDODetail = React.lazy(() => import('./pages/IDODetail'));
-// const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
+const IDODetail = React.lazy(() => import('./pages/IDODetail'));
+const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
@@ -51,14 +51,14 @@ export default function Router() {
         //     </Suspense>
         //   ),
         // },
-        // {
-        //   path: 'ido-launchpad/:projectId',
-        //   element: (
-        //     <Suspense>
-        //       <TXUIIDO />
-        //     </Suspense>
-        //   ),
-        // },
+        {
+          path: 'ido-launchpad/:projectId',
+          element: (
+            <Suspense>
+              <TXUIIDO />
+            </Suspense>
+          ),
+        },
         {
           path: 'ino-launchpad',
           element: (
@@ -109,8 +109,8 @@ export default function Router() {
           path: 'claim-tokens',
           element: (
             <Suspense>
-              {/* <Claims /> */}
-              <ComingSoon />
+              <Claims />
+              {/* <ComingSoon /> */}
             </Suspense>
           ),
         },
@@ -118,8 +118,8 @@ export default function Router() {
           path: '/claim-tokens/:projectId',
           element: (
             <Suspense>
-              {/* <ClaimsDetail /> */}
-              <ComingSoon />
+              <ClaimsDetail />
+              {/* <ComingSoon /> */}
             </Suspense>
           ),
         },

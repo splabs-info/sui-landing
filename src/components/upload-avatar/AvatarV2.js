@@ -124,7 +124,7 @@ export const UploadAvatarV2 = ({ avatarUrl, id }) => {
                 {avatarUrl ? (
                     <img src={avatarUrl} style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 ) : (
-                    <img src='/default-avatar.svg' style={{ borderRadius: '50%', width: 270, height: 270 }} />
+                    <img src='images/my-profile/default-avatar.png' style={{ borderRadius: '50%', width: 270, height: 270 }} />
                 )}
             </div>
         );

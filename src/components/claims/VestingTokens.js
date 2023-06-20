@@ -7,7 +7,7 @@ import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { TXUI_CLOCK, TXUI_PACKAGE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { SocialFooter } from 'layouts/Footer-v2';
+import { SocialFooter } from 'layouts/FooterSection';
 import { toNumber } from 'lodash';
 import * as moment from 'moment';
 import React from 'react';
