@@ -10,7 +10,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
-  MenuItem
+  MenuItem,
 } from '@mui/material';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
 import { useContext, useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ const config = [
   { label: 'key_2', link: '/ido-launchpad' },
   { label: 'key_3', link: '/ino-launchpad' },
   { label: 'key_4', link: '/staking' },
-  { label: 'key_6', link: '/swap' },
+  { label: 'key_Swap', link: '/swap' },
   { label: 'key_Bridge', link: '/bridge' },
   { label: 'key_marketplace', link: '/nft-marketplace' },
   { label: 'key_crew3', link: 'https://zealy.io/c/yousui' },
@@ -178,7 +178,7 @@ export default function HeaderSection() {
 
   const MenuHeaderBox = () => (
     <>
-      {config.map((item, index) =>
+      {config.map((item, index) => (
         <Box
           id={item.id}
           key={item.id}
@@ -200,8 +200,9 @@ export default function HeaderSection() {
             </NavLink>
           )}
         </Box>
-      )}
-    </>)
+      ))}
+    </>
+  );
 
   const SocialHeaderBox = () => (
     <Box
@@ -394,7 +395,6 @@ export default function HeaderSection() {
                   <IconMenu2 size="25px" />
                 </IconButton>
               </Hidden>
-
             </Box>
           </Navbar>
         </Container>

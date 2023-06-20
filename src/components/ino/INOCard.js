@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 const UpComingINOBox = styled(Box)(({ theme }) => ({
@@ -39,7 +40,7 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const UpComingINOCard = ({ avatar, releaseTime, hardCap, access, title, status, link, ...props }) => {
+export const INOCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, ...props }) => {
     const navigate = useNavigate();
     return (
         <UpComingINOBox
@@ -51,10 +52,10 @@ export const UpComingINOCard = ({ avatar, releaseTime, hardCap, access, title, s
             <AvatarBox component={'img'} src={avatar} alt={title} />
             <Typography variant={'h4'} mt={3}>{title}</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-                <Typography> Hardcap: <span style={{ color: '#00C5D3', fontWeight: 700 }}> {hardCap}</span></Typography>
+                <Typography> HardCap: <span style={{ color: '#00C5D3', fontWeight: 700 }}> {hardCap}</span></Typography>
                 {access !== '' && <Typography>Access: <span style={{ color: '#00C5D3', fontWeight: 700 }}>{access}</span></Typography>}</Box>
-            {releaseTime && <ReleaseBox className={status ? 'active' : ''}>
-                <Typography fontWeight={700} variant={'body2'}>{releaseTime}</Typography>
+            {releaseTime && <ReleaseBox className={status && !moment().isAfter(endTime) ? 'active' : ''}>
+                <Typography fontWeight={700} variant={'body2'}>{moment().isAfter(endTime) ? 'SOLD OUT' : releaseTime}</Typography>
             </ReleaseBox>}
         </UpComingINOBox>
     );

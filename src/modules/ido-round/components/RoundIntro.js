@@ -4,7 +4,7 @@ import { SocialBox } from "components/footer/FooterStyles";
 
 
 const info = {
-    title: 'XUI - YouSUIToken',
+    title: 'XUI - YouSUI Token',
     description: '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. YouSUI governance determines the direction of the community and is directly used for voting or governance to make reasonable decisions. By staking $XUI, the community can give their opinions or make suggestions to the community. When users stake $XUI, they are given a "Tier" to participate in IDO and INO Launchpad. A portion of the revenue generated from using DEX, NFT Marketplace and Bridge goes to $XUI stakers, and the rest goes to $XUI "Burn and Buyback".',
 }
 

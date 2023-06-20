@@ -93,11 +93,11 @@ export default function IDORound() {
                                         mt={isMobile ? 2 : 0}
                                         gap={2}>
                                         <TextField
-                                            label="Input Object ID of OG ROLE NFT"
+                                            placeholder='Input Object ID of OG ROLE NFT'
                                             variant="outlined"
                                             size="small"
                                             sx={{
-                                                width: isMobile ? '100%' : 300,
+                                                width: isMobile ? '100%' : 350,
 
                                                 color: '#fff',
                                                 '& .MuiInputBase-root': {

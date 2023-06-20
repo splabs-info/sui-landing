@@ -1,7 +1,7 @@
 import { Box, Divider, Grid, Stack, Typography } from '@mui/material';
-import { TokenBox, UtilityBox } from './RoundStyled';
-import { fAddress, fCurrency, fDate, fDateTime } from 'utils/format';
 import CopyComponent from 'components/common/CopyComponent';
+import { fAddress, fCurrency } from 'utils/format';
+import { TokenBox, UtilityBox } from './RoundStyled';
 
 const utilities = [
     'Stake XUI-X LP Token to obtain Swap fee Shares',
@@ -22,7 +22,7 @@ const info = {
     totalSupply: 100000000,
     standard: 'SUI',
     communityTraction: 'Excellent',
-    initialMarketcap: '485000',
+    initialMarketcap: '560000',
 }
 
 
