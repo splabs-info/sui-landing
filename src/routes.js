@@ -51,14 +51,14 @@ export default function Router() {
         //     </Suspense>
         //   ),
         // },
-        {
-          path: 'ido-launchpad/:projectId',
-          element: (
-            <Suspense>
-              <TXUIIDO />
-            </Suspense>
-          ),
-        },
+        // {
+        //   path: 'ido-launchpad/:projectId',
+        //   element: (
+        //     <Suspense>
+        //       <TXUIIDO />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'ino-launchpad',
           element: (
