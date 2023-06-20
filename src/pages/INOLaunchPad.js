@@ -48,7 +48,7 @@ const Caption = styled(Typography)(({ theme }) => ({
 const inoProjects = [
   {
     title: 'Free Minting',
-    link: '/ido-launchpad',
+    link: '/ino-launchpad/free-minting-nft',
     avatar: '/images/ino/ino-upcoming-1.jpg',
     access: 'WL',
     hardCap: '2000',
