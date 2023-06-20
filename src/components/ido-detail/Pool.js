@@ -143,7 +143,7 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
                                 scrollButtons="auto"
                             >
                                 <Tab label="IDO TEST ROUND (SUA TOKEN)" {...a11yProps(0)} />
-                                <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
+                                {/* <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} /> */}
                                 {/* <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} /> */}
                             </CustomTabList>
                         </Box>
@@ -157,9 +157,9 @@ export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, pa
                                 participantsWallet={participantsWallet}
                             />
                         </TabPanel>
-                        <TabPanel value={value} index={1}>
+                        {/* <TabPanel value={value} index={1}>
                             <PublicRound />
-                        </TabPanel>
+                        </TabPanel> */}
                     </TabContext>
                 </Box>
             </Grid>

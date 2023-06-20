@@ -45,7 +45,7 @@ const Caption = styled(Typography)(({ theme }) => ({
 }));
 
 
-export const inoProjects = [
+const inoProjects = [
   {
     title: 'Free Minting',
     link: '/ido-launchpad',
