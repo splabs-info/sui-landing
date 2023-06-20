@@ -1,9 +1,8 @@
 import { Box, Divider, InputAdornment, InputBase, Stack, Typography } from '@mui/material';
 import CustomModal from 'components/common/CustomModal';
-import { TypographyGradient } from 'components/home-v2/HomeStyles';
-import React from 'react';
-import { SettingBox, SlippageBox, SlippageSwitch, SwapButton } from './SwapStyles';
-import { useEffect } from 'react';
+import { TypographyGradient } from 'components/home/HomeStyles';
+import React, { useEffect } from 'react';
+import { SettingBox, SlippageBox, SlippageSwitch } from './SwapStyles';
 const slippageList = [
   { label: '0.1%', value: 0.1 },
   { label: '0.5%', value: 0.5 },
@@ -14,17 +13,15 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
   const [slippageAuto, setSlippageAuto] = React.useState(false);
   useEffect(() => {
     if (slippageAuto) {
-      handleChangeSlippage(0.5)
-      setSlippageValue(0.5)
-    }
-    else
-      handleChangeSlippage(slippageValue)
+      handleChangeSlippage(0.5);
+      setSlippageValue(0.5);
+    } else handleChangeSlippage(slippageValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slippageValue, slippageAuto])
+  }, [slippageValue, slippageAuto]);
   useEffect(() => {
-    setSlippageAuto(false)
+    setSlippageAuto(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <CustomModal open={open} _close={handleClose} isShowCloseButton={true}>
@@ -56,15 +53,17 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
               color: 'white',
               fontWeight: 'bold',
               '& input': {
-                textAlign: 'right'
-              }
+                textAlign: 'right',
+              },
             }}
             value={slippageValue}
             placeholder={slippageValue === 'custom' ? 'Enter slippage' : slippageValue}
             disabled={slippageAuto}
             endAdornment={
               <InputAdornment position="end">
-                <Typography color={'white'} variant="h6">%</Typography>
+                <Typography color={'white'} variant="h6">
+                  %
+                </Typography>
               </InputAdornment>
             }
             onChange={(e) => setSlippageValue(e.target.value)}
@@ -78,8 +77,7 @@ export function SwapSettings({ open, handleSelect, handleClose, handleChangeSlip
               key={slippage.value}
               className={slippageValue === slippage.value ? 'active' : ''}
               onClick={() => {
-                if (!slippageAuto)
-                  setSlippageValue(slippage.value);
+                if (!slippageAuto) setSlippageValue(slippage.value);
               }}
               sx={{ cursor: slippageAuto ? 'unset' : 'pointer' }}
             >

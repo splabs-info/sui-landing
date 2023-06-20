@@ -1,10 +1,10 @@
 import {
-    WalletProvider as SUIWalletProvider,
-    SuiDevnetChain,
-    SuiMainnetChain,
-    SuiTestnetChain,
-    SuiWallet,
-    SuietWallet,
+  WalletProvider as SUIWalletProvider,
+  SuiDevnetChain,
+  SuiMainnetChain,
+  SuiTestnetChain,
+  SuiWallet,
+  SuietWallet,
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -18,6 +18,7 @@ import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 // import { _changeLanguage } from './store/setting/settingActions';
 import { SUIWalletContext } from 'provider/SuiProvider';
+import React from 'react';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
@@ -27,45 +28,39 @@ const queryClient = new QueryClient();
 const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
-    // const dispatch = useDispatch();
+  React.useEffect(() => {
+    console.log('Version: 0.0.4 - Free-minting');
+    localStorage.removeItem('lang');
+  }, []);
 
-    // useEffect(() => {
-    // dispatch(_changeLanguage(localStorage.getItem('lang')));
-    // console.log("Version: 0.0.2")
-    // }, []);
+  return (
+    <ThemeProvider>
+      <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains} autoConnect>
+        <SUIWalletContext>
+          <WalletProvider>
+            <QueryClientProvider client={queryClient}>
+              <ScrollToTop />
+              <BaseOptionChartStyle />
 
-    // useEffect(() => {
-    //     localStorage.removeItem('lang');
-    // }, []);
+              <Routers />
 
-    return (
-        <ThemeProvider>
-            <SUIWalletProvider defaultWallets={[SuiWallet, SuietWallet]} chains={SupportedChains} autoConnect>
-                <SUIWalletContext>
-                    <WalletProvider>
-                        <QueryClientProvider client={queryClient}>
-                            <ScrollToTop />
-                            <BaseOptionChartStyle />
-
-                            <Routers />
-
-                            <ShowErrorComponent />
-                            <BackgroundJob />
-                        </QueryClientProvider>
-                    </WalletProvider>
-                </SUIWalletContext>
-            </SUIWalletProvider>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-        </ThemeProvider>
-    );
+              <ShowErrorComponent />
+              <BackgroundJob />
+            </QueryClientProvider>
+          </WalletProvider>
+        </SUIWalletContext>
+      </SUIWalletProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </ThemeProvider>
+  );
 }

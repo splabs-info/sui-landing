@@ -1,9 +1,8 @@
 import { Box, Divider, InputAdornment, InputBase, Stack, Typography } from '@mui/material';
 import CustomModal from 'components/common/CustomModal';
 import { TypographyGradient } from 'components/home-v2/HomeStyles';
-import React from 'react';
-import { SettingBox, SlippageBox, SlippageSwitch, SwapButton } from './SwapStyles';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { SettingBox, SlippageBox, SlippageSwitch } from './SwapStyles';
 const slippageList = [
   { label: '0.1%', value: 0.1 },
   { label: '0.5%', value: 0.5 },

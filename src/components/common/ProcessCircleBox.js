@@ -24,7 +24,6 @@ const OuterCircleBox = styled(Box)(({ theme }) => ({
     transform: 'rotate(270deg)',
     height: "240px",
     width: "240px",
-    animation: 'anim 2s linear forwards',
   },
   '& circle': {
     boxShadow: '0px 0px 15px #68A9B1, inset 0px 0px 15px #68A9B1',

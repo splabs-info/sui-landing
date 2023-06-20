@@ -1,26 +1,23 @@
+import Bridge from 'modules/bridge/Bridge';
+import FreeMinting from 'modules/free-minting/FreeMinting';
+import IDORound from 'modules/ido-round';
+import StakingFarming from 'modules/staking/OverallPage';
+import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
 import ComingSoon from './pages/ComingSoon';
-import HomepageV2 from './pages/Homepage-v2';
+import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
-import StakingPage from './pages/StakingPage';
 import Whitepaper from './pages/Whitepaper';
-// import FreeMinting from 'pages/FreeMinting';
-import Bridge from 'modules/bridge/Bridge';
-import SwapPage from 'modules/swap/SwapPage';
-import Claims from 'pages/Claims';
-import ClaimsDetail from 'pages/ClaimsDetail';
-import FreeMinting from 'modules/free-minting/FreeMinting';
-import PrivateSale from 'pages/PrivateSale';
-import SwapV3Page from 'modules/swap-v3/SwapV3Page';
+// import Claims from 'pages/Claims';
+// import ClaimsDetail from 'pages/ClaimsDetail';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-// const IDODetail = React.lazy(() => import('./pages/IDODetail'));
-// const Affiliate = React.lazy(() => import('./pages/Affiliate'));
-const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
+const IDODetail = React.lazy(() => import('./pages/IDODetail'));
+// const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
@@ -29,15 +26,7 @@ export default function Router() {
       path: '/',
       element: <ClientLayout />,
       children: [
-        { path: '/', element: <HomepageV2 /> },
-        {
-          path: 'my-profile',
-          element: (
-            <Suspense>
-              <MyProfilePage />
-            </Suspense>
-          ),
-        },
+        { path: '/', element: <Homepage /> },
         {
           path: 'ido-launchpad',
           element: (
@@ -46,6 +35,30 @@ export default function Router() {
             </Suspense>
           ),
         },
+        {
+          path: 'ido-launchpad/round',
+          element: (
+            <Suspense>
+              <IDORound />
+            </Suspense>
+          ),
+        },
+        {
+          path: 'ido-launchpad/sua',
+          element: (
+            <Suspense>
+              <IDODetail />
+            </Suspense>
+          ),
+        },
+        // {
+        //   path: 'ido-launchpad/:projectId',
+        //   element: (
+        //     <Suspense>
+        //       <TXUIIDO />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'ino-launchpad',
           element: (
@@ -59,23 +72,36 @@ export default function Router() {
           element: (
             <Suspense>
               <FreeMinting />
-              {/* <ComingSoon /> */}
             </Suspense>
           ),
         },
         {
-          path: 'ido-launchpad/:projectId',
+          path: 'whitepaper',
+          element: <Navigate to="/whitepaper/introduction-of-yousui" />
+        },
+        {
+          path: 'whitepaper/:sub',
+          element: <Whitepaper />
+        },
+        {
+          path: 'staking',
           element: (
-            <Suspense>
-              <TXUIIDO />
-            </Suspense>
+            <StakingFarming />
           ),
         },
         {
-          path: 'private-sale',
+          path: 'bridge',
+          element: <Bridge />,
+        },
+        {
+          path: 'swap',
+          element: <SwapV3Page />,
+        },
+        {
+          path: 'my-profile',
           element: (
             <Suspense>
-              <PrivateSale />
+              <MyProfilePage />
             </Suspense>
           ),
         },
@@ -83,7 +109,8 @@ export default function Router() {
           path: 'claim-tokens',
           element: (
             <Suspense>
-              <Claims />
+              {/* <Claims /> */}
+              <ComingSoon />
             </Suspense>
           ),
         },
@@ -91,29 +118,18 @@ export default function Router() {
           path: '/claim-tokens/:projectId',
           element: (
             <Suspense>
-              <ClaimsDetail />
+              {/* <ClaimsDetail /> */}
+              <ComingSoon />
             </Suspense>
           ),
         },
         {
-          path: 'staking',
-          element: <StakingPage />,
-        },
-        {
-          path: 'whitepaper',
-          element: <Navigate to="/whitepaper/introduction-of-yousui" />,
-        },
-        {
-          path: 'whitepaper/:sub',
-          element: <Whitepaper />,
-        },
-        {
-          path: 'swap',
-          element: <SwapV3Page />,
-        },
-        {
-          path: 'bridge',
-          element: <Bridge />,
+          path: '/nft-marketplace',
+          element: (
+            <Suspense>
+              <ComingSoon />
+            </Suspense>
+          ),
         },
       ],
     },

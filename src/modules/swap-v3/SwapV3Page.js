@@ -1,9 +1,9 @@
 import { Percentage, TransactionUtil, adjustForSlippage, d } from '@cetusprotocol/cetus-sui-clmm-sdk';
 import {
-  Backdrop,
   Box,
   CircularProgress,
   Container,
+  Grid,
   IconButton,
   InputBase,
   MenuItem,
@@ -12,23 +12,31 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import { PythHttpClient, getPythClusterApiUrl, getPythProgramKeyForCluster } from '@pythnetwork/client';
+import { Connection } from '@solana/web3.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { IconRefresh, IconSettings, IconSwitchVertical } from '@tabler/icons';
 import Page from 'components/common/Page';
-import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
+import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap-v3/components/SwapStyles';
 import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
-import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap/components/SwapStyles';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
+import Statistic from './components/Statistic';
 import { SwapHelper, cetusLoad, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
+
+const PYTHNET_CLUSTER_NAME = 'pythnet';
+const connection = new Connection(getPythClusterApiUrl(PYTHNET_CLUSTER_NAME));
+const pythPublicKey = getPythProgramKeyForCluster(PYTHNET_CLUSTER_NAME);
+
+const supportTokens = ['USDT', 'WETH', 'SUI', 'USDC', 'WBNB', 'WBTC'];
 
 function useQuery() {
   const { search } = useLocation();
-
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
@@ -38,7 +46,6 @@ export default function SwapV3Page() {
   const [sendToken, setSendToken] = React.useState(null);
   const [receiveToken, setReceiveToken] = React.useState(null);
   const wallet = useWallet();
-  const [poolList, setPoolList] = React.useState([]);
   const [a2b, setA2B] = React.useState(true);
   const [sendAmount, setSendAmount] = React.useState('0');
   const [receiveAmount, setReceiveAmount] = React.useState('0');
@@ -52,19 +59,37 @@ export default function SwapV3Page() {
   const [bestRoute, setBestRoute] = React.useState(null);
   const [tokenListObj, setTokenListObj] = React.useState({});
   const [preSwapData, setPreSwapData] = React.useState(null);
+  const [baseBalance, setBaseBalance] = React.useState(0);
+  const [quoteBalance, setQuoteBalance] = React.useState(0);
+  const [loadingPage, setLoadingPage] = React.useState(true);
+  const [pythPrices, setPythPrice] = React.useState(null);
   let query = useQuery();
   const from = query.get('from');
   const to = query.get('to');
   const navigate = useNavigate();
-  const [baseBalance, setBaseBalance] = React.useState(0);
-  const [quoteBalance, setQuoteBalance] = React.useState(0);
-  const [loadingPage, setLoadingPage] = React.useState(true);
-
-  const supportTokens = ['USDT', 'WETH', 'SUI', 'USDC', 'WBNB', 'WTBC'];
 
   React.useEffect(() => {
     (async () => {
-      setLoadingPage(true);
+      const pythPrices = new Map();
+      const pythClient = new PythHttpClient(connection, pythPublicKey);
+      const data = await pythClient.getData();
+      for (const symbol of data.symbols) {
+        if (symbol.includes('Crypto')) {
+          const price = data.productPrice.get(symbol);
+          if (price.price && price.confidence) {
+            // console.log(`${symbol}: $${price.price} \xB1$${price.confidence}`);
+            pythPrices.set(symbol.replace('Crypto.', '').replace('/USD', ''), price.price);
+          } else {
+            // console.log(`${symbol}: price currently unavailable. status is ${[price.status]}`);
+          }
+        }
+      }
+      setPythPrice(pythPrices);
+    })();
+  }, []);
+
+  React.useEffect(() => {
+    (async () => {
       await cetusLoad();
       setLoadingPage(false);
     })();
@@ -91,7 +116,6 @@ export default function SwapV3Page() {
       (async () => {
         const balance = await getBalance(wallet.address, from);
         setBaseBalance(balance ? balance.totalBalance : 0);
-        console.log('base', balance);
       })();
     }
   }, [from, wallet.address, flag]);
@@ -101,7 +125,6 @@ export default function SwapV3Page() {
       (async () => {
         const balance = await getBalance(wallet.address, to);
         setQuoteBalance(balance ? balance.totalBalance : 0);
-        console.log('quote', balance);
       })();
     }
   }, [to, wallet.address, flag]);
@@ -153,8 +176,6 @@ export default function SwapV3Page() {
 
         const amountLimit = adjustForSlippage(coinAmount, slippage, !byAmountIn);
 
-        console.log(pool);
-
         const swapPayload = await sdk.Swap.createSwapTransactionPayload({
           pool_id: pool.poolAddress,
           coinTypeA: pool.coinTypeA,
@@ -178,7 +199,6 @@ export default function SwapV3Page() {
       setFlag(!flag);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       toast.error(error.toString());
       setLoading(false);
     }
@@ -187,7 +207,7 @@ export default function SwapV3Page() {
   React.useEffect(() => {
     handleReload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sendToken, receiveToken, sendAmount, poolList]);
+  }, [sendToken, receiveToken, sendAmount]);
 
   const handleSwitch = () => {
     navigate(`?from=${receiveToken}&to=${sendToken}`);
@@ -248,7 +268,8 @@ export default function SwapV3Page() {
           const preSwapData = await getPreSwapData(swapRouter, slippageSetting, true);
           setPreSwapData(preSwapData);
         }
-        setBestRoute(swapRouter);
+
+        setBestRoute(swapRouter.amountIn === '0' ? null : swapRouter);
         setEstimating(false);
         setFlag(!flag);
       }
@@ -281,26 +302,26 @@ export default function SwapV3Page() {
       handleReload();
     }, 20000);
     return () => {
+      console.log('clear');
       clearInterval(intervalTime);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [bestRoute]);
 
-  if (loadingPage) {
-    return (
-      <Page title="Swap">
-        <SectionBox
-          sx={{
-            backgroundImage: "url('/images/background/homebg6.png')",
-          }}
-        >
-          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loadingPage}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        </SectionBox>
-      </Page>
-    );
-  }
+  // console.log(pythPrices);
+
+  const getPythPrice = (address, amount) => {
+    if (address && amount && amount !== '0') {
+      const symbol = tokenListObj?.[address]?.official_symbol;
+      if (symbol) {
+        let price = pythPrices.get(symbol);
+        if (!price) price = pythPrices.get(symbol.replace('W', ''));
+        return `$ ${SwapHelper.formatBigNumber((amount * price).toString())}`;
+      }
+    }
+    return null;
+  };
+
   return (
     <Page title="Swap">
       <SectionBox
@@ -308,252 +329,292 @@ export default function SwapV3Page() {
           backgroundImage: "url('/images/background/homebg6.png')",
         }}
       >
-        <Container maxWidth={'md'}>
-          <SwapBox>
-            <Box component={'form'} onSubmit={handleSwap}>
-              <TypographyGradient variant="h2">Swap</TypographyGradient>
-              {/* <PriceTypography>
-                <b>1 {sendToken?.official_symbol}</b> ($0.25) = <b>0.35 {receiveToken?.official_symbol}</b> ($17.15)
-              </PriceTypography> */}
-              <Stack
-                direction="row"
-                justifyContent={'flex-end'}
-                alignItems={'center'}
-                sx={{
-                  '& svg': {
-                    color: '#fff',
-                  },
-                }}
-              >
-                {/* <IconButton>
-                  <IconChartLine />
-                </IconButton> */}
-                <Typography color={'#fff'} ml={1}>
-                  {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
-                </Typography>
-                <IconButton onClick={() => setOpenSettings(true)}>
-                  <IconSettings />
-                </IconButton>
-                <Tooltip title="Auto refresh in 20 seconds, you can click to update manually.">
-                  <IconButton onClick={handleReload} id="refresh-button">
-                    <IconRefresh />
-                  </IconButton>
-                </Tooltip>
-              </Stack>
-              <AmountBox>
-                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                  <CustomInput
-                    variant="standard"
-                    handleDone={(e) => setSendAmount(e)}
-                    sx={{
-                      color: 'white',
-                      fontSize: isMobile ? 16 : 40,
-                    }}
-                    disabled={!sendToken || estimating}
-                    defaultValue={sendAmount}
-                  />
-                  {tokenList.length > 0 ? (
-                    <SelectToken value={sendToken}>
-                      {tokenList.map((token) => {
-                        const check = supportTokens.includes(token.official_symbol);
-                        return (
-                          check && (
-                            <MenuItem
-                              value={token.address}
-                              key={token.address}
-                              onClick={() => {
-                                navigate(`?from=${token.address}&to=${to}`);
-                                setSendAmount('0');
-                                setReceiveAmount('0');
-                              }}
-                            >
-                              <img
-                                src={token.logo_url}
-                                alt={token.symbol}
-                                width={isMobile ? 24 : 32}
-                                style={{ marginRight: '8px' }}
-                              />
-                              {token.symbol}
-                            </MenuItem>
-                          )
-                        );
-                      })}
-                    </SelectToken>
-                  ) : (
-                    <Skeleton
-                      variant="rounded"
-                      width={120}
-                      height={56}
+        <Container maxWidth={'xl'}>
+          <Box
+            sx={{
+              marginBottom: '64px',
+              marginTop: '24px',
+            }}
+          >
+            <Grid container spacing={2} alignItems={'stretch'}>
+              <Grid item md={7} xs={12}>
+                <SwapBox>
+                  <Box component={'form'} onSubmit={handleSwap}>
+                    <TypographyGradient variant="h2">Swap</TypographyGradient>
+                    {/* <PriceTypography>
+                          <b>1 {sendToken?.official_symbol}</b> ($0.25) = <b>0.35 {receiveToken?.official_symbol}</b> ($17.15)
+                      </PriceTypography> */}
+                    <Stack
+                      direction="row"
+                      justifyContent={'flex-end'}
+                      alignItems={'center'}
                       sx={{
-                        background:
-                          'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
+                        '& svg': {
+                          color: '#fff',
+                        },
                       }}
-                    />
-                  )}
-                </Stack>
-                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                  <Typography color={'white'}></Typography>
-                  <AmountStack>
-                    <img src="/images/icon/icon-wallet-green.png" alt="" />
-                    <Typography>{sendToken ? formatUnits(baseBalance, getDecimals(sendToken)) : '--'}</Typography>
-                  </AmountStack>
-                </Stack>
-              </AmountBox>
-
-              <Stack alignItems={'center'} sx={{ '& svg': { color: '#14E3BE' } }}>
-                <IconButton onClick={handleSwitch}>
-                  <IconSwitchVertical size={'36px'} />
-                </IconButton>
-              </Stack>
-
-              <AmountBox>
-                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
-                  <InputBase
-                    variant="standard"
-                    value={receiveAmount}
-                    sx={{
-                      color: 'white',
-                      fontSize: isMobile ? 16 : 40,
-                    }}
-                  />
-                  {tokenList.length > 0 ? (
-                    <SelectToken value={receiveToken}>
-                      {tokenList.map((token) => {
-                        const check = supportTokens.includes(token.official_symbol);
-                        return (
-                          check &&
-                          token.address !== sendToken && (
-                            <MenuItem
-                              value={token.address}
-                              key={token.address}
-                              onClick={() => {
-                                navigate(`?from=${from}&to=${token.address}`);
-                                setSendAmount('0');
-                                setReceiveAmount('0');
-                              }}
-                            >
-                              <img
-                                src={token.logo_url}
-                                alt={token.symbol}
-                                width={isMobile ? 24 : 32}
-                                style={{ marginRight: '8px' }}
-                              />
-                              {token.symbol}
-                            </MenuItem>
-                          )
-                        );
-                      })}
-                    </SelectToken>
-                  ) : (
-                    <Skeleton
-                      variant="rounded"
-                      width={120}
-                      height={56}
-                      sx={{
-                        background:
-                          'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
-                      }}
-                    />
-                  )}
-                </Stack>
-                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
-                  <Typography color={'white'}></Typography>
-                  <AmountStack>
-                    <img src="/images/icon/icon-wallet-green.png" alt="" />
-                    <Typography>
-                      {receiveToken ? formatUnits(quoteBalance, getDecimals(receiveToken)) : '--'}
-                    </Typography>
-                  </AmountStack>
-                </Stack>
-              </AmountBox>
-              {/* {error && (
-                <ErrorBox my={1}>
-                  <Typography textAlign={'left'}>{error}</Typography>
-                </ErrorBox>
-              )} */}
-
-              <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
-                {error ? error : `Swap`}
-              </ConnectButton>
-              {estimating ? (
-                <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
-                  <CircularProgress color="primary" />
-                </Stack>
-              ) : (
-                <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
-                  <Box>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
-                      Price impact
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
-                      Min. received
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
-                      Network fee
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
-                      Route
-                    </Typography>
-                  </Box>
-                  <Box textAlign={'right'}>
-                    <Typography
-                      variant="body2"
-                      fontWeight={600}
-                      color={
-                        preSwapData?.impactPrice && preSwapData?.impactPrice > -1
-                          ? preSwapData.impactPrice < 1
-                            ? 'green'
-                            : preSwapData?.impactPrice < 10
-                            ? 'yellow'
-                            : 'red'
-                          : 'white'
-                      }
-                      data-id="price-impact"
                     >
-                      {preSwapData
-                        ? `${preSwapData?.impactPrice > -1 ? `${preSwapData.impactPrice}%` : 'Estimating'}`
-                        : '--'}
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
-                      {preSwapData
-                        ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))}
-                      ${tokenListObj?.[receiveToken]?.official_symbol}`
-                        : '--'}
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
-                      {preSwapData
-                        ? `${
-                            preSwapData?.totalFee > -1
-                              ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
-                              : 'Estimating'
-                          }`
-                        : '--'}
-                    </Typography>
-                    <Typography variant="body2" fontWeight={600} color={'white'}>
-                      {bestRoute ? (
-                        a2b ? (
-                          <>
-                            {tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}
-                            {bestRoute?.coinTypeB ? ` > ${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol}` : ''}
-                            {bestRoute?.coinTypeC ? ` > ${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol}` : ''}
-                          </>
+                      <Typography color={'#fff'} ml={1}>
+                        {slippageSetting === true ? 'Auto' : `${slippageSetting}%`}
+                      </Typography>
+                      <IconButton onClick={() => setOpenSettings(true)}>
+                        <IconSettings />
+                      </IconButton>
+                      <Tooltip title="Auto refresh in 20 seconds, you can click to update manually.">
+                        <IconButton onClick={handleReload} id="refresh-button">
+                          <IconRefresh />
+                        </IconButton>
+                      </Tooltip>
+                    </Stack>
+
+                    <AmountBox>
+                      <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
+                        <CustomInput
+                          variant="standard"
+                          handleDone={(e) => setSendAmount(e)}
+                          sx={{
+                            color: 'white',
+                            fontSize: isMobile ? 16 : 40,
+                          }}
+                          disabled={!sendToken || estimating}
+                          defaultValue={sendAmount}
+                        />
+                        {tokenList.length > 0 ? (
+                          <SelectToken value={sendToken}>
+                            {tokenList.map((token) => {
+                              const check = supportTokens.includes(token.official_symbol);
+                              return (
+                                check && (
+                                  <MenuItem
+                                    value={token.address}
+                                    key={token.address}
+                                    onClick={() => {
+                                      navigate(`?from=${token.address}&to=${to}`);
+                                      setSendAmount('0');
+                                      setReceiveAmount('0');
+                                    }}
+                                  >
+                                    <img
+                                      src={token.logo_url}
+                                      alt={token.symbol}
+                                      width={isMobile ? 24 : 32}
+                                      style={{ marginRight: '8px' }}
+                                    />
+                                    {token.symbol}
+                                  </MenuItem>
+                                )
+                              );
+                            })}
+                          </SelectToken>
                         ) : (
-                          <>
-                            {bestRoute?.coinTypeC ? `${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol} > ` : ''}
-                            {bestRoute?.coinTypeB ? `${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol} > ` : ''}
-                            {bestRoute?.coinTypeA ? `${tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}` : ''}
-                          </>
-                        )
-                      ) : (
-                        '--'
-                      )}
-                    </Typography>
-                    {/* <Typography variant="caption" color={'white'}>{`${sendToken} > ${receiveToken}`}</Typography> */}
+                          <Skeleton
+                            variant="rounded"
+                            width={120}
+                            height={56}
+                            sx={{
+                              background:
+                                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
+                            }}
+                          />
+                        )}
+                      </Stack>
+                      <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
+                        <Typography color={'Background'} variant="body2" fontWeight={600}>
+                          {getPythPrice(sendToken, sendAmount)}
+                        </Typography>
+                        <AmountStack>
+                          <img src="/images/icon/icon-wallet-green.png" alt="" />
+                          <Typography>
+                            {!loadingPage && sendToken ? formatUnits(baseBalance, getDecimals(sendToken)) : '--'}
+                          </Typography>
+                          <ConnectButton
+                            sx={{ height: 20, mt: 0, p: 0, borderRadius: 0.5, ml: 1, width: 50, minWidth: 'unset' }}
+                            onClick={() => setSendAmount(formatUnits(baseBalance, getDecimals(sendToken)))}
+                            disabled={!baseBalance || baseBalance === '0' || loadingPage}
+                          >
+                            <small>Max</small>
+                          </ConnectButton>
+                        </AmountStack>
+                      </Stack>
+                    </AmountBox>
+
+                    <Stack alignItems={'center'} sx={{ '& svg': { color: '#14E3BE' } }}>
+                      <IconButton onClick={handleSwitch}>
+                        <IconSwitchVertical size={'36px'} />
+                      </IconButton>
+                    </Stack>
+
+                    <AmountBox>
+                      <Stack direction="row" justifyContent={'space-between'} alignItems={'center'}>
+                        <InputBase
+                          variant="standard"
+                          value={receiveAmount}
+                          sx={{
+                            color: 'white',
+                            fontSize: isMobile ? 16 : 40,
+                          }}
+                        />
+                        {tokenList.length > 0 ? (
+                          <SelectToken value={receiveToken}>
+                            {tokenList.map((token) => {
+                              const check = supportTokens.includes(token.official_symbol);
+                              return (
+                                check &&
+                                token.address !== sendToken && (
+                                  <MenuItem
+                                    value={token.address}
+                                    key={token.address}
+                                    onClick={() => {
+                                      navigate(`?from=${from}&to=${token.address}`);
+                                      setSendAmount('0');
+                                      setReceiveAmount('0');
+                                    }}
+                                  >
+                                    <img
+                                      src={token.logo_url}
+                                      alt={token.symbol}
+                                      width={isMobile ? 24 : 32}
+                                      style={{ marginRight: '8px' }}
+                                    />
+                                    {token.symbol}
+                                  </MenuItem>
+                                )
+                              );
+                            })}
+                          </SelectToken>
+                        ) : (
+                          <Skeleton
+                            variant="rounded"
+                            width={120}
+                            height={56}
+                            sx={{
+                              background:
+                                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -10%, rgba(109, 133, 218, 0.25) 100%)',
+                            }}
+                          />
+                        )}
+                      </Stack>
+                      <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={2}>
+                        <Typography color={'Background'} variant="body2" fontWeight={600}>
+                          {getPythPrice(receiveToken, receiveAmount)}
+                        </Typography>
+                        <AmountStack>
+                          <img src="/images/icon/icon-wallet-green.png" alt="" />
+                          <Typography>
+                            {!loadingPage && receiveToken ? formatUnits(quoteBalance, getDecimals(receiveToken)) : '--'}
+                          </Typography>
+                        </AmountStack>
+                      </Stack>
+                    </AmountBox>
+
+                    <ConnectButton loading={loading} type="submit" disabled={Boolean(error) || estimating}>
+                      {error ? error : `Swap`}
+                    </ConnectButton>
+                    {estimating ? (
+                      <Stack direction="row" justifyContent={'center'} alignItems={'center'} mt={4}>
+                        <CircularProgress color="primary" />
+                      </Stack>
+                    ) : (
+                      <Stack direction="row" justifyContent={'space-between'} alignItems={'center'} mt={4}>
+                        <Box>
+                          <Typography variant="body2" fontWeight={600} color={'white'}>
+                            Price impact
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'}>
+                            Min. received
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'}>
+                            Network fee
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'}>
+                            Route
+                          </Typography>
+                        </Box>
+                        <Box textAlign={'right'}>
+                          <Typography
+                            variant="body2"
+                            fontWeight={600}
+                            color={
+                              preSwapData?.impactPrice && preSwapData?.impactPrice > -1
+                                ? preSwapData.impactPrice < 1
+                                  ? 'green'
+                                  : preSwapData?.impactPrice < 10
+                                  ? 'yellow'
+                                  : 'red'
+                                : 'white'
+                            }
+                            data-id="price-impact"
+                          >
+                            {preSwapData
+                              ? `${preSwapData?.impactPrice > -1 ? `${preSwapData.impactPrice}%` : 'Estimating'}`
+                              : '--'}
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
+                            {preSwapData
+                              ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))}
+                      ${tokenListObj?.[receiveToken]?.official_symbol}`
+                              : '--'}
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
+                            {preSwapData
+                              ? `${
+                                  preSwapData?.totalFee > -1
+                                    ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
+                                    : 'Estimating'
+                                }`
+                              : '--'}
+                          </Typography>
+                          <Typography variant="body2" fontWeight={600} color={'white'}>
+                            {bestRoute ? (
+                              a2b ? (
+                                <>
+                                  {tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}
+                                  {bestRoute?.coinTypeB
+                                    ? ` > ${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol}`
+                                    : ''}
+                                  {bestRoute?.coinTypeC
+                                    ? ` > ${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol}`
+                                    : ''}
+                                </>
+                              ) : (
+                                <>
+                                  {bestRoute?.coinTypeC
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol} > `
+                                    : ''}
+                                  {bestRoute?.coinTypeB
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol} > `
+                                    : ''}
+                                  {bestRoute?.coinTypeA
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}`
+                                    : ''}
+                                </>
+                              )
+                            ) : (
+                              '--'
+                            )}
+                          </Typography>
+                          {/* <Typography variant="caption" color={'white'}>{`${sendToken} > ${receiveToken}`}</Typography> */}
+                        </Box>
+                      </Stack>
+                    )}
                   </Box>
-                </Stack>
-              )}
-            </Box>
-          </SwapBox>
+                </SwapBox>
+              </Grid>
+              <Grid item md={5} xs={12}>
+                <SwapBox height={'100%'}>
+                  <Stack direction={'row'} alignItems={'center'}>
+                    <TypographyGradient variant="h2" mr={1}>
+                      Ref.
+                    </TypographyGradient>
+                    <img src="/images/pyth/pyth_logo_lockup_white.png" height={42} width={'auto'} alt="" />
+                  </Stack>
+                  <Box mt={'56px'} />
+                  <Statistic />
+                </SwapBox>
+              </Grid>
+            </Grid>
+          </Box>
+
           <SwapSettings
             open={openSettings}
             handleClose={() => setOpenSettings(false)}

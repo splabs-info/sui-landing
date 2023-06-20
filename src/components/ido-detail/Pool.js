@@ -9,10 +9,10 @@ import { SuiContext } from 'provider/SuiProvider';
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
+
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     position: 'relative',
@@ -78,6 +78,7 @@ const AvatarBox = styled(Box)(({ theme }) => ({
     position: 'relative',
     borderRadius: 24,
     padding: 24,
+    width: '100%',
     background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',

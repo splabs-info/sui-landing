@@ -33,12 +33,11 @@ export const Navbar = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '.5rem 0 ',
+    padding: '0',
     fontFamily: 'SVN-Gilroy-regular',
     textTransform: 'uppercase',
     '& a': {
-        padding: '0 0.5rem',
-        margin: '0 0.5em',
+        padding: '0 8px',
         display: 'block',
         fontWeight: 700,
         '&:last-child': {
@@ -55,12 +54,12 @@ export const Navbar = styled(Box)(({ theme }) => ({
         padding: '0',
         margin: '0',
     },
-    '& .active': {
-        background: 'linear-gradient(90deg, #EACCF8 0%, #96E0DA 100%)',
-        backgroundClip: 'text',
-        textFillColor: 'transparent',
-        position: 'relative',
-    },
+    // '& .active': {
+    //     background: 'linear-gradient(90deg, #EACCF8 0%, #96E0DA 100%)',
+    //     backgroundClip: 'text',
+    //     textFillColor: 'transparent',
+    //     position: 'relative',
+    // },
     // '& .active::before': {
     //     content: '" "',
     //     position: 'absolute',

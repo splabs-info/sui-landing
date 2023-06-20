@@ -93,7 +93,7 @@ export const ProcessBarBox = ({ title, percent, subtitle, sx }) => {
                 {title}
             </Box>
 
-            <StyledLinearProgress variant="determinate" component="p" value={percent} />
+            <StyledLinearProgress variant="determinate" component="p" value={percent > 100 ? 100 : percent} />
 
             <Box
                 sx={{

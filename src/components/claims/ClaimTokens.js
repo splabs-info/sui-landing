@@ -13,7 +13,7 @@ import {
 import { IconSearch } from '@tabler/icons';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { GradientButton } from 'components/common/CustomButton';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { replace, toNumber } from 'lodash';
 import * as moment from 'moment';

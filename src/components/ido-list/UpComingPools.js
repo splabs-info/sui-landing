@@ -1,43 +1,43 @@
 import { Box, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import { UpComingIDOCard } from './UpComingIDOCard';
 
 const upComingIDOList = [
-  {
-    title: 'TXUI (BETA IDO)',
-    avatar: '/images/ido/ido-upcoming-1.jpg',
-    releaseTime: 'Coming Soon',
-    salePeriod: 'TBA',
-    status: false,
-    link: '',
-    description: [
-      <>
-        <p>TBA</p>
-        <p>Valuation</p>
-      </>,
-      <>
-        <p>TBA</p>
-        <p>Ticket Size</p>
-      </>,
-    ]
+  // {
+  //   title: 'TXUI (BETA IDO)',
+  //   avatar: '/images/ido/ido-upcoming-1.jpg',
+  //   releaseTime: 'Coming Soon',
+  //   salePeriod: 'TBA',
+  //   status: false,
+  //   link: '',
+  //   description: [
+  //     <>
+  //       <p>TBA</p>
+  //       <p>Valuation</p>
+  //     </>,
+  //     <>
+  //       <p>TBA</p>
+  //       <p>Ticket Size</p>
+  //     </>,
+  //   ]
 
-  },
+  // },
   {
     title: 'YouSUI - XUI',
-    avatar: '/images/ido/ido-upcoming-2.jpg',
+    avatar: '/images/ido/pool-yousui.jpg',
     releaseTime: 'Official Launch: June 21st',
     startAt: '21st June 12:00 UTC',
     status: true,
-    link: '',
+    link: '/ido-launchpad/round',
     description: [
       <>
         <p>1,000,000 SUI</p>
-        <p>Total Raise</p>
+        <p>TBA</p>
       </>,
       <>
-        <p>25M $</p>
-        <p>Valuation</p>
+        <p>0.25 USD</p>
+        <p>Price per Token</p>
       </>,
       <>
         <p>Access</p>
@@ -47,7 +47,7 @@ const upComingIDOList = [
   },
   {
     title: 'HooD',
-    avatar: '/images/ido/ido-upcoming-3.jpg',
+    avatar: '/images/ido/pool-hood.jpg',
     releaseTime: 'Official Launch: July 25th',
     startAt: '25th July 11:00 UTC',
     status: false,
@@ -55,11 +55,11 @@ const upComingIDOList = [
     description: [
       <>
         <p>600,000 SUI</p>
-        <p>Total Raise</p>
+        <p>TBA</p>
       </>,
       <>
-        <p>20M $</p>
-        <p>Valuation</p>
+        <p>0.2 USD</p>
+        <p>Price per Token</p>
       </>,
       <>
         <p>Access</p>

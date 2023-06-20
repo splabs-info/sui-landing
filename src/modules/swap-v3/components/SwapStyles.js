@@ -1,10 +1,9 @@
 import { LoadingButton } from '@mui/lab';
-
-const { styled, Box, Typography, Button, Select, Stack, Switch } = require('@mui/material');
+import { Box, Select, Stack, Switch, Typography, styled } from '@mui/material';
 
 export const SwapBox = styled(Box)(({ theme }) => ({
-  marginBottom: 64,
-  marginTop: 24,
+  // marginBottom: 64,
+  // marginTop: 24,
   padding: '32px 64px',
   background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.07) -10%, rgba(109, 133, 218, 0.07) 100%)',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -56,7 +55,7 @@ export const ConnectButton = styled(LoadingButton)(({ theme }) => ({
   },
   '& .MuiLoadingButton-loadingIndicator': {
     color: 'white',
-  }
+  },
 }));
 
 export const AmountBox = styled(Box)(({ theme }) => ({

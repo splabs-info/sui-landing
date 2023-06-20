@@ -18,7 +18,6 @@ import { TokenPoolBox } from './ClaimTokens';
 export default function VestingTokens({ tokenType, periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
-    console.log('periodList__', periodList)
     return (
         <Box position="relative">
             <Grid container spacing={4} mb={isMobile ? 1 : 4}>
@@ -130,7 +129,6 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
     const canClaim = canClaimVesting(releaseTime)
 
 
-    console.log('releaseTime__', releaseTime)
     const handleClaim = async () => {
         setLoading(true)
         const tx = new TransactionBlock();

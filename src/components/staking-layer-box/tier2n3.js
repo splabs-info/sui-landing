@@ -104,7 +104,7 @@ export const Tier2n3 = ({ tier, stakingAmount, logo, ...props }) => {
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <StakingAmount>{stakingAmount}</StakingAmount>
                             <img
-                                src="/YouSUI-token.png"
+                                src="/images/home/YouSUI-token.png"
                                 alt="token"
                                 style={{
                                     width: isMobile ? 40 : 56,
@@ -122,7 +122,7 @@ export const Tier2n3 = ({ tier, stakingAmount, logo, ...props }) => {
                     style={{
                         width: isMobile ? 140 : 220,
                         height: isMobile ? 140 : 220,
-                        
+
                         margin: isDesktop ? '0' : 'auto',
                     }}
                 />

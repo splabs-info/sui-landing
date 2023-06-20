@@ -2,7 +2,7 @@ import { Box, Container } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
 import VestingTokens from 'components/claims/VestingTokens';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { flattenDeep } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';

@@ -27,7 +27,7 @@ export const UlCustom = styled(Box)(({ theme }) => ({
     },
     [theme.breakpoints.down('sm')]: {
         '& li': {
-            fontSize: '0.8rem',
+            fontSize: '0.9rem',
         },
     },
 }));
@@ -37,6 +37,7 @@ export const FooterTitle = styled(Box)(({ theme }) => ({
     fontSize: '1.25rem',
     paddingBottom: '0.75rem',
     fontFamily: 'SVN-Gilroy-semi-bold',
+    whiteSpace: 'nowrap',
     [theme.breakpoints.down('sm')]: {
         fontSize: '1rem',
     },
@@ -46,16 +47,16 @@ export const SocialBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     '& img': {
         width: '90%',
+        maxWidth: 40,
     },
     '& a:hover': {
         borderBottom: '0px',
         '& img': {
-            boxShadow: '0 0 10px white',
+            boxShadow: '0 0 5px 2px #fff4',
             borderRadius: '14px',
         },
     },
     [theme.breakpoints.down('md')]: {
-        justifyContent: 'center',
     },
 }));
 

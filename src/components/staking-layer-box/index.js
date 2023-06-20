@@ -55,7 +55,7 @@ export const Tier1 = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
                         <StakingAmount>120.000</StakingAmount>
                         <img
-                            src="/YouSUI-token.png"
+                            src="/images/home/YouSUI-token.png"
                             alt="token"
                             style={{
                                 width: 56,
@@ -66,7 +66,7 @@ export const Tier1 = () => {
                     <Box>
                         <Lottery>LOTTERY</Lottery>
                         <img
-                            src="Tier-1.png"
+                            src="/images/staking/tier-1.png"
                             alt="tier-1"
                             style={{
                                 width: 240,

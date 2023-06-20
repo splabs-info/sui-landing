@@ -5,7 +5,7 @@ import { BorderGradientButton, GradientLoadingButton } from 'components/common/C
 import CustomModal from 'components/common/CustomModal';
 import Page from 'components/common/Page';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { SectionBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { MintingCountdown } from 'components/minting/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
@@ -56,13 +56,23 @@ export default function FreeMinting() {
   const isMobile = useResponsive('down', 'sm');
   const wallet = useWallet();
   const [loading, setLoading] = React.useState(false);
-  const [total, setTotal] = React.useState(0);
+  const [total, setTotal] = React.useState(2000);
   const [minted, setMinted] = React.useState(0);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
   const [hasInTimes, setHasInTimes] = React.useState(false);
   const [myNftList, setMyNftList] = React.useState([]);
   const [openMyNft, setOpenMyNft] = React.useState(false);
+
+  const syncData = async () => {
+    const result = await provider.getObject({
+      id: addresses.objectFreeMint,
+      options: { showContent: true },
+    });
+    console.log(result?.data?.content?.fields);
+    setTotal(result?.data?.content?.fields?.max_mint);
+    setMinted(result?.data?.content?.fields?.number);
+  };
 
   React.useEffect(() => {
     if (provider) {
@@ -75,6 +85,17 @@ export default function FreeMinting() {
         setTotal(result?.data?.content?.fields?.max_mint);
         setMinted(result?.data?.content?.fields?.number);
       })();
+      const interval = setInterval(() => {
+        syncData();
+      }, 20000);
+      return () => clearInterval(interval);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    if (provider) {
+      syncData();
     }
   }, [flag]);
 
@@ -96,7 +117,6 @@ export default function FreeMinting() {
             arrNft.push(result?.data?.content?.fields);
           }
           setMyNftList(arrNft);
-          // console.log(arrNft);
         }
       })();
     }
@@ -260,10 +280,11 @@ export default function FreeMinting() {
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     onClick={handleFreeMinting}
                     loading={loading}
-                    disabled={owned === 5}
+                    // disabled={owned === 5}
+                    disabled
                   >
-                    Claim Now
-                  </GradientLoadingButton>
+                    Sold Out
+                  </GradientLoadingButton >
                 ) : (
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
@@ -272,21 +293,24 @@ export default function FreeMinting() {
                   >
                     My NFT
                   </GradientLoadingButton>
-                )}
-              </Grid>
+                )
+                }
+              </Grid >
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
                   <NFTGroup />
                 </Hidden>
               </Grid>
-            </Grid>
-          </FreeMintingBox>
-          {myNftList.length > 0 && (
-            <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
-          )}
-        </Container>
-      </SectionBox>
-    </Page>
+            </Grid >
+          </FreeMintingBox >
+          {
+            myNftList.length > 0 && (
+              <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
+            )
+          }
+        </Container >
+      </SectionBox >
+    </Page >
   );
 }
 
@@ -469,7 +493,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>

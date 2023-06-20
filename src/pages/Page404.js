@@ -1,7 +1,7 @@
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Typography, Container, Box } from '@mui/material';
-import { AppButton } from '../components/home/HomeStyles';
+import { ApplyButton } from 'components/header/HeaderStyles';
+import { Link as RouterLink } from 'react-router-dom';
 import Page from '../components/common/Page';
 
 // ----------------------------------------------------------------------
@@ -45,12 +45,11 @@ export default function Page404() {
                         </Typography>
                         <Box
                             component="img"
-                            // src="/images/comingsoon/404.png"
                             sx={{ width: 'min(550px, 100%)', mx: 'auto', mb: '2rem' }}
                         />
-                        <AppButton to="/" size="large" variant="contained" component={RouterLink}>
+                        <ApplyButton to="/" size="large" variant="contained" component={RouterLink}>
                             Go to Home
-                        </AppButton>
+                        </ApplyButton>
                     </ContentStyle>
                 </Container>
             </Box>
