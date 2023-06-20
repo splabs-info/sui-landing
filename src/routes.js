@@ -12,6 +12,7 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
+import { SuiNotifiCard } from 'modules/notifi-network/Demo';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -124,7 +125,8 @@ export default function Router() {
           path: '/notifi-network',
           element: (
             <Suspense>
-              <DemoNotifiNetwork />
+              {/* <DemoNotifiNetwork /> */}
+              <SuiNotifiCard />
             </Suspense>
           ),
         },

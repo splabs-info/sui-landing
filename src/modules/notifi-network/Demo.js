@@ -1,9 +1,11 @@
+import { Container, Paper } from '@mui/material';
 import { NotifiContext, NotifiSubscriptionCard } from '@notifi-network/notifi-react-card';
-import { useWallet } from '@suiet/wallet-kit';
-import { EthosConnectStatus, SignInButton } from 'ethos-connect';
+import { ConnectButton, useWallet } from '@suiet/wallet-kit';
+import Page from 'components/common/Page';
+import { SectionBox } from 'components/home/HomeStyles';
 
 export const SuiNotifiCard = () => {
-  const { status, wallet } = useWallet();
+  const wallet = useWallet();
 
   const signMessage = async (message) => {
     if (!wallet) {
@@ -15,6 +17,9 @@ export const SuiNotifiCard = () => {
     });
 
     const signatureBuffer = Buffer.from(signature.signature);
+
+    console.log(signatureBuffer);
+
     return signatureBuffer;
   };
 
@@ -39,32 +44,48 @@ export const SuiNotifiCard = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Notifi Card: Sui</h1>
-      {status === EthosConnectStatus.Connected && wallet ? (
-        <NotifiContext
-          dappAddress="2e0dba2a3ecb46e6b7c0da951b0b9add"
-          walletBlockchain="SUI"
-          // keep this "Production" unless you have a special Development environment set up by Notifi
-          env="Production"
-          accountAddress={wallet.address}
-          walletPublicKey={wallet.address}
-          signMessage={signMessage}
-        >
-          Connected SUI Wallet: <br /> {wallet?.address}
-          <button onClick={wallet.disconnect}> DISCONNECT</button>
-          <NotifiSubscriptionCard
-            darkMode
-            inputs={{ userWallet: wallet.address }}
-            inputLabels={inputLabels}
-            inputSeparators={inputSeparators}
-            cardId="< YOUR OWN CARD ID HERE >"
-            onClose={() => alert('nope you must stay')}
-          />
-        </NotifiContext>
-      ) : (
-        <SignInButton>CONNECT SUI WALLET</SignInButton>
-      )}
-    </div>
+    <Page title="Swap">
+      <SectionBox
+        sx={{
+          backgroundImage: "url('/images/background/homebg6.png')",
+        }}
+      >
+        <Container maxWidth={'xl'}>
+          <Paper
+            sx={{
+              marginBottom: '64px',
+              marginTop: '24px',
+            }}
+          >
+            <div style={{ position: 'relative' }} className="container">
+              <h1>Notifi Card: Sui</h1>
+              {wallet.address ? (
+                <NotifiContext
+                  dappAddress="demorileynotifi"
+                  walletBlockchain="SUI"
+                  env="Development"
+                  accountAddress={wallet.address}
+                  walletPublicKey={wallet.address}
+                  signMessage={signMessage}
+                >
+                  Connected SUI Wallet: <br /> {wallet?.address}
+                  <button onClick={wallet.disconnect}> DISCONNECT</button>
+                  <NotifiSubscriptionCard
+                    darkMode
+                    inputs={{ userWallet: wallet.address }}
+                    inputLabels={inputLabels}
+                    inputSeparators={inputSeparators}
+                    cardId="2e0dba2a3ecb46e6b7c0da951b0b9add"
+                    onClose={() => alert('nope you must stay')}
+                  />
+                </NotifiContext>
+              ) : (
+                <ConnectButton>CONNECT SUI WALLET</ConnectButton>
+              )}
+            </div>
+          </Paper>
+        </Container>
+      </SectionBox>
+    </Page>
   );
 };
