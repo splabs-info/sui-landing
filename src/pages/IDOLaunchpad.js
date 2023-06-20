@@ -66,7 +66,7 @@ export default function IDOLaunchpad() {
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
             <Link to={'/ido-launchpad'}>
-              <FrameButton>Buy $ XUI</FrameButton>
+              <FrameButton>Buy $XUI</FrameButton>
             </Link>
             <Link to={'/whitepaper'}>
               <FrameButton>Whitepaper</FrameButton>

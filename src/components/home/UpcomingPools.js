@@ -64,7 +64,7 @@ const upComingList = [
         src: 'images/home/yousui-ido.jpg',
         title: 'YouSUI',
         description: 'Launchpad, DEX, NFT Marketplace,...',
-        openDate: 'June 21st',
+        openDate: 'July 2023',
         link: '/ido-launchpad'
     },
     {

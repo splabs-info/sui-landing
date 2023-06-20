@@ -112,7 +112,7 @@ export default function Intro() {
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
               <Link to={'/ido-launchpad'}>
-                <FrameButton>Buy XUI</FrameButton>
+                <FrameButton>Buy $XUI</FrameButton>
               </Link>
               <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                 <FrameButton>Apply for Launchpad</FrameButton>
