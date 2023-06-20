@@ -70,7 +70,7 @@ export const RoundChart = ({ round }) => {
                             </Stack>
                         </Box>
                     </SaleInfoBox>
-                    <Box pl={4} mt={1}>
+                    <Box pl={4} mt={2}>
                         <Typography variant='h6'> IDO Information</Typography>
                         <ul style={{ marginLeft: '24px' }}>
                             <li><Typography variant='body2'>IDO Launchpad Logic: {round?.idoInfo.logic}</Typography> </li>

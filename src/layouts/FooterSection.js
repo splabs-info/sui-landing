@@ -11,7 +11,6 @@ import {
 	SocialBox,
 	UlCustom
 } from '../components/footer/FooterStyles';
-import useResponsive from '../hooks/useResponsive';
 import { _changeLanguage } from '../store/setting/settingActions';
 
 const aboutYouSUI = [
@@ -108,35 +107,18 @@ export default function FooterSection() {
 							variant="body1"
 							sx={{
 								fontSize: '0.95rem',
-								padding: { xs: '0', md: '0 20% 0 0' },
+								padding: { xs: '0', md: '0 20% 0 3%' },
 								transform: { md: 'translateY(-70px)', xs: 'translateY(-20px)' }
 							}}
 						>
 							YouSUI is an All-In-One platform running on the Sui Network, featuring a comprehensive suite of services including a decentralized exchange (DEX), Launchpad, NFT marketplace, social platform, and bridge.
 						</Typography>
 					</Grid>
-					{/* <Grid item xs={12} sm={4} md={3} lg={2} mt={isTablet && 3} textAlign={isMobile && 'center'}>
-						<FooterTitle>{library.key_9}</FooterTitle>
-						<UlCustom>
-							<li>
-								<a
-									href="mailto:business@yousui.io"
-									target="_blank"
-									rel="noreferrer"
-									style={{ fontSize: '1rem' }}
-								>
-									business@yousui.io
-								</a>
-							</li>
-						</UlCustom>
-					</Grid> */}
-
 					<Grid
 						item
 						xs={6}
 						sm={4}
-						md={2}
-						sx={{ height: '100%', wordBreak: 'break-all' }}
+						md={2.5}
 					>
 						<FooterTitle>{library.key_10}</FooterTitle>
 
@@ -153,7 +135,7 @@ export default function FooterSection() {
 						item
 						xs={6}
 						sm={4}
-						md={2}
+						md={2.5}
 					>
 						<FooterTitle>{library.key_14}</FooterTitle>
 
