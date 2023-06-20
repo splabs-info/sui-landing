@@ -1,5 +1,7 @@
 import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'modules/free-minting/FreeMinting';
+import IDORound from 'modules/ido-round';
+import DemoNotifiNetwork from 'modules/notifi-network/DemoNotifiNetwork';
 import StakingFarming from 'modules/staking/OverallPage';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import React, { Suspense } from 'react';
@@ -10,8 +12,6 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-import IDORound from 'modules/ido-round';
-import DemoNotifiNetwork from 'modules/notifi-network/DemoNotifiNetwork';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
