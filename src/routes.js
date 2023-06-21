@@ -116,7 +116,7 @@ export default function Router() {
           ),
         },
         {
-          path: '/claim-tokens/:projectId',
+          path: 'claim-tokens/:projectId',
           element: (
             <Suspense>
               <ClaimsDetail />
@@ -125,7 +125,7 @@ export default function Router() {
           ),
         },
         {
-          path: '/nft-marketplace',
+          path: 'nft-marketplace',
           element: (
             <Suspense>
               <ComingSoon />
@@ -133,7 +133,7 @@ export default function Router() {
           ),
         },
         {
-          path: '/private-sale',
+          path: 'private-sale',
           element: (
             <Suspense>
               <PrivateSale />
