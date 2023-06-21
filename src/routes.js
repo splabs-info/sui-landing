@@ -13,6 +13,7 @@ import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
+import PrivateSale from 'pages/PrivateSale';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -128,6 +129,14 @@ export default function Router() {
           element: (
             <Suspense>
               <ComingSoon />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/private-sale',
+          element: (
+            <Suspense>
+              <PrivateSale />
             </Suspense>
           ),
         },

@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Typography, styled } from '@mui/material';
 import Page from 'components/common/Page';
-import { SectionBox } from 'components/home-v2/HomeStyles';
+import { SectionBox } from 'components/home/HomeStyles';
 import { BuyToken } from 'components/privateSale/BuyToken';
 import { XUIUtility } from 'components/privateSale/XUIUtility';
 import useResponsive from 'hooks/useResponsive';

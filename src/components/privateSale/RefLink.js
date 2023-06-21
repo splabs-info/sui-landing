@@ -1,12 +1,10 @@
 import { Typography } from '@mui/material';
 import { ContentBox } from 'components/common/CustomBox';
-import { SpaceBetweenBox } from 'components/home-v2/HomeStyles';
-import useResponsive from 'hooks/useResponsive';
+import { SpaceBetweenBox } from 'components/home/HomeStyles';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 
 export const RefLink = () => {
-    const isMobile = useResponsive('down', 'sm');
     const handleCopy = () => {
         toast.success('Copied');
     };
