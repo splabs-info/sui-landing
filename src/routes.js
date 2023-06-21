@@ -3,6 +3,9 @@ import FreeMinting from 'modules/free-minting/FreeMinting';
 import IDORound from 'modules/ido-round';
 import StakingFarming from 'modules/staking/OverallPage';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
+import Claims from 'pages/Claims';
+import ClaimsDetail from 'pages/ClaimsDetail';
+import PrivateSale from 'pages/PrivateSale';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -11,9 +14,6 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-import Claims from 'pages/Claims';
-import ClaimsDetail from 'pages/ClaimsDetail';
-import PrivateSale from 'pages/PrivateSale';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -78,17 +78,15 @@ export default function Router() {
         },
         {
           path: 'whitepaper',
-          element: <Navigate to="/whitepaper/introduction-of-yousui" />
+          element: <Navigate to="/whitepaper/introduction-of-yousui" />,
         },
         {
           path: 'whitepaper/:sub',
-          element: <Whitepaper />
+          element: <Whitepaper />,
         },
         {
           path: 'staking',
-          element: (
-            <StakingFarming />
-          ),
+          element: <StakingFarming />,
         },
         {
           path: 'bridge',
@@ -134,11 +132,7 @@ export default function Router() {
         },
         {
           path: 'private-sale',
-          element: (
-            <Suspense>
-              <PrivateSale />
-            </Suspense>
-          ),
+          element: <PrivateSale />,
         },
       ],
     },
