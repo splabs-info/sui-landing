@@ -1,9 +1,11 @@
 import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'modules/free-minting/FreeMinting';
 import IDORound from 'modules/ido-round';
-import DemoNotifiNetwork from 'modules/notifi-network/DemoNotifiNetwork';
+import { SuiNotifiCard } from 'modules/notifi-network/Demo';
 import StakingFarming from 'modules/staking/OverallPage';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
+import Claims from 'pages/Claims';
+import ClaimsDetail from 'pages/ClaimsDetail';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -12,12 +14,11 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-import { SuiNotifiCard } from 'modules/notifi-network/Demo';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 const IDODetail = React.lazy(() => import('./pages/IDODetail'));
-const TestPage = React.lazy(() => import('./pages/Test'));
+const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
 export default function Router() {
@@ -43,14 +44,22 @@ export default function Router() {
             </Suspense>
           ),
         },
-        {
-          path: 'ido-launchpad/sua',
-          element: (
-            <Suspense>
-              <IDODetail />
-            </Suspense>
-          ),
-        },
+        // {
+        //   path: 'ido-launchpad/sua',
+        //   element: (
+        //     <Suspense>
+        //       <IDODetail />
+        //     </Suspense>
+        //   ),
+        // },
+        // {
+        //   path: 'ido-launchpad/:projectId',
+        //   element: (
+        //     <Suspense>
+        //       <TXUIIDO />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'ino-launchpad',
           element: (
@@ -99,17 +108,17 @@ export default function Router() {
           path: 'claim-tokens',
           element: (
             <Suspense>
-              {/* <Claims /> */}
-              <ComingSoon />
+              <Claims />
+              {/* <ComingSoon /> */}
             </Suspense>
           ),
         },
         {
-          path: '/claim-tokens/:sub',
+          path: '/claim-tokens/:projectId',
           element: (
             <Suspense>
-              {/* <ClaimsDetail />*/}
-              <ComingSoon />
+              <ClaimsDetail />
+              {/* <ComingSoon /> */}
             </Suspense>
           ),
         },
@@ -125,19 +134,10 @@ export default function Router() {
           path: '/notifi-network',
           element: (
             <Suspense>
-              {/* <DemoNotifiNetwork /> */}
               <SuiNotifiCard />
             </Suspense>
           ),
         },
-        // {
-        //   path: 'test-page',
-        //   element: (
-        //     <React.Suspense>
-        //       <TestPage />
-        //     </React.Suspense>
-        //   ),
-        // },
       ],
     },
     {

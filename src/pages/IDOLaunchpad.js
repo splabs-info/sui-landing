@@ -16,6 +16,31 @@ import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import { Link } from 'react-router-dom';
 
+const idoProjects = [
+  {
+    title: 'Free Minting',
+    link: '/ido-launchpad',
+    avatar: '/images/ino/ino-upcoming-1.jpg',
+    access: 'WL',
+    hardCap: '2000',
+    releaseTime: "Official Launch: July 10th",
+    status: false,
+    startTime: '2023-06-10T11:00:00',
+    endTime: '2023-06-10T12:00:00',
+  },
+
+  {
+    title: 'HooD',
+    avatar: '/images/ino/ino-upcoming-2.jpg',
+    hardCap: '2000',
+    access: 'Tier 1-5',
+    releaseTime: 'Official Launch: July 25th',
+    status: true,
+    link: '',
+    startTime: '2023-06-25T11:00:00',
+    endTime: '2023-06-25T12:00:00',
+  },
+]
 export default function IDOLaunchpad() {
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
@@ -40,8 +65,8 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <Link to={'/ido-launchpad/buy-token'}>
-              <FrameButton>Buy $ XUI</FrameButton>
+            <Link to={'/ido-launchpad'}>
+              <FrameButton>Buy $XUI</FrameButton>
             </Link>
             <Link to={'/whitepaper'}>
               <FrameButton>Whitepaper</FrameButton>

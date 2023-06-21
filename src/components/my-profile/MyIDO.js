@@ -1,12 +1,11 @@
 import { Box, Divider, styled, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
+import { investCertificate, TXUI_PROJECT } from 'constant';
 import useResponsive from 'hooks/useResponsive';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
+import { findCertificate } from 'utils/util';
 import { TitleSection } from './TitleSection';
-
-const investmentCertificate =
-  '0xe5bad555746563f1429f651a0dc79d47f0cbf68a84349e85ea7882bcd18cda4f::launchpad_presale::InvestmentCertificate';
 
 const StyledMyIDOBox = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
@@ -17,6 +16,7 @@ const StyledMyIDOBox = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   border: '1px solid #00C5D3',
   alignItems: 'center',
+  marginBottom: 24,
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     padding: '24px 48px',
@@ -29,6 +29,7 @@ const StyledTitleInfo = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
   fontSize: 24,
   textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+  marginBottom: 24,
 }));
 
 const StyledInfo = styled(Typography)(({ theme }) => ({
@@ -67,11 +68,13 @@ const StyledInfoBox = styled(Box)(({ theme }) => ({
 
 export const MyIDOArea = () => {
   const tablet = useResponsive('down', 'md');
+
   const [myIdo, setMyIdo] = React.useState([]);
 
   const wallet = useWallet();
   const { provider } = React.useContext(SuiContext);
 
+  console.log('wallet__', wallet)
   React.useEffect(() => {
     const fetchData = async () => {
       if (!wallet?.address || !wallet?.connected) return;
@@ -83,98 +86,103 @@ export const MyIDOArea = () => {
         options: { showContent: true },
       });
 
+      console.log('otherObjects__', otherObjects)
+
       if (otherObjects?.data?.length === 0) return;
 
-      const certificateObjects = otherObjects?.data.find((item) => item?.data?.content?.type === investmentCertificate);
+      const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
+
       if (!certificateObjects) return;
 
-      const certificate = await provider.getObject({
-        id: certificateObjects.data.objectId,
-        options: { showContent: true },
-      });
+      const promises = certificateObjects.map(async (item) => {
+        const certificate = await provider.getObject({
+          id: item.data.objectId,
+          options: { showContent: true },
+        });
 
-      const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-      const formattedMyIdo = [
-        {
+        const projectFields = certificate?.data?.content?.fields?.project?.fields;
+
+        return {
           description: projectFields?.description || '',
           discord: projectFields?.discord || '',
           image_url: projectFields?.image_url || '',
           link_url: projectFields?.link_url || '',
           medium: projectFields?.medium || '',
           name: projectFields?.name || '',
+          eventName: certificate?.data?.content?.fields?.event_name || '',
           project_id: projectFields?.project_id || '',
           telegram: projectFields?.telegram || '',
           twitter: projectFields?.twitter || '',
           website: projectFields?.website || '',
-        },
-      ];
-      setMyIdo(formattedMyIdo);
+        };
+      });
+
+      const formattedMyIdo = await Promise.all(promises);
+
+      setMyIdo([...formattedMyIdo]);
     };
 
     fetchData();
   }, [provider, wallet?.address, wallet?.connected]);
 
-  console.log('ido', myIdo);
+  console.log('MyIDO', myIdo)
   return (
     <Box sx={{ marginBottom: 12 }}>
       <TitleSection title="MY IDO PARTICIPATED" />
-      <StyledMyIDOBox>
-        {myIdo?.length > 0 ? (
-          <>
-            {myIdo?.map((item, index) => (
-              <>
-                <StyledInfoBox>
-                  <img
-                    src={item?.image_url}
-                    alt=""
-                    style={{
-                      width: 80,
-                      height: 80,
-                      borderRadius: 16,
-                      margin: '0 auto',
-                    }}
-                  />
-                </StyledInfoBox>
-                <StyledDivider orientation={tablet ? '' : 'vertical'} />
-                <StyledInfoBox>
-                  <StyledTitleInfo>No</StyledTitleInfo>
-                  <StyledInfo>{index + 1}</StyledInfo>
-                </StyledInfoBox>
+      {myIdo?.length !== 0 ? (
+        <>
+          {myIdo?.map((item, index) => (
+            <StyledMyIDOBox>
+              <StyledInfoBox>
+                <StyledTitleInfo>Avatar</StyledTitleInfo>
+                <img
+                  src={item?.image_url}
+                  alt=""
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: 16,
+                    margin: '0 auto',
+                  }}
+                />
+              </StyledInfoBox>
+              <StyledDivider orientation={tablet ? '' : 'vertical'} />
+              <StyledInfoBox>
+                <StyledTitleInfo>No</StyledTitleInfo>
+                <StyledInfo>{index + 1}</StyledInfo>
+              </StyledInfoBox>
+              <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+              <StyledInfoBox>
+                <StyledTitleInfo>Project</StyledTitleInfo>
+                <StyledInfo>{item?.name}</StyledInfo>
+              </StyledInfoBox>
+              <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <StyledInfoBox>
-                  <StyledTitleInfo>Project</StyledTitleInfo>
-                  <StyledInfo>{item?.name}</StyledInfo>
-                </StyledInfoBox>
-                <StyledDivider orientation={tablet ? '' : 'vertical'} />
+              <StyledInfoBox>
+                <StyledTitleInfo>Round name</StyledTitleInfo>
+                <StyledInfo>{item?.eventName}</StyledInfo>
+              </StyledInfoBox>
 
-                <StyledInfoBox>
-                  <StyledTitleInfo>Round name</StyledTitleInfo>
-                  <StyledInfo>OG round</StyledInfo>
-                </StyledInfoBox>
+              <StyledDivider orientation={tablet ? '' : 'vertical'} />
 
-                <StyledDivider orientation={tablet ? '' : 'vertical'} />
-
-                <StyledInfoBox>
-                  <StyledTitleInfo>View on explore</StyledTitleInfo>
-                  <StyledLink
-                    href="https://suiexplorer.com/object/0xc299f92f7f460165a31a87630ee71ce1386deeaf65bf72da3eb4c572b3a1142c?network=mainnet"
-                    target="_blank"
-                  >
-                    View
-                  </StyledLink>
-                </StyledInfoBox>
-              </>
-            ))}
-          </>
-        ) : (
+              <StyledInfoBox>
+                <StyledTitleInfo>View on explore</StyledTitleInfo>
+                <StyledLink href={`https://suiexplorer.com/object/${TXUI_PROJECT}?network=testnet`} target="_blank">
+                  View
+                </StyledLink>
+              </StyledInfoBox>
+            </StyledMyIDOBox>
+          ))}
+        </>
+      ) : (
+        <StyledMyIDOBox>
           <StyledInfoBox>
             <StyledTitleInfo>It appears that you have not joined any IDOs at this time.</StyledTitleInfo>
           </StyledInfoBox>
-        )}
-      </StyledMyIDOBox>
+        </StyledMyIDOBox>
+      )}
     </Box>
   );
 };

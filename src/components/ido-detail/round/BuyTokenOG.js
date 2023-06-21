@@ -8,16 +8,18 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled } from 'components/base/CheckField';
 import { InputField } from 'components/base/InputFieldV2';
 import { NormalInputField } from 'components/base/NormalInput';
-import { CLOCK, NAME, PACKAGE, PAYMENT_TYPE, PROJECT, TOKEN_TYPE } from 'constant';
+import { TXUI_CLOCK, TXUI_PACKAGE, TXUI_PAYMENT_TYPE } from 'constant';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { toNumber } from 'lodash';
 import { SuiContext } from 'provider/SuiProvider';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { IdoSchema } from '../validations';
+import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
+// import { SaveObjectIDForm } from '../SaveObject';
 
 const StyledBuyTokenBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
@@ -43,27 +45,6 @@ const StyledBuyTokenBtn = styled(LoadingButton)(({ them }) => ({
     },
 }));
 
-const CheckBoxLabel = () => {
-    return (
-        <Typography
-            sx={{
-                color: 'white',
-                '& a': { textDecorationColor: '#28A3AB', color: 'white', fontWeight: 700 },
-            }}
-            variant="body2"
-        >
-            I have read and agree to the
-            <a
-                href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
-                target="_blank"
-                rel="noreferrer"
-            >
-                {' '}
-                YouSUI Staking Service Agreement.
-            </a>
-        </Typography>
-    );
-};
 
 const MaxButton = styled(Button)(({ theme }) => ({
     background: 'rgba(255, 255, 255, 0.1)',
@@ -73,16 +54,46 @@ const MaxButton = styled(Button)(({ theme }) => ({
     borderRadius: 16,
 }));
 
-export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
+export const BuyTokenOG = ({ name, decimals, ratio, symbol, balances, tokenType, payments, minPurchase, maxPurchase, participantsWallet }) => {
     const [checked, setChecked] = React.useState();
     const [loading, setLoading] = React.useState(false);
-
+    const [listPayments, setListPayments] = React.useState([]);
+    const { objectIdOGRoleNft } = useYouSuiStore();
     const theme = useTheme();
     const wallet = useWallet();
 
-    const { sold } = useYouSuiStore(state => state.sold);
+    const { projectId } = useParams();
+    const decodedProjectId = decodeURIComponent(projectId);
 
-    const { allObjectsId } = React.useContext(SuiContext);
+    const { sold } = useYouSuiStore((state) => state.sold);
+
+    const { provider, allCoinObjectsId } = React.useContext(SuiContext);
+
+    const formattedMinPurchase = React.useMemo(() => {
+        if (minPurchase) return ethers.utils.formatUnits(minPurchase.toString(), decimals);
+    }, [decimals, minPurchase]);
+
+    const convertNumberMinAllocation = toNumber(formattedMinPurchase);
+
+    const formattedMaxAllocation = React.useMemo(() => {
+        if (maxPurchase) return ethers.utils.formatUnits(maxPurchase.toString(), decimals);
+    }, [decimals, maxPurchase]);
+
+    const convertMaxAllocation = toNumber(formattedMaxAllocation);
+
+    const IdoSchema = yup.object().shape({
+        amount: yup
+            .number()
+            .min(convertNumberMinAllocation, `Min purchase must be ${convertNumberMinAllocation} ${symbol}`)
+            .max(convertMaxAllocation, `Per user can buy ${convertMaxAllocation} maximum of ${symbol} on this round.`)
+            .required('Amount is required')
+            .typeError('Must be number')
+            .test({
+                message: 'Your balance is not enough',
+                name: 'max',
+                test: (value) => parseFloat(value * toNumber(ratio)) < balances - 0.1,
+            })
+    });
 
     const {
         control,
@@ -90,10 +101,12 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
         formState: { isValid },
         watch,
         reset,
+        setValue,
+        trigger
     } = useForm({
         mode: 'onChange',
         defaultValues: {
-            amount: 1,
+            amount: convertNumberMinAllocation,
         },
         resolver: yupResolver(IdoSchema),
     });
@@ -102,37 +115,66 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
 
     const watchAmount = watch('amount');
 
+    // Handle payments token
+    React.useEffect(() => {
+        if (!payments || payments?.length === 0) return;
+
+        payments?.forEach(async (token) => {
+            const payment = await provider.getCoinMetadata(({
+                coinType: `0x${token?.fields?.value?.fields?.method_type}`,
+            }))
+
+            setListPayments((prev) => [...prev, payment])
+
+        })
+    }, [payments, provider]);
+
     const handleChecked = (event) => {
         setChecked(event.target.checked);
     };
 
     const handleSales = async (data) => {
         const tx = new TransactionBlock();
-
         setLoading(true);
-        const coinSuiObjectData = allObjectsId.map((coin) => coin?.data);
+
+        const coinSuiObjectData = allCoinObjectsId.map((coin) => coin?.data);
 
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils.parseUnits((data?.amount * toNumber(ratio)).toString(), 9).toString();
+        const balanceSplit = ethers.utils.parseUnits(
+            (parseFloat((data?.amount - 0.1) * toNumber(ratio)).toFixed(decimals)).toString(),
+            decimals
+        ).toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
-        const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), 9).toString();
+        const parseAmount = ethers.utils.parseUnits((data?.amount).toString(), decimals).toString();
+
         const vec = tx.makeMoveVec({
             objects: [coin],
         });
 
-        tx.moveCall({
-            target: `${PACKAGE}::launchpad_presale::purchase`,
-            typeArguments: [TOKEN_TYPE, PAYMENT_TYPE],
-            arguments: [tx.object(CLOCK), tx.object(PROJECT), tx.pure(NAME), vec, tx.pure(parseAmount)],
-        });
+        console.log('objectIdOGRoleNft__', objectIdOGRoleNft)
+        if (objectIdOGRoleNft) {
+            tx.moveCall({
+                target: `${TXUI_PACKAGE}::launchpad_presale::purchase`,
+                typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
+                arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('luuphuc'), tx.pure(objectIdOGRoleNft)],
+            });
+        } else {
+            console.log('abc')
+            tx.moveCall({
+                target: `${TXUI_PACKAGE}::launchpad_presale::purchase_without_nft`,
+                typeArguments: [`0x${tokenType}`, TXUI_PAYMENT_TYPE],
+                arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(name), vec, tx.pure(parseAmount), tx.pure('luuphuc')],
+            });
+        }
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
                 transactionBlock: tx,
             });
+
             if (result) {
                 setLoading(false);
                 toast.success('Buy token success');
@@ -140,12 +182,12 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
                 sold(true)
             } else {
                 setLoading(false);
-                toast.error('Transaction rejected');
+                toast.error('Some thing went wrong');
             }
         } catch (e) {
+            console.log('err', e)
             setLoading(false);
-            
-            // toast.error('Transaction failed');
+            toast.error('Transaction rejected');
         }
     };
 
@@ -159,10 +201,10 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
 
     const canBuy = isCanBuy();
 
-    // const handleSelectMax = () => {
-    //     setValue('amount', balances / toNumber(ratio), { shouldDirty: true, shouldTouch: true, shouldValidate: true });
-    //     trigger('amount');
-    // };
+    const handleSelectMax = async () => {
+        setValue('amount', ethers.utils.formatUnits(maxPurchase, decimals))
+        trigger('amount');
+    };
 
     const renderStatusBalance = React.useCallback(() => {
         if (!wallet?.address || !wallet?.connected) {
@@ -173,129 +215,137 @@ export const BuyTokenOG = ({ ratio, balances,participantsWallet }) => {
         }
     }, [balances, wallet?.address, wallet?.connected]);
 
+
+
     return (
-        <StyledBuyTokenBox>
-            <Stack>
-                <form onSubmit={handleSubmit(handleSales)}>
-                    <Typography
-                        sx={{
-                            textAlign: 'end',
-                            marginRight: 0.5,
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                        }}
-                    >
-                        {renderStatusBalance()}
-                    </Typography>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            height: 80,
-                        }}
-                    >
-                        <Typography sx={{ marginRight: 2 }}>Amount:</Typography>
-                        <InputField
-                            id="amount"
-                            name="amount"
-                            control={control}
-                            disabled
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment
-                                        position="end"
-                                        sx={{
-                                            '& .MuiTypography-root': {
-                                                color: 'white',
-                                                fontWeight: 'bold',
-                                            },
-                                        }}
-                                    >
-                                        SUA
-                                    </InputAdornment>
-                                ),
-                            }}
+        <>
+            {/* <SaveObjectIDForm /> */}
+            <StyledBuyTokenBox>
+                <Stack>
+                    <form onSubmit={handleSubmit(handleSales)}>
+                        <Typography
                             sx={{
+                                textAlign: 'end',
+                                marginRight: 0.5,
                                 fontWeight: 'bold',
-                                color: 'white',
-                                [theme.breakpoints.down('sm')]: {
-                                    // width: 320,
-                                },
-                                [theme.breakpoints.down(480)]: {
-                                    // width: 280,
-                                },
+                                fontSize: 14,
                             }}
-                        />
-                    </Box>
-                    {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-                        <MaxButton onClick={handleSelectMax}>Max</MaxButton>
-                    </Box> */}
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Typography sx={{ marginRight: 2 }}>Required:</Typography>
-                        <NormalInputField
-                            value={watchAmount * toNumber(ratio) || 0}
-                            disabled
-                            sx={{
-                                fontWeight: 'bold',
-                                color: 'white',
-                                marginBottom: 4,
-                            }}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment
-                                        position="end"
-                                        sx={{
-                                            '& .MuiTypography-root': {
-                                                color: 'white',
-                                                fontWeight: 'bold',
-                                            },
-                                        }}
-                                    >
-                                        SUI
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Box>
-                    <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
+                        >
+                            {renderStatusBalance()}
+                        </Typography>
                         <Box
                             sx={{
                                 display: 'flex',
+                                justifyContent: 'space-between',
                                 alignItems: 'center',
-                                marginBottom: isMobile ? '1rem' : '0',
+                                height: 80,
                             }}
                         >
-                            <CheckboxFiled handleChecked={handleChecked} />
-                            <Typography>
-                                I’ve read and accepted all the{' '}
-                                <a
-                                    href="https://docs.google.com/document/d/13uPJUMYXx62N9_UidmWwe2mL8MmFOrwVsvqx7byvPdk/edit"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    style={{
-                                        color: 'rgba(91, 184, 240, 1)',
-                                        '&:hover': {
-                                            textDecoration: 'underline',
-                                        },
-                                    }}
-                                >
-                                    YouSUI's Agreement
-                                </a>
-                            </Typography>
+                            <Typography sx={{ marginRight: 2 }}>Amount:</Typography>
+                            <InputField
+                                id="amount"
+                                name="amount"
+                                control={control}
+                                // disabled
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment
+                                            position="end"
+                                            sx={{
+                                                '& .MuiTypography-root': {
+                                                    color: 'white',
+                                                    fontWeight: 'bold',
+                                                },
+                                            }}
+                                        >
+                                            {symbol}
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                sx={{
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    [theme.breakpoints.down('sm')]: {
+                                        // width: 320,
+                                    },
+                                    [theme.breakpoints.down(480)]: {
+                                        // width: 280,
+                                    },
+                                }}
+                            />
                         </Box>
-                        <StyledBuyTokenBtn type="submit" disabled={true} loading={loading}>
-                            Buy Now
-                        </StyledBuyTokenBtn>
-                    </Stack>
-                </form>
-            </Stack>
-        </StyledBuyTokenBox>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+                            <MaxButton disabled={!wallet?.address || !wallet?.connected} onClick={handleSelectMax}>Max</MaxButton>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Typography sx={{ marginRight: 2 }}>Required:</Typography>
+                            <NormalInputField
+                                value={Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(watchAmount * toNumber(ratio)) || 0}
+                                disabled
+                                sx={{
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    marginBottom: 4,
+                                }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment
+                                            position="end"
+                                            sx={{
+                                                '& .MuiTypography-root': {
+                                                    color: 'white',
+                                                    fontWeight: 'bold',
+                                                },
+                                            }}
+                                        >
+                                            SUI
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Box>
+                        <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginBottom: isMobile ? '1rem' : '0',
+                                }}
+                            >
+                                <CheckboxFiled handleChecked={handleChecked} />
+                                <Typography>
+                                    I’ve read and accepted all the{' '}
+                                    <a
+                                        href="/"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{
+                                            color: 'rgba(91, 184, 240, 1)',
+                                            '&:hover': {
+                                                textDecoration: 'underline',
+                                            },
+                                        }}
+                                    >
+                                        YouSUI's Agreement
+                                    </a>
+                                </Typography>
+                            </Box>
+                            <StyledBuyTokenBtn type="submit" disabled={!isValid || !checked || !canBuy} loading={loading}>
+                                Buy Now
+                            </StyledBuyTokenBtn>
+                        </Stack>
+                    </form>
+
+                </Stack>
+            </StyledBuyTokenBox>
+
+        </>
+
     );
 };

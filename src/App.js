@@ -8,7 +8,6 @@ import {
 } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BaseOptionChartStyle } from './components/chart/BaseOptionChart';
@@ -19,15 +18,17 @@ import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 // import { _changeLanguage } from './store/setting/settingActions';
 import { SUIWalletContext } from 'provider/SuiProvider';
+import React from 'react';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
 const queryClient = new QueryClient();
 
-const SupportedChains = [SuiMainnetChain, SuiDevnetChain, SuiTestnetChain];
+
+const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('Version: 0.0.4 - Free-minting');
     localStorage.removeItem('lang');
   }, []);

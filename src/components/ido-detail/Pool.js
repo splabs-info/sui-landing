@@ -1,12 +1,17 @@
 import { TabContext, TabList } from '@mui/lab';
-import { Box, Grid, Tab, Typography, alpha, styled } from '@mui/material';
+import { Box, Grid, Tab, alpha, styled } from '@mui/material';
+import { PoolInformation } from 'components/ido-detail/PoolInfo';
+import { ProjectInfo } from 'components/ido-detail/Project';
+import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { SuiContext } from 'provider/SuiProvider';
+import queryString from 'query-string';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { AvatarPool } from './AvatarPool';
 import { OGRound } from './round/OGRound';
 import { PublicRound } from './round/PublicRound';
-import { SocialFooter } from 'layouts/FooterSection';
 
 const CustomTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -32,8 +37,7 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
         opacity: 1,
         fontSize: '1rem',
         '& span': {
-            background:
-                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
+            background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
         },
     },
     '& .MuiTabs-flexContainer': {
@@ -107,62 +111,164 @@ function a11yProps(index) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-export const Pool = ({ balances, totalSold, totalSupply, ratio, participants, participantsWallet }) => {
-    const isMobile = useResponsive('down', 'sm');
 
-    const [value, setValue] = useState(0);
+export const Pool = () => {
+    const location = useLocation();
+
+    const tab = parseInt(queryString.parse(location.search).tab) || 0;
+    const [value, setValue] = useState(tab);
+
+    const { provider, balances, allRound } = React.useContext(SuiContext);
     const isDesktop = useResponsive('up', 'md');
+    const [infoRounds, setInfoRounds] = React.useState([]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const fetchPoolData = React.useCallback(
+        async (round) => {
+            if (!round) return;
+
+            const txn = await provider.getObject({
+                id: round?.objectId,
+                options: { showContent: true },
+            });
+            const roundData = txn?.data?.content?.fields;
+
+            if (roundData) {
+                const tokenType = await provider.getCoinMetadata({
+                    coinType: `0x${roundData?.token_type}`,
+                });
+
+                const suiRatio = ethers.utils.formatUnits(
+                    roundData?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
+                    tokenType?.decimals
+                );
+
+                const newState = {
+                    ...round,
+                    roundId: roundData?.id?.id,
+                    tokenAddress: `0x${roundData?.token_type}`,
+                    tokenName: tokenType?.name,
+                    decimals: tokenType?.decimals,
+                    tokenType: roundData?.token_type,
+                    tokenDescription: tokenType?.description,
+                    symbol: tokenType?.symbol,
+                    ratio: suiRatio || null,
+                    avatar: roundData?.project?.fields?.image_url,
+                    telegram: roundData?.project?.fields?.telegram,
+                    discord: roundData?.project?.fields?.discord,
+                    participantsWallet: roundData?.participants?.fields?.contents || null,
+                    participants: roundData?.participants?.fields?.contents.length,
+                    totalSold: roundData?.total_sold || null,
+                    totalSupply: roundData?.total_supply || null,
+                    minPurchase: roundData?.min_purchase || 0,
+                    maxPurchase: roundData?.max_purchase || 0,
+                    isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
+                    isOpenClaimRefund: roundData?.is_open_claim_refund || null,
+                    isPause: roundData?.is_pause || null,
+                    name: roundData?.name,
+                    payments: roundData?.payments?.fields?.contents || [],
+                    startAt: roundData?.start_at || null,
+                    endAt: roundData?.end_at || null,
+                    type: roundData?.type || null,
+                };
+
+                return newState;
+            }
+        },
+        [provider]
+    );
+
+    React.useEffect(() => {
+        Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
+    }, [allRound]);
+
     return (
-        <Grid container spacing={4} sx={{ marginTop: 12, marginBottom: 10 }}>
-            <Grid xs={12} md={5} item>
-                <AvatarBox>
-                    <AvatarPool />
-                </AvatarBox>
-                <Typography variant="h3" color={'white'} mb={1} mt={2}>
-                    YOUSUI PJT
-                </Typography>
-                <Typography variant='body1' color={'white'} mb={2}>
-                    SUA is a token of Meta version. It has no intrinsic value or expectation of financial return.
-                    There is no official team or roadmap.
-                </Typography>
-                <SocialFooter />
-            </Grid>
-            <Grid width="100%" xs={12} md={7} item>
-                <Box sx={{ width: '100%' }}>
-                    <TabContext value={value}>
-                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                            <CustomTabList
-                                onChange={handleChange}
-                                indicatorColor="transparent"
-                                indicator={false}
-                                variant={isDesktop ? 'fullWidth' : 'scrollable'}
-                                scrollButtons="auto"
-                            >
-                                <Tab label="IDO TEST ROUND (SUA TOKEN)" {...a11yProps(0)} />
-                                <Tab label="PUBLIC ROUND 1" {...a11yProps(1)} />
-                                {/* <Tab label="PUBLIC ROUND 2" disabled {...a11yProps(2)} /> */}
-                            </CustomTabList>
+        <>
+
+            <>
+                <Grid container spacing={2} sx={{ marginTop: 12, marginBottom: 10 }}>
+                    <Grid xs={12} md={6} item>
+                        <AvatarBox>
+                            <AvatarPool avatar={infoRounds[value]?.avatar} />
+                        </AvatarBox>
+                    </Grid>
+                    <Grid width="100%" xs={12} md={6} item>
+                        <Box sx={{ width: '100%' }}>
+                            <TabContext value={value}>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <CustomTabList
+                                        onChange={handleChange}
+                                        indicatorColor="transparent"
+                                        indicator={false}
+                                        variant={isDesktop ? 'fullWidth' : 'scrollable'}
+                                        scrollButtons="auto"
+                                    >
+                                        {allRound.map((round, index) => {
+                                            return <Tab label={round?.name?.value} {...a11yProps(index)} />;
+                                        })}
+                                    </CustomTabList>
+                                </Box>
+                                {infoRounds.map((round, index) => (
+                                    <TabPanel value={value} index={index}>
+                                        {round?.type === 'FCFS' ? (
+                                            <OGRound
+                                                balances={balances}
+                                                name={round?.name}
+                                                tokenType={round?.tokenType}
+                                                payments={round?.payments}
+                                                decimals={round?.decimals}
+                                                totalSold={round?.totalSold}
+                                                minPurchase={round?.minPurchase}
+                                                maxPurchase={round?.maxPurchase}
+
+                                                totalSupply={round?.totalSupply}
+                                                ratio={round?.ratio}
+                                                symbol={round?.symbol}
+                                                participants={round?.participants}
+                                                participantsWallet={round?.participantsWallet}
+                                            />
+                                        ) : (
+                                            <PublicRound
+                                                roundId={round?.roundId}
+                                                balances={balances}
+                                                tokenType={round?.tokenType}
+                                                payments={round?.payments}
+                                                decimals={round?.decimals}
+                                                totalSold={round?.totalSold}
+                                                minPurchase={round?.minPurchase}
+                                                maxPurchase={round?.maxPurchase}
+                                                totalSupply={round?.totalSupply}
+                                                ratio={round?.ratio}
+                                                endAt={round?.endAt}
+                                                name={round?.name}
+                                                symbol={round?.symbol}
+                                                participants={round?.participants}
+                                                participantsWallet={round?.participantsWallet}
+                                            />
+                                        )}
+                                    </TabPanel>
+                                ))}
+                            </TabContext>
                         </Box>
-                        <TabPanel value={value} index={0}>
-                            <OGRound
-                                balances={balances}
-                                totalSold={totalSold}
-                                totalSupply={totalSupply}
-                                ratio={ratio}
-                                participants={participants}
-                                participantsWallet={participantsWallet}
-                            />
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                            <PublicRound />
-                        </TabPanel>
-                    </TabContext>
-                </Box>
-            </Grid>
-        </Grid>
+                    </Grid>
+                </Grid>
+
+                <PoolInformation
+                    tokenAddress={infoRounds[value]?.tokenAddress}
+                    tokenName={infoRounds[value]?.tokenName}
+                    ratio={infoRounds[value]?.ratio}
+                    symbol={infoRounds[value]?.symbol}
+                    totalSupply={infoRounds[value]?.totalSupply}
+                    decimals={infoRounds[value]?.decimals}
+                    description={infoRounds[value]?.tokenDescription}
+                    minAllocation={infoRounds[value]?.minAllocation}
+                    maxAllocation={infoRounds[value]?.maxAllocation}
+                />
+                <ProjectInfo description={infoRounds[value]?.tokenDescription} />
+            </>
+        </>
     );
 };

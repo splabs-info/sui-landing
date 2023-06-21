@@ -1,8 +1,9 @@
-import SDK, { TickMath } from '@cetusprotocol/cetus-sui-clmm-sdk';
+import SDK from '@cetusprotocol/cetus-sui-clmm-sdk';
 import { JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js';
-import { formatUnits } from 'ethers/lib/utils.js';
+import { formatUnits } from 'ethers';
 import { mainnet } from './mainnet.config';
 const BN = require('bn.js');
+
 const Decimal = require('decimal.js');
 
 const config = {
@@ -302,8 +303,9 @@ export const SwapHelper = {
   sdk,
   provider,
   BN,
-  Decimal,
   config,
+  Decimal,
+
   cetusLoad,
   CetusHelper: {
     getPreSwapData,

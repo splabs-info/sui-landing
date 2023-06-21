@@ -76,6 +76,15 @@ export default function FreeMinting() {
 
   React.useEffect(() => {
     if (provider) {
+      (async () => {
+        const result = await provider.getObject({
+          id: addresses.objectFreeMint,
+          options: { showContent: true },
+        });
+        // console.log(result);
+        setTotal(result?.data?.content?.fields?.max_mint);
+        setMinted(result?.data?.content?.fields?.number);
+      })();
       const interval = setInterval(() => {
         syncData();
       }, 20000);
@@ -275,7 +284,7 @@ export default function FreeMinting() {
                     disabled
                   >
                     Sold Out
-                  </GradientLoadingButton>
+                  </GradientLoadingButton >
                 ) : (
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
@@ -284,21 +293,24 @@ export default function FreeMinting() {
                   >
                     My NFT
                   </GradientLoadingButton>
-                )}
-              </Grid>
+                )
+                }
+              </Grid >
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
                   <NFTGroup />
                 </Hidden>
               </Grid>
-            </Grid>
-          </FreeMintingBox>
-          {myNftList.length > 0 && (
-            <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
-          )}
-        </Container>
-      </SectionBox>
-    </Page>
+            </Grid >
+          </FreeMintingBox >
+          {
+            myNftList.length > 0 && (
+              <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
+            )
+          }
+        </Container >
+      </SectionBox >
+    </Page >
   );
 }
 

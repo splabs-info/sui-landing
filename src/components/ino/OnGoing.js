@@ -6,9 +6,13 @@ import { GradientShadowTypography, ShadowTypography } from 'components/common/Cu
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
+import { addresses } from 'modules/free-minting/FreeMinting';
+import { SuiContext } from 'provider/SuiProvider';
 import { FreeMintingHelper } from 'modules/free-minting/init';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useConnect } from 'wagmi';
+import React from 'react';
 
 const provider = new JsonRpcProvider(devnetConnection);
 export default function OnGoing() {

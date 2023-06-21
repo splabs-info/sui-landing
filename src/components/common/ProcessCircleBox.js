@@ -58,8 +58,7 @@ export const ProcessCircleBox = ({ radius, percent }) => {
         }}
       />
       <PercentBox>
-
-        <Typography variant='h5'>{percent}%</Typography>
+        <Typography variant='h5'>{percent.toFixed(2)}%</Typography>
       </PercentBox>
       <OuterCircleBox>
         <svg style={{

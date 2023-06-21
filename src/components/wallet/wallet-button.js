@@ -18,12 +18,11 @@ const WalletBtn = styled(Button)(({ theme }) => ({
     justifyContent: 'flex-start',
     marginBottom: 16,
     '.img-box': {
-        padding: theme.spacing(1),
         background: '#22272d',
         borderRadius: '50%',
         img: {
-            height: theme.spacing(4),
-            width: theme.spacing(4),
+            height: theme.spacing(5),
+            width: theme.spacing(5),
             borderRadius: '50%',
         },
     },

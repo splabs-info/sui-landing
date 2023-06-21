@@ -8,7 +8,6 @@ const StyledTitleInfo = styled(Typography)(({ theme }) => ({
     color: 'white',
     fontSize: 18,
     lineHeight: '20px',
-    // textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
 }));
 
 const StyledInfo = styled(Typography)(({ theme }) => ({
@@ -35,7 +34,7 @@ const StyledItemStack = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 }));
 
-export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
+export const PoolInformationCard = ({ decimals, ratio, symbol, minAllocation, maxAllocation }) => {
     return (
         <PoolInfoBox>
             <StyledStack
@@ -46,18 +45,18 @@ export const PoolInformationCard = ({ ratio, minPurchase, maxPerUser }) => {
             >
                 <StyledItemStack>
                     <StyledTitleInfo>Token Distribution</StyledTitleInfo>
-                    <StyledInfo>1,000 SUA</StyledInfo>
+                    <StyledInfo>- {symbol}</StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
-                    <StyledTitleInfo>Min. Purchase</StyledTitleInfo>
+                    <StyledTitleInfo>Min. Allocation</StyledTitleInfo>
                     <StyledInfo>
-                        {minPurchase ? ethers.utils.formatUnits(minPurchase, 9) : 'Loading'} SUA
+                        {minAllocation ? ethers.utils.formatUnits(minAllocation, decimals) : '-'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>
-                    <StyledTitleInfo>Max. Purchase</StyledTitleInfo>
+                    <StyledTitleInfo>Max. Allocation</StyledTitleInfo>
                     <StyledInfo>
-                        {maxPerUser ? ethers.utils.formatUnits(maxPerUser, 9) : 'Loading'} SUA
+                        {maxAllocation ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(ethers.utils.formatUnits(maxAllocation, decimals)) : '-'} {symbol}
                     </StyledInfo>
                 </StyledItemStack>
                 <StyledItemStack>

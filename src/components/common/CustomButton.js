@@ -48,7 +48,7 @@ export const GradientLoadingButton = styled(LoadingButton)(({ theme }) => ({
   },
 }));
 
-export const BorderGradientButton = styled(Button)(({ theme }) => ({
+export const BorderGradientButton = styled(LoadingButton)(({ theme }) => ({
   background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.3) 0%, rgba(109, 133, 218, 0.3) 100%)',
   borderRadius: '50px',
   color: "#fff",

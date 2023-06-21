@@ -8,21 +8,21 @@ export const isLoggedIn = () => {
 };
 
 export const logoutReturnTo = () => {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(SCOPES_KEY);
-    localStorage.removeItem('wallet');
+    window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+    window.localStorage.removeItem(SCOPES_KEY);
+    window.localStorage.removeItem('wallet');
     window.location.reload();
 };
 
 export const logout = () => {
-    localStorage.removeItem('wallet');
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(SCOPES_KEY);
+    window.localStorage.removeItem('wallet');
+    window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+    window.localStorage.removeItem(SCOPES_KEY);
     // window.location.reload();
 };
 
 export const setAccessToken = (accessToken) => {
-    localStorage.setItem(ACCESS_TOKEN_KEY, Encrypt(accessToken, ACCESS_TOKEN_KEY));
+    window.localStorage.setItem(ACCESS_TOKEN_KEY, Encrypt(accessToken, ACCESS_TOKEN_KEY));
 };
 
 export const getAccessToken = () => {
@@ -33,7 +33,7 @@ export const getAccessToken = () => {
 };
 
 export const setScopes = (scopes) => {
-    localStorage.setItem(SCOPES_KEY, Encrypt(JSON.stringify(scopes), SCOPES_KEY));
+   window.localStorage.setItem(SCOPES_KEY, Encrypt(JSON.stringify(scopes), SCOPES_KEY));
 };
 
 export const checkScope = (scope) => {

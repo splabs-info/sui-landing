@@ -77,7 +77,7 @@ export default function MyInfo() {
             {!address && !wallet?.address ? (
               <Box sx={{ display: 'flex', position: 'relative' }}>
                 <img
-                  src="/token-1.svg"
+                  src="images/my-profile/empty-state.svg"
                   style={{
                     opacity: 0.25,
                     width: 500,

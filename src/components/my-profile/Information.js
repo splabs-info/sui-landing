@@ -4,12 +4,10 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import IcPeople from 'components/asset/icon/IcPeople';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
 import { UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
-import moment from 'moment';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',

@@ -1,12 +1,13 @@
 import { Box, Stack, Typography } from '@mui/material';
-
 import { styled } from '@mui/material/styles';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
+import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-
+import * as moment from 'moment';
+import React from 'react';
 const StyledProcessBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.1) 0%, rgba(109, 133, 218, 0.1) 100%)',
-    padding: "64px 40px 40px 40px ",
+    padding: "32px 32px 24px 32px",
     color: 'white',
     borderRadius: 10,
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
@@ -31,9 +32,40 @@ const LiveBox = styled(Box)(({ theme }) => ({
     }
 }));
 
-
-export const CircleBox = () => {
+const calculateDuration = eventTime => moment.duration(Math.max(eventTime - (Math.floor(Date.now())), 0), 'milliseconds');
+export const CircleBox = ({ endAt, totalSold, totalSupply, decimals, ratio, participants, symbol }) => {
+    const interval = 1000;
     const isMobile = useResponsive('down', 'sm');
+    const [duration, setDuration] = React.useState(calculateDuration(endAt));
+    const timerRef = React.useRef(0);
+    const timerCallback = React.useCallback(() => {
+        setDuration(calculateDuration(endAt));
+    }, [endAt])
+
+    const progress = React.useMemo(() => {
+        if (totalSold && totalSupply) {
+            return ethers.utils.formatUnits(totalSold, decimals) / ethers.utils.formatUnits(totalSupply, decimals);
+        }
+    }, [decimals, totalSold, totalSupply]);
+
+    const currentParticipants = React.useMemo(() => participants, [participants]);
+    const formattedTotalSold = React.useMemo(() => {
+        if (totalSold) return ethers.utils.formatUnits(totalSold, decimals);
+    }, [decimals, totalSold]);
+    const formattedTotalSupply = React.useMemo(() => {
+        if (totalSupply) return ethers.utils.formatUnits(totalSupply, decimals);
+    }, [decimals, totalSupply]);
+    const exchangeRate = React.useMemo(() => ratio, [ratio]);
+
+
+    React.useEffect(() => {
+        timerRef.current = setInterval(timerCallback, interval);
+
+        return () => {
+            clearInterval(timerRef.current);
+        }
+    }, [endAt]);
+
     return (
         <StyledProcessBox>
             <LiveBox>
@@ -43,17 +75,17 @@ export const CircleBox = () => {
                         <Typography sx={{ fontSize: 14, lineHeight: '24px', color: '#1FD8D1' }}>Live</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in 00D: 00H: 50M: 13S</Typography>
+                        <Typography sx={{ fontSize: 14, lineHeight: '24px', color: 'white' }}>Pool ends in {duration.days()} D: {duration.hours()} H: {duration.minutes()} M: {duration.seconds()} S</Typography>
                     </Box>
                 </Stack>
             </LiveBox>
-            <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'}>
+            <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'} sx={{marginTop: 2}}>
                 <Stack justifyContent={'center'} mb={isMobile ? 2 : 0} alignItems={'center'}>
                     <ProcessCircleBox
-                        radius={75} percent={66}
+                        radius={75} percent={progress * 100}
                     />
                     <Typography variant='body1' fontWeight={'bold'} textAlign={'center'}>
-                        <span style={{ color: '#1FD8D1' }}> 84,196,454,0019 </span>/ 800,000 SUI
+                        <span style={{ color: '#1FD8D1' }}> {formattedTotalSold} </span>/ {formattedTotalSupply}
                     </Typography>
                 </Stack>
                 <Stack spacing={isMobile ? 1 : 3} >
@@ -61,14 +93,15 @@ export const CircleBox = () => {
                         <img src='/images/icon/icon-package.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Hard Cap</Typography>
-                            <Typography variant='body1'>800,000 SUI</Typography>
+                            <Typography variant='body1'>{(formattedTotalSupply * exchangeRate).toFixed(3)}</Typography>
+
                         </Stack>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <img src='/images/icon/icon-data.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Amount for Sale</Typography>
-                            <Typography variant='body1'>20,000,000 XUI</Typography>
+                            <Typography variant='body1'>{Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(formattedTotalSupply)} {symbol}</Typography>
                         </Stack>
                     </Box>
 
@@ -76,7 +109,7 @@ export const CircleBox = () => {
                         <img src='/images/icon/icon-dollar.png' alt='' />
                         <Stack>
                             <Typography variant='body1' fontWeight={'bold'}>Price</Typography>
-                            <Typography variant='body1'>0.04 SUI</Typography>
+                            <Typography variant='body1'>{exchangeRate} SUI</Typography>
                         </Stack>
                     </Box>
 

@@ -79,7 +79,6 @@ export default function ConnectWallet({ notShowLogin = false, isBorderButton = f
                 }
             });
             prefix.on('chainChanged', (newNetwork) => {
-                console.log(Number(newNetwork), applicationConfig);
                 if (Number(newNetwork) !== applicationConfig?.networkConfig?.chainId) {
                     setShowModalConfirm(true);
                 }

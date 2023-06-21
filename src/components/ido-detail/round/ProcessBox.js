@@ -37,11 +37,10 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
     top: -20,
     right: 16,
 }));
-export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participants }) => {
+export const ProcessBox = React.memo(({ totalSold, totalSupply, symbol, ratio, participants, decimals }) => {
 
     const [update, setUpdate] = React.useState(false);
     const { soled } = useYouSuiStore((state) => state.sold);
-
     React.useEffect(() => {
         if (soled) {
             setUpdate(true);
@@ -50,7 +49,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
 
     const progress = React.useMemo(() => {
         if (totalSold && totalSupply) {
-            return ethers.utils.formatUnits(totalSold, 9) / ethers.utils.formatUnits(totalSupply, 9);
+            return ethers.utils.formatUnits(totalSold, decimals) / ethers.utils.formatUnits(totalSupply, 9);
         }
     }, [totalSold, totalSupply]);
 
@@ -65,7 +64,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
 
     return (
         <StyledProcessBox>
-            <StyledExchangeRate>{exchangeRate ? `1 SUA = ${exchangeRate} SUI` : 'Loading'}</StyledExchangeRate>
+            <StyledExchangeRate>{exchangeRate ? `1 ${symbol} = ${exchangeRate} SUI` : 'Loading'}</StyledExchangeRate>
             <ProcessBarBox
                 title={
                     <>
@@ -86,9 +85,7 @@ export const ProcessBox = React.memo(({ totalSold, totalSupply, ratio, participa
                                 `${progress.toFixed(3) * 100} %`
                             : 'Loading'}</Typography>
                         <Typography>
-                            {formattedTotalSold && formattedTotalSupply ?
-                                currentParticipants > formattedTotalSupply ? `${formattedTotalSupply} / ${formattedTotalSupply} `
-                                    : `${formattedTotalSold} / ${formattedTotalSupply} ` : 'Loading'}
+                            {formattedTotalSold && formattedTotalSupply ? `${formattedTotalSold} / ${Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(formattedTotalSupply)} ` : 'Loading'}
                         </Typography>
                     </>
                 }

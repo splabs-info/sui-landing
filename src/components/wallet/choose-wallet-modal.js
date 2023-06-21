@@ -1,7 +1,6 @@
 import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { WalletContext } from 'hooks/use-connect';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WalletButton } from './wallet-button';
 
@@ -24,30 +23,51 @@ const InstallButton = styled(Button)(({ theme }) => ({
 }));
 
 export const ChooseWalletModal = () => {
-    const [isInstalledMetamask, setIsInstalledMetamask] = useState(false);
+    const [isInstalledCoin98, setInstalledCoin98] = useState(false);
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
     const [isInstalledOkx, setIsInstallOkx] = useState(false);
-    const { connectToWallet, connectBitkeepWallet, error, connectOkxWallet } = useContext(WalletContext);
     const { setting } = useSelector((state) => state);
     const { library } = setting;
     const {
         select, // select
         configuredWallets, // default wallets
         detectedWallets, // Sui-standard wallets detected from browser env
-        // allAvailableWallets, // all the installed Sui-standard wallets
     } = useWallet();
 
     useEffect(() => {
-        if (typeof window.ethereum !== 'undefined') {
-            setIsInstalledMetamask(true);
+        if (typeof window.coin98 !== 'undefined') {
+            setInstalledCoin98(true);
         }
         if (typeof window.bitkeep !== 'undefined') {
             setIsInstalledBitKeep(true);
         }
-        if (typeof window.okxwallet !== 'undefined') {
+        if (typeof window.okx !== 'undefined') {
             setIsInstallOkx(true);
         }
     }, []);
+
+    const handleClick = async (wallet) => {
+        // Check if the wallet is installed
+        if (!wallet?.installed) {
+            console.log('Wallet is not installed');
+            return;
+        }
+        // Check if the wallet has a name
+        if (!wallet?.name) {
+            console.log('Wallet name is not provided');
+            return;
+        }
+        try {
+            // Attempt to select the wallet
+            await select(wallet.name);
+        } catch (error) {
+            // Log any error that occurred during selection
+            console.error('An error occurred while selecting the wallet: ', error);
+            // toast.error('Some thing went wrong, please the other wallet')
+        }
+    };
+
+
 
     return (
         <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
@@ -75,21 +95,13 @@ export const ChooseWalletModal = () => {
             <Box p={3}>
                 {[...configuredWallets, ...detectedWallets].map((wallet) => (
                     <WalletButton
-                        onClick={() => {
-                            if (!wallet.installed) {
-                                return;
-                            }
-                            try {
-                                select(wallet.name);
-                            } catch (error) {
-                                console.log(error);
-                            }
-                        }}
+                        onClick={() => handleClick(wallet)}
+                    // onClick={() => handleConnect(wallet)}
                     >
                         <Box className="img-box">
                             <img src={wallet.iconUrl} alt="logo metamask" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} style={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} style={{ color: 'white' }}>
                             {wallet.name}
                         </Typography>
                         {!wallet.installed && (
@@ -107,10 +119,32 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src="/images/icon/bitkeep.png" alt="logo bitkeep" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
                             BitKeep Wallet
                         </Typography>
                         <InstallButton component={Link} href="https://bitkeep.com/download?type=2&theme=light" target="_blank">
+                            <Typography variant="caption">{library.INSTALL}</Typography>
+                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
+                                Install
+                            </Typography>
+                        </InstallButton>
+                    </WalletButton>
+                ) : (
+                    <></>
+                )}
+                {!isInstalledCoin98 ? (
+                    <WalletButton>
+                        <Box className="img-box">
+                            <img src="/images/icon/icon-coin98.png" alt="logo coin98" style={{ textAlign: 'center' }} />
+                        </Box>
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
+                            Coin98 Wallet
+                        </Typography>
+                        <InstallButton
+                            component={Link}
+                            href="https://chrome.google.com/webstore/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg/related?hl=en-US"
+                            target="_blank"
+                        >
                             <Typography variant="caption">{library.INSTALL}</Typography>
                             <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
                                 Install
@@ -125,7 +159,7 @@ export const ChooseWalletModal = () => {
                         <Box className="img-box">
                             <img src="/images/icon/okx-wallet.png" alt="logo okx" />
                         </Box>
-                        <Typography className="custom-font" fontWeight={900} ml={2} sx={{ color: 'white' }}>
+                        <Typography className="custom-font" fontWeight={600} ml={2} sx={{ color: 'white' }}>
                             OKX Wallet
                         </Typography>
                         <InstallButton
@@ -143,6 +177,7 @@ export const ChooseWalletModal = () => {
                     <></>
                 )}
             </Box>
+
             <Box pl={3} pr={3}>
                 <Typography variant="body2">
                     {/* {library.SEE}{' '} */}

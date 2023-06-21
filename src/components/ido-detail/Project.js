@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button, Box, Collapse, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TitleSection } from 'components/my-profile/TitleSection';
+import React from 'react';
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <Button {...other} variant="text" />;
@@ -37,29 +37,7 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
     borderColor: 'rgba(255, 255, 255, 0.2)',
 }));
 
-const projectContent = [
-    {
-        title: 'Token Distribution',
-        content: 'Date UTC',
-    },
-    {
-        title: 'Min. Allocation',
-        content: '250 USD',
-    },
-    {
-        title: 'Max. Allocation',
-        content: '10,000 USD',
-    },
-    {
-        title: 'Token Price',
-        content: '4 XUI = 1 USD',
-    },
-    {
-        title: 'Access Type',
-        content: 'Public',
-    },
-];
-export const ProjectInfo = () => {
+export const ProjectInfo = ({ description }) => {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -71,8 +49,7 @@ export const ProjectInfo = () => {
             <TitleSection title="ABOUT THE PROJECT" />
             <StyledProjectCard>
                 <Typography color="white" textAlign="left" lineHeight={'32px'} mb={2}>
-                    SUA is a token of Meta version. It has no intrinsic value or expectation of
-                    financial return. There is no official team or roadmap.
+                    {description}
                 </Typography>
                 {/* <Collapse
                     in={expanded}

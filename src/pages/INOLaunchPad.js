@@ -3,10 +3,14 @@ import Page from 'components/common/Page';
 import { ButtonTitleBox, FrameButton, SectionBox } from 'components/home/HomeStyles';
 import ApplyAsProject from 'components/ino/ApplyAsPorject';
 import HowToJoin from 'components/ino/HowToJoin';
+import OnGoing from 'components/ino/OnGoing';
 import PreviousINOs from 'components/ino/PreviousINOs';
 import UpComing from 'components/ino/UpComing';
 import WhyJoin from 'components/ino/WhyJoin';
 import useResponsive from 'hooks/useResponsive';
+import { forEach } from 'lodash';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -40,10 +44,90 @@ const Caption = styled(Typography)(({ theme }) => ({
   },
 }));
 
+
+const inoProjects = [
+  {
+    title: 'Free Minting',
+    link: '/ino-launchpad/free-minting-nft',
+    avatar: '/images/ino/ino-upcoming-1.jpg',
+    access: 'WL',
+    hardCap: '2000',
+    releaseTime: "Official Launch: July 10th",
+    status: false,
+    startTime: '2023-06-10T11:00:00',
+    endTime: '2023-06-10T12:00:00',
+  },
+
+  {
+    title: 'HooD',
+    avatar: '/images/ino/ino-upcoming-2.jpg',
+    hardCap: '2000',
+    access: 'Tier 1-5',
+    releaseTime: 'Official Launch: July 25th',
+    status: true,
+    link: '',
+    startTime: '2023-06-25T11:00:00',
+    endTime: '2023-06-25T12:00:00',
+  },
+  // {
+  //   title: 'Vibe Fi',
+  //   avatar: '/images/ino/ino-upcoming-3.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  //   startTime: '2023-06-20T00:00:00',
+  //   endTime: '2023-06-21T12:00:00',
+  // },
+  // {
+  //   title: 'Galactic',
+  //   avatar: '/images/ino/ino-upcoming-4.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  //   startTime: '2023-06-10T11:00:00',
+  //   endTime: '2023-06-10T12:00:00',
+  // },
+  // {
+  //   title: 'Stellar Sagas',
+  //   avatar: '/images/ino/ino-upcoming-5.jpg',
+  //   hardCap: '2000',
+  //   access: '',
+  //   releaseTime: '',
+  //   status: false,
+  //   link: '',
+  //   startTime: '2023-06-10T11:00:00',
+  //   endTime: '2023-06-10T12:00:00',
+  // },
+]
+
 const INOLaunchPad = () => {
   const isDesktop = useResponsive('up', 'md');
-  const isMobile = useResponsive('down', 'sm');
+  const [onGoingProjects, setOnGoingProjects] = useState([]);
+  const [upComingProjects, setUpComingProjects] = useState([]);
+  const [previousProjects, setPreviousProjects] = useState([]);
 
+  useEffect(() => {
+    setOnGoingProjects([]);
+    setUpComingProjects([]);
+    setPreviousProjects([]);
+    forEach(inoProjects, (project) => {
+      // console.log(project.title, moment().isBefore(project.startTime));
+      if (moment().isAfter(project.endTime)) {
+        setPreviousProjects((prev) => [...prev, project]);
+      } else
+        if (moment().isBefore(project.startTime)) {
+          setUpComingProjects((prev) => [...prev, project]);
+        }
+        else {
+          setOnGoingProjects((prev) => [...prev, project]);
+        }
+    })
+  }, [])
+  console.log(upComingProjects, onGoingProjects, previousProjects);
   return (
     <Page title="INO">
       <SectionBox
@@ -92,9 +176,9 @@ const INOLaunchPad = () => {
               }}
             />
           </Stack>
-          {/* <OnGoing /> */}
-          <UpComing />
-          <PreviousINOs />
+          {onGoingProjects.length > 0 && <OnGoing projects={onGoingProjects} />}
+          {upComingProjects.length > 0 && <UpComing projects={upComingProjects} />}
+          {previousProjects.length > 0 && <PreviousINOs projects={previousProjects} />}
           <HowToJoin />
           <WhyJoin />
           <ApplyAsProject />
