@@ -74,7 +74,6 @@ export const MyIDOArea = () => {
   const wallet = useWallet();
   const { provider } = React.useContext(SuiContext);
 
-  console.log('wallet__', wallet)
   React.useEffect(() => {
     const fetchData = async () => {
       if (!wallet?.address || !wallet?.connected) return;
@@ -85,8 +84,6 @@ export const MyIDOArea = () => {
         owner,
         options: { showContent: true },
       });
-
-      console.log('otherObjects__', otherObjects)
 
       if (otherObjects?.data?.length === 0) return;
 
@@ -99,7 +96,6 @@ export const MyIDOArea = () => {
           id: item.data.objectId,
           options: { showContent: true },
         });
-
 
         const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
@@ -126,7 +122,6 @@ export const MyIDOArea = () => {
     fetchData();
   }, [provider, wallet?.address, wallet?.connected]);
 
-  console.log('MyIDO', myIdo)
   return (
     <Box sx={{ marginBottom: 12 }}>
       <TitleSection title="MY IDO PARTICIPATED" />

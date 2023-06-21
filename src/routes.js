@@ -1,7 +1,6 @@
 import Bridge from 'modules/bridge/Bridge';
 import FreeMinting from 'modules/free-minting/FreeMinting';
 import IDORound from 'modules/ido-round';
-import { SuiNotifiCard } from 'modules/notifi-network/Demo';
 import StakingFarming from 'modules/staking/OverallPage';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import Claims from 'pages/Claims';
@@ -127,14 +126,6 @@ export default function Router() {
           element: (
             <Suspense>
               <ComingSoon />
-            </Suspense>
-          ),
-        },
-        {
-          path: '/notifi-network',
-          element: (
-            <Suspense>
-              <SuiNotifiCard />
             </Suspense>
           ),
         },
