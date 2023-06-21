@@ -40,7 +40,7 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const INOCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, ...props }) => {
+export const UpComingCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, ...props }) => {
     const navigate = useNavigate();
     return (
         <UpComingINOBox
@@ -53,10 +53,14 @@ export const INOCard = ({ avatar, releaseTime, endTime, hardCap, access, title, 
             <Typography variant={'h4'} mt={3}>{title}</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
                 <Typography> HardCap: <span style={{ color: '#00C5D3', fontWeight: 700 }}> {hardCap}</span></Typography>
-                {access !== '' && <Typography>Access: <span style={{ color: '#00C5D3', fontWeight: 700 }}>{access}</span></Typography>}</Box>
+                {access !== '' && <Typography>Access: <span style={{ color: '#00C5D3', fontWeight: 700 }}>{access}</span></Typography>}
+            </Box>
             {releaseTime && <ReleaseBox className={status && !moment().isAfter(endTime) ? 'active' : ''}>
-                <Typography fontWeight={700} variant={'body2'}>{moment().isAfter(endTime) ? 'SOLD OUT' : releaseTime}</Typography>
+                <Typography fontWeight={700} variant={'body2'}>
+                    {moment().isAfter(endTime) ? 'SOLD OUT' : releaseTime}
+                </Typography>
             </ReleaseBox>}
         </UpComingINOBox>
+
     );
 };

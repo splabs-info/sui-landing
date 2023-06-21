@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Grid, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
-import { INOCard } from './INOCard';
+import { PreviousCard } from './PreviousCard';
 
 export default function PreviousINOs({ projects }) {
   return (
@@ -11,14 +11,16 @@ export default function PreviousINOs({ projects }) {
         <Typography>Previous</Typography>
         <TypographyGradient>INOs</TypographyGradient>
       </TitleBox>
-      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, m: 3, }}>
+      <Grid container spacing={5} mt={2}>
         {projects?.map((item, index) => (
-          <INOCard
-            {...item}
-            key={index}
-          />
+          <Grid item md={6} xs={12} key={index}>
+            <PreviousCard
+              {...item}
+              key={index}
+            />
+          </Grid>
         ))}
-      </Stack>
+      </Grid>
     </Box>
   );
 }
