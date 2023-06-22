@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useWallet } from '@suiet/wallet-kit';
 import { CreateProfilePopup } from 'components';
@@ -18,7 +18,7 @@ import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
   },
 }));
@@ -105,12 +105,17 @@ export default function MyInfo() {
                   <CircularProgress sx={{ margin: '128px auto 128px auto' }} />
                 ) : (
                   <>
-                    <StyledResponsiveStack direction="row" sx={{ marginBottom: 12 }}>
-                      {!isNull(defaultInfo) && (
-                        <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
-                      )}
-                      <OverviewTabs />
-                    </StyledResponsiveStack>
+                    <Grid container mb={3}>
+                      <Grid item xs={12} md={3.5}>
+                        {!isNull(defaultInfo) && (
+                          <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
+                        )}
+                      </Grid>
+                      <Grid item xs={12} md={8.5}>
+                        <OverviewTabs />
+                      </Grid>
+                    </Grid>
+
 
                     <Stack direction="column">
                       <Stack

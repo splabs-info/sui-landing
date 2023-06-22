@@ -56,9 +56,13 @@ export const BorderGradientButton = styled(LoadingButton)(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
+  boxShadow: 'none',
   '& img': {
     width: '32px',
     paddingRight: '10px',
+  },
+  '&:hover': {
+    background: 'rgba(29, 215, 209, 0.08)',
   },
 
   '::before': {

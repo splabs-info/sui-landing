@@ -7,8 +7,9 @@ import { Box, Stack } from '@mui/system';
 import { IconBell } from '@tabler/icons';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
-import { UploadBtn } from 'components/create-profile';
+import { BorderGradientButton } from 'components/common/CustomButton';
 import { UploadAvatar } from 'components/upload-avatar';
+import useResponsive from 'hooks/useResponsive';
 import NotifiNetwork from 'modules/notifi-network/NotifiNetwork';
 import React from 'react';
 
@@ -17,11 +18,14 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
   boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
   backdropFilter: 'blur(50px)',
   borderRadius: '15px',
-  height: '750px',
-  minWidth: 320,
-  paddingTop: 128,
-  paddingRight: 32,
-  paddingLeft: 32,
+  minHeight: '97%',
+  padding: '96px 32px 32px',
+  [theme.breakpoints.down('sm')]: {
+    margin: '40px 0',
+    padding: '32px',
+
+    minHeight: 'max-content',
+  }
 }));
 
 const InfoWrapper = styled(Box)(({ theme }) => ({
@@ -38,6 +42,7 @@ const Info = styled(Typography)(({ theme }) => ({
 }));
 
 export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
+  const isMobile = useResponsive('down', 'sm');
   const [showNotification, setShowNotification] = React.useState(false);
   const renderGender = () => {
     switch (DATA_DEFAULT?.gender) {
@@ -100,20 +105,19 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
           </InfoWrapper>
         </Stack>
 
-        <Box sx={{ textAlign: 'center', margin: '24px 0' }}>
-          <UploadBtn variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
+        <Stack flexDirection={'column'} justifyContent={'space-between'} gap={1} mt={4}>
+          <BorderGradientButton variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
             Update profile
-          </UploadBtn>
-          <UploadBtn
-            sx={{ mt: 2 }}
+          </BorderGradientButton>
+          <BorderGradientButton
             variant="contained"
             startIcon={<IconBell />}
             onClick={() => setShowNotification(true)}
             disabled={!DATA_DEFAULT}
           >
             Get notifications
-          </UploadBtn>
-        </Box>
+          </BorderGradientButton>
+        </Stack>
         {/* <Box sx={{ textAlign: 'center' }}>
                 <Typography
                     color={'#ffffff'}

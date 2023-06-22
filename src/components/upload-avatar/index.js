@@ -35,8 +35,8 @@ const rejectStyle = {
 };
 
 const StyledAvatarBox = styled('div')(({ theme }) => ({
-    width: 128,
-    height: 128,
+    width: 240,
+    height: 240,
 }));
 
 const StyledAvatar = styled('img')(({ theme }) => ({
@@ -130,6 +130,7 @@ export const UploadAvatar = ({ avatarUrl, id }) => {
                 )}
             </div>
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getInputProps, getRootProps, style]);
 
     return (

@@ -23,7 +23,7 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
     opacity: 1,
     fontSize: '1.25rem',
     '& span': {
-      background: 'linear-gradient(0deg, #8CC0CC 0%, rgb(41,31,65,0) 20%);',
+      background: 'linear-gradient(0deg, #8CCCC8 0%, rgba(41, 31, 65, 0) 15%)',
     },
   },
   '& .MuiTabs-flexContainer': {
@@ -36,7 +36,7 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
   '& button.Mui-selected': {
     color: alpha('#fff', 1),
     '& span': {
-      background: 'linear-gradient(0deg, #8CC0CC 0%, rgb(90,111,134,0.5) 50%, transparent 100%);',
+      background: 'linear-gradient(0deg, #75E0C6 0.57%, rgba(52, 89, 129, 0.494792) 39.59%, rgba(41, 31, 65, 0) 77.81%)',
       zIndex: -1,
     },
   },
