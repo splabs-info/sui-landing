@@ -65,7 +65,7 @@ const inoProjects = [
     hardCap: '5000',
     releaseTime: "Official Launch: June 24th",
     status: true,
-    startTime: '2023-06-20T11:00:00',
+    startTime: '2023-06-24T11:00:00',
     endTime: '2023-06-24T13:00:00',
   },
 
@@ -105,7 +105,9 @@ const INOLaunchPad = () => {
         }
     })
   }, [])
-  console.log(upComingProjects, onGoingProjects, previousProjects);
+
+  // console.log(upComingProjects, onGoingProjects, previousProjects);
+
   return (
     <Page title="INO">
       <SectionBox
