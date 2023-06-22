@@ -106,6 +106,7 @@ export default function FreeMinting2() {
           owner: wallet.address,
           filter: { Package: addresses.package },
         });
+        console.log(balance);
         if (balance) {
           setOwned(balance.data.length);
           let arrNft = [];
@@ -129,7 +130,7 @@ export default function FreeMinting2() {
         const tx = new TransactionBlock();
 
         tx.moveCall({
-          target: `${addresses.package}::freemint::freemint`,
+          target: `${addresses.package}::freemintv2::freemint`,
           arguments: [addresses.objectFreeMint, addresses.objectInformation].map((arg) => tx.pure(arg)),
         });
 
