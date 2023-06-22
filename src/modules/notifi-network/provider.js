@@ -104,7 +104,13 @@ export function useAction() {
         walletBlockchain: NotifiNetworkHelper.chain,
         signMessage: signMessage,
       });
-      // await syncData();
+      const newUserState = await state.client.initialize();
+      dispatch({
+        type: 'SET_ALL_STATE',
+        payload: {
+          userState: newUserState,
+        },
+      });
     } catch (error) {
       console.log(error);
       toast.error(error.toString());

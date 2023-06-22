@@ -12,6 +12,7 @@ import { UploadAvatar } from 'components/upload-avatar';
 import useResponsive from 'hooks/useResponsive';
 import NotifiNetwork from 'modules/notifi-network/NotifiNetwork';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',
@@ -112,7 +113,11 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
           <BorderGradientButton
             variant="contained"
             startIcon={<IconBell />}
-            onClick={() => setShowNotification(true)}
+            onClick={() => {
+              if (DATA_DEFAULT?.email)
+                setShowNotification(true)
+              else toast.warning('Updated profile, please!')
+            }}
             disabled={!DATA_DEFAULT}
           >
             Get notifications

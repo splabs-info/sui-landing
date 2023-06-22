@@ -59,8 +59,7 @@ export default function NotifiNetwork({ open, handleClose, data }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const email = e.target.email.value;
-    await notifiAction.updateAlerts(email, userAlerts);
+    await notifiAction.updateAlerts(currentEmail, userAlerts);
     setLoading(false);
     handleClose();
   };
@@ -139,12 +138,12 @@ export default function NotifiNetwork({ open, handleClose, data }) {
                   </InputAdornment>
                 ),
               }}
-              value={currentEmail}
+              value={data?.email}
               size="medium"
               fullWidth
               placeholder='Email address'
             />
-            <TextField
+            {/* <TextField
               InputProps={{
                 startAdornment: (
                   <InputAdornment
@@ -158,7 +157,7 @@ export default function NotifiNetwork({ open, handleClose, data }) {
               size="medium"
               fullWidth
               placeholder='Telegram ID'
-            />
+            /> */}
             <OptionBox>
               {userAlerts &&
                 userAlerts.map((a, index) => (

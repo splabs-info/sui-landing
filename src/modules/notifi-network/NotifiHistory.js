@@ -1,4 +1,4 @@
-import { Box, IconButton, Menu, MenuItem, Popover, Typography, styled } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem, Popover, Stack, Typography, styled } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
 import { useState } from 'react';
 import { NotifiNetworkHelper } from './init';
@@ -31,7 +31,32 @@ const NotifiBox = styled(Box)(({ theme }) => ({
     zIndex: 1,
   },
 }))
-
+const histories = [
+  {
+    title: 'Title 1',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    date: '12/12/2021',
+    status: true,
+  },
+  {
+    title: 'Title 1',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    date: '12/12/2021',
+    status: true,
+  },
+  {
+    title: 'Title 1',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    date: '12/12/2021',
+    status: true,
+  },
+  {
+    title: 'Title 1',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    date: '12/12/2021',
+    status: true,
+  },
+]
 export default function NotifiHistory() {
   // const wallet = useWallet();
   // const notifiAction = NotifiNetworkHelper.useAction();
@@ -91,8 +116,26 @@ export default function NotifiHistory() {
       >
         <NotifiBox>
           <Typography variant='h5' sx={{ p: 2 }}>Notifications</Typography>
-          <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
-          <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+          {histories.map((item, index) => (
+            <Box key={index}>
+              <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>
+                <Typography >{item.title}</Typography>
+                <Typography >{item.date}</Typography>
+              </Stack>
+              <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>
+                <Typography sx={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: '-webkit-box',
+                  '-webkit-line-clamp': '2',
+                  '-webkit-box-orient': 'vertical',
+                  maxHeight: '50px',
+                }}>{item.description}</Typography>
+                <Typography >{item.status}</Typography>
+              </Stack>
+
+            </Box>
+          ))}
         </NotifiBox>
       </Popover>
     </Box>
