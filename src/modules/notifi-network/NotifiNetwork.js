@@ -165,13 +165,12 @@ export default function NotifiNetwork({ open, handleClose, data }) {
                   <Stack direction={'row'} justifyContent={'space-between'} key={index} className='option-detail'>
                     <Typography>{a.name}</Typography>
                     <SubscribeSwitch
-                      defaultChecked={true}
-                    // defaultChecked={a.isOn}
-                    // onChange={(e) => {
-                    //   const temp = [...alerts];
-                    //   temp[index].isOn = e.target.checked;
-                    //   setUserAlerts(temp);
-                    // }}
+                      defaultChecked={a.isOn}
+                      onChange={(e) => {
+                        const temp = [...alerts];
+                        temp[index].isOn = e.target.checked;
+                        setUserAlerts(temp);
+                      }}
                     />
                   </Stack>
                 ))}

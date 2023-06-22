@@ -33,9 +33,6 @@ export const OptionBox = styled(Box)(({ theme }) => ({
         WebkitMaskComposite: 'xor',
         zIndex: 0,
     },
-    '& div, span': {
-        zIndex: 1,
-    },
     [theme.breakpoints.down('sm')]: {
         padding: '8px 16px',
     }
@@ -80,7 +77,7 @@ export const SubscribeSwitch = styled((props) => (
             border: '6px solid #fff',
         },
         '&.Mui-disabled .MuiSwitch-thumb': {
-            color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
+            color: theme.palette.grey[100],
         },
         '&.Mui-disabled + .MuiSwitch-track': {
             opacity: 0.3,
