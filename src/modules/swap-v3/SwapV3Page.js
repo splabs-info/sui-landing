@@ -539,8 +539,8 @@ export default function SwapV3Page() {
                                 ? preSwapData.impactPrice < 1
                                   ? 'green'
                                   : preSwapData?.impactPrice < 10
-                                  ? 'yellow'
-                                  : 'red'
+                                    ? 'yellow'
+                                    : 'red'
                                 : 'white'
                             }
                             data-id="price-impact"
@@ -557,11 +557,10 @@ export default function SwapV3Page() {
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                             {preSwapData
-                              ? `${
-                                  preSwapData?.totalFee > -1
-                                    ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
-                                    : 'Estimating'
-                                }`
+                              ? `${preSwapData?.totalFee > -1
+                                ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
+                                : 'Estimating'
+                              }`
                               : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'}>

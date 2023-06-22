@@ -1,6 +1,5 @@
 import { Box, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { IconBrandTelegram, IconMail } from '@tabler/icons';
 import { CheckboxFiled } from 'components';
 import CustomModal from 'components/common/CustomModal';
 import { ShadowTypography } from 'components/common/CustomTypography';
@@ -9,6 +8,7 @@ import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import { BlueLoadingButton, OptionBox, SubscribeSwitch, WalletAddressBox } from './NotifiStyled';
 import { NotifiNetworkHelper } from './init';
+import { IconBrandTelegram, IconMail } from '@tabler/icons';
 
 export default function NotifiNetwork({ open, handleClose, data }) {
   const isMobile = useResponsive('down', 'sm');
@@ -165,12 +165,13 @@ export default function NotifiNetwork({ open, handleClose, data }) {
                   <Stack direction={'row'} justifyContent={'space-between'} key={index} className='option-detail'>
                     <Typography>{a.name}</Typography>
                     <SubscribeSwitch
-                      defaultChecked={a.isOn}
-                      onChange={(e) => {
-                        const temp = [...alerts];
-                        temp[index].isOn = e.target.checked;
-                        setUserAlerts(temp);
-                      }}
+                      defaultChecked={true}
+                    // defaultChecked={a.isOn}
+                    // onChange={(e) => {
+                    //   const temp = [...alerts];
+                    //   temp[index].isOn = e.target.checked;
+                    //   setUserAlerts(temp);
+                    // }}
                     />
                   </Stack>
                 ))}

@@ -1,7 +1,10 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EmailIcon from '@mui/icons-material/Email';
 import {
   Avatar,
+  Badge,
   Box,
+  Button,
   Container,
   Divider,
   Drawer,
@@ -12,21 +15,20 @@ import {
   ListItemText,
   MenuItem,
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useWallet } from '@suiet/wallet-kit';
 import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
+import Logo from 'components/common/Logo';
+import { WalletDrawer } from 'components/drawer';
+import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
+import { FrameButton } from 'components/home/HomeStyles';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Header, Navbar } from '../components/header/HeaderStyles';
-import { useWallet } from '@suiet/wallet-kit';
-import Logo from 'components/common/Logo';
-import { WalletDrawer } from 'components/drawer';
-import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
-import EmailIcon from '@mui/icons-material/Email';
-import { Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { FrameButton } from 'components/home/HomeStyles';
+import NotifiHistory from 'modules/notifi-network/NotifiHistory';
 
 const config = [
   { label: 'key_2', link: '/ido-launchpad' },
@@ -136,16 +138,17 @@ export default function HeaderSection() {
     const position = window.pageYOffset;
     if (position > 75) {
       setScrollPositionToggle(true);
+      const header = window.document.getElementById('header');
+      if (prevScrollpos > position) {
+        if (header !== null) header.style.top = '0';
+      } else {
+        if (header !== null) header.style.top = '-130px';
+      }
+      setPrevScrollpos(position);
     } else {
       setScrollPositionToggle(false);
     }
-    const header = window.document.getElementById('header');
-    if (prevScrollpos > position) {
-      if (header !== null) header.style.top = '0';
-    } else {
-      if (header !== null) header.style.top = '-130px';
-    }
-    setPrevScrollpos(position);
+
   };
 
   useEffect(() => {
@@ -285,6 +288,10 @@ export default function HeaderSection() {
     </Box>
   );
 
+  const NotifiBox = () => (
+    <NotifiHistory />
+  )
+
   return (
     <>
       <Header sx={{ flexDirection: 'column' }} id="header">
@@ -362,16 +369,21 @@ export default function HeaderSection() {
                     <Avatar src="/images/icon/icon-user.png" sx={{ borderRadius: '0', width: 32, height: 32 }} />
                   </IconButton>
                 )}
+                <NotifiBox />
+
               </Hidden>
 
               <Hidden lgUp>
                 {walletAddress ? (
-                  <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
-                    <Avatar
-                      src="/images/icon/icon-user.png"
-                      sx={{ borderRadius: '0', height: 'auto', width: 'auto' }}
-                    />
-                  </IconButton>
+                  <>
+                    <IconButton onClick={handleOpenDrawer} sx={{ textAlign: 'center' }}>
+                      <Avatar
+                        src="/images/icon/icon-user.png"
+                        sx={{ borderRadius: '0', height: 'auto', width: 'auto' }}
+                      />
+                    </IconButton>
+                    <NotifiBox />
+                  </>
                 ) : (
                   <FrameButton
                     onClick={handleOpenConnectPopup}
@@ -381,6 +393,7 @@ export default function HeaderSection() {
                     Connect Wallet
                   </FrameButton>
                 )}
+
                 <IconButton
                   sx={{
                     padding: '5px',
@@ -481,6 +494,7 @@ export default function HeaderSection() {
         handleClose={setOpenWalletDrawer}
         disconnectSui={setWallet}
       />
+
     </>
   );
 }
