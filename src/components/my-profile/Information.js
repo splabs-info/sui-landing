@@ -10,7 +10,6 @@ import IcVerify from 'components/asset/icon/IcVerify';
 import { UploadBtn } from 'components/create-profile';
 import { UploadAvatar } from 'components/upload-avatar';
 import NotifiNetwork from 'modules/notifi-network/NotifiNetwork';
-import NotifiNetworkCard from 'modules/notifi-network/NotifiNetworkCard';
 import React from 'react';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
@@ -127,7 +126,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
                 </Typography>
             </Box> */}
       </WrapperAreaInformation>
-      <NotifiNetworkCard open={showNotification} handleClose={() => setShowNotification(false)} data={DATA_DEFAULT} />
+      <NotifiNetwork open={showNotification} handleClose={() => setShowNotification(false)} data={DATA_DEFAULT} />
     </>
   );
 }

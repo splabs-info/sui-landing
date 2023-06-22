@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import { ContentBox } from 'components/common/CustomBox';
-import { SpaceBetweenBox } from 'components/home-v2/HomeStyles';
-import useResponsive from 'hooks/useResponsive';
+import { SpaceBetweenBox } from 'components/home/HomeStyles';
 
 const saleInformation = [
     {
@@ -30,7 +29,6 @@ const saleInformation = [
     },
 ]
 export const SaleInfo = () => {
-    const isMobile = useResponsive('down', 'sm');
     return (
         <ContentBox className='ref-link'>
             <Typography fontWeight={'bold'} mb={1.5}>PRIVATE SALE INFORMATION</Typography>

@@ -5,6 +5,7 @@ import StakingFarming from 'modules/staking/OverallPage';
 import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
+import PrivateSale from 'pages/PrivateSale';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -113,7 +114,7 @@ export default function Router() {
           ),
         },
         {
-          path: '/claim-tokens/:projectId',
+          path: 'claim-tokens/:projectId',
           element: (
             <Suspense>
               <ClaimsDetail />
@@ -122,12 +123,16 @@ export default function Router() {
           ),
         },
         {
-          path: '/nft-marketplace',
+          path: 'nft-marketplace',
           element: (
             <Suspense>
               <ComingSoon />
             </Suspense>
           ),
+        },
+        {
+          path: 'private-sale',
+          element: <PrivateSale />,
         },
       ],
     },

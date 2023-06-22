@@ -69,16 +69,9 @@
 //   );
 // }
 
-import { Uint8SignMessageFunction } from '@notifi-network/notifi-core';
-import {
-  NotifiContext,
-  NotifiInputFieldsText,
-  NotifiInputSeparators,
-  NotifiSubscriptionCard,
-} from '@notifi-network/notifi-react-card';
-import { useWallet } from '@suiet/wallet-kit';
-import React from 'react';
+import { NotifiContext, NotifiSubscriptionCard } from '@notifi-network/notifi-react-card';
 import '@notifi-network/notifi-react-card/dist/index.css';
+import { useWallet } from '@suiet/wallet-kit';
 
 export default function NotifiNetwork({ open, handleClose, data }) {
   const wallet = useWallet();
@@ -91,8 +84,6 @@ export default function NotifiNetwork({ open, handleClose, data }) {
     const signature = await wallet.signMessage({
       message,
     });
-
-    console.log(signature);
 
     const signatureBuffer = Buffer.from(signature.signature);
     return signatureBuffer;
@@ -137,7 +128,7 @@ export default function NotifiNetwork({ open, handleClose, data }) {
             inputs={{ userWallet: wallet.address }}
             inputLabels={inputLabels}
             inputSeparators={inputSeparators}
-            cardId="4c60bbecb1b24e38917d8d25c26f74ee"
+            cardId="57609687cd0d4063bd0318a51cd16e42"
             onClose={() => alert('nope you must stay')}
           />
         </NotifiContext>

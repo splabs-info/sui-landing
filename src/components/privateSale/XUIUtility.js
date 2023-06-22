@@ -1,40 +1,8 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 
-import { styled } from '@mui/material/styles';
-import { ContentBox, SpaceBetweenBox } from 'components/common/CustomBox';
-import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
-import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home-v2/HomeStyles';
+import { ContentBox } from 'components/common/CustomBox';
+import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-const tokenDistribution = [
-    {
-        label: 'Token Details',
-        value: 'Based on Total Supply at Genesis'
-    },
-    {
-        label: 'Ticker',
-        value: 'XUI'
-    },
-    {
-        label: 'Standard',
-        value: 'Sui Blockchain Based'
-    },
-    {
-        label: 'Max Supply & Total Supply',
-        value: '100,000,000 XUI'
-    },
-    {
-        label: 'Initial Circulating Supply On Day 1 ',
-        value: '1,100,000 XUI'
-    },
-    {
-        label: 'Public Launch Allocation (%)',
-        value: '1,000,000 XUI (1%)'
-    },
-    {
-        label: 'Public Launch price',
-        value: '$0.25'
-    },
-]
 const utilityList = [
     'Stake XUI-X LP Token to obtain Swap fee Shares',
     'Stake XUI and Get Tier',

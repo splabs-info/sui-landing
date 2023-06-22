@@ -8,18 +8,21 @@ import 'simplebar/src/simplebar.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import rootReducer from './store';
+import { NotifiNetworkHelper } from 'modules/notifi-network/init';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <Provider store={store}>
-        <HelmetProvider>
-            <Router>
-                <App />
-            </Router>
-        </HelmetProvider>
-    </Provider>
+  <Provider store={store}>
+    <HelmetProvider>
+      <NotifiNetworkHelper.Provider>
+        <Router>
+          <App />
+        </Router>
+      </NotifiNetworkHelper.Provider>
+    </HelmetProvider>
+  </Provider>
 );
 reportWebVitals();
