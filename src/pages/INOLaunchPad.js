@@ -105,7 +105,9 @@ const INOLaunchPad = () => {
         }
     })
   }, [])
-  console.log(upComingProjects, onGoingProjects, previousProjects);
+
+  // console.log(upComingProjects, onGoingProjects, previousProjects);
+
   return (
     <Page title="INO">
       <SectionBox
