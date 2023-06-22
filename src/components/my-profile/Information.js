@@ -110,7 +110,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
           <BorderGradientButton variant="contained" startIcon={<CloudUploadOutlinedIcon />} onClick={onOpen}>
             Update profile
           </BorderGradientButton>
-          <BorderGradientButton
+          {/* <BorderGradientButton
             variant="contained"
             startIcon={<IconBell />}
             onClick={() => {
@@ -121,7 +121,7 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
             disabled={!DATA_DEFAULT}
           >
             Get notifications
-          </BorderGradientButton>
+          </BorderGradientButton> */}
         </Stack>
         {/* <Box sx={{ textAlign: 'center' }}>
                 <Typography

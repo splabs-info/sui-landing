@@ -111,7 +111,7 @@ export default function Intro() {
             </Box>
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
-              <Link to={'/ido-launchpad'}>
+              <Link to={'/ido-launchpad/round'}>
                 <FrameButton>Buy $XUI</FrameButton>
               </Link>
               <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">

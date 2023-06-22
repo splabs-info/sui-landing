@@ -115,11 +115,12 @@ export default function NotifiHistory() {
         }}
       >
         <NotifiBox>
-          <Typography variant='h5' sx={{ p: 2 }}>Notifications</Typography>
+          <Typography variant='h4' sx={{ py: 2, borderBottom: '1px solid rgba(255, 255, 255, 0.3)', }}>Notifications</Typography>
           {histories.map((item, index) => (
-            <Box key={index}>
+            <Box key={index} sx={{ borderTop: '1px solid rgba(255, 255, 255, 0.3)', py: 1 }}>
               <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>
-                <Typography variant='h6'>{item.title}</Typography>
+                <Typography variant='h6'
+                >{item.title}</Typography>
                 <Typography >{item.date}</Typography>
               </Stack>
               <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>

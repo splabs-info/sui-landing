@@ -172,11 +172,13 @@ export default function FreeMinting2() {
         <NFTSlider />
       </Box>
       <ProcessBarBox
-        percent={minted ? (minted / total) * 100 : 0}
+        percent={0}
+        // percent={minted ? (minted / total) * 100 : 0}
         subtitle={
           <>
             <Typography variant="body1" color={'white'}>
-              {minted}
+              {/* {minted} */}
+              0
             </Typography>
             <Typography variant="body1" color={'white'}>
               TOTAL: {total}
@@ -281,7 +283,9 @@ export default function FreeMinting2() {
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
                     onClick={handleFreeMinting}
                     loading={loading}
-                    disabled={owned === 5}
+                    // disabled={owned === 5}
+                    disabled={true}
+
                   >
                     Claim now
                   </GradientLoadingButton >
@@ -320,24 +324,20 @@ const nftImage = [
     label: 'NFT 1',
   },
   {
-    src: '/images/nfts/yousui-nft-2.png',
-    label: 'NFT 2',
+    src: '/images/nfts/yousui-nft-7.png',
+    label: 'NFT 7',
   },
   {
-    src: '/images/nfts/yousui-nft-3.png',
-    label: 'NFT 3',
-  },
-  {
-    src: '/images/nfts/yousui-nft-4.png',
-    label: 'NFT 4',
-  },
-  {
-    src: '/images/nfts/yousui-nft-5.png',
-    label: 'NFT 5',
+    src: '/images/nfts/yousui-nft-8.png',
+    label: 'NFT 8',
   },
   {
     src: '/images/nfts/yousui-nft-6.png',
     label: 'NFT 6',
+  },
+  {
+    src: '/images/nfts/yousui-nft-9.png',
+    label: 'NFT 9',
   },
 ];
 export const SliderCustom = styled(Slider)(({ theme }) => ({

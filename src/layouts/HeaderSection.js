@@ -289,7 +289,8 @@ export default function HeaderSection() {
   );
 
   const NotifiBox = () => (
-    <NotifiHistory />
+    <></>
+    // <NotifiHistory />
   )
 
   return (
