@@ -59,7 +59,7 @@ export default function NotifiNetwork({ open, handleClose, data }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await notifiAction.updateAlerts(currentEmail, userAlerts);
+    await notifiAction.updateAlerts(data?.email, userAlerts);
     setLoading(false);
     handleClose();
   };

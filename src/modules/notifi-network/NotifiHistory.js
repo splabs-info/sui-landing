@@ -119,7 +119,7 @@ export default function NotifiHistory() {
           {histories.map((item, index) => (
             <Box key={index}>
               <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>
-                <Typography >{item.title}</Typography>
+                <Typography variant='h6'>{item.title}</Typography>
                 <Typography >{item.date}</Typography>
               </Stack>
               <Stack flexDirection={'row'} gap={2} justifyContent={'space-between'}>

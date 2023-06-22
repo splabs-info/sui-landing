@@ -40,14 +40,17 @@ export function useAction() {
   const wallet = useWallet();
 
   const handleError = (error) => {
-    const startIndex = error.toString().indexOf('{');
-    const endIndex = error.toString().lastIndexOf('}');
-    const objectString = JSON.parse(error.toString().substring(startIndex, endIndex + 1));
-    console.log(objectString);
-    const errorMsg = objectString?.response?.errors[0]?.message;
-    return errorMsg;
-  };
-
+    try {
+      const startIndex = error.toString().indexOf('{');
+      const endIndex = error.toString().lastIndexOf('}');
+      const objectString = JSON.parse(error.toString().substring(startIndex, endIndex + 1));
+      console.log(objectString);
+      const errorMsg = objectString?.response?.errors[0]?.message;
+      return errorMsg;
+    } catch (error) {
+      return error.toString();
+    };
+  }
   async function init(wallAddress) {
     const client = newFrontendClient({
       account: {
@@ -149,6 +152,7 @@ export function useAction() {
   };
 
   const updateAlerts = async (email, alerts) => {
+    console.log(email, alerts);
     try {
       const newEmail = await state.client.ensureTargetGroup({ name: 'Default', emailAddress: email });
       for (const alert of alerts) {
@@ -169,6 +173,7 @@ export function useAction() {
     } catch (error) {
       toast.error(handleError(error));
     }
+
   };
 
   const getNotifications = async (first = 0, after = 1) => {
