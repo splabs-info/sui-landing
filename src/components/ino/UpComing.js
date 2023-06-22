@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
-import { INOCard } from './INOCard';
+import { UpComingCard } from './UpComingCard';
 
 export default function UpComing({ projects }) {
   return (
@@ -13,7 +13,7 @@ export default function UpComing({ projects }) {
       </TitleBox>
       <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, m: 3, }}>
         {projects?.map((item, index) => (
-          <INOCard
+          <UpComingCard
             {...item}
             key={index}
           />

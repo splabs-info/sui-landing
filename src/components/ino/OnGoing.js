@@ -13,9 +13,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useConnect } from 'wagmi';
 import React from 'react';
+import { INOCard } from './UpComingCard';
+import { OnGoingCard } from './OnGoingCard';
 
 const provider = new JsonRpcProvider(devnetConnection);
-export default function OnGoing() {
+export default function OnGoing({ projects }) {
   const isMobile = useResponsive('down', 'sm');
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
@@ -40,8 +42,15 @@ export default function OnGoing() {
         <Typography>On-going</Typography>
         <TypographyGradient>INOs</TypographyGradient>
       </TitleBox>
-
-      <Box
+      <Stack sx={{ gap: 2, m: 3, width: 'max-content' }}>
+        {projects?.map((item, index) => (
+          <OnGoingCard
+            {...item}
+            key={index}
+          />
+        ))}
+      </Stack>
+      {/* <Box
         sx={{
           background: 'linear-gradient(323.96deg, rgba(45, 126, 200, 0.1) 0%, rgba(181, 255, 211, 0.1) 89.18%)',
           boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.15)',
@@ -80,46 +89,13 @@ export default function OnGoing() {
               sx={{ margin: isMobile ? '24px 0px' : '0px' }}
             />
             <Stack spacing={1.5} alignItems={'center'} sx={{ marginTop: isMobile ? '24px' : '24px' }}>
-              <BorderGradientButton onClick={() => navigate('/ino-launchpad/free-minting-nft')} sx={{}}>
+              <BorderGradientButton onClick={() => navigate('/ino-launchpad/free-minting-nft')} className='animated-bg'>
                 JOIN NOW
               </BorderGradientButton>
             </Stack>
           </Grid>
         </Grid>
-      </Box>
-      {/* <Box
-                sx={{
-                    background: 'linear-gradient(323.96deg, rgba(45, 126, 200, 0.1) 0%, rgba(181, 255, 211, 0.1) 89.18%)',
-                    boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.15)',
-                    backdropFilter: 'blur(25px)',
-                    borderRadius: isMobile ? '10px' : '15px',
-                    padding: isMobile ? '32px' : '64px',
-                    mt: isMobile ? 5 : 7,
-                    '& img': { padding: isMobile ? '0 10%' : '0' },
-                }}
-            >
-                <Grid container alignItems={'center'} spacing={5}>
-                    <Grid item md={5} xs={12} sx={{ position: 'relative' }}>
-                        <img src={'/images/ino/nft-2.png'} style={{ width: '100%', height: '100%' }} alt="" />
-                    </Grid>
-                    <Grid item md={7} xs={12}>
-                        <Typography textAlign={'center'} fontSize={isMobile ? '24px' : '36px'} fontWeight={'bold'}>
-                            <ShadowTypography variant='span' > First </ShadowTypography>
-                            <GradientShadowTypography variant='span'>Move To Earn</GradientShadowTypography>
-                            <ShadowTypography variant='span' > on SUI Network </ShadowTypography>
-                        </Typography>
-                        <Stack spacing={1.5} alignItems={'center'}>
-                            <img src={'/images/ino/logo-hood.png'} alt="" sx={{ padding: '0 25%' }} />
-                            <BorderGradientButton
-                                disabled={true}
-                            >
-                                Official Launch : July 25th
-                            </BorderGradientButton>
-                        </Stack>
-
-                    </Grid>
-                </Grid>
-            </Box> */}
+      </Box> */}
     </Box>
   );
 }

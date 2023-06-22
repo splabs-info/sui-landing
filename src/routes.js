@@ -14,6 +14,7 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
+import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -73,6 +74,14 @@ export default function Router() {
           element: (
             <Suspense>
               <FreeMinting />
+            </Suspense>
+          ),
+        },
+        {
+          path: 'ino-launchpad/free-minting-nft-2',
+          element: (
+            <Suspense>
+              <FreeMinting2 />
             </Suspense>
           ),
         },
