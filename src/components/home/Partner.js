@@ -111,6 +111,9 @@ const partners = [
   { label: 'cetus', link: 'https://www.cetus.zone/' },
   { label: 'pyth', link: 'https://pyth.network/' },
   { label: 'coin98', link: 'https://coin98.net/' },
+  { label: 'vmeta', link: 'https://vmeta3.com/' },
+  { label: 'giro', link: 'https://giroswap.com/' },
+  { label: 'notifi', link: 'https://notifi.network/' },
 ];
 
 export default function Partner() {
