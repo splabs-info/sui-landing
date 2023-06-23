@@ -69,35 +69,34 @@ export default function FreeMinting2() {
       id: addresses.objectFreeMint,
       options: { showContent: true },
     });
-    console.log(result?.data?.content?.fields);
     setTotal(result?.data?.content?.fields?.max_mint);
     setMinted(result?.data?.content?.fields?.number);
   };
 
-  React.useEffect(() => {
-    if (provider) {
-      (async () => {
-        const result = await provider.getObject({
-          id: addresses.objectFreeMint,
-          options: { showContent: true },
-        });
-        // console.log(result);
-        setTotal(result?.data?.content?.fields?.max_mint);
-        setMinted(result?.data?.content?.fields?.number);
-      })();
-      const interval = setInterval(() => {
-        syncData();
-      }, 20000);
-      return () => clearInterval(interval);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // React.useEffect(() => {
+  //   if (provider) {
+  //     (async () => {
+  //       const result = await provider.getObject({
+  //         id: addresses.objectFreeMint,
+  //         options: { showContent: true },
+  //       });
+  //       // console.log(result);
+  //       setTotal(result?.data?.content?.fields?.max_mint);
+  //       setMinted(result?.data?.content?.fields?.number);
+  //     })();
+  //     const interval = setInterval(() => {
+  //       syncData();
+  //     }, 20000);
+  //     return () => clearInterval(interval);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  React.useEffect(() => {
-    if (provider) {
-      syncData();
-    }
-  }, [flag]);
+  // React.useEffect(() => {
+  //   if (provider) {
+  //     syncData();
+  //   }
+  // }, [flag]);
 
   React.useEffect(() => {
     if (provider && wallet.address) {
