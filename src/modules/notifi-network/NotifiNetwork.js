@@ -20,30 +20,30 @@ export default function NotifiNetwork({ open, handleClose, data }) {
   const { client, currentEmail, alerts, userState, notifications } = notifiState;
   const [userAlerts, setUserAlerts] = React.useState(null);
 
-  React.useEffect(() => {
-    if (notifications) {
-      console.log(notifications);
-    }
-  }, [notifications]);
+  // React.useEffect(() => {
+  //   if (notifications) {
+  //     console.log(notifications);
+  //   }
+  // }, [notifications]);
 
-  React.useEffect(() => {
-    if (wallet.address) {
-      (async () => {
-        await notifiAction.init(wallet.address);
-      })();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet.address]);
+  // React.useEffect(() => {
+  //   if (wallet.address) {
+  //     (async () => {
+  //       await notifiAction.init(wallet.address);
+  //     })();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [wallet.address]);
 
-  React.useEffect(() => {
-    if (userState?.status === 'authenticated') {
-      (async () => {
-        await notifiAction.syncData();
-        await notifiAction.getNotifications();
-      })();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userState]);
+  // React.useEffect(() => {
+  //   if (userState?.status === 'authenticated') {
+  //     (async () => {
+  //       await notifiAction.syncData();
+  //       await notifiAction.getNotifications();
+  //     })();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [userState]);
 
   React.useEffect(() => {
     if (alerts) {
