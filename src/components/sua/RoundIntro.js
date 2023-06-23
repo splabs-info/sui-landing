@@ -3,7 +3,7 @@ import { SocialBox } from 'components/footer/FooterStyles';
 import { ImageBox, RoundInfoBox, TitleBackgroundBox } from './RoundStyled';
 
 const info = {
-    title: 'SUA Token',
+    title: 'SUA Token - Test IDO',
     description:
         'SUA is a token of Meta version. It has no intrinsic value or expectation of financial return. There is no official team or roadmap.',
 };

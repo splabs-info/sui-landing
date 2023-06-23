@@ -46,7 +46,7 @@ export default function PreviousPools() {
                                 border: '1px solid #42EECF',
                                 background: 'linear-gradient(323.96deg, #5394CF 0%, #8CE9C7 89.18%)',
                                 borderRadius: '10px',
-                                // cursor: 'pointer',
+                                cursor: 'pointer',
                             }}
                             onClick={() => {
                                 navigate('/ido-launchpad/sua')

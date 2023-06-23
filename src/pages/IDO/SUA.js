@@ -87,12 +87,12 @@ export default function SUAIDO() {
     };
 
     return (
-        <Page title="Presale OG - SUA Token">
+        <Page title="SUA Token">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
                 <Container maxWidth="xl">
                     <Box mt={isMobile ? 5 : 2} color={'#fff'}>
                         <TabContext value={tabIndex}>
-                            <Stack direction={isMobile ? 'column-reverse' : 'row'}
+                            {/* <Stack direction={isMobile ? 'column-reverse' : 'row'}
                                 justifyContent={tabIndex === '0' ? 'flex-end' : 'flex-end'}
                                 alignItems={isMobile ? 'stretch' : 'center'}
                             >
@@ -101,10 +101,10 @@ export default function SUAIDO() {
                                         indicatorColor='none'
                                         onChange={handleChange}
                                     >
-                                        <Tab label="Presale OG" value="0" />
+                                        <Tab label="SUA TOKEN" value="0" />
                                     </SpecialTabList>
                                 </Stack>
-                            </Stack>
+                            </Stack> */}
                             <TabPanel value={tabIndex} sx={{ padding: { md: '32px 0 0', xs: '32px 8px 0' } }}>
                                 <SUARound round={tabIndex} />
                             </TabPanel>

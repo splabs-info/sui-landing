@@ -20,7 +20,8 @@ export const RoundChart = ({ round }) => {
                         <Typography sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'bold' }}>Time</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        Pool ends in {duration.days()} D: {duration.hours()} H: {duration.minutes()} M: {duration.seconds()} S
+                        {/* Pool ends in {duration.days()} D: {duration.hours()} H: {duration.minutes()} M: {duration.seconds()} S */}
+                        Sold out
                     </Box>
                 </Stack>
             </LiveBox>
@@ -53,25 +54,25 @@ export const RoundChart = ({ round }) => {
                             </Stack>
                         </Box>
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <img src='/images/icon/icon-calendar.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Vesting Schedule</Typography>
                                 <Typography variant='body2'>{round?.vesting} </Typography>
                             </Stack>
-                        </Box>
+                        </Box> */}
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                            <img src='/images/icon/icon-lock.png' alt='' />
+                            <img src='/images/icon/icon-data.png' alt='' />
                             <Stack>
-                                <Typography variant='body2' fontWeight={'bold'}>Min Purchase Amount</Typography>
-                                <Typography variant='body2'>1 SUI</Typography>
+                                <Typography variant='body2' fontWeight={'bold'}>Min Amount</Typography>
+                                <Typography variant='body2'>1 SUA</Typography>
                             </Stack>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <img src='/images/icon/icon-data.png' alt='' />
                             <Stack>
-                                <Typography variant='body2' fontWeight={'bold'}>Max Purchase Amount</Typography>
-                                <Typography variant='body2'>1 SUI</Typography>
+                                <Typography variant='body2' fontWeight={'bold'}>Max Amount</Typography>
+                                <Typography variant='body2'>1 SUA</Typography>
                             </Stack>
                         </Box>
                     </SaleInfoBox>

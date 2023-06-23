@@ -127,7 +127,7 @@ export const RoundForm = ({ round, balances }) => {
                         </Typography>
                     </Box>
                     <BuyTokenButton type="submit" loading={loading} disabled>
-                        Buy Now
+                        Sold Out
                     </BuyTokenButton>
                 </Stack>
             </form>

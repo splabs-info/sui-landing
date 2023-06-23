@@ -98,7 +98,7 @@ export default function IDORound() {
                                     indicatorColor='none'
                                     onChange={handleChange}
                                 >
-                                    <Tab label="Presale OG" value="0" />
+                                    <Tab label="SUA TOKEN" value="0" />
                                 </SpecialTabList>
                             </Stack>
 
