@@ -48,9 +48,9 @@ export default function PreviousPools() {
                                 borderRadius: '10px',
                                 // cursor: 'pointer',
                             }}
-                        // onClick={() => {
-                        //     navigate('/ido-launchpad/sua')
-                        // }}
+                            onClick={() => {
+                                navigate('/ido-launchpad/sua')
+                            }}
                         >
                             <Box
                                 sx={{
