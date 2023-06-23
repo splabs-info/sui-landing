@@ -69,6 +69,7 @@ export default function FreeMinting2() {
       id: addresses.objectFreeMint,
       options: { showContent: true },
     });
+    console.log(result);
     setTotal(result?.data?.content?.fields?.max_mint);
     setMinted(result?.data?.content?.fields?.number);
   };
@@ -167,7 +168,7 @@ export default function FreeMinting2() {
         subtitle={
           <>
             <Typography variant="body1" color={'white'}>
-              {/* {minted} */}0
+              {minted}
             </Typography>
             <Typography variant="body1" color={'white'}>
               TOTAL: {total}
