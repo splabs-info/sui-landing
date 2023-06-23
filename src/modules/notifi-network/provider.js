@@ -41,6 +41,7 @@ export function useAction() {
 
   const handleError = (error) => {
     try {
+      console.log(error);
       const startIndex = error.toString().indexOf('{');
       const endIndex = error.toString().lastIndexOf('}');
       const objectString = JSON.parse(error.toString().substring(startIndex, endIndex + 1));

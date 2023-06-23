@@ -4,15 +4,15 @@ export const config = {
   addresses: {
     package: process.env.REACT_APP_FREE_MINTING_PACKAGE
       ? process.env.REACT_APP_FREE_MINTING_PACKAGE
-      : `0x6a29b3b80de2bd69ee94b2a2f11e5bf2e3614d1cc08f1cb16eefa290bc859cb0`,
+      : `0x4a0de1e2b482da120f7d680e68df66fcb587b56cb89ba81b3322ccede49ed523`,
     objectFreeMint: process.env.REACT_APP_FREE_MINTING_OBJECT
       ? process.env.REACT_APP_FREE_MINTING_OBJECT
-      : `0x10dfba7d8456a54a45cc17072b9e5f1fc4ce8a56c86c6f9f8cfd061c4f0ff855`,
+      : `0x71ebf2a4ff1e2d4073d1d3ba052e843720ce786b5d5d0746f1daa3a9bf1316b0`,
     objectInformation: process.env.REACT_APP_FREE_MINTING_NFT_INFO
       ? process.env.REACT_APP_FREE_MINTING_NFT_INFO
-      : `0x7cc3144431a5f5eaa07428989eca1ecd25666dbc5b80a5261c7e1327fa7910de`,
+      : `0xa247ba5fc5b4346ecf72c5a1de92cae40071149811f08142820280a1cd323fb0`,
   },
-  providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : mainnetConnection,
+  providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : testnetConnection,
 };
 
 export const provider = new JsonRpcProvider(config.providerConnection);

@@ -104,7 +104,7 @@ export default function FreeMinting2() {
       (async () => {
         const balance = await provider.getOwnedObjects({
           owner: wallet.address,
-          filter: { Package: addresses.package },
+          filter: { Package: addresses.nftPackageId },
         });
         console.log(balance);
         if (balance) {
@@ -177,8 +177,7 @@ export default function FreeMinting2() {
         subtitle={
           <>
             <Typography variant="body1" color={'white'}>
-              {/* {minted} */}
-              0
+              {/* {minted} */}0
             </Typography>
             <Typography variant="body1" color={'white'}>
               TOTAL: {total}
@@ -285,10 +284,9 @@ export default function FreeMinting2() {
                     loading={loading}
                     // disabled={owned === 5}
                     disabled={true}
-
                   >
                     Claim now
-                  </GradientLoadingButton >
+                  </GradientLoadingButton>
                 ) : (
                   <GradientLoadingButton
                     sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
@@ -297,24 +295,21 @@ export default function FreeMinting2() {
                   >
                     My NFT
                   </GradientLoadingButton>
-                )
-                }
-              </Grid >
+                )}
+              </Grid>
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
                   <NFTGroup />
                 </Hidden>
               </Grid>
-            </Grid >
-          </FreeMintingBox >
-          {
-            myNftList.length > 0 && (
-              <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
-            )
-          }
-        </Container >
-      </SectionBox >
-    </Page >
+            </Grid>
+          </FreeMintingBox>
+          {myNftList.length > 0 && (
+            <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
+          )}
+        </Container>
+      </SectionBox>
+    </Page>
   );
 }
 
@@ -493,7 +488,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>

@@ -21,7 +21,7 @@ import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
 import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap-v3/components/SwapStyles';
-import { SwapSettings } from 'modules/swap/components/SwapSettingsPopup';
+import { SwapSettings } from 'modules/swap-v3/components/SwapSettingsPopup';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -539,8 +539,8 @@ export default function SwapV3Page() {
                                 ? preSwapData.impactPrice < 1
                                   ? 'green'
                                   : preSwapData?.impactPrice < 10
-                                    ? 'yellow'
-                                    : 'red'
+                                  ? 'yellow'
+                                  : 'red'
                                 : 'white'
                             }
                             data-id="price-impact"
@@ -557,10 +557,11 @@ export default function SwapV3Page() {
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                             {preSwapData
-                              ? `${preSwapData?.totalFee > -1
-                                ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
-                                : 'Estimating'
-                              }`
+                              ? `${
+                                  preSwapData?.totalFee > -1
+                                    ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
+                                    : 'Estimating'
+                                }`
                               : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'}>
