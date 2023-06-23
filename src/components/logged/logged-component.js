@@ -94,10 +94,14 @@ export const LoggedComponent = ({ address, handleClose, disconnectSui }) => {
             <Typography>Logged in</Typography>
             <AccountCircleIcon sx={{ width: 70, height: 70 }} />
             <Typography fontWeight={900}>My wallet</Typography>
-            <Box mb={2}>
+            <Box mb={2} mt={1}>
                 <CopyComponent content={`${address}`}>{formatAddress(`${address}`, 10)}</CopyComponent>
             </Box>
-            <Divider sx={{ borderBottomWidth: 1 }} />
+            <Box sx={{
+                background: 'linear-gradient(170deg, #68E5B8 0%, #6D85DA 100%)',
+                height: '1px',
+                my: 3
+            }} />
             {/* <Box p={3}>
                 {onChainBalances &&
                     onChainBalances.map(

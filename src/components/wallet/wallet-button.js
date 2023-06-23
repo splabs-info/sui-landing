@@ -2,17 +2,16 @@ import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const WalletBtn = styled(Button)(({ theme }) => ({
+    borderRadius: '15px',
+    background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',
+    boxShadow: '0px 0px 30px 0px rgba(255, 255, 255, 0.25) inset',
+    backdropFilter: 'blur(25px)',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    padding: '10px 16px',
     position: 'relative',
-    background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 0.2) 0%, rgba(109, 133, 218, 0.2) 100%)',
     WebkitTextStroke: '0.1px #3f484f',
-    borderRadius: 8,
     transition: 'all 0.5s ease-out',
     width: '100%',
     justifyContent: 'flex-start',
@@ -27,11 +26,9 @@ const WalletBtn = styled(Button)(({ theme }) => ({
         },
     },
     '&:hover': {
-        background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
-        boxShadow: 'rgb(63 72 79 / 30%) 0px 0px 8px 0px',
-        '.img-box': {
-            backgroundImage: 'linear-gradient(to right, #4b565e, #2d343d)',
-        },
+        background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.5) 0%, rgba(109, 133, 218, 0.5) 100%)',
+        boxShadow: '0px 0px 10px 2px rgba(0,0,0 0.25)',
+
     },
 }));
 

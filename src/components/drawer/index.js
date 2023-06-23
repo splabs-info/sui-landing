@@ -9,10 +9,12 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     zIndex: '9998!important',
     ' .MuiDrawer-paperAnchorRight': {
         color: '#fff',
-        background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
+        // background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
+        backgroundImage: 'url(/images/background/bg-wallet.jpg)',
         backdropFilter: 'blur(10px)',
         width: '420px !important',
         boxShadow: 'none',
+        paddingTop: '32px',
     },
     [theme.breakpoints.down('sm')]: {
         ' .MuiDrawer-paperAnchorRight': {
@@ -25,7 +27,7 @@ export const WalletDrawer = ({ open, handleClose, disconnectSui }) => {
     const { address } = useContext(WalletContext);
     const wallet = useWallet();
 
-    
+
     return (
         <CustomDrawer anchor={'right'} open={open} onClose={() => handleClose(!open)}>
             <Box>
@@ -41,7 +43,7 @@ export const WalletDrawer = ({ open, handleClose, disconnectSui }) => {
                     <Close color="#fff" />
                 </IconButton>
                 {address || wallet?.address ? (
-                    <LoggedComponent address={address || wallet?.address} _onClose={handleClose} disconnectSui={disconnectSui}/>
+                    <LoggedComponent address={address || wallet?.address} _onClose={handleClose} disconnectSui={disconnectSui} />
                 ) : (
                     <ChooseWalletModal />
                 )}

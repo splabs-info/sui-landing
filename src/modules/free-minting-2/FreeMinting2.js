@@ -56,7 +56,7 @@ export default function FreeMinting2() {
   const isMobile = useResponsive('down', 'sm');
   const wallet = useWallet();
   const [loading, setLoading] = React.useState(false);
-  const [total, setTotal] = React.useState(2000);
+  const [total, setTotal] = React.useState(5000);
   const [minted, setMinted] = React.useState(0);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
@@ -215,10 +215,6 @@ export default function FreeMinting2() {
             Discord
           </BorderGradientButton>
         </Link>
-        {/* <BorderGradientButton>
-        <img src="/images/icon/icon-global.png" alt="global" />
-        View on Explore
-      </BorderGradientButton> */}
       </Box>
     </>
   );
@@ -278,27 +274,24 @@ export default function FreeMinting2() {
                 >
                   Claim available: <img src="/images/icon/icon-check.png" alt="check" />
                 </Typography>
-                {owned !== 5 ? (
-                  <GradientLoadingButton
-                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
-                    onClick={handleFreeMinting}
-                    loading={loading}
-                    // disabled={owned === 5}
-                    disabled={true}
+                <GradientLoadingButton
+                  sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
+                  onClick={handleFreeMinting}
+                  loading={loading}
+                  disabled={!hasInTimes || owned > 0 || minted === total}
 
-                  >
-                    Claim now
-                  </GradientLoadingButton >
-                ) : (
-                  <GradientLoadingButton
-                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
-                    loading={loading}
-                    onClick={() => setOpenMyNft(true)}
-                  >
-                    My NFT
-                  </GradientLoadingButton>
-                )
-                }
+                >
+                  {minted === total ? 'Sold out' : 'Claim now'}
+                </GradientLoadingButton >
+
+                {owned > 0 && <GradientLoadingButton
+                  sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px', marginLeft: '16px' }}
+                  loading={loading}
+                  onClick={() => setOpenMyNft(true)}
+                >
+                  My NFT
+                </GradientLoadingButton>}
+
               </Grid >
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
@@ -322,6 +315,10 @@ const nftImage = [
   {
     src: '/images/nfts/yousui-nft-1.png',
     label: 'NFT 1',
+  },
+  {
+    src: '/images/nfts/yousui-nft-10.png',
+    label: 'NFT 10',
   },
   {
     src: '/images/nfts/yousui-nft-7.png',
