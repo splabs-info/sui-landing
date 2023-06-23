@@ -17,8 +17,8 @@ const CustomBox = styled(Box)(({ theme }) => ({
   width: "800px",
   borderRadius: 10,
   padding: theme.spacing(4),
-  overflowY: "auto",
   maxHeight: "80vh",
+  overflowY: "hidden",
   '& .icon-close svg': {
     color: '#fff9'
   },
@@ -85,12 +85,19 @@ export default function CustomModal({
     >
       <Fade in={open}>
         <CustomBox p={p}>
-          {isShowCloseButton && (
-            <CloseButton onClick={_close}>
-              <Close className="icon-close" />
-            </CloseButton>
-          )}
-          {children}
+          <Box sx={{
+            overflowY: "auto",
+            height: 'calc( 80vh - 64px)',
+            position: 'relative',
+            zIndex: 3
+          }}>
+            {isShowCloseButton && (
+              <CloseButton onClick={_close}>
+                <Close className="icon-close" />
+              </CloseButton>
+            )}
+            {children}
+          </Box>
         </CustomBox>
       </Fade>
     </Modal>

@@ -58,6 +58,7 @@ export default function FreeMinting2() {
   const [loading, setLoading] = React.useState(false);
   const [total, setTotal] = React.useState(5000);
   const [minted, setMinted] = React.useState(0);
+  const [hasMinted, setHasMinted] = React.useState(false);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
   const [hasInTimes, setHasInTimes] = React.useState(false);
@@ -85,9 +86,13 @@ export default function FreeMinting2() {
   }, []);
 
   React.useEffect(() => {
+    setHasMinted(localStorage.removeItem('minted'));
+  }, [wallet.address]);
+  React.useEffect(() => {
     if (provider) {
       syncData();
     }
+    setHasMinted(localStorage.getItem('minted'));
   }, [flag]);
 
   React.useEffect(() => {
@@ -130,6 +135,7 @@ export default function FreeMinting2() {
         });
         if (result) {
           toast.success('NFT mint success');
+          localStorage.setItem('minted', true);
         } else {
           toast.error('Transaction rejected');
         }
@@ -268,9 +274,10 @@ export default function FreeMinting2() {
                   sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
-                  // disabled={!hasInTimes || minted === total}
+                  disabled={minted === total || hasMinted}
+                // disabled={!hasInTimes || minted === total || hasMinted}
                 >
-                  {minted === total ? 'Sold out' : 'Claim now'}
+                  {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
 
                 {owned > 0 && (
@@ -478,7 +485,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
