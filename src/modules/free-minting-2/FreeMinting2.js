@@ -58,7 +58,11 @@ function addMintedWallets(wallet) {
   if (storage) {
     list = JSON.parse(storage);
   }
-  list.push(wallet);
+  const find = list.find((c) => c === wallet);
+  if (!find) {
+    list.push(wallet);
+  }
+  localStorage.setItem(itemName, JSON.stringify(list));
 }
 
 function checkMintedWallet(wallet) {
@@ -92,7 +96,6 @@ export default function FreeMinting2() {
       id: addresses.objectFreeMint,
       options: { showContent: true },
     });
-    console.log(result);
     setTotal(result?.data?.content?.fields?.max_mint);
     setMinted(result?.data?.content?.fields?.number);
   };
@@ -108,13 +111,15 @@ export default function FreeMinting2() {
   }, []);
 
   React.useEffect(() => {
-    setHasMinted(localStorage.removeItem('minted'));
+    if (wallet.address) {
+      setHasMinted(checkMintedWallet(wallet.address));
+    }
   }, [wallet.address]);
+
   React.useEffect(() => {
     if (provider) {
       syncData();
     }
-    setHasMinted(localStorage.getItem('minted'));
   }, [flag]);
 
   React.useEffect(() => {
@@ -124,7 +129,6 @@ export default function FreeMinting2() {
           owner: wallet.address,
           filter: { Package: addresses.nftPackageId },
         });
-        console.log(balance);
         if (balance) {
           setOwned(balance.data.length);
           let arrNft = [];
@@ -157,7 +161,8 @@ export default function FreeMinting2() {
         });
         if (result) {
           toast.success('NFT mint success');
-          localStorage.setItem('minted', true);
+          addMintedWallets(wallet.address);
+          setHasMinted(true);
         } else {
           toast.error('Transaction rejected');
         }
@@ -167,7 +172,6 @@ export default function FreeMinting2() {
         }, 5000);
       } catch (error) {
         const errorString = error.toString();
-        console.log(errorString);
         const errorCode = [
           // { key: 1, code: 'ENOT_AUTHORIZED' },
           // {
@@ -179,7 +183,6 @@ export default function FreeMinting2() {
           // { key: 4, code: 'EMAX_MINT_PER_ADDRESS' },
           // { key: 5, code: 'EMAX_MINT' },
         ].find((item) => errorString.includes(`${item.key.toString()})`));
-        console.log(errorCode);
         toast.error(errorCode ? errorCode.code : errorString);
         setLoading(false);
       }
@@ -297,7 +300,7 @@ export default function FreeMinting2() {
                   onClick={handleFreeMinting}
                   loading={loading}
                   disabled={minted === total || hasMinted}
-                // disabled={!hasInTimes || minted === total || hasMinted}
+                  // disabled={!hasInTimes || minted === total || hasMinted}
                 >
                   {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
@@ -507,7 +510,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>

@@ -20,7 +20,7 @@ export const config = {
 
 export const provider = new JsonRpcProvider(config.providerConnection);
 
-console.log('free-minting-config', { config, provider });
+console.log('free-minting-2-config', { config, provider });
 
 export const FreeMintingHelper = {
   config,
