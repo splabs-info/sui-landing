@@ -23,7 +23,7 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
     },
 }));
-export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, ...props }) => {
+export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, minted, total, ...props }) => {
     const navigate = useNavigate();
     const isMobile = useResponsive('down', 'sm');
     return (
@@ -59,12 +59,11 @@ export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, tit
                         }
                         subtitle={
                             <>
-                                <Typography>0%</Typography>
-                                <Typography>0/{hardCap}</Typography>
+                                <Typography>{minted / total * 100}%</Typography>
+                                <Typography>{minted}/{hardCap}</Typography>
                             </>
                         }
-                        percent={0}
-                        //   percent={minted / total ? (minted / total) * 100 : 0}
+                        percent={minted / total ? (minted / total) * 100 : 0}
                         sx={{ margin: isMobile ? '24px 0px' : '0px' }}
                     />
                     <Stack spacing={1.5} direction={isMobile ? 'column' : 'row'}

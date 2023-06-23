@@ -1,25 +1,10 @@
-/* eslint-disable jsx-a11y/alt-text */
-import { Box, Grid, Stack, Typography } from '@mui/material';
-import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
-import { BorderGradientButton } from 'components/common/CustomButton';
-import { GradientShadowTypography, ShadowTypography } from 'components/common/CustomTypography';
-import { ProcessBarBox } from 'components/common/ProcessBarBox';
+import { Box, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
-import useResponsive from 'hooks/useResponsive';
-import { addresses } from 'modules/free-minting/FreeMinting';
-import { SuiContext } from 'provider/SuiProvider';
-import { FreeMintingHelper } from 'modules/free-minting/init';
+import { FreeMintingHelper, provider } from 'modules/free-minting-2/init';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useConnect } from 'wagmi';
-import React from 'react';
-import { INOCard } from './UpComingCard';
 import { OnGoingCard } from './OnGoingCard';
 
-const provider = new JsonRpcProvider(devnetConnection);
 export default function OnGoing({ projects }) {
-  const isMobile = useResponsive('down', 'sm');
-  const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [minted, setMinted] = useState(0);
 
@@ -30,11 +15,13 @@ export default function OnGoing({ projects }) {
           id: FreeMintingHelper.config.addresses.objectFreeMint,
           options: { showContent: true },
         });
-        setTotal(result?.data?.content?.fields?.max_number);
+        console.log(result);
+        setTotal(result?.data?.content?.fields?.max_mint);
         setMinted(result?.data?.content?.fields?.number);
       })();
     }
   }, []);
+  console.log(total, minted);
   return (
     <Box mb={20} mt={10} position="relative">
       <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -46,6 +33,8 @@ export default function OnGoing({ projects }) {
         {projects?.map((item, index) => (
           <OnGoingCard
             {...item}
+            minted={Number(minted)}
+            total={Number(total)}
             key={index}
           />
         ))}

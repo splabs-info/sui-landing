@@ -66,7 +66,9 @@ const inoProjects = [
     releaseTime: "Official Launch: June 24th",
     status: true,
     startTime: '2023-06-24T11:00:00',
-    endTime: '2023-06-24T13:00:00',
+    endTime: '2023-06-26T11:00:00',
+    // chỗ này nha a Tâm 
+    // endTime: '2023-06-24T11:10:00',
   },
 
   {
