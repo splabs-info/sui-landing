@@ -85,17 +85,17 @@ export default function CustomModal({
     >
       <Fade in={open}>
         <CustomBox p={p}>
+          {isShowCloseButton && (
+            <CloseButton onClick={_close}>
+              <Close className="icon-close" />
+            </CloseButton>
+          )}
           <Box sx={{
             overflowY: "auto",
-            height: 'calc( 80vh - 64px)',
+            maxHeight: 'calc( 80vh - 64px)',
             position: 'relative',
             zIndex: 3
           }}>
-            {isShowCloseButton && (
-              <CloseButton onClick={_close}>
-                <Close className="icon-close" />
-              </CloseButton>
-            )}
             {children}
           </Box>
         </CustomBox>
