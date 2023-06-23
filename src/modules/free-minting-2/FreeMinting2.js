@@ -12,7 +12,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { config, provider } from './init';
-
+const itemName = 'minted-wallets';
 export const addresses = config.addresses;
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
@@ -51,6 +51,28 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
     },
   },
 }));
+
+function addMintedWallets(wallet) {
+  const storage = localStorage.getItem(itemName);
+  let list = [];
+  if (storage) {
+    list = JSON.parse(storage);
+  }
+  list.push(wallet);
+}
+
+function checkMintedWallet(wallet) {
+  let result = false;
+  const storage = localStorage.getItem(itemName);
+  if (storage) {
+    const list = JSON.parse(storage);
+    const find = list.find((c) => c === wallet);
+    if (find) {
+      result = true;
+    }
+  }
+  return result;
+}
 
 export default function FreeMinting2() {
   const isMobile = useResponsive('down', 'sm');
