@@ -43,7 +43,7 @@ export const RoundChart = ({ round }) => {
                             <img src='/images/icon/icon-data.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Total Sale Amount</Typography>
-                                <Typography variant='body2'>{fCurrency(1011)} SUI</Typography>
+                                <Typography variant='body2'>{fCurrency(1011)} SUA</Typography>
                             </Stack>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

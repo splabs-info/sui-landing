@@ -38,7 +38,7 @@ const fields = [
     {
         key: 'totalSupply',
         label: 'Total Supply',
-        format: (e) => `${fCurrency(1000, 0)}`,
+        format: (e) => `${fCurrency(1011, 0)}`,
     },
     {
         key: 'standard',
