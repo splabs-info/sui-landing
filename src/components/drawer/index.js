@@ -9,7 +9,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     zIndex: '9998!important',
     ' .MuiDrawer-paperAnchorRight': {
         color: '#fff',
-        // background: 'linear-gradient(to bottom, rgba(13, 112, 216, 0.05) 0%, rgba(7, 128, 120, 0.3) 100%)',
+        backgroundColor: 'rgba(7, 128, 120, 0.3)',
         backgroundImage: 'url(/images/background/bg-wallet.jpg)',
         backdropFilter: 'blur(10px)',
         width: '420px !important',
