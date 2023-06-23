@@ -29,13 +29,14 @@ export const ChooseWalletModal = () => {
     } = useWallet();
 
     useEffect(() => {
+
         if (typeof window.coin98 !== 'undefined') {
             setInstalledCoin98(true);
         }
         if (typeof window.bitkeep !== 'undefined') {
             setIsInstalledBitKeep(true);
         }
-        if (typeof window.okx !== 'undefined') {
+        if (typeof window?.okexchain?.isOkxWallet !== 'undefined') {
             setIsInstallOkx(true);
         }
     }, []);
