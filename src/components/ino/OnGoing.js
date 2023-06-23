@@ -29,7 +29,7 @@ export default function OnGoing({ projects }) {
         <Typography>On-going</Typography>
         <TypographyGradient>INOs</TypographyGradient>
       </TitleBox>
-      <Stack sx={{ gap: 2, m: 3, width: 'max-content' }}>
+      <Stack sx={{ gap: 2, m: 3, alignItems: 'center' }}>
         {projects?.map((item, index) => (
           <OnGoingCard
             {...item}

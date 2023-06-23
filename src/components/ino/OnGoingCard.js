@@ -15,12 +15,13 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
     borderRadius: '20px',
     background: 'linear-gradient(98.21deg, rgba(104, 230, 184, 0.1) -9.15%, rgba(109, 133, 218, 0.1) 102.32%)',
     border: '1px solid rgba(255, 255, 255, 0.2)',
-    padding: '12px 24px',
+    padding: '12px 80px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: '24px',
+    gap: '32px',
     [theme.breakpoints.down('sm')]: {
+        padding: '12px 24px',
     },
 }));
 export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, title, status, link, minted, total, ...props }) => {
@@ -33,11 +34,11 @@ export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, tit
                 boxShadow: 'inset 0px 0px 30px rgba(255, 255, 255, 0.15)',
                 backdropFilter: 'blur(25px)',
                 borderRadius: isMobile ? '10px' : '15px',
-                padding: '32px',
-                mt: isMobile ? 5 : 7,
+                padding: isMobile ? '32px' : '48px 80px 48px 64px',
+                mt: isMobile ? 3 : 7,
             }}
         >
-            <Grid container alignItems={'center'} spacing={4}>
+            <Grid container alignItems={'center'} spacing={isMobile ? 4 : 12}>
                 <Grid
                     item
                     md={5}
@@ -71,9 +72,6 @@ export const OnGoingCard = ({ avatar, releaseTime, endTime, hardCap, access, tit
                         sx={{ marginTop: isMobile ? '24px' : '24px' }}
                     >
                         <ReleaseBox>
-                            <Typography >
-                                Start at:
-                            </Typography>
                             <Typography fontWeight={700}>
                                 {releaseTime}
                             </Typography>
