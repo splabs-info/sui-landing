@@ -275,26 +275,24 @@ export default function FreeMinting() {
                 >
                   Claim available: <img src="/images/icon/icon-check.png" alt="check" />
                 </Typography>
-                {owned !== 5 ? (
-                  <GradientLoadingButton
-                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
-                    onClick={handleFreeMinting}
-                    loading={loading}
-                    // disabled={owned === 5}
-                    disabled
-                  >
-                    Sold Out
-                  </GradientLoadingButton >
-                ) : (
-                  <GradientLoadingButton
-                    sx={{ minWidth: isMobile ? '150px' : '200px', marginTop: '32px' }}
-                    loading={loading}
-                    onClick={() => setOpenMyNft(true)}
-                  >
-                    My NFT
-                  </GradientLoadingButton>
-                )
-                }
+                <GradientLoadingButton
+                  sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
+                  onClick={handleFreeMinting}
+                  loading={loading}
+                  disabled={!hasInTimes || minted === total}
+
+                >
+                  {minted === total ? 'Sold out' : 'Claim now'}
+                </GradientLoadingButton >
+
+                {owned > 0 && <GradientLoadingButton
+                  sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px', marginLeft: '16px' }}
+                  loading={loading}
+                  onClick={() => setOpenMyNft(true)}
+                >
+                  My NFT
+                </GradientLoadingButton>}
+
               </Grid >
               <Grid item md={6} xs={12}>
                 <Hidden smDown>

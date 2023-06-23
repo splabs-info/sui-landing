@@ -6,20 +6,14 @@ import { WalletButton } from './wallet-button';
 
 const InstallButton = styled(Button)(({ theme }) => ({
     display: 'flex',
-    width: 80,
-    height: 32,
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
+    padding: '6px 20px',
     color: '#fff !important',
     borderRadius: 50,
-    textTransform: 'uppercase!important',
     background: 'linear-gradient(178.73deg, rgba(104, 229, 184, 1) 0%, rgba(109, 133, 218, 1) 100%)',
+    boxShadow: '0px 0px 8px 0px #4191C9',
     position: 'absolute',
     right: theme.spacing(2),
-    minWidth: 'unset!important',
-    fontWeight: 'bold',
+    fontWeight: 'bold!important',
 }));
 
 export const ChooseWalletModal = () => {
@@ -35,13 +29,14 @@ export const ChooseWalletModal = () => {
     } = useWallet();
 
     useEffect(() => {
+
         if (typeof window.coin98 !== 'undefined') {
             setInstalledCoin98(true);
         }
         if (typeof window.bitkeep !== 'undefined') {
             setIsInstalledBitKeep(true);
         }
-        if (typeof window.okx !== 'undefined') {
+        if (typeof window?.okexchain?.isOkxWallet !== 'undefined') {
             setIsInstallOkx(true);
         }
     }, []);
@@ -70,7 +65,7 @@ export const ChooseWalletModal = () => {
 
 
     return (
-        <Box pl={3} pr={3} mt={2} mb={2} textAlign="center">
+        <Box pl={3} pr={3} mb={2} textAlign="center">
             <Typography>No logged in</Typography>
             {/* <AccountCircleIcon sx={{ width: 70, height: 70 }} /> */}
             <Box
@@ -84,10 +79,14 @@ export const ChooseWalletModal = () => {
             >
                 <img src="/images/icon/wallet-icon.svg" style={{ width: 72, height: 72, textAlign: 'center' }} alt="" />
             </Box>
-            <Typography fontWeight={900} mb={2}>
+            <Typography fontWeight={700} mb={2}>
                 My Wallet
             </Typography>
-            <Divider sx={{ borderBottomWidth: 1 }} />
+            <Box sx={{
+                background: 'linear-gradient(170deg, #68E5B8 0%, #6D85DA 100%)',
+                height: '1px',
+                my: 3
+            }} />
             <Typography mt={2} pl={3} pr={3} variant="body2">
                 Connect with your available or create new wallet to join our marketplace
                 {/* {library.MY_WALLET_NOTE_1} */}
@@ -106,8 +105,8 @@ export const ChooseWalletModal = () => {
                         </Typography>
                         {!wallet.installed && (
                             <InstallButton component={Link} href={wallet.downloadUrl.browserExtension} target="_blank">
-                                <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                                    INSTALL
+                                <Typography variant="body2">
+                                    Install
                                 </Typography>
                             </InstallButton>
                         )}
@@ -123,8 +122,8 @@ export const ChooseWalletModal = () => {
                             BitKeep Wallet
                         </Typography>
                         <InstallButton component={Link} href="https://bitkeep.com/download?type=2&theme=light" target="_blank">
-                            <Typography variant="caption">{library.INSTALL}</Typography>
-                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
+
+                            <Typography variant="body2">
                                 Install
                             </Typography>
                         </InstallButton>
@@ -145,8 +144,8 @@ export const ChooseWalletModal = () => {
                             href="https://chrome.google.com/webstore/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg/related?hl=en-US"
                             target="_blank"
                         >
-                            <Typography variant="caption">{library.INSTALL}</Typography>
-                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
+
+                            <Typography variant="body2">
                                 Install
                             </Typography>
                         </InstallButton>
@@ -167,8 +166,8 @@ export const ChooseWalletModal = () => {
                             href="https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge"
                             target="_blank"
                         >
-                            <Typography variant="caption">{library.INSTALL}</Typography>
-                            <Typography variant="caption" sx={{ fontWeight: 'bold', textTransform: 'capitalize', fontSize: 14 }}>
+
+                            <Typography variant="body2">
                                 Install
                             </Typography>
                         </InstallButton>
