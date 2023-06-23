@@ -194,8 +194,7 @@ export default function FreeMinting2() {
         <NFTSlider />
       </Box>
       <ProcessBarBox
-        percent={0}
-        // percent={minted ? (minted / total) * 100 : 0}
+        percent={minted ? (minted / total) * 100 : 0}
         subtitle={
           <>
             <Typography variant="body1" color={'white'}>

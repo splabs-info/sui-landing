@@ -2,14 +2,14 @@ import { JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/s
 
 export const config = {
   addresses: {
-    package: process.env.REACT_APP_FREE_MINTING_PACKAGE
+    package: process.env.REACT_APP_FREE_MINTING_2_PACKAGE
       ? process.env.REACT_APP_FREE_MINTING_2_PACKAGE
       : `0xefa4719dc641121fec0b5107a4585c1d23bea339c843c2da62a58fc7ea90bd76`,
     objectFreeMint: process.env.REACT_APP_FREE_MINTING_2_OBJECT
-      ? process.env.REACT_APP_FREE_MINTING_OBJECT
+      ? process.env.REACT_APP_FREE_MINTING_2_OBJECT
       : `0xed89e1ba866666ed97c42505a705df182fbb9b4107cb6f19de3625ec3dfaa92c`,
-    objectInformation: process.env.REACT_APP_FREE_MINTING_NFT_2_INFO
-      ? process.env.REACT_APP_FREE_MINTING_NFT_2_INFO
+    objectInformation: process.env.REACT_APP_FREE_MINTING_2_NFT_INFO
+      ? process.env.REACT_APP_FREE_MINTING_2_NFT_INFO
       : `0xa247ba5fc5b4346ecf72c5a1de92cae40071149811f08142820280a1cd323fb0`,
     nftPackageId: process.env.REACT_APP_FREE_MINTING_PACKAGE
       ? process.env.REACT_APP_FREE_MINTING_PACKAGE
