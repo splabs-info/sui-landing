@@ -43,7 +43,7 @@ const upComingIDOList = [
         <p>Access</p>
         <p>OG & PL</p>
       </>,
-    ]
+    ],
   },
   {
     title: 'HooD',
@@ -65,9 +65,9 @@ const upComingIDOList = [
         <p>Access</p>
         <p>Tier 1~5 </p>
       </>,
-    ]
+    ],
   },
-]
+];
 
 export default function UpComingPools() {
   return (
@@ -77,11 +77,9 @@ export default function UpComingPools() {
         <Typography>Upcoming</Typography>
         <TypographyGradient>Pools</TypographyGradient>
       </TitleBox>
-      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, mt: 3, }}>
+      <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, mt: 3 }}>
         {upComingIDOList?.map((item, index) => (
-          <UpComingIDOCard
-            {...item}
-          />
+          <UpComingIDOCard {...item} key={index} />
         ))}
       </Stack>
     </Box>

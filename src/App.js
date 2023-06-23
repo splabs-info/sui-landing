@@ -29,7 +29,7 @@ const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
   React.useEffect(() => {
-    console.log('Version: 0.0.4 - Free-minting');
+    console.log('Version: 0.0.5 - Free-minting-2');
     localStorage.removeItem('lang');
   }, []);
 
