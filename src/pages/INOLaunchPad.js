@@ -44,7 +44,6 @@ const Caption = styled(Typography)(({ theme }) => ({
   },
 }));
 
-
 const inoProjects = [
   {
     title: 'Free Minting',
@@ -52,7 +51,7 @@ const inoProjects = [
     avatar: '/images/ino/free-minting-1.jpg',
     access: 'WL',
     hardCap: '2000',
-    releaseTime: "Official Launch: June 10th",
+    releaseTime: 'Official Launch: June 10th',
     status: false,
     startTime: '2023-06-10T11:00:00',
     endTime: '2023-06-10T12:00:00',
@@ -63,12 +62,12 @@ const inoProjects = [
     avatar: '/images/ino/free-minting-2.jpg',
     access: 'No',
     hardCap: '5000',
-    releaseTime: "Official Launch: June 24th",
+    releaseTime: 'Official Launch: June 24th',
     status: true,
     startTime: '2023-06-24T11:00:00',
-    endTime: '2023-06-26T11:00:00',
-    // chỗ này nha a Tâm 
-    // endTime: '2023-06-24T11:10:00',
+    // endTime: '2023-06-26T11:00:00',
+    // chỗ này nha a Tâm
+    endTime: '2023-06-24T11:10:00',
   },
 
   {
@@ -82,7 +81,7 @@ const inoProjects = [
     startTime: '2023-08-30T11:00:00',
     endTime: '2023-08-30T12:00:00',
   },
-]
+];
 
 const INOLaunchPad = () => {
   const isDesktop = useResponsive('up', 'md');
@@ -95,20 +94,15 @@ const INOLaunchPad = () => {
     setUpComingProjects([]);
     setPreviousProjects([]);
     forEach(inoProjects, (project) => {
-      // console.log(project.title, moment().isBefore(project.startTime));
       if (moment().isAfter(project.endTime)) {
         setPreviousProjects((prev) => [...prev, project]);
-      } else
-        if (moment().isBefore(project.startTime)) {
-          setUpComingProjects((prev) => [...prev, project]);
-        }
-        else {
-          setOnGoingProjects((prev) => [...prev, project]);
-        }
-    })
-  }, [])
-
-  // console.log(upComingProjects, onGoingProjects, previousProjects);
+      } else if (moment().isBefore(project.startTime)) {
+        setUpComingProjects((prev) => [...prev, project]);
+      } else {
+        setOnGoingProjects((prev) => [...prev, project]);
+      }
+    });
+  }, []);
 
   return (
     <Page title="INO">

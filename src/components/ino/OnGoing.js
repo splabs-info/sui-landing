@@ -15,13 +15,12 @@ export default function OnGoing({ projects }) {
           id: FreeMintingHelper.config.addresses.objectFreeMint,
           options: { showContent: true },
         });
-        console.log(result);
         setTotal(result?.data?.content?.fields?.max_mint);
         setMinted(result?.data?.content?.fields?.number);
       })();
     }
   }, []);
-  console.log(total, minted);
+
   return (
     <Box mb={20} mt={10} position="relative">
       <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -31,12 +30,7 @@ export default function OnGoing({ projects }) {
       </TitleBox>
       <Stack sx={{ gap: 2, m: 3, alignItems: 'center' }}>
         {projects?.map((item, index) => (
-          <OnGoingCard
-            {...item}
-            minted={Number(minted)}
-            total={Number(total)}
-            key={index}
-          />
+          <OnGoingCard {...item} minted={Number(minted)} total={Number(total)} key={index} />
         ))}
       </Stack>
       {/* <Box
