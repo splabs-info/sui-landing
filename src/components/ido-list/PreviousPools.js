@@ -112,13 +112,13 @@ export default function PreviousPools() {
                                 title={
                                     <Stack direction="row" justifyContent="space-between" mb={1.5}>
                                         <Typography variant="body1">Progress</Typography>
-                                        <Typography variant="body1">Max Participants: 1000</Typography>
+                                        <Typography variant="body1">Max Participants: 1011</Typography>
                                     </Stack>
                                 }
                             />
                             <Stack direction="row" justifyContent="space-between" mt={1.5}>
                                 <Typography variant="body1">100%</Typography>
-                                <Typography variant="body1">1000/1000 SUA</Typography>
+                                <Typography variant="body1">1011/1011 SUA</Typography>
                             </Stack>
                         </Box>
                     </Grid>

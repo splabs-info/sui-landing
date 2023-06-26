@@ -1,11 +1,18 @@
-import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection } from '@mysten/sui.js';
+import { Coin, Ed25519Keypair, JsonRpcProvider, RawSigner, testnetConnection, mainnetConnection, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { TXUI_PROJECT_STORAGE } from 'constant/sui-chain';
 import { ethers } from 'ethers';
 import { uniq } from 'lodash';
 import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-const provider = new JsonRpcProvider(testnetConnection);
+const config = {
+    providerConnection:
+        process.env.REACT_APP_ENV === 'production'
+            ? new Connection({ fullnode: `https://explorer-rpc.mainnet.sui.io/` })
+            : new Connection({ fullnode: `https://explorer-rpc.mainnet.sui.io/` }),
+};
+
+const provider = new JsonRpcProvider(config?.providerConnection);
 export const SuiContext = createContext({});
 
 export const SUIWalletContext = ({ children }) => {
@@ -76,19 +83,20 @@ export const SUIWalletContext = ({ children }) => {
         const fetchData = async () => {
             try {
                 const objects = await provider.getOwnedObjects({
-                    owner: wallet.address,
+                    owner: wallet?.address,
                     options: { showContent: true },
                 });
 
                 const allCoinObjectsId = objects.data.filter((obj) => Coin.isSUI(obj));
 
+
                 const [suiBalance, allBalances] = await Promise.all([
                     provider.getBalance({
-                        owner: wallet.address,
+                        owner: wallet?.address,
                         options: { showContent: true },
                     }),
                     provider.getAllBalances({
-                        owner: wallet.address,
+                        owner: wallet?.address,
                     }),
                 ]);
 

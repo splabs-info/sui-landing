@@ -56,6 +56,7 @@ export const SubscribeSwitch = styled((props) => (
     width: 42,
     height: 26,
     padding: 0,
+    zIndex: 999,
     '& .MuiSwitch-switchBase': {
         padding: 0,
         margin: 2,

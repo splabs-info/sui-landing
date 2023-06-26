@@ -29,7 +29,7 @@ const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
   React.useEffect(() => {
-    console.log('Version: 0.0.4 - Free-minting');
+    console.log('Version: 0.0.5 - Free-minting-2');
     localStorage.removeItem('lang');
   }, []);
 
@@ -51,15 +51,16 @@ export default function App() {
         </SUIWalletContext>
       </SUIWalletProvider>
       <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme="dark"
       />
     </ThemeProvider>
   );

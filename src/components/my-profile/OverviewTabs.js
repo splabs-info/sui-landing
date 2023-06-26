@@ -121,8 +121,8 @@ export default function OverviewTabs() {
             variant={isDesktop ? 'fullWidth' : 'scrollable'}
             scrollButtons="auto"
           >
-            <Tab label="OVERVIEW" {...a11yProps(0)} />
-            <Tab label="MY STAKING" {...a11yProps(1)} />
+            <Tab label="OVERVIEW" {...a11yProps("0")} />
+            <Tab label="MY STAKING" {...a11yProps("1")} />
           </CustomTabList>
         </Box>
         <TabPanel value={value} index={0}>
@@ -133,8 +133,8 @@ export default function OverviewTabs() {
             sx={{ marginBottom: 4, flexWrap: 'wrap' }}
           >
             <AssetCard balance={'0'} currency="USDT" />
-            <AssetCard balance={'0'} currency="XUI" />
-            <AssetCard balance={sui ? Number(sui).toFixed(5) : 0} currency="SUI" />
+            <AssetCard balance={'0'} currency="USDC" />
+            <AssetCard balance={sui ? Number(sui).toFixed(2) : 0} currency="SUI" />
           </Stack>
 
           <TitleSection title="TIER INFORMATION" />

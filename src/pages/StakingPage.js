@@ -152,8 +152,8 @@ export default function StakingPage() {
                                         </Link>
                                         <Box my={2}>
                                             <Grid container spacing={2}>
-                                                {statisticFields.map((field) => (
-                                                    <Grid item xs={4}>
+                                                {statisticFields.map((field, index) => (
+                                                    <Grid item xs={4} key={index}>
                                                         <BoxGradientOpacity>
                                                             <Typography>{field.label}</Typography>
                                                             <Typography

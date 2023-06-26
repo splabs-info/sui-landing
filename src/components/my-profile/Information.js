@@ -26,7 +26,7 @@ const WrapperAreaInformation = styled(Box)(({ theme }) => ({
     padding: '32px',
 
     minHeight: 'max-content',
-  }
+  },
 }));
 
 const InfoWrapper = styled(Box)(({ theme }) => ({
@@ -114,9 +114,8 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
             variant="contained"
             startIcon={<IconBell />}
             onClick={() => {
-              if (DATA_DEFAULT?.email)
-                setShowNotification(true)
-              else toast.warning('Updated profile, please!')
+              if (DATA_DEFAULT?.email) setShowNotification(true);
+              else toast.warning('Updated profile, please!');
             }}
             disabled={!DATA_DEFAULT}
           >

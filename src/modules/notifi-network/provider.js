@@ -50,8 +50,8 @@ export function useAction() {
       return errorMsg;
     } catch (error) {
       return error.toString();
-    };
-  }
+    }
+  };
   async function init(wallAddress) {
     const client = newFrontendClient({
       account: {
@@ -73,8 +73,9 @@ export function useAction() {
   }
 
   const syncData = async () => {
-    console.log(state);
     const clientData = await state.client.fetchData();
+
+    console.log(clientData);
 
     const targetGroup = new Map();
 
@@ -166,7 +167,7 @@ export function useAction() {
         }
       }
       if (!newEmail.emailTargets[0].isConfirmed) {
-        await this.client.sendEmailTargetVerification({ targetId: newEmail.emailTargets[0].id });
+        await state.client.sendEmailTargetVerification({ targetId: newEmail.emailTargets[0].id });
         toast.warning('Please go to email for verify.');
       } else {
         toast.success('Success');
@@ -174,15 +175,11 @@ export function useAction() {
     } catch (error) {
       toast.error(handleError(error));
     }
-
   };
 
   const getNotifications = async (first = 0, after = 1) => {
     try {
-      const { nodes, pageInfo } = await state.client.getNotificationHistory({
-        first,
-        after,
-      });
+      const { nodes, pageInfo } = await state.client.getNotificationHistory();
 
       nodes.forEach((item) => {
         if (item.detail?.__typename === 'BroadcastMessageEventDetails') {

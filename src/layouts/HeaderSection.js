@@ -148,7 +148,6 @@ export default function HeaderSection() {
     } else {
       setScrollPositionToggle(false);
     }
-
   };
 
   useEffect(() => {
@@ -184,7 +183,7 @@ export default function HeaderSection() {
       {config.map((item, index) => (
         <Box
           id={item.id}
-          key={item.id}
+          key={index}
           className={`${item.link === activeRoute ? 'active' : ''}`}
           sx={{
             display: 'flex',
@@ -291,7 +290,7 @@ export default function HeaderSection() {
   const NotifiBox = () => (
     <></>
     // <NotifiHistory />
-  )
+  );
 
   return (
     <>
@@ -371,7 +370,6 @@ export default function HeaderSection() {
                   </IconButton>
                 )}
                 <NotifiBox />
-
               </Hidden>
 
               <Hidden lgUp>
@@ -495,7 +493,6 @@ export default function HeaderSection() {
         handleClose={setOpenWalletDrawer}
         disconnectSui={setWallet}
       />
-
     </>
   );
 }

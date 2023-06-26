@@ -13,6 +13,26 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.Toastify__toast {
+  background-image: url(/public/images/background/bg-toast.jpg);
+  position: relative;
+  border-radius: 16px;
+}
+
+.Toastify__toast::before {
+  content: '';
+  position: absolute;
+  inset: 0px;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(150deg, #41F1D3 0%, #5974BB 80%);
+  -webkit-mask:
+    linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}
+
+
 body,
 #root {
   overflow-x: clip;
