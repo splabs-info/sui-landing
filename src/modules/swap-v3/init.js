@@ -1,5 +1,5 @@
 import SDK, { TickMath } from '@cetusprotocol/cetus-sui-clmm-sdk';
-import { JsonRpcProvider, mainnetConnection } from '@mysten/sui.js';
+import { JsonRpcProvider, mainnetConnection, Connection } from '@mysten/sui.js';
 import { formatUnits } from 'ethers/lib/utils.js';
 import { mainnet } from './mainnet.config';
 const BN = require('bn.js');
@@ -10,7 +10,10 @@ const config = {
     ? process.env.REACT_APP_CETUS_SWAP_PARTNER
     : '0x2792048da4b0b174ebcd269be9bda69342edc0fc103422545880c61dc69fac21',
   sdkEnv: process.env.REACT_APP_ENV === 'production' ? mainnet : mainnet,
-  providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : mainnetConnection,
+  providerConnection:
+    process.env.REACT_APP_ENV === 'production'
+      ? new Connection({ fullnode: `https://explorer-rpc.mainnet.sui.io/` })
+      : new Connection({ fullnode: `https://explorer-rpc.mainnet.sui.io/` }),
 };
 
 export const sdk = new SDK(config.sdkEnv);
