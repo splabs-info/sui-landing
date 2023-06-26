@@ -51,15 +51,16 @@ export default function App() {
         </SUIWalletContext>
       </SUIWalletProvider>
       <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme="dark"
       />
     </ThemeProvider>
   );
