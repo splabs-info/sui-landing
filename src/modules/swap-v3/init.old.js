@@ -1,6 +1,5 @@
 import SDK, { TickMath } from '@cetusprotocol/cetus-sui-clmm-sdk';
-import { Connection, JsonRpcProvider } from '@mysten/sui.js';
-import axios from 'axios';
+import { JsonRpcProvider, mainnetConnection, Connection } from '@mysten/sui.js';
 import { formatUnits } from 'ethers/lib/utils.js';
 import { mainnet } from './mainnet.config';
 const BN = require('bn.js');
@@ -30,33 +29,27 @@ export const getPool = async (coinTypeA, coinTypeB) => {
   return pool;
 };
 
+export function getToken(coinType) {
+  return tokenMap.get(coinType);
+}
+
 export const cetusLoad = async () => {
   try {
-    const result = await axios.get(`https://api-sui.cetus.zone/v2/sui/pools_info`);
-    const { lp_list } = result.data.data;
+    const pools = await sdk.Pool.getPools([], 0, 500);
 
-    tokenMap.set(`0x2::sui::SUI`, {
-      symbol: 'SUI-x',
-      decimals: 9,
-    });
+    const tokens = await sdk.Token.getAllRegisteredTokenList();
 
-    for (const iterator of lp_list) {
-      if (iterator.symbol === 'USDT-SUI') console.log(iterator);
-      if (iterator.object.is_pause || iterator.object.liquidity === '0') {
+    for (let i = 0; i < tokens.length; i += 1) {
+      tokenMap.set(tokens[i].address, tokens[i]);
+    }
+
+    for (let i = 0; i < pools.length; i += 1) {
+      if (pools[i].is_pause || pools[i].liquidity === '0') {
         continue;
       }
-      let coin_a = iterator.coin_a_address;
-      let coin_b = iterator.coin_b_address;
-      if (coin_a === `0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI`) {
-        coin_a = `0x2::sui::SUI`;
-        iterator.coin_a.address = coin_a;
-      }
-      if (coin_b === `0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI`) {
-        coin_b = `0x2::sui::SUI`;
-        iterator.coin_b.address = coin_b;
-      }
-      tokenMap.set(coin_a, iterator.coin_a);
-      tokenMap.set(coin_b, iterator.coin_b);
+
+      let coin_a = pools[i].coinTypeA;
+      let coin_b = pools[i].coinTypeB;
 
       coinMap.set(coin_a, {
         address: coin_a,
@@ -66,66 +59,19 @@ export const cetusLoad = async () => {
         address: coin_b,
         decimals: 9,
       });
+
       const pair = `${coin_a}-${coin_b}`;
       const pathProvider = poolMap.get(pair);
       if (pathProvider) {
-        pathProvider.addressMap.set(iterator.object.fee_rate, iterator.address);
+        pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
       } else {
         poolMap.set(pair, {
           base: coin_a,
           quote: coin_b,
-          addressMap: new Map([[iterator.object.fee_rate, iterator.address]]),
+          addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
         });
       }
     }
-
-    // console.time('appLifeTime');
-
-    // const pools = await sdk.Pool.getPools([], 0, 500);
-
-    // console.timeEnd('appLifeTime');
-
-    // console.time('appLifeTime');
-
-    // const tokens = await sdk.Token.getAllRegisteredTokenList();
-
-    // console.log(tokens);
-
-    // console.timeEnd('appLifeTime');
-
-    // for (let i = 0; i < tokens.length; i += 1) {
-    //   tokenMap.set(tokens[i].address, tokens[i]);
-    // }
-
-    // for (let i = 0; i < pools.length; i += 1) {
-    //   if (pools[i].is_pause || pools[i].liquidity === '0') {
-    //     continue;
-    //   }
-
-    //   let coin_a = pools[i].coinTypeA;
-    //   let coin_b = pools[i].coinTypeB;
-
-    //   coinMap.set(coin_a, {
-    //     address: coin_a,
-    //     decimals: 9,
-    //   });
-    //   coinMap.set(coin_b, {
-    //     address: coin_b,
-    //     decimals: 9,
-    //   });
-
-    //   const pair = `${coin_a}-${coin_b}`;
-    //   const pathProvider = poolMap.get(pair);
-    //   if (pathProvider) {
-    //     pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
-    //   } else {
-    //     poolMap.set(pair, {
-    //       base: coin_a,
-    //       quote: coin_b,
-    //       addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
-    //     });
-    //   }
-    // }
 
     const coins = {
       coins: Array.from(coinMap.values()),
@@ -134,8 +80,7 @@ export const cetusLoad = async () => {
       paths: Array.from(poolMap.values()),
     };
 
-    await sdk.Router.loadGraph(coins, paths);
-
+    sdk.Router.loadGraph(coins, paths);
     return;
   } catch (error) {
     return;
@@ -152,21 +97,11 @@ export async function getBalance(address, coin) {
   }
 }
 
-export function getToken(coinType) {
-  try {
-    return tokenMap.get(coinType);
-  } catch (error) {
-    console.log(coinType);
-    console.log(error);
-  }
-}
-
 export function getDecimals(coinType) {
   try {
     return tokenMap.get(coinType).decimals;
   } catch (error) {
-    console.log(error);
-    return 9;
+    // console.log(error);
   }
 }
 
@@ -187,8 +122,8 @@ export async function getPreSwapData(swapRouter, slippage, byAmountIn) {
     let fee;
     let currentPrice = TickMath.sqrtPriceX64ToPrice(
       swapRouter.current_sqrt_price,
-      getDecimals(swapRouter.coinTypeA),
-      getDecimals(swapRouter.coinTypeB)
+      tokenMap.get(swapRouter.coinTypeA).decimals,
+      tokenMap.get(swapRouter.coinTypeB).decimals
     ).toString();
     let impact;
 
@@ -254,6 +189,5 @@ export const SwapHelper = {
     getPreSwapData,
     tokenMap,
     getDecimals,
-    getToken,
   },
 };

@@ -20,14 +20,14 @@ import Page from 'components/common/Page';
 import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
-import { SwapSettings } from 'modules/swap-v3/components/SwapSettingsPopup';
 import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap-v3/components/SwapStyles';
+import { SwapSettings } from 'modules/swap-v3/components/SwapSettingsPopup';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
-import { SwapHelper, cetusLoad, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
 import Statistic from './components/Statistic';
+import { SwapHelper, cetusLoad, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
 
 const PYTHNET_CLUSTER_NAME = 'pythnet';
 const connection = new Connection(getPythClusterApiUrl(PYTHNET_CLUSTER_NAME));
@@ -52,12 +52,12 @@ export default function SwapV3Page() {
   const [flag, setFlag] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [byAmountIn, setByAmountInt] = React.useState(true);
-  const [estimating, setEstimating] = React.useState(true);
+  const [estimating, setEstimating] = React.useState(false);
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
   const [bestRoute, setBestRoute] = React.useState(null);
-  // const [tokenListObj, setTokenListObj] = React.useState({});
+  const [tokenListObj, setTokenListObj] = React.useState({});
   const [preSwapData, setPreSwapData] = React.useState(null);
   const [baseBalance, setBaseBalance] = React.useState(0);
   const [quoteBalance, setQuoteBalance] = React.useState(0);
@@ -91,7 +91,6 @@ export default function SwapV3Page() {
   React.useEffect(() => {
     (async () => {
       await cetusLoad();
-      console.log('odnoiwqdjoi');
       setLoadingPage(false);
     })();
   }, []);
@@ -102,6 +101,8 @@ export default function SwapV3Page() {
     setPreSwapData(null);
     setBestRoute(null);
     setReceiveAmount('0');
+    setBaseBalance(0);
+    setQuoteBalance(0);
   }, [from, to]);
 
   React.useEffect(() => {
@@ -129,23 +130,20 @@ export default function SwapV3Page() {
   }, [to, wallet.address, flag]);
 
   React.useEffect(() => {
-    if (!loadingPage) {
-      const tokenList = [];
-      console.log(SwapHelper.CetusHelper.tokenMap);
-      SwapHelper.CetusHelper.tokenMap.forEach((value, key) => {
-        if (supportTokens.includes(value.symbol) && value.logo_url && !value.name.includes('Celer'))
-          tokenList.push(value);
-      });
-      // const tokenList = await sdk.Token.getAllRegisteredTokenList();
-      // const tokenListObj = {};
-      // for (const iterator of tokenList) {
-      //   tokenListObj[iterator.address] = iterator;
-      // }
-      // setTokenListObj(tokenListObj);
-      console.log(tokenList);
-      setTokenList(tokenList);
-    }
-  }, [loadingPage]);
+    (async () => {
+      try {
+        const tokenList = await sdk.Token.getAllRegisteredTokenList();
+        const tokenListObj = {};
+        for (const iterator of tokenList) {
+          tokenListObj[iterator.address] = iterator;
+        }
+        setTokenListObj(tokenListObj);
+        setTokenList(tokenList);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const handleSwap = async (e) => {
     e.preventDefault();
@@ -207,10 +205,9 @@ export default function SwapV3Page() {
   };
 
   React.useEffect(() => {
-    if (!loadingPage) {
-      handleReload();
-    }
-  }, [sendToken, receiveToken, sendAmount, loadingPage]);
+    handleReload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sendToken, receiveToken, sendAmount]);
 
   const handleSwitch = () => {
     navigate(`?from=${receiveToken}&to=${sendToken}`);
@@ -225,7 +222,7 @@ export default function SwapV3Page() {
         const swapPool = currentPool ? await sdk.Pool.getPool([...currentPool.addressMap][0][1]) : null;
 
         setEstimating(true);
-        const amount = Number(sendAmount).toFixed(SwapHelper.CetusHelper.getDecimals(sendToken)).replace('.', '');
+        const amount = Number(sendAmount).toFixed(tokenListObj[sendToken].decimals).replace('.', '');
         const coinAmount = new SwapHelper.BN(parseFloat(amount));
 
         let swapRouter = await (async () => {
@@ -254,8 +251,8 @@ export default function SwapV3Page() {
               current_sqrt_price: swapRouter.current_sqrt_price,
               coinTypeA: swapPool.coinTypeA,
               coinTypeB: swapPool.coinTypeB,
-              decimalsA: SwapHelper.CetusHelper.getDecimals(swapPool.coinTypeA),
-              decimalsB: SwapHelper.CetusHelper.getDecimals(swapPool.coinTypeB),
+              decimalsA: getToken(swapPool.coinTypeA).decimals,
+              decimalsB: getToken(swapPool.coinTypeB).decimals,
               a2b: swapPool.coinTypeA === sendToken ? true : false,
               by_amount_in: true,
               amount: coinAmount.toString(),
@@ -266,17 +263,13 @@ export default function SwapV3Page() {
           }
 
           setA2B(swapRouter.coinTypeA === sendToken ? true : false);
-          setReceiveAmount(
-            formatUnits(swapRouter.amountOut.toString(), SwapHelper.CetusHelper.getDecimals(receiveToken))
-          );
+          setReceiveAmount(formatUnits(swapRouter.amountOut.toString(), tokenListObj[receiveToken].decimals));
 
           const preSwapData = await getPreSwapData(swapRouter, slippageSetting, true);
           setPreSwapData(preSwapData);
         }
 
-        console.log(swapRouter);
-
-        setBestRoute(swapRouter ? swapRouter : null);
+        setBestRoute(swapRouter.amountIn === '0' ? null : swapRouter);
         setEstimating(false);
         setFlag(!flag);
       }
@@ -291,32 +284,27 @@ export default function SwapV3Page() {
   };
 
   React.useEffect(() => {
-    if (!loadingPage && !estimating) {
-      if (!wallet.address) {
-        setError('Please connect wallet');
-      } else if (!sendToken || !receiveToken) {
-        setError('Please select pair to swap');
-      } else if (!bestRoute || bestRoute?.is_pause || bestRoute?.isExceed) {
-        setError('No Available Route');
-      } else if (!sendAmount || sendAmount === '0') {
-        setError('Please enter amount');
-      } else {
-        setError('');
-      }
+    if (!wallet.address) {
+      setError('Please connect wallet');
+    } else if (!sendToken || !receiveToken) {
+      setError('Please select pair to swap');
+    } else if (!bestRoute || bestRoute?.is_pause || bestRoute?.isExceed) {
+      setError('No Available Route');
+    } else if (!sendAmount || sendAmount === '0') {
+      setError('Please enter amount');
     } else {
       setError('');
     }
-  }, [receiveToken, bestRoute, sendAmount, sendToken, wallet.address, loadingPage, estimating]);
+  }, [receiveToken, bestRoute, sendAmount, sendToken, wallet.address]);
 
   React.useEffect(() => {
-    if (bestRoute) {
-      const intervalTime = setInterval(() => {
-        handleReload();
-      }, 20000);
-      return () => {
-        clearInterval(intervalTime);
-      };
-    }
+    const intervalTime = setInterval(() => {
+      handleReload();
+    }, 20000);
+    return () => {
+      console.log('clear');
+      clearInterval(intervalTime);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bestRoute]);
 
@@ -324,7 +312,7 @@ export default function SwapV3Page() {
 
   const getPythPrice = (address, amount) => {
     if (address && amount && amount !== '0') {
-      const symbol = SwapHelper.CetusHelper.tokenMap?.[address]?.official_symbol;
+      const symbol = tokenListObj?.[address]?.official_symbol;
       if (symbol) {
         let price = pythPrices.get(symbol);
         if (!price) price = pythPrices.get(symbol.replace('W', ''));
@@ -393,25 +381,30 @@ export default function SwapV3Page() {
                         />
                         {tokenList.length > 0 ? (
                           <SelectToken value={sendToken}>
-                            {tokenList.map((token) => (
-                              <MenuItem
-                                value={token.address}
-                                key={token.address}
-                                onClick={() => {
-                                  navigate(`?from=${token.address}&to=${to}`);
-                                  setSendAmount('0');
-                                  setReceiveAmount('0');
-                                }}
-                              >
-                                <img
-                                  src={token.logo_url}
-                                  alt={token.symbol}
-                                  width={isMobile ? 24 : 32}
-                                  style={{ marginRight: '8px' }}
-                                />
-                                {token.symbol}
-                              </MenuItem>
-                            ))}
+                            {tokenList.map((token) => {
+                              const check = supportTokens.includes(token.official_symbol);
+                              return (
+                                check && (
+                                  <MenuItem
+                                    value={token.address}
+                                    key={token.address}
+                                    onClick={() => {
+                                      navigate(`?from=${token.address}&to=${to}`);
+                                      setSendAmount('0');
+                                      setReceiveAmount('0');
+                                    }}
+                                  >
+                                    <img
+                                      src={token.logo_url}
+                                      alt={token.symbol}
+                                      width={isMobile ? 24 : 32}
+                                      style={{ marginRight: '8px' }}
+                                    />
+                                    {token.symbol}
+                                  </MenuItem>
+                                )
+                              );
+                            })}
                           </SelectToken>
                         ) : (
                           <Skeleton
@@ -463,8 +456,10 @@ export default function SwapV3Page() {
                         />
                         {tokenList.length > 0 ? (
                           <SelectToken value={receiveToken}>
-                            {tokenList.map(
-                              (token) =>
+                            {tokenList.map((token) => {
+                              const check = supportTokens.includes(token.official_symbol);
+                              return (
+                                check &&
                                 token.address !== sendToken && (
                                   <MenuItem
                                     value={token.address}
@@ -484,7 +479,8 @@ export default function SwapV3Page() {
                                     {token.symbol}
                                   </MenuItem>
                                 )
-                            )}
+                              );
+                            })}
                           </SelectToken>
                         ) : (
                           <Skeleton
@@ -555,16 +551,15 @@ export default function SwapV3Page() {
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
                             {preSwapData
-                              ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))} ${
-                                  SwapHelper.CetusHelper.getToken(receiveToken).symbol
-                                }`
+                              ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))}
+                      ${tokenListObj?.[receiveToken]?.official_symbol}`
                               : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                             {preSwapData
                               ? `${
                                   preSwapData?.totalFee > -1
-                                    ? `${preSwapData.totalFee} ${SwapHelper.CetusHelper.getToken(sendToken).symbol}`
+                                    ? `${preSwapData.totalFee} ${tokenListObj?.[sendToken].official_symbol}`
                                     : 'Estimating'
                                 }`
                               : '--'}
@@ -573,24 +568,24 @@ export default function SwapV3Page() {
                             {bestRoute ? (
                               a2b ? (
                                 <>
-                                  {SwapHelper.CetusHelper.getToken(bestRoute.coinTypeA).symbol}
+                                  {tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}
                                   {bestRoute?.coinTypeB
-                                    ? ` > ${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeB).symbol}`
+                                    ? ` > ${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol}`
                                     : ''}
                                   {bestRoute?.coinTypeC
-                                    ? ` > ${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeC).symbol}`
+                                    ? ` > ${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol}`
                                     : ''}
                                 </>
                               ) : (
                                 <>
                                   {bestRoute?.coinTypeC
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeC).symbol} > `
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeC]?.official_symbol} > `
                                     : ''}
                                   {bestRoute?.coinTypeB
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeB).symbol} > `
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeB]?.official_symbol} > `
                                     : ''}
                                   {bestRoute?.coinTypeA
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeA).symbol}`
+                                    ? `${tokenListObj?.[bestRoute?.coinTypeA]?.official_symbol}`
                                     : ''}
                                 </>
                               )
