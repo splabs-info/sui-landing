@@ -52,7 +52,7 @@ export default function SwapV3Page() {
   const [flag, setFlag] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [byAmountIn, setByAmountInt] = React.useState(true);
-  const [estimating, setEstimating] = React.useState(true);
+  const [estimating, setEstimating] = React.useState(false);
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -319,8 +319,6 @@ export default function SwapV3Page() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bestRoute]);
-
-  // console.log(pythPrices);
 
   const getPythPrice = (address, amount) => {
     if (address && amount && amount !== '0') {
