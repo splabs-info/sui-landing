@@ -35,13 +35,7 @@ export const cetusLoad = async () => {
     const result = await axios.get(`https://api-sui.cetus.zone/v2/sui/pools_info`);
     const { lp_list } = result.data.data;
 
-    tokenMap.set(`0x2::sui::SUI`, {
-      symbol: 'SUI-x',
-      decimals: 9,
-    });
-
     for (const iterator of lp_list) {
-      if (iterator.symbol === 'USDT-SUI') console.log(iterator);
       if (iterator.object.is_pause || iterator.object.liquidity === '0') {
         continue;
       }
@@ -79,66 +73,52 @@ export const cetusLoad = async () => {
       }
     }
 
-    // console.time('appLifeTime');
-
-    // const pools = await sdk.Pool.getPools([], 0, 500);
-
-    // console.timeEnd('appLifeTime');
-
-    // console.time('appLifeTime');
-
-    // const tokens = await sdk.Token.getAllRegisteredTokenList();
-
-    // console.log(tokens);
-
-    // console.timeEnd('appLifeTime');
-
-    // for (let i = 0; i < tokens.length; i += 1) {
-    //   tokenMap.set(tokens[i].address, tokens[i]);
-    // }
-
-    // for (let i = 0; i < pools.length; i += 1) {
-    //   if (pools[i].is_pause || pools[i].liquidity === '0') {
-    //     continue;
-    //   }
-
-    //   let coin_a = pools[i].coinTypeA;
-    //   let coin_b = pools[i].coinTypeB;
-
-    //   coinMap.set(coin_a, {
-    //     address: coin_a,
-    //     decimals: 9,
-    //   });
-    //   coinMap.set(coin_b, {
-    //     address: coin_b,
-    //     decimals: 9,
-    //   });
-
-    //   const pair = `${coin_a}-${coin_b}`;
-    //   const pathProvider = poolMap.get(pair);
-    //   if (pathProvider) {
-    //     pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
-    //   } else {
-    //     poolMap.set(pair, {
-    //       base: coin_a,
-    //       quote: coin_b,
-    //       addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
-    //     });
-    //   }
-    // }
-
-    const coins = {
-      coins: Array.from(coinMap.values()),
-    };
-    const paths = {
-      paths: Array.from(poolMap.values()),
-    };
-
-    await sdk.Router.loadGraph(coins, paths);
-
     return;
   } catch (error) {
-    return;
+    try {
+      const pools = await sdk.Pool.getPools([], 0, 500);
+      const tokens = await sdk.Token.getAllRegisteredTokenList();
+      for (let i = 0; i < tokens.length; i += 1) {
+        tokenMap.set(tokens[i].address, tokens[i]);
+      }
+      for (let i = 0; i < pools.length; i += 1) {
+        if (pools[i].is_pause || pools[i].liquidity === '0') {
+          continue;
+        }
+        let coin_a = pools[i].coinTypeA;
+        let coin_b = pools[i].coinTypeB;
+        coinMap.set(coin_a, {
+          address: coin_a,
+          decimals: 9,
+        });
+        coinMap.set(coin_b, {
+          address: coin_b,
+          decimals: 9,
+        });
+        const pair = `${coin_a}-${coin_b}`;
+        const pathProvider = poolMap.get(pair);
+        if (pathProvider) {
+          pathProvider.addressMap.set(pools[i].fee_rate, pools[i].poolAddress);
+        } else {
+          poolMap.set(pair, {
+            base: coin_a,
+            quote: coin_b,
+            addressMap: new Map([[pools[i].fee_rate, pools[i].poolAddress]]),
+          });
+        }
+      }
+
+      const coins = {
+        coins: Array.from(coinMap.values()),
+      };
+      const paths = {
+        paths: Array.from(poolMap.values()),
+      };
+
+      await sdk.Router.loadGraph(coins, paths);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
@@ -154,18 +134,23 @@ export async function getBalance(address, coin) {
 
 export function getToken(coinType) {
   try {
-    return tokenMap.get(coinType);
+    if (tokenMap.get(coinType)) {
+      return tokenMap.get(coinType);
+    } else {
+      return {};
+    }
   } catch (error) {
-    console.log(coinType);
-    console.log(error);
+    return {};
   }
 }
 
 export function getDecimals(coinType) {
   try {
-    return tokenMap.get(coinType).decimals;
+    if (tokenMap.get(coinType)) {
+      return tokenMap.get(coinType).decimals;
+    }
+    return 9;
   } catch (error) {
-    console.log(error);
     return 9;
   }
 }

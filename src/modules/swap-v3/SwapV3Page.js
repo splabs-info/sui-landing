@@ -26,8 +26,8 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
-import { SwapHelper, cetusLoad, getBalance, getDecimals, getPool, getPreSwapData, getToken, sdk } from './init';
 import Statistic from './components/Statistic';
+import { SwapHelper, cetusLoad, getBalance, getPool, getPreSwapData, sdk } from './init';
 
 const PYTHNET_CLUSTER_NAME = 'pythnet';
 const connection = new Connection(getPythClusterApiUrl(PYTHNET_CLUSTER_NAME));
@@ -52,7 +52,7 @@ export default function SwapV3Page() {
   const [flag, setFlag] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [byAmountIn, setByAmountInt] = React.useState(true);
-  const [estimating, setEstimating] = React.useState(false);
+  const [estimating, setEstimating] = React.useState(true);
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -91,8 +91,8 @@ export default function SwapV3Page() {
   React.useEffect(() => {
     (async () => {
       await cetusLoad();
-      console.log('odnoiwqdjoi');
       setLoadingPage(false);
+      setEstimating(false);
     })();
   }, []);
 
@@ -131,18 +131,10 @@ export default function SwapV3Page() {
   React.useEffect(() => {
     if (!loadingPage) {
       const tokenList = [];
-      console.log(SwapHelper.CetusHelper.tokenMap);
       SwapHelper.CetusHelper.tokenMap.forEach((value, key) => {
         if (supportTokens.includes(value.symbol) && value.logo_url && !value.name.includes('Celer'))
           tokenList.push(value);
       });
-      // const tokenList = await sdk.Token.getAllRegisteredTokenList();
-      // const tokenListObj = {};
-      // for (const iterator of tokenList) {
-      //   tokenListObj[iterator.address] = iterator;
-      // }
-      // setTokenListObj(tokenListObj);
-      console.log(tokenList);
       setTokenList(tokenList);
     }
   }, [loadingPage]);
@@ -210,6 +202,7 @@ export default function SwapV3Page() {
     if (!loadingPage) {
       handleReload();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendToken, receiveToken, sendAmount, loadingPage]);
 
   const handleSwitch = () => {
@@ -223,7 +216,6 @@ export default function SwapV3Page() {
       if (receiveToken && sendToken) {
         const currentPool = await getPool(sendToken, receiveToken);
         const swapPool = currentPool ? await sdk.Pool.getPool([...currentPool.addressMap][0][1]) : null;
-
         setEstimating(true);
         const amount = Number(sendAmount).toFixed(SwapHelper.CetusHelper.getDecimals(sendToken)).replace('.', '');
         const coinAmount = new SwapHelper.BN(parseFloat(amount));
@@ -273,8 +265,6 @@ export default function SwapV3Page() {
           const preSwapData = await getPreSwapData(swapRouter, slippageSetting, true);
           setPreSwapData(preSwapData);
         }
-
-        console.log(swapRouter);
 
         setBestRoute(swapRouter ? swapRouter : null);
         setEstimating(false);
@@ -430,11 +420,15 @@ export default function SwapV3Page() {
                         <AmountStack>
                           <img src="/images/icon/icon-wallet-green.png" alt="" />
                           <Typography>
-                            {!loadingPage && sendToken ? formatUnits(baseBalance, getDecimals(sendToken)) : '--'}
+                            {!loadingPage && sendToken
+                              ? formatUnits(baseBalance, SwapHelper.CetusHelper.getDecimals(sendToken))
+                              : '--'}
                           </Typography>
                           <ConnectButton
                             sx={{ height: 20, mt: 0, p: 0, borderRadius: 0.5, ml: 1, width: 50, minWidth: 'unset' }}
-                            onClick={() => setSendAmount(formatUnits(baseBalance, getDecimals(sendToken)))}
+                            onClick={() =>
+                              setSendAmount(formatUnits(baseBalance, SwapHelper.CetusHelper.getDecimals(sendToken)))
+                            }
                             disabled={!baseBalance || baseBalance === '0' || loadingPage}
                           >
                             <small>Max</small>
@@ -503,7 +497,9 @@ export default function SwapV3Page() {
                         <AmountStack>
                           <img src="/images/icon/icon-wallet-green.png" alt="" />
                           <Typography>
-                            {!loadingPage && receiveToken ? formatUnits(quoteBalance, getDecimals(receiveToken)) : '--'}
+                            {!loadingPage && receiveToken
+                              ? formatUnits(quoteBalance, SwapHelper.CetusHelper.getDecimals(receiveToken))
+                              : '--'}
                           </Typography>
                         </AmountStack>
                       </Stack>
@@ -553,9 +549,10 @@ export default function SwapV3Page() {
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
                             {preSwapData
-                              ? `${formatUnits(preSwapData?.minimumReceived, getDecimals(receiveToken))} ${
-                                  SwapHelper.CetusHelper.getToken(receiveToken).symbol
-                                }`
+                              ? `${formatUnits(
+                                  preSwapData?.minimumReceived,
+                                  SwapHelper.CetusHelper.getDecimals(receiveToken)
+                                )} ${SwapHelper.CetusHelper.getToken(receiveToken).symbol}`
                               : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
