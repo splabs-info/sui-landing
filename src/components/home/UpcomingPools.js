@@ -64,7 +64,7 @@ const upComingList = [
         src: 'images/home/yousui-ido.jpg',
         title: 'YouSUI',
         description: 'Launchpad, DEX, NFT Marketplace,...',
-        openDate: 'July 2023',
+        openDate: 'July 20th, 12:00 UTC',
         link: '/ido-launchpad'
     },
     {
@@ -72,7 +72,7 @@ const upComingList = [
         src: 'images/home/hood-ino.jpg',
         title: 'HooD',
         description: 'M2E, NFT, Metaverse',
-        openDate: 'July 25th',
+        openDate: 'July 25th, 11:00 UTC',
         link: '/ino-launchpad'
     },
 

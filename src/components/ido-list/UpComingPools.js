@@ -26,8 +26,8 @@ const upComingIDOList = [
   {
     title: 'YouSUI - XUI',
     avatar: '/images/ido/pool-yousui.jpg',
-    releaseTime: 'Official Launch: July',
-    startAt: 'July',
+    releaseTime: 'Official Launch: July 20th ',
+    startAt: 'July 20th, 12:00 UTC',
     status: true,
     link: '/ido-launchpad/round',
     description: [
@@ -49,7 +49,7 @@ const upComingIDOList = [
     title: 'HooD',
     avatar: '/images/ido/pool-hood.jpg',
     releaseTime: 'Official Launch: July 25th',
-    startAt: '25th July 11:00 UTC',
+    startAt: 'July 25th, 11:00 UTC',
     status: false,
     link: '',
     description: [
