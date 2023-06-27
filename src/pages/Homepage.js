@@ -12,7 +12,7 @@ import {
 } from '../components/home';
 export default function Homepage_v2() {
     return (
-        <Page title="Home">
+        <Page title="All-In-One Platform">
             <Intro />
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg2.png')", }}>
                 <Overview />
