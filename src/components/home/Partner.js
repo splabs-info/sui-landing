@@ -114,6 +114,8 @@ const partners = [
   { label: 'vmeta', link: 'https://vmeta3.com/' },
   { label: 'giro', link: 'https://giroswap.com/' },
   { label: 'notifi', link: 'https://notifi.network/' },
+  { label: 'bucket', link: 'https://bucketprotocol.io/' },
+  { label: 'umi', link: 'https://umi.ag/swap' },
 ];
 
 export default function Partner() {
