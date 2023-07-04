@@ -116,6 +116,7 @@ const partners = [
   { label: 'notifi', link: 'https://notifi.network/' },
   { label: 'bucket', link: 'https://bucketprotocol.io/' },
   { label: 'umi', link: 'https://umi.ag/swap' },
+  { label: 'sui-game', link: 'https://suigame.io/' },
 ];
 
 export default function Partner() {
