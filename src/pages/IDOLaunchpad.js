@@ -34,7 +34,7 @@ const idoProjects = [
     avatar: '/images/ino/ino-upcoming-2.jpg',
     hardCap: '2000',
     access: 'Tier 1-5',
-    releaseTime: 'Official Launch: July 25th',
+    releaseTime: 'Official Launch: Aug 25th',
     status: true,
     link: '',
     startTime: '2023-06-25T11:00:00',

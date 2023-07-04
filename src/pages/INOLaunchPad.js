@@ -75,7 +75,7 @@ const inoProjects = [
     avatar: '/images/ino/ino-upcoming-2.jpg',
     hardCap: '2000',
     access: 'Tier 1-5',
-    releaseTime: 'Official Launch: July 25th',
+    releaseTime: 'Official Launch: Aug 25th',
     status: false,
     link: '',
     startTime: '2023-08-30T11:00:00',

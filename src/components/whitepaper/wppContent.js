@@ -1084,18 +1084,18 @@ export const wppContent = [
           'Governance : 10%',
         ],
       },
-      {
-        title: 'Token Distribution',
-        list: [
-          'Token Detail: **based on Total Supply at Genesis',
-          'Ticker: XUI',
-          'Standard: Sui Blockchain',
-          'Max Supply & Total Supply: 100,000,000 XUI',
-          'Initial Circulating Supply: 2,240,000 XUI',
-          'Public Launch price: $ 0.25',
-          'Initial MarketCap: 560,000 USD',
-        ],
-      },
+      // {
+      //   title: 'Token Distribution',
+      //   list: [
+      //     'Token Detail: **based on Total Supply at Genesis',
+      //     'Ticker: XUI',
+      //     'Standard: Sui Blockchain',
+      //     'Max Supply & Total Supply: 100,000,000 XUI',
+      //     'Initial Circulating Supply: 2,240,000 XUI',
+      //     'Public Launch price: $ 0.25',
+      //     'Initial MarketCap: 560,000 USD',
+      //   ],
+      // },
       { content: [<img src="/images/whitepaper/regulation.jpg" alt="" />] },
       {
         title: 'Token Utility',
