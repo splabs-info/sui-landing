@@ -141,10 +141,10 @@ export default function Router() {
             </Suspense>
           ),
         },
-        // {
-        //   path: 'private-sale',
-        //   element: <PrivateSale />,
-        // },
+        {
+          path: 'private-sale',
+          element: <PrivateSale />,
+        },
       ],
     },
     {
