@@ -1002,15 +1002,29 @@ export const wppContent = [
     category: 'Governance',
     description: [
       {
-        title: 'How can governance work in YouSUI?',
         content: [
-          'Governance operating within the YouSUI can be largely classified into three types. The first could be a vote by users for the NEXT Launchpad. To this end, the YouSUI team provides users with data and reports with a high understanding of each project, and based on the information, users can select the projects to be listed on the next launchpad on their own. Second, users can directly set the direction of the development team. Users define the NEXT Main-Network and ask the development team to make it a much more community-friendly project. Thirdly, the community can decide the NEXT LP Pool through their own voting and have the project provide the Swap Pool. Through this, the community can open a self-determined pool, allowing more transactions and more participation to take place within the YouSUI.',
+          <img src="/images/whitepaper/governance-system.jpg" alt="" />,
+          'YouSUI introduces its unique Governance System, built upon the staking of XUI tokens. By staking XUI tokens, users trigger the issuance of wXUI tokens on the first day of each month, proportional to the staked amount. These wXUI tokens empower users to participate in various aspects of Governance. For instance, a stake of 4,000 XUI tokens will yield 4,000 wXUI tokens each month. Notably, any wXUI tokens used in voting are consumed in the process.',
         ],
       },
       {
-        title: 'How can users vote on the direction of the YouSUI?',
+        title: 'There are several critical points to consider when using wXUI tokens in the YouSUI Governance system:',
+        list: [
+          'wXUI tokens used in voting will be expended.',
+          'A snapshot is taken on the last day of each month to enable the distribution of wXUI tokens.',
+          'wXUI tokens cannot be exchanged at a 1:1 ratio with XUI tokens.',
+          'Voting within the YouSUI Governance system is only possible using wXUI tokens.',
+        ],
+      },
+      {
         content: [
-          'A YouSUI has a personality of 1 XUI = 1 VOTE. All staked XUI Tokens can be used for Vote, and the voting date is set by the project team, but basically, users must stake XUI 24 hours before the voting date. If XUI is staked, voting rights are given, and voting rights allow users to exercise their opinions on what the project or community proposes.',
+          'Governance within YouSUI offers a distinct approach and can be broadly categorized into three types. The first encompasses user voting for the NEXT Launchpad. Here, the YouSUI team equips users with comprehensive data and reports about each project, enabling informed choices about the projects slated for the next launchpad.',
+
+          'Secondly, users have the power to guide the direction of the development team. They define the NEXT Main-Network and push the team towards creating a more community-oriented project.',
+
+          'Lastly, the community can use voting to decide the NEXT LP Pool and have the project provide the Swap Pool. This opens up a community-determined pool, fostering increased transactions and participation within YouSUI.',
+
+          `Voting within YouSUI operates on a 1 XUI = 1 VOTE principle. All staked XUI Tokens are eligible for voting. Although the project team sets the voting date, users are required to hold wXUI Token before this date. Staking XUI grants voting rights (wXUI), allowing users to express their views on the project or community's proposals.`,
         ],
       },
     ],

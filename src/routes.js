@@ -141,6 +141,14 @@ export default function Router() {
             </Suspense>
           ),
         },
+        {
+          path: 'governance',
+          element: (
+            <Suspense>
+              <ComingSoon />
+            </Suspense>
+          ),
+        },
         // {
         //   path: 'private-sale',
         //   element: <PrivateSale />,
