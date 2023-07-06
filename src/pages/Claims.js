@@ -67,7 +67,7 @@ export default function Claims() {
     }, [provider, wallet?.address, wallet?.connected]);
 
 
-    console.log('myIdo___', myIdo)
+    // console.log('myIdo___', myIdo)
     return (
         <Page title="Claim Tokens">
             <SectionBox

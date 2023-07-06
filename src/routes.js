@@ -15,6 +15,8 @@ import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
 import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
+import Governance from 'pages/governance';
+import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -87,6 +89,14 @@ export default function Router() {
             </Suspense>
           ),
         },
+        // {
+        //   path: 'ino-launchpad/free-minting-nft-3',
+        //   element: (
+        //     <Suspense>
+        //       <FreeMinting3 />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'whitepaper',
           element: <Navigate to="/whitepaper/introduction-of-yousui" />,
@@ -145,7 +155,7 @@ export default function Router() {
           path: 'governance',
           element: (
             <Suspense>
-              <ComingSoon />
+              <Governance />
             </Suspense>
           ),
         },
