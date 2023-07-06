@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { IDOCountdown } from 'components/countdown/IDOCountdown';
 import { useNavigate } from 'react-router-dom';
 
 const UpComingIDOBox = styled(Box)(({ theme }) => ({
@@ -60,7 +61,16 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const UpComingIDOCard = ({ avatar, releaseTime, title, description, status, link, startAt, salePeriod, ...props }) => {
+const CountDownBox = styled(Box)(({ theme }) => ({
+    position: 'absolute',
+    bottom: '10px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    padding: '0px 16px',
+}));
+
+
+export const UpComingIDOCard = ({ avatar, releaseTime, title, description, status, startTime, link, startAt, salePeriod, ...props }) => {
     const navigate = useNavigate();
     return (
         <UpComingIDOBox
@@ -70,7 +80,15 @@ export const UpComingIDOCard = ({ avatar, releaseTime, title, description, statu
                 if (link)
                     navigate(link)
             }}>
-            <AvatarBox component={'img'} src={avatar} alt={title} />
+            <Box position={'relative'}>
+                <AvatarBox component={'img'} src={avatar} alt={title} />
+                {startTime &&
+                    <CountDownBox>
+                        <IDOCountdown
+                            endTime={startTime}
+                        />
+                    </CountDownBox>}
+            </Box>
             <Typography variant={'h4'} mt={3}>{title}</Typography>
             {salePeriod &&
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>

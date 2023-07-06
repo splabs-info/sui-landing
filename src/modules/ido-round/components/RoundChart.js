@@ -3,6 +3,7 @@ import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import useResponsive from 'hooks/useResponsive';
 import { ChartBox, LiveBox, SaleInfoBox } from './RoundStyled';
 import { fCurrency } from 'utils/format';
+import { IDOCountdown } from 'components/countdown/IDOCountdown';
 
 export const RoundChart = ({ round }) => {
     const isMobile = useResponsive('down', 'sm');
@@ -12,7 +13,9 @@ export const RoundChart = ({ round }) => {
                 <Stack direction={'row'} justifyContent={'space-between'}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <img src='/images/icon/icon-lock-2.png' alt='' />
-                        <Typography sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'bold' }}>Time</Typography>
+                        <Typography sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'bold' }}>
+                            Start at: 12:00 UTC 20-07-2023
+                        </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
 

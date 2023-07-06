@@ -1,7 +1,15 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, styled } from "@mui/material";
 import { ImageBox, RoundInfoBox, TitleBackgroundBox } from "./RoundStyled";
 import { SocialBox } from "components/footer/FooterStyles";
+import { IDOCountdown } from "components/countdown/IDOCountdown";
 
+const CountDownBox = styled(Box)(({ theme }) => ({
+    position: 'absolute',
+    top: '10px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    padding: '0px 16px',
+}));
 
 const info = {
     title: 'XUI - YouSUI Token',
@@ -26,6 +34,7 @@ const socials = [
         link: '/whitepaper',
     },
 ];
+
 export const RoundIntro = () => {
     return (
         <RoundInfoBox>
@@ -35,6 +44,12 @@ export const RoundIntro = () => {
                     alt=""
                 />
                 <img src='/logo-1.png' alt='' width={200} className='absolute' />
+
+                <CountDownBox>
+                    <IDOCountdown
+                        endTime={'2023-07-20T12:00:00'}
+                    />
+                </CountDownBox>
             </ImageBox>
             <Stack direction='row' spacing={2} justifyContent={'space-between'} alignItems={'center'} my={3}>
 

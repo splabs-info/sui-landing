@@ -1,21 +1,24 @@
 import { Box, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ImgTitleBox, TitleBox, TypographyGradient } from './HomeStyles';
+import { IDOCountdown } from 'components/countdown/IDOCountdown';
 
 const PoolBox = styled(Box)(({ theme }) => ({
   padding: 30,
   borderRadius: '16px',
-  background: 'linear-gradient(180deg, #41F1D3 0%, #5974BB 100%)',
+  background: 'linear-gradient(173deg, rgba(104, 229, 184, 0.30) 0%, rgba(109, 133, 218, 0.30) 100%)',
   position: 'relative',
-  boxShadow: ' inset 3px 5px 20px rgba(0, 0, 0, 0.5)',
+  // boxShadow: ' inset 3px 5px 20px rgba(0, 0, 0, 0.5)',
+  boxShadow: '0px 0px 15px 0px rgba(255, 255, 255, 0.30) inset',
+  backdropFilter: 'blur(20px)',
   '&:before': {
     content: '""',
     position: 'absolute',
     width: '100%',
-    background: 'linear-gradient(0deg, #00C5D3 0%, #42EECF 94.62%)',
+    background: 'linear-gradient(320deg,  rgb(109,133,218,0.30) ,rgb(104,229,184,0.30))',
     borderRadius: '16px',
     inset: '0px',
-    padding: '4px',
+    padding: '1px',
     WebkitMask:
       'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
     WebkitMaskComposite: 'xor',
@@ -30,7 +33,7 @@ const LinkBox = styled(Box)(({ theme }) => ({
   padding: '10px 20px',
   textAlign: 'center',
   fontWeight: 600,
-  marginTop: 16,
+  marginTop: 40,
   zIndex: 2,
   '&:hover': {
     background: 'linear-gradient(160deg, #68E6B8 0%, #6D85DA 100%)',
@@ -40,10 +43,10 @@ const LinkBox = styled(Box)(({ theme }) => ({
 const ImageBox = styled(Box)(({ theme }) => ({
   borderRadius: '16px',
   position: 'relative',
-  filter: 'drop-shadow(0px 0px 25px #000000)',
-  background: 'linear-gradient(0deg, #00C5D3 0%, #42EECF 94.62%)',
+  // filter: 'drop-shadow(0px 0px 25px #000000)',
+  background: 'linear-gradient(320deg,  rgb(109,133,218,0.30) ,rgb(104,229,184,0.30))',
   marginBottom: 24,
-  padding: 2,
+  padding: 1,
   '& img': {
     borderRadius: '16px',
   },
@@ -51,9 +54,16 @@ const ImageBox = styled(Box)(({ theme }) => ({
 const TimeBox = styled(Box)(({ theme }) => ({
   borderRadius: '8px',
   background: 'linear-gradient(178.73deg, rgba(0, 189, 228, 0.3) -8.02%, rgba(255, 255, 255, 0.3) 98.69%)',
-  padding: '8px 16px',
+  padding: '6px 12px',
   color: '#fff',
   border: '1px solid #fff9',
+}));
+const CountDownBox = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '10px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  padding: '0px 16px',
 }));
 
 const upComingList = [
@@ -64,6 +74,8 @@ const upComingList = [
     description: 'Launchpad, DEX, NFT Marketplace,...',
     openDate: 'July 20th, 12:00 UTC',
     link: '/ido-launchpad',
+    startTime: '2023-07-20T12:00:00',
+    endTime: '2023-07-20T13:00:00',
   },
   {
     label: 'Go to Launchpad ››',
@@ -72,6 +84,8 @@ const upComingList = [
     description: 'M2E, NFT, Metaverse',
     openDate: 'Aug 25th, 11:00 UTC',
     link: '/ino-launchpad',
+    startTime: '',
+    endTime: '',
   },
 ];
 
@@ -87,10 +101,16 @@ export default function UpcomingPools() {
       </Box>
       <Grid container spacing={3} mt={4}>
         {upComingList.map((item, index) => (
-          <Grid item key={index} sm={3.5} xs={12}>
+          <Grid item key={index} md={3.8} sm={5} xs={12}>
             <PoolBox>
               <ImageBox>
                 <img src={item.src} alt={item.label} width={'100%'} />
+                {item.startTime &&
+                  <CountDownBox>
+                    <IDOCountdown
+                      endTime={item.startTime}
+                    />
+                  </CountDownBox>}
               </ImageBox>
               <Stack direction={'row'} justifyContent={'space-between'}>
                 <Typography variant="h4" color={'#fff'}>
@@ -99,7 +119,7 @@ export default function UpcomingPools() {
                 <TimeBox>{item.openDate}</TimeBox>
               </Stack>
 
-              <Typography variant="body1" mt={1.5} fontWeight={600} color={'#E7E1E1'}>
+              <Typography variant="body1" mt={2} mb={2} fontWeight={600} color={'#E7E1E1'}>
                 {item.description}
               </Typography>
               <Link to={item.link}>
