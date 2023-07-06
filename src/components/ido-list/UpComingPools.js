@@ -48,8 +48,8 @@ const upComingIDOList = [
   {
     title: 'HooD',
     avatar: '/images/ido/pool-hood.jpg',
-    releaseTime: 'Official Launch: July 25th',
-    startAt: 'July 25th, 11:00 UTC',
+    releaseTime: 'Official Launch: Aug 25th',
+    startAt: 'Aug 25th, 11:00 UTC',
     status: false,
     link: '',
     description: [

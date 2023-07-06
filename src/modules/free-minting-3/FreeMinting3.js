@@ -12,7 +12,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { config, provider } from './init';
-
+const itemName = 'minted-wallets';
 export const addresses = config.addresses;
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
@@ -52,12 +52,39 @@ const FreeMintingBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function FreeMinting() {
+function addMintedWallets(wallet) {
+  const storage = localStorage.getItem(itemName);
+  let list = [];
+  if (storage) {
+    list = JSON.parse(storage);
+  }
+  const find = list.find((c) => c === wallet);
+  if (!find) {
+    list.push(wallet);
+  }
+  localStorage.setItem(itemName, JSON.stringify(list));
+}
+
+function checkMintedWallet(wallet) {
+  let result = false;
+  const storage = localStorage.getItem(itemName);
+  if (storage) {
+    const list = JSON.parse(storage);
+    const find = list.find((c) => c === wallet);
+    if (find) {
+      result = true;
+    }
+  }
+  return result;
+}
+
+export default function FreeMinting3() {
   const isMobile = useResponsive('down', 'sm');
   const wallet = useWallet();
   const [loading, setLoading] = React.useState(false);
-  const [total, setTotal] = React.useState(2000);
+  const [total, setTotal] = React.useState(500);
   const [minted, setMinted] = React.useState(0);
+  const [hasMinted, setHasMinted] = React.useState(false);
   const [owned, setOwned] = React.useState(0);
   const [flag, setFlag] = React.useState(false);
   const [hasInTimes, setHasInTimes] = React.useState(false);
@@ -75,26 +102,23 @@ export default function FreeMinting() {
 
   React.useEffect(() => {
     if (provider) {
-      (async () => {
-        const result = await provider.getObject({
-          id: addresses.objectFreeMint,
-          options: { showContent: true },
-        });
-        // console.log(result);
-        setTotal(result?.data?.content?.fields?.max_mint);
-        setMinted(result?.data?.content?.fields?.number);
-      })();
-      const interval = setInterval(() => {
-        syncData();
-      }, 20000);
-      return () => clearInterval(interval);
+      // const interval = setInterval(() => {
+      //   syncData();
+      // }, 20000);
+      // return () => clearInterval(interval);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
+    if (wallet.address) {
+      setHasMinted(checkMintedWallet(wallet.address));
+    }
+  }, [wallet.address]);
+
+  React.useEffect(() => {
     if (provider) {
-      syncData();
+      // syncData();
     }
   }, [flag]);
 
@@ -103,7 +127,7 @@ export default function FreeMinting() {
       (async () => {
         const balance = await provider.getOwnedObjects({
           owner: wallet.address,
-          filter: { Package: addresses.package },
+          filter: { Package: addresses.nftPackageId },
         });
         if (balance) {
           setOwned(balance.data.length);
@@ -128,7 +152,7 @@ export default function FreeMinting() {
         const tx = new TransactionBlock();
 
         tx.moveCall({
-          target: `${addresses.package}::freemint::freemint`,
+          target: `${addresses.package}::freemintv2::freemint`,
           arguments: [addresses.objectFreeMint, addresses.objectInformation].map((arg) => tx.pure(arg)),
         });
 
@@ -137,6 +161,8 @@ export default function FreeMinting() {
         });
         if (result) {
           toast.success('NFT mint success');
+          addMintedWallets(wallet.address);
+          setHasMinted(true);
         } else {
           toast.error('Transaction rejected');
         }
@@ -146,7 +172,6 @@ export default function FreeMinting() {
         }, 5000);
       } catch (error) {
         const errorString = error.toString();
-        console.log(errorString);
         const errorCode = [
           // { key: 1, code: 'ENOT_AUTHORIZED' },
           // {
@@ -158,7 +183,6 @@ export default function FreeMinting() {
           // { key: 4, code: 'EMAX_MINT_PER_ADDRESS' },
           // { key: 5, code: 'EMAX_MINT' },
         ].find((item) => errorString.includes(`${item.key.toString()})`));
-        console.log(errorCode);
         toast.error(errorCode ? errorCode.code : errorString);
         setLoading(false);
       }
@@ -211,10 +235,6 @@ export default function FreeMinting() {
             Discord
           </BorderGradientButton>
         </Link>
-        {/* <BorderGradientButton>
-        <img src="/images/icon/icon-global.png" alt="global" />
-        View on Explore
-      </BorderGradientButton> */}
       </Box>
     </>
   );
@@ -240,7 +260,7 @@ export default function FreeMinting() {
                     Free
                   </Typography>
                   <TypographyGradient variant="h1" fontWeight={700} fontSize={!isMobile ? '88px!important' : '48px'}>
-                    Minting NFT
+                    Minting NFT 3
                   </TypographyGradient>
                 </Box>
                 <Hidden smUp>
@@ -251,10 +271,10 @@ export default function FreeMinting() {
                     Start at:
                   </Typography>
                 )}
-                <MintingCountdown endTime={'2023-06-10T11:00:00'} _handleComplete={() => setHasInTimes(true)} />
+                <MintingCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimes(true)} />
 
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}>
-                  *** Claim schedule: 11:00 (UTC) 10th June, 2023
+                  *** Claim schedule: 12:00 (UTC) 20th July, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
                   Click <b>“Claim Now”</b>button to receive a free YouSUI NFT.
@@ -278,36 +298,35 @@ export default function FreeMinting() {
                   sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
-                  disabled={!hasInTimes || minted === total}
-
+                  // disabled={minted === total || hasMinted}
+                  disabled
                 >
-                  {minted === total ? 'Sold out' : 'Claim now'}
-                </GradientLoadingButton >
+                  {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
+                </GradientLoadingButton>
 
-                {owned > 0 && <GradientLoadingButton
-                  sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px', marginLeft: '16px' }}
-                  loading={loading}
-                  onClick={() => setOpenMyNft(true)}
-                >
-                  My NFT
-                </GradientLoadingButton>}
-
-              </Grid >
+                {owned > 0 && (
+                  <GradientLoadingButton
+                    sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px', marginLeft: '16px' }}
+                    loading={loading}
+                    onClick={() => setOpenMyNft(true)}
+                  >
+                    My NFT
+                  </GradientLoadingButton>
+                )}
+              </Grid>
               <Grid item md={6} xs={12}>
                 <Hidden smDown>
                   <NFTGroup />
                 </Hidden>
               </Grid>
-            </Grid >
-          </FreeMintingBox >
-          {
-            myNftList.length > 0 && (
-              <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
-            )
-          }
-        </Container >
-      </SectionBox >
-    </Page >
+            </Grid>
+          </FreeMintingBox>
+          {myNftList.length > 0 && (
+            <MyNFT open={openMyNft} handleClose={() => setOpenMyNft(false)} myNftList={myNftList} />
+          )}
+        </Container>
+      </SectionBox>
+    </Page>
   );
 }
 
@@ -317,24 +336,24 @@ const nftImage = [
     label: 'NFT 1',
   },
   {
-    src: '/images/nfts/yousui-nft-2.png',
-    label: 'NFT 2',
+    src: '/images/nfts/yousui-nft-10.png',
+    label: 'NFT 10',
   },
   {
-    src: '/images/nfts/yousui-nft-3.png',
-    label: 'NFT 3',
+    src: '/images/nfts/yousui-nft-7.png',
+    label: 'NFT 7',
   },
   {
-    src: '/images/nfts/yousui-nft-4.png',
-    label: 'NFT 4',
-  },
-  {
-    src: '/images/nfts/yousui-nft-5.png',
-    label: 'NFT 5',
+    src: '/images/nfts/yousui-nft-8.png',
+    label: 'NFT 8',
   },
   {
     src: '/images/nfts/yousui-nft-6.png',
     label: 'NFT 6',
+  },
+  {
+    src: '/images/nfts/yousui-nft-9.png',
+    label: 'NFT 9',
   },
 ];
 export const SliderCustom = styled(Slider)(({ theme }) => ({

@@ -15,6 +15,7 @@ import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
 import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
+import Governance from 'pages/governance';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -144,6 +145,10 @@ export default function Router() {
         {
           path: 'private-sale',
           element: <PrivateSale />,
+        },
+        {
+          path: 'governance',
+          element: <Governance />,
         },
       ],
     },

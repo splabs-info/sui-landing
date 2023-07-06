@@ -6,7 +6,7 @@ import CustomModal from 'components/common/CustomModal';
 import Page from 'components/common/Page';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
-import { MintingCountdown } from 'components/minting/MintingCountdown';
+import { MintingCountdown } from 'components/countdown/MintingCountdown';
 import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import Slider from 'react-slick';
@@ -299,7 +299,7 @@ export default function FreeMinting2() {
                   onClick={handleFreeMinting}
                   loading={loading}
                   disabled={minted === total || hasMinted}
-                  // disabled={!hasInTimes || minted === total || hasMinted}
+                // disabled={!hasInTimes || minted === total || hasMinted}
                 >
                   {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
@@ -509,7 +509,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
