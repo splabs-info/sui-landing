@@ -5,32 +5,27 @@ import Countdown from 'react-countdown';
 import { _formatUtcUnix } from '../../setting/format';
 
 const CountdownStack = styled(Stack)(({ theme }) => ({
-  width: '70px',
-  height: '60px',
+  width: '64px',
+  height: '56px',
   color: '#fff',
   borderRadius: '10px',
   position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
-  background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.25) -8.02%, rgba(109, 133, 218, 0.25) 98.69%)',
-  boxShadow: 'inset 0px 0px 4.56352px rgba(0, 0, 0, 0.3)',
-  '&::before': {
-    content: "''",
-    position: 'absolute',
-    inset: '0px',
-    borderRadius: '10px',
-    padding: ' 1px',
-    background: 'linear-gradient(0deg, #00C5D3, #42EECF)',
-    WebkitMask:
-      'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-    WebkitMaskComposite: 'xor',
-    zIndex: '1',
-  },
+  background: '#00112C',
   '& .MuiTypography-body1': {
     margin: '0!important',
     textShadow: '0px 0px 4.56352px rgba(255, 255, 255, 0.5)',
-    fontWeight: 700,
-    fontSize: '1.25rem',
+    fontWeight: 900,
+    fontSize: '1.35rem',
+  },
+  '& .MuiTypography-caption': {
+    marginTop: '-6px',
+    color: 'white',
+    display: 'initial',
+    background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
   },
   [theme.breakpoints.down('sm')]: {
     width: '50px',
@@ -41,7 +36,7 @@ const CountdownStack = styled(Stack)(({ theme }) => ({
   }
 }));
 
-export const MintingCountdown = ({ endTime, _handleComplete }) => {
+export const IDOCountdown = ({ endTime, _handleComplete }) => {
   const now = moment().unix();
   const end = _formatUtcUnix(endTime);
 
@@ -65,7 +60,7 @@ const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
     return '';
   } else {
     return (
-      <Stack direction="row" spacing={2} mt={1}>
+      <Stack direction="row" spacing={1} mt={1}>
         <CountdownStack>
           <Typography variant='body1'>
             {days < 10 ? '0' : ''}

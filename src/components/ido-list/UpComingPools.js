@@ -30,6 +30,8 @@ const upComingIDOList = [
     startAt: 'July 20th, 12:00 UTC',
     status: true,
     link: '/ido-launchpad/round',
+    startTime: '2023-07-20T12:00:00',
+    endTime: '2023-07-20T13:00:00',
     description: [
       <>
         <p>1,000,000 SUI</p>
@@ -44,6 +46,7 @@ const upComingIDOList = [
         <p>OG & PL</p>
       </>,
     ],
+
   },
   {
     title: 'HooD',
@@ -52,6 +55,8 @@ const upComingIDOList = [
     startAt: 'Aug 25th, 11:00 UTC',
     status: false,
     link: '',
+    startTime: '',
+    endTime: '',
     description: [
       <>
         <p>600,000 SUI</p>
