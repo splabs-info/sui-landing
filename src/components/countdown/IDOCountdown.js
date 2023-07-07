@@ -33,7 +33,7 @@ const CountdownStack = styled(Stack)(({ theme }) => ({
     '& .MuiTypography-body1': {
       fontSize: '0.875rem',
     },
-  }
+  },
 }));
 
 export const IDOCountdown = ({ endTime, _handleComplete }) => {
@@ -48,11 +48,7 @@ export const IDOCountdown = ({ endTime, _handleComplete }) => {
       onComplete={_handleComplete}
     />
   );
-  return (
-    <Box display="flex">
-      {countdownComponent}
-    </Box>
-  );
+  return <Box display="flex">{countdownComponent}</Box>;
 };
 
 const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -62,41 +58,33 @@ const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
     return (
       <Stack direction="row" spacing={1} mt={1}>
         <CountdownStack>
-          <Typography variant='body1'>
+          <Typography variant="body1">
             {days < 10 ? '0' : ''}
             {days}
           </Typography>
-          <Typography variant='caption'>
-            days
-          </Typography>
+          <Typography variant="caption">days</Typography>
         </CountdownStack>
         <CountdownStack>
-          <Typography variant='body1'>
+          <Typography variant="body1">
             {hours < 10 ? '0' : ''}
             {hours}
           </Typography>
-          <Typography variant='caption'>
-            hours
-          </Typography>
+          <Typography variant="caption">hours</Typography>
         </CountdownStack>
 
         <CountdownStack>
-          <Typography variant='body1'>
+          <Typography variant="body1">
             {minutes < 10 ? '0' : ''}
             {minutes}
           </Typography>
-          <Typography variant='caption'>
-            min
-          </Typography>
+          <Typography variant="caption">min</Typography>
         </CountdownStack>
         <CountdownStack>
-          <Typography variant='body1'>
+          <Typography variant="body1">
             {seconds < 10 ? '0' : ''}
             {seconds}
           </Typography>
-          <Typography variant='caption'>
-            sec
-          </Typography>
+          <Typography variant="caption">sec</Typography>
         </CountdownStack>
       </Stack>
     );

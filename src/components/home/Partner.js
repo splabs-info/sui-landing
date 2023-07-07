@@ -118,6 +118,7 @@ const partners = [
   { label: 'umi', link: 'https://umi.ag/swap' },
   { label: 'sui-game', link: 'https://suigame.io/' },
   { label: 'mises', link: 'https://www.mises.site/' },
+  { label: 'KriyaDEX', link: 'https://kriya.finance/' },
 ];
 
 export default function Partner() {
@@ -132,12 +133,7 @@ export default function Partner() {
         </Box>
         <ContainerPartner mt={10}>
           {partners.map((partner, index) => (
-            <a
-              href={partner.link}
-              target="_blank"
-              rel="noreferrer"
-              key={index}
-            >
+            <a href={partner.link} target="_blank" rel="noreferrer" key={index}>
               <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
             </a>
           ))}
