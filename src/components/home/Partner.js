@@ -119,6 +119,7 @@ const partners = [
   { label: 'sui-game', link: 'https://suigame.io/' },
   { label: 'mises', link: 'https://www.mises.site/' },
   { label: 'KriyaDEX', link: 'https://kriya.finance/' },
+  { label: 'titan', link: 'https://titantrading.io/' },
 ];
 
 export default function Partner() {
