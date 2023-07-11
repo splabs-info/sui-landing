@@ -332,28 +332,24 @@ export default function FreeMinting3() {
 
 const nftImage = [
   {
-    src: '/images/nfts/yousui-nft-1.png',
-    label: 'NFT 1',
+    src: '/images/nfts/yousui-nft-11.png',
+    label: 'NFT 11',
   },
   {
-    src: '/images/nfts/yousui-nft-10.png',
-    label: 'NFT 10',
+    src: '/images/nfts/yousui-nft-15.png',
+    label: 'NFT 15',
   },
   {
-    src: '/images/nfts/yousui-nft-7.png',
-    label: 'NFT 7',
+    src: '/images/nfts/yousui-nft-12.png',
+    label: 'NFT 12',
   },
   {
-    src: '/images/nfts/yousui-nft-8.png',
-    label: 'NFT 8',
+    src: '/images/nfts/yousui-nft-13.png',
+    label: 'NFT 13',
   },
   {
-    src: '/images/nfts/yousui-nft-6.png',
-    label: 'NFT 6',
-  },
-  {
-    src: '/images/nfts/yousui-nft-9.png',
-    label: 'NFT 9',
+    src: '/images/nfts/yousui-nft-14.png',
+    label: 'NFT 14',
   },
 ];
 export const SliderCustom = styled(Slider)(({ theme }) => ({

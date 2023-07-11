@@ -67,19 +67,19 @@ const inoProjects = [
     startTime: '2023-06-24T11:00:00',
     endTime: '2023-06-24T11:10:00',
   },
-  // {
-  //   title: 'Free Minting 3',
-  //   link: '/ino-launchpad/free-minting-nft-3',
-  //   avatar: '/images/ino/free-minting-1.jpg',
-  //   access: 'No',
-  //   hardCap: '500',
-  //   releaseTime: 'Official Launch: July 20th',
-  //   status: true,
-  //   startTime: '2023-07-20T11:00:00',
-  //   endTime: '2023-07-21T12:00:00',
-  //   // chỗ này nha a Tâm
-  //   // endTime: '2023-07-19T11:10:00',
-  // },
+  {
+    title: 'Free Minting 3',
+    link: '/ino-launchpad/free-minting-nft-3',
+    avatar: '/images/ino/free-minting-3.jpg',
+    access: 'No',
+    hardCap: '500',
+    releaseTime: 'Official Launch: July 20th',
+    status: true,
+    startTime: '2023-07-19T12:00:00',
+    endTime: '2023-07-20T12:00:00',
+    // chỗ này nha a Tâm
+    // endTime: '2023-07-19T12:10:00',
+  },
 
   {
     title: 'HooD',
