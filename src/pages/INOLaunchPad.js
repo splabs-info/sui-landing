@@ -73,7 +73,7 @@ const inoProjects = [
     avatar: '/images/ino/free-minting-3.jpg',
     access: 'No',
     hardCap: '500',
-    releaseTime: 'Official Launch: July 20th',
+    releaseTime: 'Official Launch: July 19th',
     status: true,
     startTime: '2023-07-19T12:00:00',
     endTime: '2023-07-20T12:00:00',

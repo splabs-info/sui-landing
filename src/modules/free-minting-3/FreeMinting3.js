@@ -271,10 +271,10 @@ export default function FreeMinting3() {
                     Start at:
                   </Typography>
                 )}
-                <MintingCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimes(true)} />
+                <MintingCountdown endTime={'2023-07-19T12:00:00'} _handleComplete={() => setHasInTimes(true)} />
 
                 <Typography variant="body1" color={'#A0FFF4'} fontStyle={'italic'} mt={2}>
-                  *** Claim schedule: 12:00 (UTC) 20th July, 2023
+                  *** Claim schedule: 12:00 (UTC) 19th July, 2023
                 </Typography>
                 <Typography variant="body1" color={'white'} mt={2}>
                   Click <b>“Claim Now”</b>button to receive a free YouSUI NFT.
