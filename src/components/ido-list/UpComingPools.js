@@ -38,7 +38,7 @@ const upComingIDOList = [
         <p>TBA</p>
       </>,
       <>
-        <p>0.25 USD</p>
+        <p>0.2 USD</p>
         <p>Price per Token</p>
       </>,
       <>
