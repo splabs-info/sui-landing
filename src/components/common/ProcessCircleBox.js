@@ -39,7 +39,7 @@ const PercentBox = styled(Box)(({ theme }) => ({
 
 export const ProcessCircleBox = ({ radius, percent }) => {
   let widthInner, widthOuter, width, perimeter, perProcess
-  if (radius && percent) {
+  if (radius) {
     widthInner = 2 * radius + 10;
     widthOuter = 2 * radius + 40;
     width = 2 * radius + 60;

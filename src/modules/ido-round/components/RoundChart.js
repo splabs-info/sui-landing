@@ -1,9 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import useResponsive from 'hooks/useResponsive';
-import { ChartBox, LiveBox, SaleInfoBox } from './RoundStyled';
 import { fCurrency } from 'utils/format';
-import { IDOCountdown } from 'components/countdown/IDOCountdown';
+import { ChartBox, LiveBox, SaleInfoBox } from './RoundStyled';
 
 export const RoundChart = ({ round }) => {
     const isMobile = useResponsive('down', 'sm');

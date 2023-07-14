@@ -120,6 +120,7 @@ const partners = [
   { label: 'mises', link: 'https://www.mises.site/' },
   { label: 'KriyaDEX', link: 'https://kriya.finance/' },
   // { label: 'titan', link: 'https://titantrading.io/' },
+  { label: 'mirror', link: 'https://mirrorworld.fun/' },
 ];
 
 export default function Partner() {
