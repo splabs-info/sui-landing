@@ -1,10 +1,10 @@
 import { Box, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import { CheckboxFiled, InputField } from "components";
-import React from "react";
-import { BuyTokenButton, SaleFormBox, TokenButton } from "./RoundStyled";
-import useResponsive from "hooks/useResponsive";
 import { useWallet } from "@suiet/wallet-kit";
+import { CheckboxFiled } from "components";
+import useResponsive from "hooks/useResponsive";
+import React from "react";
 import { fCurrency } from "utils/format";
+import { BuyTokenButton, SaleFormBox, TokenButton } from "./RoundStyled";
 
 export const RoundForm = ({ round, balances }) => {
     const [checked, setChecked] = React.useState();
@@ -132,6 +132,5 @@ export const RoundForm = ({ round, balances }) => {
                 </Stack>
             </form>
         </SaleFormBox>
-
     );
 };

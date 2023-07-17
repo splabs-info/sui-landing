@@ -43,19 +43,19 @@ export const TokenBox = styled(Box)(({ theme }) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     position: 'relative',
-    '&:before': {
-        content: '""',
-        position: 'absolute',
-        width: '100%',
-        background: 'linear-gradient(286.83deg, rgba(255, 255, 255, 0) 0%, rgba(0, 172, 226, 0.596875) 99.99%, rgba(15, 162, 153, 0.6) 100%)',
-        borderRadius: 15,
-        padding: '1px',
-        inset: '0px',
-        WebkitMask:
-            'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-        WebkitMaskComposite: 'xor',
-        zIndex: 0,
-    },
+    // '&:before': {
+    //     content: '""',
+    //     position: 'absolute',
+    //     width: '100%',
+    //     background: 'linear-gradient(286.83deg, rgba(255, 255, 255, 0) 0%, rgba(0, 172, 226, 0.596875) 99.99%, rgba(15, 162, 153, 0.6) 100%)',
+    //     borderRadius: 15,
+    //     padding: '1px',
+    //     inset: '0px',
+    //     WebkitMask:
+    //         'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+    //     WebkitMaskComposite: 'xor',
+    //     zIndex: 0,
+    // },
     [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         gap: theme.spacing(2),

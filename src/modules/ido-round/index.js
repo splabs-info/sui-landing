@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Round } from './components/Round';
 import { SaveButton } from './components/RoundStyled';
 import useResponsive from 'hooks/useResponsive';
-
+import { toast } from 'react-toastify';
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -78,6 +78,9 @@ export default function IDORound() {
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
     };
+    const handleSave = () => {
+        toast.success('Save successful');
+    }
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
@@ -107,7 +110,7 @@ export default function IDORound() {
                                             }}
 
                                         />
-                                        <SaveButton>Save</SaveButton>
+                                        <SaveButton onClick={handleSave}>Save</SaveButton>
                                     </Stack>}
                                 <Stack alignItems={isMobile ? 'center' : 'flex-end'}>
                                     <SpecialTabList

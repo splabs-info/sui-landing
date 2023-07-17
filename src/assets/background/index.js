@@ -1,0 +1,1 @@
+export const IDObackground = '/images/background/homebg56.png'
