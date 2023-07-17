@@ -17,7 +17,7 @@ import ShowErrorComponent from './components/common/ShowErrorComponent';
 import { WalletProvider } from './hooks/use-connect';
 import Routers from './routes';
 // import { _changeLanguage } from './store/setting/settingActions';
-import { SUIWalletContext } from 'provider/SuiProvider';
+import { SUIWalletContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import './styles/index.css';
 import './styles/suiet-wallet-kit-custom.css';

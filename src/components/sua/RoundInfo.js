@@ -70,9 +70,9 @@ export const RoundInfo = ({
                     <Stack spacing={2} justifyContent={'space-between'} height={'100%'}>
                         <TokenBox>
                             <Box>
-                                <Typography variant="body1" mb={0.5}>Token Address</Typography>
-                                <Typography variant="body2" display={'inline-flex'} gap={1}>
-                                    {fAddress('0xaa78b4427f08521031c38536be04bb8c905e75227689937c085676ae0d8b0326')}
+                                <Typography variant="body1" mb={0.5}>Token Type</Typography>
+                                <Typography variant="body2" display={'inline-flex'} gap={2}>
+                                    {fAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84')}
                                     <CopyComponent content={address} />
                                 </Typography>
                             </Box>

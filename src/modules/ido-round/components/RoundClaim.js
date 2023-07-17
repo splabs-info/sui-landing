@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { fCurrency } from "utils/format";
-import { ClaimBox, ClaimButton } from "./RoundStyled";
+import { BuyTokenButton, ClaimBox } from "./RoundStyled";
 
 
 
@@ -35,7 +35,7 @@ export const RoundClaim = ({ claimInfo, roundNumber }) => {
             ))}
             {roundNumber === 1 && <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className='border'>
                 <Typography variant="body2" fontWeight={600}>Redeem SUI and IDO token allocation</Typography>
-                <ClaimButton> CLAIM</ClaimButton>
+                <BuyTokenButton disabled> CLAIM</BuyTokenButton>
             </Stack>}
         </ClaimBox>
 

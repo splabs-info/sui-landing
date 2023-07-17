@@ -46,7 +46,7 @@ export const RoundChart = ({ round }) => {
                             <img src='/images/icon/icon-dollar.png' alt='' />
                             <Stack>
                                 <Typography variant='body2' fontWeight={'bold'}>Price</Typography>
-                                <Typography variant='body2'>{round?.price} USD</Typography>
+                                <Typography variant='body2'>{round?.price} SUI = 1 XUI (0.2 USD)</Typography>
                             </Stack>
                         </Box>
 
@@ -72,7 +72,7 @@ export const RoundChart = ({ round }) => {
                             </Stack>
                         </Box>
                     </SaleInfoBox>
-                    <Box pl={4} mt={2}>
+                    <Box pl={4} mt={2} sx={{ minHeight: 76 }}>
                         <Typography variant='h6'> IDO Information</Typography>
                         <ul style={{ marginLeft: '24px' }}>
                             <li><Typography variant='body2'>IDO Launchpad Logic: {round?.idoInfo.logic}</Typography> </li>
