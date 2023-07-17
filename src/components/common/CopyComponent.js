@@ -14,11 +14,14 @@ const CopyComponent = ({ content, children }) => {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                color="#869ba5"
+                color="#4CD3D7"
                 sx={{
                     opacity: 0.8,
                     '&:hover': {
                         opacity: 1,
+                    },
+                    '& svg': {
+                        color: '#4CD3D7',
                     },
                 }}
             >
