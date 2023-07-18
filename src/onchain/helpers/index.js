@@ -5,6 +5,7 @@ export const fetchCoreDetails = async (p) => {
                 ...i?.content?.fields?.value?.fields,
                 objectId: i?.objectId,
                 name: i?.name,
+                parent_id: i?.parent_id,
                 type_core: i?.type_core,
                 rule_name: i?.content?.fields?.name,
             }
@@ -17,6 +18,7 @@ export const fetchCoreDetails = async (p) => {
                 ...i?.content?.fields?.info?.fields,
                 objectId: i?.objectId,
                 name: i?.name,
+                parent_id: i?.parent_id,
                 type_core: i?.type_core,
                 rule_name: i?.name?.value,
             }

@@ -39,7 +39,7 @@ export function InputField({ name, control, label, apiError, InputProps, passwor
     });
 
     return (
-        <Box>
+        <Box sx={{height: 72}}>
             <StyledInputLabel shrink htmlFor="bootstrap-input">
                 {label}
             </StyledInputLabel>

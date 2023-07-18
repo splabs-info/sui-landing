@@ -53,8 +53,7 @@ const fields = [
     },
 ];
 export const RoundInfo = ({
-    address = '0x0000000000000000000000000000000000000000',
-    startTime = null,
+    startTime,
     endTime = null,
 }) => {
     return (

@@ -1,4 +1,3 @@
-import { StateCreator } from 'zustand'
 
 const init = {}
 

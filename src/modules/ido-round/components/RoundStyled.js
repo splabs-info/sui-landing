@@ -114,6 +114,8 @@ export const BuyTokenButton = styled(LoadingButton)(({ theme }) => ({
     borderRadius: 30,
     padding: '12px 36px',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
+    minHeight: 42,
+    maxHeight: 48,
     '&.Mui-disabled': {
         background: 'linear-gradient(180deg, #112A3E 0%, #03121D 100%)',
         boxShadow: '0px 0px 7px rgba(65, 145, 201, 0.5)',

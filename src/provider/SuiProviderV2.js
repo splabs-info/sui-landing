@@ -34,7 +34,7 @@ export const SUIWalletContext = ({ children }) => {
             const formattedPaymentsPromise = Promise.all(
                 round?.data.content?.fields.payments?.fields?.contents.map(formatPayment)
             )
-
+            
             const formattedPayments = await formattedPaymentsPromise
             const formattedTotalSold = ethers.utils.formatUnits(
                 round?.data?.content?.fields?.total_sold,
@@ -88,7 +88,6 @@ export const SUIWalletContext = ({ children }) => {
                             const roundInfo = Promise.all(rounds.map(formatRound))
 
                             const all_rounds = await roundInfo
-
                             return {
                                 ...project?.data?.content?.fields?.info?.fields,
                                 id: project?.data?.content?.fields?.id?.id,
