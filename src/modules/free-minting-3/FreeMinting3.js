@@ -98,16 +98,17 @@ export default function FreeMinting3() {
       id: addresses.objectFreeMint,
       options: { showContent: true },
     });
+    console.log(result);
     setTotal(result?.data?.content?.fields?.max_mint);
     setMinted(result?.data?.content?.fields?.number);
   };
 
   React.useEffect(() => {
     if (provider) {
-      // const interval = setInterval(() => {
-      //   syncData();
-      // }, 20000);
-      // return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        syncData();
+      }, 20000);
+      return () => clearInterval(interval);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -120,7 +121,7 @@ export default function FreeMinting3() {
 
   React.useEffect(() => {
     if (provider) {
-      // syncData();
+      syncData();
     }
   }, [flag]);
 
@@ -507,7 +508,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
