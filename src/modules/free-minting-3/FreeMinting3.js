@@ -12,6 +12,8 @@ import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { config, provider } from './init';
+import { formatAddress } from 'setting/format';
+import CopyComponent from 'components/common/CopyComponent';
 const itemName = 'minted-wallets';
 export const addresses = config.addresses;
 
@@ -96,16 +98,17 @@ export default function FreeMinting3() {
       id: addresses.objectFreeMint,
       options: { showContent: true },
     });
+    console.log(result);
     setTotal(result?.data?.content?.fields?.max_mint);
     setMinted(result?.data?.content?.fields?.number);
   };
 
   React.useEffect(() => {
     if (provider) {
-      // const interval = setInterval(() => {
-      //   syncData();
-      // }, 20000);
-      // return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        syncData();
+      }, 20000);
+      return () => clearInterval(interval);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -118,7 +121,7 @@ export default function FreeMinting3() {
 
   React.useEffect(() => {
     if (provider) {
-      // syncData();
+      syncData();
     }
   }, [flag]);
 
@@ -298,8 +301,7 @@ export default function FreeMinting3() {
                   sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
-                  // disabled={minted === total || hasMinted}
-                  disabled
+                  disabled={minted === total || hasMinted}
                 >
                   {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
@@ -505,7 +507,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
@@ -514,7 +516,13 @@ const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
       </Stack>
       <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3 }}>
         {myNftList?.map((item, index) => (
-          <Box component={'img'} alt={item.name} src={item.image_url} key={index} sx={{ width: 'min(25%,200px)' }} />
+          <Stack key={index} sx={{ width: 'min(45%,200px)', mt: 1 }}>
+            <Box component={'img'} alt={item.name} src={item.image_url} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
+              <Typography variant={isMobile ? 'caption' : 'body2'}>{formatAddress(item.id.id, 4)}</Typography>
+              <CopyComponent content={item.id.id} />
+            </Box>
+          </Stack>
         ))}
       </Stack>
     </CustomModal>

@@ -17,6 +17,7 @@ select:-webkit-autofill:focus {
   background-image: url(/public/images/background/bg-toast.jpg);
   position: relative;
   border-radius: 16px;
+  z-index: 100;
 }
 
 .Toastify__toast::before {

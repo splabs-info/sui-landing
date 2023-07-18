@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
-import { FreeMintingHelper, provider } from 'modules/free-minting-2/init';
+import { FreeMintingHelper, provider } from 'modules/free-minting-3/init';
 import { useEffect, useState } from 'react';
 import { OnGoingCard } from './OnGoingCard';
 

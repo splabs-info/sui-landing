@@ -12,6 +12,8 @@ import React from 'react';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { config, provider } from './init';
+import CopyComponent from 'components/common/CopyComponent';
+import { formatAddress } from 'setting/format';
 
 export const addresses = config.addresses;
 
@@ -499,7 +501,13 @@ const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
       </Stack>
       <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, m: 3 }}>
         {myNftList?.map((item, index) => (
-          <Box component={'img'} alt={item.name} src={item.image_url} key={index} sx={{ width: 'min(25%,200px)' }} />
+          <Stack key={index} sx={{ width: 'min(45%,200px)', mt: 1 }}>
+            <Box component={'img'} alt={item.name} src={item.image_url} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
+              <Typography variant={isMobile ? 'caption' : 'body2'}>{formatAddress(item.id.id, 4)}</Typography>
+              <CopyComponent content={item.id.id} />
+            </Box>
+          </Stack>
         ))}
       </Stack>
     </CustomModal>
