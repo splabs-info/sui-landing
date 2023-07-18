@@ -301,8 +301,7 @@ export default function FreeMinting3() {
                   sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
-                  // disabled={minted === total || hasMinted}
-                  disabled
+                  disabled={minted === total || hasMinted}
                 >
                   {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
