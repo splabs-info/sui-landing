@@ -29,7 +29,7 @@ const upComingIDOList = [
     releaseTime: 'Official Launch: July 20th ',
     startAt: 'July 20th, 12:00 UTC',
     status: true,
-    link: '/ido-launchpad/round',
+    link: '/ido-launchpad/og-sale',
     startTime: '2023-07-20T12:00:00',
     endTime: '2023-07-20T13:00:00',
     description: [

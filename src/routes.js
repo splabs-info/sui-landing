@@ -60,7 +60,7 @@ export default function Router() {
           ),
         },
         {
-          path: 'ido-launchpad/xui',
+          path: 'ido-launchpad/:roundName',
           element: (
             <Suspense>
               <XUI />

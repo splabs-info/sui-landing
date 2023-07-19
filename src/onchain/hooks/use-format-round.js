@@ -11,7 +11,7 @@ export const useFormatRound = () => {
     const { projects, provider } = React.useContext(SuiContext)
 
     const [policies, setPolicies] = React.useState({})
-    const [services, setServices] = React.useState([])
+    const [services, setServices] = React.useState({})
 
     const { storeServices } = useYouSuiStore()
 
@@ -26,6 +26,7 @@ export const useFormatRound = () => {
                     [item?.type_core]: {
                         ...dynamicFiled?.data,
                         name: item?.name,
+                        parent_id: item?.parent_id,
                         type_core: item?.type_core,
                     },
                 }
@@ -60,7 +61,6 @@ export const useFormatRound = () => {
 
 
     const formatInfoRound = React.useCallback(async (name) => {
-
         if (isEmpty(projects)) return
 
         const rounds = projects
@@ -68,7 +68,8 @@ export const useFormatRound = () => {
                 item?.all_rounds?.find((round) => round?.name === name)
             )
             .filter(Boolean)
-            const dynamicFieldsPromises = rounds
+
+        const dynamicFieldsPromises = rounds
             .flatMap((round) => {
                 return round?.core?.fields?.contents?.map((content) => fetchDynamicFields(content)) || [];
             })
@@ -95,6 +96,7 @@ export const useFormatRound = () => {
             let coreDetails;
             try {
                 coreDetails = await Promise.all(coreDetailsPromises)
+
             } catch (e) {
                 console.error(e)
                 coreDetails = []
@@ -105,10 +107,11 @@ export const useFormatRound = () => {
 
             const policies = flattenCoreDetails.filter((core) => core?.type_core === 'POLICY')
             const services = flattenCoreDetails.filter((core) => core?.type_core === 'SERVICE')
-
-            storeServices(services)
+            
             let additionalInfo = {}
             policies.forEach((p) => {
+                if(!p?.max_purchase || !p?.min_purchase) return;
+
                 additionalInfo = {
                     ...additionalInfo,
                     maxPurchase:
@@ -128,13 +131,12 @@ export const useFormatRound = () => {
                 }
             })
 
-            setServices(services)
             storeServices(services)
+            setServices(services)
             setPolicies(policies)
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
         }
 
-        console.log('round__', rounds)
         const infoState = rounds.map((info) => ({
             id: info?.id?.id || '',
             name: info?.name || '',
@@ -150,18 +152,21 @@ export const useFormatRound = () => {
             totalSold: Number(info?.total_sold) || 0,
             totalSupply: Number(info?.total_supply) || 0,
             type: info?.token_type,
+            purchaseType: info?.purchase_type?.fields?.contents,
+            participants: info?.participants?.fields?.content
         }))
 
         setInfoRound((pre) => ({
             ...pre,
             ...infoState[0],
         }))
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [projects])
 
     return {
         infoRound,
+        services,
+        policies,
         formatInfoRound
     }
 }

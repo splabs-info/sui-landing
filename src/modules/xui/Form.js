@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { fCurrency } from 'utils/format';
 import * as yup from 'yup';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 export const BuyForm = ({
     totalSold,
@@ -25,6 +26,7 @@ export const BuyForm = ({
     maxPurchase,
     type,
     projectName,
+    purchaseType,
     roundName,
 }) => {
     const [checked, setChecked] = React.useState(false);
@@ -32,9 +34,9 @@ export const BuyForm = ({
     const [chosenToken, setChosenToken] = React.useState('');
     const isMobile = useResponsive('down', 'sm');
     const wallet = useWallet();
+    const { objectIdOGRoleNft } = useYouSuiStore();
 
     const { balances, coinObjectsId } = React.useContext(SuiContext);
-
 
     const poolRemaining = React.useMemo(() => {
         if (totalSupply && (totalSold || totalSold === 0)) {
@@ -55,6 +57,7 @@ export const BuyForm = ({
             .max(maxPurchase, `Per user can buy ${maxPurchase} maximum of XUI on this round.`)
             .required('Amount is required')
             .typeError('Must be number')
+            .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
             .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
     });
 
@@ -89,11 +92,8 @@ export const BuyForm = ({
     };
 
     const handleSelectMax = async () => {
-        const maxPurchaseNum = maxPurchase.toString();
-        const decimalsNum = decimals.toString();
-
-        if (maxPurchaseNum && decimalsNum) {
-            setValue('amount', maxPurchase);
+        if (balances && balances) {
+            setValue('amount', balances / formattedRatio);
             trigger('amount');
         } else {
             console.error(
@@ -177,6 +177,7 @@ export const BuyForm = ({
 
     const isCanBuy = canBuy();
 
+    console.log('purchaseType____', purchaseType)
     const renderStatusBalance = React.useCallback(() => {
         if (isEmpty(payments) || isEmpty(balances)) {
             return 'Loading';
@@ -216,18 +217,43 @@ export const BuyForm = ({
             objects: [coin],
         });
 
-        tx.moveCall({
-            target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
-            typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-            arguments: [
-                tx.object(CLOCK),
-                tx.object(LAUNCHPAD_STORAGE),
-                tx.pure(projectName),
-                tx.pure(roundName),
-                tx.pure(parseAmount),
-                vec,
-            ],
-        });
+        let purchase = objectIdOGRoleNft === '' ? 1 : 3;
+
+        switch (purchase) {
+            case 1:
+                tx.moveCall({
+                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
+                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                    arguments: [
+                        tx.object(CLOCK),
+                        tx.object(LAUNCHPAD_STORAGE),
+                        tx.pure(projectName),
+                        tx.pure(roundName),
+                        tx.pure(parseAmount),
+                        vec,
+                    ],
+                });
+                break;
+            case 2:
+                break;
+            case 3:
+                tx.moveCall({
+                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
+                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                    arguments: [
+                        tx.object(CLOCK),
+                        tx.object(LAUNCHPAD_STORAGE),
+                        tx.pure(projectName),
+                        tx.pure(roundName),
+                        tx.pure(parseAmount),
+                        vec,
+                        tx.object(objectIdOGRoleNft)
+                    ],
+                });
+                break;
+            default:
+                break;
+        }
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
@@ -247,6 +273,7 @@ export const BuyForm = ({
             toast.error('Transaction rejected');
         }
     };
+
     const handleChecked = (event) => {
         setChecked(event.target.checked);
     };
@@ -260,6 +287,7 @@ export const BuyForm = ({
                         justifyContent: 'space-between',
                         alignItems: 'center',
                     }}
+                    mb={2}
                 >
                     <Typography sx={{}}>Amount:</Typography>
                     <Typography

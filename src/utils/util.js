@@ -96,3 +96,17 @@ export const validateReferralCode = (referralCode, wallet) => {
     const remaining = referralCode.slice(2);
     return wallet.includes(remaining);
 }
+
+export const handleNameRound = (str) => {
+    if (typeof str !== 'string') {
+        throw new Error('Input must be a string');
+    }
+
+    return str
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('_');
+}
+
+
+export const fCurrencyV2 = (number, fix) => Intl.NumberFormat('en-US', { maximumSignificantDigits: fix }).format(number)

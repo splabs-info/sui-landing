@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import { config, provider } from './init';
 import CopyComponent from 'components/common/CopyComponent';
 import { formatAddress } from 'setting/format';
-const itemName = 'minted-wallets';
+const itemName = 'minted-wallets-2';
 export const addresses = config.addresses;
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({

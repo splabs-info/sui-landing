@@ -100,12 +100,13 @@ export const ImageBox = styled(Box)(({ theme }) => ({
 }));
 
 
-export const SaveButton = styled(Button)(({ theme }) => ({
+export const SaveButton = styled(LoadingButton)(({ theme }) => ({
     background: 'linear-gradient(255.34deg, #207BBF 21.95%, #4A94CB 39.94%, #5CBAF2 79.27%)',
     color: 'white',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     padding: '8px 32px',
     borderRadius: 30,
+    height: 48,
 }));
 
 export const BuyTokenButton = styled(LoadingButton)(({ theme }) => ({
