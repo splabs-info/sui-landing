@@ -102,7 +102,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                                 <Typography variant="body2" fontWeight={'bold'}>
                                     Price
                                 </Typography>
-                                <Typography variant="body2">{formattedRatio} SUI = 1 XUI</Typography>
+                                <Typography variant="body2">{formattedRatio} SUI = 1 XUI ($0.2)</Typography>
                             </Stack>
                         </Box>
 

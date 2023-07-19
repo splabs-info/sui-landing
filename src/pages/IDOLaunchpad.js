@@ -65,7 +65,7 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <Link to={'/ido-launchpad/round'}>
+            <Link to={'/ido-launchpad/og-sale'}>
               <FrameButton>Buy $XUI</FrameButton>
             </Link>
             <Link to={'/whitepaper'}>
