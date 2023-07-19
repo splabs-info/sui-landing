@@ -4,4 +4,5 @@ export const config = {
   link: `https://ramptest.alchemypay.org`,
   // link: `https://ramp.alchemypay.org`,
   network: 'BSC',
+  crypto: 'USDT',
 };

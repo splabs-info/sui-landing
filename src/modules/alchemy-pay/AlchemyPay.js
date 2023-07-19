@@ -3,9 +3,11 @@ import React from 'react';
 import { config } from './init';
 
 export default function AlchemyPay() {
+  console.log(`${config.link}?crypto=${`USDT`}&network=${config.network}&appId=${config.appId}`);
+
   const handleOpen = () => {
-    var myWindow = window.open(
-      `${config.link}?crypto=USDT&network=${config.network}&appId=${config.appId}&callbackUrl=http://localhost:3002/`,
+    window.open(
+      `${config.link}?crypto=${`USDT`}&network=${config.network}&appId=${config.appId}`,
       '',
       'width=500,height=700'
     );
