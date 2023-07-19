@@ -66,6 +66,7 @@ export const findCertificate = (arrayA, arrayB) => {
 
     for (let i = 0; i < arrayB.length; i++) {
         arrayA.forEach((element) => {
+
             if (element?.data?.content?.type === arrayB[i]) {
                 commonElements.push(element);
             }
