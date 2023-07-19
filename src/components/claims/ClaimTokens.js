@@ -174,8 +174,6 @@ function TokenPool({ avatar, eventName, name, projectId, description, issueDate 
         });
     };
 
-
-
     return (
         <TokenPoolBox >
             <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>

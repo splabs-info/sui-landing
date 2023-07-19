@@ -2,7 +2,7 @@ import { Box, Divider, styled, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
 import { investCertificate, TXUI_PROJECT } from 'constant';
 import useResponsive from 'hooks/useResponsive';
-import { SuiContext } from 'provider/SuiProvider';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { findCertificate } from 'utils/util';
 import { TitleSection } from './TitleSection';
@@ -74,53 +74,53 @@ export const MyIDOArea = () => {
   const wallet = useWallet();
   const { provider } = React.useContext(SuiContext);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      if (!wallet?.address || !wallet?.connected) return;
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (!wallet?.address || !wallet?.connected) return;
 
-      const owner = wallet?.address;
+  //     const owner = wallet?.address;
 
-      const otherObjects = await provider.getOwnedObjects({
-        owner,
-        options: { showContent: true },
-      });
+  //     const otherObjects = await provider.getOwnedObjects({
+  //       owner,
+  //       options: { showContent: true },
+  //     });
 
-      if (otherObjects?.data?.length === 0) return;
+  //     if (otherObjects?.data?.length === 0) return;
 
-      const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
+  //     const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
 
-      if (!certificateObjects) return;
+  //     if (!certificateObjects) return;
 
-      const promises = certificateObjects.map(async (item) => {
-        const certificate = await provider.getObject({
-          id: item.data.objectId,
-          options: { showContent: true },
-        });
+  //     const promises = certificateObjects.map(async (item) => {
+  //       const certificate = await provider.getObject({
+  //         id: item.data.objectId,
+  //         options: { showContent: true },
+  //       });
 
-        const projectFields = certificate?.data?.content?.fields?.project?.fields;
+  //       const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-        return {
-          description: projectFields?.description || '',
-          discord: projectFields?.discord || '',
-          image_url: projectFields?.image_url || '',
-          link_url: projectFields?.link_url || '',
-          medium: projectFields?.medium || '',
-          name: projectFields?.name || '',
-          eventName: certificate?.data?.content?.fields?.event_name || '',
-          project_id: projectFields?.project_id || '',
-          telegram: projectFields?.telegram || '',
-          twitter: projectFields?.twitter || '',
-          website: projectFields?.website || '',
-        };
-      });
+  //       return {
+  //         description: projectFields?.description || '',
+  //         discord: projectFields?.discord || '',
+  //         image_url: projectFields?.image_url || '',
+  //         link_url: projectFields?.link_url || '',
+  //         medium: projectFields?.medium || '',
+  //         name: projectFields?.name || '',
+  //         eventName: certificate?.data?.content?.fields?.event_name || '',
+  //         project_id: projectFields?.project_id || '',
+  //         telegram: projectFields?.telegram || '',
+  //         twitter: projectFields?.twitter || '',
+  //         website: projectFields?.website || '',
+  //       };
+  //     });
 
-      const formattedMyIdo = await Promise.all(promises);
+  //     const formattedMyIdo = await Promise.all(promises);
 
-      setMyIdo([...formattedMyIdo]);
-    };
+  //     setMyIdo([...formattedMyIdo]);
+  //   };
 
-    fetchData();
-  }, [provider, wallet?.address, wallet?.connected]);
+  //   fetchData();
+  // }, [provider, wallet?.address, wallet?.connected]);
 
   return (
     <Box sx={{ marginBottom: 12 }}>
