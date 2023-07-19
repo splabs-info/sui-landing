@@ -14,10 +14,12 @@ import {
   ListItemButton,
   ListItemText,
   MenuItem,
+  Stack,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useWallet } from '@suiet/wallet-kit';
-import { IconBrandTelegram, IconMenu2 } from '@tabler/icons';
+import { IconBrandTelegram, IconMenu2, IconShoppingCart } from '@tabler/icons';
 import Logo from 'components/common/Logo';
 import { WalletDrawer } from 'components/drawer';
 import { MenuCustom, SocialBox } from 'components/footer/FooterStyles';
@@ -29,6 +31,7 @@ import { Header, Navbar } from '../components/header/HeaderStyles';
 import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import NotifiHistory from 'modules/notifi-network/NotifiHistory';
+import { BuyCryptoButton } from 'components/common/CustomButton';
 
 const config = [
   { label: 'key_2', link: '/ido-launchpad' },
@@ -104,6 +107,7 @@ export default function HeaderSection() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const isDesktop = useResponsive('up', 'md');
+  const isMobile = useResponsive('down', 'sm');
 
   const navigate = useNavigate();
 
@@ -292,6 +296,14 @@ export default function HeaderSection() {
     <></>
     // <NotifiHistory />
   );
+  const BuyCrypto = () => (
+    <BuyCryptoButton onClick={() => navigate('/alchemy-pay')}>
+      <IconShoppingCart size={'18px'} />
+      <Typography variant='caption' fontWeight={600}
+        sx={{ textDecoration: 'underline' }}
+      >Buy Crypto with Fiat</Typography>
+    </BuyCryptoButton>
+  );
 
   return (
     <>
@@ -299,22 +311,31 @@ export default function HeaderSection() {
         <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
           <Container
             maxWidth={'xl'}
-            sx={{ display: 'flex', alignItems: 'center', height: 36, justifyContent: 'space-between' }}
+            sx={{
+              display: 'flex', alignItems: 'center',
+              height: 36, justifyContent: 'space-between',
+            }}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <EmailIcon sx={{ color: 'rgba(255, 255, 255, 1)', fontSize: 18, marginRight: '8px' }} />
-              <a
-                href="mailto:business@yousui.io"
-                style={{
-                  fontSize: 14,
-                  color: 'rgba(255, 255, 255, 1)',
-                  lineHeight: '20px',
-                }}
-              >
-                business@yousui.io
-              </a>
-            </Box>
-            <Box>{SocialHeaderBox()}</Box>
+            {isMobile ? <BuyCrypto /> :
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <EmailIcon sx={{ color: 'rgba(255, 255, 255, 1)', fontSize: 18, marginRight: '8px' }} />
+                <a
+                  href="mailto:business@yousui.io"
+                  style={{
+                    fontSize: 14,
+                    color: 'rgba(255, 255, 255, 1)',
+                    lineHeight: '20px',
+                  }}
+                >
+                  business@yousui.io
+                </a>
+              </Box>}
+            <Stack direction="row" gap={2}>
+              <Hidden smDown>
+                <BuyCrypto />
+              </Hidden>
+              {SocialHeaderBox()}
+            </Stack>
           </Container>
         </Box>
 
@@ -333,7 +354,7 @@ export default function HeaderSection() {
               sx={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: { sm: '1rem', xs: '0.5rem' },
+                gap: { sm: '10px', xs: '6px' },
                 '& img': {
                   height: 32,
                 },

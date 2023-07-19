@@ -74,11 +74,11 @@ export const TitleTypography = styled(Typography)(({ theme }) => ({
     lineHeight: '1.3',
     fontSize: '2rem !important',
     [theme.breakpoints.up('lg')]: {
-        fontSize: '2.5rem !important',
+        fontSize: '2.25rem !important',
     },
     '& p': { color: Color.primary },
     [theme.breakpoints.down('sm')]: {
-        fontSize: '1.2rem !important',
+        fontSize: '1rem!important',
     },
 }));
 export const TextTypography = styled(Typography)(({ theme }) => ({
