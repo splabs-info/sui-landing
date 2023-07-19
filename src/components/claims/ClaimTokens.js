@@ -137,7 +137,8 @@ export default function ClaimTokens({ myIDOs }) {
                             isWithdrawal={item?.isWithdrawal}
                             avatar={item?.image_url}
                             issueDate={item?.issue_date}
-                            projectId={item?.project_id}
+                            // projectId={item?.project_id}
+                            vestingId={item?.vesting_id}
                             eventName={item?.eventName}
                             name={item?.name}
                             description={item?.description}
@@ -162,12 +163,12 @@ export default function ClaimTokens({ myIDOs }) {
     );
 }
 
-function TokenPool({ avatar, eventName, name, projectId, description, issueDate }) {
+function TokenPool({ avatar, eventName, name, vestingId, description, issueDate }) {
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate(`/claim-tokens/${projectId}`, {
+        navigate(`/claim-tokens/${vestingId}`, {
             state: {
                 eventName: eventName,
             }

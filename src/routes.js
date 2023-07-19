@@ -43,14 +43,14 @@ export default function Router() {
             </Suspense>
           ),
         },
-        {
-          path: 'ido-launchpad/round',
-          element: (
-            <Suspense>
-              <IDORound />
-            </Suspense>
-          ),
-        },
+        // {
+        //   path: 'ido-launchpad/round',
+        //   element: (
+        //     <Suspense>
+        //       <IDORound />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'ido-launchpad/sua',
           element: (
@@ -145,7 +145,7 @@ export default function Router() {
           ),
         },
         {
-          path: 'claim-tokens/:projectId',
+          path: 'claim-tokens/:vestingId',
           element: (
             <Suspense>
               <ClaimsDetail />

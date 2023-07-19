@@ -4,18 +4,19 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { TXUI_CLOCK, TXUI_PACKAGE } from 'constant';
+
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/FooterSection';
 import { toNumber } from 'lodash';
 import * as moment from 'moment';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
 import React from 'react';
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
-export default function VestingTokens({ tokenType, periodList, totalLockMount, totalUnlockAmount }) {
+export default function VestingTokens({ projectName, tokenType, periodList, totalLockMount, totalUnlockAmount }) {
     const isMobile = useResponsive('down', 'sm');
 
     return (
@@ -49,7 +50,7 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                 </Grid>
                 <Grid sx={{ width: '100%', '& a': { marginRight: '8px' } }} xs={12} md={8} item>
                     <Typography variant="h3" color={'white'}>
-                        T-XUI Tokens
+                        XUI Tokens
                     </Typography>
                     <Typography variant="body1" color={'white'} my={isMobile ? 2 : 4}>
                         A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best
@@ -72,16 +73,16 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                                             ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
                                                 ethers.utils.formatUnits(totalUnlockAmount, 9)
                                             )
-                                            : 'Loading'}
-                                        {' '}XUI
+                                            : 'Loading'}{' '}
+                                        XUI
                                     </Typography>
                                     <Typography>
                                         {totalLockMount
                                             ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
                                                 ethers.utils.formatUnits(totalLockMount, 9)
                                             )
-                                            : 'Loading'}
-                                        {' '}XUI
+                                            : 'Loading'}{' '}
+                                        XUI
                                     </Typography>
                                 </>
                             }
@@ -93,6 +94,7 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
                 <>
                     {periodList.map((item, index) => (
                         <VestingList
+                            projectName={projectName}
                             key={index}
                             tokenType={tokenType}
                             periodId={item?.fields.period_id}
@@ -113,31 +115,36 @@ export default function VestingTokens({ tokenType, periodList, totalLockMount, t
     );
 }
 
-function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount }) {
+function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount, projectName }) {
     const isMobile = useResponsive('down', 'sm');
 
     const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
     const wallet = useWallet();
     const [loading, setLoading] = React.useState(false);
 
-    const { projectId } = useParams();
-    const decodedProjectId = decodeURIComponent(projectId);
+    // const { projectId } = useParams();
+    // const decodedProjectId = decodeURIComponent(projectId);
 
     const location = useLocation();
 
     const event = location.state?.eventName;
-    const canClaim = canClaimVesting(releaseTime)
 
+    const canClaim = canClaimVesting(releaseTime);
 
     const handleClaim = async () => {
-        setLoading(true)
+        setLoading(true);
         const tx = new TransactionBlock();
 
-        console.log('indexVesting', indexVesting)
         tx.moveCall({
-            target: `${TXUI_PACKAGE}::launchpad_presale::claim_vesting`,
+            target: `${PACKAGE_UPGRADE}::launchpad::claim_vesting`,
             typeArguments: [`0x${tokenType}`],
-            arguments: [tx.object(TXUI_CLOCK), tx.object(decodedProjectId), tx.pure(event), tx.pure([indexVesting])],
+            arguments: [
+                tx.object(CLOCK),
+                tx.object(LAUNCHPAD_STORAGE),
+                tx.object(projectName),
+                tx.pure(event),
+                tx.pure([indexVesting]),
+            ],
         });
 
         try {
@@ -154,9 +161,9 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
             }
         } catch (e) {
             setLoading(false);
-            toast.error('Transaction error');
+            toast.error('Transaction rejected');
         }
-    }
+    };
 
     return (
         <TokenPoolBox isWithdrawal={withdrawal}>
@@ -222,7 +229,10 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                         >
                             {unlockAmount
                                 ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
-                                    ethers.utils.formatUnits(unlockAmount, 9)) + ' ' + 'TXUI'
+                                    ethers.utils.formatUnits(unlockAmount, 9)
+                                ) +
+                                ' ' +
+                                'TXUI'
                                 : 'Loading'}
                         </Typography>
                     </Box>
@@ -243,7 +253,12 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                         justifyContent: isMobile ? 'center' : 'flex-end',
                     }}
                 >
-                    <BorderGradientButton sx={{ minWidth: 160 }} disabled={!canClaim || isWithdrawal} onClick={handleClaim} loading={loading}>
+                    <BorderGradientButton
+                        sx={{ minWidth: 160 }}
+                        disabled={!canClaim || isWithdrawal}
+                        onClick={handleClaim}
+                        loading={loading}
+                    >
                         {isWithdrawal ? 'Claimed' : 'Claim'}
                     </BorderGradientButton>
                 </Grid>
