@@ -7,17 +7,17 @@ import React, { createContext } from 'react'
 
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://fullnode.testnet.sui.io:443`,
+        fullnode: `https://explorer-rpc.mainnet.sui.io/`,
     }),
 }
 
-const provider = new JsonRpcProvider(mainnetConnection)
+const provider = new JsonRpcProvider(config.providerConnection)
 
 export const SuiContext = createContext({
     assets: [],
     balances: null,
     coinObjectsId: null,
-    provider: new JsonRpcProvider(mainnetConnection),
+    provider: new JsonRpcProvider(config.providerConnection),
     projects: [],
 })
 

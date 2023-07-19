@@ -6,7 +6,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled, InputField } from 'components';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty, round, toNumber } from 'lodash';
+import { isEmpty, toNumber } from 'lodash';
 import { BuyTokenButton, SaleFormBox, TokenButton } from 'modules/ido-round/components/RoundStyled';
 import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
@@ -39,11 +39,11 @@ export const BuyForm = ({
 
     const { balances, coinObjectsId } = React.useContext(SuiContext);
 
-    // const poolRemaining = React.useMemo(() => {
-    //     if (totalSupply && (totalSold || totalSold === 0)) {
-    //         return totalSupply - totalSold;
-    //     }
-    // }, [totalSold, totalSupply]);
+    const poolRemaining = React.useMemo(() => {
+        if (totalSupply && (totalSold || totalSold === 0)) {
+            return totalSupply - totalSold;
+        }
+    }, [totalSold, totalSupply]);
 
     const formattedRatio = React.useMemo(() => {
         if (!isEmpty(payments)) {
@@ -51,15 +51,16 @@ export const BuyForm = ({
         }
     }, [decimals, payments]);
 
+    console.log('poolRemaining__', poolRemaining)
     const IDOSchema = yup.object().shape({
         amount: yup
             .number()
+            .max(poolRemaining, 'Pool remaining is  smaller than the amount want to buy')
             .min(minPurchase, `Min purchase must be ${minPurchase} XUI`)
-            .max(maxPurchase, `Per user can buy ${maxPurchase} maximum of XUI on this round.`)
             .required('Amount is required')
             .typeError('Must be number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
-            // .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
+            .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
     });
 
     const {
@@ -94,7 +95,7 @@ export const BuyForm = ({
 
     const handleSelectMax = async () => {
         if (balances && balances) {
-            setValue('amount', balances / toNumber(formattedRatio));
+            setValue('amount', poolRemaining);
             trigger('amount');
         } else {
             console.error(
@@ -168,15 +169,15 @@ export const BuyForm = ({
         }
     };
 
-    const canBuy = () => {
-        if (balances && watchAmount) {
-            if (!wallet?.address) return false;
-            if (balances < watchAmount * toNumber(formattedRatio)) return false;
-            return true;
-        } else return;
-    };
+    // const canBuy = () => {
+    //     if (balances && watchAmount) {
+    //         if (!wallet?.address) return false;
+    //         if (balances < watchAmount * toNumber(formattedRatio)) return false;
+    //         return true;
+    //     } else return;
+    // };
 
-    const isCanBuy = canBuy();
+    // const isCanBuy = canBuy();
 
     const renderStatusBalance = React.useCallback(() => {
         if (isEmpty(payments) || isEmpty(balances)) {
@@ -215,10 +216,9 @@ export const BuyForm = ({
         const vec = tx.makeMoveVec({
             objects: [coin],
         });
-;
 
         console.log('roundName__', roundName)
-        if(roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
+        if (roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
             tx.moveCall({
                 target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
@@ -274,7 +274,7 @@ export const BuyForm = ({
                 toast.error('Some thing went wrong');
             }
         } catch (e) {
-            console.log('err',e)
+            console.log('err', e)
             setLoading(false);
             toast.error('Transaction rejected');
         }
@@ -397,7 +397,7 @@ export const BuyForm = ({
                             </a>
                         </Typography>
                     </Box>
-                    <BuyTokenButton type="submit" loading={loading} disabled={!isValid || !checked || !isCanBuy}
+                    <BuyTokenButton type="submit" loading={loading} disabled
                     >
                         Buy Now
                     </BuyTokenButton>
