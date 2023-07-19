@@ -77,7 +77,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                 <Stack justifyContent={'center'} mb={isMobile ? 2 : 0} alignItems={'center'}>
                     <ProcessCircleBox radius={100} percent={totalSold ? (totalSold / totalSupply) * 100 : 0} />
                     <Typography variant="body1" fontWeight={'bold'} textAlign={'center'}>
-                        {!totalSupply ? '--' : <span style={{ color: '#1FD8D1' }}> {fCurrencyV2(totalSold)} </span>}
+                        {!totalSold ? '--' : <span style={{ color: '#1FD8D1' }}> {fCurrencyV2(totalSold * formattedRatio)} </span>}
                         {' / '}
                         {!totalSupply ? '--' : fCurrencyV2(Math.round(totalSupply * formattedRatio))}
                         {' SUI'}

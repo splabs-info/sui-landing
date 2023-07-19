@@ -68,8 +68,8 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
         return dynamicFields?.data?.content?.fields?.is_open_claim_refund || false
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [services])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [findServicePreregister, services])
 
     const handleClaim = async () => {
         setLoading(true)
@@ -82,7 +82,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                 tx.object(CLOCK),
                 tx.object(LAUNCHPAD_STORAGE),
                 tx.pure(projectName),
-                tx.pure('Public_Sale_1'),
+                tx.pure('Public_Sale'),
             ],
         });
 
@@ -111,6 +111,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [services])
 
+    console.log('isClaim__', isClaim)
     return (
         <ClaimBox>
             <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className='border'>

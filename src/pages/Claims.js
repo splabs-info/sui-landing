@@ -4,29 +4,19 @@ import ClaimTokens from 'components/claims/ClaimTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { find, get, isEmpty } from 'lodash';
-import { useFormatRound } from 'onchain/hooks/use-format-round';
-import { SuiContext } from 'provider/SuiProviderV2';
+import { isEmpty } from 'lodash';
 import { INVEST_CERTIFICATE } from 'onchain/constants';
-import { findCertificate } from 'utils/util';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
+import { findCertificate } from 'utils/util';
 
 export default function Claims() {
-    const [loading, setLoading] = React.useState();
+    // const [loading, setLoading] = React.useState();
     const [myIDOs, setMyIDOs] = React.useState();
 
     const isMobile = useResponsive('down', 'sm');
     const wallet = useWallet();
     const { provider, projects } = React.useContext(SuiContext);
-    const { services } = useFormatRound();
-
-
-    // const findServiceVesting = (services) => {
-    //     return find(services, (service) => get(service, 'name.value') === 'service_vesting');
-    // };
-
-    // const servicesVesting = React.useMemo(() => findServiceVesting(services), [services]);
-
 
     const fetchData = React.useCallback(async () => {
         if (!wallet?.address || !wallet?.connected) return;
@@ -52,7 +42,6 @@ export default function Claims() {
 
             const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-            console.log('certificate?.data?.content?.fields?.project?__', certificate?.data?.content?.fields)
             return {
                 eventName: certificate?.data?.content?.fields?.event_name,
                 issue_date: certificate?.data?.content?.fields?.issue_date || '',
@@ -72,49 +61,11 @@ export default function Claims() {
 
         const formattedMyIdo = await Promise.all(promises);
 
-
-        console.log('formattedMyIdo__', formattedMyIdo)
-        // console.log('formattedMyIdo__', formattedMyIdo)
         setMyIDOs([...formattedMyIdo]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet?.address, wallet?.connected]);
 
 
-
-    // console.log('services__', services)
-    // const fetchVestingData = React.useCallback(async () => {
-    //     try {
-    //         if (!provider || isEmpty(services) || !wallet?.address) return;
-
-    //         setLoading(true);
-
-    //         const projectsDetail = await provider.getDynamicFieldObject({
-    //             parentId: servicesVesting?.objectId,
-    //             name: { type: 'address', value: wallet?.address },
-    //         });
-
-    //         console.log('projectsDetail__', projectsDetail)
-    //         const projectInfo = await provider.getObject({
-    //             id: servicesVesting?.objectId,
-    //             options: { showContent: true },
-    //         });
-
-    //         const vestingState = {
-    //             token_type: projectInfo?.data?.content?.fields?.info?.fields?.token_type,
-    //             period_list: projectsDetail?.data?.content?.fields?.value?.fields?.period_list,
-    //             total_lock_mount: projectsDetail?.data?.content?.fields?.value?.fields?.total_lock_mount,
-    //             total_unlock_amount: projectsDetail?.data?.content?.fields?.value?.fields?.total_unlock_amount,
-    //         };
-
-    //         console.log('vestingState__', vestingState)
-    //         setVestingDetails(vestingState);
-    //         setLoading(false);
-    //     } catch (error) {
-    //         console.error('error', error);
-    //         setLoading(false);
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [services, servicesVesting?.objectId, wallet?.address]);
 
     const renderVestingState = React.useCallback(() => {
         if (!wallet?.address || (!wallet?.connected)) {
