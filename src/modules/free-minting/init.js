@@ -1,4 +1,4 @@
-import { JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js';
+import { Connection, JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js';
 
 export const config = {
   addresses: {
@@ -12,7 +12,11 @@ export const config = {
       ? process.env.REACT_APP_FREE_MINTING_NFT_INFO
       : `0xa247ba5fc5b4346ecf72c5a1de92cae40071149811f08142820280a1cd323fb0`,
   },
-  providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : testnetConnection,
+  // providerConnection: process.env.REACT_APP_ENV === 'production' ? mainnetConnection : testnetConnection,
+  providerConnection:
+    process.env.REACT_APP_ENV === 'production'
+      ? new Connection({ fullnode: `https://explorer-rpc.mainnet.sui.io/` })
+      : testnetConnection,
 };
 
 export const provider = new JsonRpcProvider(config.providerConnection);
