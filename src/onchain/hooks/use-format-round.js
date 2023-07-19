@@ -69,6 +69,7 @@ export const useFormatRound = () => {
             )
             .filter(Boolean)
 
+            
         const dynamicFieldsPromises = rounds
             .flatMap((round) => {
                 return round?.core?.fields?.contents?.map((content) => fetchDynamicFields(content)) || [];
@@ -76,7 +77,6 @@ export const useFormatRound = () => {
             .filter(Boolean);
 
         const results = await Promise.all(dynamicFieldsPromises).catch((e) => console.error(e))
-
         if (Array.isArray(results) && results.length > 0) {
             const nonNullResults = results.filter(Boolean)
             const corePromises = nonNullResults.flatMap((item) =>
@@ -107,7 +107,7 @@ export const useFormatRound = () => {
 
             const policies = flattenCoreDetails.filter((core) => core?.type_core === 'POLICY')
             const services = flattenCoreDetails.filter((core) => core?.type_core === 'SERVICE')
-            
+
             let additionalInfo = {}
             policies.forEach((p) => {
                 if(!p?.max_purchase || !p?.min_purchase) return;
@@ -160,8 +160,8 @@ export const useFormatRound = () => {
             ...pre,
             ...infoState[0],
         }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [projects])
+    
+    }, [fetchDynamicFieldObject, fetchDynamicFields, projects])
 
     return {
         infoRound,

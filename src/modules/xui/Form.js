@@ -32,6 +32,7 @@ export const BuyForm = ({
     const [checked, setChecked] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [chosenToken, setChosenToken] = React.useState('');
+
     const isMobile = useResponsive('down', 'sm');
     const wallet = useWallet();
     const { objectIdOGRoleNft } = useYouSuiStore();
@@ -177,7 +178,6 @@ export const BuyForm = ({
 
     const isCanBuy = canBuy();
 
-    console.log('purchaseType____', purchaseType)
     const renderStatusBalance = React.useCallback(() => {
         if (isEmpty(payments) || isEmpty(balances)) {
             return 'Loading';
@@ -201,7 +201,6 @@ export const BuyForm = ({
 
         const balanceSplit = ethers.utils
             .parseUnits(
-                // @ts-ignore
                 parseFloat(formattedAmount * toNumber(formattedRatio))
                     .toFixed(decimals)
                     .toString(),
