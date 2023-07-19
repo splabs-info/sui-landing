@@ -19,49 +19,55 @@ export default function Claims() {
     const { provider, projects } = React.useContext(SuiContext);
 
     const fetchData = React.useCallback(async () => {
-        if (!wallet?.address || !wallet?.connected) return;
+        try {
+            if (!wallet?.address || !wallet?.connected) return;
 
-        const owner = wallet?.address;
-
-        const otherObjects = await provider.getOwnedObjects({
-            owner,
-            options: { showContent: true },
-        });
-
-        if (otherObjects?.data?.length === 0) return;
-
-        const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
-
-        if (!certificateObjects) return;
-
-        const promises = certificateObjects.map(async (item) => {
-            const certificate = await provider.getObject({
-                id: item.data.objectId,
+            const owner = wallet?.address;
+    
+            const otherObjects = await provider.getOwnedObjects({
+                owner,
                 options: { showContent: true },
             });
+    
+            if (otherObjects?.data?.length === 0) return;
+    
+            const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
+    
+            if (!certificateObjects) return;
+    
+            const promises = certificateObjects.map(async (item) => {
+                const certificate = await provider.getObject({
+                    id: item.data.objectId,
+                    options: { showContent: true },
+                });
+    
+                const projectFields = certificate?.data?.content?.fields?.project?.fields;
+    
+                return {
+                    eventName: certificate?.data?.content?.fields?.event_name,
+                    issue_date: certificate?.data?.content?.fields?.issue_date || '',
+                    description: projectFields?.description || '',
+                    discord: projectFields?.discord || '',
+                    image_url: projectFields?.image_url || '',
+                    link_url: projectFields?.link_url || '',
+                    medium: projectFields?.medium || '',
+                    name: projectFields?.name || '',
+                    vesting_id: certificate?.data?.content?.fields?.vesting_id,
+                    project_id: certificate?.data?.content?.fields.id.id || '',
+                    telegram: projectFields?.telegram || '',
+                    twitter: projectFields?.twitter || '',
+                    website: projectFields?.website || '',
+                };
+            });
+    
+            const formattedMyIdo = await Promise.all(promises);
+    
+            setMyIDOs([...formattedMyIdo]);
 
-            const projectFields = certificate?.data?.content?.fields?.project?.fields;
+        } catch (error) {
+            console.log('error', error)
+        }
 
-            return {
-                eventName: certificate?.data?.content?.fields?.event_name,
-                issue_date: certificate?.data?.content?.fields?.issue_date || '',
-                description: projectFields?.description || '',
-                discord: projectFields?.discord || '',
-                image_url: projectFields?.image_url || '',
-                link_url: projectFields?.link_url || '',
-                medium: projectFields?.medium || '',
-                name: projectFields?.name || '',
-                vesting_id: certificate?.data?.content?.fields?.vesting_id,
-                project_id: certificate?.data?.content?.fields.id.id || '',
-                telegram: projectFields?.telegram || '',
-                twitter: projectFields?.twitter || '',
-                website: projectFields?.website || '',
-            };
-        });
-
-        const formattedMyIdo = await Promise.all(promises);
-
-        setMyIDOs([...formattedMyIdo]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet?.address, wallet?.connected]);
 

@@ -107,7 +107,7 @@ export default function OverviewTabs() {
 
     assets.forEach((item) => {
       if (item?.symbol === 'SUI') setSui(ethers.utils.formatUnits(item?.balance, item?.decimals));
-      if (item?.symbol === 'SUA') setSua(ethers.utils.formatUnits(item?.balance, item?.decimals));
+      // if (item?.symbol === 'SUA') setSua(ethers.utils.formatUnits(item?.balance, item?.decimals));
     });
   }, [assets]);
 
