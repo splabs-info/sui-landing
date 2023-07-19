@@ -76,9 +76,9 @@ const inoProjects = [
     releaseTime: 'Official Launch: July 19th',
     status: true,
     startTime: '2023-07-19T12:00:00Z',
-    endTime: '2023-07-20T00:00:00Z',
+    // endTime: '2023-07-20T00:00:00Z',
     // chỗ này nha a Tâm
-    // endTime: '2023-07-19T12:10:00Z',
+    endTime: '2023-07-19T12:00:00Z',
   },
 
   {
