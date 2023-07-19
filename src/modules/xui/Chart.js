@@ -6,10 +6,9 @@ import { isEmpty } from 'lodash';
 import { ChartBox, LiveBox, SaleInfoBox } from 'modules/ido-round/components/RoundStyled';
 import React from 'react';
 import { fCurrency } from 'utils/format';
-import { fCurrencyV2 } from 'utils/util'
+import { fCurrencyV2 } from 'utils/util';
 export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase, payments }) => {
     const isMobile = useResponsive('down', 'sm');
-
 
     const formattedRatio = React.useMemo(() => {
         if (!isEmpty(payments)) {
@@ -21,16 +20,16 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
         if (roundName === 'Public_Sale') {
             return (
                 <>
-                    30% TGE Unlock,
-                    <br /> Monthly Vesting 10% for 7 Month
+                    20% TGE Unlock,
+                    <br /> Monthly Vesting 10% for 8 Month
                 </>
             );
         }
         if (roundName === 'Og_Sale') {
             return (
                 <>
-                    20% TGE Unlock,
-                    <br /> Monthly Vesting 10% for 8 Month
+                    30% TGE Unlock,
+                    <br /> Monthly Vesting 10% for 7 Month
                 </>
             );
         } else {
@@ -42,8 +41,11 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
         if (roundName === 'Public_Sale') {
             return (
                 <>
+                    {' '}
                     <li>
-                        <Typography variant="body2">IDO Launchpad Logic: FCFS</Typography>{' '}
+                        <Typography variant="body2">
+                            IDO Launchpad Logic: <br /> Total paid SUI by Each Investor / Total Paid SUI by All Investors
+                        </Typography>
                     </li>
                 </>
             );
@@ -52,9 +54,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
             return (
                 <>
                     <li>
-                        <Typography variant="body2">
-                            Total paid SUI by Each Investor /Total Paid SUI by All Investors
-                        </Typography>{' '}
+                        <Typography variant="body2">IDO Launchpad Logic: FCFS</Typography>{' '}
                     </li>
                 </>
             );
@@ -80,7 +80,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                     <Typography variant="body1" fontWeight={'bold'} textAlign={'center'}>
                         {totalSupply === 0 ? '--' : <span style={{ color: '#1FD8D1' }}> {fCurrencyV2(totalSold)} </span>}
                         {' / '}
-                        {totalSupply === 0 ? '--' : fCurrency(totalSupply)}
+                        {totalSupply === 0 ? '--' : fCurrencyV2(Math.round(totalSupply * formattedRatio))}
                         {' SUI'}
                     </Typography>
                 </Stack>
@@ -92,7 +92,9 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                                 <Typography variant="body2" fontWeight={'bold'}>
                                     Total Sale Amount
                                 </Typography>
-                                <Typography variant="body2">{totalSupply === 0 ? '--/--' : fCurrency(totalSupply)} SUI</Typography>
+                                <Typography variant="body2">
+                                    {totalSupply === 0 ? '--/--' : fCurrencyV2(Math.round(totalSupply * formattedRatio))} SUI
+                                </Typography>
                             </Stack>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -120,7 +122,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                                 <Typography variant="body2" fontWeight={'bold'}>
                                     Min Purchase Amount
                                 </Typography>
-                                <Typography variant="body2">{minPurchase} SUI</Typography>
+                                <Typography variant="body2">{fCurrencyV2(Math.round(minPurchase * formattedRatio))} SUI</Typography>
                             </Stack>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -129,7 +131,7 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                                 <Typography variant="body2" fontWeight={'bold'}>
                                     Max Purchase Amount
                                 </Typography>
-                                <Typography variant="body2">--/--</Typography>
+                                <Typography variant="body2">280,000 SUI</Typography>
                             </Stack>
                         </Box>
                     </SaleInfoBox>

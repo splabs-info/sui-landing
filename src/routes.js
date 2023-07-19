@@ -43,14 +43,14 @@ export default function Router() {
             </Suspense>
           ),
         },
-        {
-          path: 'ido-launchpad/round',
-          element: (
-            <Suspense>
-              <IDORound />
-            </Suspense>
-          ),
-        },
+        // {
+        //   path: 'ido-launchpad/round',
+        //   element: (
+        //     <Suspense>
+        //       <IDORound />
+        //     </Suspense>
+        //   ),
+        // },
         {
           path: 'ido-launchpad/sua',
           element: (
@@ -59,14 +59,14 @@ export default function Router() {
             </Suspense>
           ),
         },
-        // {
-        //   path: 'ido-launchpad/:roundName',
-        //   element: (
-        //     <Suspense>
-        //       <XUI />
-        //     </Suspense>
-        //   ),
-        // },
+        {
+          path: 'ido-launchpad/:roundName',
+          element: (
+            <Suspense>
+              <XUI />
+            </Suspense>
+          ),
+        },
         // {
         //   path: 'ido-launchpad/:projectId',
         //   element: (

@@ -10,6 +10,7 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { fCurrencyV2 } from 'utils/util';
+
 export const Claim = ({ decimals, services, claimInfo, type, payments, projectName, roundName }) => {
     const [loading, setLoading] = React.useState();
     const [claimSuccessful, setClaimSuccessful] = React.useState(false);
@@ -132,7 +133,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
             </Stack>
             <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className='border'>
                 <Typography variant="body2" fontWeight={600}>Redeem SUI and IDO token allocation</Typography>
-                <BuyTokenButton disabled={!isClaim} onClick={handleClaim} loading={loading}>CLAIM</BuyTokenButton>
+                {roundName === 'Og_Sale' ? <></> : <BuyTokenButton disabled={!isClaim} onClick={handleClaim} loading={loading}>CLAIM</BuyTokenButton>}
             </Stack>
         </ClaimBox>
     );
