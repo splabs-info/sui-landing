@@ -138,6 +138,13 @@ export const PackageButton = styled(Button)(({ theme }) => ({
             padding: '0px',
         },
     },
+    '&.accent': {
+        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.8) -8.02%, rgba(109, 133, 218, 0.8) 98.69%);',
+        boxShadow: '0px 0px 4px #4191C9',
+        '&:before': {
+            padding: '3px',
+        },
+    },
     [theme.breakpoints.down('sm')]: {
         width: '48%',
     }
