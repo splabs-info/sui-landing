@@ -60,6 +60,8 @@ const XUIIDOContainer = () => {
                         id: value,
                         options: { showContent: true, showOwner: true },
                     });
+                    console.log('object?.data?.owner?.AddressOwner__', object?.data?.owner?.AddressOwner)
+                    console.log('object?.data?.owner?.AddressOwner === wallet?.address', object?.data?.owner?.AddressOwner === wallet?.address)
                     return object?.data?.owner?.AddressOwner === wallet?.address;
                 } else return;
             })

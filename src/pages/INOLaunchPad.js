@@ -53,8 +53,8 @@ const inoProjects = [
     hardCap: '2000',
     releaseTime: 'Official Launch: June 10th',
     status: false,
-    startTime: '2023-06-10T11:00:00',
-    endTime: '2023-06-10T12:00:00',
+    startTime: '2023-06-10T11:00:00Z',
+    endTime: '2023-06-10T12:00:00Z',
   },
   {
     title: 'Free Minting 2',
@@ -64,8 +64,8 @@ const inoProjects = [
     hardCap: '5000',
     releaseTime: 'Official Launch: June 24th',
     status: true,
-    startTime: '2023-06-24T11:00:00',
-    endTime: '2023-06-24T11:10:00',
+    startTime: '2023-06-24T11:00:00Z',
+    endTime: '2023-06-24T11:10:00Z',
   },
   {
     title: 'Free Minting 3',
@@ -78,7 +78,7 @@ const inoProjects = [
     startTime: '2023-07-19T12:00:00Z',
     endTime: '2023-07-20T00:00:00Z',
     // chỗ này nha a Tâm
-    // endTime: '2023-07-19T12:10:00',
+    // endTime: '2023-07-19T12:10:00Z',
   },
 
   {
@@ -89,8 +89,8 @@ const inoProjects = [
     releaseTime: 'Official Launch: Aug 25th',
     status: false,
     link: '',
-    startTime: '2023-08-30T11:00:00',
-    endTime: '2023-08-30T12:00:00',
+    startTime: '2023-08-30T11:00:00Z',
+    endTime: '2023-08-30T12:00:00Z',
   },
 ];
 
@@ -99,7 +99,7 @@ const INOLaunchPad = () => {
   const [onGoingProjects, setOnGoingProjects] = useState([]);
   const [upComingProjects, setUpComingProjects] = useState([]);
   const [previousProjects, setPreviousProjects] = useState([]);
-
+  // console.log(moment(moment.utc()));
   useEffect(() => {
     setOnGoingProjects([]);
     setUpComingProjects([]);
