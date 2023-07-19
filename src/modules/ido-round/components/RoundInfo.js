@@ -49,7 +49,7 @@ const fields = [
     {
         key: 'initialMarketcap',
         label: 'Initial Marketcap',
-        format: (e) => `${fCurrency(e, 0)} SUI`,
+        format: (e) => `${fCurrency(e, 0)} USDT`,
     },
 ];
 export const RoundInfo = ({

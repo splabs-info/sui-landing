@@ -96,7 +96,7 @@ export default function Intro() {
             <Hidden lgUp>
               <CountDownBox2>
                 <IDOCountdown endTime={'2023-07-20T12:00:00'} />
-                <Link to="/ido-launchpad/round">
+                <Link to="/ido-launchpad/og-sale">
                   <Stack direction={'row'} justifyContent={'flex-start'}>
                     <Typography mt={1} fontWeight={600} color="#00112C" variant="caption">
                       12:00 (UTC) JULY 20th
@@ -130,7 +130,7 @@ export default function Intro() {
             </Box>
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
-              <Link to={'/ido-launchpad/round'}>
+              <Link to={'/ido-launchpad/og-sale'}>
                 <FrameButton>Buy $XUI</FrameButton>
               </Link>
               <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
@@ -346,7 +346,7 @@ export default function Intro() {
           <img alt="" src="/images/Homepage-XUIIDO.png" style={{ display: 'unset' }} />
           <CountDownBox>
             <IDOCountdown endTime={'2023-07-20T12:00:00'} />
-            <Link to="/ido-launchpad/round">
+            <Link to="/ido-launchpad/og-sale">
               <Stack direction={'row'} justifyContent={'flex-end'} mt={1} color="#00112C" alignItems={'center'}>
                 <Typography variant="h6" fontWeight={0} mr={0.5}>
                   Go to
