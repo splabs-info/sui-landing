@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import { config, provider } from './init';
 import { formatAddress } from 'setting/format';
 import CopyComponent from 'components/common/CopyComponent';
-const itemName = 'minted-wallets';
+const itemName = 'minted-wallets-3';
 export const addresses = config.addresses;
 
 const FreeMintingBox = styled(Box)(({ theme }) => ({
@@ -197,11 +197,11 @@ export default function FreeMinting3() {
         <NFTSlider />
       </Box>
       <ProcessBarBox
-        percent={minted ? (minted / total) * 100 : 0}
+        percent={minted && hasInTimes ? (minted / total) * 100 : 0}
         subtitle={
           <>
             <Typography variant="body1" color={'white'}>
-              {minted}
+              {hasInTimes ? minted : 0}
             </Typography>
             <Typography variant="body1" color={'white'}>
               TOTAL: {total}
@@ -507,7 +507,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
