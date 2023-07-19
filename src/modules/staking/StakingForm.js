@@ -47,11 +47,11 @@ export default function StakingForm({ verifyData, setVerifyData, packages }) {
       <Stack direction={'row'} justifyContent={'space-between'} gap={1} mt={2} flexWrap={'wrap'}>
         {packages.map((p, index) => (
           <PackageButton
-            className={p.time === verifyData.time ? 'active' : ''}
+            className={p.time === verifyData.time ? `active ${p.className}` : ''}
             onClick={() => setVerifyData(p)}
             key={index}
           >
-            {p.time} days
+            {p.time} days {p.time === 180 ? '(30% APR)' : ''}
           </PackageButton>
         ))}
       </Stack>
