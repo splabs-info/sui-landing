@@ -7,7 +7,7 @@ import React, { createContext } from 'react'
 
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://explorer-rpc.testnet.sui.io/`,
+        fullnode: `https://fullnode.testnet.sui.io:443`,
     }),
 }
 
