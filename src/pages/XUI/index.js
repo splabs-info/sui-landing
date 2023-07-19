@@ -115,7 +115,7 @@ const XUIIDOContainer = () => {
             parentId: whitelist?.parent_id,
             name: whitelist?.name
         })
-        const temp = dynamicFields?.data?.content
+        const temp = dynamicFields?.data?.content?.fields?.value?.fields?.whitelist;
         console.log('temp', temp)
         setWhiteList()
         console.log('dynamicFields__', dynamicFields)
