@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { formatAddress } from 'setting/format';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
+import React from 'react';
 
 // const SubTitle = [
 //   'YouSUI works with projects with a high probability of success',
@@ -19,6 +20,7 @@ export default function Intro() {
   const isTablet = useResponsive('down', 'md');
   const isMobile = useResponsive('down', 'sm');
   const theme = useTheme();
+  const [hasInTimeIDO, setHasInTimeIDO] = React.useState(false);
 
   const Title = [
     <>
@@ -95,24 +97,32 @@ export default function Intro() {
             </Box>
             <Hidden lgUp>
               <CountDownBox2>
-                <IDOCountdown endTime={'2023-07-20T12:00:00'} />
-                <Link to="/ido-launchpad/og-sale">
-                  <Stack direction={'row'} justifyContent={'flex-start'}>
-                    <Typography mt={1} fontWeight={600} color="#00112C" variant="caption">
-                      12:00 (UTC) JULY 20th
+                <IDOCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimeIDO(true)} />
+                {hasInTimeIDO ? <Link to="/ido-launchpad/og-sale">
+                  <Stack direction={'column'} mt={1} color="#00112C" alignItems={'center'} >
+                    <Typography variant="h6">
+                      $XUI IDO IS LIVE
                     </Typography>
+                    <Stack direction={'row'} justifyContent={'flex-end'} color="#00112C" alignItems={'center'}>
+                      <Typography variant="body1" fontWeight={600}>Join now</Typography>
+                      <IconArrowRight />
+                    </Stack>
                   </Stack>
-
-                  <Stack direction={'row'} justifyContent={'flex-end'} mt={1} color="#00112C" alignItems={'center'}>
-                    <Typography variant="subtitle2" fontWeight={600} mr={0.5}>
-                      Go to
-                    </Typography>
-                    <Typography variant="subtitle2" fontWeight={600}>
-                      XUI IDO
-                    </Typography>
-                    <IconArrowRight />
-                  </Stack>
-                </Link>
+                </Link> :
+                  <Link to="/ido-launchpad/og-sale">
+                    <Stack direction={'row'} justifyContent={'flex-start'}>
+                      <Typography mt={1} fontWeight={600} color="#00112C" variant="caption">
+                        12:00 (UTC) JULY 20th
+                      </Typography>
+                    </Stack>
+                    <Stack direction={'row'} justifyContent={'flex-end'} mt={1} color="#00112C" alignItems={'center'}>
+                      <Typography variant="h6" fontWeight={0} mr={0.5}>
+                        Go to
+                      </Typography>
+                      <Typography variant="h6">XUI IDO</Typography>
+                      <IconArrowRight />
+                    </Stack>
+                  </Link>}
               </CountDownBox2>
             </Hidden>
             <Box
@@ -345,16 +355,27 @@ export default function Intro() {
         >
           <img alt="" src="/images/Homepage-XUIIDO.png" style={{ display: 'unset' }} />
           <CountDownBox>
-            <IDOCountdown endTime={'2023-07-20T12:00:00'} />
-            <Link to="/ido-launchpad/og-sale">
-              <Stack direction={'row'} justifyContent={'flex-end'} mt={1} color="#00112C" alignItems={'center'}>
-                <Typography variant="h6" fontWeight={0} mr={0.5}>
-                  Go to
+            <IDOCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimeIDO(true)} />
+            {hasInTimeIDO ? <Link to="/ido-launchpad/og-sale">
+              <Stack direction={'column'} mt={1} color="#00112C" alignItems={'center'} >
+                <Typography variant="h6">
+                  $XUI IDO IS LIVE
                 </Typography>
-                <Typography variant="h6">XUI IDO</Typography>
-                <IconArrowRight />
+                <Stack direction={'row'} justifyContent={'flex-end'} color="#00112C" alignItems={'center'}>
+                  <Typography variant="body1" fontWeight={600}>Join now</Typography>
+                  <IconArrowRight />
+                </Stack>
               </Stack>
-            </Link>
+            </Link> :
+              <Link to="/ido-launchpad/og-sale">
+                <Stack direction={'row'} justifyContent={'flex-end'} mt={1} color="#00112C" alignItems={'center'}>
+                  <Typography variant="h6" fontWeight={0} mr={0.5}>
+                    Go to
+                  </Typography>
+                  <Typography variant="h6">XUI IDO</Typography>
+                  <IconArrowRight />
+                </Stack>
+              </Link>}
           </CountDownBox>
         </Box>
       </Hidden>
@@ -368,10 +389,10 @@ const CountDownBox = styled(Box)(({ theme }) => ({
   backgroundImage: "url('/images/Homepage-countdown-bg.png')",
   backgroundSize: '100% 100%',
   backgroundRepeat: 'no-repeat',
-  paddingTop: 10,
-  paddingBottom: 20,
-  paddingLeft: 20,
-  paddingRight: 20,
+  paddingTop: 15,
+  paddingBottom: 25,
+  paddingLeft: 30,
+  paddingRight: 30,
   margin: 'auto',
 }));
 
@@ -380,8 +401,8 @@ const CountDownBox2 = styled(Box)(({ theme }) => ({
   backgroundImage: "url('/images/Homepage-countdown-bg.png')",
   backgroundSize: '100% 100%',
   backgroundRepeat: 'no-repeat',
-  paddingTop: 10,
-  paddingBottom: 20,
+  paddingTop: 20,
+  paddingBottom: 30,
   paddingLeft: 20,
   paddingRight: 20,
   marginTop: 20,
