@@ -301,7 +301,7 @@ export default function FreeMinting3() {
                   sx={{ minWidth: isMobile ? '140px' : '200px', marginTop: '32px' }}
                   onClick={handleFreeMinting}
                   loading={loading}
-                  disabled={minted === total || hasMinted}
+                  disabled={minted === total || hasMinted || !hasInTimes}
                 >
                   {minted === total ? 'Sold out' : hasMinted ? 'Claimed' : 'Claim now'}
                 </GradientLoadingButton>
@@ -507,7 +507,7 @@ function NFTSlider() {
   );
 }
 
-const MyNFT = ({ open = false, handleClose = () => { }, myNftList = [] }) => {
+const MyNFT = ({ open = false, handleClose = () => {}, myNftList = [] }) => {
   const isMobile = useResponsive('down', 'sm');
   return (
     <CustomModal open={open} _close={() => handleClose()} isShowCloseButton={true}>
