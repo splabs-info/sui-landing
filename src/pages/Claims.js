@@ -61,7 +61,7 @@ export default function Claims() {
 
             const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-            console.log('projectFields__', certificate?.data?.content?.fields)
+            console.log('projectFields__', certificate?.data)
             return {
                 eventName: certificate?.data?.content?.fields?.event_name,
                 issue_date: certificate?.data?.content?.fields?.issue_date || '',

@@ -11,13 +11,13 @@ const config = {
     }),
 }
 
-const provider = new JsonRpcProvider(testnetConnection)
+const provider = new JsonRpcProvider(config?.providerConnection)
 
 export const SuiContext = createContext({
     assets: [],
     balances: null,
     coinObjectsId: null,
-    provider: new JsonRpcProvider(testnetConnection),
+    provider: new JsonRpcProvider(config?.providerConnection),
     projects: [],
 })
 

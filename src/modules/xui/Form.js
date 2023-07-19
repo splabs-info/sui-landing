@@ -254,11 +254,13 @@ export const BuyForm = ({
                 break;
         }
 
+        console.log('___purchase', purchase)
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
                 transactionBlock: tx,
             });
 
+            console.log('result__', result)
             if (result) {
                 setLoading(false);
                 toast.success('Buy token success');
@@ -268,6 +270,7 @@ export const BuyForm = ({
                 toast.error('Some thing went wrong');
             }
         } catch (e) {
+            console.log('err',e)
             setLoading(false);
             toast.error('Transaction rejected');
         }
