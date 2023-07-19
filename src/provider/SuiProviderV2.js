@@ -11,13 +11,13 @@ const config = {
     }),
 }
 
-const provider = new JsonRpcProvider(config?.providerConnection)
+const provider = new JsonRpcProvider(mainnetConnection)
 
 export const SuiContext = createContext({
     assets: [],
     balances: null,
     coinObjectsId: null,
-    provider: new JsonRpcProvider(config?.providerConnection),
+    provider: new JsonRpcProvider(mainnetConnection),
     projects: [],
 })
 
@@ -101,14 +101,14 @@ export const SUIWalletContext = ({ children }) => {
                         }
                     })
                     .catch((error) => {
-                        console.log(
+                        console.error(
                             `Failed to fetch dynamic fields for project ${project?.data?.content?.fields?.id?.id}:`,
                             error
                         )
                         return project
                     })
             } else {
-                console.log('Invalid project id:', project?.data?.content?.fields?.id?.id)
+                console.error('Invalid project id:', project?.data?.content?.fields?.id?.id)
                 return Promise.resolve(project)
             }
         },
@@ -151,7 +151,7 @@ export const SUIWalletContext = ({ children }) => {
                 }
             }
         } catch (error) {
-            console.log('An error occurred while fetching data')
+            console.error('An error occurred while fetching data')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

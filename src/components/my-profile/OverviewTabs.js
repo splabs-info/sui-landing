@@ -10,7 +10,7 @@ import useResponsive from 'hooks/useResponsive';
 import { TabContext, TabList } from '@mui/lab';
 import { Color } from 'constant/styled';
 import { TitleSection } from './TitleSection';
-import { SuiContext } from 'provider/SuiProvider';
+import { SuiContext } from 'provider/SuiProviderV2';
 import { ethers } from 'ethers';
 const CustomTabList = styled(TabList)(({ theme }) => ({
   transition: '1s',

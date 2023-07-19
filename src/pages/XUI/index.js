@@ -21,11 +21,12 @@ import { toast } from 'react-toastify';
 import { handleNameRound } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-
+import { find, get } from 'lodash'
 const XUIIDOContainer = () => {
     const isMobile = useResponsive('down', 'sm');
     const [claimInfo, setClaimInfo] = React.useState({});
     const [tabIndex, setTabIndex] = React.useState('0');
+    const [white, setWhiteList] = React.useState();
     const { provider } = React.useContext(SuiContext);
 
     const { objectIdOGRoleNft, setObjectId, clearObjectId } = useYouSuiStore();
@@ -34,17 +35,21 @@ const XUIIDOContainer = () => {
     const navigate = useNavigate();
     const formattedRoundName = handleNameRound(roundName);
 
+    const tabToPath = {
+        '0': '/ido-launchpad/og-sale',
+        '1': '/ido-launchpad/public-sale',
+    }
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
 
-        let path = '';
-        if (newValue.toString() === '0') {
-            path = '/ido-launchpad/og-sale';
-        } else if (newValue.toString() === '1') {
-            path = '/ido-launchpad/public-sale';
+        let newPath = tabToPath[newValue.toString()];
+        if (newPath) {
+            navigate(newPath);
+        } else {
+            console.error("Invalid tab index");
         }
-        navigate(path);
     };
+
 
     const wallet = useWallet();
 
@@ -89,8 +94,36 @@ const XUIIDOContainer = () => {
         resolver: yupResolver(SaveObjectIdSchema),
     });
 
-    const { infoRound, services, formatInfoRound } = useFormatRound();
+    const { infoRound, services, formatInfoRound, policies } = useFormatRound();
 
+
+    const findPolicies = React.useCallback(() => {
+        if (!policies || isEmpty(policies)) return;
+        return find(
+            policies,
+            (po) =>
+                get(po, 'name.value') === 'policy_whitelist'
+        )
+    }, [policies])
+
+    const fetWhiteList = React.useCallback(async() => {
+        const whitelist = findPolicies();
+
+        if (!whitelist || !policies || isEmpty(whitelist)) return;
+
+        const dynamicFields = await provider.getDynamicFieldObject({
+            parentId: whitelist?.parent_id,
+            name: whitelist?.name
+        })
+        const temp = dynamicFields?.data?.content
+        console.log('temp', temp)
+        setWhiteList()
+        console.log('dynamicFields__', dynamicFields)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [policies])
+    
+
+    
     const fetchClaimInfo = React.useCallback(async () => {
         if (isEmpty(infoRound) || !infoRound || !wallet?.address) return;
 
@@ -128,11 +161,27 @@ const XUIIDOContainer = () => {
 
     React.useEffect(() => {
         fetchClaimInfo();
-    }, [fetchClaimInfo]);
+        fetWhiteList();
+    }, [fetWhiteList, fetchClaimInfo]);
 
     React.useEffect(() => {
         formatInfoRound(formattedRoundName);
     }, [formatInfoRound, formattedRoundName]);
+
+    React.useEffect(() => {
+        const pathToTab = {
+            '/ido-launchpad/og-sale': '0',
+            '/ido-launchpad/public-sale': '1',
+        };
+
+        let path = window.location.pathname;
+        let newTabIndex = pathToTab[path];
+        if (newTabIndex) {
+            setTabIndex(newTabIndex);
+        } else {
+            console.error("Invalid path");
+        }
+    }, []);
 
     return (
         <Page title="IDO - Round">

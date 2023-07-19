@@ -21,7 +21,7 @@ import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-const IDODetail = React.lazy(() => import('./pages/IDODetail'));
+// const IDODetail = React.lazy(() => import('./pages/IDODetail'));
 
 const XUI = React.lazy(() => import ('./pages/XUI'))
 const SUAIDO = React.lazy(() => import('./pages/IDO/SUA'));

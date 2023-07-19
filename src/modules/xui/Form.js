@@ -6,7 +6,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled, InputField } from 'components';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty, toNumber } from 'lodash';
+import { isEmpty, round, toNumber } from 'lodash';
 import { BuyTokenButton, SaleFormBox, TokenButton } from 'modules/ido-round/components/RoundStyled';
 import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
@@ -39,11 +39,11 @@ export const BuyForm = ({
 
     const { balances, coinObjectsId } = React.useContext(SuiContext);
 
-    const poolRemaining = React.useMemo(() => {
-        if (totalSupply && (totalSold || totalSold === 0)) {
-            return totalSupply - totalSold;
-        }
-    }, [totalSold, totalSupply]);
+    // const poolRemaining = React.useMemo(() => {
+    //     if (totalSupply && (totalSold || totalSold === 0)) {
+    //         return totalSupply - totalSold;
+    //     }
+    // }, [totalSold, totalSupply]);
 
     const formattedRatio = React.useMemo(() => {
         if (!isEmpty(payments)) {
@@ -59,7 +59,7 @@ export const BuyForm = ({
             .required('Amount is required')
             .typeError('Must be number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
-            .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
+            // .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
     });
 
     const {
@@ -94,7 +94,7 @@ export const BuyForm = ({
 
     const handleSelectMax = async () => {
         if (balances && balances) {
-            setValue('amount', balances / formattedRatio);
+            setValue('amount', balances / toNumber(formattedRatio));
             trigger('amount');
         } else {
             console.error(
@@ -107,7 +107,7 @@ export const BuyForm = ({
     };
 
     const handleSelect25 = async () => {
-        if (balances && decimals) {
+        if (balances) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.25);
             trigger('amount');
         } else {
@@ -121,7 +121,7 @@ export const BuyForm = ({
     };
 
     const handleSelect50 = async () => {
-        if (balances && decimals) {
+        if (balances) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.5);
             trigger('amount');
         } else {
@@ -135,7 +135,7 @@ export const BuyForm = ({
     };
 
     const handleSelect75 = async () => {
-        if (balances && decimals) {
+        if (balances) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.75);
             trigger('amount');
         } else {
@@ -215,52 +215,56 @@ export const BuyForm = ({
         const vec = tx.makeMoveVec({
             objects: [coin],
         });
+;
 
-        let purchase = objectIdOGRoleNft === '' ? 1 : 3;
-
-        switch (purchase) {
-            case 1:
-                tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
-                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                    arguments: [
-                        tx.object(CLOCK),
-                        tx.object(LAUNCHPAD_STORAGE),
-                        tx.pure(projectName),
-                        tx.pure(roundName),
-                        tx.pure(parseAmount),
-                        vec,
-                    ],
-                });
-                break;
-            case 2:
-                break;
-            case 3:
-                tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
-                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                    arguments: [
-                        tx.object(CLOCK),
-                        tx.object(LAUNCHPAD_STORAGE),
-                        tx.pure(projectName),
-                        tx.pure(roundName),
-                        tx.pure(parseAmount),
-                        vec,
-                        tx.object(objectIdOGRoleNft)
-                    ],
-                });
-                break;
-            default:
-                break;
+        console.log('roundName__', roundName)
+        if(roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                    tx.object(objectIdOGRoleNft)
+                ],
+            });
+        } else if (roundName === 'Og_Sale' && objectIdOGRoleNft === '') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                ],
+            });
+        } else if (roundName === 'Public_Sale') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                ],
+            });
         }
 
-        console.log('___purchase', purchase)
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
                 transactionBlock: tx,
             });
 
-            console.log('result__', result)
             if (result) {
                 setLoading(false);
                 toast.success('Buy token success');
