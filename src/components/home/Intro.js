@@ -9,10 +9,10 @@ import { formatAddress } from 'setting/format';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
 
-const SubTitle = [
-  'YouSUI works with projects with a high probability of success',
-  'with enhanced Due Diligence and Regulation.',
-];
+// const SubTitle = [
+//   'YouSUI works with projects with a high probability of success',
+//   'with enhanced Due Diligence and Regulation.',
+// ];
 
 export default function Intro() {
   const isDesktop = useResponsive('up', 'md');
