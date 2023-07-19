@@ -82,7 +82,7 @@ export default function ClaimTokens({ myIDOs }) {
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Claim</Typography>
-                <TypographyGradient>your IDO tokens</TypographyGradient>
+                <TypographyGradient>Your IDO tokens</TypographyGradient>
             </TitleBox>
             <Stack
                 my={isMobile ? 3 : 6}
@@ -90,7 +90,7 @@ export default function ClaimTokens({ myIDOs }) {
                 justifyContent={isMobile ? 'space-between' : 'flex-end'}
                 alignItems={'center'}
             >
-                <TextField
+                {/* <TextField
                     id="search"
                     placeholder="Search"
                     variant="standard"
@@ -127,7 +127,7 @@ export default function ClaimTokens({ myIDOs }) {
                             whiteSpace: 'nowrap',
                         },
                     }}
-                />
+                /> */}
             </Stack>
             {myIDOs?.length !== 0 ? (
                 <>
@@ -190,7 +190,7 @@ function TokenPool({ avatar, eventName, name, vestingId, description, issueDate 
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                width: '35%',
+                                width: 248,
                             }}
                         >
                             {description}

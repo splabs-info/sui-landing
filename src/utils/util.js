@@ -1,4 +1,4 @@
-import { toNumber } from 'lodash';
+import { toNumber, isNumber } from 'lodash';
 import * as moment from 'moment';
 export const getVideoCover = async (file, seekTo = 0.0) => {
     return new Promise((resolve, reject) => {
@@ -110,4 +110,14 @@ export const handleNameRound = (str) => {
 }
 
 
-export const fCurrencyV2 = (number, fix) => Intl.NumberFormat('en-US', { maximumSignificantDigits: fix }).format(number)
+export const fCurrencyV2 = (number, fix) => {
+    try {
+        if ((isNumber(number) && isNumber(fix)) || fix <= 0) {
+            throw new Error('Invalid input');
+        }
+
+        return Intl.NumberFormat('en-US', { maximumSignificantDigits: fix }).format(number);
+    } catch (e) {
+        return '--';
+    }
+};
