@@ -61,7 +61,6 @@ export default function Claims() {
 
             const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-            console.log('projectFields__', certificate?.data)
             return {
                 eventName: certificate?.data?.content?.fields?.event_name,
                 issue_date: certificate?.data?.content?.fields?.issue_date || '',
@@ -84,7 +83,7 @@ export default function Claims() {
         console.log('formattedMyIdo__', formattedMyIdo)
         // console.log('formattedMyIdo__', formattedMyIdo)
         // setMyIdo([...formattedMyIdo]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet?.address, wallet?.connected]);
 
 
@@ -198,11 +197,11 @@ export default function Claims() {
     React.useEffect(() => {
         if (provider && projects) {
             fetchData();
-            fetchVestingData();
+            // fetchVestingData();
         }
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetchData, fetchVestingData, projects]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetchData, projects]);
 
     return (
         <Page title="Claim Tokens">
