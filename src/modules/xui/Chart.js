@@ -7,7 +7,8 @@ import { ChartBox, LiveBox, SaleInfoBox } from 'modules/ido-round/components/Rou
 import React from 'react';
 import { fCurrencyV2 } from 'utils/util';
 import { round, toNumber } from 'lodash'
-export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase, payments }) => {
+import moment from 'moment';
+export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, minPurchase, payments }) => {
     const isMobile = useResponsive('down', 'sm');
 
     const formattedRatio = React.useMemo(() => {
@@ -76,7 +77,8 @@ export const Chart = ({ roundName, decimals, totalSupply, totalSold, minPurchase
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <img src="/images/icon/icon-lock-2.png" alt="" />
                         <Typography sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'bold' }}>
-                            Start at: 19:00 UTC 20-07-2023
+                            Start at: 12:00 UTC 20-07-2023
+                            {/* {moment(toNumber(startAt)).format('LLLL')} */}
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}></Box>

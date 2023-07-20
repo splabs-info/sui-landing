@@ -29,6 +29,7 @@ export const Round = ({
                 </Grid>
                 <Grid item xs={12} md={8} alignItems={'space-between'}>
                     <Chart
+                        startAt={startAt}
                         roundName={roundName}
                         decimals={decimals}
                         totalSold={totalSold}
