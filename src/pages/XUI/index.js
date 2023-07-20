@@ -170,12 +170,6 @@ const XUIIDOContainer = () => {
 
   React.useEffect(() => {
     formatInfoRound(formattedRoundName);
-    const interval = setInterval(() => {
-      console.time('Time:');
-      formatInfoRound(formattedRoundName);
-      console.timeEnd('Time:');
-    }, 10000);
-    return () => clearInterval(interval);
   }, [formatInfoRound, formattedRoundName]);
 
   React.useEffect(() => {
