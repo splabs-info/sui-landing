@@ -7,9 +7,10 @@ import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { replace, toNumber } from 'lodash';
 import * as moment from 'moment';
-import { SuiContext } from 'provider/SuiProvider';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { OnGoingCard } from './OnGoingCard';
 
 const AvatarBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -22,70 +23,94 @@ const AvatarBox = styled(Box)(({ theme }) => ({
   width: 448,
   display: 'flex'
 }));
+const infoRounds = [
+  {
+    title: '$XUI IDO - OG ROUND',
+    link: '/ido-launchpad/og-sale',
+    avatar: '/images/staking/water-seek.jpg',
+    participants: 4527,
+    token: 'XUI',
+    total: 280000,
+    sold: 35000,
+    startTime: '2023-07-20T12:00:00Z',
+    endTime: '2023-07-22T12:00:00Z',
+  },
+  {
+    title: '$XUI IDO - PUBLIC ROUND',
+    link: '/ido-launchpad/public-sale',
+    avatar: '/images/staking/water-seek.jpg',
+    participants: 4527,
+    token: 'XUI',
+    total: 720000,
+    sold: 120000,
+    startTime: '2023-07-20T12:00:00Z',
+    endTime: '2023-07-22T12:00:00Z',
+  },
+]
 
 export default function OnGoingPools() {
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useResponsive('down', 'sm');
-  const [infoRounds, setInfoRounds] = React.useState([]);
-  const { provider, allRound } = React.useContext(SuiContext);
+  // const [infoRounds, setInfoRounds] = React.useState([]);
+  // const { provider, allRound } = React.useContext(SuiContext);
 
-  const fetchPoolData = async (round) => {
-    if (!round) return;
+  // const fetchPoolData = async (round) => {
+  //   if (!round) return;
 
-    const txn = await provider.getObject({
-      id: round?.objectId,
-      options: { showContent: true },
-    });
-    const roundData = txn?.data?.content?.fields;
+  //   const txn = await provider.getObject({
+  //     id: round?.objectId,
+  //     options: { showContent: true },
+  //   });
+  //   const roundData = txn?.data?.content?.fields;
 
-    if (roundData) {
-      const tokenType = await provider.getCoinMetadata({
-        coinType: `0x${roundData?.token_type}`,
-      });
+  //   if (roundData) {
+  //     const tokenType = await provider.getCoinMetadata({
+  //       coinType: `0x${roundData?.token_type}`,
+  //     });
 
-      const suiRatio = ethers.utils.formatUnits(
-        roundData?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
-        tokenType?.decimals
-      );
+  //     const suiRatio = ethers.utils.formatUnits(
+  //       roundData?.payments?.fields.contents[0]?.fields?.value?.fields.ratio_per_token,
+  //       tokenType?.decimals
+  //     );
 
-      const newState = {
-        ...round,
-        tokenAddress: `0x${roundData?.token_type}`,
-        tokenName: tokenType?.name,
-        decimals: tokenType?.decimals,
-        tokenDescription: tokenType?.description,
-        symbol: tokenType?.symbol,
-        ratio: suiRatio,
-        projectId: roundData?.project?.fields?.project_id,
-        avatar: roundData?.project?.fields?.image_url,
-        telegram: roundData?.project?.fields?.telegram,
-        discord: roundData?.project?.fields?.discord,
-        participantsWallet: roundData?.participants?.fields?.contents,
-        participants: roundData?.participants?.fields?.contents.length,
-        totalSold: roundData?.total_sold || null,
-        totalSupply: roundData?.total_supply || null,
-        minPurchase: roundData?.min_purchase || null,
-        isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
-        isOpenClaimRefund: roundData?.is_open_claim_refund || null,
-        isPause: roundData?.is_pause || null,
-        maxAllocation: roundData?.max_allocation || null,
-        minAllocation: roundData?.min_allocation || null,
-        projectName: roundData?.project?.fields?.name,
-        name: roundData?.name,
-        startAt: roundData?.start_at || null,
-        endAt: roundData?.end_at || null,
-        type: roundData?.type || null,
-      };
+  //     const newState = {
+  //       ...round,
+  //       tokenAddress: `0x${roundData?.token_type}`,
+  //       tokenName: tokenType?.name,
+  //       decimals: tokenType?.decimals,
+  //       tokenDescription: tokenType?.description,
+  //       symbol: tokenType?.symbol,
+  //       ratio: suiRatio,
+  //       projectId: roundData?.project?.fields?.project_id,
+  //       avatar: roundData?.project?.fields?.image_url,
+  //       telegram: roundData?.project?.fields?.telegram,
+  //       discord: roundData?.project?.fields?.discord,
+  //       participantsWallet: roundData?.participants?.fields?.contents,
+  //       participants: roundData?.participants?.fields?.contents.length,
+  //       totalSold: roundData?.total_sold || null,
+  //       totalSupply: roundData?.total_supply || null,
+  //       minPurchase: roundData?.min_purchase || null,
+  //       isOpenClaimVesting: roundData?.is_open_claim_vesting || null,
+  //       isOpenClaimRefund: roundData?.is_open_claim_refund || null,
+  //       isPause: roundData?.is_pause || null,
+  //       maxAllocation: roundData?.max_allocation || null,
+  //       minAllocation: roundData?.min_allocation || null,
+  //       projectName: roundData?.project?.fields?.name,
+  //       name: roundData?.name,
+  //       startAt: roundData?.start_at || null,
+  //       endAt: roundData?.end_at || null,
+  //       type: roundData?.type || null,
+  //     };
 
-      return newState;
-    }
-  };
+  //     return newState;
+  //   }
+  // };
 
 
-  React.useEffect(() => {
-    Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
-  }, [allRound]);
+  // React.useEffect(() => {
+  //   Promise.all(allRound.map(fetchPoolData)).then(setInfoRounds);
+  // }, [allRound]);
 
 
   const handleNavigate = (projectId, eventName, index) => {
@@ -95,7 +120,6 @@ export default function OnGoingPools() {
       }
     });
   }
-
   return (
     <Box mb={20} mt={10} position="relative">
       <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -103,7 +127,18 @@ export default function OnGoingPools() {
         <Typography>On-going</Typography>
         <TypographyGradient>Pools</TypographyGradient>
       </TitleBox>
-      {infoRounds.map((round, index) => (
+      <Grid container spacing={5} mt={2}>
+        {infoRounds?.map((item, index) => (
+          <Grid item md={6} xs={12} key={index}>
+            <OnGoingCard
+              {...item}
+              key={index}
+            />
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* {infoRounds.map((round, index) => (
         <Box
           sx={{
             background: 'linear-gradient(128.67deg, rgba(104, 230, 184, 0.2) 10.81%, rgba(109, 133, 218, 0.2) 75.48%)',
@@ -226,7 +261,7 @@ export default function OnGoingPools() {
             </Grid>
           </Grid>
         </Box>
-      ))}
+      ))} */}
     </Box>
   );
 }
