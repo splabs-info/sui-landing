@@ -12,7 +12,7 @@ const dataSUA =
   title: 'SUA (Test IDO)',
   description:
     'SUA is a token of Meta version. It has no intrinsic value or expectation of financial return. There is no official team or roadmap.',
-  time: 'Time: 10th June 2023',
+  time: '10th June 2023',
   total: 1011,
   link: '/ido-launchpad/sua-sale',
 }
@@ -23,7 +23,7 @@ const dataXUIOG =
   title: 'XUI - OG ROUND',
   description:
     '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
-  time: 'Time: 20th July 2023',
+  time: '20th July 2023',
   total: 280000,
   link: '/ido-launchpad/og-sale',
 }
@@ -33,7 +33,7 @@ const dataXUIPublic =
   title: 'XUI - PUBLIC ROUND',
   description:
     '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
-  time: 'Time: 20th July 2023',
+  time: '20th July 2023',
   total: 720000,
   link: '/ido-launchpad/public-sale',
 }
