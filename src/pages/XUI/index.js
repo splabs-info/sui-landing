@@ -26,7 +26,7 @@ import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const XUIIDOContainer = () => {
   const isMobile = useResponsive('down', 'sm');
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [claimInfo, setClaimInfo] = React.useState({});
   const [tabIndex, setTabIndex] = React.useState('0');
   const [whiteList, setWhiteList] = React.useState();
@@ -163,7 +163,19 @@ const XUIIDOContainer = () => {
   }, [fetWhiteList, fetchClaimInfo]);
 
   React.useEffect(() => {
+    if (infoRound) {
+      console.log(infoRound.name, infoRound.totalSold, infoRound.totalSupply);
+    }
+  }, [infoRound]);
+
+  React.useEffect(() => {
     formatInfoRound(formattedRoundName);
+    const interval = setInterval(() => {
+      console.time('Time:');
+      formatInfoRound(formattedRoundName);
+      console.timeEnd('Time:');
+    }, 10000);
+    return () => clearInterval(interval);
   }, [formatInfoRound, formattedRoundName]);
 
   React.useEffect(() => {
