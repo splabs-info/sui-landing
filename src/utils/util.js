@@ -112,12 +112,13 @@ export const handleNameRound = (str) => {
 
 export const fCurrencyV2 = (number, fix) => {
     try {
-        if ((isNumber(number) && isNumber(fix)) || fix <= 0) {
+        if ((!isNumber(number) && !isNumber(fix)) || fix <= 0) {
             throw new Error('Invalid input');
         }
 
         return Intl.NumberFormat('en-US', { maximumSignificantDigits: fix }).format(number);
     } catch (e) {
+        console.log('error', e)
         return '--';
     }
 };

@@ -23,9 +23,9 @@ import { grey } from '@mui/material/colors'
 export const TokenPoolContent = [
     {
         id: 1,
-        title: 'YouSUI - TXUI - OG ROUND',
+        title: 'YouSUI - XUI - OG ROUND',
         subtitle: 'Community Test Pool',
-        token: 'T-XUI',
+        token: 'XUI',
         startDate: 'June 14th, 2023',
         status: true,
     },
@@ -74,6 +74,7 @@ export const TokenPoolBox = styled(Box)(({ theme, isWithdrawal }) => ({
 }));
 
 export default function ClaimTokens({ myIDOs }) {
+    console.log('myIDOs__ClaimTokens', myIDOs)
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 

@@ -90,14 +90,14 @@ export const RoundInfo = ({
                                     <Typography variant="body2">12:00 UTC 20-07-2023</Typography>
                                 </Box>
                             {/* )} */}
-                            {endTime && (
+                            {/* {endTime && ( */}
                                 <Box>
                                     <Typography variant="body1" mb={0.5}>
                                         Pool End Time
                                     </Typography>
-                                    <Typography variant="body2"> {endTime}</Typography>
+                                    <Typography variant="body2">12:00 UTC 22-07-2023</Typography>
                                 </Box>
-                            )}
+                            {/* )} */}
                         </TokenBox>
                         <UtilityBox>
                             {fields.map((field) => (

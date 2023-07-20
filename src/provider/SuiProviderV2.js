@@ -1,13 +1,13 @@
-import { LAUNCHPAD_STORAGE } from 'onchain/constants'
-import { Coin, Connection, JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js'
+import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
 import { isEmpty } from 'lodash'
+import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
-
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://explorer-rpc.mainnet.sui.io/`,
+        fullnode: `https://sui-mainnet-rpc.allthatnode.com/MiWlhTmoHhIhCNwjfF1DE9RKJ814LMk7`,
+        // fullnode: 'https://fullnode.testnet.sui.io:443'
     }),
 }
 
@@ -24,7 +24,7 @@ export const SuiContext = createContext({
 export const SUIWalletContext = ({ children }) => {
     const wallet = useWallet()
     const [assets, setAssets] = React.useState([])
-    const [balances, setBalance] = React.useState('0')
+    const [balances, setBalance] = React.useState(0)
     const [projects, setProjects] = React.useState([])
     const [coinObjectsId, setCoinObjectsId] = React.useState()
 
@@ -34,7 +34,7 @@ export const SUIWalletContext = ({ children }) => {
             const formattedPaymentsPromise = Promise.all(
                 round?.data.content?.fields.payments?.fields?.contents.map(formatPayment)
             )
-            
+
             const formattedPayments = await formattedPaymentsPromise
             const formattedTotalSold = ethers.utils.formatUnits(
                 round?.data?.content?.fields?.total_sold,

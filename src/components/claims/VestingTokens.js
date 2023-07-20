@@ -26,13 +26,13 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                     <Box position={'relative'}>
                         <Box
                             component={'img'}
-                            src="https://kts3.s3.ap-northeast-1.amazonaws.com/T-XUI.png"
+                            src="/images/staking/water-seek.jpg"
                             sx={{
                                 width: '100%',
                                 borderRadius: '10px',
                             }}
                         />
-                        <Box
+                        {/* <Box
                             sx={{
                                 background: 'linear-gradient(255deg, #207BBF 0%, #5CBAF2 100%)',
                                 position: 'absolute',
@@ -45,7 +45,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                             <Typography color={'white'} fontWeight={'bold'}>
                                 TBA
                             </Typography>
-                        </Box>
+                        </Box> */}
                     </Box>
                 </Grid>
                 <Grid sx={{ width: '100%', '& a': { marginRight: '8px' } }} xs={12} md={8} item>
@@ -70,7 +70,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                 <>
                                     <Typography>
                                         {totalUnlockAmount
-                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                                 ethers.utils.formatUnits(totalUnlockAmount, 9)
                                             )
                                             : 'Loading'}{' '}
@@ -78,7 +78,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                     </Typography>
                                     <Typography>
                                         {totalLockMount
-                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                                 ethers.utils.formatUnits(totalLockMount, 9)
                                             )
                                             : 'Loading'}{' '}
@@ -228,11 +228,11 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                             }}
                         >
                             {unlockAmount
-                                ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                     ethers.utils.formatUnits(unlockAmount, 9)
                                 ) +
                                 ' ' +
-                                'TXUI'
+                                'XUI'
                                 : 'Loading'}
                         </Typography>
                     </Box>

@@ -1,86 +1,102 @@
-import { Box, Typography, } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import { round } from 'lodash';
+import React from 'react';
 const CircleBox = styled(Box)(({ theme }) => ({
-  height: '260px',
-  width: '260px',
-  position: 'relative',
-  padding: '25px',
+    height: '260px',
+    width: '260px',
+    position: 'relative',
+    padding: '25px',
 }));
 const InnerCircleBox = styled(Box)(({ theme }) => ({
-  height: '210px',
-  width: '210px',
-  borderRadius: '50%',
-  border: '8px solid #336E76',
-  boxShadow: '0px 0px 20px #68A9B140, inset 0px 0px 20px #68A9B140',
-
+    height: '210px',
+    width: '210px',
+    borderRadius: '50%',
+    border: '8px solid #336E76',
+    boxShadow: '0px 0px 20px #68A9B140, inset 0px 0px 20px #68A9B140',
 }));
 const OuterCircleBox = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
-  '& svg': {
-    transform: 'rotate(270deg)',
-    height: "240px",
-    width: "240px",
-  },
-  '& circle': {
-    boxShadow: '0px 0px 15px #68A9B1, inset 0px 0px 15px #68A9B1',
-  },
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    '& svg': {
+        transform: 'rotate(270deg)',
+        height: '240px',
+        width: '240px',
+    },
+    '& circle': {
+        boxShadow: '0px 0px 15px #68A9B1, inset 0px 0px 15px #68A9B1',
+    },
 }));
 const PercentBox = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
-
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
 }));
 
-export const ProcessCircleBox = ({ radius, percent }) => {
-  let widthInner, widthOuter, width, perimeter, perProcess
-  if (radius) {
-    widthInner = 2 * radius + 10;
-    widthOuter = 2 * radius + 40;
-    width = 2 * radius + 60;
-    perimeter = 2 * Math.PI * radius
-    perProcess = perimeter - perimeter * (percent / 100)
-  }
-  return (
-    <CircleBox sx={{
-      height: radius ? width : '260px',
-      width: radius ? width : '260px',
-    }}>
-      <InnerCircleBox
-        sx={{
-          height: radius ? widthInner : '210px',
-          width: radius ? widthInner : '210px',
-        }}
-      />
-      <PercentBox>
-        <Typography variant='h5'>{percent.toFixed(2)}%</Typography>
-      </PercentBox>
-      <OuterCircleBox>
-        <svg style={{
-          height: radius ? widthOuter : '240px',
-          width: radius ? widthOuter : '240px',
-        }}>
-          <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor='#6D85DA' />
-              <stop offset="100%" stopColor='#68E5B8' />
-            </linearGradient>
-          </defs>
-          <circle cx={radius ? radius + 20 : '120'} cy={radius ? radius + 20 : '120'} r={radius ? radius : '100'}
-            stroke="url(#grad1)"
-            strokeWidth='16px'
-            strokeLinecap='round'
-            fill='none'
-            strokeDasharray={radius ? perimeter : '628'} // 2r pi
-            strokeDashoffset={radius ? perProcess : '157'} // 2r pi - 2r pi * 50%
-          />
-        </svg>
-      </OuterCircleBox>
-    </CircleBox>
-  );
+export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roundName, minPurchase }) => {
+    let widthInner, widthOuter, width, perimeter, perProcess;
+    if (radius) {
+        widthInner = 2 * radius + 10;
+        widthOuter = 2 * radius + 40;
+        width = 2 * radius + 60;
+        perimeter = 2 * Math.PI * radius;
+        perProcess = perimeter - perimeter * (percent / 100);
+    }
+
+    const handleDisPlayPercent = React.useCallback(() => {
+        if (!totalSold || !totalSupply) return '0';
+
+        const percent = (totalSold / totalSupply) * 100;
+        if (roundName === 'Og_Sale' && (totalSupply - totalSold) < minPurchase) return 100;
+        if (roundName === 'Public_Sale') return round(percent, 2);
+    }, [minPurchase, roundName, totalSold, totalSupply])
+
+
+    return (
+        <CircleBox
+            sx={{
+                height: radius ? width : '260px',
+                width: radius ? width : '260px',
+            }}
+        >
+            <InnerCircleBox
+                sx={{
+                    height: radius ? widthInner : '210px',
+                    width: radius ? widthInner : '210px',
+                }}
+            />
+            <PercentBox>
+                <Typography variant="h5">{handleDisPlayPercent()}%</Typography>
+            </PercentBox>
+            <OuterCircleBox>
+                <svg
+                    style={{
+                        height: radius ? widthOuter : '240px',
+                        width: radius ? widthOuter : '240px',
+                    }}
+                >
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#6D85DA" />
+                            <stop offset="100%" stopColor="#68E5B8" />
+                        </linearGradient>
+                    </defs>
+                    <circle
+                        cx={radius ? radius + 20 : '120'}
+                        cy={radius ? radius + 20 : '120'}
+                        r={radius ? radius : '100'}
+                        stroke="url(#grad1)"
+                        strokeWidth="16px"
+                        strokeLinecap="round"
+                        fill="none"
+                        strokeDasharray={radius ? perimeter : '628'} // 2r pi
+                        strokeDashoffset={radius ? perProcess : '157'} // 2r pi - 2r pi * 50%
+                    />
+                </svg>
+            </OuterCircleBox>
+        </CircleBox>
+    );
 };
