@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { round } from 'lodash';
+import React from 'react';
 const CircleBox = styled(Box)(({ theme }) => ({
     height: '260px',
     width: '260px',
@@ -35,7 +36,7 @@ const PercentBox = styled(Box)(({ theme }) => ({
     transform: 'translate(-50%, -50%)',
 }));
 
-export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply }) => {
+export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roundName, minPurchase }) => {
     let widthInner, widthOuter, width, perimeter, perProcess;
     if (radius) {
         widthInner = 2 * radius + 10;
@@ -44,6 +45,15 @@ export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply }) =>
         perimeter = 2 * Math.PI * radius;
         perProcess = perimeter - perimeter * (percent / 100);
     }
+
+    const handleDisPlayPercent = React.useCallback(() => {
+        if (!totalSold || !totalSupply) return '0';
+
+        const percent = (totalSold / totalSupply) * 100;
+        if (roundName === 'Og_Sale' && (totalSupply - totalSold) < minPurchase) return 100;
+        if (roundName === 'Public_Sale') return round(percent, 2);
+    }, [minPurchase, roundName, totalSold, totalSupply])
+
 
     return (
         <CircleBox
@@ -59,7 +69,7 @@ export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply }) =>
                 }}
             />
             <PercentBox>
-                <Typography variant="h5">{totalSold ? round((totalSold / totalSupply) * 100, 2) : 0}%</Typography>
+                <Typography variant="h5">{handleDisPlayPercent()}%</Typography>
             </PercentBox>
             <OuterCircleBox>
                 <svg

@@ -56,21 +56,25 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     const fetchCanClaim = React.useCallback(async () => {
         const currentTime = moment();
         const pre_register = findServicePreregister();
-
-        if ((!pre_register || !services || isEmpty(pre_register)) && !claimInfo?.final_accumulate_token) return;
-        const dynamicFields = await provider.getDynamicFieldObject({
-            parentId: pre_register?.parent_id,
-            name: pre_register?.name,
-        });
-        if (
-            currentTime.isAfter(moment(toNumber(endAt))) &&
-            dynamicFields?.data?.content?.fields?.is_open_claim_refund === true &&
-            claimInfo?.final_accumulate_token === null
-        ) {
-            setIsClaim(true);
-        } else {
-            setIsClaim(false);
+        try {
+            if ((!pre_register || !services || isEmpty(pre_register)) && !claimInfo?.final_accumulate_token) return;
+            const dynamicFields = await provider.getDynamicFieldObject({
+                parentId: pre_register?.parent_id,
+                name: pre_register?.name,
+            });
+            if (
+                currentTime.isAfter(moment(toNumber(endAt))) &&
+                dynamicFields?.data?.content?.fields?.is_open_claim_refund === true &&
+                claimInfo?.final_accumulate_token === null
+            ) {
+                setIsClaim(true);
+            } else {
+                setIsClaim(false);
+            }
+        } catch (error) {
+            console.log('error_fetchCanClaim', error)
         }
+    
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [claimInfo?.final_accumulate_token, endAt, findServicePreregister, services]);
 

@@ -3,78 +3,81 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Stack } from '@mui/system';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
-import { ethers } from 'ethers';
-import useResponsive from 'hooks/useResponsive';
-import { replace, toNumber } from 'lodash';
-import * as moment from 'moment';
-import { SuiContext } from 'provider/SuiProviderV2';
+// import { ethers } from 'ethers';
+// import useResponsive from 'hooks/useResponsive';
+// import { forEach, isEmpty, replace, toNumber } from 'lodash';
+// import * as moment from 'moment';
+// import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { OnGoingCard } from './OnGoingCard';
-import { useFormatRound } from 'onchain/hooks/use-format-round';
-
-const AvatarBox = styled(Box)(({ theme }) => ({
-    position: 'relative',
-    borderRadius: 24,
-    padding: 24,
-    background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
-    boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
-    height: 448,
-    width: 448,
-    display: 'flex',
-}));
+// import { useFormatRound } from 'onchain/hooks/use-format-round';
+// import { uniq } from 'lodash'
+// const AvatarBox = styled(Box)(({ theme }) => ({
+//     position: 'relative',
+//     borderRadius: 24,
+//     padding: 24,
+//     background: 'linear-gradient(0deg, rgba(0, 197, 211, 0.12) 38.68%, rgba(66, 238, 207, 0.12) 94.62%)',
+//     border: '1px solid rgba(255, 255, 255, 0.3)',
+//     boxShadow: 'inset 0px 0px 20px rgba(255, 255, 255, 0.3)',
+//     height: 448,
+//     width: 448,
+//     display: 'flex',
+// }));
 const infoRounds = [
     {
         title: '$XUI IDO - OG ROUND',
         link: '/ido-launchpad/og-sale',
         avatar: '/images/staking/water-seek.jpg',
-        participants: 4527,
+        participants: '--',
         token: 'XUI',
         total: 280000,
+        description: '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace.',
         sold: 35000,
         startTime: '2023-07-20T12:00:00Z',
         endTime: '2023-07-22T12:00:00Z',
+        vesting: ''
     },
     {
         title: '$XUI IDO - PUBLIC ROUND',
         link: '/ido-launchpad/public-sale',
         avatar: '/images/staking/water-seek.jpg',
-        participants: 4527,
+        participants: '--',
         token: 'XUI',
+        description: '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
         total: 720000,
         sold: 120000,
         startTime: '2023-07-20T12:00:00Z',
         endTime: '2023-07-22T12:00:00Z',
+        vesting: ''
     },
 ];
 
 export default function OnGoingPools() {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const isMobile = useResponsive('down', 'sm');
+    // const navigate = useNavigate();
+    // const location = useLocation();
+    // const isMobile = useResponsive('down', 'sm');
 
-    const {formatInfoRound } = useFormatRound()
-    const [infoRounds, setInfoRounds] = React.useState([]);
+    // const { infoRound, formatInfoRound } = useFormatRound()
+    // const [roundsData, setRoundsData] = React.useState([]);
+    
+    // const fetchRounds = React.useCallback(async () => {
+    //     const rounds = ['Public_Sale', 'Og_Sale'];
+    //     for (let round of rounds) {
+    //         await formatInfoRound(round);
+    //         if (!isEmpty(infoRound) && isEmpty(roundsData)) {
+    //             console.log('abc')
+    //             setRoundsData(prevData => [...prevData, infoRound]);
+    //         }
+    //     }
+    
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [formatInfoRound, roundsData]);
 
-    const fetchRounds = React.useCallback(async () => {
-        const rounds = ['Public_Sale', 'Og_Sale'];
-        const roundsData = [];
-
-        for (let round of rounds) {
-            const formattedInfoRound = await formatInfoRound(round);  
-            if (formattedInfoRound) {
-                roundsData.push(formattedInfoRound);
-            }
-        }
-        setInfoRounds(roundsData);
-    }, [formatInfoRound]); 
-
-
-    console.log('infoRounds__', infoRounds)
-    React.useEffect(() => {
-        fetchRounds()
-    }, [fetchRounds])
+    // console.log('roundsData___', roundsData)
+    // React.useEffect(() => {
+    //     fetchRounds();
+    // }, [fetchRounds]);
 
     return (
         <Box mb={20} mt={10} position="relative">
@@ -84,11 +87,11 @@ export default function OnGoingPools() {
                 <TypographyGradient>Pools</TypographyGradient>
             </TitleBox>
             <Grid container spacing={5} mt={2}>
-                {/* {infoRounds?.map((item, index) => (
+                {infoRounds?.map((item, index) => (
                     <Grid item md={6} xs={12} key={index}>
                         <OnGoingCard {...item} key={index} />
                     </Grid>
-                ))} */}
+                ))}
             </Grid>
 
             {/* {infoRounds.map((round, index) => (

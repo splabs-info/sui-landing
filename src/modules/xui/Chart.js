@@ -2,12 +2,10 @@ import { Box, Stack, Typography } from '@mui/material';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty } from 'lodash';
+import { isEmpty, round, toNumber } from 'lodash';
 import { ChartBox, LiveBox, SaleInfoBox } from 'modules/ido-round/components/RoundStyled';
 import React from 'react';
 import { fCurrencyV2 } from 'utils/util';
-import { round, toNumber } from 'lodash'
-import moment from 'moment';
 export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, minPurchase, payments }) => {
     const isMobile = useResponsive('down', 'sm');
 
@@ -66,9 +64,10 @@ export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, mi
     const percent = React.useMemo(() => {
         if (!totalSold || !totalSupply) return '0';
         const percent = (totalSold / totalSupply) * 100;
-        if (percent > 100) return 100;
+        if (roundName === 'Public_Sale' && percent > 100) return 100;
+        if (roundName === 'Og_Sale' && (totalSupply - totalSold) < minPurchase) return 100;
         return percent;
-    }, [totalSold, totalSupply])
+    }, [minPurchase, roundName, totalSold, totalSupply])
 
     return (
         <ChartBox>
@@ -86,7 +85,7 @@ export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, mi
             </LiveBox>
             <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'}>
                 <Stack justifyContent={'center'} mb={isMobile ? 2 : 0} alignItems={'center'}>
-                    <ProcessCircleBox radius={100} percent={percent} totalSold={totalSold} totalSupply={totalSupply} />
+                    <ProcessCircleBox radius={100} percent={percent} totalSold={totalSold} totalSupply={totalSupply} roundName={roundName} minPurchase={minPurchase} />
                     <Typography variant="body1" fontWeight={'bold'} textAlign={'center'}>
                         {!totalSold ? '0' : <span style={{ color: '#1FD8D1' }}>{fCurrencyV2(round(totalSold * toNumber(formattedRatio), 6), 6)} </span>}
                         {' / '}

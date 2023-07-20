@@ -33,6 +33,7 @@ export const OnGoingCard = ({
     participants,
     sold,
     token,
+    description,
     ...props
 }) => {
     const navigate = useNavigate();
@@ -52,11 +53,15 @@ export const OnGoingCard = ({
                     <AvatarBox component={'img'} src={avatar} alt={title} />
                 </Grid>
                 <Grid item md={8} xs={12}>
-                    <Typography variant="h5" mb={1}>
+                    <Typography variant="h5" mb={2}>
                         {title}
                     </Typography>
 
-                    <ProcessBarBox
+
+
+                    <Typography>{description}</Typography>
+
+                    {/* <ProcessBarBox
                         title={
                             <>
                                 <Typography variant="body2">Progress</Typography>
@@ -73,7 +78,7 @@ export const OnGoingCard = ({
                         }
                         percent={sold / total ? (sold / total) * 100 : 0}
                         sx={{ margin: isMobile ? '24px 0px' : '0px' }}
-                    />
+                    /> */}
                     <Stack
                         spacing={1.5}
                         direction={isMobile ? 'column' : 'row'}

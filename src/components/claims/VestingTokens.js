@@ -32,7 +32,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                 borderRadius: '10px',
                             }}
                         />
-                        <Box
+                        {/* <Box
                             sx={{
                                 background: 'linear-gradient(255deg, #207BBF 0%, #5CBAF2 100%)',
                                 position: 'absolute',
@@ -45,7 +45,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                             <Typography color={'white'} fontWeight={'bold'}>
                                 TBA
                             </Typography>
-                        </Box>
+                        </Box> */}
                     </Box>
                 </Grid>
                 <Grid sx={{ width: '100%', '& a': { marginRight: '8px' } }} xs={12} md={8} item>
@@ -232,7 +232,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                                     ethers.utils.formatUnits(unlockAmount, 9)
                                 ) +
                                 ' ' +
-                                'TXUI'
+                                'XUI'
                                 : 'Loading'}
                         </Typography>
                     </Box>

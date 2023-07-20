@@ -61,7 +61,7 @@ const data =
 
 export default function UpComingPools({ hasInTimeIDOXUI = false }) {
   const [list, setList] = React.useState([]);
-  console.log(hasInTimeIDOXUI);
+  // console.log(hasInTimeIDOXUI);
   React.useEffect(() => {
     if (hasInTimeIDOXUI) {
       setList([data]);

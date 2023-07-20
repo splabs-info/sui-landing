@@ -116,21 +116,24 @@ const XUIIDOContainer = () => {
 
     const fetchClaimInfo = React.useCallback(async () => {
         if (isEmpty(infoRound) || !infoRound || !wallet?.address) return;
+        try {
+            const info = await provider.getDynamicFieldObject({
+                parentId: infoRound?.id,
+                name: { type: 'address', value: wallet?.address },
+            });
 
-        const info = await provider.getDynamicFieldObject({
-            parentId: infoRound?.id,
-            name: { type: 'address', value: wallet?.address },
-        });
+            if (!info || isEmpty(info)) return;
 
-        if (!info || isEmpty(info)) return;
+            const claimInfo = {
+                final_accumulate_token: info?.data?.content?.fields?.value?.fields?.final_accumulate_token,
+                total_accumulate_token: info?.data?.content?.fields?.value?.fields?.total_accumulate_token,
+                investments: info?.data?.content?.fields?.value?.fields?.investments,
+            };
 
-        const claimInfo = {
-            final_accumulate_token: info?.data?.content?.fields?.value?.fields?.final_accumulate_token,
-            total_accumulate_token: info?.data?.content?.fields?.value?.fields?.total_accumulate_token,
-            investments: info?.data?.content?.fields?.value?.fields?.investments,
-        };
-
-        setClaimInfo(claimInfo);
+            setClaimInfo(claimInfo);
+        } catch (error) {
+            console.log('error__fetchClaimInfo', error)
+        }
     }, [infoRound, provider, wallet?.address]);
 
     const handleSave = async ({ objectId }) => {
@@ -179,14 +182,17 @@ const XUIIDOContainer = () => {
     }, []);
 
     React.useEffect(() => {
-        if (!roundName || isEmpty(infoRound)) {
-            setLoading(true);
-        } else {
-            setLoading(false);
+        try {
+            if (!roundName || isEmpty(infoRound)) {
+                setLoading(true);
+            } else {
+                setLoading(false);
+            }
+        } catch (error) {
+            console.log('error__fetchCore', error)
         }
     }, [infoRound, roundName, loading]);
 
-    console.log('infoRound', infoRound)
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: `url(${IDObackground})` }}>
