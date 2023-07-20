@@ -5,25 +5,25 @@ import Countdown from 'react-countdown';
 import { _formatUtcUnix } from '../../setting/format';
 
 const CountdownStack = styled(Stack)(({ theme }) => ({
-  width: '64px',
-  height: '56px',
+  width: '52px',
+  height: '44px',
   color: '#fff',
   borderRadius: '10px',
   position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
-  background: '#00112C',
+  background: 'rgba(0, 0, 0, 0.30)',
   '& .MuiTypography-body1': {
     margin: '0!important',
     textShadow: '0px 0px 4.56352px rgba(255, 255, 255, 0.5)',
     fontWeight: 900,
-    fontSize: '1.35rem',
+    fontSize: '18px',
   },
   '& .MuiTypography-caption': {
     marginTop: '-6px',
     color: 'white',
     display: 'initial',
-    background: 'linear-gradient(90deg, rgb(129,236,197,0.9) 0%, rgb(148,203,255,0.9) 50%,rgb(133,150,255,0.9) 100%)',
+    background: 'linear-gradient(309deg, #2D7EC8 0%, #B5FFD3 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   },
@@ -36,7 +36,7 @@ const CountdownStack = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export const IDOCountdown = ({ endTime, _handleComplete }) => {
+export const IDOEndTimeCountdown = ({ endTime, _handleComplete }) => {
   const now = moment().unix();
   const end = _formatUtcUnix(endTime);
 
@@ -52,26 +52,19 @@ export const IDOCountdown = ({ endTime, _handleComplete }) => {
 };
 
 const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
+  const hoursDay = Number(days) * 24 + Number(hours);
   if (completed) {
     return '';
   } else {
     return (
-      <Stack direction="row" spacing={1} mt={1}>
+      <Stack direction="row" spacing={1}>
         <CountdownStack>
           <Typography variant="body1">
-            {days < 10 ? '0' : ''}
-            {days}
-          </Typography>
-          <Typography variant="caption">days</Typography>
-        </CountdownStack>
-        <CountdownStack>
-          <Typography variant="body1">
-            {hours < 10 ? '0' : ''}
-            {hours}
+            {hoursDay < 10 ? '0' : ''}
+            {hoursDay}
           </Typography>
           <Typography variant="caption">hours</Typography>
         </CountdownStack>
-
         <CountdownStack>
           <Typography variant="body1">
             {minutes < 10 ? '0' : ''}
