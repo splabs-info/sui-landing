@@ -67,77 +67,16 @@ const StyledInfoBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const MyIDOArea = () => {
+export const MyIDOArea = ({ myIDOs }) => {
   const tablet = useResponsive('down', 'md');
 
-  const [myIdo, setMyIdo] = React.useState([]);
+  //   const [myIDOs, setMyIDOs] = React.useState();
 
+  //   const isMobile = useResponsive('down', 'sm');
+  //   const wallet = useWallet();
+  //   const { provider, projects } = React.useContext(SuiContext);
 
-  const [myIDOs, setMyIDOs] = React.useState();
-
-  const isMobile = useResponsive('down', 'sm');
-  const wallet = useWallet();
-  const { provider, projects } = React.useContext(SuiContext);
-
-  const fetchData = React.useCallback(async () => {
-    if (!wallet?.address || !wallet?.connected) return;
-
-    const owner = wallet?.address;
-
-    const otherObjects = await provider.getOwnedObjects({
-      owner,
-      options: { showContent: true },
-    });
-
-    if (otherObjects?.data?.length === 0) return;
-
-    const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
-
-    if (!certificateObjects) return;
-
-    const promises = certificateObjects.map(async (item) => {
-      const certificate = await provider.getObject({
-        id: item.data.objectId,
-        options: { showContent: true },
-      });
-
-      const projectFields = certificate?.data?.content?.fields?.project?.fields;
-
-      return {
-        eventName: certificate?.data?.content?.fields?.event_name,
-        issue_date: certificate?.data?.content?.fields?.issue_date || '',
-        description: projectFields?.description || '',
-        discord: projectFields?.discord || '',
-        image_url: projectFields?.image_url || '',
-        link_url: projectFields?.link_url || '',
-        medium: projectFields?.medium || '',
-        name: projectFields?.name || '',
-        vesting_id: certificate?.data?.content?.fields?.vesting_id,
-        project_id: certificate?.data?.content?.fields.id.id || '',
-        telegram: projectFields?.telegram || '',
-        twitter: projectFields?.twitter || '',
-        website: projectFields?.website || '',
-      };
-    });
-
-    const formattedMyIdo = await Promise.all(promises);
-
-    setMyIDOs([...formattedMyIdo]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet?.address, wallet?.connected]);
-
-  React.useEffect(() => {
-    if (provider && projects) {
-        fetchData();
-        // fetchVestingData();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [fetchData, projects]);
-
-
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
+  //   const fetchData = React.useCallback(async () => {
   //     if (!wallet?.address || !wallet?.connected) return;
 
   //     const owner = wallet?.address;
@@ -149,7 +88,7 @@ export const MyIDOArea = () => {
 
   //     if (otherObjects?.data?.length === 0) return;
 
-  //     const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
+  //     const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
 
   //     if (!certificateObjects) return;
 
@@ -162,14 +101,16 @@ export const MyIDOArea = () => {
   //       const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
   //       return {
+  //         eventName: certificate?.data?.content?.fields?.event_name,
+  //         issue_date: certificate?.data?.content?.fields?.issue_date || '',
   //         description: projectFields?.description || '',
   //         discord: projectFields?.discord || '',
   //         image_url: projectFields?.image_url || '',
   //         link_url: projectFields?.link_url || '',
   //         medium: projectFields?.medium || '',
   //         name: projectFields?.name || '',
-  //         eventName: certificate?.data?.content?.fields?.event_name || '',
-  //         project_id: projectFields?.project_id || '',
+  //         vesting_id: certificate?.data?.content?.fields?.vesting_id,
+  //         project_id: certificate?.data?.content?.fields.id.id || '',
   //         telegram: projectFields?.telegram || '',
   //         twitter: projectFields?.twitter || '',
   //         website: projectFields?.website || '',
@@ -178,11 +119,20 @@ export const MyIDOArea = () => {
 
   //     const formattedMyIdo = await Promise.all(promises);
 
-  //     setMyIdo([...formattedMyIdo]);
-  //   };
+  //     setMyIDOs([...formattedMyIdo]);
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, [wallet?.address, wallet?.connected]);
 
-  //   fetchData();
-  // }, [provider, wallet?.address, wallet?.connected]);
+  //   React.useEffect(() => {
+  //     if (provider && projects) {
+  //         fetchData();
+  //         // fetchVestingData();
+  //     }
+
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [fetchData, projects]);
+
+
 
   return (
     <Box sx={{ marginBottom: 12 }}>
@@ -191,7 +141,7 @@ export const MyIDOArea = () => {
         <>
           {myIDOs?.map((item, index) => (
             <StyledMyIDOBox>
-              <StyledInfoBox>
+              {/* <StyledInfoBox>
                 <StyledTitleInfo>Avatar</StyledTitleInfo>
                 <img
                   src={item?.image_url}
@@ -203,7 +153,7 @@ export const MyIDOArea = () => {
                     margin: '0 auto',
                   }}
                 />
-              </StyledInfoBox>
+              </StyledInfoBox> */}
               <StyledDivider orientation={tablet ? '' : 'vertical'} />
               <StyledInfoBox>
                 <StyledTitleInfo>No</StyledTitleInfo>

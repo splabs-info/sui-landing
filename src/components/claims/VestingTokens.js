@@ -70,7 +70,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                 <>
                                     <Typography>
                                         {totalUnlockAmount
-                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                                 ethers.utils.formatUnits(totalUnlockAmount, 9)
                                             )
                                             : 'Loading'}{' '}
@@ -78,7 +78,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                     </Typography>
                                     <Typography>
                                         {totalLockMount
-                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                            ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                                 ethers.utils.formatUnits(totalLockMount, 9)
                                             )
                                             : 'Loading'}{' '}
@@ -228,7 +228,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                             }}
                         >
                             {unlockAmount
-                                ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
+                                ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
                                     ethers.utils.formatUnits(unlockAmount, 9)
                                 ) +
                                 ' ' +

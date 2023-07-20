@@ -17,6 +17,10 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
+import { SuiContext } from 'provider/SuiProviderV2';
+import { findCertificate } from 'utils/util';
+import { INVEST_CERTIFICATE } from 'onchain/constants'
+
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
@@ -28,12 +32,13 @@ export default function MyInfo() {
   const wallet = useWallet();
   const [defaultInfo, setDefaultInfo] = useState(null);
   const [id, setId] = useState(null);
+  const [myIDOs, setMyIDOs] = React.useState();
   const [flag, setFlag] = React.useState(false);
-
+  const { provider, projects } = React.useContext(SuiContext);
   const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
   const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
 
-  const fetchData = React.useCallback(async () => {
+  const fetchDataInfo = React.useCallback(async () => {
     const targetAddress = wallet?.address || address;
     if (targetAddress) {
       try {
@@ -50,9 +55,9 @@ export default function MyInfo() {
 
   React.useEffect(() => {
     if (address || wallet?.address) {
-      fetchData();
+      fetchDataInfo();
     }
-  }, [address, fetchData, wallet?.address]);
+  }, [address, fetchDataInfo, wallet?.address]);
 
   React.useEffect(() => {
     if (!isNull(id) && isGetProfileSuccess && !isNull(defaultInfo)) {
@@ -64,6 +69,63 @@ export default function MyInfo() {
   const handleOpen = () => {
     setOpenCreateProfile(true);
   };
+
+
+  const fetchData = React.useCallback(async () => {
+    if (!wallet?.address || !wallet?.connected) return;
+
+    const owner = wallet?.address;
+
+    const otherObjects = await provider.getOwnedObjects({
+      owner,
+      options: { showContent: true },
+    });
+
+    if (otherObjects?.data?.length === 0) return;
+
+    const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
+
+    if (!certificateObjects) return;
+
+    const promises = certificateObjects.map(async (item) => {
+      const certificate = await provider.getObject({
+        id: item.data.objectId,
+        options: { showContent: true },
+      });
+
+      const projectFields = certificate?.data?.content?.fields?.project?.fields;
+
+      return {
+        eventName: certificate?.data?.content?.fields?.event_name,
+        issue_date: certificate?.data?.content?.fields?.issue_date || '',
+        description: projectFields?.description || '',
+        discord: projectFields?.discord || '',
+        image_url: projectFields?.image_url || '',
+        link_url: projectFields?.link_url || '',
+        medium: projectFields?.medium || '',
+        name: projectFields?.name || '',
+        vesting_id: certificate?.data?.content?.fields?.vesting_id,
+        project_id: certificate?.data?.content?.fields.id.id || '',
+        telegram: projectFields?.telegram || '',
+        twitter: projectFields?.twitter || '',
+        website: projectFields?.website || '',
+      };
+    });
+
+    const formattedMyIdo = await Promise.all(promises);
+
+    setMyIDOs([...formattedMyIdo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wallet?.address, wallet?.connected]);
+
+  React.useEffect(() => {
+    if (provider && projects) {
+        fetchData();
+        // fetchVestingData();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [fetchData, projects]);
 
   return (
     <>
@@ -126,12 +188,12 @@ export default function MyInfo() {
                           justifyContent: 'space-between',
                         }}
                       >
-                        <IDOParticipated />
+                        <IDOParticipated myIDOs={myIDOs}/>
                         <CurrentStakingPool />
                       </Stack>
 
                       <StakingBalance />
-                      <MyIDOArea />
+                      <MyIDOArea myIDOs={myIDOs}/>
                       <MyINOArea />
                       <ClaimAvailable />
                     </Stack>

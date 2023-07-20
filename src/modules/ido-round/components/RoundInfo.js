@@ -87,7 +87,7 @@ export const RoundInfo = ({
                                     <Typography variant="body1" mb={0.5}>
                                         Pool Start Time
                                     </Typography>
-                                    <Typography variant="body2">12:00 UTC 20-07-2023</Typography>
+                                    <Typography variant="body2">19:00 UTC 20-07-2023</Typography>
                                 </Box>
                             {/* )} */}
                             {endTime && (

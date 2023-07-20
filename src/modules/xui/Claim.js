@@ -16,6 +16,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     const [claimSuccessful, setClaimSuccessful] = React.useState(false);
     const [isClaim, setIsClaim] = React.useState(false);
     const { provider } = React.useContext(SuiContext)
+
     const findServicePreregister = React.useCallback(() => {
         if (!services || isEmpty(services)) return;
         return find(
@@ -58,7 +59,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
     const fetchCanClaim = React.useCallback(async () => {
         const pre_register = findServicePreregister();
-
+        console.log('pre_register__', pre_register)
         if (!pre_register || !services || isEmpty(pre_register)) return;
         const dynamicFields = await provider.getDynamicFieldObject({
             parentId: pre_register?.parent_id,
@@ -67,7 +68,6 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
         setIsClaim(dynamicFields?.data?.content?.fields?.is_open_claim_refund || false)
 
         return dynamicFields?.data?.content?.fields?.is_open_claim_refund || false
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [findServicePreregister, services])
 
@@ -111,7 +111,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [services])
 
-    console.log('isClaim__', isClaim)
+
     return (
         <ClaimBox>
             <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className='border'>

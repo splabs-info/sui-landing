@@ -120,7 +120,7 @@ export default function Claims() {
                         }}
                     />
                     <Container maxWidth={'lg'}>
-                        {console.log('myIDOs__', myIDOs)}
+                        {/* {console.log('myIDOs__', myIDOs)} */}
                         {!isEmpty(myIDOs) ? (
                             <ClaimTokens
                                 myIDOs={myIDOs}

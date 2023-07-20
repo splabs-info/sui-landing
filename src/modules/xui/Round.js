@@ -9,6 +9,7 @@ export const Round = ({
     claimInfo,
     decimals,
     endAt,
+    whiteList,
     maxPurchase,
     minPurchase,
     payments,
@@ -36,7 +37,10 @@ export const Round = ({
                         maxPurchase={maxPurchase}
                         minPurchase={minPurchase} />
                     <BuyForm
+                        whiteList={whiteList}
                         type={type}
+                        startAt={startAt}
+                        endAt={endAt}
                         purchaseType={purchaseType}
                         roundName={roundName}
                         decimals={decimals}
