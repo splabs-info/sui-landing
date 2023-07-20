@@ -70,6 +70,8 @@ export default function OnGoingPools() {
         setInfoRounds(roundsData);
     }, [formatInfoRound]); 
 
+
+    console.log('infoRounds__', infoRounds)
     React.useEffect(() => {
         fetchRounds()
     }, [fetchRounds])
