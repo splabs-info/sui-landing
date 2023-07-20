@@ -91,7 +91,7 @@ export default function IDORound() {
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
                 <Container maxWidth="xl">
-                    <Box mt={isMobile ? 5 : 2} color={'#fff'}>
+                    {/* <Box mt={isMobile ? 5 : 2} color={'#fff'}>
                         <TabContext value={tabIndex}>
                             <Stack direction={isMobile ? 'column-reverse' : 'row'}
                                 justifyContent={tabIndex === '0' ? 'space-between' : 'flex-end'}
@@ -132,7 +132,7 @@ export default function IDORound() {
                                 <Round round={tabIndex} />
                             </TabPanel>
                         </TabContext>
-                    </Box>
+                    </Box> */}
                 </Container>
             </SectionBox>
         </Page >
