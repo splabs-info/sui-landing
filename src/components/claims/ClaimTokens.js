@@ -74,6 +74,7 @@ export const TokenPoolBox = styled(Box)(({ theme, isWithdrawal }) => ({
 }));
 
 export default function ClaimTokens({ myIDOs }) {
+    console.log('myIDOs__ClaimTokens', myIDOs)
     const isMobile = useResponsive('down', 'sm');
     const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 

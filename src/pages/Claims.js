@@ -5,7 +5,7 @@ import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
 import { isEmpty } from 'lodash';
-import { INVEST_CERTIFICATE } from 'onchain/constants';
+import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { findCertificate } from 'utils/util';
@@ -23,26 +23,38 @@ export default function Claims() {
             if (!wallet?.address || !wallet?.connected) return;
 
             const owner = wallet?.address;
-    
+
+            const filter = {
+                MatchAll: [
+                    {
+                        StructType: `${PACKAGE_BASE}::certificate::InvestmentCertificate`,
+                    },
+                    {
+                        AddressOwner: owner,
+                    },
+                ],
+            };
+
             const otherObjects = await provider.getOwnedObjects({
                 owner,
+                filter: filter,
                 options: { showContent: true },
             });
-    
+
             if (otherObjects?.data?.length === 0) return;
-    
+
             const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
-    
+
             if (!certificateObjects) return;
-    
+
             const promises = certificateObjects.map(async (item) => {
                 const certificate = await provider.getObject({
                     id: item.data.objectId,
                     options: { showContent: true },
                 });
-    
+
                 const projectFields = certificate?.data?.content?.fields?.project?.fields;
-    
+
                 return {
                     eventName: certificate?.data?.content?.fields?.event_name,
                     issue_date: certificate?.data?.content?.fields?.issue_date || '',
@@ -59,9 +71,9 @@ export default function Claims() {
                     website: projectFields?.website || '',
                 };
             });
-    
+
             const formattedMyIdo = await Promise.all(promises);
-    
+
             setMyIDOs([...formattedMyIdo]);
 
         } catch (error) {

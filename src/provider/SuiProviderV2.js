@@ -1,13 +1,12 @@
-import { LAUNCHPAD_STORAGE } from 'onchain/constants'
-import { Coin, Connection, JsonRpcProvider, testnetConnection } from '@mysten/sui.js'
+import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
 import { isEmpty } from 'lodash'
+import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
-import { round } from 'lodash'
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://explorer-rpc.mainnet.sui.io/`,
+        fullnode: `https://sui-mainnet-rpc.allthatnode.com/MiWlhTmoHhIhCNwjfF1DE9RKJ814LMk7`,
         // fullnode: 'https://fullnode.testnet.sui.io:443'
     }),
 }

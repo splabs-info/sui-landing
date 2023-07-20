@@ -16,14 +16,18 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
+import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function IDOLaunchpad() {
+  // Tiep o day
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
+
+  const { infoRound, formatInfoRound } = useFormatRound()
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-22T12:00:00 Z')) {

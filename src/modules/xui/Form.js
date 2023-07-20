@@ -86,7 +86,11 @@ export const BuyForm = ({
                     }
                 }
                 return true;
-            }),
+            })
+            .test('min', `Min purchase must be ${minPurchase} XUI`, (value) => {
+                if (value < minPurchase) return false
+                else return true;
+            })
     });
 
     const {

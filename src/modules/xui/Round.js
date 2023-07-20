@@ -52,6 +52,7 @@ export const Round = ({
                         totalSupply={totalSupply}
                     />
                     <Claim
+                        endAt={endAt}
                         services={services}
                         decimals={decimals}
                         type={type}

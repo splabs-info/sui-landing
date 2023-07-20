@@ -26,7 +26,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                     <Box position={'relative'}>
                         <Box
                             component={'img'}
-                            src="https://kts3.s3.ap-northeast-1.amazonaws.com/T-XUI.png"
+                            src="/images/staking/water-seek.jpg"
                             sx={{
                                 width: '100%',
                                 borderRadius: '10px',

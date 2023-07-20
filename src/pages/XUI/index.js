@@ -186,6 +186,7 @@ const XUIIDOContainer = () => {
         }
     }, [infoRound, roundName, loading]);
 
+    console.log('infoRound', infoRound)
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: `url(${IDObackground})` }}>
