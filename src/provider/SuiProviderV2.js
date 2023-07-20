@@ -6,7 +6,7 @@ import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://sui-mainnet-rpc.allthatnode.com/MiWlhTmoHhIhCNwjfF1DE9RKJ814LMk7`,
+        fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
         // fullnode: 'https://fullnode.testnet.sui.io:443'
     }),
 }
