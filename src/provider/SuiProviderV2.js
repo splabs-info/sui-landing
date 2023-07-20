@@ -1,7 +1,7 @@
 import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
-import { isEmpty } from 'lodash'
+import { isEmpty, toNumber } from 'lodash'
 import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
 const config = {
@@ -172,8 +172,21 @@ export const SUIWalletContext = ({ children }) => {
     const fetchBalance = React.useCallback(async () => {
         if (provider) {
             try {
+
+                const filter = {
+                    MatchAll: [
+                        {
+                            StructType: `0x2::coin::Coin<0x2::sui::SUI>`,
+                        },
+                        {
+                            AddressOwner: wallet.address,
+                        },
+                    ],
+                };
+
                 const objects = await provider.getOwnedObjects({
                     owner: wallet.address || '',
+                    filter: filter,
                     options: { showContent: true },
                 })
 
@@ -212,7 +225,9 @@ export const SUIWalletContext = ({ children }) => {
                 const assets = await Promise.all(assetsPromises)
 
                 setAssets(assets)
-                setBalance(ethers.utils.formatUnits(suiBalance?.totalBalance, 9))
+                const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
+
+                setBalance(formattedBalance)
                 setCoinObjectsId(coinObjectsId)
             } catch (error) {
                 console.error('error SUI provider', error)

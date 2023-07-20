@@ -14,7 +14,7 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { fCurrency } from 'utils/format';
+import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 export const BuyForm = ({
@@ -68,7 +68,7 @@ export const BuyForm = ({
             .typeError('Must be number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
             .test('balances', 'Your balances is not enough', function (value) {
-                if (round(value, 6) > round(balances / toNumber(formattedRatio), 6)) {
+                if (value > (balances / toNumber(formattedRatio))) {
                     return this.createError({ message: 'Your balances is not enough' });
                 }
                 return true;
@@ -214,14 +214,14 @@ export const BuyForm = ({
     };
 
     const renderStatusBalance = React.useCallback(() => {
-        if (isEmpty(payments) || isEmpty(balances)) {
+        if (isEmpty(payments) || isNaN(balances)) {
             return 'Loading';
         }
         if (!wallet?.address || !wallet?.connected) {
             return 'Connect your wallet before';
         }
         if (balances && payments) {
-            return `Available amount: ${fCurrency(balances)} ${payments[0].symbol}`;
+            return `Available amount: ${fCurrencyV2(balances)} ${payments[0].symbol}`;
         }
     }, [balances, payments, wallet?.address, wallet?.connected]);
 
@@ -232,6 +232,7 @@ export const BuyForm = ({
         const formattedAmount = data?.amount;
         const coinSuiObjectData = coinObjectsId.map((coin) => coin?.data);
 
+        
         tx.setGasPayment(coinSuiObjectData);
 
         const balanceSplit = BigNumber.from(
@@ -241,6 +242,7 @@ export const BuyForm = ({
             .div(BigNumber.from("1000000000"))
             .toString();
 
+            // console.log('balanceSplit___' ,balanceSplit)
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
         const parseAmount = ethers.utils.parseUnits(round(toNumber(formattedAmount), 3).toString(), 9).toString();
