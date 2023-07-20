@@ -24,6 +24,7 @@ export default function IDOLaunchpad() {
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
+
   React.useEffect(() => {
     if (moment().isAfter('2023-07-22T12:00:00 Z')) {
       setHasOutTimeIDOXUI(true);
@@ -73,7 +74,7 @@ export default function IDOLaunchpad() {
         <Container maxWidth="xl">
           {hasInTimeIDOXUI && !hasOutTimeIDOXUI && <OnGoingPools />}
           <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
-          <PreviousPools />
+          <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>
     </Page>

@@ -5,95 +5,68 @@ import { UpComingIDOCard } from './UpComingIDOCard';
 import React from 'react';
 import moment from 'moment';
 
-const upComingIDOXUI = [
-  {
-    title: 'YouSUI - XUI',
-    avatar: '/images/ido/pool-yousui.jpg',
-    releaseTime: 'Official Launch: July 20th ',
-    startAt: 'July 20th, 12:00 UTC',
-    status: true,
-    link: '/ido-launchpad/og-sale',
-    startTime: '2023-07-20T12:00:00',
-    endTime: '2023-07-20T13:00:00',
-    description: [
-      <>
-        <p>1,000,000 SUI</p>
-        <p>TBA</p>
-      </>,
-      <>
-        <p>0.2 USD</p>
-        <p>Price per Token</p>
-      </>,
-      <>
-        <p>Access</p>
-        <p>OG & PL</p>
-      </>,
-    ],
-  },
-  {
-    title: 'HooD',
-    avatar: '/images/ido/pool-hood.jpg',
-    releaseTime: 'Official Launch: Aug 25th',
-    startAt: 'Aug 25th, 11:00 UTC',
-    status: false,
-    link: '',
-    startTime: '',
-    endTime: '',
-    description: [
-      <>
-        <p>600,000 SUI</p>
-        <p>TBA</p>
-      </>,
-      <>
-        <p>0.2 USD</p>
-        <p>Price per Token</p>
-      </>,
-      <>
-        <p>Access</p>
-        <p>Tier 1~5 </p>
-      </>,
-    ],
-  },
-];
+const dataXUI =
+{
+  title: 'YouSUI - XUI',
+  avatar: '/images/ido/pool-yousui.jpg',
+  releaseTime: 'Official Launch: July 20th ',
+  startAt: 'July 20th, 12:00 UTC',
+  status: true,
+  link: '/ido-launchpad/og-sale',
+  startTime: '2023-07-20T12:00:00',
+  endTime: '2023-07-20T13:00:00',
+  description: [
+    <>
+      <p>1,000,000 SUI</p>
+      <p>TBA</p>
+    </>,
+    <>
+      <p>0.2 USD</p>
+      <p>Price per Token</p>
+    </>,
+    <>
+      <p>Access</p>
+      <p>OG & PL</p>
+    </>,
+  ],
+}
 
-const upComingIDOList = [
 
-  {
-    title: 'HooD',
-    avatar: '/images/ido/pool-hood.jpg',
-    releaseTime: 'Official Launch: Aug 25th',
-    startAt: 'Aug 25th, 11:00 UTC',
-    status: false,
-    link: '',
-    startTime: '',
-    endTime: '',
-    description: [
-      <>
-        <p>600,000 SUI</p>
-        <p>TBA</p>
-      </>,
-      <>
-        <p>0.2 USD</p>
-        <p>Price per Token</p>
-      </>,
-      <>
-        <p>Access</p>
-        <p>Tier 1~5 </p>
-      </>,
-    ],
-  },
-];
+const data =
+{
+  title: 'HooD',
+  avatar: '/images/ido/pool-hood.jpg',
+  releaseTime: 'Official Launch: Aug 25th',
+  startAt: 'Aug 25th, 11:00 UTC',
+  status: false,
+  link: '',
+  startTime: '',
+  endTime: '',
+  description: [
+    <>
+      <p>600,000 SUI</p>
+      <p>TBA</p>
+    </>,
+    <>
+      <p>0.2 USD</p>
+      <p>Price per Token</p>
+    </>,
+    <>
+      <p>Access</p>
+      <p>Tier 1~5 </p>
+    </>,
+  ],
+}
 
-export default function UpComingPools({ hasInTimeIDOXUI }) {
+
+export default function UpComingPools({ hasInTimeIDOXUI = false }) {
   const [list, setList] = React.useState([]);
   console.log(hasInTimeIDOXUI);
   React.useEffect(() => {
     if (hasInTimeIDOXUI) {
-      setList(upComingIDOList);
-    }
-    else {
-      setList(upComingIDOXUI);
-    }
+      setList([data]);
+    } else
+      setList([dataXUI, data]);
   }, [hasInTimeIDOXUI])
 
   return (
