@@ -6,9 +6,12 @@ import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
 import { isNull } from 'lodash';
+import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useContext, useState } from 'react';
 import { useGetProfile, useLogin } from 'services/auth';
 import { setAccessToken } from 'utils/auth';
+import { findCertificate } from 'utils/util';
 import { ClaimAvailable } from './ClaimAvailable';
 import { CurrentStakingPool } from './CurrentStakingPool';
 import { IDOParticipated } from './IDOParticipated';
@@ -17,9 +20,6 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-import { SuiContext } from 'provider/SuiProviderV2';
-import { findCertificate } from 'utils/util';
-import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
 
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
@@ -92,12 +92,10 @@ export default function MyInfo() {
             options: { showContent: true },
         });
 
-
         if (otherObjects?.data?.length === 0) return;
 
         const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
 
-        // console.log('certificateObjects___111', certificateObjects)
         if (!certificateObjects) return;
 
         const promises = certificateObjects.map(async (item) => {
@@ -105,11 +103,7 @@ export default function MyInfo() {
                 id: item.data.objectId,
                 options: { showContent: true },
             });
-
-            // console.log('certificate___', certificate)
             const projectFields = certificate?.data?.content?.fields?.project?.fields;
-
-            // console.log('projectFields____', projectFields)
             return {
                 eventName: certificate?.data?.content?.fields?.event_name,
                 issue_date: certificate?.data?.content?.fields?.issue_date || '',

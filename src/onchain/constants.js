@@ -30,5 +30,9 @@ export const INVEST_CERTIFICATE = [
     `${PACKAGE_BASE}::certificate::InvestmentCertificate`,
 ]
 
-
 export const CLOCK = '0x6'
+
+export const STAKING_STORAGE="0xdd6377910c05537982c2cb78bd388a9c79a3bf9efde76880a3bddd83b8c3abac"
+
+export const STAKING_PACKAGE_BASE = '0xaaa79e10465b50508561c54cecd84c580c3d68b8e4a4a32123339d5451e69277'
+export const STAKING_PACKAGE_UPGRADE = '0xcfd34e94fef07fadf3a0fa47ca8d950982afa8c9432954cf00d88432e4aaa609'

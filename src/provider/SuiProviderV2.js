@@ -6,8 +6,8 @@ import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
-        // fullnode: 'https://fullnode.testnet.sui.io:443'
+        // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
+        fullnode: 'https://fullnode.testnet.sui.io:443'
     }),
 }
 
@@ -172,7 +172,6 @@ export const SUIWalletContext = ({ children }) => {
     const fetchBalance = React.useCallback(async () => {
         if (provider) {
             try {
-
                 const filter = {
                     MatchAll: [
                         {
@@ -203,8 +202,10 @@ export const SUIWalletContext = ({ children }) => {
 
                 const assetsPromises = allBalances.map(async (balance) => {
                     const { coinType } = balance
+
                     try {
                         const metadata = await provider.getCoinMetadata({ coinType })
+
                         const balanceObj = allBalances.find(
                             (balance) => balance.coinType === coinType
                         )
@@ -225,7 +226,13 @@ export const SUIWalletContext = ({ children }) => {
                 const assets = await Promise.all(assetsPromises)
 
                 setAssets(assets)
-                const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
+                
+                let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
+
+                // Handle gas
+                formattedBalance = formattedBalance > 0.2 ? formattedBalance - 0.2 : formattedBalance
+                
+                // const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
 
                 setBalance(formattedBalance)
                 setCoinObjectsId(coinObjectsId)
