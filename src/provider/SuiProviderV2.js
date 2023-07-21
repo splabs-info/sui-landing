@@ -218,7 +218,9 @@ export const SUIWalletContext = ({ children }) => {
         const assets = await Promise.all(assetsPromises);
 
         setAssets(assets);
-        const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2;
+        let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2;
+
+        formattedBalance = formattedBalance < 0 ? 0 : formattedBalance;
 
         setBalance(formattedBalance);
         setCoinObjectsId(coinObjectsId);
