@@ -12,6 +12,7 @@ import { Color } from 'constant/styled';
 import { TitleSection } from './TitleSection';
 import { SuiContext } from 'provider/SuiProviderV2';
 import { ethers } from 'ethers';
+import MyStaking from './my-staking/MyStaking';
 const CustomTabList = styled(TabList)(({ theme }) => ({
   transition: '1s',
   '& button': {
@@ -51,6 +52,7 @@ const CustomTabList = styled(TabList)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     '& button': {
       padding: '0.5rem 1rem',
+      fontSize: '16px',
     },
 
     '& .MuiTabs-scrollButtons': {
@@ -90,7 +92,7 @@ function a11yProps(index) {
   };
 }
 
-export default function OverviewTabs() {
+export default function OverviewTabs({ handleChangeTab = () => { } }) {
   const [value, setValue] = React.useState(0);
   const [sui, setSui] = React.useState();
   const [sua, setSua] = React.useState();
@@ -100,6 +102,7 @@ export default function OverviewTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    handleChangeTab(newValue)
   };
 
   React.useEffect(() => {
@@ -123,6 +126,7 @@ export default function OverviewTabs() {
           >
             <Tab label="OVERVIEW" {...a11yProps("0")} />
             <Tab label="MY STAKING" {...a11yProps("1")} />
+            <Tab label="MY ITEM" {...a11yProps("2")} />
           </CustomTabList>
         </Box>
         <TabPanel value={value} index={0}>
@@ -141,6 +145,9 @@ export default function OverviewTabs() {
           <TierInformation tierMedal="/images/sui-tier/tier5.png" level="TIER 5" idoApp="2% of Total Pool" />
         </TabPanel>
         <TabPanel value={value} index={1}>
+          <MyStaking />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
           <TitleSection title="COMING SOON" />
         </TabPanel>
       </TabContext>
