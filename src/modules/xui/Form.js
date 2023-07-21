@@ -138,7 +138,7 @@ export const BuyForm = ({
     };
 
     const handleSelectPublicMax = async () => {
-        if (balances) {
+        if (!isNaN(balances)) {
             setValue('amount', balances / toNumber(formattedRatio));
             trigger('amount');
         } else {
@@ -151,7 +151,7 @@ export const BuyForm = ({
         }
     };
     const handleSelect25 = async () => {
-        if (balances) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.25);
             trigger('amount');
         } else {
@@ -165,7 +165,7 @@ export const BuyForm = ({
     };
 
     const handleSelect50 = async () => {
-        if (balances) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.5);
             trigger('amount');
         } else {
@@ -179,7 +179,7 @@ export const BuyForm = ({
     };
 
     const handleSelect75 = async () => {
-        if (balances) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.75);
             trigger('amount');
         } else {
@@ -213,6 +213,7 @@ export const BuyForm = ({
         }
     };
 
+
     const renderStatusBalance = React.useCallback(() => {
         if (isEmpty(payments) || isNaN(balances)) {
             return 'Loading';
@@ -220,7 +221,7 @@ export const BuyForm = ({
         if (!wallet?.address || !wallet?.connected) {
             return 'Connect your wallet before';
         }
-        if (balances && payments) {
+        if (!isNaN(balances) && payments) {
             return `Available amount: ${fCurrencyV2(balances)} ${payments[0].symbol}`;
         }
     }, [balances, payments, wallet?.address, wallet?.connected]);
