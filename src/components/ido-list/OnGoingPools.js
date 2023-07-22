@@ -35,7 +35,7 @@ const infoRounds = [
         description: '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace.',
         sold: 35000,
         startTime: '2023-07-20T12:00:00Z',
-        endTime: '2023-07-22T12:00:00Z',
+        endTime: '2023-07-23T12:00:00Z',
         vesting: ''
     },
     {
@@ -48,7 +48,7 @@ const infoRounds = [
         total: 720000,
         sold: 120000,
         startTime: '2023-07-20T12:00:00Z',
-        endTime: '2023-07-22T12:00:00Z',
+        endTime: '2023-07-23T12:00:00Z',
         vesting: ''
     },
 ];
