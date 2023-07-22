@@ -13,6 +13,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { STAKING_PACKAGE_BASE, STAKING_STORAGE } from 'onchain/constants'
 import { formatEther } from 'onchain/helpers'
 import { toNumber } from 'lodash'
+import {parseStructTag} from '@mysten/sui.js'
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -90,6 +91,9 @@ export default function StakingFarming() {
                     name: item,
                 }))
 
+                // console.log('dynamicFieldObjects__', dynamicFieldObjects)
+                const tag  = parseStructTag(dynamicFieldObjects?.data?.content?.fields?.value?.type)
+                console.log('tag__', tag)
                 const stakingInfoState = {
                     object_owner: dynamicFieldObjects?.data?.owner?.ObjectOwner,
                     id: dynamicFieldObjects?.data?.content?.fields?.id?.id,
@@ -104,6 +108,8 @@ export default function StakingFarming() {
                     min_stake_amount: formatEther(dynamicFieldObjects?.data?.content?.fields?.value?.fields?.min_stake_amount, 9),
                     unstake_soon_fee: formatEther(dynamicFieldObjects?.data?.content?.fields?.value?.fields?.unstake_soon_fee, 9),
                     website: dynamicFieldObjects?.data?.content?.fields?.value?.fields?.website,
+                    current_token_staking_symbol: tag?.typeParams[0]?.name,
+                    current_token_staking_address: tag?.typeParams[0]?.address
                 }
 
                 return stakingInfoState;

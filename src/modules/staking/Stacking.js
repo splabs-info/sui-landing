@@ -61,7 +61,7 @@ const VerifyDataField = ({ label, value }) => (
         <Typography variant="body1" fontWeight={600}>
             {label}
         </Typography>
-        <Typography>{value}</Typography>
+        <Typography>{label === 'Unstake Fee' ? `${value} XUI` : value}</Typography>
     </Stack>
 );
 export default function Staking({ staking }) {
@@ -70,6 +70,7 @@ export default function Staking({ staking }) {
     const transformedData = transformStakingData(staking);
     const sortASC = [...transformedData].sort((a, b) => a.time - b.time);
     const [verifyData, setVerifyData] = React.useState({});
+
 
     React.useEffect(() => {
         if (isEmpty(staking) || isEmpty(transformedData)) {

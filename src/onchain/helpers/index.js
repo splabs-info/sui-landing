@@ -54,5 +54,7 @@ export const transformStakingData = (stakingData) => {
         minStakeAmount: staking.min_stake_amount || 0,
         image: staking.image || '',
         description: staking.description || '',
+        currentTokenStakingAddress: staking?.current_token_staking_address || '',
+        currentTokenStakingSymbol: staking?.current_token_staking_symbol || ''
     }));
 }

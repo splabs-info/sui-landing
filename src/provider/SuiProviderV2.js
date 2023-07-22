@@ -1,4 +1,4 @@
-import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
+import { Coin, Connection, JsonRpcProvider, parseStructTag } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
 import { isEmpty, toNumber } from 'lodash'
@@ -225,8 +225,8 @@ export const SUIWalletContext = ({ children }) => {
                 })
                 const assets = await Promise.all(assetsPromises)
 
-                setAssets(assets)
-                
+                const validAssets = assets.filter(asset => asset.id !== undefined);
+                setAssets(validAssets);
                 let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
 
                 // Handle gas
