@@ -6,9 +6,12 @@ import { CreateProfilePopup } from 'components';
 import { SectionBox } from 'components/home/HomeStyles';
 import { WalletContext } from 'hooks/use-connect';
 import { isNull } from 'lodash';
+import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useContext, useState } from 'react';
 import { useGetProfile, useLogin } from 'services/auth';
 import { setAccessToken } from 'utils/auth';
+import { findCertificate } from 'utils/util';
 import { ClaimAvailable } from './ClaimAvailable';
 import { CurrentStakingPool } from './CurrentStakingPool';
 import { IDOParticipated } from './IDOParticipated';
@@ -17,9 +20,6 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-import { SuiContext } from 'provider/SuiProviderV2';
-import { findCertificate } from 'utils/util';
-import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
 
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
@@ -48,7 +48,7 @@ export default function MyInfo() {
                 setAccessToken(token);
                 setDefaultInfo(account);
             } catch (error) {
-                // Xử lý lỗi ở đây (nếu cần)
+                console.log('error___fetchDataInfo', error)
             }
         }
     }, [address, login, wallet?.address]);
@@ -140,8 +140,6 @@ export default function MyInfo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData, projects]);
 
-    // console.log('wallet_-',wallet?.address)
-    // console.log('myIDOs__my profile', myIDOs)
     return (
         <>
             <SectionBox

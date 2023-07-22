@@ -4,7 +4,6 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import { IconBell } from '@tabler/icons';
 import IcSex from 'components/asset/icon/IcSex';
 import IcVerify from 'components/asset/icon/IcVerify';
 import { BorderGradientButton } from 'components/common/CustomButton';
@@ -12,7 +11,6 @@ import { UploadAvatar } from 'components/upload-avatar';
 import useResponsive from 'hooks/useResponsive';
 import NotifiNetwork from 'modules/notifi-network/NotifiNetwork';
 import React from 'react';
-import { toast } from 'react-toastify';
 
 const WrapperAreaInformation = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(180deg, rgba(104, 230, 184, 0.15) 0%, rgba(109, 133, 218, 0.15) 100%)',

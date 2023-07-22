@@ -13,7 +13,7 @@ export const useFormatRound = () => {
     const [policies, setPolicies] = React.useState({})
     const [services, setServices] = React.useState({})
 
-    const { storeServices } = useYouSuiStore()
+    // const { storeServices } = useYouSuiStore()
 
     const fetchDynamicFieldObject = React.useCallback(
         async (item) => {
@@ -131,7 +131,7 @@ export const useFormatRound = () => {
                 }
             })
 
-            storeServices(services)
+            // storeServices(services)
             setServices(services)
             setPolicies(policies)
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
