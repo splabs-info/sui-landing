@@ -12,6 +12,9 @@ import { BigNumber, ethers } from 'ethers';
 import { round, toNumber } from 'lodash';
 import { useWallet } from '@suiet/wallet-kit';
 import { formatEther } from 'onchain/helpers';
+import { STAKING_PACKAGE_UPGRADE, CLOCK, STAKING_STORAGE } from 'onchain/constants';
+import { toast } from 'react-toastify';
+
 export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
     // const [amount, setAmount] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
@@ -30,7 +33,6 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         }
     }, [currentTokenStaking]);
 
-
     const StakingSchema = yup.object().shape({
         amount: yup
             .number()
@@ -39,9 +41,9 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
             .typeError('Must be a number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
             .test('balances', 'Your balances is not enough', (value) => {
-                if (value > formattedBalanceTokenStaking) return false
-                else return true
-            })
+                if (value > formattedBalanceTokenStaking) return false;
+                else return true;
+            }),
     });
 
     const {
@@ -59,24 +61,56 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         resolver: yupResolver(StakingSchema),
     });
 
-    const handleStaking = ({ amount }) => {
-        // const tx = new TransactionBlock();
-        // const coinSuiObjectData = coinObjectsId.map((coin) => coin?.data);
-        // tx.setGasPayment(coinSuiObjectData);
-        // const balanceSplit = BigNumber.from(
-        //     ethers.utils.parseUnits(round(toNumber(amount), 3).toString(), 9).toString()
-        // )
-        //     .mul(BigNumber.from((payments[0].ratio_per_token).toString()))
-        //     .div(BigNumber.from("1000000000"))
-        //     .toString();
-        // const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
-        // const parseAmount = ethers.utils.parseUnits(round(toNumber(amount), 3).toString(), 9).toString();
-        // const vec = tx.makeMoveVec({
-        //     objects: [coin],
-        // });
+    const handleStaking = async ({ amount }) => {
+
+        const tx = new TransactionBlock();
+        setLoading(true)
+
+        if (currentTokenStaking?.coin?.length === 0) return console.log('currentTokenStaking__error');
+
+        let [primary, ...sub] = currentTokenStaking?.coin;
+
+        let primaryCoin = tx.object(primary.coinObjectId)
+        if (sub.length) {
+            tx.mergeCoins(primaryCoin, sub.map(a => tx.object(a.coinObjectId)))
+        }
+
+        const balanceSplit = BigNumber.from(ethers.utils.parseUnits(toNumber(amount).toString(), 9).toString()).toString();
+
+        const [coin] = tx.splitCoins(primaryCoin, [tx.pure(balanceSplit)]);
+
+        tx.moveCall({
+            target: `${STAKING_PACKAGE_UPGRADE}::staking::stake`,
+            typeArguments: [`${currentTokenStaking.coinType}`],
+            arguments: [
+                tx.object(CLOCK),
+                tx.object(STAKING_STORAGE),
+                tx.pure(verifyData?.name),
+                coin
+            ]
+        })
+
+        try {
+            const result = await wallet.signAndExecuteTransactionBlock({
+                transactionBlock: tx,
+            });
+
+            if (result) {
+                setLoading(false);
+                toast.success('Staking token success');
+                reset({ amount: 0 });
+            } else {
+                setLoading(false);
+                toast.error('Some thing went wrong');
+            }
+        } catch (error) {
+            setLoading(false);
+            toast.error('Some thing went wrong');
+            console.log('Error___Handle Sales', error)
+        }
     };
 
-    const handleAll = React.useCallback(() => { }, [])
+    const handleAll = React.useCallback(() => { }, []);
 
     return (
         <FormBox>
@@ -86,7 +120,8 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                     <Typography>
                         Available amount:{' '}
                         <strong>
-                            {formattedBalanceTokenStaking ? fCurrencyV2(formattedBalanceTokenStaking) : 0} {currentTokenStaking?.symbol}
+                            {formattedBalanceTokenStaking ? fCurrencyV2(formattedBalanceTokenStaking) : 0}{' '}
+                            {currentTokenStaking?.symbol}
                         </strong>
                     </Typography>
                 </Stack>
@@ -98,19 +133,26 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                     InputProps={{
                         endAdornment: (
                             <Stack direction={'row'} alignItems="center" mr={'-14px'}>
-                                <Typography mr={2}><strong>{currentTokenStaking?.symbol}</strong></Typography>
-                                <Button sx={{
-                                    background:
-                                        'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
-                                    boxShadow: '0px 0px 8px #4191C9',
-                                    padding: '10px 32px',
-                                    color: 'white',
-                                    '&:hover': {
-                                        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+                                <Typography mr={2}>
+                                    <strong>{currentTokenStaking?.symbol}</strong>
+                                </Typography>
+                                <Button
+                                    sx={{
+                                        background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
                                         boxShadow: '0px 0px 8px #4191C9',
+                                        padding: '10px 32px',
                                         color: 'white',
-                                    },
-                                }} variant="contained">ALL</Button>
+                                        '&:hover': {
+                                            background:
+                                                'linear-gradient(178.73deg, rgba(104, 230, 184, 0.9) -8.02%, rgba(109, 133, 218, 0.9) 98.69%);',
+                                            boxShadow: '0px 0px 8px #4191C9',
+                                            color: 'white',
+                                        },
+                                    }}
+                                    variant="contained"
+                                >
+                                    ALL
+                                </Button>
                             </Stack>
                         ),
                         onWheel: (e) => e.target.blur(),
@@ -154,10 +196,11 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                             }}
                         />
                     </FormGroup>
-                    <StackingButton type="submit" disabled={!isAgree}>Staking now</StackingButton>
+                    <StackingButton type="submit" disabled={!isAgree || !isValid} loading={loading}>
+                        Staking now
+                    </StackingButton>
                 </Stack>
             </form>
-
         </FormBox>
     );
 }

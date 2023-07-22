@@ -13,7 +13,9 @@ import { useWallet } from '@suiet/wallet-kit';
 import { STAKING_PACKAGE_BASE, STAKING_STORAGE } from 'onchain/constants'
 import { formatEther } from 'onchain/helpers'
 import { toNumber } from 'lodash'
-import {parseStructTag} from '@mysten/sui.js'
+import { parseStructTag } from '@mysten/sui.js'
+import * as moment from 'moment'
+
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -92,8 +94,7 @@ export default function StakingFarming() {
                 }))
 
                 // console.log('dynamicFieldObjects__', dynamicFieldObjects)
-                const tag  = parseStructTag(dynamicFieldObjects?.data?.content?.fields?.value?.type)
-                console.log('tag__', tag)
+                const tag = parseStructTag(dynamicFieldObjects?.data?.content?.fields?.value?.type)
                 const stakingInfoState = {
                     object_owner: dynamicFieldObjects?.data?.owner?.ObjectOwner,
                     id: dynamicFieldObjects?.data?.content?.fields?.id?.id,
@@ -146,7 +147,44 @@ export default function StakingFarming() {
             options: { showContent: true },
         })
 
-        // console.log('myStakingCer___', myStakingCer)
+        const infoStakingPromise = myStakingCer?.data.map(async (cer) => {
+            const info = await provider.getDynamicFieldObject(({
+                parentId: cer?.data?.objectId,
+                name: { type: "0x1::string::String", value: 'info' }
+            }))
+            console.log('cerr', cer?.data?.content?.fields)
+            console.log('info__', info?.data?.content?.fields)
+
+            const formatInfo = {
+                ...cer?.data?.content?.fields,
+                ...info?.data?.content?.fields?.value?.fields,
+                issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
+                stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
+                stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
+                id: cer?.data?.content?.fields?.id?.id,
+            }
+
+            return formatInfo
+        })
+
+        // tx.moveCall({
+        //     ...
+        // })
+
+        // cer avai => {
+            
+        // }
+        // array [tx.moveCall. tx.mo]
+        // tx.moveCall({
+
+        // })
+
+
+
+        const info = await Promise.all(infoStakingPromise)
+
+
+        console.log('info___', info)
         if (!myStakingCer || isEmpty(myStakingCer)) return;
 
         console.log('')
@@ -161,7 +199,6 @@ export default function StakingFarming() {
         fetchStakingCer()
     }, [fetchStakingCer])
 
-    console.log('staking__', staking)
     // apr: 0.0456
     // days: "60"
     // description: "YouSUI is an All-in-One platform that runs on the Sui Blockchain, including DEX, Launchpad, NFT Marketplace and Bridge. It has plans for cross-chain compatibility and scalability beyond Sui. In addition, YouSUI will provide incubation and technical support for game and blockchain projects that are planning or oriented to transition to the Sui ecosystem."

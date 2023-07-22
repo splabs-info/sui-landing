@@ -7,7 +7,7 @@ import React, { createContext } from 'react'
 const config = {
     providerConnection: new Connection({
         // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
-        fullnode: 'https://fullnode.testnet.sui.io:443'
+        fullnode: 'https://sui-testnet-rpc.allthatnode.com:443/cd2f7736h5krjpsednzd5qjigxgkl803'
     }),
 }
 
@@ -191,20 +191,25 @@ export const SUIWalletContext = ({ children }) => {
 
                 const coinObjectsId = objects.data.filter((obj) => Coin.isSUI(obj))
 
-                const [suiBalance, allBalances] = await Promise.all([
+                const [suiBalance, allBalances, allCoins] = await Promise.all([
                     provider.getBalance({
                         owner: wallet?.address || '',
                     }),
                     provider.getAllBalances({
                         owner: wallet.address || '',
                     }),
+                    provider.getAllCoins({
+                        owner: wallet.address || '',
+                    }),
                 ])
 
+                console.log('allBalances___', allBalances)
                 const assetsPromises = allBalances.map(async (balance) => {
                     const { coinType } = balance
 
                     try {
                         const metadata = await provider.getCoinMetadata({ coinType })
+                        const coin = allCoins?.data.filter((coin) => coin.coinType === coinType)
 
                         const balanceObj = allBalances.find(
                             (balance) => balance.coinType === coinType
@@ -212,11 +217,13 @@ export const SUIWalletContext = ({ children }) => {
 
                         return {
                             id: metadata?.id,
+                            coin: coin,
                             decimals: metadata?.decimals,
                             description: metadata?.description,
                             iconUrl: metadata?.iconUrl,
                             name: metadata?.name,
                             symbol: metadata?.symbol,
+                            coinType: coinType,
                             balance: balanceObj ? parseInt(balanceObj.totalBalance) : 0,
                         }
                     } catch (error) {
@@ -225,7 +232,8 @@ export const SUIWalletContext = ({ children }) => {
                 })
                 const assets = await Promise.all(assetsPromises)
 
-                const validAssets = assets.filter(asset => asset.id !== undefined);
+                console.log('assets___', assets)
+                const validAssets = assets.filter(asset => asset.coinType !== '0x92cc9a3549ad3c06e074913032c9b430f359556bce159da9f03eb86974a4f111::xui::XUI');
                 setAssets(validAssets);
                 let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
 

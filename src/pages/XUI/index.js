@@ -162,6 +162,7 @@ const XUIIDOContainer = () => {
     fetWhiteList();
   }, [fetWhiteList, fetchClaimInfo]);
 
+
   React.useEffect(() => {
     formatInfoRound(formattedRoundName);
   }, [formatInfoRound, formattedRoundName]);
