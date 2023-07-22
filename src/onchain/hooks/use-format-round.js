@@ -5,7 +5,6 @@ import {
 import { fetchCoreDetails } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
 export const useFormatRound = () => {
     const [infoRound, setInfoRound] = React.useState([])
     const { projects, provider } = React.useContext(SuiContext)
@@ -13,7 +12,6 @@ export const useFormatRound = () => {
     const [policies, setPolicies] = React.useState({})
     const [services, setServices] = React.useState({})
 
-    const { storeServices } = useYouSuiStore()
 
     const fetchDynamicFieldObject = React.useCallback(
         async (item) => {
@@ -131,7 +129,7 @@ export const useFormatRound = () => {
                 }
             })
 
-            storeServices(services)
+            // storeServices(services)
             setServices(services)
             setPolicies(policies)
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
