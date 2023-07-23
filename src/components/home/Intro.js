@@ -1,14 +1,12 @@
 import { useTheme } from '@emotion/react';
-import { Box, Container, Grid, Hidden, Stack, Typography, styled } from '@mui/material';
-import { IconArrowRight } from '@tabler/icons';
+import { Box, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import CopyComponent from 'components/common/CopyComponent';
-import { IDOCountdown } from 'components/countdown/IDOCountdown';
 import { TypographyGradient } from 'components/home/HomeStyles';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatAddress } from 'setting/format';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
-import React from 'react';
 
 // const SubTitle = [
 //   'YouSUI works with projects with a high probability of success',
@@ -95,7 +93,9 @@ export default function Intro() {
                 </TitleTypography>
               ))}
             </Box>
-            <Hidden lgUp>
+
+            {/* xui ido */}
+            {/* <Hidden lgUp>
               <CountDownBox2>
                 <IDOCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimeIDO(true)} />
                 {hasInTimeIDO ? <Link to="/ido-launchpad/og-sale">
@@ -124,7 +124,7 @@ export default function Intro() {
                     </Stack>
                   </Link>}
               </CountDownBox2>
-            </Hidden>
+            </Hidden> */}
             <Box
               sx={{
                 margin: '1.5rem 0',
@@ -267,32 +267,32 @@ export default function Intro() {
             </Box>
           </Grid>
           {/* <Grid item md={4} mt={isMobile && 2} mb={isMobile && 2}>
-                        {isMobile && (
-                            <CenterBox>
-                                <img
-                                    alt="sui"
-                                    src="/images/home/yousui.png"
-                                    style={{
-                                        width: '80%',
-                                        zIndex: 2,
-                                    }}
-                                />
-                                <img
-                                    alt="sui"
-                                    src="/images/home/base-2.png"
-                                    style={{
-                                        position: 'absolute',
-                                        width: '60%',
-                                        top: '250px',
-                                        zIndex: 1,
-                                    }}
-                                />
-                            </CenterBox>
-                        )}
-                    </Grid> */}
+            {isMobile && (
+              <CenterBox>
+                <img
+                  alt="sui"
+                  src="/images/home/yousui.png"
+                  style={{
+                    width: '80%',
+                    zIndex: 2,
+                  }}
+                />
+                <img
+                  alt="sui"
+                  src="/images/home/base-2.png"
+                  style={{
+                    position: 'absolute',
+                    width: '60%',
+                    top: '250px',
+                    zIndex: 1,
+                  }}
+                />
+              </CenterBox>
+            )}
+          </Grid> */}
         </Grid>
       </Container>
-      {/* <Box
+      <Box
         sx={{
           position: 'absolute',
           width: '40%',
@@ -328,8 +328,8 @@ export default function Intro() {
             // right: 215,
           }}
         />
-      </Box> */}
-      {/* <img
+      </Box>
+      <img
         alt=""
         src="/images/home/base-2.png"
         style={{
@@ -340,8 +340,10 @@ export default function Intro() {
           zIndex: 0,
           display: isTablet && 'none',
         }}
-      /> */}
-      <Hidden lgDown>
+      />
+
+      {/* xui ido */}
+      {/* <Hidden lgDown>
         <Box
           sx={{
             position: 'absolute',
@@ -378,7 +380,7 @@ export default function Intro() {
               </Link>}
           </CountDownBox>
         </Box>
-      </Hidden>
+      </Hidden> */}
     </SectionBox>
   );
 }
