@@ -161,6 +161,7 @@ export default function StakingFarming() {
                 issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
                 stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
                 stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
+                profit_claimed_amount: formatEther(info?.data?.content?.fields?.value?.fields?.profit_claimed_amount, 9),
                 id: cer?.data?.content?.fields?.id?.id,
             }
 
@@ -172,7 +173,7 @@ export default function StakingFarming() {
         // })
 
         // cer avai => {
-            
+
         // }
         // array [tx.moveCall. tx.mo]
         // tx.moveCall({
