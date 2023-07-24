@@ -27,7 +27,7 @@ export default function IDOLaunchpad() {
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
 
-  
+
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
@@ -58,9 +58,9 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <Link to={'/ido-launchpad/og-sale'}>
+            <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
               <FrameButton>Buy $XUI</FrameButton>
-            </Link>
+            </a>
             <Link to={'/whitepaper'}>
               <FrameButton>Whitepaper</FrameButton>
             </Link>
@@ -76,7 +76,7 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-        {/* <OnGoingPools /> */}
+          {/* <OnGoingPools /> */}
           {hasInTimeIDOXUI && !hasOutTimeIDOXUI && <OnGoingPools />}
           <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />

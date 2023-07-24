@@ -140,9 +140,9 @@ export default function Intro() {
             </Box>
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
-              <Link to={'/ido-launchpad/og-sale'}>
+              <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
                 <FrameButton>Buy $XUI</FrameButton>
-              </Link>
+              </a>
               <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                 <FrameButton>Apply for Launchpad</FrameButton>
               </a>

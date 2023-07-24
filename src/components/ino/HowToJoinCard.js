@@ -42,6 +42,9 @@ export const HowToJoinCard = ({ icon, title, caption, direction, btnDirection })
         if (btnDirection === 'Start Now') {
             navigate('/staking');
         }
+        if (btnDirection === 'Buy XUI') {
+            navigate('/ido-launchpad');
+        }
         if (btnDirection === 'Apply Now') {
             navigate('/coming-son');
         }
