@@ -239,19 +239,19 @@ export default function StakingPools() {
               flexDirection: 'column',
               gap: '30px',
               position: 'relative',
-              '&:before': {
-                content: '""',
-                position: 'absolute',
-                width: '100%',
-                background: 'linear-gradient(0deg, #00C5D3 0%, #42EECF 100%)',
-                borderRadius: '20px',
-                padding: '3px',
-                inset: '0px',
-                WebkitMask:
-                  'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
-                WebkitMaskComposite: 'xor',
-                zIndex: 0,
-              },
+              // '&:before': {
+              //   content: '""',
+              //   position: 'absolute',
+              //   width: '100%',
+              //   background: 'linear-gradient(0deg, #00C5D3 0%, #42EECF 100%)',
+              //   borderRadius: '20px',
+              //   padding: '3px',
+              //   inset: '0px',
+              //   WebkitMask:
+              //     'linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box content-box, linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px)',
+              //   WebkitMaskComposite: 'xor',
+              //   zIndex: 0,
+              // },
               '& div,p,button,a': { zIndex: 1 },
               '&:hover': {
                 background:
@@ -259,7 +259,7 @@ export default function StakingPools() {
                 boxShadow: '0px 0px 20px rgba(56, 232, 208, 0.5)',
               },
             }}
-            className="animated-bg"
+          // className="animated-bg"
           >
             <Box>
               <Typography
@@ -281,7 +281,7 @@ export default function StakingPools() {
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Fixed APR</Typography>
-                <Typography sx={{ fontSize: '1rem', color: '#00C5D3', fontWeight: 900, }}>30%</Typography>
+                <Typography sx={{ fontSize: '1rem', color: '#fff', fontWeight: 700, }}>15%</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography sx={{ fontSize: '1rem', color: '#ffffff' }}> Lock-up term</Typography>
