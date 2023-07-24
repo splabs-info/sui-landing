@@ -51,7 +51,7 @@ export default function StakingForm({ verifyData, setVerifyData, packages }) {
             onClick={() => setVerifyData(p)}
             key={index}
           >
-            {p.time} days {p.time === 180 ? '(30% APR)' : ''}
+            {p.time} days
           </PackageButton>
         ))}
       </Stack>

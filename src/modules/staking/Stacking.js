@@ -78,12 +78,13 @@ const packages = [
   },
   {
     time: 180,
-    expectedAPY: 30,
+    expectedAPY: 15,
     subscriptionDate: moment(),
     firstRewardPayment: moment().add(1, 'days'),
     stakingExpirationDate: moment().add(180, 'days'),
     unstakeFee: 1,
-    className: 'accent animated-bg',
+    className: 'default',
+    // className: 'accent animated-bg',
   },
 ];
 
@@ -117,7 +118,7 @@ const fields = [
 
 export default function Staking() {
   const isMobile = useResponsive('down', 'sm');
-  const [verifyData, setVerifyData] = useState(packages[3]);
+  const [verifyData, setVerifyData] = useState(packages[0]);
 
   return (
     <Grid container spacing={4}>
