@@ -151,17 +151,15 @@ export default function Intro() {
               </Link>
             </ButtonTitleBox>
 
-            <Stack flexDirection={'row'}>
-              <Box
-                mt={'3rem'}
-                sx={{
-                  color: 'white',
-                  [theme.breakpoints.down(600)]: {
-                    marginTop: 4,
-                  },
-                }}
-              >
-                <Typography variant="body1" mr={2} fontSize={isMobile && '0.9rem'}>
+            <Stack flexDirection={'row'}
+              gap={isMobile ? 3 : 5}
+              mt={6}
+              flexWrap={isMobile ? 'wrap' : 'nowrap'}
+              justifyContent={isMobile && 'center'}
+              sx={{ color: 'white' }}
+            >
+              <Box >
+                <Typography variant="body1" fontSize={isMobile && '0.9rem'}>
                   {' '}
                   Powered by{' '}
                 </Typography>
@@ -179,16 +177,8 @@ export default function Intro() {
                   <img alt="sui" src="/images/partners/sui.png" width={isMobile ? 60 : 80} />
                 </Box>
               </Box>
-              <Box
-                mt={'3rem'}
-                ml={'2rem'}
-                sx={{
-                  color: 'white',
-                  [theme.breakpoints.down(600)]: {
-                    marginTop: 4,
-                  },
-                }}
-              >
+
+              <Box >
                 <Typography
                   variant="body1"
                   mr={2}
@@ -210,6 +200,37 @@ export default function Intro() {
                   }}
                 >
                   <img alt="sui" src="/images/partners/logo-movebit.png" height={isMobile ? 35 : 46} />
+                </Box>
+              </Box>
+              <Box >
+                <Typography
+                  variant="body1"
+                  mr={2}
+                  fontSize={isMobile && '0.9rem'}
+                  display={'flex'}
+                  alignItems={'center'}
+                >
+                  <img alt="sui" src="/images/icon/token.gif" width={24} style={{ marginRight: '0.5rem' }} /> $XUI live on{' '}
+                </Typography>
+                <Box
+                  mt={1}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    gap: '16px',
+                    marginBottom: 2,
+                    [theme.breakpoints.down(600)]: {
+                      marginBottom: 1,
+                    },
+                  }}
+                >
+                  <a href="https://www.mexc.com/exchange/XUI_USDT" target="_blank" rel="noreferrer">
+                    <img alt="sui" src="/images/partners/mexc.png" height={isMobile ? 35 : 46} />
+                  </a>
+                  <a href="https://www.bitget.com/spot/XUIUSDT?type=spot" target="_blank" rel="noreferrer">
+                    <img alt="sui" src="/images/partners/bitget.png" height={isMobile ? 35 : 46} />
+                  </a>
                 </Box>
               </Box>
             </Stack>
@@ -254,15 +275,15 @@ export default function Intro() {
 
               <ContractBox>
                 <a
-                  href="https://suiexplorer.com/object/0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84?network=mainnet"
+                  href="https://suiexplorer.com/object/0x5b6851a16da9e44c137c95527ba1233601dbca0ef5f7f89ca3d184ace27d744c?network=mainnet"
                   target="_blank"
                   rel="noreferrer"
                 >
                   {!isDesktop
-                    ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84', 12)
-                    : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84'}
+                    ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI', 14)
+                    : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'}
                 </a>
-                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84`} />
+                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI`} />
               </ContractBox>
             </Box>
           </Grid>
