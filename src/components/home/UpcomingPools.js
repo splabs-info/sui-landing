@@ -67,16 +67,16 @@ const CountDownBox = styled(Box)(({ theme }) => ({
 }));
 
 const upComingList = [
-  {
-    label: 'Go to Launchpad ››',
-    src: 'images/home/yousui-ido.jpg',
-    title: 'YouSUI',
-    description: 'Launchpad, DEX, NFT Marketplace,...',
-    openDate: 'July 20th, 12:00 UTC',
-    link: '/ido-launchpad',
-    startTime: '2023-07-20T12:00:00',
-    endTime: '2023-07-20T13:00:00',
-  },
+  // {
+  //   label: 'Go to Launchpad ››',
+  //   src: 'images/home/yousui-ido.jpg',
+  //   title: 'YouSUI',
+  //   description: 'Launchpad, DEX, NFT Marketplace,...',
+  //   openDate: 'July 20th, 12:00 UTC',
+  //   link: '/ido-launchpad',
+  //   startTime: '2023-07-20T12:00:00',
+  //   endTime: '2023-07-20T13:00:00',
+  // },
   {
     label: 'Go to Launchpad ››',
     src: 'images/home/hood-ino.jpg',
@@ -101,7 +101,7 @@ export default function UpcomingPools() {
       </Box>
       <Grid container spacing={3} mt={4}>
         {upComingList.map((item, index) => (
-          <Grid item key={index} md={3.8} sm={5} xs={12}>
+          <Grid item key={index} md={3.5} sm={5} xs={12}>
             <PoolBox>
               <ImageBox>
                 <img src={item.src} alt={item.label} width={'100%'} />
