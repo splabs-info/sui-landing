@@ -9,6 +9,7 @@ import StakingForm from './StakingForm';
 import { BoxGradient, BoxGradientOpacity, ImageBox, UtilityBox } from './component/StackingStyles';
 import { fCurrencyV2 } from 'utils/util';
 import { SwitchNetwork } from 'components/popup/switch-network';
+import { useGetPrice } from 'services/price';
 
 const data = {
     symbol: 'XUI',
@@ -58,6 +59,8 @@ export default function Staking({ staking, totalXUILocked }) {
     const transformedData = transformStakingData(staking);
     const sortASC = [...transformedData].sort((a, b) => a.time - b.time);
     const [verifyData, setVerifyData] = React.useState({});
+
+    const { price } = useGetPrice();
 
 
     React.useEffect(() => {
@@ -115,34 +118,34 @@ export default function Staking({ staking, totalXUILocked }) {
                     <Grid item md={4} xs={12}>
                         <Grid container spacing={1} height={'calc(100% + 16px)'}>
                             {/* {statisticFields.map((field, index) => ( */}
-                                <Grid item xs={6}>
-                                    <BoxGradientOpacity>
-                                        <Typography>Price</Typography>
-                                        <Typography
-                                            variant="h4"
-                                            sx={{
-                                                textShadow: '0 0 10px rgb(255, 255, 255, 0.5)',
-                                                mt: 1,
-                                            }}
-                                        >
-                                            0.2224
-                                        </Typography>
-                                    </BoxGradientOpacity>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <BoxGradientOpacity>
-                                        <Typography>Total Locked XUI</Typography>
-                                        <Typography
-                                            variant="h4"
-                                            sx={{
-                                                textShadow: '0 0 10px rgb(255, 255, 255, 0.5)',
-                                                mt: 1,
-                                            }}
-                                        >
-                                            {totalXUILocked ? fCurrencyV2(totalXUILocked) : 0}
-                                        </Typography>
-                                    </BoxGradientOpacity>
-                                </Grid>
+                            <Grid item xs={6}>
+                                <BoxGradientOpacity>
+                                    <Typography>Price</Typography>
+                                    <Typography
+                                        variant="h4"
+                                        sx={{
+                                            textShadow: '0 0 10px rgb(255, 255, 255, 0.5)',
+                                            mt: 1,
+                                        }}
+                                    >
+                                        0.2224
+                                    </Typography>
+                                </BoxGradientOpacity>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <BoxGradientOpacity>
+                                    <Typography>Total Locked XUI</Typography>
+                                    <Typography
+                                        variant="h4"
+                                        sx={{
+                                            textShadow: '0 0 10px rgb(255, 255, 255, 0.5)',
+                                            mt: 1,
+                                        }}
+                                    >
+                                        {totalXUILocked ? fCurrencyV2(totalXUILocked) : 0}
+                                    </Typography>
+                                </BoxGradientOpacity>
+                            </Grid>
                             {/* ))} */}
                         </Grid>
                     </Grid>
@@ -192,7 +195,7 @@ export default function Staking({ staking, totalXUILocked }) {
                 </Grid>
             )}
 
-            <SwitchNetwork/>
+            <SwitchNetwork />
         </>
     );
 }
