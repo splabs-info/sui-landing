@@ -77,8 +77,8 @@ export const findCertificate = (arrayA, arrayB) => {
 };
 
 
-export function canClaimVesting(inputTimeInMillis) {
-
+export function canClaimVesting(inputTimeInMillis, unlockAmount) {
+    if(toNumber(unlockAmount) === 0) return false;
     // Convert the current time and input time to seconds
     const nowInSeconds = moment().utc().unix();
     const inputTimeInSeconds = moment(toNumber(inputTimeInMillis)).utc().unix();

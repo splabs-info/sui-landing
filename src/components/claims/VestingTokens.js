@@ -126,7 +126,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
 
     const event = location.state?.eventName;
 
-    const canClaim = canClaimVesting(releaseTime);
+    const canClaim = canClaimVesting(releaseTime, unlockAmount);
 
     const handleClaim = async () => {
         setLoading(true);
