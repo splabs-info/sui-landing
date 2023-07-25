@@ -1,6 +1,7 @@
 import { replace } from 'lodash';
 import numeral from 'numeral';
 import { format, formatDistanceToNow } from 'date-fns';
+// import BigNumber from 'bignumber.js';
 
 // Number ----------------------------------------------------------------------
 
@@ -85,3 +86,14 @@ export function fAddress(text) {
     }
     return text;
 }
+
+
+
+
+// export function parseAmount(amount, coinDecimals) {
+//     try {
+//         return BigInt(new BigNumber(amount).shiftedBy(coinDecimals).integerValue().toString());
+//     } catch (e) {
+//         return BigInt(0);
+//     }
+// }

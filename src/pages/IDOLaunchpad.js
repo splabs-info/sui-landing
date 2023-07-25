@@ -30,7 +30,7 @@ export default function IDOLaunchpad() {
   
 
   React.useEffect(() => {
-    if (moment().isAfter('2023-07-22T12:00:00 Z')) {
+    if (moment().isAfter('2023-07-23T12:00:00 Z')) {
       setHasOutTimeIDOXUI(true);
     }
     if (moment().isAfter('2023-07-20T12:00:00 Z')) {

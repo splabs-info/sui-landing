@@ -1,12 +1,6 @@
 import { Box, Divider, styled, Typography } from '@mui/material';
-import { useWallet } from '@suiet/wallet-kit';
-import { investCertificate, TXUI_PROJECT } from 'constant';
 import useResponsive from 'hooks/useResponsive';
-import { SuiContext } from 'provider/SuiProviderV2';
-import React from 'react';
-import { findCertificate } from 'utils/util';
 import { TitleSection } from './TitleSection';
-import { INVEST_CERTIFICATE } from 'onchain/constants';
 
 export const StyledMyIDOBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.3) -8.02%, rgba(109, 133, 218, 0.3) 98.69%)',
@@ -68,68 +62,6 @@ const StyledInfoBox = styled(Box)(({ theme }) => ({
 
 export const MyIDOArea = ({ myIDOs }) => {
     const tablet = useResponsive('down', 'md');
-
-    //   const [myIDOs, setMyIDOs] = React.useState();
-
-    //   const isMobile = useResponsive('down', 'sm');
-    //   const wallet = useWallet();
-    //   const { provider, projects } = React.useContext(SuiContext);
-
-    //   const fetchData = React.useCallback(async () => {
-    //     if (!wallet?.address || !wallet?.connected) return;
-
-    //     const owner = wallet?.address;
-
-    //     const otherObjects = await provider.getOwnedObjects({
-    //       owner,
-    //       options: { showContent: true },
-    //     });
-
-    //     if (otherObjects?.data?.length === 0) return;
-
-    //     const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
-
-    //     if (!certificateObjects) return;
-
-    //     const promises = certificateObjects.map(async (item) => {
-    //       const certificate = await provider.getObject({
-    //         id: item.data.objectId,
-    //         options: { showContent: true },
-    //       });
-
-    //       const projectFields = certificate?.data?.content?.fields?.project?.fields;
-
-    //       return {
-    //         eventName: certificate?.data?.content?.fields?.event_name,
-    //         issue_date: certificate?.data?.content?.fields?.issue_date || '',
-    //         description: projectFields?.description || '',
-    //         discord: projectFields?.discord || '',
-    //         image_url: projectFields?.image_url || '',
-    //         link_url: projectFields?.link_url || '',
-    //         medium: projectFields?.medium || '',
-    //         name: projectFields?.name || '',
-    //         vesting_id: certificate?.data?.content?.fields?.vesting_id,
-    //         project_id: certificate?.data?.content?.fields.id.id || '',
-    //         telegram: projectFields?.telegram || '',
-    //         twitter: projectFields?.twitter || '',
-    //         website: projectFields?.website || '',
-    //       };
-    //     });
-
-    //     const formattedMyIdo = await Promise.all(promises);
-
-    //     setMyIDOs([...formattedMyIdo]);
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //   }, [wallet?.address, wallet?.connected]);
-
-    //   React.useEffect(() => {
-    //     if (provider && projects) {
-    //         fetchData();
-    //         // fetchVestingData();
-    //     }
-
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [fetchData, projects]);
 
     return (
         <Box sx={{ marginBottom: 12 }}>

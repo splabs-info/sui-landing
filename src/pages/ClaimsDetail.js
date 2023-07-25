@@ -37,8 +37,6 @@ export default function ClaimsDetail() {
                 name: { type: 'address', value: wallet?.address },
             })
 
-            // console.log('vestingDetail_', vestingDetail)
-            // console.log('vestingElement__', vestingElement)
 
             const vestingState = {
                 projectName: vestingElement?.data?.content?.fields?.project?.fields?.name,
