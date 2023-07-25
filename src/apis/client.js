@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { getAccessToken } from '../utils/auth';
 
-const axiosSSO = axios.create({
+const axiosPrice = axios.create({
     baseURL: 'https://xui-coin-api.yousui.io/coin/price',
     headers: {
         'Content-Type': 'application/json',
@@ -9,13 +8,9 @@ const axiosSSO = axios.create({
 });
 
 // Add a request interceptor
-axiosSSO.interceptors.request.use(
+axiosPrice.interceptors.request.use(
     function (config) {
         // Do something before request is sent
-        const token = getAccessToken();
-        if (token) {
-            config.headers.Authorization = `${token}`;
-        }
         return config;
     },
     function (error) {
@@ -25,7 +20,7 @@ axiosSSO.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosSSO.interceptors.response.use(
+axiosPrice.interceptors.response.use(
     function (response) {
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
@@ -38,4 +33,4 @@ axiosSSO.interceptors.response.use(
     }
 );
 
-export default axiosSSO;
+export default axiosPrice;

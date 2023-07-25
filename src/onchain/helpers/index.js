@@ -1,4 +1,4 @@
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { isNull, round, toNumber } from 'lodash'
 import * as moment from 'moment'
 import { fCurrencyV2 } from 'utils/util'
@@ -33,9 +33,11 @@ export const fetchCoreDetails = async (p) => {
 
 
 export const formatEther = (number, dec) => {
+
     if (!number) return;
     try {
-        return toNumber(ethers.utils.formatUnits(number, dec))
+        return toNumber(ethers.utils.formatUnits(BigNumber.from(number.toString()), dec))
+
     } catch (error) {
         console.log('error__formatEther', error)
     }
@@ -43,7 +45,7 @@ export const formatEther = (number, dec) => {
 
 
 const apyConvert = (apr) => {
-   return (Math.pow((1+ (apr / 365)), 365) - 1) * 100
+    return (Math.pow((1 + (apr / 365)), 365) - 1) * 100
 }
 // ((1+(0.03/365))^365 -1)*100
 export const transformStakingData = (stakingData) => {

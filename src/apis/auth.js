@@ -1,4 +1,5 @@
 import axiosClient from './axiosClient';
+import axiosPrice from './client'
 
 export const authApis = {
     login(data) {
@@ -32,4 +33,7 @@ export const authApis = {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
+    getPrice() {
+        return axiosPrice.get()
+    }
 };
