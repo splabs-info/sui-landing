@@ -25,15 +25,16 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
 
     const currentTokenStaking = assets.find((a) => a.symbol === verifyData?.currentTokenStakingSymbol);
 
-
     const formattedBalanceTokenStaking = React.useMemo(() => {
         if (currentTokenStaking) {
+            
             return formatEther(currentTokenStaking?.balance, currentTokenStaking?.decimals);
         } else {
             return 0;
         }
     }, [currentTokenStaking]);
 
+    
     const minStakeAmount = React.useMemo(() => verifyData?.minStakeAmount, [verifyData?.minStakeAmount]);
 
     const StakingSchema = yup.object().shape({
@@ -76,6 +77,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
             return;
         }
 
+        
         let [primary, ...sub] = currentTokenStaking?.coin;
 
         let primaryCoin = tx.object(primary?.coinObjectId)
