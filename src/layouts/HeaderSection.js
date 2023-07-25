@@ -32,6 +32,7 @@ import { WalletContext } from '../hooks/use-connect';
 import useResponsive from '../hooks/useResponsive';
 import NotifiHistory from 'modules/notifi-network/NotifiHistory';
 import { BuyCryptoButton } from 'components/common/CustomButton';
+import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 
 const config = [
   { label: 'key_2', link: '/ido-launchpad' },
@@ -296,14 +297,7 @@ export default function HeaderSection() {
     <></>
     // <NotifiHistory />
   );
-  const BuyCrypto = () => (
-    <BuyCryptoButton onClick={() => navigate('/alchemy-pay')}>
-      <IconShoppingCart size={'18px'} />
-      <Typography variant='caption' fontWeight={600}
-        sx={{ textDecoration: 'underline' }}
-      >Buy Crypto with Fiat</Typography>
-    </BuyCryptoButton>
-  );
+  const BuyCrypto = () => <AlchemyPay />;
 
   return (
     <>
@@ -312,11 +306,15 @@ export default function HeaderSection() {
           <Container
             maxWidth={'xl'}
             sx={{
-              display: 'flex', alignItems: 'center',
-              height: 36, justifyContent: 'space-between',
+              display: 'flex',
+              alignItems: 'center',
+              height: 36,
+              justifyContent: 'space-between',
             }}
           >
-            {isMobile ? <BuyCrypto /> :
+            {isMobile ? (
+              <BuyCrypto />
+            ) : (
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <EmailIcon sx={{ color: 'rgba(255, 255, 255, 1)', fontSize: 18, marginRight: '8px' }} />
                 <a
@@ -329,7 +327,8 @@ export default function HeaderSection() {
                 >
                   business@yousui.io
                 </a>
-              </Box>}
+              </Box>
+            )}
             <Stack direction="row" gap={2}>
               <Hidden smDown>
                 <BuyCrypto />
