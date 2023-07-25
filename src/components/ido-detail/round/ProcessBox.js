@@ -40,12 +40,12 @@ const StyledExchangeRate = styled(Box)(({ theme }) => ({
 export const ProcessBox = React.memo(({ totalSold, totalSupply, symbol, ratio, participants, decimals }) => {
 
     const [update, setUpdate] = React.useState(false);
-    const { soled } = useYouSuiStore((state) => state.sold);
-    React.useEffect(() => {
-        if (soled) {
-            setUpdate(true);
-        }
-    }, [soled]);
+    // const { soled } = useYouSuiStore((state) => state.sold);
+    // React.useEffect(() => {
+    //     if (soled) {
+    //         setUpdate(true);
+    //     }
+    // }, [soled]);
 
     const progress = React.useMemo(() => {
         if (totalSold && totalSupply) {

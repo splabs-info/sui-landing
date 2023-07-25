@@ -20,9 +20,13 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
+<<<<<<< HEAD
 import StakingTable from './my-staking/StakingTable';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import queryString from 'query-string';
+=======
+
+>>>>>>> origin/master
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -58,7 +62,7 @@ export default function MyInfo() {
                 setAccessToken(token);
                 setDefaultInfo(account);
             } catch (error) {
-                // Xử lý lỗi ở đây (nếu cần)
+                console.log('error___fetchDataInfo', error)
             }
         }
     }, [address, login, wallet?.address]);
@@ -157,6 +161,7 @@ export default function MyInfo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData, projects]);
 
+<<<<<<< HEAD
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -180,6 +185,8 @@ export default function MyInfo() {
         );
     }
 
+=======
+>>>>>>> origin/master
     return (
         <>
             <SectionBox

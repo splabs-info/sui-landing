@@ -15,7 +15,7 @@ const infoRounds = [
         sold: 35000,
         startTime: '2023-07-20T12:00:00Z',
         endTime: '2023-07-23T12:00:00Z',
-        vesting: '',
+        vesting: ''
     },
     {
         title: '$XUI IDO - PUBLIC ROUND',
@@ -29,7 +29,7 @@ const infoRounds = [
         sold: 120000,
         startTime: '2023-07-20T12:00:00Z',
         endTime: '2023-07-23T12:00:00Z',
-        vesting: '',
+        vesting: ''
     },
 ];
 

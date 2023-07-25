@@ -1,14 +1,12 @@
 import { useTheme } from '@emotion/react';
-import { Box, Container, Grid, Hidden, Stack, Typography, styled } from '@mui/material';
-import { IconArrowRight } from '@tabler/icons';
+import { Box, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import CopyComponent from 'components/common/CopyComponent';
-import { IDOCountdown } from 'components/countdown/IDOCountdown';
 import { TypographyGradient } from 'components/home/HomeStyles';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatAddress } from 'setting/format';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
-import React from 'react';
 
 // const SubTitle = [
 //   'YouSUI works with projects with a high probability of success',
@@ -92,7 +90,9 @@ export default function Intro() {
                 </TitleTypography>
               ))}
             </Box>
-            <Hidden lgUp>
+
+            {/* xui ido */}
+            {/* <Hidden lgUp>
               <CountDownBox2>
                 <IDOCountdown endTime={'2023-07-20T12:00:00'} _handleComplete={() => setHasInTimeIDO(true)} />
                 {hasInTimeIDO ? <Link to="/ido-launchpad/og-sale">
@@ -121,7 +121,7 @@ export default function Intro() {
                     </Stack>
                   </Link>}
               </CountDownBox2>
-            </Hidden>
+            </Hidden> */}
             <Box
               sx={{
                 margin: '1.5rem 0',
@@ -137,9 +137,9 @@ export default function Intro() {
             </Box>
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
-              <Link to={'/ido-launchpad/og-sale'}>
+              <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
                 <FrameButton>Buy $XUI</FrameButton>
-              </Link>
+              </a>
               <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
                 <FrameButton>Apply for Launchpad</FrameButton>
               </a>
@@ -148,17 +148,15 @@ export default function Intro() {
               </Link>
             </ButtonTitleBox>
 
-            <Stack flexDirection={'row'}>
-              <Box
-                mt={'3rem'}
-                sx={{
-                  color: 'white',
-                  [theme.breakpoints.down(600)]: {
-                    marginTop: 4,
-                  },
-                }}
-              >
-                <Typography variant="body1" mr={2} fontSize={isMobile && '0.9rem'}>
+            <Stack flexDirection={'row'}
+              gap={isMobile ? 3 : 5}
+              mt={6}
+              flexWrap={isMobile ? 'wrap' : 'nowrap'}
+              justifyContent={isMobile && 'center'}
+              sx={{ color: 'white' }}
+            >
+              <Box >
+                <Typography variant="body1" fontSize={isMobile && '0.9rem'}>
                   {' '}
                   Powered by{' '}
                 </Typography>
@@ -176,16 +174,8 @@ export default function Intro() {
                   <img alt="sui" src="/images/partners/sui.png" width={isMobile ? 60 : 80} />
                 </Box>
               </Box>
-              <Box
-                mt={'3rem'}
-                ml={'2rem'}
-                sx={{
-                  color: 'white',
-                  [theme.breakpoints.down(600)]: {
-                    marginTop: 4,
-                  },
-                }}
-              >
+
+              <Box >
                 <Typography
                   variant="body1"
                   mr={2}
@@ -207,6 +197,37 @@ export default function Intro() {
                   }}
                 >
                   <img alt="sui" src="/images/partners/logo-movebit.png" height={isMobile ? 35 : 46} />
+                </Box>
+              </Box>
+              <Box >
+                <Typography
+                  variant="body1"
+                  mr={2}
+                  fontSize={isMobile && '0.9rem'}
+                  display={'flex'}
+                  alignItems={'center'}
+                >
+                  <img alt="sui" src="/images/icon/token.gif" width={24} style={{ marginRight: '0.5rem' }} /> $XUI live on{' '}
+                </Typography>
+                <Box
+                  mt={1}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    gap: '16px',
+                    marginBottom: 2,
+                    [theme.breakpoints.down(600)]: {
+                      marginBottom: 1,
+                    },
+                  }}
+                >
+                  <a href="https://www.mexc.com/exchange/XUI_USDT" target="_blank" rel="noreferrer">
+                    <img alt="sui" src="/images/partners/mexc.png" height={isMobile ? 35 : 46} />
+                  </a>
+                  <a href="https://www.bitget.com/spot/XUIUSDT?type=spot" target="_blank" rel="noreferrer">
+                    <img alt="sui" src="/images/partners/bitget.png" height={isMobile ? 35 : 46} />
+                  </a>
                 </Box>
               </Box>
             </Stack>
@@ -251,45 +272,45 @@ export default function Intro() {
 
               <ContractBox>
                 <a
-                  href="https://suiexplorer.com/object/0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84?network=mainnet"
+                  href="https://suiexplorer.com/object/0x5b6851a16da9e44c137c95527ba1233601dbca0ef5f7f89ca3d184ace27d744c?network=mainnet"
                   target="_blank"
                   rel="noreferrer"
                 >
                   {!isDesktop
-                    ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84', 12)
-                    : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84'}
+                    ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI', 14)
+                    : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'}
                 </a>
-                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84`} />
+                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI`} />
               </ContractBox>
             </Box>
           </Grid>
           {/* <Grid item md={4} mt={isMobile && 2} mb={isMobile && 2}>
-                        {isMobile && (
-                            <CenterBox>
-                                <img
-                                    alt="sui"
-                                    src="/images/home/yousui.png"
-                                    style={{
-                                        width: '80%',
-                                        zIndex: 2,
-                                    }}
-                                />
-                                <img
-                                    alt="sui"
-                                    src="/images/home/base-2.png"
-                                    style={{
-                                        position: 'absolute',
-                                        width: '60%',
-                                        top: '250px',
-                                        zIndex: 1,
-                                    }}
-                                />
-                            </CenterBox>
-                        )}
-                    </Grid> */}
+            {isMobile && (
+              <CenterBox>
+                <img
+                  alt="sui"
+                  src="/images/home/yousui.png"
+                  style={{
+                    width: '80%',
+                    zIndex: 2,
+                  }}
+                />
+                <img
+                  alt="sui"
+                  src="/images/home/base-2.png"
+                  style={{
+                    position: 'absolute',
+                    width: '60%',
+                    top: '250px',
+                    zIndex: 1,
+                  }}
+                />
+              </CenterBox>
+            )}
+          </Grid> */}
         </Grid>
       </Container>
-      {/* <Box
+      <Box
         sx={{
           position: 'absolute',
           width: '40%',
@@ -325,8 +346,8 @@ export default function Intro() {
             // right: 215,
           }}
         />
-      </Box> */}
-      {/* <img
+      </Box>
+      <img
         alt=""
         src="/images/home/base-2.png"
         style={{
@@ -337,8 +358,10 @@ export default function Intro() {
           zIndex: 0,
           display: isTablet && 'none',
         }}
-      /> */}
-      <Hidden lgDown>
+      />
+
+      {/* xui ido */}
+      {/* <Hidden lgDown>
         <Box
           sx={{
             position: 'absolute',
@@ -375,7 +398,7 @@ export default function Intro() {
               </Link>}
           </CountDownBox>
         </Box>
-      </Hidden>
+      </Hidden> */}
     </SectionBox>
   );
 }

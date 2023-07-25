@@ -15,6 +15,7 @@ const dataSUA =
   time: '10th June 2023',
   total: 1011,
   link: '/ido-launchpad/sua-sale',
+  token: "SUA"
 }
 
 const dataXUIOG =
@@ -26,6 +27,7 @@ const dataXUIOG =
   time: '20th July 2023',
   total: 280000,
   link: '/ido-launchpad/og-sale',
+  token: 'XUI',
 }
 const dataXUIPublic =
 {
@@ -36,6 +38,7 @@ const dataXUIPublic =
   time: '20th July 2023',
   total: 720000,
   link: '/ido-launchpad/public-sale',
+  token: 'XUI',
 }
 
 const ContentBox = styled(Box)(({ theme }) => ({
@@ -136,7 +139,7 @@ export default function PreviousPools({ hasOutTimeIDOXUI = false }) {
               />
               <Stack direction="row" justifyContent="space-between" mt={1.5}>
                 <Typography variant="body1">100%</Typography>
-                <Typography variant="body1">{item.total}/{item.total} SUA</Typography>
+                <Typography variant="body1">{item.total}/{item.total} {item.token}</Typography>
               </Stack>
             </Box>
           </Grid>
