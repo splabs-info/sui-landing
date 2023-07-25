@@ -1,19 +1,19 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Checkbox, FormControlLabel, FormGroup, Stack, Typography } from '@mui/material';
+import { TransactionBlock } from '@mysten/sui.js';
+import { useWallet } from '@suiet/wallet-kit';
+import { BigNumber, ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
+import { toNumber } from 'lodash';
+import { CLOCK, STAKING_PACKAGE_UPGRADE, STAKING_STORAGE } from 'onchain/constants';
+import { formatEther } from 'onchain/helpers';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
-import { CustomInput, FormBox, PackageButton, StackingButton } from './component/StackingStyles';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { TransactionBlock } from '@mysten/sui.js';
-import { SuiContext } from 'provider/SuiProviderV2';
-import { BigNumber, ethers } from 'ethers';
-import { round, toNumber } from 'lodash';
-import { useWallet } from '@suiet/wallet-kit';
-import { formatEther } from 'onchain/helpers';
-import { STAKING_PACKAGE_UPGRADE, CLOCK, STAKING_STORAGE } from 'onchain/constants';
-import { toast } from 'react-toastify';
+import { CustomInput, FormBox, PackageButton, StackingButton } from './component/StackingStyles';
 
 export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
 

@@ -138,9 +138,8 @@ export default function StakingFarming() {
         const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter((i) => i?.fields.key === wallet?.address)
 
         yourInfo.forEach((i) => i?.fields?.value?.fields?.contents.forEach((e) => {
-
             // Change to prod
-            if (e?.fields?.key === 'bd3c413ed22600ddc60514104a6ab67167619c9532c088fe14a0ef66d2f09558::xui::XUI') {
+            if (e?.fields?.key === '3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI') {
                 totalXUILockedToken = e?.fields?.value
             } else return;
         }))

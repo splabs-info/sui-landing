@@ -111,9 +111,9 @@ export default function StakingTable() {
         const temp = ((apr_at_moment / 100) * stake_amount) / 365;
         if (isNull(latest_claim_date)) {
             // Change when to merge prod
-            date = toInteger((moment() - stake_date) / 300000);
+            date = toInteger((moment() - stake_date) / 86400000);
         } else {
-            date = toInteger((moment() - latest_claim_date) / 300000);
+            date = toInteger((moment() - latest_claim_date) / 86400000);
         }
 
         return temp * date;

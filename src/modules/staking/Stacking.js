@@ -8,6 +8,7 @@ import React from 'react';
 import StakingForm from './StakingForm';
 import { BoxGradient, BoxGradientOpacity, ImageBox, UtilityBox } from './component/StackingStyles';
 import { fCurrencyV2 } from 'utils/util';
+import { SwitchNetwork } from 'components/popup/switch-network';
 
 const data = {
     symbol: 'XUI',
@@ -190,6 +191,8 @@ export default function Staking({ staking, totalXUILocked }) {
                     </Grid>
                 </Grid>
             )}
+
+            <SwitchNetwork/>
         </>
     );
 }
