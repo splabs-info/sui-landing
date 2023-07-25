@@ -243,7 +243,6 @@ export const BuyForm = ({
             .div(BigNumber.from("1000000000"))
             .toString();
 
-            // console.log('balanceSplit___' ,balanceSplit)
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
         const parseAmount = ethers.utils.parseUnits(round(toNumber(formattedAmount), 3).toString(), 9).toString();

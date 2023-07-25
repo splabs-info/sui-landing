@@ -162,6 +162,7 @@ const XUIIDOContainer = () => {
     fetWhiteList();
   }, [fetWhiteList, fetchClaimInfo]);
 
+
   React.useEffect(() => {
     if (infoRound) {
       console.log(infoRound.name, infoRound.totalSold, infoRound.totalSupply);

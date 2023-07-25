@@ -25,7 +25,7 @@ export default function Intro() {
       Become{' '}
       <TypographyGradient
         sx={{
-          fontSize: isMobile ? '1.25rem' : '2.25rem',
+          fontSize: isMobile ? '1rem!important' : '2.25rem',
           fontWeight: 'bold',
         }}
       >
@@ -35,13 +35,13 @@ export default function Intro() {
     <>in the scalable Launchpad</>,
     <>
       to participate in{' '}
-      <TypographyGradient sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}>
+      <TypographyGradient sx={{ fontSize: isMobile ? '1rem!important' : '2.25rem', fontWeight: 'bold' }}>
         all Games
       </TypographyGradient>{' '}
       ,
     </>,
     <>
-      <TypographyGradient sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}>
+      <TypographyGradient sx={{ fontSize: isMobile ? '1rem!important' : '2.25rem', fontWeight: 'bold' }}>
         NFTs and Metaverse
       </TypographyGradient>{' '}
       in the world.
@@ -83,10 +83,7 @@ export default function Intro() {
               {Title.map((item, i) => (
                 <TitleTypography
                   key={i}
-                  variant="h1"
-                  sx={{
-                    fontSize: isMobile ? '1.55rem' : '2.25rem',
-                  }}
+                  sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}
                 >
                   {item}
                   <br />

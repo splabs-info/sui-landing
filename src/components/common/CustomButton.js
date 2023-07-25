@@ -90,7 +90,7 @@ export const BorderGradientButton = styled(LoadingButton)(({ theme }) => ({
   },
 }));
 
-export const GradientButton = styled(Button)(({ theme }) => ({
+export const GradientButton = styled(LoadingButton)(({ theme }) => ({
   background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%);',
   borderRadius: '50px',
   color: "#fff",
@@ -107,5 +107,16 @@ export const GradientButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     padding: '8px 24px',
     minWidth: 100,
+  },
+}));
+export const BuyCryptoButton = styled(Button)(({ theme }) => ({
+  color: "#fff",
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '0px 8px',
+  gap: '6px',
+  textTransform: 'none',
+  [theme.breakpoints.down("sm")]: {
+
   },
 }));

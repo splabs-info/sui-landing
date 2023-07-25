@@ -20,7 +20,9 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-
+import StakingTable from './my-staking/StakingTable';
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import queryString from 'query-string';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -38,6 +40,13 @@ export default function MyInfo() {
     const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
 
+    const location = useLocation();
+    const { tab: tabIndexFromUrl } = queryString.parse(location.search);
+
+    const initialTabIndex = Number(tabIndexFromUrl) || 0; // Đảm bảo rằng tabIndex là số
+    const [tabIndex, setTabIndex] = useState(initialTabIndex);
+
+
     const fetchDataInfo = React.useCallback(async () => {
         const targetAddress = wallet?.address || address;
         if (targetAddress) {
@@ -53,11 +62,21 @@ export default function MyInfo() {
         }
     }, [address, login, wallet?.address]);
 
+    const navigate = useNavigate();
+    const handleChangeTab = (index) => {
+        setTabIndex(index);
+        navigate(`my-profile/${index}`);
+    };
+
     React.useEffect(() => {
         if (address || wallet?.address) {
             fetchDataInfo();
         }
-    }, [address, fetchDataInfo, wallet?.address]);
+    }, [address, fetchDataInfo, wallet?.address, tabIndexFromUrl]);
+
+    React.useEffect(() => {
+        setTabIndex(Number(tabIndexFromUrl) || 0);
+    }, [tabIndexFromUrl]);
 
     React.useEffect(() => {
         if (!isNull(id) && isGetProfileSuccess && !isNull(defaultInfo)) {
@@ -97,7 +116,6 @@ export default function MyInfo() {
 
         const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
 
-        // console.log('certificateObjects___111', certificateObjects)
         if (!certificateObjects) return;
 
         const promises = certificateObjects.map(async (item) => {
@@ -106,10 +124,8 @@ export default function MyInfo() {
                 options: { showContent: true },
             });
 
-            // console.log('certificate___', certificate)
             const projectFields = certificate?.data?.content?.fields?.project?.fields;
 
-            // console.log('projectFields____', projectFields)
             return {
                 eventName: certificate?.data?.content?.fields?.event_name,
                 issue_date: certificate?.data?.content?.fields?.issue_date || '',
@@ -135,10 +151,32 @@ export default function MyInfo() {
     React.useEffect(() => {
         if (provider && projects) {
             fetchData();
-            // fetchVestingData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData, projects]);
+
+    const OverViewContent = () => {
+        return (
+            <Stack direction="column">
+                <Stack
+                    direction="row"
+                    sx={{
+                        marginBottom: 12,
+                        flexWrap: 'wrap',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <IDOParticipated myIDOs={myIDOs} />
+                    <CurrentStakingPool />
+                </Stack>
+
+                <StakingBalance />
+                <MyIDOArea myIDOs={myIDOs} />
+                <MyINOArea />
+                <ClaimAvailable />
+            </Stack>
+        );
+    }
 
     return (
         <>
@@ -187,28 +225,11 @@ export default function MyInfo() {
                                                 )}
                                             </Grid>
                                             <Grid item xs={12} md={8.5}>
-                                                <OverviewTabs />
+                                                <OverviewTabs handleChangeTab={handleChangeTab} />
                                             </Grid>
                                         </Grid>
-
-                                        <Stack direction="column">
-                                            <Stack
-                                                direction="row"
-                                                sx={{
-                                                    marginBottom: 12,
-                                                    flexWrap: 'wrap',
-                                                    justifyContent: 'space-between',
-                                                }}
-                                            >
-                                                <IDOParticipated myIDOs={myIDOs} />
-                                                <CurrentStakingPool />
-                                            </Stack>
-
-                                            <StakingBalance />
-                                            <MyIDOArea myIDOs={myIDOs} />
-                                            <MyINOArea />
-                                            <ClaimAvailable />
-                                        </Stack>
+                                        {tabIndex === 0 && <OverViewContent />}
+                                        {tabIndex === 1 && <StakingTable />}
                                     </>
                                 )}
                             </>
