@@ -209,6 +209,7 @@ export default function Intro() {
                 >
                   <img alt="sui" src="/images/icon/token.gif" width={24} style={{ marginRight: '0.5rem' }} /> $XUI live on{' '}
                 </Typography>
+                
                 <Box
                   mt={1}
                   sx={{
