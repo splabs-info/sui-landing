@@ -1,15 +1,16 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useTheme } from '@mui/material/styles';
+import { SwitchNetwork } from 'components/popup/switch-network';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/FooterSection';
 import { isEmpty } from 'lodash';
 import { transformStakingData } from 'onchain/helpers';
 import React from 'react';
+import { useGetPrice } from 'services/price';
+import { fCurrencyV2 } from 'utils/util';
 import StakingForm from './StakingForm';
 import { BoxGradient, BoxGradientOpacity, ImageBox, UtilityBox } from './component/StackingStyles';
-import { fCurrencyV2 } from 'utils/util';
-import { SwitchNetwork } from 'components/popup/switch-network';
-import { useTheme } from '@emotion/react';
 const data = {
     symbol: 'XUI',
     description: `$XUI is the utility token of the YouSUI platform, serving various purposes within the ecosystem. It can be utilized in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. Additionally, $XUI holds governance power, allowing token holders to participate in decision-making through voting and governance processes. Staking $XUI enables community members to express their opinions and provide suggestions. Users who stake $XUI are assigned a "Tier," granting them access to participate in IDO and INO Launchpad events. Furthermore, a portion of the revenue generated from activities such as DEX, NFT Marketplace, and Bridge is allocated to $XUI stakers, while the remaining amount is dedicated to the "Burn and Buyback" mechanism.`,
@@ -58,7 +59,8 @@ export default function Staking({ staking, totalXUILocked }) {
     const transformedData = transformStakingData(staking);
     const sortASC = [...transformedData].sort((a, b) => a.time - b.time);
     const [verifyData, setVerifyData] = React.useState({});
-    const theme = useTheme();
+    const theme = useTheme()
+    const { price } = useGetPrice();
 
     React.useEffect(() => {
         if (isEmpty(staking) || isEmpty(transformedData)) {
@@ -151,7 +153,7 @@ export default function Staking({ staking, totalXUILocked }) {
                                             mt: 1,
                                         }}
                                     >
-                                        0.2224
+                                        {price}
                                     </Typography>
                                 </BoxGradientOpacity>
                             </Grid>
