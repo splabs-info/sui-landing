@@ -48,7 +48,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                 if (formattedBalanceTokenStaking < verifyData?.minStakeAmount) return false;
                 else return true;
             })
-            .test('min-validate', `Min amount must be ${minStakeAmount} XUI`, (value) => value > minStakeAmount)
+            .test('min-validate', `Min amount must be ${minStakeAmount} XUI`, (value) => value >= minStakeAmount)
     });
 
     const {
