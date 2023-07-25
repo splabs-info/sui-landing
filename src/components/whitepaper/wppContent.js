@@ -701,7 +701,7 @@ export const wppContent = [
     category: 'Staking',
     description: [
       {
-        content: [<img src="/images/whitepaper/Staking-Tier.jpg" alt="" />],
+        content: [<img src="/images/whitepaper/staking-tier-2.jpg" alt="" />],
       },
       {
         content: [
@@ -748,7 +748,7 @@ export const wppContent = [
     category: 'Tier',
     description: [
       {
-        content: [<img src="/images/whitepaper/understand-yousui.png" alt="" />],
+        content: [<img src="/images/whitepaper/understand-yousui-tier.jpg" alt="" />],
       },
       {
         title: 'Basic Requirement',
@@ -797,7 +797,7 @@ export const wppContent = [
         title: 'Division of Tiers',
         subtitle: 'Tier 1 & Tier Master (Top 10 $XUI holders)',
         content: [
-          'Requirement : 120,000 Staked $ XUI',
+          'Requirement : 40,000 Staked $ XUI',
           'IDO & INO Allocation for Tier 1 users : 35% of Total Pool (500,000 USD * 35% = 175,000 USD)',
           'Free Airdrop for Tier 1 users : 2% of Total Pool (500,000 USD * 2% = 10,000 USD)',
           'Tier 1 users will receive free airdrops according to the amount of $ XUI staked.',
@@ -808,7 +808,7 @@ export const wppContent = [
       {
         subtitle: 'Tier 2',
         content: [
-          'Requirement : 40,000 Staked $ XUI',
+          'Requirement : 20,000 Staked $ XUI',
           'IDO & INO Allocation for Tier 2 users : 20% of Total Pool (500,000 USD * 20% = 100,000 USD)',
           'Free Airdrop for Tier 2 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
           'All Tier 2 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
@@ -820,7 +820,7 @@ export const wppContent = [
       {
         subtitle: 'Tier 3',
         content: [
-          'Requirement : 15,000 Staked $ XUI',
+          'Requirement : 7,500 Staked $ XUI',
           'IDO & INO Allocation for Tier 3 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
           'Free Airdrop for Tier 3 users : 1.5% of Total Pool (500,000 USD * 1.5% = 7,500 USD)',
           'All Tier 3 users will receive the same Free Airdrops regardless of how many XUI tokens they stake.',
@@ -832,7 +832,7 @@ export const wppContent = [
       {
         subtitle: 'Tier 4',
         content: [
-          'Requirement : 10,000 Staked $ XUI',
+          'Requirement : 5,000 Staked $ XUI',
           'IDO & INO Allocation for Tier 4 users : 15% of Total Pool (500,000 USD * 15% = 75,000 USD)',
           'Free Airdrop for Tier 4 users : X',
           '75,000 USD = 7,500 tickets',
