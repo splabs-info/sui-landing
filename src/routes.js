@@ -18,12 +18,13 @@ import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
 import Governance from 'pages/governance';
 import SuggestionPage from 'pages/governance/SuggestionPage';
 import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
+import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 // const IDODetail = React.lazy(() => import('./pages/IDODetail'));
 
-const XUI = React.lazy(() => import ('./pages/XUI'))
+const XUI = React.lazy(() => import('./pages/XUI'));
 const SUAIDO = React.lazy(() => import('./pages/IDO/SUA'));
 // const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
@@ -172,6 +173,10 @@ export default function Router() {
         {
           path: 'suggestion',
           element: <SuggestionPage />,
+        },
+        {
+          path: 'alchemy-pay',
+          element: <AlchemyPay />,
         },
       ],
     },

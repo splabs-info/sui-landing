@@ -109,3 +109,14 @@ export const GradientButton = styled(LoadingButton)(({ theme }) => ({
     minWidth: 100,
   },
 }));
+export const BuyCryptoButton = styled(Button)(({ theme }) => ({
+  color: "#fff",
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '0px 8px',
+  gap: '6px',
+  textTransform: 'none',
+  [theme.breakpoints.down("sm")]: {
+
+  },
+}));
