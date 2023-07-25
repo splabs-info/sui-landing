@@ -122,9 +122,6 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
     const wallet = useWallet();
     const [loading, setLoading] = React.useState(false);
 
-    // const { projectId } = useParams();
-    // const decodedProjectId = decodeURIComponent(projectId);
-
     const location = useLocation();
 
     const event = location.state?.eventName;

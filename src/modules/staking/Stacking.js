@@ -7,6 +7,7 @@ import { transformStakingData } from 'onchain/helpers';
 import React from 'react';
 import StakingForm from './StakingForm';
 import { BoxGradient, BoxGradientOpacity, ImageBox, UtilityBox } from './component/StackingStyles';
+import { fCurrencyV2 } from 'utils/util';
 
 const data = {
     symbol: 'XUI',
@@ -34,20 +35,6 @@ const data = {
     ],
 };
 
-const statisticFields = [
-    {
-        key: 'price',
-        label: 'Price',
-        // format: (e) => `$${fCurrency(e, 5)}`,
-        format: () => '-/-',
-    },
-    {
-        key: 'locked',
-        label: 'Total Locked XUI',
-        // format: (e) => `${fCurrency(e, 0)}`,
-        format: () => '-/-',
-    },
-];
 
 const VerifyDataField = ({ label, value }) => (
     <Stack
@@ -61,10 +48,10 @@ const VerifyDataField = ({ label, value }) => (
         <Typography variant="body1" fontWeight={600}>
             {label}
         </Typography>
-        <Typography>{label === 'Unstake Fee' ? `${value} XUI` : value}</Typography>
+        <Typography>{label === 'Unstake Fee' ? `${value} %` : value}</Typography>
     </Stack>
 );
-export default function Staking({ staking }) {
+export default function Staking({ staking, totalXUILocked }) {
     const isMobile = useResponsive('down', 'sm');
     const [loading, setLoading] = React.useState();
     const transformedData = transformStakingData(staking);
@@ -125,11 +112,11 @@ export default function Staking({ staking }) {
                     </Grid>
 
                     <Grid item md={4} xs={12}>
-                        <Grid container spacing={2} height={'calc(100% + 16px)'}>
-                            {statisticFields.map((field, index) => (
-                                <Grid item xs={6} key={index}>
+                        <Grid container spacing={1} height={'calc(100% + 16px)'}>
+                            {/* {statisticFields.map((field, index) => ( */}
+                                <Grid item xs={6}>
                                     <BoxGradientOpacity>
-                                        <Typography>{field.label}</Typography>
+                                        <Typography>Price</Typography>
                                         <Typography
                                             variant="h4"
                                             sx={{
@@ -137,11 +124,25 @@ export default function Staking({ staking }) {
                                                 mt: 1,
                                             }}
                                         >
-                                            {/* {field.format ? field.format(data[field.key]) : data[field.key]} */}
+                                            0.2224
                                         </Typography>
                                     </BoxGradientOpacity>
                                 </Grid>
-                            ))}
+                                <Grid item xs={6}>
+                                    <BoxGradientOpacity>
+                                        <Typography>Total Locked XUI</Typography>
+                                        <Typography
+                                            variant="h4"
+                                            sx={{
+                                                textShadow: '0 0 10px rgb(255, 255, 255, 0.5)',
+                                                mt: 1,
+                                            }}
+                                        >
+                                            {totalXUILocked ? fCurrencyV2(totalXUILocked) : 0}
+                                        </Typography>
+                                    </BoxGradientOpacity>
+                                </Grid>
+                            {/* ))} */}
                         </Grid>
                     </Grid>
                     <Grid item md={8} xs={12}>
@@ -151,7 +152,7 @@ export default function Staking({ staking }) {
                                     Selected APR
                                 </Typography>
                                 <Typography textAlign={'left'} variant="h3">
-                                    {verifyData ? verifyData.expectedAPY + '%' : 'Loading...'}
+                                    {verifyData ? verifyData.expectedAPR + '%' : 'Loading...'}
                                 </Typography>
                             </Box>
                             <Box>
@@ -173,7 +174,7 @@ export default function Staking({ staking }) {
 
                             sx={{ '& .border': { borderBottom: '1px solid rgba(255, 255, 255, 0.1)' } }}
                         >
-                            <VerifyDataField label="Expected APR" value={`${verifyData?.expectedAPY} %`} />
+                            <VerifyDataField label="Expected APY" value={`${verifyData?.expectedAPY} % / Daily`} />
                             <VerifyDataField label="Staking Expiration Date" value={verifyData?.subscriptionDate} />
                             <VerifyDataField label="Staking Expiration Date" value={verifyData?.stakingExpirationDate} />
                             <VerifyDataField label="Unstake Fee" value={verifyData?.unstakeFee} />

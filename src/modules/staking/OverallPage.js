@@ -1,20 +1,15 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Container, Stack, Tab, styled } from '@mui/material';
+import { parseStructTag } from '@mysten/sui.js';
+import { useWallet } from '@suiet/wallet-kit';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
-import { useState } from 'react';
-import Staking from './Stacking';
-import Farming from './Farming';
-import ComingSoon from 'pages/ComingSoon';
+import { isEmpty, toNumber } from 'lodash';
+import { STAKING_STORAGE } from 'onchain/constants';
+import { formatEther } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
-import React from 'react';
-import { isEmpty } from 'lodash'
-import { useWallet } from '@suiet/wallet-kit';
-import { STAKING_PACKAGE_BASE, STAKING_STORAGE } from 'onchain/constants'
-import { formatEther } from 'onchain/helpers'
-import { toNumber } from 'lodash'
-import { parseStructTag } from '@mysten/sui.js'
-import * as moment from 'moment'
+import React, { useState } from 'react';
+import Staking from './Stacking';
 
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -63,6 +58,7 @@ const SpecialTabList = styled(TabList)(({ theme }) => ({
 }));
 export default function StakingFarming() {
     const [tabIndex, setTabIndex] = useState('0');
+    const [totalXUILocked, setTotalXUILocked] = React.useState(0);
     const [staking, setStaking] = React.useState([])
 
     const wallet = useWallet();
@@ -87,18 +83,21 @@ export default function StakingFarming() {
 
             if (isEmpty(stakingName)) return;
 
+
+
             const promiseDynamic = stakingName.map(async (item) => {
                 const dynamicFieldObjects = await provider.getDynamicFieldObject(({
                     parentId: STAKING_STORAGE,
                     name: item,
                 }))
 
-                // console.log('dynamicFieldObjects__', dynamicFieldObjects)
                 const tag = parseStructTag(dynamicFieldObjects?.data?.content?.fields?.value?.type)
+
                 const stakingInfoState = {
                     object_owner: dynamicFieldObjects?.data?.owner?.ObjectOwner,
                     id: dynamicFieldObjects?.data?.content?.fields?.id?.id,
-                    name: dynamicFieldObjects?.data?.content?.fields?.name,
+                    key: dynamicFieldObjects?.data?.content?.fields?.value?.fields?.key,
+                    name: dynamicFieldObjects?.data?.content?.fields?.value?.fields?.name,
                     apr: formatEther(dynamicFieldObjects?.data?.content?.fields?.value?.fields?.apr, 9),
                     days: toNumber(dynamicFieldObjects?.data?.content?.fields?.value?.fields?.days),
                     description: dynamicFieldObjects?.data?.content?.fields?.value?.fields?.description,
@@ -127,92 +126,101 @@ export default function StakingFarming() {
     }, [provider])
 
 
-    const fetchStakingCer = React.useCallback(async () => {
-        if (!wallet?.address || !wallet.connected) return;
-
-        const filter = {
-            MatchAll: [
-                {
-                    StructType: `${STAKING_PACKAGE_BASE}::certificate::InvestmentCertificate`,
-                },
-                {
-                    AddressOwner: wallet?.address,
-                },
-            ],
-        };
-
-        const myStakingCer = await provider.getOwnedObjects({
-            owner: wallet?.address,
-            filter: filter,
-            options: { showContent: true },
+    const fetchUserStakingInfo = React.useCallback(async () => {
+        if (!wallet.address || !wallet?.connected) return;
+        let totalXUILockedToken;
+        const investList = await provider.getObject({
+            id: STAKING_STORAGE,
+            options: { showContent: true }
         })
 
-        const infoStakingPromise = myStakingCer?.data.map(async (cer) => {
-            const info = await provider.getDynamicFieldObject(({
-                parentId: cer?.data?.objectId,
-                name: { type: "0x1::string::String", value: 'info' }
-            }))
-            console.log('cerr', cer?.data?.content?.fields)
-            console.log('info__', info?.data?.content?.fields)
+        if (!investList) return console.log('Invest list invalid')
+        const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter((i) => i?.fields.key === wallet?.address)
 
-            const formatInfo = {
-                ...cer?.data?.content?.fields,
-                ...info?.data?.content?.fields?.value?.fields,
-                issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
-                stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
-                stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
-                profit_claimed_amount: formatEther(info?.data?.content?.fields?.value?.fields?.profit_claimed_amount, 9),
-                id: cer?.data?.content?.fields?.id?.id,
-            }
+        yourInfo.forEach((i) => i?.fields?.value?.fields?.contents.forEach((e) => {
 
-            return formatInfo
-        })
+            // Change to prod
+            if (e?.fields?.key === 'bd3c413ed22600ddc60514104a6ab67167619c9532c088fe14a0ef66d2f09558::xui::XUI') {
+                totalXUILockedToken = e?.fields?.value
+            } else return;
+        }))
 
-        // tx.moveCall({
-        //     ...
-        // })
+        const formattedTotalXUILocked = formatEther(totalXUILockedToken, 9)
+        setTotalXUILocked(formattedTotalXUILocked)
 
-        // cer avai => {
-
-        // }
-        // array [tx.moveCall. tx.mo]
-        // tx.moveCall({
-
-        // })
-
-
-
-        const info = await Promise.all(infoStakingPromise)
-
-
-        console.log('info___', info)
-        if (!myStakingCer || isEmpty(myStakingCer)) return;
-
-        console.log('')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet?.address, wallet.connected])
+    }, [wallet.address, wallet?.connected])
+
+    // const fetchStakingCer = React.useCallback(async () => {
+    //     if (!wallet?.address || !wallet.connected) return;
+
+    //     const filter = {
+    //         MatchAll: [
+    //             {
+    //                 StructType: `${STAKING_PACKAGE_BASE}::certificate::InvestmentCertificate`,
+    //             },
+    //             {
+    //                 AddressOwner: wallet?.address,
+    //             },
+    //         ],
+    //     };
+
+    //     const myStakingCer = await provider.getOwnedObjects({
+    //         owner: wallet?.address,
+    //         filter: filter,
+    //         options: { showContent: true },
+    //     })
+
+    //     const infoStakingPromise = myStakingCer?.data.map(async (cer) => {
+    //         const info = await provider.getDynamicFieldObject(({
+    //             parentId: cer?.data?.objectId,
+    //             name: { type: "0x1::string::String", value: 'info' }
+    //         }))
+    //         console.log('cerr', cer?.data?.content?.fields)
+    //         console.log('info__', info?.data?.content?.fields)
+
+    //         const formatInfo = {
+    //             ...cer?.data?.content?.fields,
+    //             ...info?.data?.content?.fields?.value?.fields,
+    //             issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
+    //             stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
+    //             stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
+    //             profit_claimed_amount: formatEther(info?.data?.content?.fields?.value?.fields?.profit_claimed_amount, 9),
+    //             id: cer?.data?.content?.fields?.id?.id,
+    //         }
+
+    //         return formatInfo
+    //     })
+
+    //     // tx.moveCall({
+    //     //     ...
+    //     // })
+
+    //     // cer avai => {
+
+    //     // }
+    //     // array [tx.moveCall. tx.mo]
+    //     // tx.moveCall({
+
+    //     // })
+
+
+
+    //     const info = await Promise.all(infoStakingPromise)
+    //     console.log('info___', info)
+    //     if (!myStakingCer || isEmpty(myStakingCer)) return;
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [wallet?.address, wallet.connected])
+
+    React.useEffect(() => {
+        fetchUserStakingInfo()
+    }, [fetchUserStakingInfo])
 
     React.useEffect(() => {
         fetchStakingInfo()
     }, [fetchStakingInfo])
 
-    React.useEffect(() => {
-        fetchStakingCer()
-    }, [fetchStakingCer])
 
-    // apr: 0.0456
-    // days: "60"
-    // description: "YouSUI is an All-in-One platform that runs on the Sui Blockchain, including DEX, Launchpad, NFT Marketplace and Bridge. It has plans for cross-chain compatibility and scalability beyond Sui. In addition, YouSUI will provide incubation and technical support for game and blockchain projects that are planning or oriented to transition to the Sui ecosystem."
-    // id: "0x511acb5a323a5fc00bf8f565e8ff53084522ffc0965bfe0b4188f82f3b1ca2e1"
-    // image: "https://yousui.io/images/staking/water-seek.jpg"
-    // is_open: true
-    // is_pause: true
-    // link: "https://yousui.io/staking"
-    // min_stake_amount: 300
-    // name: "KT_TEST_PACKAGE_2"
-    // object_owner: "0xdd6377910c05537982c2cb78bd388a9c79a3bf9efde76880a3bddd83b8c3abac"
-    // unstake_soon_fee: 0.054
-    // website: "https://yousui.io"
     return (
         <Page title="Staking/Farming">
             <SectionBox
@@ -230,7 +238,7 @@ export default function StakingFarming() {
                                 </SpecialTabList>
                             </Stack>
                             <TabPanel value={'0'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Staking staking={staking} />
+                                <Staking staking={staking} totalXUILocked={totalXUILocked} />
                             </TabPanel>
                             <TabPanel value={'1'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
                                 {/* <Farming /> */}

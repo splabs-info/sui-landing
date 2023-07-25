@@ -16,7 +16,7 @@ import { STAKING_PACKAGE_UPGRADE, CLOCK, STAKING_STORAGE } from 'onchain/constan
 import { toast } from 'react-toastify';
 
 export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
-    // const [amount, setAmount] = React.useState(0);
+
     const [loading, setLoading] = React.useState(false);
     const [isAgree, setIsAgree] = React.useState(false);
     const isMobile = useResponsive('down', 'sm');
@@ -24,6 +24,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
     const { assets } = React.useContext(SuiContext);
 
     const currentTokenStaking = assets.find((a) => a.symbol === verifyData?.currentTokenStakingSymbol);
+
 
     const formattedBalanceTokenStaking = React.useMemo(() => {
         if (currentTokenStaking) {
@@ -33,17 +34,21 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         }
     }, [currentTokenStaking]);
 
+    const minStakeAmount = React.useMemo(() => verifyData?.minStakeAmount, [verifyData?.minStakeAmount]);
+
     const StakingSchema = yup.object().shape({
         amount: yup
             .number()
-            .min(verifyData?.minStakeAmount, `Min amount must be ${verifyData?.minStakeAmount} XUI`)
+            .min(minStakeAmount, `Min amount must be ${minStakeAmount} XUI`)
             .positive('Amount must be a positive number')
             .typeError('Must be a number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
             .test('balances', 'Your balances is not enough', (value) => {
                 if (value > formattedBalanceTokenStaking) return false;
+                if (formattedBalanceTokenStaking < verifyData?.minStakeAmount) return false;
                 else return true;
-            }),
+            })
+            .test('min-validate', `Min amount must be ${minStakeAmount} XUI`, (value) => value > minStakeAmount)
     });
 
     const {
@@ -66,11 +71,15 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         const tx = new TransactionBlock();
         setLoading(true)
 
-        if (currentTokenStaking?.coin?.length === 0) return console.log('currentTokenStaking__error');
+        if (!currentTokenStaking || !currentTokenStaking.coin) {
+            console.log("currentTokenStaking or currentTokenStaking.coin is undefined");
+            return;
+        }
 
         let [primary, ...sub] = currentTokenStaking?.coin;
 
-        let primaryCoin = tx.object(primary.coinObjectId)
+        let primaryCoin = tx.object(primary?.coinObjectId)
+
         if (sub.length) {
             tx.mergeCoins(primaryCoin, sub.map(a => tx.object(a.coinObjectId)))
         }
@@ -85,7 +94,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
             arguments: [
                 tx.object(CLOCK),
                 tx.object(STAKING_STORAGE),
-                tx.pure(verifyData?.name),
+                tx.pure(verifyData?.key),
                 coin
             ]
         })
@@ -98,6 +107,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
             if (result) {
                 setLoading(false);
                 toast.success('Staking token success');
+                setIsAgree(false)
                 reset({ amount: 0 });
             } else {
                 setLoading(false);
@@ -110,7 +120,20 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         }
     };
 
-    const handleAll = React.useCallback(() => { }, []);
+
+    const handleAll = React.useCallback(() => {
+        try {
+            if (!isNaN(formattedBalanceTokenStaking)) {
+                setValue('amount', formattedBalanceTokenStaking);
+                trigger('amount');
+            } else {
+                return;
+            }
+        } catch (error) {
+            console.log('handleAll__Error', error)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formattedBalanceTokenStaking]);
 
     return (
         <FormBox>
@@ -137,6 +160,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                                     <strong>{currentTokenStaking?.symbol}</strong>
                                 </Typography>
                                 <Button
+                                    onClick={handleAll}
                                     sx={{
                                         background: 'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
                                         boxShadow: '0px 0px 8px #4191C9',
@@ -155,31 +179,20 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                                 </Button>
                             </Stack>
                         ),
-                        onWheel: (e) => e.target.blur(),
                     }}
-                    type="number"
-                    onKeyDown={(e) => {
-                        if (['-', '+', 'e', 'E', '.', ','].includes(e.key)) {
-                            e.preventDefault();
-                        }
-                        if (e.target.value.length === 0 && e.key === '.') {
-                            e.preventDefault();
-                        }
-                    }}
-                    min={0}
                     fullWidth
                 />
                 <Typography>
                     Minimum: <strong>{fCurrencyV2(verifyData?.minStakeAmount)} XUI</strong>
                 </Typography>
-                <Stack direction={'row'} justifyContent={'space-between'} gap={1} mt={2} flexWrap={'wrap'}>
+                <Stack direction={'row'} justifyContent={'space-between'} gap={1} mt={2} flexWrap={isMobile ? 'wrap' : 'nowrap'}>
                     {sortedData.map((p, index) => (
                         <PackageButton
                             className={p.time === verifyData.time ? `active ${p.className}` : ''}
                             onClick={() => setVerifyData(p)}
                             key={index}
                         >
-                            {p?.time} days {p?.time === 180 ? '(30% APR)' : ''}
+                            {p?.name}
                         </PackageButton>
                     ))}
                 </Stack>

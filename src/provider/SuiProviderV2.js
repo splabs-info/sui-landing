@@ -1,9 +1,10 @@
-import { Coin, Connection, JsonRpcProvider, parseStructTag } from '@mysten/sui.js'
+import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
 import { isEmpty, toNumber } from 'lodash'
 import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
+import { XUI_TYPE } from 'onchain/constants'
 const config = {
     providerConnection: new Connection({
         // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
@@ -203,7 +204,6 @@ export const SUIWalletContext = ({ children }) => {
                     }),
                 ])
 
-                console.log('allBalances___', allBalances)
                 const assetsPromises = allBalances.map(async (balance) => {
                     const { coinType } = balance
 
@@ -232,14 +232,13 @@ export const SUIWalletContext = ({ children }) => {
                 })
                 const assets = await Promise.all(assetsPromises)
 
-                console.log('assets___', assets)
-                const validAssets = assets.filter(asset => asset.coinType !== '0x92cc9a3549ad3c06e074913032c9b430f359556bce159da9f03eb86974a4f111::xui::XUI');
+                const validAssets = assets.filter(asset => asset.coinType === XUI_TYPE);
                 setAssets(validAssets);
                 let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
 
                 // Handle gas
                 formattedBalance = formattedBalance > 0.2 ? formattedBalance - 0.2 : formattedBalance
-                
+
                 // const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
 
                 setBalance(formattedBalance)
