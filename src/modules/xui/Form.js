@@ -4,19 +4,19 @@ import { Box, InputAdornment, Stack, Typography } from '@mui/material';
 import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled, InputField } from 'components';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty, toNumber } from 'lodash';
+import { includes, isEmpty, round, toNumber } from 'lodash';
 import { BuyTokenButton, SaleFormBox, TokenButton } from 'modules/ido-round/components/RoundStyled';
+import * as moment from 'moment';
 import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { fCurrency } from 'utils/format';
+import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-
 export const BuyForm = ({
     totalSold,
     totalSupply,
@@ -28,10 +28,14 @@ export const BuyForm = ({
     projectName,
     purchaseType,
     roundName,
+    endAt,
+    startAt,
+    whiteList,
 }) => {
     const [checked, setChecked] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [chosenToken, setChosenToken] = React.useState('');
+
     const isMobile = useResponsive('down', 'sm');
     const wallet = useWallet();
     const { objectIdOGRoleNft } = useYouSuiStore();
@@ -50,21 +54,49 @@ export const BuyForm = ({
         }
     }, [decimals, payments]);
 
+    const inWhiteList = React.useMemo(() => {
+        if (!whiteList || isEmpty(whiteList) || !wallet?.address) return;
+        return includes(whiteList, wallet.address);
+    }, [wallet?.address, whiteList]);
+
     const IDOSchema = yup.object().shape({
         amount: yup
             .number()
             .min(minPurchase, `Min purchase must be ${minPurchase} XUI`)
-            .max(maxPurchase, `Per user can buy ${maxPurchase} maximum of XUI on this round.`)
+            .positive('Value must be a positive number')
             .required('Amount is required')
             .typeError('Must be number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
-            .test('balance-check', 'Your balance is not enough', (value) => value * toNumber(formattedRatio) <= balances),
+            .test('balances', 'Your balances is not enough', function (value) {
+                if (value > (balances / toNumber(formattedRatio))) {
+                    return this.createError({ message: 'Your balances is not enough' });
+                }
+                return true;
+            })
+            .test('og-sale-tests', function (value) {
+                if (roundName === 'Og_Sale') {
+                    if (!inWhiteList && objectIdOGRoleNft === '') {
+                        return this.createError({ message: 'Your wallet address not really in the white list' });
+                    }
+                    if (poolRemaining / toNumber(formattedRatio) < value) {
+                        return this.createError({ message: 'Pool remaining is  smaller than the amount want to buy' });
+                    }
+                    if (value > totalSupply) {
+                        return this.createError({ message: 'Total supply is not enough' });
+                    }
+                }
+                return true;
+            })
+            .test('min', `Min purchase must be ${minPurchase} XUI`, (value) => {
+                if (value < minPurchase) return false
+                else return true;
+            })
     });
 
     const {
         control,
         handleSubmit,
-        watch,
+        // watch,
         trigger,
         setValue,
         reset,
@@ -77,7 +109,7 @@ export const BuyForm = ({
         resolver: yupResolver(IDOSchema),
     });
 
-    const watchAmount = watch('amount');
+    // const watchAmount = watch('amount');
 
     const handleSelectMin = async () => {
         const minPurchaseNum = minPurchase.toString();
@@ -92,8 +124,8 @@ export const BuyForm = ({
     };
 
     const handleSelectMax = async () => {
-        if (balances && balances) {
-            setValue('amount', balances / formattedRatio);
+        if (!isNaN(poolRemaining)) {
+            setValue('amount', poolRemaining);
             trigger('amount');
         } else {
             console.error(
@@ -105,8 +137,21 @@ export const BuyForm = ({
         }
     };
 
+    const handleSelectPublicMax = async () => {
+        if (!isNaN(balances)) {
+            setValue('amount', balances / toNumber(formattedRatio));
+            trigger('amount');
+        } else {
+            console.error(
+                'maxPurchase or decimals is not a valid value: maxPurchase = ',
+                maxPurchase,
+                ', decimals = ',
+                decimals
+            );
+        }
+    };
     const handleSelect25 = async () => {
-        if (balances && decimals) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.25);
             trigger('amount');
         } else {
@@ -120,7 +165,7 @@ export const BuyForm = ({
     };
 
     const handleSelect50 = async () => {
-        if (balances && decimals) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.5);
             trigger('amount');
         } else {
@@ -134,7 +179,7 @@ export const BuyForm = ({
     };
 
     const handleSelect75 = async () => {
-        if (balances && decimals) {
+        if (!isNaN(balances)) {
             setValue('amount', (balances / toNumber(formattedRatio)) * 0.75);
             trigger('amount');
         } else {
@@ -162,31 +207,22 @@ export const BuyForm = ({
                 handleSelect75();
                 break;
             case 'Max':
-                handleSelectMax();
+                if (roundName === 'Og_Sale') return handleSelectMax();
+                if (roundName === 'Public_Sale') return handleSelectPublicMax();
                 break;
         }
     };
 
-    const canBuy = () => {
-        if (balances && watchAmount) {
-            if (!wallet?.address) return false;
-            if (balances < watchAmount * toNumber(formattedRatio)) return false;
-            return true;
-        } else return;
-    };
 
-    const isCanBuy = canBuy();
-
-    console.log('purchaseType____', purchaseType)
     const renderStatusBalance = React.useCallback(() => {
-        if (isEmpty(payments) || isEmpty(balances)) {
+        if (isEmpty(payments) || isNaN(balances)) {
             return 'Loading';
         }
         if (!wallet?.address || !wallet?.connected) {
             return 'Connect your wallet before';
         }
-        if (balances && payments) {
-            return `Available amount: ${fCurrency(balances)} ${payments[0].symbol}`;
+        if (!isNaN(balances) && payments) {
+            return `Available amount: ${fCurrencyV2(balances)} ${payments[0].symbol}`;
         }
     }, [balances, payments, wallet?.address, wallet?.connected]);
 
@@ -197,62 +233,64 @@ export const BuyForm = ({
         const formattedAmount = data?.amount;
         const coinSuiObjectData = coinObjectsId.map((coin) => coin?.data);
 
+        
         tx.setGasPayment(coinSuiObjectData);
 
-        const balanceSplit = ethers.utils
-            .parseUnits(
-                // @ts-ignore
-                parseFloat(formattedAmount * toNumber(formattedRatio))
-                    .toFixed(decimals)
-                    .toString(),
-                decimals.toString() // Convert decimals to string
-            )
+        const balanceSplit = BigNumber.from(
+            ethers.utils.parseUnits(round(toNumber(formattedAmount), 3).toString(), 9).toString()
+        )
+            .mul(BigNumber.from((payments[0].ratio_per_token).toString()))
+            .div(BigNumber.from("1000000000"))
             .toString();
 
         const [coin] = tx.splitCoins(tx.gas, [tx.pure(balanceSplit)]);
 
-        const parseAmount = ethers.utils.parseUnits(formattedAmount.toString(), decimals).toString();
+        const parseAmount = ethers.utils.parseUnits(round(toNumber(formattedAmount), 3).toString(), 9).toString();
 
         const vec = tx.makeMoveVec({
             objects: [coin],
         });
 
-        let purchase = objectIdOGRoleNft === '' ? 1 : 3;
-
-        switch (purchase) {
-            case 1:
-                tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
-                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                    arguments: [
-                        tx.object(CLOCK),
-                        tx.object(LAUNCHPAD_STORAGE),
-                        tx.pure(projectName),
-                        tx.pure(roundName),
-                        tx.pure(parseAmount),
-                        vec,
-                    ],
-                });
-                break;
-            case 2:
-                break;
-            case 3:
-                tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
-                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                    arguments: [
-                        tx.object(CLOCK),
-                        tx.object(LAUNCHPAD_STORAGE),
-                        tx.pure(projectName),
-                        tx.pure(roundName),
-                        tx.pure(parseAmount),
-                        vec,
-                        tx.object(objectIdOGRoleNft)
-                    ],
-                });
-                break;
-            default:
-                break;
+        if (roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                    tx.object(objectIdOGRoleNft),
+                ],
+            });
+        } else if (roundName === 'Og_Sale' && objectIdOGRoleNft === '') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                ],
+            });
+        } else if (roundName === 'Public_Sale') {
+            tx.moveCall({
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
+                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                arguments: [
+                    tx.object(CLOCK),
+                    tx.object(LAUNCHPAD_STORAGE),
+                    tx.pure(projectName),
+                    tx.pure(roundName),
+                    tx.pure(parseAmount),
+                    vec,
+                ],
+            });
         }
 
         try {
@@ -269,6 +307,7 @@ export const BuyForm = ({
                 toast.error('Some thing went wrong');
             }
         } catch (e) {
+            console.log('err', e);
             setLoading(false);
             toast.error('Transaction rejected');
         }
@@ -278,125 +317,150 @@ export const BuyForm = ({
         setChecked(event.target.checked);
     };
 
+    const renderRoundState = React.useCallback(() => {
+        if (!isNaN(poolRemaining) && minPurchase && endAt && startAt) {
+            if (poolRemaining < minPurchase && roundName === 'Og_Sale') {
+                return <BuyTokenButton disabled>Sold out</BuyTokenButton>;
+            }
+
+            const currentTime = moment();
+
+            if (currentTime.isBefore(moment(toNumber(startAt)))) {
+                return <BuyTokenButton disabled>UpComing</BuyTokenButton>;
+            }
+            if (currentTime.isAfter(moment(toNumber(endAt)))) {
+                return <BuyTokenButton disabled>End Time</BuyTokenButton>;
+            }
+            return (
+                <BuyTokenButton disabled={!isValid || !checked} loading={loading} type="submit">
+                    Buy Now
+                </BuyTokenButton>
+            );
+        }
+    }, [checked, endAt, isValid, loading, minPurchase, poolRemaining, roundName, startAt]);
+
     return (
-        <SaleFormBox>
-            <form onSubmit={handleSubmit(handleSales)}>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                    }}
-                    mb={2}
-                >
-                    <Typography sx={{}}>Amount:</Typography>
-                    <Typography
+        <>
+            <SaleFormBox>
+                <form onSubmit={handleSubmit(handleSales)}>
+                    <Box
                         sx={{
-                            textAlign: 'end',
-                            marginRight: 0.5,
-                            fontWeight: 'bold',
-                            fontSize: 14,
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}
+                        mb={2}
                     >
-                        {renderStatusBalance()}
-                    </Typography>
-                </Box>
-                <Box>
-                    <InputField
-                        id="amount"
-                        name="amount"
-                        control={control}
-                        sx={{
-                            fontWeight: 'bold',
-                            color: 'white',
-                        }}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end"
-                                    sx={{
-                                        '& .MuiTypography-root': {
-                                            color: 'white',
-                                            fontWeight: 'bold',
-                                        },
-                                    }}
-                                >
-                                    XUI
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Box>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 1,
-                        flexWrap: 'wrap',
-                    }}
-                >
-                    {['Min', '25', '50', '75', 'Max'].map((token) => (
-                        <TokenButton
-                            key={token}
-                            className={chosenToken === token ? 'active' : ''}
-                            onClick={() => selectPercent(token)}
+                        <Typography sx={{}}>Amount:</Typography>
+                        <Typography
+                            sx={{
+                                textAlign: 'end',
+                                marginRight: 0.5,
+                                fontWeight: 'bold',
+                                fontSize: 14,
+                            }}
                         >
-                            {token}
-                            {isNaN(Number(token)) ? '' : '%'}
-                        </TokenButton>
-                    ))}
-                </Box>
-                <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between" mt={2}>
+                            {renderStatusBalance()}
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <InputField
+                            id="amount"
+                            name="amount"
+                            control={control}
+                            sx={{
+                                fontWeight: 'bold',
+                                color: 'white',
+                            }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end"
+                                        sx={{
+                                            '& .MuiTypography-root': {
+                                                color: 'white',
+                                                fontWeight: 'bold',
+                                            },
+                                        }}
+                                    >
+                                        XUI
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Box>
                     <Box
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            marginBottom: isMobile ? '1rem' : '0',
-                            '& a': {
-                                fontStyle: 'italic',
-                                textDecoration: 'underline',
-                            },
-                            '& a:hover': {
-                                fontStyle: 'italic',
-                                textDecoration: 'underline',
-                                color: '#5CBAF2',
-                            },
+                            gap: 1,
+                            flexWrap: 'wrap',
                         }}
                     >
-                        <CheckboxFiled handleChecked={handleChecked} />
-                        <Typography variant="caption">
-                            I've have read & accepted{' '}
-                            <a
-                                href="https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/edit"
-                                target="_blank"
-                                rel="noreferrer"
+                        {['Min', '25', '50', '75', 'Max'].map((token) => (
+                            <TokenButton
+                                key={token}
+                                className={chosenToken === token ? 'active' : ''}
+                                onClick={() => selectPercent(token)}
                             >
-                                YouSUI Launchpad Privacy Policy
-                            </a>{' '}
-                            {', '}
-                            <a
-                                href="https://docs.google.com/document/d/1RRO6w77nJyHE7LwGwLsSgr4GKcuMVSwQ6DinGnDi96s/edit"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Terms of Service
-                            </a>
-                            {' & '}
-                            <a
-                                href="https://docs.google.com/document/d/1guvKALX-dLP_wH7YErnrS00WWZZzhARdSyl_pK3Es3o/edit?usp=sharing"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Disclaimer
-                            </a>
-                        </Typography>
+                                {token}
+                                {isNaN(Number(token)) ? '' : '%'}
+                            </TokenButton>
+                        ))}
                     </Box>
-                    <BuyTokenButton type="submit" loading={loading} disabled={!isValid || !checked || !isCanBuy}
+                    <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between" mt={2}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: isMobile ? '1rem' : '0',
+                                '& a': {
+                                    fontStyle: 'italic',
+                                    textDecoration: 'underline',
+                                },
+                                '& a:hover': {
+                                    fontStyle: 'italic',
+                                    textDecoration: 'underline',
+                                    color: '#5CBAF2',
+                                },
+                            }}
+                        >
+                            <CheckboxFiled handleChecked={handleChecked} />
+                            <Typography variant="caption">
+                                I've have read & accepted{' '}
+                                <a
+                                    href="https://docs.google.com/document/d/1cbvUvE28TfKMIUhxzMQgl5O_wO2eEqdhFsKr2bQ8Q0M/edit"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    YouSUI Launchpad Privacy Policy
+                                </a>{' '}
+                                {', '}
+                                <a
+                                    href="https://docs.google.com/document/d/1RRO6w77nJyHE7LwGwLsSgr4GKcuMVSwQ6DinGnDi96s/edit"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Terms of Service
+                                </a>
+                                {' & '}
+                                <a
+                                    href="https://docs.google.com/document/d/1guvKALX-dLP_wH7YErnrS00WWZZzhARdSyl_pK3Es3o/edit?usp=sharing"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Disclaimer
+                                </a>
+                            </Typography>
+                        </Box>
+                        {/* <BuyTokenButton type="submit" loading={loading} disabled={!isValid || !checked}
                     >
                         Buy Now
-                    </BuyTokenButton>
-                </Stack>
-            </form>
-        </SaleFormBox>
+                    </BuyTokenButton> */}
+                        {renderRoundState()}
+                    </Stack>
+                </form>
+            </SaleFormBox>
+        </>
     );
 };

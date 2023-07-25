@@ -121,6 +121,7 @@ const partners = [
   { label: 'KriyaDEX', link: 'https://kriya.finance/' },
   // { label: 'titan', link: 'https://titantrading.io/' },
   { label: 'mirror', link: 'https://mirrorworld.fun/' },
+  { label: 'maven', link: 'https://www.m-safe.io/maven/home' },
 ];
 
 export default function Partner() {

@@ -3,33 +3,47 @@ import { useWallet } from '@suiet/wallet-kit';
 import ClaimTokens from 'components/claims/ClaimTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
-import { investCertificate } from 'constant';
 import useResponsive from 'hooks/useResponsive';
-import { SuiContext } from 'provider/SuiProvider';
+import { isEmpty } from 'lodash';
+import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { findCertificate } from 'utils/util';
-// import { SocialFooter } from 'layouts/Footer-v2';
+
 export default function Claims() {
+    // const [loading, setLoading] = React.useState();
+    const [myIDOs, setMyIDOs] = React.useState();
+
     const isMobile = useResponsive('down', 'sm');
-    const [myIdo, setMyIdo] = React.useState([]);
-
     const wallet = useWallet();
-    const { provider } = React.useContext(SuiContext);
+    const { provider, projects } = React.useContext(SuiContext);
 
-    React.useEffect(() => {
-        const fetchData = async () => {
+    const fetchData = React.useCallback(async () => {
+        try {
             if (!wallet?.address || !wallet?.connected) return;
 
             const owner = wallet?.address;
 
+            const filter = {
+                MatchAll: [
+                    {
+                        StructType: `${PACKAGE_BASE}::certificate::InvestmentCertificate`,
+                    },
+                    {
+                        AddressOwner: owner,
+                    },
+                ],
+            };
+
             const otherObjects = await provider.getOwnedObjects({
                 owner,
+                filter: filter,
                 options: { showContent: true },
             });
 
             if (otherObjects?.data?.length === 0) return;
 
-            const certificateObjects = findCertificate(otherObjects?.data, investCertificate);
+            const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
 
             if (!certificateObjects) return;
 
@@ -50,7 +64,8 @@ export default function Claims() {
                     link_url: projectFields?.link_url || '',
                     medium: projectFields?.medium || '',
                     name: projectFields?.name || '',
-                    project_id: projectFields?.project_id || '',
+                    vesting_id: certificate?.data?.content?.fields?.vesting_id,
+                    project_id: certificate?.data?.content?.fields.id.id || '',
                     telegram: projectFields?.telegram || '',
                     twitter: projectFields?.twitter || '',
                     website: projectFields?.website || '',
@@ -59,18 +74,97 @@ export default function Claims() {
 
             const formattedMyIdo = await Promise.all(promises);
 
+            setMyIDOs([...formattedMyIdo]);
 
-            setMyIdo([...formattedMyIdo]);
-        };
+        } catch (error) {
+            console.log('error', error)
+        }
 
-        fetchData();
-    }, [provider, wallet?.address, wallet?.connected]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, wallet?.connected]);
 
 
-    // console.log('myIdo___', myIdo)
+
+    const renderVestingState = React.useCallback(() => {
+        if (!wallet?.address || (!wallet?.connected)) {
+            return (
+                <SectionBox
+                    sx={{
+                        backgroundImage: "url('/images/background/homebg6.png')",
+                    }}
+                >
+                    <Box
+                        component={'img'}
+                        src="/images/background/bg-claim.png"
+                        sx={{
+                            position: 'absolute',
+                            width: '100%',
+                            mixBlendMode: 'lighten',
+                            top: 0,
+                        }}
+                    />
+                    <Container maxWidth={'lg'}>
+                        <Box position="relative">
+                            <Typography variant="h5" textAlign={'center'} sx={{ fontFamily: 'Be Vietnam Bold', fontSize: 24 }}>
+                                Please connect wallet
+                            </Typography>
+                        </Box>
+                    </Container>
+                </SectionBox>
+            );
+        } else {
+            return (
+                <SectionBox
+                    sx={{
+                        backgroundImage: isMobile
+                            ? "url('/images/background/homebg3456.jpg')"
+                            : "url('/images/background/homebg6.png')",
+                    }}
+                >
+                    <Box
+                        component={'img'}
+                        src="/images/background/bg-claim.png"
+                        sx={{
+                            position: 'absolute',
+                            width: '100%',
+                            mixBlendMode: 'lighten',
+                            top: 0,
+                        }}
+                    />
+                    <Container maxWidth={'lg'}>
+                        {/* {console.log('myIDOs__', myIDOs)} */}
+                        {!isEmpty(myIDOs) ? (
+                            <ClaimTokens
+                                myIDOs={myIDOs}
+                            />
+                        ) : (
+                            // <VestingContainer
+                            //     tokenType={vestingDetails?.token_type}
+                            //     periodList={vestingDetails?.period_list}
+                            //     totalLockAmount={vestingDetails?.total_lock_mount}
+                            //     totalUnlockAmount={vestingDetails?.total_unlock_amount}
+                            // />
+                            <div />
+                        )}
+                    </Container>
+                </SectionBox>
+            );
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, myIDOs]);
+
+    React.useEffect(() => {
+        if (provider && projects) {
+            fetchData();
+            // fetchVestingData();
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetchData, projects]);
+
     return (
         <Page title="Claim Tokens">
-            <SectionBox
+            {/* <SectionBox
                 sx={{
                     backgroundImage: "url('/images/background/homebg6.png')",
                     paddingTop: isMobile && 5,
@@ -106,7 +200,8 @@ export default function Claims() {
                         </>
                     )}
                 </Container>
-            </SectionBox>
+            </SectionBox> */}
+            {renderVestingState()}
         </Page>
     );
 }

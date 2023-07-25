@@ -20,7 +20,7 @@ export const _changeLanguage =
   (lang = "en") =>
     (dispatch) => {
       let library;
-      localStorage.setItem("lang", lang);
+      // localStorage.setItem("lang", lang);
       switch (lang) {
         case "vn":
           library = { ...en, ...vn };
@@ -32,7 +32,7 @@ export const _changeLanguage =
           library = { ...en, ...jp };
           break;
         default:
-          localStorage.setItem("lang", "en");
+          // localStorage.setItem("lang", "en");
           library = en;
           break;
       }

@@ -1,30 +1,31 @@
-import { LAUNCHPAD_STORAGE } from 'onchain/constants'
-import { Coin, Connection, JsonRpcProvider, mainnetConnection, testnetConnection } from '@mysten/sui.js'
+import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js'
 import { useWallet } from '@suiet/wallet-kit'
 import { ethers } from 'ethers'
-import { isEmpty } from 'lodash'
+import { isEmpty, toNumber } from 'lodash'
+import { LAUNCHPAD_STORAGE } from 'onchain/constants'
 import React, { createContext } from 'react'
-
+import { XUI_TYPE } from 'onchain/constants'
 const config = {
     providerConnection: new Connection({
-        fullnode: `https://explorer-rpc.testnet.sui.io/`,
+        // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
+        fullnode: 'https://sui-testnet-rpc.allthatnode.com:443/cd2f7736h5krjpsednzd5qjigxgkl803'
     }),
 }
 
-const provider = new JsonRpcProvider(testnetConnection)
+const provider = new JsonRpcProvider(config.providerConnection)
 
 export const SuiContext = createContext({
     assets: [],
     balances: null,
     coinObjectsId: null,
-    provider: new JsonRpcProvider(testnetConnection),
+    provider: new JsonRpcProvider(config.providerConnection),
     projects: [],
 })
 
 export const SUIWalletContext = ({ children }) => {
     const wallet = useWallet()
     const [assets, setAssets] = React.useState([])
-    const [balances, setBalance] = React.useState('0')
+    const [balances, setBalance] = React.useState(0)
     const [projects, setProjects] = React.useState([])
     const [coinObjectsId, setCoinObjectsId] = React.useState()
 
@@ -34,7 +35,7 @@ export const SUIWalletContext = ({ children }) => {
             const formattedPaymentsPromise = Promise.all(
                 round?.data.content?.fields.payments?.fields?.contents.map(formatPayment)
             )
-            
+
             const formattedPayments = await formattedPaymentsPromise
             const formattedTotalSold = ethers.utils.formatUnits(
                 round?.data?.content?.fields?.total_sold,
@@ -101,14 +102,14 @@ export const SUIWalletContext = ({ children }) => {
                         }
                     })
                     .catch((error) => {
-                        console.log(
+                        console.error(
                             `Failed to fetch dynamic fields for project ${project?.data?.content?.fields?.id?.id}:`,
                             error
                         )
                         return project
                     })
             } else {
-                console.log('Invalid project id:', project?.data?.content?.fields?.id?.id)
+                console.error('Invalid project id:', project?.data?.content?.fields?.id?.id)
                 return Promise.resolve(project)
             }
         },
@@ -151,7 +152,7 @@ export const SUIWalletContext = ({ children }) => {
                 }
             }
         } catch (error) {
-            console.log('An error occurred while fetching data')
+            console.error('An error occurred while fetching data')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -172,37 +173,57 @@ export const SUIWalletContext = ({ children }) => {
     const fetchBalance = React.useCallback(async () => {
         if (provider) {
             try {
+                const filter = {
+                    MatchAll: [
+                        {
+                            StructType: `0x2::coin::Coin<0x2::sui::SUI>`,
+                        },
+                        {
+                            AddressOwner: wallet.address,
+                        },
+                    ],
+                };
+
                 const objects = await provider.getOwnedObjects({
                     owner: wallet.address || '',
+                    filter: filter,
                     options: { showContent: true },
                 })
 
                 const coinObjectsId = objects.data.filter((obj) => Coin.isSUI(obj))
 
-                const [suiBalance, allBalances] = await Promise.all([
+                const [suiBalance, allBalances, allCoins] = await Promise.all([
                     provider.getBalance({
                         owner: wallet?.address || '',
                     }),
                     provider.getAllBalances({
                         owner: wallet.address || '',
                     }),
+                    provider.getAllCoins({
+                        owner: wallet.address || '',
+                    }),
                 ])
 
                 const assetsPromises = allBalances.map(async (balance) => {
                     const { coinType } = balance
+
                     try {
                         const metadata = await provider.getCoinMetadata({ coinType })
+                        const coin = allCoins?.data.filter((coin) => coin.coinType === coinType)
+
                         const balanceObj = allBalances.find(
                             (balance) => balance.coinType === coinType
                         )
 
                         return {
                             id: metadata?.id,
+                            coin: coin,
                             decimals: metadata?.decimals,
                             description: metadata?.description,
                             iconUrl: metadata?.iconUrl,
                             name: metadata?.name,
                             symbol: metadata?.symbol,
+                            coinType: coinType,
                             balance: balanceObj ? parseInt(balanceObj.totalBalance) : 0,
                         }
                     } catch (error) {
@@ -211,8 +232,16 @@ export const SUIWalletContext = ({ children }) => {
                 })
                 const assets = await Promise.all(assetsPromises)
 
-                setAssets(assets)
-                setBalance(ethers.utils.formatUnits(suiBalance?.totalBalance, 9))
+                const validAssets = assets.filter(asset => asset.coinType === XUI_TYPE);
+                setAssets(validAssets);
+                let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
+
+                // Handle gas
+                formattedBalance = formattedBalance > 0.2 ? formattedBalance - 0.2 : formattedBalance
+
+                // const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
+
+                setBalance(formattedBalance)
                 setCoinObjectsId(coinObjectsId)
             } catch (error) {
                 console.error('error SUI provider', error)

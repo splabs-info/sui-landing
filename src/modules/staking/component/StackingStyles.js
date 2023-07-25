@@ -1,5 +1,6 @@
+import { LoadingButton } from "@mui/lab";
 import { Box, Button, TextField, styled } from "@mui/material";
-
+import { InputField } from "components";
 export const ImageBox = styled(Box)(({ theme }) => ({
     position: 'relative',
     '& img': {
@@ -99,7 +100,8 @@ export const FormBox = styled(Box)(({ theme }) => ({
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 30px rgba(255, 255, 255, 0.25)',
     color: 'white',
 }));
-export const StackingButton = styled(Button)(({ theme }) => ({
+
+export const StackingButton = styled(LoadingButton)(({ theme }) => ({
     background:
         'linear-gradient(178.73deg, #68E6B8 -8.02%, #6D85DA 98.69%)',
     boxShadow: '0px 0px 8px #4191C9',
@@ -138,15 +140,25 @@ export const PackageButton = styled(Button)(({ theme }) => ({
             padding: '0px',
         },
     },
+    '&.accent': {
+        background: 'linear-gradient(178.73deg, rgba(104, 230, 184, 0.8) -8.02%, rgba(109, 133, 218, 0.8) 98.69%);',
+        boxShadow: '0px 0px 4px #4191C9',
+        '&:before': {
+            padding: '3px',
+        },
+    },
     [theme.breakpoints.down('sm')]: {
         width: '48%',
     }
 }));
-export const CustomInput = styled(TextField)(({ theme }) => ({
+export const CustomInput = styled(InputField)(({ theme }) => ({
     width: '100%',
     color: '#28A3AB',
-    marginTop: '0.5rem',
-    background: 'rgba(104, 229, 184, 0.1)',
+    
+    // marginTop: '0.5rem',
+    // background: 'rgba(104, 229, 184, 0.1)',
+    // borderRadius: 10,
+    height: 72,
     '& .MuiSelect-select': {
         display: 'inline-flex',
     },

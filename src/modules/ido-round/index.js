@@ -7,6 +7,8 @@ import { Round } from './components/Round';
 import { SaveButton } from './components/RoundStyled';
 import useResponsive from 'hooks/useResponsive';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -75,17 +77,21 @@ const SpecialTabList = styled(TabList)(({ theme }) => ({
 export default function IDORound() {
     const isMobile = useResponsive('down', 'sm');
     const [tabIndex, setTabIndex] = useState('0');
+    const navigate = useNavigate()
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
     };
     const handleSave = () => {
         toast.success('Save successful');
     }
+    React.useEffect(() => {
+        navigate('/ido-launchpad/public-sale')
+    }, [])
     return (
         <Page title="IDO - Round">
             <SectionBox sx={{ backgroundImage: "url('/images/background/homebg56.png')" }} >
                 <Container maxWidth="xl">
-                    <Box mt={isMobile ? 5 : 2} color={'#fff'}>
+                    {/* <Box mt={isMobile ? 5 : 2} color={'#fff'}>
                         <TabContext value={tabIndex}>
                             <Stack direction={isMobile ? 'column-reverse' : 'row'}
                                 justifyContent={tabIndex === '0' ? 'space-between' : 'flex-end'}
@@ -126,7 +132,7 @@ export default function IDORound() {
                                 <Round round={tabIndex} />
                             </TabPanel>
                         </TabContext>
-                    </Box>
+                    </Box> */}
                 </Container>
             </SectionBox>
         </Page >

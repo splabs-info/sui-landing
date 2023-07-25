@@ -4,33 +4,22 @@ import VestingTokens from 'components/claims/VestingTokens';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { flattenDeep } from 'lodash';
-import { SuiContext } from 'provider/SuiProvider';
+import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 export default function ClaimsDetail() {
     const isMobile = useResponsive('down', 'sm');
-    const [vesting, setVesting] = React.useState();
 
-    const [vestingDetails, setVestingDetails] = React.useState({
-        periodList: [],
-        totalLockMount: '0',
-        totalUnlockAmount: '0',
-        numberOfCliffMonths: 0,
-        numberOfLinearMonth: 0,
-        tokenType: '',
-    });
+    const [vestingDetails, setVestingDetails] = React.useState({});
 
-    const location = useLocation();
-    const event = location.state?.eventName;
-
-    const { projectId } = useParams();
-    const decodedProjectId = decodeURIComponent(projectId);
+    const { vestingId } = useParams();
+    const decodedProjectId = decodeURIComponent(vestingId);
     const wallet = useWallet();
     const { provider } = React.useContext(SuiContext);
 
     React.useEffect(() => {
         const fetchData = async () => {
+            if (!wallet?.address || !wallet.connected) return;
             const allOfProjectDetail = await provider.getDynamicFields({
                 parentId: decodedProjectId,
                 options: { showContent: true },
@@ -38,76 +27,33 @@ export default function ClaimsDetail() {
 
             if (!allOfProjectDetail || allOfProjectDetail.data.length <= 0) return;
 
-            const vestingElement = allOfProjectDetail?.data.filter((element) => {
-                const found = element.name?.value.split(' <> ');
-                return found && found.includes('Vesting') && found.includes(event);
-            });
+            const vestingElement = await provider.getObject({
+                id: decodedProjectId,
+                options: { showContent: true }
+            })
 
-            if (vestingElement.length > 0) {
-                setVesting(vestingElement);
-            }
+            const vestingDetail = await provider.getDynamicFieldObject({
+                parentId: decodedProjectId,
+                name: { type: 'address', value: wallet?.address },
+            })
+
+
+            const vestingState = {
+                projectName: vestingElement?.data?.content?.fields?.project?.fields?.name,
+                tokenType: vestingElement?.data?.content?.fields?.info?.fields?.token_type,
+                isOpenClaimVesting: vestingElement?.data?.content?.fields?.is_open_claim_vesting,
+                periodList: vestingDetail?.data?.content?.fields?.value?.fields?.period_list,
+                totalLockMount: vestingDetail?.data?.content?.fields?.value?.fields?.total_lock_mount,
+                totalUnlockAmount: vestingDetail?.data?.content?.fields?.value?.fields?.total_unlock_amount,
+            };
+
+            setVestingDetails(vestingState)
         };
 
         fetchData();
-    }, [provider, decodedProjectId, event]);
 
-    React.useEffect(() => {
-        if (!vesting || vesting.length <= 0) return;
-
-        const fetchData = async () => {
-            const promises = vesting.map(async (element) => {
-                const vestingDetail = await provider.getObject({
-                    id: element.objectId,
-                    options: { showContent: true },
-                });
-
-                const dynamicFiledVesting = await provider.getDynamicFields({
-                    parentId: element.objectId,
-                    options: { showContent: true },
-                });
-
-                setVestingDetails((prev) => ({
-                    ...prev,
-                    tokenType: vestingDetail?.data?.content?.fields?.info?.fields?.token_type,
-                    numberOfCliffMonths: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_cliff_months,
-                    numberOfLinearMonth: vestingDetail?.data?.content?.fields?.info?.fields?.number_of_linear_months,
-                }));
-
-                if (!dynamicFiledVesting || dynamicFiledVesting.data.length <= 0) return null;
-
-                const foundUserVesting = dynamicFiledVesting.data.find((item) => item?.name?.value === wallet?.address);
-                if (!foundUserVesting) return null;
-
-                const yourVesting = await provider.getObject({
-                    id: foundUserVesting?.objectId,
-                    options: { showContent: true },
-                });
-
-                if (!yourVesting) return null;
-
-                return yourVesting;
-            });
-
-            const yourVestings = await Promise.allSettled(promises);
-
-            if (!yourVestings || yourVestings.length <= 0) return;
-
-            const periodList = flattenDeep(
-                yourVestings.map((vesting) => vesting?.value.data?.content?.fields?.value?.fields?.period_list)
-            );
-
-            yourVestings.forEach((vesting) => {
-                setVestingDetails((prev) => ({
-                    ...prev,
-                    periodList,
-                    totalLockMount: vesting.data?.content?.fields?.value?.fields?.total_lock_mount,
-                    totalUnlockAmount: vesting.data?.content?.fields?.value?.fields?.total_unlock_amount,
-                }));
-            });
-        };
-
-        fetchData();
-    }, [provider, vesting, wallet?.address]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [decodedProjectId, wallet?.address, wallet.connected]);
 
 
     return (
@@ -133,6 +79,7 @@ export default function ClaimsDetail() {
                     ) : (
                         <>
                             <VestingTokens
+                                projectName={vestingDetails?.projectName}
                                 tokenType={vestingDetails?.tokenType}
                                 periodList={vestingDetails?.periodList}
                                 totalLockMount={vestingDetails?.totalLockMount}

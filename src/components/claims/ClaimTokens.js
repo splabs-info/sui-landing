@@ -23,9 +23,9 @@ import { grey } from '@mui/material/colors'
 export const TokenPoolContent = [
     {
         id: 1,
-        title: 'YouSUI - TXUI - OG ROUND',
+        title: 'YouSUI - XUI - OG ROUND',
         subtitle: 'Community Test Pool',
-        token: 'T-XUI',
+        token: 'XUI',
         startDate: 'June 14th, 2023',
         status: true,
     },
@@ -82,7 +82,7 @@ export default function ClaimTokens({ myIDOs }) {
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
             <TitleBox>
                 <Typography>Claim</Typography>
-                <TypographyGradient>your IDO tokens</TypographyGradient>
+                <TypographyGradient>Your IDO tokens</TypographyGradient>
             </TitleBox>
             <Stack
                 my={isMobile ? 3 : 6}
@@ -90,7 +90,7 @@ export default function ClaimTokens({ myIDOs }) {
                 justifyContent={isMobile ? 'space-between' : 'flex-end'}
                 alignItems={'center'}
             >
-                <TextField
+                {/* <TextField
                     id="search"
                     placeholder="Search"
                     variant="standard"
@@ -127,7 +127,7 @@ export default function ClaimTokens({ myIDOs }) {
                             whiteSpace: 'nowrap',
                         },
                     }}
-                />
+                /> */}
             </Stack>
             {myIDOs?.length !== 0 ? (
                 <>
@@ -137,7 +137,8 @@ export default function ClaimTokens({ myIDOs }) {
                             isWithdrawal={item?.isWithdrawal}
                             avatar={item?.image_url}
                             issueDate={item?.issue_date}
-                            projectId={item?.project_id}
+                            // projectId={item?.project_id}
+                            vestingId={item?.vesting_id}
                             eventName={item?.eventName}
                             name={item?.name}
                             description={item?.description}
@@ -162,19 +163,17 @@ export default function ClaimTokens({ myIDOs }) {
     );
 }
 
-function TokenPool({ avatar, eventName, name, projectId, description, issueDate }) {
+function TokenPool({ avatar, eventName, name, vestingId, description, issueDate }) {
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate(`/claim-tokens/${projectId}`, {
+        navigate(`/claim-tokens/${vestingId}`, {
             state: {
                 eventName: eventName,
             }
         });
     };
-
-
 
     return (
         <TokenPoolBox >
@@ -191,7 +190,7 @@ function TokenPool({ avatar, eventName, name, projectId, description, issueDate 
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                width: '35%',
+                                width: 248,
                             }}
                         >
                             {description}

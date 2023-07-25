@@ -22,7 +22,7 @@ import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
-const IDODetail = React.lazy(() => import('./pages/IDODetail'));
+// const IDODetail = React.lazy(() => import('./pages/IDODetail'));
 
 const XUI = React.lazy(() => import('./pages/XUI'));
 const SUAIDO = React.lazy(() => import('./pages/IDO/SUA'));
@@ -146,7 +146,7 @@ export default function Router() {
           ),
         },
         {
-          path: 'claim-tokens/:projectId',
+          path: 'claim-tokens/:vestingId',
           element: (
             <Suspense>
               <ClaimsDetail />

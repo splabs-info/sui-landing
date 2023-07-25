@@ -61,10 +61,10 @@ export const SUARound = ({ round }) => {
                     <RoundClaim claimInfo={claimInfo} roundNumber={roundDetail[round].number} />
                 </Grid>
             </Grid>
-            <RoundInfo
+            {/* <RoundInfo
                 address={roundDetail[round].address}
                 startTime={roundDetail[round].startTime}
-                endTime={roundDetail[round].endTime} />
+                endTime={roundDetail[round].endTime} /> */}
         </Box>
     );
 };

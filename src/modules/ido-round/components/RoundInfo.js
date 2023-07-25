@@ -49,7 +49,7 @@ const fields = [
     {
         key: 'initialMarketcap',
         label: 'Initial Marketcap',
-        format: (e) => `${fCurrency(e, 0)} SUI`,
+        format: (e) => `${fCurrency(e, 0)} USDT`,
     },
 ];
 export const RoundInfo = ({
@@ -82,22 +82,18 @@ export const RoundInfo = ({
                                     {fAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI')}
                                 </Link>
                             </Box>
-                            {/* {startTime && ( */}
-                                <Box>
-                                    <Typography variant="body1" mb={0.5}>
-                                        Pool Start Time
-                                    </Typography>
-                                    <Typography variant="body2">12:00 UTC 20-07-2023</Typography>
-                                </Box>
-                            {/* )} */}
-                            {endTime && (
-                                <Box>
-                                    <Typography variant="body1" mb={0.5}>
-                                        Pool End Time
-                                    </Typography>
-                                    <Typography variant="body2"> {endTime}</Typography>
-                                </Box>
-                            )}
+                            <Box>
+                                <Typography variant="body1" mb={0.5}>
+                                    Pool Start Time
+                                </Typography>
+                                <Typography variant="body2">12:00 UTC 20-07-2023</Typography>
+                            </Box>
+                            <Box>
+                                <Typography variant="body1" mb={0.5}>
+                                    Pool End Time
+                                </Typography>
+                                <Typography variant="body2">12:00 UTC 23-07-2023</Typography>
+                            </Box>
                         </TokenBox>
                         <UtilityBox>
                             {fields.map((field) => (

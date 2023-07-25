@@ -9,6 +9,7 @@ export const Round = ({
     claimInfo,
     decimals,
     endAt,
+    whiteList,
     maxPurchase,
     minPurchase,
     payments,
@@ -28,6 +29,7 @@ export const Round = ({
                 </Grid>
                 <Grid item xs={12} md={8} alignItems={'space-between'}>
                     <Chart
+                        startAt={startAt}
                         roundName={roundName}
                         decimals={decimals}
                         totalSold={totalSold}
@@ -36,7 +38,10 @@ export const Round = ({
                         maxPurchase={maxPurchase}
                         minPurchase={minPurchase} />
                     <BuyForm
+                        whiteList={whiteList}
                         type={type}
+                        startAt={startAt}
+                        endAt={endAt}
                         purchaseType={purchaseType}
                         roundName={roundName}
                         decimals={decimals}
@@ -48,6 +53,7 @@ export const Round = ({
                         totalSupply={totalSupply}
                     />
                     <Claim
+                        endAt={endAt}
                         services={services}
                         decimals={decimals}
                         type={type}

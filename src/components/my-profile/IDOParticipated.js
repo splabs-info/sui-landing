@@ -22,7 +22,7 @@ const StyledIDOParticipatedCard = styled(Box)(({ theme }) => ({
   height: 280,
   alignItems: 'center',
 }));
-export const IDOParticipated = () => {
+export const IDOParticipated = ({ myIDOs }) => {
   const isTablet = useResponsive('down', 'lg');
   const isDesktop = useResponsive('up', 'xl');
   return (
@@ -40,7 +40,7 @@ export const IDOParticipated = () => {
               textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
             }}
           >
-            0/0
+            {myIDOs ? myIDOs.length : '0'}/2
           </Typography>
           <Link to={`/claim-tokens`}>
             <BorderGradientButton sx={{ width: 120 }}>Claim</BorderGradientButton>

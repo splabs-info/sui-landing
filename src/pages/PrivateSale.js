@@ -28,7 +28,6 @@ const Caption = styled(Typography)(({ theme }) => ({
 export default function PrivateSale() {
   const isMobile = useResponsive('down', 'sm');
 
-  console.log("sajdhqwiuodjqoui");
 
   return (
     <Page title="Private Sale">

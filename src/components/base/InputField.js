@@ -6,22 +6,21 @@ import { Error } from './Error';
 const CustomInput = styled(TextField)(({ theme }) => ({
     marginTop: 0,
     color: 'white',
-    '& .MuiOutlinedInput-root:hover': {
-        '& > fieldset': {
-            borderColor: `${theme.palette.primary}`,
-        },
-    },
-    '& .MuiOutlinedInput-root.Mui-focused': {
-        '& > fieldset': {
-            borderColor: `${theme.palette.primary}`,
-        },
-    },
+    // '& .MuiOutlinedInput-root:hover': {
+    //     '& > fieldset': {
+    //         borderColor: `${theme.palette.primary}`,
+    //     },
+    // },
+    // '& .MuiOutlinedInput-root.Mui-focused': {
+    //     '& > fieldset': {
+    //         borderColor: `${theme.palette.primary}`,
+    //     },
+    // },
     '& .MuiOutlinedInput-root': {
         borderRadius: 10,
         borderColor: `white`,
         color: 'white',
-        height: 48,
-        backgroundColor: 'rgba(18, 24, 52, 0.5)',
+        height: 45,
     },
 }));
 

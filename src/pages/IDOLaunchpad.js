@@ -11,39 +11,32 @@ import {
   TypographyGradient,
 } from 'components/home/HomeStyles';
 import { questionsList } from 'components/home/Questions';
+import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
+import moment from 'moment';
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const idoProjects = [
-  {
-    title: 'Free Minting',
-    link: '/ido-launchpad',
-    avatar: '/images/ino/ino-upcoming-1.jpg',
-    access: 'WL',
-    hardCap: '2000',
-    releaseTime: "Official Launch: July 10th",
-    status: false,
-    startTime: '2023-06-10T11:00:00',
-    endTime: '2023-06-10T12:00:00',
-  },
-
-  {
-    title: 'HooD',
-    avatar: '/images/ino/ino-upcoming-2.jpg',
-    hardCap: '2000',
-    access: 'Tier 1-5',
-    releaseTime: 'Official Launch: Aug 25th',
-    status: true,
-    link: '',
-    startTime: '2023-06-25T11:00:00',
-    endTime: '2023-06-25T12:00:00',
-  },
-]
 export default function IDOLaunchpad() {
+  // Tiep o day
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
+  const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
+  const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
+
+  
+
+  React.useEffect(() => {
+    if (moment().isAfter('2023-07-23T12:00:00 Z')) {
+      setHasOutTimeIDOXUI(true);
+    }
+    if (moment().isAfter('2023-07-20T12:00:00 Z')) {
+      setHasInTimeIDOXUI(true);
+    }
+  }, [])
   return (
     <Page title="IDO list">
       <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
@@ -65,7 +58,7 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <Link to={'/ido-launchpad/round'}>
+            <Link to={'/ido-launchpad/og-sale'}>
               <FrameButton>Buy $XUI</FrameButton>
             </Link>
             <Link to={'/whitepaper'}>
@@ -83,8 +76,10 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          <UpComingPools />
-          <PreviousPools />
+        {/* <OnGoingPools /> */}
+          {hasInTimeIDOXUI && !hasOutTimeIDOXUI && <OnGoingPools />}
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
+          <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>
     </Page>
