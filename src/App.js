@@ -24,12 +24,11 @@ import './styles/suiet-wallet-kit-custom.css';
 import ThemeProvider from './theme';
 const queryClient = new QueryClient();
 
-
 const SupportedChains = [SuiTestnetChain, SuiDevnetChain, SuiMainnetChain];
 
 export default function App() {
   React.useEffect(() => {
-    console.log('Version: 0.0.6 - Free-minting-2');
+    console.log('Version: 0.0.7 - XUI Staking');
     localStorage.removeItem('lang');
   }, []);
 
