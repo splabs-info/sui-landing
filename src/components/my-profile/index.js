@@ -20,13 +20,9 @@ import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
-<<<<<<< HEAD
 import StakingTable from './my-staking/StakingTable';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import queryString from 'query-string';
-=======
-
->>>>>>> origin/master
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -47,7 +43,6 @@ export default function MyInfo() {
     const location = useLocation();
     const { tab: tabIndexFromUrl } = queryString.parse(location.search);
 
-    console.log('location.search__', queryString.parse(location.search))
     const initialTabIndex = Number(tabIndexFromUrl) || 0; // Đảm bảo rằng tabIndex là số
     const [tabIndex, setTabIndex] = useState(initialTabIndex);
 
@@ -121,7 +116,6 @@ export default function MyInfo() {
 
         const certificateObjects = findCertificate(otherObjects?.data, INVEST_CERTIFICATE);
 
-        // console.log('certificateObjects___111', certificateObjects)
         if (!certificateObjects) return;
 
         const promises = certificateObjects.map(async (item) => {
@@ -161,7 +155,6 @@ export default function MyInfo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData, projects]);
 
-<<<<<<< HEAD
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -185,8 +178,6 @@ export default function MyInfo() {
         );
     }
 
-=======
->>>>>>> origin/master
     return (
         <>
             <SectionBox
