@@ -297,7 +297,7 @@ export default function HeaderSection() {
     <></>
     // <NotifiHistory />
   );
-  const BuyCrypto = () => <AlchemyPay />;
+  const BuyCrypto = () => <>{/* <AlchemyPay /> */}</>;
 
   return (
     <>
