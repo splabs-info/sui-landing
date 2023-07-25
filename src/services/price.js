@@ -9,7 +9,6 @@ const priceKeys = {
 export const useGetPrice = () => {
     const { data, ...other } = useQuery(priceKeys.price(), () => authApis.getPrice())
 
-    console.log('data_',data)
     return {
         price: data
     }

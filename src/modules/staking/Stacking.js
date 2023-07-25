@@ -62,7 +62,6 @@ export default function Staking({ staking, totalXUILocked }) {
 
     const { price } = useGetPrice();
 
-
     React.useEffect(() => {
         if (isEmpty(staking) || isEmpty(transformedData)) {
             setLoading(true);
@@ -128,7 +127,7 @@ export default function Staking({ staking, totalXUILocked }) {
                                             mt: 1,
                                         }}
                                     >
-                                        0.2224
+                                        {price}
                                     </Typography>
                                 </BoxGradientOpacity>
                             </Grid>
