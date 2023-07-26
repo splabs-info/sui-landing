@@ -23,6 +23,7 @@ import { StakingBalance } from './StakingBalance';
 import StakingTable from './my-staking/StakingTable';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import queryString from 'query-string';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
@@ -32,6 +33,8 @@ export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const { address, active } = useContext(WalletContext);
     const wallet = useWallet();
+    const [reRender, setRerender] = React.useState(false);
+
     const [defaultInfo, setDefaultInfo] = useState(null);
     const [id, setId] = useState(null);
     const [myIDOs, setMyIDOs] = React.useState([]);
@@ -39,6 +42,8 @@ export default function MyInfo() {
     const { provider, projects } = React.useContext(SuiContext);
     const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
+
+    // const { render, setRender } = useYouSuiStore()
 
     const location = useLocation();
     const { tab: tabIndexFromUrl } = queryString.parse(location.search);
@@ -155,6 +160,15 @@ export default function MyInfo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData, projects]);
 
+
+    // React.useEffect(() => {
+    //     if (render) {
+    //         console.log('my info_____', render)
+    //         console.log('component cha roi')
+    //         setRender(false)
+    //     }
+    // }, [render])
+
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -229,7 +243,7 @@ export default function MyInfo() {
                                             </Grid>
                                         </Grid>
                                         {tabIndex === 0 && <OverViewContent />}
-                                        {tabIndex === 1 && <StakingTable />}
+                                        {tabIndex === 1 && <StakingTable reRender={reRender} setRerender={setRerender} />}
                                     </>
                                 )}
                             </>

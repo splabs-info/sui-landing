@@ -5,11 +5,13 @@ import { useWallet } from '@suiet/wallet-kit';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import { isEmpty, toNumber } from 'lodash';
-import { STAKING_STORAGE } from 'onchain/constants';
+import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
 import { formatEther } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useState } from 'react';
 import Staking from './Stacking';
+import { handleKeyType } from 'onchain/helpers'
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
@@ -60,6 +62,9 @@ export default function StakingFarming() {
     const [tabIndex, setTabIndex] = useState('0');
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
     const [staking, setStaking] = React.useState([])
+    const [reRender, setRerender] = React.useState(false);
+
+    // const { render, setRender } = useYouSuiStore();
 
     const wallet = useWallet();
     const handleChange = (event, newValue) => {
@@ -138,8 +143,9 @@ export default function StakingFarming() {
         const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter((i) => i?.fields.key === wallet?.address)
 
         yourInfo.forEach((i) => i?.fields?.value?.fields?.contents.forEach((e) => {
+            const formattedKey = handleKeyType(XUI_TYPE)
             // Change to prod
-            if (e?.fields?.key === '3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI') {
+            if (e?.fields?.key === formattedKey) {
                 totalXUILockedToken = e?.fields?.value
             } else return;
         }))
@@ -150,67 +156,6 @@ export default function StakingFarming() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet.address, wallet?.connected])
 
-    // const fetchStakingCer = React.useCallback(async () => {
-    //     if (!wallet?.address || !wallet.connected) return;
-
-    //     const filter = {
-    //         MatchAll: [
-    //             {
-    //                 StructType: `${STAKING_PACKAGE_BASE}::certificate::InvestmentCertificate`,
-    //             },
-    //             {
-    //                 AddressOwner: wallet?.address,
-    //             },
-    //         ],
-    //     };
-
-    //     const myStakingCer = await provider.getOwnedObjects({
-    //         owner: wallet?.address,
-    //         filter: filter,
-    //         options: { showContent: true },
-    //     })
-
-    //     const infoStakingPromise = myStakingCer?.data.map(async (cer) => {
-    //         const info = await provider.getDynamicFieldObject(({
-    //             parentId: cer?.data?.objectId,
-    //             name: { type: "0x1::string::String", value: 'info' }
-    //         }))
-    //         console.log('cerr', cer?.data?.content?.fields)
-    //         console.log('info__', info?.data?.content?.fields)
-
-    //         const formatInfo = {
-    //             ...cer?.data?.content?.fields,
-    //             ...info?.data?.content?.fields?.value?.fields,
-    //             issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
-    //             stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
-    //             stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
-    //             profit_claimed_amount: formatEther(info?.data?.content?.fields?.value?.fields?.profit_claimed_amount, 9),
-    //             id: cer?.data?.content?.fields?.id?.id,
-    //         }
-
-    //         return formatInfo
-    //     })
-
-    //     // tx.moveCall({
-    //     //     ...
-    //     // })
-
-    //     // cer avai => {
-
-    //     // }
-    //     // array [tx.moveCall. tx.mo]
-    //     // tx.moveCall({
-
-    //     // })
-
-
-
-    //     const info = await Promise.all(infoStakingPromise)
-    //     console.log('info___', info)
-    //     if (!myStakingCer || isEmpty(myStakingCer)) return;
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [wallet?.address, wallet.connected])
-
     React.useEffect(() => {
         fetchUserStakingInfo()
     }, [fetchUserStakingInfo])
@@ -220,6 +165,13 @@ export default function StakingFarming() {
     }, [fetchStakingInfo])
 
 
+    // React.useEffect(() => {
+    //     if (render) {
+    //         console.log('StakingFarming___', render)
+    //         setRender(false)
+    //     }
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [render])
     return (
         <Page title="Staking/Farming">
             <SectionBox

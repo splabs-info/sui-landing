@@ -114,3 +114,12 @@ export const transformClaimInfo = (claims) => {
 
     return transformedData.sort((a, b) => a.stake_date - b.stake_date);
 }
+
+
+
+export const handleKeyType = (inputString) => {
+    if (inputString.startsWith('0x')) {
+        return inputString.substring(2);
+    }
+    return inputString;
+}

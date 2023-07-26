@@ -20,7 +20,7 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { CLOCK, STAKING_STORAGE, STAKING_PACKAGE_UPGRADE } from 'onchain/constants';
 import { useWallet } from '@suiet/wallet-kit';
 import { toast } from 'react-toastify';
-
+import { useYouSuiStore } from 'zustand-store/yousui_store'
 const CardStyle = styled(Card)(({ theme }) => ({
     background: 'transparent',
     boxShadow: 'none',
@@ -53,12 +53,17 @@ export default function CustomTable({
     pageSize = 10,
     setPageSize,
     sx,
+    reRender,
+    setRerender
 }) {
     const [sortOrderASC, setSortOrderASC] = useState(true);
     const [dataSort, setDataSort] = useState([]);
     const [loadingSubmit, setLoading] = React.useState(false);
-    const [unstacked, setUnstacked] = React.useState(false);
+
     const wallet = useWallet();
+
+    const { setRender } = useYouSuiStore();
+
     const handleSortColumn = (id) => {
         setSortOrderASC(!sortOrderASC);
         setDataSort((data) => (sortOrderASC ? data.sort((a, b) => a[id] - b[id]) : data.sort((a, b) => b[id] - a[id])));
@@ -80,7 +85,8 @@ export default function CustomTable({
 
             if (result) {
                 setLoading(false);
-                setUnstacked(true)
+                setRerender(true);
+                setRender(true)
                 toast.success('Un staked successful');
             } else {
                 setLoading(false);
@@ -93,88 +99,42 @@ export default function CustomTable({
         }
     };
 
-    const handleClaim = async (id, stake_token) => {
-        const tx = new TransactionBlock();
-
-        tx.moveCall({
-            target: `${STAKING_PACKAGE_UPGRADE}::staking::claim`,
-            typeArguments: [`0x${stake_token}`],
-            arguments: [tx.object(CLOCK), tx.object(STAKING_STORAGE), tx.object(id)],
-        });
-
-        try {
-            const result = await wallet.signAndExecuteTransactionBlock({
-                transactionBlock: tx,
-            });
-
-            if (result) {
-                setLoading(false);
-                toast.success('Claim successful');
-            } else {
-                setLoading(false);
-                toast.error('Transaction rejected');
-            }
-        } catch (e) {
-            setLoading(false);
-            console.log('handleClaim__error', e);
-            toast.error('Transaction rejected');
-        }
-    }
-
-    const renderBtnState = React.useCallback((id, stake_token, status, claim_list, can_claim_amount) => {
-        if (!claim_list) {
-            if (status) {
-                return (
-                    <GradientButton
-                        onClick={() => handleUnstacked(id, stake_token)}
-                        loading={loadingSubmit}
-                        sx={{
-                            margin: 'auto 0 auto auto',
-                        }}
-                    >
-                        Unstake Now
-                    </GradientButton>
-                );
-            } else {
-                return (
-                    <GradientButton
-                        disabled
-                        sx={{
-                            margin: 'auto 0 auto auto',
-                        }}
-                    >
-                        Unstaked
-                    </GradientButton>
-                );
-            }
+    const renderBtnState = React.useCallback((id, stake_token, status) => {
+        if (status) {
+            return (
+                <GradientButton
+                    onClick={() => handleUnstacked(id, stake_token)}
+                    loading={loadingSubmit}
+                    sx={{
+                        margin: 'auto 0 auto auto',
+                    }}
+                >
+                    Unstake Now
+                </GradientButton>
+            );
         } else {
-            if (can_claim_amount !== 0) {
-                return <GradientButton
-                onClick={() => handleClaim(id, stake_token)}
-                sx={{
-                    margin: 'auto 0 auto auto',
-                }}
-            >
-                Claim
-            </GradientButton>
-            } else {
-                return <GradientButton
-                // onClick={() => handleClaim(id, stake_token)}
-                disabled
-                sx={{
-                    margin: 'auto 0 auto auto',
-                }}
-            >
-                Claim
-            </GradientButton>
-            }
+            return (
+                <GradientButton
+                    disabled
+                    sx={{
+                        margin: 'auto 0 auto auto',
+                    }}
+                >
+                    Unstaked
+                </GradientButton>
+            );
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadingSubmit]);
 
-    React.useEffect(() => {
-        console.log('unStaked', unstacked)
-    }, [unstacked])
+    // React.useEffect(() => {
+    //     if (reRender) {
+    //         console.log('handleUnstacked__', reRender)
+    //         console.log('tai sao khong reRender')
+    //         setRerender(false)
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [reRender])
 
     return (
         <CardStyle sx={sx}>
