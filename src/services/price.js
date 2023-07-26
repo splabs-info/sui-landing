@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import { authApis } from 'apis/auth';
 import React from 'react';
 
@@ -13,7 +12,6 @@ export const useGetPrice = () => {
 
   const syncData = async () => {
     const data = await authApis.getPrice();
-    console.log(data);
     setData(data);
   };
 
