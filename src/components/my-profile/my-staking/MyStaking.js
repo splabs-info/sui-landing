@@ -7,7 +7,8 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { fCurrencyV2 } from 'utils/util';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-
+import { handleKeyType } from 'onchain/helpers'
+import {XUI_TYPE} from 'onchain/constants'
 const BallanceBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.20) 0%, rgba(109, 133, 218, 0.20) 100%)',
     borderRadius: '15px',
@@ -105,7 +106,8 @@ export default function MyStaking() {
 
         yourInfo.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
-                if (e?.fields?.key === 'bd3c413ed22600ddc60514104a6ab67167619c9532c088fe14a0ef66d2f09558::xui::XUI') {
+                const formattedKey = handleKeyType(XUI_TYPE)
+                if (e?.fields?.key === formattedKey) {
                     totalXUILockedToken = e?.fields?.value;
                 } else return;
             })
