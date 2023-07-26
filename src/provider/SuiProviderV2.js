@@ -297,6 +297,7 @@ export const SUIWalletContext = ({ children }) => {
                 projects,
                 render,
                 setRender,
+                fetchBalance
             }}
         >
             {children}
