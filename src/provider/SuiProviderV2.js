@@ -1,15 +1,12 @@
-import { Coin, Connection, JsonRpcProvider, testnetConnection } from '@mysten/sui.js';
+import { Coin, Connection, JsonRpcProvider } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { ethers } from 'ethers';
 import { isEmpty, toNumber } from 'lodash';
-import { LAUNCHPAD_STORAGE } from 'onchain/constants';
+import { LAUNCHPAD_STORAGE, XUI_TYPE } from 'onchain/constants';
 import React, { createContext } from 'react';
-import { XUI_TYPE } from 'onchain/constants';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
 const config = {
     providerConnection: new Connection({
         // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
-
         fullnode: 'https://sui-testnet-rpc.allthatnode.com:443/cd2f7736h5krjpsednzd5qjigxgkl803',
     }),
 };
@@ -30,9 +27,6 @@ export const SUIWalletContext = ({ children }) => {
     const [balances, setBalance] = React.useState(0);
     const [projects, setProjects] = React.useState([]);
     const [coinObjectsId, setCoinObjectsId] = React.useState();
-
-    const [render, setRender] = React.useState(false);
-    // const { render, setRender } = useYouSuiStore();
 
     // Format rounds data
     const formatRound = React.useCallback(async (round) => {
@@ -271,15 +265,9 @@ export const SUIWalletContext = ({ children }) => {
 
     React.useEffect(() => {
         if (!provider) return;
-        console.log('render___1', render)
-        if (render) {
-            console.log('render___', render)
-            console.log('vo ma sao khong render taaaa')
-            setRender(false);
-        }
         fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetchData, render]);
+    }, [fetchData]);
 
     React.useEffect(() => {
         if (provider && wallet?.address && wallet?.connected) {
@@ -295,8 +283,6 @@ export const SUIWalletContext = ({ children }) => {
                 coinObjectsId,
                 provider,
                 projects,
-                render,
-                setRender,
                 fetchBalance
             }}
         >

@@ -52,8 +52,6 @@ export default function CustomTable({
   pageSize = 10,
   setPageSize,
   sx,
-  //   reRender,
-  //   setRerender,
   callback,
 }) {
   const [sortOrderASC, setSortOrderASC] = useState(true);
@@ -85,9 +83,7 @@ export default function CustomTable({
 
       if (result) {
         setLoading(false);
-        // setRerender(true);
-        // setRender(true);
-        toast.success('Un staked successful');
+        toast.success('Unstaked successful');
         callback();
       } else {
         setLoading(false);

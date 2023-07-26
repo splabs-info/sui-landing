@@ -1,15 +1,15 @@
 import {
-    Card,
-    CircularProgress,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
-    Tooltip,
-    Typography,
+  Card,
+  CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Tooltip,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TransactionBlock } from '@mysten/sui.js';
@@ -77,6 +77,7 @@ export default function ClaimAvailableTable({
   pageSize = 10,
   setPageSize,
   sx,
+  callback
 }) {
   // const [sortOrderASC, setSortOrderASC] = useState(true);
   // const [dataSort, setDataSort] = useState([]);
@@ -104,6 +105,7 @@ export default function ClaimAvailableTable({
 
         if (result) {
           setLoading(false);
+          callback();
           toast.success('Claim successful');
         } else {
           setLoading(false);

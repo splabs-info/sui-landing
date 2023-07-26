@@ -216,7 +216,6 @@ export default function StakingTable({ reRender, setRerender }) {
       if (result) {
         setLoading(false);
         setIsClaimSuccessful(true);
-        // setRerender(true);
         toast.success('Claim successful');
       } else {
         setLoading(false);
@@ -231,17 +230,9 @@ export default function StakingTable({ reRender, setRerender }) {
 
   React.useEffect(() => {
     fetchStakingCer();
-    // setIsClaimSuccessful(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet?.address, wallet.connected]);
 
-  // React.useEffect(() => {
-  //     if (reRender) {
-  //         console.log('co do khong ta')
-  //         setRerender(false);
-  //     }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [reRender]);
 
   console.log({ data });
 
@@ -273,7 +264,7 @@ export default function StakingTable({ reRender, setRerender }) {
           <Typography>No any claim available</Typography>
         ) : (
           // <CustomTable data={claimList} config={config} loading={!data} page={0} setPage={(e) => setPage(e)} />
-          <ClaimAvailableTable data={claimList} />
+          <ClaimAvailableTable data={claimList} callback={fetchStakingCer}/>
         )}
       </TableBox>
     </Stack>

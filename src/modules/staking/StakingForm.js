@@ -20,7 +20,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, reR
   const [isAgree, setIsAgree] = React.useState(false);
   const isMobile = useResponsive('down', 'sm');
   const wallet = useWallet();
-  const { assets, render, setRender, fetchBalance } = React.useContext(SuiContext);
+  const { assets, fetchBalance } = React.useContext(SuiContext);
 
   // const { setRender } = useYouSuiStore();
 
@@ -111,8 +111,6 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, reR
         fetchBalance();
         setLoading(false);
         setIsAgree(false);
-        setRerender(true);
-        setRender(true);
         reset({ amount: 0 });
       } else {
         setLoading(false);
