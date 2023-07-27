@@ -79,12 +79,13 @@ export default function ClaimAvailableTable({
   sx,
   callback
 }) {
-  const [loadingSubmit, setLoading] = React.useState(false);
+  const [loadingSubmit, setLoadingSubmit] = React.useState({});
   const wallet = useWallet();
 
   const handleClaim = React.useCallback(
     async (id, stake_token) => {
       const tx = new TransactionBlock();
+      setLoadingSubmit(prev => ({ ...prev, [id]: true }));
 
       tx.moveCall({
         target: `${STAKING_PACKAGE_UPGRADE}::staking::claim`,
@@ -98,28 +99,30 @@ export default function ClaimAvailableTable({
         });
 
         if (result) {
-          setLoading(false);
+          setLoadingSubmit(prev => ({ ...prev, [id]: false }));
           callback();
           toast.success('Claim successful');
         } else {
-          setLoading(false);
+          setLoadingSubmit(prev => ({ ...prev, [id]: false }));
           toast.error('Transaction rejected');
         }
       } catch (e) {
-        setLoading(false);
+        setLoadingSubmit(prev => ({ ...prev, [id]: false }));
         console.log('handleClaim__error', e);
         toast.error('Transaction rejected');
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [wallet]
   );
 
   const renderBtnState = React.useCallback(
     (id, stake_token, can_claim_amount) => {
+      const isLoading = loadingSubmit[id];
       if (can_claim_amount !== 0) {
         return (
           <GradientButton
-            loading={loadingSubmit}
+            loading={isLoading}
             onClick={() => handleClaim(id, stake_token)}
             sx={{
               margin: 'auto 0 auto auto',

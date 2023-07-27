@@ -94,14 +94,13 @@ let config = [
     },
 ];
 
-export default function StakingTable() {
+export default function StakingTable({ fetchUserStakingInfo }) {
     const [page, setPage] = useState(1);
     const [pageSize] = useState(12);
     const [data, setData] = useState([]);
     const [loading, setLoading] = React.useState(false);
     const [claimList, setClaimList] = React.useState([]);
     const [totalClaim, setTotalClaim] = React.useState(0);
-    const [isClaimSuccessful, setIsClaimSuccessful] = React.useState(false);
     const { provider } = React.useContext(SuiContext);
     const wallet = useWallet();
     const claims = [];
@@ -214,7 +213,6 @@ export default function StakingTable() {
 
             if (result) {
                 setLoading(false);
-                setIsClaimSuccessful(true);
                 fetchStakingCer();
                 toast.success('Claim successful');
             } else {
@@ -234,8 +232,6 @@ export default function StakingTable() {
     }, [wallet?.address, wallet.connected]);
 
 
-    console.log({ data });
-
     return (
         <Stack gap={3}>
             <TableBox>
@@ -246,6 +242,7 @@ export default function StakingTable() {
                     page={0}
                     setPage={(e) => setPage(e)}
                     callback={fetchStakingCer}
+                    fetchUserStakingInfo={fetchUserStakingInfo}
                 />
             </TableBox>
             <TableBox>
@@ -263,7 +260,6 @@ export default function StakingTable() {
                 {isEmpty(claimList) ? (
                     <Typography>No any claim available</Typography>
                 ) : (
-                    // <CustomTable data={claimList} config={config} loading={!data} page={0} setPage={(e) => setPage(e)} />
                     <ClaimAvailableTable data={claimList} callback={fetchStakingCer} />
                 )}
             </TableBox>

@@ -8,7 +8,9 @@ import { WalletContext } from 'hooks/use-connect';
 import { isNull } from 'lodash';
 import { INVEST_CERTIFICATE, PACKAGE_BASE } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
+import queryString from 'query-string';
 import React, { useContext, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGetProfile, useLogin } from 'services/auth';
 import { setAccessToken } from 'utils/auth';
 import { findCertificate } from 'utils/util';
@@ -21,27 +23,22 @@ import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
 import StakingTable from './my-staking/StakingTable';
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import queryString from 'query-string';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
-const StyledResponsiveStack = styled(Stack)(({ theme }) => ({
-    [theme.breakpoints.down('md')]: {
-        flexDirection: 'column',
-    },
-}));
+import {STAKING_STORAGE, XUI_TYPE} from 'onchain/constants'
+import {handleKeyType, formatEther} from 'onchain/helpers'
 export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const { address, active } = useContext(WalletContext);
     const wallet = useWallet();
 
     const [defaultInfo, setDefaultInfo] = useState(null);
+    const [totalXUILocked, setTotalXUILocked] = React.useState(0)
     const [id, setId] = useState(null);
     const [myIDOs, setMyIDOs] = React.useState([]);
     const [flag, setFlag] = React.useState(false);
     const { provider, projects } = React.useContext(SuiContext);
     const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
-
+    
     // const { render, setRender } = useYouSuiStore()
 
     const location = useLocation();
@@ -152,6 +149,40 @@ export default function MyInfo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet?.address, wallet?.connected]);
 
+    const fetchUserStakingInfo = React.useCallback(async () => {
+        if (!wallet.address || !wallet?.connected) return;
+        let totalXUILockedToken;
+        const investList = await provider.getObject({
+            id: STAKING_STORAGE,
+            options: { showContent: true },
+        });
+
+        if (!investList) return console.log('Invest list invalid');
+
+
+        const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter(
+            (i) => i?.fields.key === wallet?.address
+        );
+
+        yourInfo.forEach((i) =>
+            i?.fields?.value?.fields?.contents.forEach((e) => {
+                const formattedKey = handleKeyType(XUI_TYPE)
+                if (e?.fields?.key === formattedKey) {
+                    totalXUILockedToken = e?.fields?.value;
+                } else return;
+            })
+        );
+
+        const formattedTotalXUILocked = formatEther(totalXUILockedToken, 9);
+        setTotalXUILocked(formattedTotalXUILocked);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet.address, wallet?.connected]);
+
+    React.useEffect(() => {
+        fetchUserStakingInfo();
+    }, [fetchUserStakingInfo]);
+
     React.useEffect(() => {
         if (provider && projects) {
             fetchData();
@@ -230,11 +261,11 @@ export default function MyInfo() {
                                                 )}
                                             </Grid>
                                             <Grid item xs={12} md={8.5}>
-                                                <OverviewTabs handleChangeTab={handleChangeTab} />
+                                                <OverviewTabs handleChangeTab={handleChangeTab} totalXUILocked={totalXUILocked}/>
                                             </Grid>
                                         </Grid>
                                         {tabIndex === 0 && <OverViewContent />}
-                                        {tabIndex === 1 && <StakingTable />}
+                                        {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo}/>}
                                     </>
                                 )}
                             </>

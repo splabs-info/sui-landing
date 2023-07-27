@@ -109,14 +109,14 @@ export default function StakingTier() {
       </Stack>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
         <StakingBtn onClick={() => navigate('/staking')}>
-          <img
+          {/* <img
             src="/images/home/YouSUI-token.png"
             alt="token"
             style={{
               width: 24,
               height: 24,
             }}
-          />
+          /> */}
           Staking now
         </StakingBtn>
       </Box>

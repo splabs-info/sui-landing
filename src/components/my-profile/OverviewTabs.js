@@ -95,9 +95,8 @@ function a11yProps(index) {
     };
 }
 
-export default function OverviewTabs({ handleChangeTab = () => { } }) {
+export default function OverviewTabs({ handleChangeTab = () => { }, totalXUILocked }) {
     const [sui, setSui] = React.useState();
-    const [sua, setSua] = React.useState();
     const { assets } = React.useContext(SuiContext);
 
     const isDesktop = useResponsive('up', 'md');
@@ -118,10 +117,8 @@ export default function OverviewTabs({ handleChangeTab = () => { } }) {
 
     React.useEffect(() => {
         if (!assets || assets.length <= 0) return;
-
         assets.forEach((item) => {
             if (item?.symbol === 'SUI') setSui(ethers.utils.formatUnits(item?.balance, item?.decimals));
-            // if (item?.symbol === 'SUA') setSua(ethers.utils.formatUnits(item?.balance, item?.decimals));
         });
     }, [assets]);
 
@@ -156,7 +153,7 @@ export default function OverviewTabs({ handleChangeTab = () => { } }) {
                     <TierInformation tierMedal="/images/sui-tier/tier5.png" level="TIER 5" idoApp="2% of Total Pool" />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <MyStaking />
+                    <MyStaking totalXUILocked={totalXUILocked}/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <TitleSection title="COMING SOON" />

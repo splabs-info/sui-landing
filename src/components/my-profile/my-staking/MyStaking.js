@@ -80,45 +80,12 @@ const AboutBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-export default function MyStaking() {
-    const [totalXUILocked, setTotalXUILocked] = React.useState(0);
+export default function MyStaking({ totalXUILocked }) {
+    // const [totalXUILocked, setTotalXUILocked] = React.useState(0);
 
-    const wallet = useWallet();
+    // const wallet = useWallet();
 
-    const { provider } = React.useContext(SuiContext);
-    const fetchUserStakingInfo = React.useCallback(async () => {
-        if (!wallet.address || !wallet?.connected) return;
-        let totalXUILockedToken;
-        const investList = await provider.getObject({
-            id: STAKING_STORAGE,
-            options: { showContent: true },
-        });
-
-        if (!investList) return console.log('Invest list invalid');
-
-
-        const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter(
-            (i) => i?.fields.key === wallet?.address
-        );
-
-        yourInfo.forEach((i) =>
-            i?.fields?.value?.fields?.contents.forEach((e) => {
-                const formattedKey = handleKeyType(XUI_TYPE)
-                if (e?.fields?.key === formattedKey) {
-                    totalXUILockedToken = e?.fields?.value;
-                } else return;
-            })
-        );
-
-        const formattedTotalXUILocked = formatEther(totalXUILockedToken, 9);
-        setTotalXUILocked(formattedTotalXUILocked);
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet.address, wallet?.connected]);
-
-    React.useEffect(() => {
-        fetchUserStakingInfo();
-    }, [fetchUserStakingInfo]);
+    // const { provider } = React.useContext(SuiContext);
 
 
     return (
