@@ -120,7 +120,6 @@ export default function StakingTable() {
     };
 
     const fetchStakingCer = async () => {
-        console.log('syncData => fetchStakingCer');
         if (!wallet?.address || !wallet.connected) return;
         let totalClaim;
         const filter = {
@@ -216,6 +215,7 @@ export default function StakingTable() {
             if (result) {
                 setLoading(false);
                 setIsClaimSuccessful(true);
+                fetchStakingCer();
                 toast.success('Claim successful');
             } else {
                 setLoading(false);
