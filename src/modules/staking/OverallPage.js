@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import Staking from './Stacking';
 import { handleKeyType } from 'onchain/helpers'
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-
+import { sumBy } from 'lodash'
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -62,11 +62,8 @@ export default function StakingFarming() {
     const [tabIndex, setTabIndex] = useState('0');
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
     const [staking, setStaking] = React.useState([])
-    const [reRender, setRerender] = React.useState(false);
 
-    // const { render, setRender } = useYouSuiStore();
 
-    const wallet = useWallet();
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
     };
@@ -132,29 +129,31 @@ export default function StakingFarming() {
 
 
     const fetchUserStakingInfo = React.useCallback(async () => {
-        if (!wallet.address || !wallet?.connected) return;
-        let totalXUILockedToken;
+        let totalXUILockedToken = 0;
+        const formattedKey = handleKeyType(XUI_TYPE)
         const investList = await provider.getObject({
             id: STAKING_STORAGE,
             options: { showContent: true }
         })
 
         if (!investList) return console.log('Invest list invalid')
-        const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter((i) => i?.fields.key === wallet?.address)
 
-        yourInfo.forEach((i) => i?.fields?.value?.fields?.contents.forEach((e) => {
-            const formattedKey = handleKeyType(XUI_TYPE)
-            // Change to prod
-            if (e?.fields?.key === formattedKey) {
-                totalXUILockedToken = e?.fields?.value
-            } else return;
-        }))
-
-        const formattedTotalXUILocked = formatEther(totalXUILockedToken, 9)
-        setTotalXUILocked(formattedTotalXUILocked)
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet.address, wallet?.connected])
+        const investContents = investList?.data?.content?.fields?.invest_list?.fields?.contents;
+        if (investContents && investContents.length > 0) {
+            investContents.forEach((e) => {
+                const valueContents = e.fields.value.fields.contents;
+                if (valueContents && valueContents.length > 0) {
+                    valueContents.forEach((i) => {
+                        if (i?.fields?.key === formattedKey) {
+                            totalXUILockedToken += toNumber(formatEther(i.fields.value, 9));
+                        }
+                    });
+                }
+            });
+        }
+        setTotalXUILocked(totalXUILockedToken)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     React.useEffect(() => {
         fetchUserStakingInfo()
@@ -164,14 +163,6 @@ export default function StakingFarming() {
         fetchStakingInfo()
     }, [fetchStakingInfo])
 
-
-    // React.useEffect(() => {
-    //     if (render) {
-    //         console.log('StakingFarming___', render)
-    //         setRender(false)
-    //     }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [render])
     return (
         <Page title="Staking/Farming">
             <SectionBox
@@ -189,7 +180,7 @@ export default function StakingFarming() {
                                 </SpecialTabList>
                             </Stack>
                             <TabPanel value={'0'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Staking staking={staking} totalXUILocked={totalXUILocked} />
+                                <Staking staking={staking} fetchUserStakingInfo={fetchUserStakingInfo} totalXUILocked={totalXUILocked} />
                             </TabPanel>
                             <TabPanel value={'1'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
                                 {/* <Farming /> */}

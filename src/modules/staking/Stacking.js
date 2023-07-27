@@ -45,10 +45,9 @@ const VerifyDataField = ({ label, value }) => (
         <Typography>{label === 'Unstake Fee' ? `${value} %` : value}</Typography>
     </Stack>
 );
-export default function Staking({ staking, totalXUILocked }) {
+export default function Staking({ staking, totalXUILocked, fetchUserStakingInfo }) {
     const isMobile = useResponsive('down', 'sm');
     const [loading, setLoading] = React.useState();
-    const [reRender, setRerender] = React.useState(false);
     const transformedData = transformStakingData(staking);
     const sortASC = [...transformedData].sort((a, b) => a.time - b.time);
     const [verifyData, setVerifyData] = React.useState({});
@@ -66,14 +65,6 @@ export default function Staking({ staking, totalXUILocked }) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [staking, sortASC, transformedData]);
-
-    React.useEffect(() => {
-        if(reRender) {
-            console.log('reRender___', reRender)
-            console.log('taij sao khong re-render nhi')
-            setRerender(false)
-        }
-    }, [reRender])
 
     return (
         <>
@@ -218,8 +209,7 @@ export default function Staking({ staking, totalXUILocked }) {
                             setVerifyData={(e) => setVerifyData(e)}
                             verifyData={verifyData}
                             sortedData={sortASC}
-                            setRerender={setRerender}
-                            reRender={reRender}
+                            fetchUserStakingInfo={fetchUserStakingInfo}
                         />
                     </Grid>
                 </Grid>

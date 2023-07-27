@@ -1,14 +1,11 @@
 import { Box, Button, Grid, Stack, TextField, Typography, styled } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
 import { GradientLoadingButton } from 'components/common/CustomButton';
-import { STAKING_STORAGE } from 'onchain/constants';
-import { formatEther } from 'onchain/helpers';
+import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
+import { formatEther, handleKeyType } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { fCurrencyV2 } from 'utils/util';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { handleKeyType } from 'onchain/helpers'
-import {XUI_TYPE} from 'onchain/constants'
 const BallanceBox = styled(Box)(({ theme }) => ({
     background: 'linear-gradient(180deg, rgba(104, 229, 184, 0.20) 0%, rgba(109, 133, 218, 0.20) 100%)',
     borderRadius: '15px',
@@ -85,10 +82,8 @@ const AboutBox = styled(Box)(({ theme }) => ({
 
 export default function MyStaking() {
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
-    // const [reRender, setRerender] = React.useState(false);
 
     const wallet = useWallet();
-    const { render, setRender } = useYouSuiStore();
 
     const { provider } = React.useContext(SuiContext);
     const fetchUserStakingInfo = React.useCallback(async () => {
@@ -100,6 +95,8 @@ export default function MyStaking() {
         });
 
         if (!investList) return console.log('Invest list invalid');
+
+
         const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter(
             (i) => i?.fields.key === wallet?.address
         );
@@ -123,13 +120,6 @@ export default function MyStaking() {
         fetchUserStakingInfo();
     }, [fetchUserStakingInfo]);
 
-    // React.useEffect(() => {
-    //     if (render) {
-    //         console.log('render____MyStaking', render)
-    //         setRender(false)
-    //     }
-    
-    // }, [render, setRender])
 
     return (
         <Box>

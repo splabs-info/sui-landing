@@ -33,7 +33,6 @@ export default function MyInfo() {
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const { address, active } = useContext(WalletContext);
     const wallet = useWallet();
-    const [reRender, setRerender] = React.useState(false);
 
     const [defaultInfo, setDefaultInfo] = useState(null);
     const [id, setId] = useState(null);
@@ -161,14 +160,6 @@ export default function MyInfo() {
     }, [fetchData, projects]);
 
 
-    // React.useEffect(() => {
-    //     if (render) {
-    //         console.log('my info_____', render)
-    //         console.log('component cha roi')
-    //         setRender(false)
-    //     }
-    // }, [render])
-
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -243,7 +234,7 @@ export default function MyInfo() {
                                             </Grid>
                                         </Grid>
                                         {tabIndex === 0 && <OverViewContent />}
-                                        {tabIndex === 1 && <StakingTable reRender={reRender} setRerender={setRerender} />}
+                                        {tabIndex === 1 && <StakingTable />}
                                     </>
                                 )}
                             </>

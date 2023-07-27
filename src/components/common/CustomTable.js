@@ -60,8 +60,6 @@ export default function CustomTable({
 
   const wallet = useWallet();
 
-  //   const { setRender } = useYouSuiStore();
-
   const handleSortColumn = (id) => {
     setSortOrderASC(!sortOrderASC);
     setDataSort((data) => (sortOrderASC ? data.sort((a, b) => a[id] - b[id]) : data.sort((a, b) => b[id] - a[id])));

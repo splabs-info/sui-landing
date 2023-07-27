@@ -79,14 +79,8 @@ export default function ClaimAvailableTable({
   sx,
   callback
 }) {
-  // const [sortOrderASC, setSortOrderASC] = useState(true);
-  // const [dataSort, setDataSort] = useState([]);
   const [loadingSubmit, setLoading] = React.useState(false);
   const wallet = useWallet();
-  // const handleSortColumn = (id) => {
-  //     setSortOrderASC(!sortOrderASC);
-  //     setDataSort((data) => (sortOrderASC ? data.sort((a, b) => a[id] - b[id]) : data.sort((a, b) => b[id] - a[id])));
-  // };
 
   const handleClaim = React.useCallback(
     async (id, stake_token) => {
@@ -125,6 +119,7 @@ export default function ClaimAvailableTable({
       if (can_claim_amount !== 0) {
         return (
           <GradientButton
+            loading={loadingSubmit}
             onClick={() => handleClaim(id, stake_token)}
             sx={{
               margin: 'auto 0 auto auto',
