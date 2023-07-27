@@ -12,15 +12,14 @@ import {
     Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { IconLineDashed } from '@tabler/icons';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { GradientButton } from 'components/common/CustomButton';
 import { TransactionBlock } from '@mysten/sui.js';
-import { CLOCK, STAKING_STORAGE, STAKING_PACKAGE_UPGRADE } from 'onchain/constants';
 import { useWallet } from '@suiet/wallet-kit';
+import { IconLineDashed } from '@tabler/icons';
+import { GradientButton } from 'components/common/CustomButton';
+import { CLOCK, STAKING_PACKAGE_UPGRADE, STAKING_STORAGE } from 'onchain/constants';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { toast } from 'react-toastify';
-
 const CardStyle = styled(Card)(({ theme }) => ({
     background: 'transparent',
     boxShadow: 'none',
@@ -53,12 +52,15 @@ export default function CustomTable({
     pageSize = 10,
     setPageSize,
     sx,
+    callback,
+    fetchUserStakingInfo,
 }) {
-    const [sortOrderASC, setSortOrderASC] = useState(true);
-    const [dataSort, setDataSort] = useState([]);
-    const [loadingSubmit, setLoading] = React.useState(false);
-    const [unstacked, setUnstacked] = React.useState(false);
+    const [sortOrderASC, setSortOrderASC] = React.useState(true);
+    const [dataSort, setDataSort] = React.useState([]);
+    const [loadingSubmit, setLoadingSubmit] = React.useState({});
+
     const wallet = useWallet();
+
     const handleSortColumn = (id) => {
         setSortOrderASC(!sortOrderASC);
         setDataSort((data) => (sortOrderASC ? data.sort((a, b) => a[id] - b[id]) : data.sort((a, b) => b[id] - a[id])));
@@ -66,6 +68,7 @@ export default function CustomTable({
 
     const handleUnstacked = async (id, stake_token) => {
         const tx = new TransactionBlock();
+        setLoadingSubmit(prev => ({ ...prev, [id]: true }));
 
         tx.moveCall({
             target: `${STAKING_PACKAGE_UPGRADE}::staking::unstake`,
@@ -79,55 +82,29 @@ export default function CustomTable({
             });
 
             if (result) {
-                setLoading(false);
-                setUnstacked(true)
-                toast.success('Un staked successful');
+                setLoadingSubmit(prev => ({ ...prev, [id]: false }));
+                fetchUserStakingInfo();
+                toast.success('Unstaked successful');
+                callback();
             } else {
-                setLoading(false);
+                setLoadingSubmit(prev => ({ ...prev, [id]: false }));
                 toast.error('Transaction rejected');
             }
         } catch (e) {
-            setLoading(false);
+            setLoadingSubmit(prev => ({ ...prev, [id]: false }));
             console.log('handleUnstacked__error', e);
             toast.error('Transaction rejected');
         }
     };
 
-    const handleClaim = async (id, stake_token) => {
-        const tx = new TransactionBlock();
-
-        tx.moveCall({
-            target: `${STAKING_PACKAGE_UPGRADE}::staking::claim`,
-            typeArguments: [`0x${stake_token}`],
-            arguments: [tx.object(CLOCK), tx.object(STAKING_STORAGE), tx.object(id)],
-        });
-
-        try {
-            const result = await wallet.signAndExecuteTransactionBlock({
-                transactionBlock: tx,
-            });
-
-            if (result) {
-                setLoading(false);
-                toast.success('Claim successful');
-            } else {
-                setLoading(false);
-                toast.error('Transaction rejected');
-            }
-        } catch (e) {
-            setLoading(false);
-            console.log('handleClaim__error', e);
-            toast.error('Transaction rejected');
-        }
-    }
-
-    const renderBtnState = React.useCallback((id, stake_token, status, claim_list, can_claim_amount) => {
-        if (!claim_list) {
+    const renderBtnState = React.useCallback(
+        (id, stake_token, status) => {
+            const isLoading = loadingSubmit[id];
             if (status) {
                 return (
                     <GradientButton
                         onClick={() => handleUnstacked(id, stake_token)}
-                        loading={loadingSubmit}
+                        loading={isLoading}
                         sx={{
                             margin: 'auto 0 auto auto',
                         }}
@@ -147,34 +124,10 @@ export default function CustomTable({
                     </GradientButton>
                 );
             }
-        } else {
-            if (can_claim_amount !== 0) {
-                return <GradientButton
-                onClick={() => handleClaim(id, stake_token)}
-                sx={{
-                    margin: 'auto 0 auto auto',
-                }}
-            >
-                Claim
-            </GradientButton>
-            } else {
-                return <GradientButton
-                // onClick={() => handleClaim(id, stake_token)}
-                disabled
-                sx={{
-                    margin: 'auto 0 auto auto',
-                }}
-            >
-                Claim
-            </GradientButton>
-            }
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loadingSubmit]);
-
-    React.useEffect(() => {
-        console.log('unStaked', unstacked)
-    }, [unstacked])
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        },
+        [loadingSubmit]
+    );
 
     return (
         <CardStyle sx={sx}>
@@ -271,11 +224,17 @@ export default function CustomTable({
                                             <TableRow hover key={index}>
                                                 <TableCell>#{index + 1}</TableCell>
                                                 {config.map((tableBody, i) => (
-                                                    <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                                                    <TableCell sx={{ whiteSpace: 'nowrap' }} key={i}>
                                                         {tableBody.render ? (
                                                             <>
                                                                 {tableBody?.key === 'status' ? (
-                                                                    <>{renderBtnState(item?.id, item?.stake_token, item?.status, item?.claim_list, item?.can_claim_amount)}</>
+                                                                    <>
+                                                                        {renderBtnState(
+                                                                            item?.id,
+                                                                            item?.stake_token,
+                                                                            item?.status,
+                                                                        )}
+                                                                    </>
                                                                 ) : (
                                                                     tableBody.render(item[tableBody.key])
                                                                 )}

@@ -37,29 +37,21 @@ const data = {
     ],
 };
 
-
 const VerifyDataField = ({ label, value }) => (
-    <Stack
-        direction={'row'}
-        justifyContent="space-between"
-        alignItems={'center'}
-        className="border"
-        pb={1.25}
-        pt={1.25}
-    >
+    <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className="border" pb={1.25} pt={1.25}>
         <Typography variant="body1" fontWeight={600}>
             {label}
         </Typography>
         <Typography>{label === 'Unstake Fee' ? `${value} %` : value}</Typography>
     </Stack>
 );
-export default function Staking({ staking, totalXUILocked }) {
+export default function Staking({ staking, totalXUILocked, fetchUserStakingInfo }) {
     const isMobile = useResponsive('down', 'sm');
     const [loading, setLoading] = React.useState();
     const transformedData = transformStakingData(staking);
     const sortASC = [...transformedData].sort((a, b) => a.time - b.time);
     const [verifyData, setVerifyData] = React.useState({});
-    const theme = useTheme()
+    const theme = useTheme();
     const { price } = useGetPrice();
 
     React.useEffect(() => {
@@ -94,14 +86,13 @@ export default function Staking({ staking, totalXUILocked }) {
                                 <Stack direction={'row'} justifyContent={'space-between'} mb={1}>
                                     <Typography variant="h3">{data.symbol}</Typography>
                                     <SocialFooter sx={{ '& img': { width: '80%' } }} />
-
                                 </Stack>
                                 <Typography>{data.description}</Typography>
-
-
                             </Box>
                             <Stack spacing={2} direction={'row'}>
-                                <Typography variant="h3" mt={2} mb={2}>{data.title}</Typography>
+                                <Typography variant="h3" mt={2} mb={2}>
+                                    {data.title}
+                                </Typography>
                                 <Box
                                     mt={1}
                                     sx={{
@@ -200,7 +191,6 @@ export default function Staking({ staking, totalXUILocked }) {
                             direction={'column'}
                             justifyContent="space-between"
                             height={'100%'}
-
                             sx={{ '& .border': { borderBottom: '1px solid rgba(255, 255, 255, 0.1)' } }}
                         >
                             <VerifyDataField label="Expected APY" value={`${verifyData?.expectedAPY} % / Daily`} />
@@ -215,7 +205,12 @@ export default function Staking({ staking, totalXUILocked }) {
                         </Stack>
                     </Grid>
                     <Grid item md={8} xs={12}>
-                        <StakingForm setVerifyData={(e) => setVerifyData(e)} verifyData={verifyData} sortedData={sortASC} />
+                        <StakingForm
+                            setVerifyData={(e) => setVerifyData(e)}
+                            verifyData={verifyData}
+                            sortedData={sortASC}
+                            fetchUserStakingInfo={fetchUserStakingInfo}
+                        />
                     </Grid>
                 </Grid>
             )}

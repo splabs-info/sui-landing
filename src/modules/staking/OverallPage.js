@@ -5,12 +5,14 @@ import { useWallet } from '@suiet/wallet-kit';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import { isEmpty, toNumber } from 'lodash';
-import { STAKING_STORAGE } from 'onchain/constants';
+import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
 import { formatEther } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useState } from 'react';
 import Staking from './Stacking';
-
+import { handleKeyType } from 'onchain/helpers'
+import { useYouSuiStore } from 'zustand-store/yousui_store';
+import { sumBy } from 'lodash'
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -61,7 +63,7 @@ export default function StakingFarming() {
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
     const [staking, setStaking] = React.useState([])
 
-    const wallet = useWallet();
+
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
     };
@@ -127,89 +129,31 @@ export default function StakingFarming() {
 
 
     const fetchUserStakingInfo = React.useCallback(async () => {
-        if (!wallet.address || !wallet?.connected) return;
-        let totalXUILockedToken;
+        let totalXUILockedToken = 0;
+        const formattedKey = handleKeyType(XUI_TYPE)
         const investList = await provider.getObject({
             id: STAKING_STORAGE,
             options: { showContent: true }
         })
 
         if (!investList) return console.log('Invest list invalid')
-        const yourInfo = investList?.data?.content?.fields?.invest_list?.fields?.contents.filter((i) => i?.fields.key === wallet?.address)
 
-        yourInfo.forEach((i) => i?.fields?.value?.fields?.contents.forEach((e) => {
-            // Change to prod
-            if (e?.fields?.key === '3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI') {
-                totalXUILockedToken = e?.fields?.value
-            } else return;
-        }))
-
-        const formattedTotalXUILocked = formatEther(totalXUILockedToken, 9)
-        setTotalXUILocked(formattedTotalXUILocked)
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet.address, wallet?.connected])
-
-    // const fetchStakingCer = React.useCallback(async () => {
-    //     if (!wallet?.address || !wallet.connected) return;
-
-    //     const filter = {
-    //         MatchAll: [
-    //             {
-    //                 StructType: `${STAKING_PACKAGE_BASE}::certificate::InvestmentCertificate`,
-    //             },
-    //             {
-    //                 AddressOwner: wallet?.address,
-    //             },
-    //         ],
-    //     };
-
-    //     const myStakingCer = await provider.getOwnedObjects({
-    //         owner: wallet?.address,
-    //         filter: filter,
-    //         options: { showContent: true },
-    //     })
-
-    //     const infoStakingPromise = myStakingCer?.data.map(async (cer) => {
-    //         const info = await provider.getDynamicFieldObject(({
-    //             parentId: cer?.data?.objectId,
-    //             name: { type: "0x1::string::String", value: 'info' }
-    //         }))
-    //         console.log('cerr', cer?.data?.content?.fields)
-    //         console.log('info__', info?.data?.content?.fields)
-
-    //         const formatInfo = {
-    //             ...cer?.data?.content?.fields,
-    //             ...info?.data?.content?.fields?.value?.fields,
-    //             issue_date: moment(toNumber(cer?.data?.content?.fields?.issue_date)).format('LLLL'),
-    //             stake_date: moment(toNumber(info?.data?.content?.fields?.value?.fields?.stake_date)).format("LLLL"),
-    //             stake_amount: formatEther(info?.data?.content?.fields?.value?.fields?.stake_amount, 9),
-    //             profit_claimed_amount: formatEther(info?.data?.content?.fields?.value?.fields?.profit_claimed_amount, 9),
-    //             id: cer?.data?.content?.fields?.id?.id,
-    //         }
-
-    //         return formatInfo
-    //     })
-
-    //     // tx.moveCall({
-    //     //     ...
-    //     // })
-
-    //     // cer avai => {
-
-    //     // }
-    //     // array [tx.moveCall. tx.mo]
-    //     // tx.moveCall({
-
-    //     // })
-
-
-
-    //     const info = await Promise.all(infoStakingPromise)
-    //     console.log('info___', info)
-    //     if (!myStakingCer || isEmpty(myStakingCer)) return;
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [wallet?.address, wallet.connected])
+        const investContents = investList?.data?.content?.fields?.invest_list?.fields?.contents;
+        if (investContents && investContents.length > 0) {
+            investContents.forEach((e) => {
+                const valueContents = e.fields.value.fields.contents;
+                if (valueContents && valueContents.length > 0) {
+                    valueContents.forEach((i) => {
+                        if (i?.fields?.key === formattedKey) {
+                            totalXUILockedToken += toNumber(formatEther(i.fields.value, 9));
+                        }
+                    });
+                }
+            });
+        }
+        setTotalXUILocked(totalXUILockedToken)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     React.useEffect(() => {
         fetchUserStakingInfo()
@@ -218,7 +162,6 @@ export default function StakingFarming() {
     React.useEffect(() => {
         fetchStakingInfo()
     }, [fetchStakingInfo])
-
 
     return (
         <Page title="Staking/Farming">
@@ -237,7 +180,7 @@ export default function StakingFarming() {
                                 </SpecialTabList>
                             </Stack>
                             <TabPanel value={'0'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Staking staking={staking} totalXUILocked={totalXUILocked} />
+                                <Staking staking={staking} fetchUserStakingInfo={fetchUserStakingInfo} totalXUILocked={totalXUILocked} />
                             </TabPanel>
                             <TabPanel value={'1'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
                                 {/* <Farming /> */}

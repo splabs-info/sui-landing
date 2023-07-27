@@ -15,26 +15,27 @@ import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
 import { CustomInput, FormBox, PackageButton, StackingButton } from './component/StackingStyles';
 
-export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
-
+export default function StakingForm({ verifyData, setVerifyData, sortedData, fetchUserStakingInfo }) {
     const [loading, setLoading] = React.useState(false);
     const [isAgree, setIsAgree] = React.useState(false);
     const isMobile = useResponsive('down', 'sm');
     const wallet = useWallet();
-    const { assets } = React.useContext(SuiContext);
+    const { assets, fetchBalance } = React.useContext(SuiContext);
 
-    const currentTokenStaking = assets.find((a) => a.symbol === verifyData?.currentTokenStakingSymbol);
+
+    const currentTokenStaking = React.useMemo(
+        () => assets.find((a) => a.symbol === verifyData?.currentTokenStakingSymbol),
+        [assets, verifyData?.currentTokenStakingSymbol]
+    );
 
     const formattedBalanceTokenStaking = React.useMemo(() => {
         if (currentTokenStaking) {
-            
             return formatEther(currentTokenStaking?.balance, currentTokenStaking?.decimals);
         } else {
             return 0;
         }
     }, [currentTokenStaking]);
 
-    
     const minStakeAmount = React.useMemo(() => verifyData?.minStakeAmount, [verifyData?.minStakeAmount]);
 
     const StakingSchema = yup.object().shape({
@@ -49,7 +50,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                 if (formattedBalanceTokenStaking < verifyData?.minStakeAmount) return false;
                 else return true;
             })
-            .test('min-validate', `Min amount must be ${minStakeAmount} XUI`, (value) => value >= minStakeAmount)
+            .test('min-validate', `Min amount must be ${minStakeAmount} XUI`, (value) => value >= minStakeAmount),
     });
 
     const {
@@ -68,22 +69,25 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
     });
 
     const handleStaking = async ({ amount }) => {
-
         const tx = new TransactionBlock();
-        setLoading(true)
+        setLoading(true);
 
         if (!currentTokenStaking || !currentTokenStaking.coin) {
-            console.log("currentTokenStaking or currentTokenStaking.coin is undefined");
+            console.log('currentTokenStaking or currentTokenStaking.coin is undefined');
             return;
         }
 
-        
         let [primary, ...sub] = currentTokenStaking?.coin;
 
-        let primaryCoin = tx.object(primary?.coinObjectId)
+        let primaryCoin = tx.object(primary?.coinObjectId);
 
         if (sub.length) {
-            tx.mergeCoins(primaryCoin, sub.map(a => tx.object(a.coinObjectId)))
+            tx.mergeCoins(
+                primaryCoin,
+                sub.map((a) => {
+                    return tx.object(a.coinObjectId);
+                })
+            );
         }
 
         const balanceSplit = BigNumber.from(ethers.utils.parseUnits(toNumber(amount).toString(), 9).toString()).toString();
@@ -93,13 +97,8 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         tx.moveCall({
             target: `${STAKING_PACKAGE_UPGRADE}::staking::stake`,
             typeArguments: [`${currentTokenStaking.coinType}`],
-            arguments: [
-                tx.object(CLOCK),
-                tx.object(STAKING_STORAGE),
-                tx.pure(verifyData?.key),
-                coin
-            ]
-        })
+            arguments: [tx.object(CLOCK), tx.object(STAKING_STORAGE), tx.pure(verifyData?.key), coin],
+        });
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
@@ -107,9 +106,11 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
             });
 
             if (result) {
-                setLoading(false);
                 toast.success('Staking token success');
-                setIsAgree(false)
+                fetchBalance();
+                fetchUserStakingInfo();
+                setLoading(false);
+                setIsAgree(false);
                 reset({ amount: 0 });
             } else {
                 setLoading(false);
@@ -118,10 +119,9 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
         } catch (error) {
             setLoading(false);
             toast.error('Some thing went wrong');
-            console.log('Error___Handle Sales', error)
+            console.log('Error___Handle Sales', error);
         }
     };
-
 
     const handleAll = React.useCallback(() => {
         try {
@@ -132,7 +132,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                 return;
             }
         } catch (error) {
-            console.log('handleAll__Error', error)
+            console.log('handleAll__Error', error);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formattedBalanceTokenStaking]);
@@ -187,7 +187,13 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData }) {
                 <Typography>
                     Minimum: <strong>{fCurrencyV2(verifyData?.minStakeAmount)} XUI</strong>
                 </Typography>
-                <Stack direction={'row'} justifyContent={'space-between'} gap={1} mt={2} flexWrap={isMobile ? 'wrap' : 'nowrap'}>
+                <Stack
+                    direction={'row'}
+                    justifyContent={'space-between'}
+                    gap={1}
+                    mt={2}
+                    flexWrap={isMobile ? 'wrap' : 'nowrap'}
+                >
                     {sortedData.map((p, index) => (
                         <PackageButton
                             className={p.time === verifyData.time ? `active ${p.className}` : ''}

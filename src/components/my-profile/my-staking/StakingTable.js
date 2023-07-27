@@ -90,18 +90,17 @@ let config = [
     {
         key: 'status',
         label: '',
-        render: (e) => e?.status
+        render: (e) => e?.status,
     },
 ];
 
-export default function StakingTable() {
+export default function StakingTable({ fetchUserStakingInfo }) {
     const [page, setPage] = useState(1);
     const [pageSize] = useState(12);
     const [data, setData] = useState([]);
-    const [loading, setLoading] = React.useState(false)
+    const [loading, setLoading] = React.useState(false);
     const [claimList, setClaimList] = React.useState([]);
     const [totalClaim, setTotalClaim] = React.useState(0);
-    const [isClaimSuccessful, setIsClaimSuccessful] = React.useState(false);
     const { provider } = React.useContext(SuiContext);
     const wallet = useWallet();
     const claims = [];
@@ -119,9 +118,9 @@ export default function StakingTable() {
         return temp * date;
     };
 
-    const fetchStakingCer = React.useCallback(async () => {
+    const fetchStakingCer = async () => {
         if (!wallet?.address || !wallet.connected) return;
-        let totalClaim
+        let totalClaim;
         const filter = {
             MatchAll: [
                 {
@@ -146,7 +145,6 @@ export default function StakingTable() {
                 parentId: cer?.data?.objectId,
                 name: { type: '0x1::string::String', value: 'info' },
             });
-            
 
             const formatInfo = {
                 ...cer?.data?.content?.fields,
@@ -165,13 +163,12 @@ export default function StakingTable() {
                 formatInfo?.stake_amount
             );
 
-
             const formatInfoClaim = {
                 ...formatInfo,
                 can_claim_amount: infoClaim,
-            }
+            };
 
-            claims.push(formatInfoClaim)
+            claims.push(formatInfoClaim);
 
             return formatInfo;
         });
@@ -183,24 +180,23 @@ export default function StakingTable() {
         const formatted = transformCerInfo(info);
 
         if (!isEmpty(claims)) {
-            const formattedClaim = transformClaimInfo(claims)
+            const formattedClaim = transformClaimInfo(claims);
 
-            const uniqueClaims = uniqBy(formattedClaim, 'id')
+            const uniqueClaims = uniqBy(formattedClaim, 'id');
             totalClaim = sumBy(uniqueClaims, 'can_claim_amount');
             setTotalClaim(totalClaim);
             setClaimList(uniqueClaims);
         }
         setData(formatted);
         if (!myStakingCer || isEmpty(myStakingCer)) return;
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ wallet?.address, wallet.connected]);
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
 
     const handleTotalClaim = async () => {
         const tx = new TransactionBlock();
-        setLoading(true)
-        const filterClaimList = claimList.filter((i) => i?.can_claim_amount !== 0)
+        setLoading(true);
+        const filterClaimList = claimList.filter((i) => i?.can_claim_amount !== 0);
 
         filterClaimList.forEach((i) => {
             tx.moveCall({
@@ -208,7 +204,7 @@ export default function StakingTable() {
                 typeArguments: [`0x${i?.stake_token}`],
                 arguments: [tx.object(CLOCK), tx.object(STAKING_STORAGE), tx.object(i?.id)],
             });
-        })
+        });
 
         try {
             const result = await wallet.signAndExecuteTransactionBlock({
@@ -217,7 +213,7 @@ export default function StakingTable() {
 
             if (result) {
                 setLoading(false);
-                setIsClaimSuccessful(true);
+                fetchStakingCer();
                 toast.success('Claim successful');
             } else {
                 setLoading(false);
@@ -228,24 +224,35 @@ export default function StakingTable() {
             console.log('handleClaim__error', e);
             toast.error('Transaction rejected');
         }
-    }
+    };
 
     React.useEffect(() => {
         fetchStakingCer();
-        setIsClaimSuccessful(false);
-    }, [fetchStakingCer, isClaimSuccessful]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, wallet.connected]);
+
 
     return (
         <Stack gap={3}>
             <TableBox>
-                <CustomTable data={data} config={config} loading={!data} page={0} setPage={(e) => setPage(e)} />
+                <CustomTable
+                    data={data}
+                    config={config}
+                    loading={!data}
+                    page={0}
+                    setPage={(e) => setPage(e)}
+                    callback={fetchStakingCer}
+                    fetchUserStakingInfo={fetchUserStakingInfo}
+                />
             </TableBox>
             <TableBox>
                 <ClaimBox>
                     <TypographyShadow variant="h6">Claim available amount:</TypographyShadow>
                     <Stack direction={'row'} gap={1} alignItems={'center'}>
                         <TypographyShadow variant="h4">{totalClaim ? fCurrencyV2(totalClaim, 6) : 0} XUI </TypographyShadow>
-                        <GradientButton onClick={handleTotalClaim} loading={loading} disabled={totalClaim === 0}>Claim</GradientButton>
+                        <GradientButton onClick={handleTotalClaim} loading={loading} disabled={totalClaim === 0}>
+                            Claim
+                        </GradientButton>
                     </Stack>
                 </ClaimBox>
             </TableBox>
@@ -253,8 +260,7 @@ export default function StakingTable() {
                 {isEmpty(claimList) ? (
                     <Typography>No any claim available</Typography>
                 ) : (
-                    // <CustomTable data={claimList} config={config} loading={!data} page={0} setPage={(e) => setPage(e)} />
-                    <ClaimAvailableTable data={claimList} />
+                    <ClaimAvailableTable data={claimList} callback={fetchStakingCer} />
                 )}
             </TableBox>
         </Stack>
