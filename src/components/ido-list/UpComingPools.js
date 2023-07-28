@@ -70,10 +70,10 @@ const dataReleap =
   description: [
     <>
       <p>100,000 $</p>
-      <p>TBA</p>
+      <p></p>
     </>,
     <>
-      <p>800M $</p>
+      <p>10,4M $</p>
       <p>Valuation</p>
     </>,
     <>
