@@ -73,7 +73,7 @@ const dataReleap =
       <p>TBA</p>
     </>,
     <>
-      <p>800M</p>
+      <p>800M $</p>
       <p>Valuation</p>
     </>,
     <>
