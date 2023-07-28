@@ -35,6 +35,7 @@ import { BuyCryptoButton } from 'components/common/CustomButton';
 import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 
 const config = [
+  // { label: 'buy_crypto', link: '/' },
   { label: 'key_2', link: '/ido-launchpad' },
   { label: 'key_3', link: '/ino-launchpad' },
   { label: 'key_4', link: '/staking' },
