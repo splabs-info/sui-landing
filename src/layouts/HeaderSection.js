@@ -300,7 +300,7 @@ export default function HeaderSection() {
   );
   const BuyCrypto = () => (
     <>
-      {/* <AlchemyPay /> */}
+      <AlchemyPay />
     </>
   );
 
