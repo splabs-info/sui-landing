@@ -63,10 +63,14 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
 
 const CountDownBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
-    bottom: '10px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    padding: '0px 16px',
+    right: -52,
+    top: -20,
+    transform: 'scale(0.6)',
+    [theme.breakpoints.down('sm')]: {
+        right: -32,
+        top: -20,
+        transform: 'scale(0.7)',
+    }
 }));
 
 
@@ -80,8 +84,13 @@ export const UpComingIDOCard = ({ avatar, releaseTime, title, description, statu
                 if (link)
                     navigate(link)
             }}>
-            <Box position={'relative'}>
+            <Box >
                 <AvatarBox component={'img'} src={avatar} alt={title} />
+
+            </Box>
+            <Box position={'relative'}>
+                <Typography variant={'h4'} mt={3}>{title}</Typography>
+
                 {startTime &&
                     <CountDownBox>
                         <IDOCountdown
@@ -89,7 +98,6 @@ export const UpComingIDOCard = ({ avatar, releaseTime, title, description, statu
                         />
                     </CountDownBox>}
             </Box>
-            <Typography variant={'h4'} mt={3}>{title}</Typography>
             {salePeriod &&
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
                     <Typography> Sale period: </Typography>
