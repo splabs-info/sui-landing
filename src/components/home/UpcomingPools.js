@@ -70,9 +70,9 @@ const upComingList = [
   {
     label: 'Go to Launchpad ››',
     src: 'images/home/releap.jpg',
-    title: 'RELEAP',
-    description: 'Social fi',
-    openDate: 'August 7th',
+    title: 'Releap Protocol',
+    description: 'Social-Fi, NFT',
+    openDate: 'Aug 7th, 12:00 UTC',
     link: '/ido-launchpad',
     startTime: '',
     endTime: '',
@@ -81,7 +81,7 @@ const upComingList = [
     label: 'Go to Launchpad ››',
     src: 'images/home/hood-ino.jpg',
     title: 'HooD',
-    description: 'M2E, NFT, Metaverse',
+    description: 'M2E, NFT',
     openDate: 'Aug 25th, 11:00 UTC',
     link: '/ino-launchpad',
     startTime: '',
@@ -105,20 +105,22 @@ export default function UpcomingPools() {
             <PoolBox>
               <ImageBox>
                 <img src={item.src} alt={item.label} width={'100%'} />
-                {item.startTime &&
+                {item.startTime && (
                   <CountDownBox>
-                    <IDOCountdown
-                      endTime={item.startTime}
-                    />
-                  </CountDownBox>}
+                    <IDOCountdown endTime={item.startTime} />
+                  </CountDownBox>
+                )}
               </ImageBox>
+
               <Stack direction={'row'} justifyContent={'space-between'}>
                 <Typography variant="h4" color={'#fff'}>
                   {item.title}
                 </Typography>
-                <TimeBox>{item.openDate}</TimeBox>
               </Stack>
 
+              <Typography variant="body1" mt={2} mb={2} fontWeight={600} color={'#E7E1E1'}>
+                Time: {item.openDate}
+              </Typography>
               <Typography variant="body1" mt={2} mb={2} fontWeight={600} color={'#E7E1E1'}>
                 {item.description}
               </Typography>
