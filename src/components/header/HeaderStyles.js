@@ -35,8 +35,8 @@ export const Navbar = styled(Box)(({ theme }) => ({
   padding: '0',
   fontFamily: 'SVN-Gilroy-regular',
   textTransform: 'uppercase',
+  gap: '16px',
   '& a': {
-    padding: '0 8px',
     display: 'block',
     fontWeight: 700,
     '&:last-child': {
