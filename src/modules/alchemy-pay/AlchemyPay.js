@@ -8,7 +8,7 @@ import zIndex from '@mui/material/styles/zIndex';
 export default function AlchemyPay() {
   const handleOpen = () => {
     window.open(
-      `${config.link}?crypto=${config.crypto}&network=${config.network}&appId=${config.appId}`,
+      `${config.link}?appId=${config.appId}`,
       '',
       'width=500,height=700'
     );
