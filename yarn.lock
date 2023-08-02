@@ -2483,6 +2483,21 @@
   dependencies:
     bs58 "^5.0.0"
 
+"@mysten/sui.js@0.35.1":
+  version "0.35.1"
+  resolved "https://registry.yarnpkg.com/@mysten/sui.js/-/sui.js-0.35.1.tgz#549cb937af21240938a0d19867f03d8995610e77"
+  integrity sha512-1UQ65oJhO+G5Bt+EWYqMs5y3eqY1ZZxEdB2y4K+XJVeRZBOy32GjSLiYmZufUAR9o53gAlwAvvNRIzMzuiNQzw==
+  dependencies:
+    "@mysten/bcs" "0.7.1"
+    "@noble/curves" "^1.0.0"
+    "@noble/hashes" "^1.3.0"
+    "@open-rpc/client-js" "^1.8.1"
+    "@scure/bip32" "^1.3.0"
+    "@scure/bip39" "^1.2.0"
+    "@suchipi/femver" "^1.0.0"
+    superstruct "^1.0.3"
+    tweetnacl "^1.0.3"
+
 "@mysten/sui.js@0.36.0":
   version "0.36.0"
   resolved "https://registry.yarnpkg.com/@mysten/sui.js/-/sui.js-0.36.0.tgz#be644514fe87c4d3076df84bddfa8019b46526ce"
@@ -3425,6 +3440,19 @@
   dependencies:
     ss-queue "1.0.x"
     ss-stack "1.0.x"
+
+"@tabler/icons-react@^2.30.0":
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-2.30.0.tgz#e7ece4b83d6cd66b3a4ec043b89bf18e5341c03e"
+  integrity sha512-aYggXusHW133L4KujJkVf4GIIrjg7tIRHgNf/n37mnoHqMjwNP+PjmVdrBM1Z8Ywx9PKFRlrwM0eUMDcG+I4HA==
+  dependencies:
+    "@tabler/icons" "2.30.0"
+    prop-types "^15.7.2"
+
+"@tabler/icons@2.30.0":
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.30.0.tgz#4ea3c4da56fd5653bb9d0be0dc7feaa33602555c"
+  integrity sha512-tvtmkI4ALjKThVVORh++sB9JnkFY7eGInKxNy+Df7WVQiF7T85tlvGADzlgX4Ic+CK5MIUzZ0jhOlQ/RRlgXpg==
 
 "@tabler/icons@^1.72.0":
   version "1.119.0"

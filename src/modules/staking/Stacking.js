@@ -11,6 +11,8 @@ import { useGetPrice } from 'services/price';
 import { fCurrencyV2 } from 'utils/util';
 import StakingForm from './StakingForm';
 import { BoxGradient, BoxGradientOpacity, ImageBox, UtilityBox } from './component/StackingStyles';
+import * as moment from 'moment'
+import { toNumber } from 'lodash'
 const data = {
     symbol: 'XUI',
     description: `$XUI is the utility token of the YouSUI platform, serving various purposes within the ecosystem. It can be utilized in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. Additionally, $XUI holds governance power, allowing token holders to participate in decision-making through voting and governance processes. Staking $XUI enables community members to express their opinions and provide suggestions. Users who stake $XUI are assigned a "Tier," granting them access to participate in IDO and INO Launchpad events. Furthermore, a portion of the revenue generated from activities such as DEX, NFT Marketplace, and Bridge is allocated to $XUI stakers, while the remaining amount is dedicated to the "Burn and Buyback" mechanism.`,
@@ -45,7 +47,7 @@ const VerifyDataField = ({ label, value }) => (
         <Typography>{label === 'Unstake Fee' ? `${value} %` : value}</Typography>
     </Stack>
 );
-export default function Staking({ staking, totalXUILocked, fetchUserStakingInfo }) {
+export default function Staking({ actionList, staking, totalXUILocked, fetchUserStakingInfo, fetchCanStaking }) {
     const isMobile = useResponsive('down', 'sm');
     const [loading, setLoading] = React.useState();
     const transformedData = transformStakingData(staking);
@@ -66,6 +68,26 @@ export default function Staking({ staking, totalXUILocked, fetchUserStakingInfo 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [staking, sortASC, transformedData]);
 
+    const action = React.useMemo(() => {
+        const currentTime = moment();
+        let result = true;
+        if (!isEmpty(actionList)) {
+            actionList.forEach((a) => {
+                switch (a.action) {
+                    case 'ACTION_UNSTAKE':
+                        if (! currentTime.isAfter(moment(toNumber(a.time)).add(3, 'minutes'))) {
+                            result = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+        return result;
+    }, [actionList])
+
+    
     return (
         <>
             {loading ? (
@@ -206,9 +228,11 @@ export default function Staking({ staking, totalXUILocked, fetchUserStakingInfo 
                     </Grid>
                     <Grid item md={8} xs={12}>
                         <StakingForm
+                            fetchCanStaking={fetchCanStaking}
                             setVerifyData={(e) => setVerifyData(e)}
                             verifyData={verifyData}
                             sortedData={sortASC}
+                            canStaking={action}
                             fetchUserStakingInfo={fetchUserStakingInfo}
                         />
                     </Grid>

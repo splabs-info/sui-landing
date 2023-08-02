@@ -38,6 +38,7 @@ const XUIIDOContainer = () => {
   const navigate = useNavigate();
   const formattedRoundName = handleNameRound(roundName);
 
+
   const tabToPath = {
     0: '/ido-launchpad/og-sale',
     1: '/ido-launchpad/public-sale',

@@ -1,24 +1,23 @@
 import { normalizeSuiAddress } from '@mysten/sui.js';
 import { useQuery } from '@tanstack/react-query';
-import { useRpcClient } from 'apis/RpcClientContext';
 
 const defaultOptions = {
-    showType: true,
+    showType: false,
     showContent: true,
-    showOwner: true,
-    showPreviousTransaction: true,
+    showOwner: false,
+    showPreviousTransaction: false,
     showStorageRebate: true,
     showDisplay: true,
 };
 
-export function useGetObject(objectId) {
-    const rpc = useRpcClient();
+export function useGetObject(provider, objectId) {
+
     const normalizedObjId = objectId && normalizeSuiAddress(objectId);
 
     return useQuery({
         queryKey: ['object', normalizedObjId],
         queryFn: () =>
-            rpc.getObject({
+            provider.getObject({
                 id: normalizedObjId,
                 options: defaultOptions,
             }),

@@ -26,6 +26,7 @@ const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 
 const XUI = React.lazy(() => import('./pages/XUI'));
 const SUAIDO = React.lazy(() => import('./pages/IDO/SUA'));
+const ReleapIDO = React.lazy(() => import('./pages/Releap'))
 // const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
@@ -65,6 +66,14 @@ export default function Router() {
           element: (
             <Suspense>
               <XUI />
+            </Suspense>
+          ),
+        },
+        {
+          path: 'ido-launchpad/releap/:round',
+          element: (
+            <Suspense>
+              <ReleapIDO />
             </Suspense>
           ),
         },

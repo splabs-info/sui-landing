@@ -98,6 +98,7 @@ function a11yProps(index) {
 export default function OverviewTabs({ handleChangeTab = () => { }, totalXUILocked }) {
     const [sui, setSui] = React.useState();
     const { assets } = React.useContext(SuiContext);
+    const currentTier = React.useRef(null);
 
     const isDesktop = useResponsive('up', 'md');
 
@@ -121,6 +122,90 @@ export default function OverviewTabs({ handleChangeTab = () => { }, totalXUILock
             if (item?.symbol === 'SUI') setSui(ethers.utils.formatUnits(item?.balance, item?.decimals));
         });
     }, [assets]);
+
+    const renderTier = React.useCallback(() => {
+        if (totalXUILocked >= 40000) {
+            currentTier.current = 'tier_1';
+            return (
+                <TierInformation
+                    tierMedal="/images/sui-tier/tier1.png"
+                    level="TIER 1"
+                    allocation="35%"
+                    xuiReq="40,000"
+                    ino="FCFS"
+                    freeAir="2% of Total Pool"
+                    discount="-20%"
+                />
+            );
+        }
+        if (totalXUILocked >= 20000) {
+            currentTier.current = 'tier_2';
+            return (
+                <TierInformation
+                    tierMedal="/images/sui-tier/tier2.png"
+                    level="TIER 2"
+                    freeAir="1.5% of Total Pool"
+                    allocation="20%"
+                    xuiReq="20,000"
+                    ino="FCFS"
+                    discount="-10%"
+                />
+            );
+        }
+        if (totalXUILocked >= 7500) {
+            currentTier.current = 'tier_3';
+            return (
+                <TierInformation
+                    tierMedal="/images/sui-tier/tier3.png"
+                    level="TIER 3"
+                    freeAir="1.5% of Total Pool"
+                    allocation="15%"
+                    xuiReq="7,500"
+                    ino="FCFS"
+                    discount="-5%"
+                />
+            );
+        }
+        if (totalXUILocked >= 5000) {
+            currentTier.current = 'tier_4';
+            return (
+                <TierInformation
+                    tierMedal="/images/sui-tier/tier4.png"
+                    level="TIER 4"
+                    freeAir="-"
+                    allocation="15%"
+                    xuiReq="5,000"
+                    ino="FCFS"
+                    discount="-3%"
+                />
+            );
+        }
+        if (totalXUILocked >= 3000) {
+            currentTier.current = 'tier_5';
+            return (
+                <TierInformation
+                    tierMedal="/images/sui-tier/tier5.png"
+                    level="TIER 5"
+                    freeAir="-"
+                    allocation="15%"
+                    xuiReq="3,000"
+                    ino="FCFS"
+                    discount="-2%"
+                />
+            );
+        } else {
+            currentTier.current = 'non_tier';
+            return <TierInformation
+                tierMedal="/images/home/YouSUI-token.png"
+                level="--"
+                freeAir="--"
+                allocation="--"
+                xuiReq="--"
+                ino="--"
+                discount="--"
+            />;
+        }
+    }, [totalXUILocked]);
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -150,10 +235,10 @@ export default function OverviewTabs({ handleChangeTab = () => { }, totalXUILock
                     </Stack>
 
                     <TitleSection title="TIER INFORMATION" />
-                    <TierInformation tierMedal="/images/sui-tier/tier5.png" level="TIER 5" idoApp="2% of Total Pool" />
+                    {renderTier()}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <MyStaking totalXUILocked={totalXUILocked}/>
+                    <MyStaking totalXUILocked={totalXUILocked} />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <TitleSection title="COMING SOON" />

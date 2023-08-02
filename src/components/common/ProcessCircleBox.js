@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { round } from 'lodash';
+import { RELEAP_ROUND_NAME } from 'onchain/constants';
 import React from 'react';
 const CircleBox = styled(Box)(({ theme }) => ({
     height: '260px',
@@ -50,7 +51,7 @@ export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roun
         if (!totalSold || !totalSupply) return '0';
 
         const percent = (totalSold / totalSupply) * 100;
-        if (roundName === 'Og_Sale' && (totalSupply - totalSold) < minPurchase) {
+        if ((roundName === 'Og_Sale' || roundName === RELEAP_ROUND_NAME) && ((totalSupply - totalSold) < minPurchase || (totalSupply - totalSold) < 0)) {
             return 100
         } else { return round(percent, 2)  };
         // if (roundName === 'Public_Sale') return round(percent, 2);

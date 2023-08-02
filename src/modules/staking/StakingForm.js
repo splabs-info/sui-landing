@@ -15,7 +15,7 @@ import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
 import { CustomInput, FormBox, PackageButton, StackingButton } from './component/StackingStyles';
 
-export default function StakingForm({ verifyData, setVerifyData, sortedData, fetchUserStakingInfo }) {
+export default function StakingForm({ verifyData, setVerifyData, sortedData, fetchUserStakingInfo, canStaking, fetchCanStaking }) {
     const [loading, setLoading] = React.useState(false);
     const [isAgree, setIsAgree] = React.useState(false);
     const isMobile = useResponsive('down', 'sm');
@@ -45,6 +45,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, fet
             .positive('Amount must be a positive number')
             .typeError('Must be a number')
             .test('wallet-test', 'Connect your wallet before', () => wallet?.address && wallet?.connected)
+            .test('access-time', 'You already unstaked, so you must be waiting for 24h after to stake again.', () => canStaking)
             .test('balances', 'Your balances is not enough', (value) => {
                 if (value > formattedBalanceTokenStaking) return false;
                 if (formattedBalanceTokenStaking < verifyData?.minStakeAmount) return false;
@@ -109,6 +110,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, fet
                 toast.success('Staking token success');
                 fetchBalance();
                 fetchUserStakingInfo();
+                fetchCanStaking();
                 setLoading(false);
                 setIsAgree(false);
                 reset({ amount: 0 });
@@ -137,6 +139,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, fet
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formattedBalanceTokenStaking]);
 
+    console.log('')
     return (
         <FormBox>
             <form onSubmit={handleSubmit(handleStaking)}>
@@ -217,7 +220,7 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, fet
                             }}
                         />
                     </FormGroup>
-                    <StackingButton type="submit" disabled={!isAgree || !isValid} loading={loading}>
+                    <StackingButton type="submit" disabled={!(isAgree && isValid && canStaking)} loading={loading}>
                         Staking now
                     </StackingButton>
                 </Stack>

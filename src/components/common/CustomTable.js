@@ -44,6 +44,7 @@ CustomTable.propTypes = {
 };
 
 export default function CustomTable({
+    action,
     data,
     config,
     loading = false,
@@ -100,7 +101,8 @@ export default function CustomTable({
     const renderBtnState = React.useCallback(
         (id, stake_token, status) => {
             const isLoading = loadingSubmit[id];
-            if (status) {
+            console.log('renderBTn neee_', action);
+            if (status && action) {
                 return (
                     <GradientButton
                         onClick={() => handleUnstacked(id, stake_token)}
@@ -124,9 +126,9 @@ export default function CustomTable({
                     </GradientButton>
                 );
             }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         },
-        [loadingSubmit]
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [action, loadingSubmit]
     );
 
     return (
