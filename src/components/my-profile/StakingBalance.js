@@ -1,6 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import useResponsive from 'hooks/useResponsive';
+import { fCurrencyV2 } from 'utils/util';
 import { TitleSection } from './TitleSection';
 const StakingBalanceCard = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -51,23 +52,21 @@ const StyledDivider = styled(Divider)(({ theme }) => ({
     marginBottom: 32,
   },
 }));
-export const StakingBalance = () => {
+export const StakingBalance = ({ totalXUILocked, xuiHold }) => {
   const tablet = useResponsive('down', 'md');
-  // const theme = useTheme();
-  // const tablet = theme.breakpoints.down('md');
   return (
     <Box sx={{ marginBottom: 12 }}>
       <TitleSection title="STAKING BALANCE" />
       <StakingBalanceCard>
         <Box sx={{ margin: 'auto' }}>
           <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>$XUI Staked</Typography>
-          <StyledStakingBalanceInfo>0</StyledStakingBalanceInfo>
+          <StyledStakingBalanceInfo>{totalXUILocked ? fCurrencyV2(totalXUILocked) : 0}</StyledStakingBalanceInfo>
         </Box>
         <StyledDivider orientation={tablet ? '' : 'vertical'} variant="middle" flexItem />
         {/* <StyledDivider orientation="vertical" variant="middle" flexItem /> */}
         <Box sx={{ margin: 'auto' }}>
           <Typography sx={{ fontSize: 24, lineHeight: '35px', color: 'white' }}>Holding $XUI</Typography>
-          <StyledStakingBalanceInfo>0</StyledStakingBalanceInfo>
+          <StyledStakingBalanceInfo>{xuiHold ? fCurrencyV2(xuiHold) : 0}</StyledStakingBalanceInfo>
         </Box>
       </StakingBalanceCard>
     </Box>

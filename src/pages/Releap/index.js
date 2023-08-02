@@ -1,4 +1,3 @@
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Container, Grid, Stack, InputAdornment } from '@mui/material';
 import { isValidSuiObjectId } from '@mysten/sui.js';
@@ -22,13 +21,14 @@ import { toast } from 'react-toastify';
 import { handleNameRound } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { IconCircleCheck } from '@tabler/icons-react'
+import { IconCircleCheck } from '@tabler/icons-react';
+import CircularProgress from '@mui/material/CircularProgress';
 const ReleapContainer = () => {
     const isMobile = useResponsive('down', 'sm');
     const { provider } = React.useContext(SuiContext);
     const [claimInfo, setClaimInfo] = React.useState({});
     const [loading, setLoading] = React.useState(false);
-    const [totalXUILocked, setTotalXUILocked] = React.useState(0)
+    const [totalXUILocked, setTotalXUILocked] = React.useState(0);
 
     const { round } = useParams();
 
@@ -60,7 +60,10 @@ const ReleapContainer = () => {
                         id: value,
                         options: { showContent: true, showOwner: true },
                     });
-                    return JSON.stringify(object?.data?.content?.fields?.type) === '[53]' || JSON.stringify(object?.data?.content?.fields?.type) === '[52]';
+                    return (
+                        JSON.stringify(object?.data?.content?.fields?.type) === '[53]' ||
+                        JSON.stringify(object?.data?.content?.fields?.type) === '[52]'
+                    );
                 } else return;
             }),
     });
@@ -121,7 +124,6 @@ const ReleapContainer = () => {
         }
     }, [infoRound, provider, wallet?.address]);
 
-
     const fetchUserStakingInfo = React.useCallback(async () => {
         if (!wallet.address || !wallet?.connected) return;
         let totalXUILockedToken;
@@ -139,7 +141,7 @@ const ReleapContainer = () => {
         if (!investList || isEmpty(investList)) return;
         investList.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
-                const formattedKey = handleKeyType(XUI_TYPE)
+                const formattedKey = handleKeyType(XUI_TYPE);
                 if (e?.fields?.key === formattedKey) {
                     totalXUILockedToken = e?.fields?.value;
                 } else return;
@@ -157,12 +159,19 @@ const ReleapContainer = () => {
     }, [fetchClaimInfo]);
 
     React.useEffect(() => {
-        fetchUserStakingInfo()
-    }, [fetchUserStakingInfo])
+        fetchUserStakingInfo();
+    }, [fetchUserStakingInfo]);
 
     React.useEffect(() => {
         formatInfoRound(formattedRoundName);
     }, [formatInfoRound, formattedRoundName]);
+
+    React.useEffect(() => {
+        if (infoRound) {
+            console.log(infoRound.name, infoRound.totalSold, infoRound.totalSupply);
+        }
+    }, [infoRound]);
+
 
     React.useEffect(() => {
         try {
@@ -181,98 +190,107 @@ const ReleapContainer = () => {
             <SectionBox sx={{ backgroundImage: `url(${IDObackground})` }}>
                 <Container maxWidth="xl">
                     <Box mt={isMobile ? 5 : 2} color={'#fff'}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} md={4}>
-                                <div />
-                            </Grid>
-                            <Grid item xs={12} md={8} alignItems={'space-between'}>
-                                <Stack direction={'row'} mt={isMobile ? 2 : 0} gap={2} sx={{ minHeight: '72px', height: 72, justifyContent: 'flex-end' }}>
-                                    <form onSubmit={handleSubmit(handleSave)} style={{ display: 'flex', width: '100%' }}>
-                                        <InputField
-                                            id="objectId"
-                                            name="objectId"
-                                            placeholder="Input Object ID Tier 4 or Tier 5 NFT"
-                                            variant="outlined"
-                                            size="small"
-                                            control={control}
-                                            mr={2}
-                                            sx={{
-                                                color: '#fff',
-                                                minHeight: 72,
-                                                backgroundColor: 'transparent !important',
-                                                '& .MuiInputBase-root': {
-                                                    color: 'white',
-                                                    background: 'transparent',
-                                                    fontSize: 14,
-                                                },
-                                                '& .MuiOutlinedInput-input': {
-                                                    backgroundColor: 'transparent !important',
-                                                },
-                                            }}
-                                            box={{
-                                                width: '100%'
-                                            }}
-                                            InputProps={{
-                                                endAdornment: (
-
-                                                    <InputAdornment
-                                                        position="end"
-                                                    >
-                                                        {isValid ? <IconCircleCheck color="#21c4a4" /> : ''}
-                                                    </InputAdornment>
-                                                ),
-                                            }}
-                                        />
-                                        <BuyTokenButton
-                                            type="submit"
-                                            disabled={!isValid}
-                                            sx={{
-                                                borderRadius: '10px',
-                                                width: isMobile ? '100%' : 172,
-                                                marginLeft: 2,
-                                            }}
+                        {loading ? (
+                            <Box sx={{ margin: '108px auto auto auto', textAlign: 'center' }}>
+                                <CircularProgress />
+                            </Box>
+                        ) : (
+                            <>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} md={4}>
+                                        <div />
+                                    </Grid>
+                                    <Grid item xs={12} md={8} alignItems={'space-between'}>
+                                        <Stack
+                                            direction={'row'}
+                                            mt={isMobile ? 2 : 0}
+                                            gap={2}
+                                            sx={{ minHeight: '72px', height: 72, justifyContent: 'flex-end' }}
                                         >
-                                            Save
-                                        </BuyTokenButton>
-                                    </form>
-                                </Stack>
-                            </Grid>
-                        </Grid>
+                                            <form onSubmit={handleSubmit(handleSave)} style={{ display: 'flex', width: '100%' }}>
+                                                <InputField
+                                                    id="objectId"
+                                                    name="objectId"
+                                                    placeholder="Input Object ID of Tier NFT"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    control={control}
+                                                    mr={2}
+                                                    sx={{
+                                                        color: '#fff',
+                                                        minHeight: 72,
+                                                        backgroundColor: 'transparent !important',
+                                                        '& .MuiInputBase-root': {
+                                                            color: 'white',
+                                                            background: 'transparent',
+                                                            fontSize: 14,
+                                                        },
+                                                        '& .MuiOutlinedInput-input': {
+                                                            backgroundColor: 'transparent !important',
+                                                        },
+                                                    }}
+                                                    box={{
+                                                        width: '100%',
+                                                    }}
+                                                    InputProps={{
+                                                        endAdornment: (
+                                                            <InputAdornment position="end">
+                                                                {isValid ? <IconCircleCheck color="#21c4a4" /> : ''}
+                                                            </InputAdornment>
+                                                        ),
+                                                    }}
+                                                />
+                                                <BuyTokenButton
+                                                    type="submit"
+                                                    disabled={!isValid}
+                                                    sx={{
+                                                        borderRadius: '10px',
+                                                        width: isMobile ? '100%' : 172,
+                                                        marginLeft: 2,
+                                                    }}
+                                                >
+                                                    Save
+                                                </BuyTokenButton>
+                                            </form>
+                                        </Stack>
+                                    </Grid>
+                                </Grid>
 
-                        <Round
-                            services={services}
-                            claimInfo={claimInfo}
-                            // whiteList={whiteList}
-                            iconUrl={infoRound?.iconUrl}
-                            totalXUILocked={totalXUILocked}
-                            purchaseType={infoRound?.purchaseType}
-                            decimals={infoRound?.decimals || 9}
-                            endAt={infoRound?.endAt}
-                            telegram={infoRound?.telegram}
-                            twitter={infoRound?.twitter}
-                            discord={infoRound?.discord}
-                            medium={infoRound?.medium}
-                            roundName={formattedRoundName}
-                            projectName={infoRound?.projectName || 'YouSUI'}
-                            maxPurchase={infoRound?.maxPurchase}
-                            minPurchase={infoRound?.minPurchase}
-                            payments={infoRound?.payments}
-                            startAt={infoRound?.startAt}
-                            symbol={infoRound?.symbol}
-                            type={infoRound?.type}
-                            imageUrl={infoRound?.imageUrl}
-                            tokenName={infoRound?.tokenName}
-                            totalSold={infoRound?.totalSold}
-                            totalSupply={infoRound?.totalSupply}
-                            description={infoRound?.description}
-                            fetchClaimInfo={fetchClaimInfo}
-                        />
+                                <Round
+                                    services={services}
+                                    claimInfo={claimInfo}
+                                    // whiteList={whiteList}
+                                    iconUrl={infoRound?.iconUrl}
+                                    totalXUILocked={totalXUILocked}
+                                    purchaseType={infoRound?.purchaseType}
+                                    decimals={infoRound?.decimals || 9}
+                                    endAt={infoRound?.endAt}
+                                    telegram={infoRound?.telegram}
+                                    twitter={infoRound?.twitter}
+                                    discord={infoRound?.discord}
+                                    medium={infoRound?.medium}
+                                    roundName={formattedRoundName}
+                                    projectName={infoRound?.projectName || 'YouSUI'}
+                                    maxPurchase={infoRound?.maxPurchase}
+                                    minPurchase={infoRound?.minPurchase}
+                                    payments={infoRound?.payments}
+                                    startAt={infoRound?.startAt}
+                                    symbol={infoRound?.symbol}
+                                    type={infoRound?.type}
+                                    imageUrl={infoRound?.imageUrl}
+                                    tokenName={infoRound?.tokenName}
+                                    totalSold={infoRound?.totalSold}
+                                    totalSupply={infoRound?.totalSupply}
+                                    description={infoRound?.description}
+                                    fetchClaimInfo={fetchClaimInfo}
+                                />
+                            </>
+                        )}
                     </Box>
                 </Container>
             </SectionBox>
         </Page>
-    )
-}
-
+    );
+};
 
 export default ReleapContainer;

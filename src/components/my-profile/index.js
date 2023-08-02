@@ -10,8 +10,6 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useGetProfile, useLogin } from 'services/auth';
-// import { setAccessToken } from 'utils/auth';
 import { findCertificate } from 'utils/util';
 import { ClaimAvailable } from './ClaimAvailable';
 import { CurrentStakingPool } from './CurrentStakingPool';
@@ -20,8 +18,8 @@ import AreaInformation from './Information';
 import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
-import { StakingBalance } from './StakingBalance';
 import StakingTable from './my-staking/StakingTable';
+import { StakingBalance } from './StakingBalance';
 export default function MyInfo() {
     let actionList = [];
     const [action, setAction] = React.useState([])
@@ -38,7 +36,7 @@ export default function MyInfo() {
     const [id, setId] = useState(null);
     const [myIDOs, setMyIDOs] = React.useState([]);
     const [flag, setFlag] = React.useState(false);
-    const { provider, projects } = React.useContext(SuiContext);
+    const { provider, projects, allAssets } = React.useContext(SuiContext);
     // const { mutateAsync: login, isLoading: isLoadingLogin, isSuccess: isLoginSuccess } = useLogin();
     // const { profile, isLoading: isLoadingGetProfile, isSuccess: isGetProfileSuccess } = useGetProfile(id);
     const location = useLocation();
@@ -52,11 +50,18 @@ export default function MyInfo() {
         navigate(`my-profile/${index}`);
     };
 
+    const xuiHold = React.useMemo(() => {
+        if (!wallet?.address || !wallet?.connected) return;
+        if (isEmpty(allAssets)) return;
+        const xui = allAssets.find((i) => i.coinType === XUI_TYPE)
+        if (!xui || isEmpty(xui)) return;
+        const formattedXui = formatEther(xui.balance, 9)
+        return formattedXui;
+    }, [allAssets, wallet?.address, wallet?.connected])
 
     React.useEffect(() => {
         setTabIndex(Number(tabIndexFromUrl) || 0);
     }, [tabIndexFromUrl]);
-
 
     const handleOpen = () => {
         setOpenCreateProfile(true);
@@ -151,7 +156,7 @@ export default function MyInfo() {
         const investList = dynamicData?.data?.content?.fields?.invest_list?.fields?.contents.filter(
             (i) => i?.fields.key === wallet?.address
         );
-        if(!investList || isEmpty(investList)) return;
+        if (!investList || isEmpty(investList)) return;
         investList.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
                 const formattedKey = handleKeyType(XUI_TYPE)
@@ -197,8 +202,7 @@ export default function MyInfo() {
                     <IDOParticipated myIDOs={myIDOs} />
                     <CurrentStakingPool />
                 </Stack>
-
-                <StakingBalance />
+                <StakingBalance totalXUILocked={totalXUILocked} xuiHold={xuiHold} />
                 <MyIDOArea myIDOs={myIDOs} />
                 <MyINOArea />
                 <ClaimAvailable />
@@ -257,7 +261,7 @@ export default function MyInfo() {
                                         </Grid>
                                     </Grid>
                                     {tabIndex === 0 && <OverViewContent />}
-                                    {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action}/>}
+                                    {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action} />}
                                 </>
                                 {/* )} */}
                             </>

@@ -436,7 +436,6 @@ export const BuyForm = ({
 
     const renderTier = React.useCallback(() => {
         if (roundName === RELEAP_ROUND_NAME) {
-            console.log('totalXUILocked__', totalXUILocked)
             if (totalXUILocked >= 40000) {
                 currentTier.current = 'tier_1';
                 return '( Tier 1 )'

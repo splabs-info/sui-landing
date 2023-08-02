@@ -14,9 +14,11 @@ import { RELEAP_ROUND_NAME } from 'onchain/constants';
 export const Claim = ({ decimals, services, claimInfo, type, payments, projectName, roundName, endAt }) => {
     const [loading, setLoading] = React.useState();
     const [claimSuccessful, setClaimSuccessful] = React.useState(false);
+    const [refundState, setRefundState] = React.useState('REQUEST REFUND')
     const [isClaim, setIsClaim] = React.useState(false);
     const [canRefund, setCanRefund] = React.useState(false);
     const { provider } = React.useContext(SuiContext);
+
     const wallet = useWallet();
 
     const { fetchData } = React.useContext(SuiContext)
@@ -85,6 +87,57 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [claimInfo?.final_accumulate_token, endAt, findServicePreregister, services]);
+
+    const fetchRefund = React.useCallback(async () => {
+        const currentTime = moment();
+        const dynamicFields = findRefund();
+        try {
+            if (roundName === RELEAP_ROUND_NAME) {
+
+                const info = await provider.getDynamicFieldObject({
+                    parentId: dynamicFields?.parent_id,
+                    name: dynamicFields?.name,
+                });
+
+                
+                if (!info || isEmpty(info)) return;
+
+                const arr_claimed_address = info.data?.content?.fields?.arr_claimed_address?.fields?.contents;
+
+                if (arr_claimed_address.includes(wallet.address)) {
+                    setRefundState('REFUNDED OR VESTING CLAIMED')
+                    return setCanRefund(false)
+                };
+
+
+                if (!formattedPurchased || formattedPurchased === 0) {
+
+                    setRefundState('REFUND REQUEST (NOT PARTICIPANT)')
+                    return setCanRefund(false)
+                }
+
+                const startRefundTime = moment(toNumber(info?.data?.content?.fields.start_refund_time))
+
+                const refundRangeTime = moment(toNumber(info?.data?.content?.fields.refund_range_time))
+
+                if (currentTime.isAfter(startRefundTime) && currentTime.isBefore(startRefundTime + refundRangeTime)) {
+                    setRefundState('REFUND REQUEST')
+                    return setCanRefund(true)
+                }
+
+                if (currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds'))) {
+                    setRefundState('REFUND REQUEST (NOT TIME)')
+                    return setCanRefund(false)
+                }
+                else {
+                    setRefundState('REFUND REQUEST (END TIME)')
+                    return setCanRefund(false)
+                }
+            } else return;
+        } catch (error) {
+            console.log('error_fetchRefund', error);
+        }
+    }, [findRefund, formattedPurchased, provider, roundName, wallet.address])
 
     const handleClaim = React.useCallback(async () => {
         setLoading(true);
@@ -164,7 +217,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                         <Typography variant="body2" fontWeight={500} sx={{ width: '32%' }}>
                             You can request a refund within <strong>48 hours</strong> from the time of listing the $REAP token.
                         </Typography>
-                        <BuyTokenButton loading={loading} disabled={!canRefund} onClick={handleRefund}>REFUND REQUEST</BuyTokenButton>
+                        <BuyTokenButton loading={loading} disabled={!canRefund} onClick={handleRefund}>{refundState}</BuyTokenButton>
                     </Stack>
                 </>
             );
@@ -213,28 +266,8 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                 </>
             );
         }
-    }, [canRefund, formattedConsumed, formattedPurchased, formattedRemaining, handleClaim, handleRefund, isClaim, loading, roundName]);
+    }, [canRefund, formattedConsumed, formattedPurchased, formattedRemaining, handleClaim, handleRefund, isClaim, loading, refundState, roundName]);
 
-
-    const fetchRefund = React.useCallback(async () => {
-        const currentTime = moment();
-        const dynamicFields = findRefund();
-        try {
-            const info = await provider.getDynamicFieldObject({
-                parentId: dynamicFields?.parent_id,
-                name: dynamicFields?.name,
-            });
-            const startRefundTime = moment(toNumber(info?.data?.content?.fields.start_refund_time))
-            const refundRangeTime = moment(toNumber(info?.data?.content?.fields.refund_range_time))
-
-            if (currentTime.isAfter(startRefundTime) && currentTime.isBefore(startRefundTime + refundRangeTime)) return setCanRefund(true)
-            if (currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds'))) setCanRefund(false);
-
-            else setCanRefund(false)
-        } catch (error) {
-            console.log('error_fetchRefund', error);
-        }
-    }, [findRefund, provider])
 
     React.useEffect(() => {
         if (roundName !== 'Public_Sale') return;
