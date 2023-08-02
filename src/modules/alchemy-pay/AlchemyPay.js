@@ -1,26 +1,14 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
-import { IconCreditCard, IconShoppingCart } from '@tabler/icons';
-import { BuyCryptoButton } from 'components/common/CustomButton';
-import { config } from './init';
+import { Box, Button, Typography } from '@mui/material';
+import { IconCreditCard } from '@tabler/icons';
 import { NavLink } from 'react-router-dom';
-import zIndex from '@mui/material/styles/zIndex';
+import { config } from './init';
 
 export default function AlchemyPay() {
   const handleOpen = () => {
-    window.open(
-      `${config.link}?appId=${config.appId}`,
-      '',
-      'width=500,height=700'
-    );
+    window.open(`${config.link}?appId=${config.appId}`, '', 'width=500,height=700');
   };
 
   return (
-    // <BuyCryptoButton onClick={handleOpen}>
-    //   <IconShoppingCart size={'18px'} />
-    //   <Typography variant="caption" fontWeight={600} sx={{ textDecoration: 'underline' }}>
-    //     Buy Crypto with Fiat
-    //   </Typography>
-    // </BuyCryptoButton> 
     <Box
       sx={{
         display: 'flex',
@@ -29,17 +17,15 @@ export default function AlchemyPay() {
         textTransform: 'uppercase',
         fontSize: '13px',
         position: 'relative',
-        "& .dropDown": {
-          display: "none",
+        '& .dropDown': {
+          display: 'none',
         },
-        "&:hover .dropDown": {
-          display: "block",
+        '&:hover .dropDown': {
+          display: 'block',
         },
       }}
     >
-      <NavLink className={'animatedText'}>
-        Buy Crypto
-      </NavLink>
+      <NavLink className={'animatedText'}>Buy Crypto</NavLink>
       <Box
         className={'dropDown'}
         sx={{
@@ -56,7 +42,8 @@ export default function AlchemyPay() {
             color: '#42EECF',
             left: '16px',
           },
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -87,20 +74,24 @@ export default function AlchemyPay() {
               zIndex: 1,
             },
           }}
-
         >
-          <Button onClick={handleOpen}
+          <Button
+            onClick={handleOpen}
             sx={{
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'flex-start',
               gap: '8px',
               color: 'white',
-            }} >
+            }}
+          >
             <IconCreditCard size={'28px'} />
             <Box textAlign={'left'}>
-              <Typography typography={'body2'} fontWeight={600}> Credit/Debit card</Typography>
-              <Typography typography={'caption'} >Buy crypto via VISA or Mastercard </Typography>
+              <Typography typography={'body2'} fontWeight={600}>
+                {' '}
+                Credit/Debit card
+              </Typography>
+              <Typography typography={'caption'}>Buy crypto via VISA or Mastercard </Typography>
             </Box>
           </Button>
         </Box>
