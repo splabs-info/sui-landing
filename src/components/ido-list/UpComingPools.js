@@ -35,21 +35,46 @@ const dataXUI =
 const data =
 {
   title: 'HooD',
-  avatar: '/images/ido/pool-hood.jpg',
+  avatar: '/images/home/hood.jpg',
   releaseTime: 'Official Launch: Aug 25th',
   startAt: 'Aug 25th, 11:00 UTC',
   status: false,
   link: '',
-  startTime: '',
-  endTime: '',
+  startTime: '2023-08-25T12:00:00 Z',
+  endTime: '2023-08-27T12:00:00 Z',
   description: [
     <>
       <p>600,000 SUI</p>
       <p>TBA</p>
     </>,
     <>
-      <p>0.2 USD</p>
-      <p>Price per Token</p>
+      <p>20M $</p>
+      <p>Valuation</p>
+    </>,
+    <>
+      <p>Access</p>
+      <p>Tier 1~5 </p>
+    </>,
+  ],
+}
+const dataReleap =
+{
+  title: 'Releap',
+  avatar: '/images/home/releap.jpg',
+  releaseTime: 'Official Launch: Aug 7th',
+  startAt: 'Aug 7th, 12:00 UTC',
+  status: false,
+  link: '',
+  startTime: '2023-08-07T12:00:00 Z',
+  endTime: '2023-08-09T12:00:00 Z',
+  description: [
+    <>
+      <p>100,000 $</p>
+      <p></p>
+    </>,
+    <>
+      <p>10,4M $</p>
+      <p>Valuation</p>
     </>,
     <>
       <p>Access</p>
@@ -64,7 +89,7 @@ export default function UpComingPools({ hasInTimeIDOXUI = false }) {
   // console.log(hasInTimeIDOXUI);
   React.useEffect(() => {
     if (hasInTimeIDOXUI) {
-      setList([data]);
+      setList([dataReleap, data]);
     } else
       setList([dataXUI, data]);
   }, [hasInTimeIDOXUI])

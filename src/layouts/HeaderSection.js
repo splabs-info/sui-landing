@@ -35,6 +35,7 @@ import { BuyCryptoButton } from 'components/common/CustomButton';
 import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 
 const config = [
+  // { label: 'buy_crypto', link: '/' },
   { label: 'key_2', link: '/ido-launchpad' },
   { label: 'key_3', link: '/ino-launchpad' },
   { label: 'key_4', link: '/staking' },
@@ -196,7 +197,7 @@ export default function HeaderSection() {
             alignSelf: 'stretch',
             alignItems: 'center',
             textTransform: 'uppercase',
-            fontSize: '14px',
+            fontSize: '13px',
           }}
         >
           {isDesktop && library[item.label] === 'Crew3' ? (
@@ -297,7 +298,9 @@ export default function HeaderSection() {
     <></>
     // <NotifiHistory />
   );
-  const BuyCrypto = () => <>{/* <AlchemyPay /> */}</>;
+  const BuyCrypto = () => <>
+    <AlchemyPay />
+  </>;
 
   return (
     <>
@@ -331,7 +334,7 @@ export default function HeaderSection() {
             )}
             <Stack direction="row" gap={2}>
               <Hidden smDown>
-                <BuyCrypto />
+                {/* <BuyCrypto /> */}
               </Hidden>
               {SocialHeaderBox()}
             </Stack>
@@ -343,6 +346,7 @@ export default function HeaderSection() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
+
             zIndex: 1,
           }}
           className={scrollPositionToggle ? 'sticky-scroll' : ''}
@@ -364,25 +368,26 @@ export default function HeaderSection() {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    mr: 2,
+                    gap: '10px',
                   }}
                 >
+                  <BuyCrypto />
                   <MenuHeaderBox />
                 </Box>
                 {!walletAddress && (
                   <FrameButton
                     onClick={handleOpenConnectPopup}
                     open={openConnectPopup}
-                    sx={{ fontSize: 14, width: 140, height: 56 }}
+                    sx={{ width: 132, height: 48, fontSize: 13 }}
                   >
                     Connect Wallet
                   </FrameButton>
                 )}
-                <StyledBtnBorderGreen size="large" onClick={() => navigate('/my-profile')}>
+                <StyledBtnBorderGreen sx={{ padding: '6px 16px', height: 'unset', fontSize: 13 }} size="large" onClick={() => navigate('/my-profile')}>
                   My Page
                 </StyledBtnBorderGreen>
                 <CustomLink href="https://zealy.io/c/yousui" target="_blank" rel="noreferrer">
-                  <StyledBtnBorderGreen size="large">Crew3</StyledBtnBorderGreen>
+                  <StyledBtnBorderGreen sx={{ padding: '6px 16px', height: 'unset', fontSize: 13 }} size="large">Crew3</StyledBtnBorderGreen>
                 </CustomLink>
 
                 {walletAddress && (

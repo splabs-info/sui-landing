@@ -8,6 +8,7 @@ export const en = {
   COMING_SOON: `Coming soon`,
   MARKETPLACE: 'Marketplace',
   // key_1: "YouSUI",
+  buy_crypto: 'Buy Crypto',
   key_2: 'IDO Launchpad',
   key_3: 'INO Launchpad',
   key_4: 'Staking',
