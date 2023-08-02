@@ -6,14 +6,12 @@ import { GradientButton } from 'components/common/CustomButton';
 import CustomTable from 'components/common/CustomTable';
 import { isEmpty, isNull, sumBy, toInteger, toNumber, uniqBy } from 'lodash';
 import * as moment from 'moment';
-import { STAKING_PACKAGE_BASE } from 'onchain/constants';
+import { CLOCK, STAKING_PACKAGE_BASE, STAKING_PACKAGE_UPGRADE, STAKING_STORAGE } from 'onchain/constants';
 import { formatEther, transformCerInfo, transformClaimInfo } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useState } from 'react';
-import { fCurrencyV2 } from 'utils/util';
-
-import { CLOCK, STAKING_PACKAGE_UPGRADE, STAKING_STORAGE } from 'onchain/constants';
 import { toast } from 'react-toastify';
+import { fCurrencyV2 } from 'utils/util';
 import ClaimAvailableTable from './ClaimAvailableTable';
 
 const TableBox = styled(Box)(({ theme }) => ({
@@ -94,7 +92,7 @@ let config = [
     },
 ];
 
-export default function StakingTable({ fetchUserStakingInfo }) {
+export default function StakingTable({ fetchUserStakingInfo, actionList }) {
     const [page, setPage] = useState(1);
     const [pageSize] = useState(12);
     const [data, setData] = useState([]);
@@ -109,14 +107,31 @@ export default function StakingTable({ fetchUserStakingInfo }) {
         let date;
         const temp = ((apr_at_moment / 100) * stake_amount) / 365;
         if (isNull(latest_claim_date)) {
-            // Change when to merge prod
             date = toInteger((moment() - stake_date) / 86400000);
         } else {
             date = toInteger((moment() - latest_claim_date) / 86400000);
         }
-
         return temp * date;
     };
+    const action = React.useMemo(() => {
+        const currentTime = moment();
+        let result = true;
+        if (!isEmpty(actionList)) {
+            actionList.forEach((a) => {
+                switch (a.action) {
+                    case 'ACTION_STAKE':
+                        if (!currentTime.isAfter(moment(toNumber(a.time)).add(3, 'minutes'))) {
+                            result = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+        return result;
+    }, [actionList])
+
 
     const fetchStakingCer = async () => {
         if (!wallet?.address || !wallet.connected) return;
@@ -193,6 +208,7 @@ export default function StakingTable({ fetchUserStakingInfo }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     };
 
+
     const handleTotalClaim = async () => {
         const tx = new TransactionBlock();
         setLoading(true);
@@ -240,6 +256,7 @@ export default function StakingTable({ fetchUserStakingInfo }) {
                     config={config}
                     loading={!data}
                     page={0}
+                    action={action}
                     setPage={(e) => setPage(e)}
                     callback={fetchStakingCer}
                     fetchUserStakingInfo={fetchUserStakingInfo}

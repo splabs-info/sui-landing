@@ -4,57 +4,84 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/FooterSection';
-import { toNumber } from 'lodash';
+import { isEmpty, toNumber } from 'lodash';
 import * as moment from 'moment';
-import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_ROUND_NAME } from 'onchain/constants';
+import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
-export default function VestingTokens({ projectName, tokenType, periodList, totalLockMount, totalUnlockAmount }) {
+export default function VestingTokens({ projectName, tokenType, periodList, totalLockMount, totalUnlockAmount, fetchData }) {
     const isMobile = useResponsive('down', 'sm');
+
+    const location = useLocation();
+
+    const event = location.state?.eventName;
+    const { infoRound, formatInfoRound } = useFormatRound();
+
+    const renderEventName = React.useCallback(() => {
+        if (event === RELEAP_ROUND_NAME) {
+            return 'Releap Protocol'
+        } else {
+            return 'XUI Tokens'
+        }
+    }, [event])
+
+    const renderDescription = React.useCallback(() => {
+        if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
+            return infoRound?.description;
+        } else {
+            return 'A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best addition of blockchain features to their games in a few minutes for the future of gaming…'
+        }
+    }, [event, infoRound])
+
+    const renderAvatar = React.useCallback(() => {
+        if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
+            return <Box
+                component={'img'}
+                src={infoRound?.imageUrl}
+                sx={{
+                    width: '100%',
+                    borderRadius: '10px',
+                }}
+            />
+
+
+        } else {
+            return <Box
+                component={'img'}
+                src="/images/staking/water-seek.jpg"
+                sx={{
+                    width: '100%',
+                    borderRadius: '10px',
+                }}
+            />
+        }
+    }, [event, infoRound])
+
+    React.useEffect(() => {
+        formatInfoRound(event);
+    }, [formatInfoRound, event]);
 
     return (
         <Box position="relative">
             <Grid container spacing={4} mb={isMobile ? 1 : 4}>
                 <Grid xs={12} md={4} item>
-                    <Box position={'relative'}>
-                        <Box
-                            component={'img'}
-                            src="/images/staking/water-seek.jpg"
-                            sx={{
-                                width: '100%',
-                                borderRadius: '10px',
-                            }}
-                        />
-                        {/* <Box
-                            sx={{
-                                background: 'linear-gradient(255deg, #207BBF 0%, #5CBAF2 100%)',
-                                position: 'absolute',
-                                bottom: 0,
-                                right: 0,
-                                borderRadius: '10px',
-                                padding: '8px 24px',
-                            }}
-                        >
-                            <Typography color={'white'} fontWeight={'bold'}>
-                                TBA
-                            </Typography>
-                        </Box> */}
+                    <Box position={'relative'} sx={{}}>
+                        {renderAvatar()}
                     </Box>
                 </Grid>
                 <Grid sx={{ width: '100%', '& a': { marginRight: '8px' } }} xs={12} md={8} item>
                     <Typography variant="h3" color={'white'}>
-                        XUI Tokens
+                        {renderEventName()}
                     </Typography>
                     <Typography variant="body1" color={'white'} my={isMobile ? 2 : 4}>
-                        A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best
-                        addition of blockchain features to their games in a few minutes for the future of gaming…
+                        {renderDescription()}
                     </Typography>
                     <SocialFooter />
                     <TokenPoolBox sx={{ padding: '20px 48px', marginTop: isMobile ? '24px' : '40px' }}>
@@ -74,7 +101,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                                 ethers.utils.formatUnits(totalUnlockAmount, 9)
                                             )
                                             : 'Loading'}{' '}
-                                        XUI
+                                        {infoRound?.symbol ? infoRound?.symbol : '--'}
                                     </Typography>
                                     <Typography>
                                         {totalLockMount
@@ -82,7 +109,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                                                 ethers.utils.formatUnits(totalLockMount, 9)
                                             )
                                             : 'Loading'}{' '}
-                                        XUI
+                                        {infoRound?.symbol ? infoRound?.symbol : '--'}
                                     </Typography>
                                 </>
                             }
@@ -97,9 +124,11 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                             projectName={projectName}
                             key={index}
                             tokenType={tokenType}
+                            fetchData={fetchData}
                             periodId={item?.fields.period_id}
                             id={item?.fields.period_id}
                             indexVesting={index}
+                            symbol={infoRound?.symbol}
                             isWithdrawal={item?.fields.is_withdrawal}
                             releaseTime={item?.fields?.release_time}
                             unlockAmount={item?.fields?.unlock_amount}
@@ -115,7 +144,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
     );
 }
 
-function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount, projectName }) {
+function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount, projectName, fetchData, symbol }) {
     const isMobile = useResponsive('down', 'sm');
 
     const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
@@ -151,6 +180,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
 
             if (result) {
                 setLoading(false);
+                fetchData();
                 toast.success('Claim success');
             } else {
                 setLoading(false);
@@ -158,6 +188,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
             }
         } catch (e) {
             setLoading(false);
+            console.log('error__handleClaim', e)
             toast.error('Transaction rejected');
         }
     };
@@ -229,7 +260,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
                                     ethers.utils.formatUnits(unlockAmount, 9)
                                 ) +
                                 ' ' +
-                                'XUI'
+                                symbol
                                 : 'Loading'}
                         </Typography>
                     </Box>

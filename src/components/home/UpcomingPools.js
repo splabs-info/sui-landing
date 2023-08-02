@@ -95,7 +95,7 @@ export default function UpcomingPools() {
       <Box mb={5} sx={{ position: 'relative' }}>
         <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
         <TitleBox>
-          <Typography> Upcoming</Typography>
+          <Typography>Upcoming</Typography>
           <TypographyGradient>Pools</TypographyGradient>
         </TitleBox>
       </Box>

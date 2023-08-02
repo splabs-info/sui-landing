@@ -6,13 +6,12 @@ import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import { isEmpty, toNumber } from 'lodash';
 import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
-import { formatEther } from 'onchain/helpers';
+import { formatEther, handleKeyType } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React, { useState } from 'react';
 import Staking from './Stacking';
-import { handleKeyType } from 'onchain/helpers'
-import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { sumBy } from 'lodash'
+// import { useYouSuiStore } from 'zustand-store/yousui_store';
+// import { useGetObject } from 'onchain/hooks/use-get-object';
 const SpecialTabList = styled(TabList)(({ theme }) => ({
     transition: '1s',
     background: 'linear-gradient(360deg, rgba(40, 140, 197, 0.15) 50%, rgba(93, 213, 230, 0.15) 100.31%)',
@@ -59,17 +58,21 @@ const SpecialTabList = styled(TabList)(({ theme }) => ({
     },
 }));
 export default function StakingFarming() {
+    let actionList = [];
+    const [action, setAction] = React.useState([]);
+
     const [tabIndex, setTabIndex] = useState('0');
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
+
     const [staking, setStaking] = React.useState([])
 
+    const wallet = useWallet()
 
     const handleChange = (event, newValue) => {
         setTabIndex(newValue.toString());
     };
 
     const { provider } = React.useContext(SuiContext)
-
 
     const fetchStakingInfo = React.useCallback(async () => {
         if (!provider) return;
@@ -84,8 +87,6 @@ export default function StakingFarming() {
             })
 
             if (isEmpty(stakingName)) return;
-
-
 
             const promiseDynamic = stakingName.map(async (item) => {
                 const dynamicFieldObjects = await provider.getDynamicFieldObject(({
@@ -128,6 +129,38 @@ export default function StakingFarming() {
     }, [provider])
 
 
+    const fetchCanStaking = React.useCallback(async () => {
+        if (!wallet?.address || !wallet?.connected) return;
+
+        const dynamicData = await provider.getObject({
+            id: STAKING_STORAGE,
+            options: { showContent: true },
+        });
+
+        if (!dynamicData) return console.log('Dynamic data invalid');
+
+        dynamicData?.data?.content?.fields?.access_list.fields.contents.forEach((a) => {
+            if (a?.fields?.key === wallet?.address) {
+                if (!isEmpty(a?.fields?.value?.fields?.contents)) {
+                    a?.fields?.value?.fields?.contents.forEach((i) => {
+                        const formattedAction = {
+                            action: i?.fields?.key,
+                            time: i?.fields?.value
+                        }
+                        actionList.push(formattedAction)
+                    })
+                } else {
+                    return actionList;
+                }
+            }
+        });
+
+        if (!isEmpty(actionList)) {
+            setAction(actionList)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, wallet?.connected])
+
     const fetchUserStakingInfo = React.useCallback(async () => {
         let totalXUILockedToken = 0;
         const formattedKey = handleKeyType(XUI_TYPE)
@@ -152,12 +185,17 @@ export default function StakingFarming() {
             });
         }
         setTotalXUILocked(totalXUILockedToken)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     React.useEffect(() => {
         fetchUserStakingInfo()
     }, [fetchUserStakingInfo])
+
+    React.useEffect(() => {
+        if (!wallet?.address || !wallet?.connected) return;
+        fetchCanStaking()
+    }, [fetchCanStaking, wallet?.address, wallet?.connected])
 
     React.useEffect(() => {
         fetchStakingInfo()
@@ -180,7 +218,7 @@ export default function StakingFarming() {
                                 </SpecialTabList>
                             </Stack>
                             <TabPanel value={'0'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
-                                <Staking staking={staking} fetchUserStakingInfo={fetchUserStakingInfo} totalXUILocked={totalXUILocked} />
+                                <Staking staking={staking} fetchUserStakingInfo={fetchUserStakingInfo} fetchCanStaking={fetchCanStaking} totalXUILocked={totalXUILocked} actionList={action} />
                             </TabPanel>
                             <TabPanel value={'1'} sx={{ padding: { md: '40px 0 0', xs: '32px 8px 0' } }}>
                                 {/* <Farming /> */}

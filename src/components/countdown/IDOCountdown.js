@@ -52,6 +52,8 @@ export const IDOCountdown = ({ endTime, _handleComplete }) => {
 };
 
 const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
+  
+  
   if (completed) {
     return '';
   } else {

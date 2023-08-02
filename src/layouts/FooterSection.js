@@ -170,6 +170,7 @@ export const SocialFooter = ({ sx }) => {
     const handleCloseMenu = () => {
         setAnchorEl(null);
     };
+    
     return (
         <SocialBox sx={sx}>
             {socials.map((item, index) =>
