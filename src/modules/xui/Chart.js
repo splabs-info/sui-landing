@@ -94,7 +94,6 @@ export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, mi
         return percent;
     }, [minPurchase, roundName, totalSold, totalSupply]);
 
-    console.log('minPurchase * toNumber(formattedRatio)', minPurchase * toNumber(formattedRatio))
     return (
         <ChartBox>
             <LiveBox>

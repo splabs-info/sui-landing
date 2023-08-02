@@ -457,12 +457,11 @@ export const BuyForm = ({
                 return '( Tier 5 )';
             } else {
                 currentTier.current = 'non_tier';
-                return 'Non-tier';
+                return '( Non-tier )';
             }
         } else return '';
     }, [roundName, totalXUILocked]);
 
-    // const renderChecked = React.useCallback(() => { }, []);
     return (
         <>
             <SaleFormBox sx={{ position: 'relative' }}>

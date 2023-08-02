@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, Divider, Grid, Hidden, Typography } from '@mui/material';
+import { Box, Divider, Grid, Hidden, Typography, Stack} from '@mui/material';
 import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
@@ -16,7 +16,15 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
-export default function VestingTokens({ projectName, tokenType, periodList, totalLockMount, totalUnlockAmount, fetchData }) {
+
+export default function VestingTokens({
+    projectName,
+    tokenType,
+    periodList,
+    totalLockMount,
+    totalUnlockAmount,
+    fetchData,
+}) {
     const isMobile = useResponsive('down', 'sm');
 
     const location = useLocation();
@@ -26,47 +34,73 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
 
     const renderEventName = React.useCallback(() => {
         if (event === RELEAP_ROUND_NAME) {
-            return 'Releap Protocol'
+            return 'Releap Protocol';
         } else {
-            return 'XUI Tokens'
+            return 'XUI Tokens';
         }
-    }, [event])
+    }, [event]);
 
     const renderDescription = React.useCallback(() => {
         if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
             return infoRound?.description;
         } else {
-            return 'A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best addition of blockchain features to their games in a few minutes for the future of gaming…'
+            return 'A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best addition of blockchain features to their games in a few minutes for the future of gaming…';
         }
-    }, [event, infoRound])
+    }, [event, infoRound]);
 
     const renderAvatar = React.useCallback(() => {
         if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
-            return <Box
-                component={'img'}
-                src={infoRound?.imageUrl}
-                sx={{
-                    width: '100%',
-                    borderRadius: '10px',
-                }}
-            />
-
-
+            return (
+                <Box
+                    component={'img'}
+                    src={infoRound?.imageUrl}
+                    sx={{
+                        width: '100%',
+                        borderRadius: '10px',
+                    }}
+                />
+            );
         } else {
-            return <Box
-                component={'img'}
-                src="/images/staking/water-seek.jpg"
-                sx={{
-                    width: '100%',
-                    borderRadius: '10px',
-                }}
-            />
+            return (
+                <Box
+                    component={'img'}
+                    src="/images/staking/water-seek.jpg"
+                    sx={{
+                        width: '100%',
+                        borderRadius: '10px',
+                    }}
+                />
+            );
         }
-    }, [event, infoRound])
+    }, [event, infoRound]);
 
     React.useEffect(() => {
         formatInfoRound(event);
     }, [formatInfoRound, event]);
+
+
+    const renderSocial = React.useCallback(() => {
+        if (event === RELEAP_ROUND_NAME) {
+            return (
+                <Stack direction={"row"} gap={2}>
+                    <Box component="a" href="https://medium.com/@releap" target={'_blank'}>
+                        <img component="img" src="/images/icon/icon-medium.png" alt="" />
+                    </Box>
+                    <Box component="a" href="https://twitter.com/Releap_io" target={'_blank'}>
+                        <img component="img" src="/images/icon/icon-twitter.png" alt="" />
+                    </Box>
+                    <Box component="a" href="https://discord.gg/AjJXEeTG6S" target={'_blank'}>
+                        <img component="img" src='/images/icon/icon-discord.png' alt="" />
+                    </Box>
+                    <Box component="a" href="https://docs.releap.xyz/introduction/overview" target={'_blank'}>
+                        <img component="img" src='/images/icon/icon-wpp.png' alt="" />
+                    </Box>
+                </Stack>
+            )
+        } else {
+            return <SocialFooter />
+        }
+    }, [event])
 
     return (
         <Box position="relative">
@@ -83,7 +117,7 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
                     <Typography variant="body1" color={'white'} my={isMobile ? 2 : 4}>
                         {renderDescription()}
                     </Typography>
-                    <SocialFooter />
+                    {renderSocial()}
                     <TokenPoolBox sx={{ padding: '20px 48px', marginTop: isMobile ? '24px' : '40px' }}>
                         <ProcessBarBox
                             percent={(totalUnlockAmount / totalLockMount) * 100}
@@ -144,7 +178,18 @@ export default function VestingTokens({ projectName, tokenType, periodList, tota
     );
 }
 
-function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, releaseTime, unlockAmount, projectName, fetchData, symbol }) {
+function VestingList({
+    id,
+    periodId,
+    tokenType,
+    isWithdrawal,
+    indexVesting,
+    releaseTime,
+    unlockAmount,
+    projectName,
+    fetchData,
+    symbol,
+}) {
     const isMobile = useResponsive('down', 'sm');
 
     const withdrawal = React.useMemo(() => isWithdrawal, [isWithdrawal]);
@@ -188,7 +233,7 @@ function VestingList({ id, periodId, tokenType, isWithdrawal, indexVesting, rele
             }
         } catch (e) {
             setLoading(false);
-            console.log('error__handleClaim', e)
+            console.log('error__handleClaim', e);
             toast.error('Transaction rejected');
         }
     };

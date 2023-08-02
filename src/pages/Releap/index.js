@@ -54,7 +54,7 @@ const ReleapContainer = () => {
                     return object?.data?.owner?.AddressOwner === wallet?.address;
                 } else return;
             })
-            .test('true-type', 'Your object id is not OG Role NFT', async (value) => {
+            .test('true-type', 'Your object id is not YouSUI Tier NFT', async (value) => {
                 if (value && isValidSuiObjectId(value)) {
                     const object = await provider.getObject({
                         id: value,

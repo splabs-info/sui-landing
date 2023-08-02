@@ -18,7 +18,6 @@ export default function ClaimsDetail() {
     const { provider } = React.useContext(SuiContext);
 
 
-
     const fetchData = React.useCallback(async() => {
         if (!wallet?.address || !wallet.connected) return;
         const allOfProjectDetail = await provider.getDynamicFields({

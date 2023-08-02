@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import {
-    isEmpty, result
+    isEmpty
 } from 'lodash';
 import { fetchCoreDetails } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
@@ -56,7 +56,6 @@ export const useFormatRound = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     )
-
 
     const formatInfoRound = React.useCallback(async (name) => {
         if (isEmpty(projects)) return
@@ -135,7 +134,6 @@ export const useFormatRound = () => {
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
         }
 
-        console.log()
         const infoState = rounds.map((info) => ({
             id: info?.id?.id || '',
             name: info?.name || '',
