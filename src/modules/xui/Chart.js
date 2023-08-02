@@ -193,7 +193,7 @@ export const Chart = ({ startAt, roundName, decimals, totalSupply, totalSold, mi
 
                         <Stack>
                             <Box sx={{ display: 'flex' }}>
-                                <img src="/images/icon/ido-info.svg" alt="ido-info-icons" style={{  width: '11%', marginRight: '10px' }} />
+                                <img src="/images/icon/ido-info.svg" alt="ido-info-icons" style={{ width: '40px', height: '40px', marginRight: '10px' }} />
                                 <Typography variant="h6"> IDO Information</Typography>
                             </Box>
                             <ul style={{ marginLeft: '64px' }}>

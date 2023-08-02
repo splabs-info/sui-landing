@@ -134,8 +134,6 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
             if (result) {
                 setLoading(false);
-                // findRefund();
-                // fetchRefund();
                 fetchData();
                 toast.success('Claim success');
             } else {

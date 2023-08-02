@@ -27,19 +27,26 @@
 // export const ADMIN_STORAGE = '0x6f79e9c288891b258c09f794d4ff6b8de949b80c5934feed91c98acf47c7d69b'
 
 // New version
-export const PACKAGE_BASE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
-export const PACKAGE_UPGRADE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
-export const LAUNCHPAD_STORAGE =
-    '0x856a07b1187fe6870cb7eef4b521571932ad0d1eef22e63ee670c77a06e23bf9'
+// export const PACKAGE_BASE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
+// export const PACKAGE_UPGRADE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
+// export const LAUNCHPAD_STORAGE =
+//     '0x856a07b1187fe6870cb7eef4b521571932ad0d1eef22e63ee670c77a06e23bf9'
 
-export const ADMIN_STORAGE = '0xaf70de0a69d1f8e2ce310ae761b9f47061104c3e207f8e9dd98888f24b9765e3'
-export const INVEST_CERTIFICATE = [
-    `${PACKAGE_BASE}::certificate::InvestmentCertificate`,
-]
+// export const ADMIN_STORAGE = '0xaf70de0a69d1f8e2ce310ae761b9f47061104c3e207f8e9dd98888f24b9765e3'
+
 
 export const CLOCK = '0x6'
 
 
+// Main-net test
+export const PACKAGE_BASE = '0x8c51ab7346994589f4f50e71c81e5a2868eb6d9a1033f41afb58ed52dcec43dc'
+export const PACKAGE_UPGRADE = '0x8c51ab7346994589f4f50e71c81e5a2868eb6d9a1033f41afb58ed52dcec43dc'
+export const LAUNCHPAD_STORAGE =
+    '0x7aa987d38a809e71a6b66a981518dc9690dc2bf7d049dbd22a71977e17992085'
+
+export const ADMIN_STORAGE = '0x25bb988d84ffd7a06a2e777903b277d956fdbc2239cba97a329f6b87cb1b27bc'
+
+// Staking----------
 export const STAKING_STORAGE="0xa9f5633eb02a35b7216eb6f81f3cfec6d345f8851ac101a170688c1a67c8b216"
 
 export const STAKING_PACKAGE_BASE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c'
@@ -56,3 +63,7 @@ export const RELEAP_ROUND_NAME = 'Releap_Public_Sale'
 // export const STAKING_PACKAGE_UPGRADE = '0x901ffb2579cf41deb4ac498a7b0654382f3db138e91f2a208d35380a7c7d7a15'
 
 // export const XUI_TYPE = '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'
+
+export const INVEST_CERTIFICATE = [
+    `${PACKAGE_BASE}::certificate::InvestmentCertificate`,
+]

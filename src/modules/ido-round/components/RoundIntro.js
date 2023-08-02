@@ -81,6 +81,28 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
+    const renderCountDown = React.useCallback(() => {
+        if (roundName === RELEAP_ROUND_NAME) {
+            return <>
+                <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                    Start After
+                </Typography>
+
+                <Box mb={13} sx={{
+                    position: 'relative'
+                }}>
+                    {startAt &&
+                        <CountDownBox>
+                            <IDOCountdown
+                                endTime={'2023-08-07T12:00:00'}
+                            />
+                        </CountDownBox>}
+                </Box>
+            </>
+        } else return;
+    }, [roundName, startAt])
+
     return (
         <RoundInfoBox>
             <ImageBox>
@@ -88,19 +110,8 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                 {imageUrl ? '' : <img src="/logo-1.png" alt="" width={200} className="absolute" />}
 
             </ImageBox>
-            <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                Start After
-            </Typography>
-            <Box mb={13} sx={{
-                position: 'relative'
-            }}>
-                {startAt &&
-                    <CountDownBox>
-                        <IDOCountdown
-                            endTime={'2023-08-07T12:00:00'}
-                        />
-                    </CountDownBox>}
-            </Box>
+            {renderCountDown()}
+
             <Stack direction="row" spacing={2} justifyContent={'space-between'} alignItems={'center'} my={3}>
                 <TitleBackgroundBox>
                     <Typography variant="h5">{renderRoundTitle()}</Typography>

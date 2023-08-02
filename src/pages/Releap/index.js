@@ -136,6 +136,7 @@ const ReleapContainer = () => {
         const investList = dynamicData?.data?.content?.fields?.invest_list?.fields?.contents.filter(
             (i) => i?.fields.key === wallet?.address
         );
+        if (!investList || isEmpty(investList)) return;
         investList.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
                 const formattedKey = handleKeyType(XUI_TYPE)
@@ -190,7 +191,7 @@ const ReleapContainer = () => {
                                         <InputField
                                             id="objectId"
                                             name="objectId"
-                                            placeholder="Input Object ID of OG ROLE NFT"
+                                            placeholder="Input Object ID Tier 4 or Tier 5 NFT"
                                             variant="outlined"
                                             size="small"
                                             control={control}
