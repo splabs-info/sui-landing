@@ -4,8 +4,12 @@ import { NavLink } from 'react-router-dom';
 import { config } from './init';
 
 export default function AlchemyPay() {
-  const handleOpen = () => {
+  const handleOpenBuy = () => {
     window.open(`${config.link}?appId=${config.appId}`, '', 'width=500,height=700');
+  };
+
+  const handleOpenSell = () => {
+    window.open(`${config.link}?appId=${config.appId}&type=sell`, '', 'width=500,height=700');
   };
 
   return (
@@ -76,7 +80,7 @@ export default function AlchemyPay() {
           }}
         >
           <Button
-            onClick={handleOpen}
+            onClick={handleOpenBuy}
             sx={{
               display: 'flex',
               flexDirection: 'row',
@@ -88,10 +92,27 @@ export default function AlchemyPay() {
             <IconCreditCard size={'28px'} />
             <Box textAlign={'left'}>
               <Typography typography={'body2'} fontWeight={600}>
-                {' '}
                 Credit/Debit card
               </Typography>
               <Typography typography={'caption'}>Buy crypto via VISA or Mastercard </Typography>
+            </Box>
+          </Button>
+          <Button
+            onClick={handleOpenSell}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              gap: '8px',
+              color: 'white',
+            }}
+          >
+            <IconCreditCard size={'28px'} />
+            <Box textAlign={'left'}>
+              <Typography typography={'body2'} fontWeight={600}>
+                Credit/Debit card
+              </Typography>
+              <Typography typography={'caption'}>Sell crypto via VISA or Mastercard </Typography>
             </Box>
           </Button>
         </Box>
