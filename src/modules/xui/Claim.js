@@ -10,7 +10,8 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { fCurrencyV2 } from 'utils/util';
-import { RELEAP_ROUND_NAME } from 'onchain/constants';
+import { RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants';
+import { useLocation } from 'react-router-dom';
 export const Claim = ({ decimals, services, claimInfo, type, payments, projectName, roundName, endAt }) => {
     const [loading, setLoading] = React.useState();
     const [claimSuccessful, setClaimSuccessful] = React.useState(false);
@@ -92,14 +93,13 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
         const currentTime = moment();
         const dynamicFields = findRefund();
         try {
-            if (roundName === RELEAP_ROUND_NAME) {
+            if (projectName === RELEAP_PROJECT_NAME) {
 
                 const info = await provider.getDynamicFieldObject({
                     parentId: dynamicFields?.parent_id,
                     name: dynamicFields?.name,
                 });
 
-                
                 if (!info || isEmpty(info)) return;
 
                 const arr_claimed_address = info.data?.content?.fields?.arr_claimed_address?.fields?.contents;
@@ -109,9 +109,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                     return setCanRefund(false)
                 };
 
-
                 if (!formattedPurchased || formattedPurchased === 0) {
-
                     setRefundState('REFUND REQUEST (NOT PARTICIPANT)')
                     return setCanRefund(false)
                 }
@@ -120,15 +118,16 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
                 const refundRangeTime = moment(toNumber(info?.data?.content?.fields.refund_range_time))
 
+                if (currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds'))) {
+                    setRefundState('REFUND REQUEST (NOT TIME)')
+                    return setCanRefund(false)
+                }
+
                 if (currentTime.isAfter(startRefundTime) && currentTime.isBefore(startRefundTime + refundRangeTime)) {
                     setRefundState('REFUND REQUEST')
                     return setCanRefund(true)
                 }
 
-                if (currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds'))) {
-                    setRefundState('REFUND REQUEST (NOT TIME)')
-                    return setCanRefund(false)
-                }
                 else {
                     setRefundState('REFUND REQUEST (END TIME)')
                     return setCanRefund(false)
@@ -137,7 +136,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
         } catch (error) {
             console.log('error_fetchRefund', error);
         }
-    }, [findRefund, formattedPurchased, provider, roundName, wallet.address])
+    }, [findRefund, formattedPurchased, projectName, provider, wallet.address])
 
     const handleClaim = React.useCallback(async () => {
         setLoading(true);
@@ -202,7 +201,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     }, [canRefund])
 
     const renderClaimInfo = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
                     <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className="border">
@@ -266,7 +265,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                 </>
             );
         }
-    }, [canRefund, formattedConsumed, formattedPurchased, formattedRemaining, handleClaim, handleRefund, isClaim, loading, refundState, roundName]);
+    }, [canRefund, formattedConsumed, formattedPurchased, formattedRemaining, handleClaim, handleRefund, isClaim, loading, projectName, refundState, roundName]);
 
 
     React.useEffect(() => {
@@ -275,10 +274,10 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     }, [fetchCanClaim, fetchRefund, roundName]);
 
     React.useEffect(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             fetchRefund();
         }
-    }, [fetchRefund, roundName])
+    }, [fetchRefund, projectName])
 
     return <ClaimBox>{renderClaimInfo()}</ClaimBox>;
 };

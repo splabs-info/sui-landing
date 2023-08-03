@@ -134,6 +134,7 @@ export const useFormatRound = () => {
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
         }
 
+
         const infoState = rounds.map((info) => ({
             id: info?.id?.id || '',
             name: info?.name || '',

@@ -7,6 +7,7 @@ import React, { createContext } from 'react';
 const config = {
     providerConnection: new Connection({
         // fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
+        // fullnode: 'https://sui.getblock.io:443/a8e9b1ba-578b-470a-b901-79f928669fa0/mainnet',
         fullnode: 'https://sui-testnet-rpc.allthatnode.com:443/cd2f7736h5krjpsednzd5qjigxgkl803',
     }),
 };

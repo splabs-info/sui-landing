@@ -75,8 +75,8 @@ export const TokenPoolBox = styled(Box)(({ theme, isWithdrawal }) => ({
 
 export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
-    const [checkedMyClaims, setCheckedMyClaims] = useState(false);
 
+    console.log('myIDOs___', myIDOs)
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -163,7 +163,7 @@ export default function ClaimTokens({ myIDOs }) {
     );
 }
 
-function TokenPool({ avatar, eventName, name, vestingId, description, issueDate }) {
+function TokenPool({ avatar, eventName, name, vestingId, description, issueDate, projectName }) {
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
 
@@ -171,6 +171,7 @@ function TokenPool({ avatar, eventName, name, vestingId, description, issueDate 
         navigate(`/claim-tokens/${vestingId}`, {
             state: {
                 eventName: eventName,
+                projectName: name
             }
         });
     };

@@ -15,7 +15,7 @@
 
 // Production-real
 // export const PACKAGE_BASE = '0x6e80d8698dad095892a8563b9384f6c7dad24ec855323af36882f1db5ddc4d41'
-// 
+// export const PACKAGE_UPGRADE = '0x10cfb8fe1bd4474a9913c3f5c26af6344240c024795921784e8037db1f0f7c89'
 // export const LAUNCHPAD_STORAGE =
 //     '0xef98dd2ef163816c2ea311eda98703f0efd06cebd9a4b08930fa361f79786eee'
 // export const ADMIN_STORAGE = '0xa9c4b0b259b16abd221d3aefa547e4cf522176fa3c3ef8f20ddf67780df07157'
@@ -26,13 +26,6 @@
 //     '0xcbeefa82fbde080c22bf472e3d27c2393a782ff318d9b078f2f28f2f25ffff29'
 // export const ADMIN_STORAGE = '0x6f79e9c288891b258c09f794d4ff6b8de949b80c5934feed91c98acf47c7d69b'
 
-// New version
-// export const PACKAGE_BASE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
-// export const PACKAGE_UPGRADE = '0xfcb65a0425b0b244f22939abfe237c3fc175e01aae1f73e570585423f93e4efc'
-// export const LAUNCHPAD_STORAGE =
-//     '0x856a07b1187fe6870cb7eef4b521571932ad0d1eef22e63ee670c77a06e23bf9'
-
-// export const ADMIN_STORAGE = '0xaf70de0a69d1f8e2ce310ae761b9f47061104c3e207f8e9dd98888f24b9765e3'
 
 
 export const CLOCK = '0x6'
@@ -47,21 +40,21 @@ export const CLOCK = '0x6'
 // export const ADMIN_STORAGE = '0x25bb988d84ffd7a06a2e777903b277d956fdbc2239cba97a329f6b87cb1b27bc'
 
 // Show info 
-export const PACKAGE_BASE = '0xdace19e12dc43b17030c40a9ebc81cab47e1d48c0cfc1f492fcb5415b94552cb'
-export const PACKAGE_UPGRADE = '0xdace19e12dc43b17030c40a9ebc81cab47e1d48c0cfc1f492fcb5415b94552cb'
+export const PACKAGE_BASE = '0xafb28eb6d39394356e9a418ac095802e9404316767961b41959af70a7941a446'
+export const PACKAGE_UPGRADE = '0xafb28eb6d39394356e9a418ac095802e9404316767961b41959af70a7941a446'
 export const LAUNCHPAD_STORAGE =
-    '0x73c7b0fa1c870e805b3abdc26cb87dd6f4191925623edb79d9f7733ba068048e'
+    '0xccace4973c67a1fe3a73ef03bedd3b3c842738da9790c5f9a3a86ea2afcb459a'
 
-export const ADMIN_STORAGE = '0x2342564c7a20842507abf1b64038c4d59a12440152945104dcc06d4c6e21f04e'
+export const ADMIN_STORAGE = '0x98d64ce79c1d6dc175a5b1c7191b6c020e492ce4a5e3761fdd783eb0a486646c'
 export const XUI_TYPE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c::xui::XUI'
+
 // Staking----------
-export const STAKING_STORAGE="0xa9f5633eb02a35b7216eb6f81f3cfec6d345f8851ac101a170688c1a67c8b216"
+export const STAKING_STORAGE = "0xa9f5633eb02a35b7216eb6f81f3cfec6d345f8851ac101a170688c1a67c8b216"
 
 export const STAKING_PACKAGE_BASE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c'
 export const STAKING_PACKAGE_UPGRADE = '0x7c1571c56980756d7f0a4811b280e11b6dda2a3eae6968269def08ee4bfe1d4e'
 
 // export const XUI_TYPE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c::xui::XUI'
-
 
 
 // Production-staking-real
@@ -72,6 +65,8 @@ export const STAKING_PACKAGE_UPGRADE = '0x7c1571c56980756d7f0a4811b280e11b6dda2a
 
 // export const XUI_TYPE = '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'
 
+export const XUI_PROJECT_NAME = 'YouSUI';
+export const RELEAP_PROJECT_NAME = 'Releap';
 export const RELEAP_ROUND_NAME = 'Releap_Public_Sale'
 export const INVEST_CERTIFICATE = [
     `${PACKAGE_BASE}::certificate::InvestmentCertificate`,

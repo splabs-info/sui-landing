@@ -73,7 +73,7 @@ const upComingList = [
     title: 'Releap Protocol',
     description: 'Social-Fi, NFT',
     openDate: 'Aug 7th, 12:00 UTC',
-    link: '/ido-launchpad/releap/releap-public-sale',
+    link: '/ido-launchpad/releap/public-sale',
     startTime: '',
     endTime: '',
   },

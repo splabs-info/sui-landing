@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { round } from 'lodash';
-import { RELEAP_ROUND_NAME } from 'onchain/constants';
+import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 import React from 'react';
 const CircleBox = styled(Box)(({ theme }) => ({
     height: '260px',
@@ -37,7 +37,7 @@ const PercentBox = styled(Box)(({ theme }) => ({
     transform: 'translate(-50%, -50%)',
 }));
 
-export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roundName, minPurchase }) => {
+export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roundName, minPurchase, projectName }) => {
     let widthInner, widthOuter, width, perimeter, perProcess;
     if (radius) {
         widthInner = 2 * radius + 10;
@@ -51,11 +51,11 @@ export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roun
         if (!totalSold || !totalSupply) return '0';
 
         const percent = (totalSold / totalSupply) * 100;
-        if ((roundName === 'Og_Sale' || roundName === RELEAP_ROUND_NAME) && ((totalSupply - totalSold) < minPurchase || (totalSupply - totalSold) < 0)) {
+        if ((roundName === 'Og_Sale' || projectName === RELEAP_PROJECT_NAME) && ((totalSupply - totalSold) < minPurchase || (totalSupply - totalSold) < 0)) {
             return 100
-        } else { return round(percent, 2)  };
+        } else { return round(percent, 2) };
         // if (roundName === 'Public_Sale') return round(percent, 2);
-    }, [minPurchase, roundName, totalSold, totalSupply])
+    }, [minPurchase, projectName, roundName, totalSold, totalSupply])
 
 
     return (

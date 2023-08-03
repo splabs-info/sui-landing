@@ -9,7 +9,7 @@ import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/FooterSection';
 import { isEmpty, toNumber } from 'lodash';
 import * as moment from 'moment';
-import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_ROUND_NAME } from 'onchain/constants';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
@@ -33,23 +33,23 @@ export default function VestingTokens({
     const { infoRound, formatInfoRound } = useFormatRound();
 
     const renderEventName = React.useCallback(() => {
-        if (event === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return 'Releap Protocol';
         } else {
             return 'XUI Tokens';
         }
-    }, [event]);
+    }, [projectName]);
 
     const renderDescription = React.useCallback(() => {
-        if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
+        if (projectName === RELEAP_PROJECT_NAME && !isEmpty(infoRound)) {
             return infoRound?.description;
         } else {
             return 'A is the easiest and fastest way to approach for developers who want to experime Web3, enabling the best addition of blockchain features to their games in a few minutes for the future of gaming…';
         }
-    }, [event, infoRound]);
+    }, [infoRound, projectName]);
 
     const renderAvatar = React.useCallback(() => {
-        if (event === RELEAP_ROUND_NAME && !isEmpty(infoRound)) {
+        if (projectName === RELEAP_PROJECT_NAME && !isEmpty(infoRound)) {
             return (
                 <Box
                     component={'img'}
@@ -72,7 +72,7 @@ export default function VestingTokens({
                 />
             );
         }
-    }, [event, infoRound]);
+    }, [infoRound, projectName]);
 
     React.useEffect(() => {
         formatInfoRound(event);
@@ -80,7 +80,7 @@ export default function VestingTokens({
 
 
     const renderSocial = React.useCallback(() => {
-        if (event === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <Stack direction={"row"} gap={2}>
                     <Box component="a" href="https://medium.com/@releap" target={'_blank'}>
@@ -100,7 +100,7 @@ export default function VestingTokens({
         } else {
             return <SocialFooter />
         }
-    }, [event])
+    }, [projectName])
 
     return (
         <Box position="relative">

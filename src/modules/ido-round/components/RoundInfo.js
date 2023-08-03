@@ -1,12 +1,12 @@
 import { Box, Divider, Grid, Link, Stack, Typography } from '@mui/material';
-import { fAddress, fCurrency } from 'utils/format';
-import { TokenBox, UtilityBox } from './RoundStyled';
-import React from 'react';
-import * as moment from 'moment';
 import { toNumber } from 'lodash';
-import { RELEAP_ROUND_NAME } from 'onchain/constants';
+import * as moment from 'moment';
+import { RELEAP_PROJECT_NAME, RELEAP_ROUND_NAME } from 'onchain/constants';
+import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
+import { fAddress, fCurrency } from 'utils/format';
+import { TokenBox, UtilityBox } from './RoundStyled';
 const utilities = [
     'Stake XUI-X LP Token to obtain Swap fee Shares',
     'Stake XUI and Get Tier',
@@ -57,9 +57,9 @@ const fields = [
         format: (e) => `${fCurrency(e, 0)} USDT`,
     },
 ];
-export const RoundInfo = ({ startTime, endTime, roundName, type, symbol }) => {
+export const RoundInfo = ({ startTime, endTime, type, symbol, projectName }) => {
     const renderInfo = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
                     <Typography variant="body1" mb={3} sx={{ fontWeight: 'bold', fontSize: 18 }}>
@@ -102,14 +102,14 @@ export const RoundInfo = ({ startTime, endTime, roundName, type, symbol }) => {
                 </>
             );
         }
-    }, [roundName]);
+    }, [projectName]);
 
     const handleCopy = React.useCallback(() => {
         toast.success('Copied');
     }, []);
 
     const renderTokenType = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Link
@@ -148,7 +148,7 @@ export const RoundInfo = ({ startTime, endTime, roundName, type, symbol }) => {
                 </Link>
             );
         }
-    }, [roundName, type]);
+    }, [handleCopy, projectName, type]);
 
     const renderEndTime = React.useCallback(() => {
         if (!endTime) return '--';
@@ -161,7 +161,7 @@ export const RoundInfo = ({ startTime, endTime, roundName, type, symbol }) => {
     }, [startTime]);
 
     const renderTableInfo = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
                     <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className="border">
@@ -216,7 +216,7 @@ export const RoundInfo = ({ startTime, endTime, roundName, type, symbol }) => {
                 </>
             );
         }
-    }, [roundName, symbol]);
+    }, [projectName, symbol]);
 
     return (
         <>

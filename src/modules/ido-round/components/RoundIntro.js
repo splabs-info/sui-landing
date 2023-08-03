@@ -3,7 +3,7 @@ import { IDOCountdown } from 'components/countdown/IDOCountdown';
 import { SocialBox } from 'components/footer/FooterStyles';
 import React from 'react';
 import { ImageBox, RoundInfoBox, TitleBackgroundBox } from './RoundStyled';
-import { RELEAP_ROUND_NAME } from 'onchain/constants'
+import { RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants'
 const CountDownBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: '10px',
@@ -37,18 +37,18 @@ const socials = [
     },
 ];
 
-export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundName, description, imageUrl }) => {
+export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundName, description, imageUrl, projectName }) => {
     const renderRoundTitle = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return 'Releap Protocol';
         } else {
             return 'XUI - YouSUI Token';
         }
-    }, [roundName]);
+    }, [projectName]);
 
 
     const renderSocial = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
                     <Box component="a" href={medium} target={'_blank'}>
@@ -83,7 +83,7 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
 
 
     const renderCountDown = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             return <>
                 <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
                     Start After
@@ -101,7 +101,7 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                 </Box>
             </>
         } else return;
-    }, [roundName, startAt])
+    }, [projectName, startAt])
 
     return (
         <RoundInfoBox>

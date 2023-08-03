@@ -9,7 +9,7 @@ import useResponsive from 'hooks/useResponsive';
 import { debounce, includes, isEmpty, round, toNumber } from 'lodash';
 import { BuyTokenButton, SaleFormBox, TokenButton } from 'modules/ido-round/components/RoundStyled';
 import * as moment from 'moment';
-import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_ROUND_NAME, STAKING_STORAGE } from 'onchain/constants';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_PROJECT_NAME, RELEAP_ROUND_NAME, STAKING_STORAGE, XUI_PROJECT_NAME } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -98,12 +98,12 @@ export const BuyForm = ({
                 else return true;
             })
             .test('nft-validate', 'Your wallet is currently not participating in staking and is not required to hold any Tier NFTs.', () => {
-                if (roundName === RELEAP_ROUND_NAME && objectIdOGRoleNft === '' && currentTier.current === 'non_tier') {
+                if (projectName === RELEAP_PROJECT_NAME && objectIdOGRoleNft === '' && currentTier.current === 'non_tier') {
                     return false
                 } else return true;
             })
             .test('max-purchase', `Max purchase must be ${maxPurchase} ${symbol}`, (value) => {
-                if (roundName === RELEAP_ROUND_NAME) {
+                if (projectName === RELEAP_PROJECT_NAME) {
                     if (value > maxPurchase) return false;
                     else return true;
                 } else return true;
@@ -242,9 +242,9 @@ export const BuyForm = ({
                 handleSelect75();
                 break;
             case 'Max':
-                if (roundName === 'Og_Sale') return handleSelectMax();
-                if (roundName === 'Public_Sale') return handleSelectPublicMax();
-                if (roundName === RELEAP_ROUND_NAME) return handleMaxReleap();
+                if (projectName === XUI_PROJECT_NAME && roundName === 'Og_Sale') return handleSelectMax();
+                if (projectName === XUI_PROJECT_NAME && roundName === 'Public_Sale') return handleSelectPublicMax();
+                if (projectName === RELEAP_PROJECT_NAME) return handleMaxReleap();
                 break;
         }
     };
@@ -306,7 +306,7 @@ export const BuyForm = ({
             objects: [coin],
         });
 
-        if (roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
+        if (projectName === XUI_PROJECT_NAME && roundName === 'Og_Sale' && objectIdOGRoleNft !== '') {
             tx.moveCall({
                 target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_og_holder`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
@@ -320,7 +320,7 @@ export const BuyForm = ({
                     tx.object(objectIdOGRoleNft),
                 ],
             });
-        } else if (roundName === 'Og_Sale' && objectIdOGRoleNft === '') {
+        } else if (projectName === XUI_PROJECT_NAME && roundName === 'Og_Sale' && objectIdOGRoleNft === '') {
             tx.moveCall({
                 target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
@@ -333,7 +333,7 @@ export const BuyForm = ({
                     vec,
                 ],
             });
-        } else if (roundName === 'Public_Sale') {
+        } else if (projectName === XUI_PROJECT_NAME && roundName === 'Public_Sale') {
             tx.moveCall({
                 target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
@@ -346,9 +346,9 @@ export const BuyForm = ({
                     vec,
                 ],
             });
-        } else if (roundName === RELEAP_ROUND_NAME && currentTier.current !== 'non_tier') {
+        } else if (projectName === RELEAP_PROJECT_NAME && roundName === 'Public_Sale' ) {
             tx.moveCall({
-                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor_staking`,
+                target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
                 arguments: [
                     tx.object(CLOCK),
@@ -357,23 +357,39 @@ export const BuyForm = ({
                     tx.pure(roundName),
                     tx.pure(parseAmount),
                     vec,
-                    tx.object(STAKING_STORAGE),
                 ],
             });
-        } else if (roundName === RELEAP_ROUND_NAME && objectIdOGRoleNft !== '') {
-            tx.moveCall({
-                target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_tier45_holder`,
-                typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                arguments: [
-                    tx.object(CLOCK),
-                    tx.object(LAUNCHPAD_STORAGE),
-                    tx.pure(projectName),
-                    tx.pure(roundName),
-                    tx.pure(parseAmount),
-                    vec,
-                    tx.object(objectIdOGRoleNft),
-                ],
-            });
+        } else if (projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale') {
+            if (objectIdOGRoleNft !== '') {
+                tx.moveCall({
+                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_tier45_holder`,
+                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                    arguments: [
+                        tx.object(CLOCK),
+                        tx.object(LAUNCHPAD_STORAGE),
+                        tx.pure(projectName),
+                        tx.pure(roundName),
+                        tx.pure(parseAmount),
+                        vec,
+                        tx.object(objectIdOGRoleNft),
+                    ],
+                });
+            } else {
+                tx.moveCall({
+                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor_staking`,
+                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                    arguments: [
+                        tx.object(CLOCK),
+                        tx.object(LAUNCHPAD_STORAGE),
+                        tx.pure(projectName),
+                        tx.pure(roundName),
+                        tx.pure(parseAmount),
+                        vec,
+                        tx.object(STAKING_STORAGE),
+                    ],
+                });
+            }
+            
         }
 
         try {
@@ -435,7 +451,7 @@ export const BuyForm = ({
     }, [checked, endAt, isValid, loading, minPurchase, poolRemaining, roundName, startAt]);
 
     const renderTier = React.useCallback(() => {
-        if (roundName === RELEAP_ROUND_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME) {
             if (totalXUILocked >= 40000) {
                 currentTier.current = 'tier_1';
                 return '( Tier 1 )'
@@ -460,7 +476,7 @@ export const BuyForm = ({
                 return '( Non-tier )';
             }
         } else return '';
-    }, [roundName, totalXUILocked]);
+    }, [projectName, totalXUILocked]);
 
     return (
         <>

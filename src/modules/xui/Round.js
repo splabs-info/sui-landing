@@ -38,6 +38,7 @@ export const Round = ({
             <Grid container spacing={3}>
                 <Grid item xs={12} md={4}>
                     <RoundIntro
+                        projectName={projectName}
                         medium={medium}
                         discord={discord}
                         twitter={twitter}
@@ -52,6 +53,7 @@ export const Round = ({
                         symbol={symbol}
                         startAt={startAt}
                         roundName={roundName}
+                        projectName={projectName}
                         decimals={decimals}
                         totalSold={totalSold}
                         totalSupply={totalSupply}
@@ -90,6 +92,7 @@ export const Round = ({
                 </Grid>
             </Grid>
             <RoundInfo
+                projectName={projectName}
                 roundName={roundName}
                 type={type}
                 tokenName={tokenName}

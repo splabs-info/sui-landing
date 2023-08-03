@@ -59,7 +59,7 @@ const dataReleap = {
     releaseTime: 'Official Launch: Aug 7th',
     startAt: 'Aug 7th, 12:00 UTC',
     status: false,
-    link: `/ido-launchpad/releap/releap-public-sale`,
+    link: `/ido-launchpad/releap/public-sale`,
     startTime: '2023-08-07T12:00:00 Z',
     endTime: '2023-08-09T12:00:00 Z',
     description: [
