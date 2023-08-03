@@ -33,6 +33,8 @@ export const Round = ({
     medium,
     imageUrl,
 }) => {
+
+    console.log('abc______', projectName)
     return (
         <Box>
             <Grid container spacing={3}>

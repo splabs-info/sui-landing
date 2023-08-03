@@ -25,6 +25,7 @@ import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const XUIIDOContainer = () => {
+  let project = 'YouSUI';
   const isMobile = useResponsive('down', 'sm');
   const [loading, setLoading] = React.useState(false);
   const [claimInfo, setClaimInfo] = React.useState({});
@@ -171,8 +172,8 @@ const XUIIDOContainer = () => {
   }, [infoRound]);
 
   React.useEffect(() => {
-    formatInfoRound(formattedRoundName);
-  }, [formatInfoRound, formattedRoundName]);
+    formatInfoRound(formattedRoundName, project);
+  }, [formatInfoRound, formattedRoundName, project]);
 
   React.useEffect(() => {
     const pathToTab = {

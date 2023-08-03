@@ -92,16 +92,20 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                 <Box mb={13} sx={{
                     position: 'relative'
                 }}>
-                    {startAt &&
+                    {startAt && roundName === 'Public_Sale' ?
                         <CountDownBox>
+                            <IDOCountdown
+                                endTime={'2023-08-08T12:30:00'}
+                            />
+                        </CountDownBox> : <CountDownBox>
                             <IDOCountdown
                                 endTime={'2023-08-07T12:00:00'}
                             />
-                        </CountDownBox>}
+                        </CountDownBox> }
                 </Box>
             </>
         } else return;
-    }, [projectName, startAt])
+    }, [projectName, roundName, startAt])
 
     return (
         <RoundInfoBox>

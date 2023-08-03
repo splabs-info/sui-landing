@@ -19,15 +19,16 @@ import { useFormatRound } from 'onchain/hooks/use-format-round';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { handleNameRound } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { TabContext, TabPanel } from '@mui/lab';
 import { SpecialTabList } from 'modules/xui/components/TabList';
-
+import {handleUrl} from 'onchain/utils/common'
 const ReleapContainer = () => {
+    let project = 'Releap';
     const isMobile = useResponsive('down', 'sm');
     const { provider, fetchData } = React.useContext(SuiContext);
     const [hasEvent, setHasEvent] = React.useState(false);
@@ -37,6 +38,10 @@ const ReleapContainer = () => {
     const [tabIndex, setTabIndex] = React.useState('0');
 
     const navigate = useNavigate();
+
+    // const location = useLocation()
+    // project = handleUrl(location?.pathname)
+
     const { round } = useParams();
 
     const formattedRoundName = React.useMemo(() => handleNameRound(round), [round]);
@@ -185,8 +190,8 @@ const ReleapContainer = () => {
     }, [fetchUserStakingInfo]);
 
     React.useEffect(() => {
-        formatInfoRound(formattedRoundName);
-    }, [formatInfoRound, formattedRoundName]);
+        formatInfoRound(formattedRoundName, project);
+    }, [formatInfoRound, formattedRoundName, project]);
 
     React.useEffect(() => {
         if (hasEvent) {
@@ -226,6 +231,7 @@ const ReleapContainer = () => {
         subscribe(setHasEvent)
     }, [])
 
+    
     return (
         <Page title="IDO - Reap">
             <SectionBox sx={{ backgroundImage: `url(${IDObackground})` }}>

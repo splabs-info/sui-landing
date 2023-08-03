@@ -134,12 +134,19 @@ export const Chart = ({
 
     const renderMinPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
-            return (
-                <>
-                    {minPurchase ? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'} ={' '}
-                    {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI
-                </>
-            );
+            if (roundName === 'Public_Sale') {
+                return (
+                    <>200 SUI</>
+                )
+            } else {
+                return (
+                    <>
+                        {/* {minPurchase? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'} ={' '}
+                        {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
+                        100 SUI
+                    </>
+                );
+            }
         }
         if (projectName === XUI_PROJECT_NAME) {
             return <>{minPurchase ? fCurrencyV2(minPurchase * toNumber(formattedRatio)) : '0'} SUI</>;
@@ -149,10 +156,16 @@ export const Chart = ({
 
     const renderMaxPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
-            return <>
-                {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'} ={' '}
-                {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI
-            </>
+            if (roundName === 'Public_Sale') {
+                return <>1,000 SUI</>
+            } else {
+
+                return <>
+                    {/* {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'} ={' '}
+                {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI */}
+                    70,000 USD
+                </>
+            }
         }
         if (projectName === XUI_PROJECT_NAME) {
             return <>{!totalSupply ? '--' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 3)} SUI</>
@@ -200,6 +213,22 @@ export const Chart = ({
         }
     }, [formattedRatio, projectName, symbol, totalSold, totalSupply])
 
+    const renderPrice = React.useCallback(() => {
+        if (projectName === RELEAP_PROJECT_NAME) {
+            return (
+                <>
+                    0.013 USD
+                </>
+            );
+        }
+        if (projectName === XUI_PROJECT_NAME) {
+            return (
+                <>
+                    1 {symbol} = {formattedRatio} SUI
+                </>
+            );
+        }
+    }, [formattedRatio, projectName, symbol])
     return (
         <ChartBox>
             <LiveBox>
@@ -251,7 +280,8 @@ export const Chart = ({
                                     Price
                                 </Typography>
                                 <Typography variant="body2">
-                                    1 {symbol} = {formattedRatio} SUI
+                                    {renderPrice()}
+                                    {/* 1 {symbol} = {formattedRatio} SUI */}
                                 </Typography>
                             </Stack>
                         </Box>

@@ -48,6 +48,7 @@ export const BuyForm = ({
 
     const { balances, coinObjectsId, fetchBalance, fetchData } = React.useContext(SuiContext);
 
+    console.log('balances__', balances)
     const poolRemaining = React.useMemo(() => {
         if (totalSupply && (totalSold || totalSold === 0)) {
             return totalSupply - totalSold;
@@ -256,6 +257,7 @@ export const BuyForm = ({
         if (!wallet?.address || !wallet?.connected) {
             return 'Connect your wallet before';
         }
+
         if (!isNaN(balances) && payments) {
             return (
                 <Stack direction={'row'}>
@@ -346,7 +348,7 @@ export const BuyForm = ({
                     vec,
                 ],
             });
-        } else if (projectName === RELEAP_PROJECT_NAME && roundName === 'Public_Sale' ) {
+        } else if (projectName === RELEAP_PROJECT_NAME && roundName === 'Public_Sale') {
             tx.moveCall({
                 target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
                 typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
@@ -389,7 +391,7 @@ export const BuyForm = ({
                     ],
                 });
             }
-            
+
         }
 
         try {
@@ -430,7 +432,7 @@ export const BuyForm = ({
                 return <BuyTokenButton disabled>Sold out</BuyTokenButton>;
             }
 
-            if (poolRemaining < minPurchase && roundName === RELEAP_ROUND_NAME) {
+            if (poolRemaining < minPurchase && projectName === RELEAP_PROJECT_NAME) {
                 return <BuyTokenButton disabled>Sold out</BuyTokenButton>;
             }
 
@@ -442,13 +444,23 @@ export const BuyForm = ({
             if (currentTime.isAfter(moment(toNumber(endAt)))) {
                 return <BuyTokenButton disabled>End Time</BuyTokenButton>;
             }
+
+
             return (
                 <BuyTokenButton disabled={!isValid || !checked} loading={loading} type="submit">
                     Buy Now
                 </BuyTokenButton>
             );
         }
-    }, [checked, endAt, isValid, loading, minPurchase, poolRemaining, roundName, startAt]);
+        else {
+            return (
+                <BuyTokenButton disabled={!isValid || !checked} loading={loading} type="submit">
+                    Buy Now
+                </BuyTokenButton>
+            )
+
+        }
+    }, [checked, endAt, isValid, loading, minPurchase, poolRemaining, projectName, roundName, startAt]);
 
     const renderTier = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
@@ -514,6 +526,7 @@ export const BuyForm = ({
                             }}
                         >
                             {renderStatusBalance()}
+                            
                         </Typography>
                     </Box>
                 </Box>
@@ -524,6 +537,7 @@ export const BuyForm = ({
                             id="amount"
                             name="amount"
                             control={control}
+                            disabled
                             sx={{
                                 fontWeight: 'bold',
                                 color: 'white',
@@ -586,6 +600,7 @@ export const BuyForm = ({
                                 key={token}
                                 className={chosenToken === token ? 'active' : ''}
                                 onClick={() => selectPercent(token)}
+                                disabled
                             >
                                 {token}
                                 {isNaN(Number(token)) ? '' : '%'}

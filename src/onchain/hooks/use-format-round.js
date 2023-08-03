@@ -57,10 +57,12 @@ export const useFormatRound = () => {
         []
     )
 
-    const formatInfoRound = React.useCallback(async (name) => {
+    const formatInfoRound = React.useCallback(async (name, projectName) => {
         if (isEmpty(projects)) return
 
-        const rounds = projects
+        const currentProject = projects.filter((item) => item?.name === projectName)
+
+        const rounds = currentProject
             .map((item) =>
                 item?.all_rounds?.find((round) => round?.name === name)
             )
@@ -135,31 +137,33 @@ export const useFormatRound = () => {
         }
 
 
-        const infoState = rounds.map((info) => ({
-            id: info?.id?.id || '',
-            name: info?.name || '',
-            payments: info.payments || [],
-            projectName: projects[0]?.name || '',
-            telegram: info?.project?.fields.telegram,
-            discord: info?.project?.fields.discord,
-            twitter: info?.project?.fields.twitter,
-            medium: info?.project?.fields.medium,
-            website: info?.project?.fields.website,
-            imageUrl: info?.project?.fields.image_url,
-            endAt: info?.end_at || '',
-            startAt: info?.start_at || '',
-            decimals: info?.token_decimal || 0,
-            description: info?.project?.fields.description || '',
-            iconUrl: info?.token?.iconUrl || '',
-            tokenName: info?.token?.name || '',
-            symbol: info?.token?.symbol || '',
-            totalSold: Number(info?.total_sold) || 0,
-            totalSupply: Number(info?.total_supply) || 0,
-            type: info?.token_type,
-            purchaseType: info?.purchase_type?.fields?.contents,
-            participants: info?.participants?.fields?.content
-        }))
-
+        const infoState = rounds.map((info) => {
+            console.log('infooo__', info)
+            return ({
+                id: info?.id?.id || '',
+                name: info?.name || '',
+                payments: info.payments || [],
+                projectName: info?.project?.fields.name || '',
+                telegram: info?.project?.fields.telegram,
+                discord: info?.project?.fields.discord,
+                twitter: info?.project?.fields.twitter,
+                medium: info?.project?.fields.medium,
+                website: info?.project?.fields.website,
+                imageUrl: info?.project?.fields.image_url,
+                endAt: info?.end_at || '',
+                startAt: info?.start_at || '',
+                decimals: info?.token_decimal || 0,
+                description: info?.project?.fields.description || '',
+                iconUrl: info?.token?.iconUrl || '',
+                tokenName: info?.token?.name || '',
+                symbol: info?.token?.symbol || '',
+                totalSold: Number(info?.total_sold) || 0,
+                totalSupply: Number(info?.total_supply) || 0,
+                type: info?.token_type,
+                purchaseType: info?.purchase_type?.fields?.contents,
+                participants: info?.participants?.fields?.content
+            })
+        })
         setInfoRound((pre) => ({
             ...pre,
             ...infoState[0],
