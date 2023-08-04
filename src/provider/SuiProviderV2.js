@@ -7,6 +7,7 @@ import React, { createContext } from 'react';
 const config = {
     providerConnection: new Connection({
         fullnode: `https://sui-mainnet-rpc.allthatnode.com/K9s5Id0QlQ6pqry2pr53sU1C4QeknzNp`,
+        // fullnode: 'https://sui.getblock.io:443/a8e9b1ba-578b-470a-b901-79f928669fa0/mainnet',
         // fullnode: 'https://sui-testnet-rpc.allthatnode.com:443/cd2f7736h5krjpsednzd5qjigxgkl803',
     }),
 };
@@ -24,6 +25,7 @@ export const SuiContext = createContext({
 export const SUIWalletContext = ({ children }) => {
     const wallet = useWallet();
     const [assets, setAssets] = React.useState([]);
+    const [allAssets, setAllAssets] = React.useState([]);
     const [balances, setBalance] = React.useState(0);
     const [projects, setProjects] = React.useState([]);
     const [coinObjectsId, setCoinObjectsId] = React.useState();
@@ -149,8 +151,7 @@ export const SUIWalletContext = ({ children }) => {
         } catch (error) {
             console.error('An error occurred while fetching data');
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [formatProject]);
 
     // Format payments data
     const formatPayment = async (p) => {
@@ -247,6 +248,7 @@ export const SUIWalletContext = ({ children }) => {
 
                 const validAssets = assets.filter((asset) => asset.coinType === XUI_TYPE);
 
+                
                 setAssets(validAssets);
                 let formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9));
 
@@ -254,7 +256,9 @@ export const SUIWalletContext = ({ children }) => {
                 formattedBalance = formattedBalance > 0.2 ? formattedBalance - 0.2 : formattedBalance;
 
                 // const formattedBalance = toNumber(ethers.utils.formatUnits(suiBalance?.totalBalance, 9)) - 0.2
-
+                if(assets) {
+                    setAllAssets(assets)
+                }
                 setBalance(formattedBalance);
                 setCoinObjectsId(coinObjectsId);
             } catch (error) {
@@ -279,10 +283,12 @@ export const SUIWalletContext = ({ children }) => {
         <SuiContext.Provider
             value={{
                 assets,
+                allAssets,
                 balances,
                 coinObjectsId,
                 provider,
                 projects,
+                fetchData,
                 fetchBalance
             }}
         >

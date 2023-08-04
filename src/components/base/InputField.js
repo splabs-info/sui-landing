@@ -28,7 +28,7 @@ export const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
     color: 'white',
 }));
 
-export function InputField({ name, control, label, apiError, InputProps, passwordCriteria, onKeyUp, ...inputProps }) {
+export function InputField({ box, name, control, label, apiError, InputProps, passwordCriteria, onKeyUp, ...inputProps }) {
     const {
         field: { value, onChange, onBlur, ref },
         fieldState: { invalid, error },
@@ -38,7 +38,7 @@ export function InputField({ name, control, label, apiError, InputProps, passwor
     });
 
     return (
-        <Box sx={{height: 72}}>
+        <Box sx={{ height: 72, ...box }}>
             <StyledInputLabel shrink htmlFor="bootstrap-input">
                 {label}
             </StyledInputLabel>

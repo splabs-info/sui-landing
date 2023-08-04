@@ -164,3 +164,9 @@ export const parseEthereumError = (exception) => {
   );
   return modifyErrorMessage;
 };
+
+
+export function handleUrl(url) {
+  const parts = url.split("/");
+  return parts[2].charAt(0).toUpperCase() + parts[2].slice(1);
+}

@@ -57,17 +57,17 @@ export const useFormatRound = () => {
         []
     )
 
-
-    const formatInfoRound = React.useCallback(async (name) => {
+    const formatInfoRound = React.useCallback(async (name, projectName) => {
         if (isEmpty(projects)) return
 
-        const rounds = projects
+        const currentProject = projects.filter((item) => item?.name === projectName)
+
+        const rounds = currentProject
             .map((item) =>
                 item?.all_rounds?.find((round) => round?.name === name)
             )
             .filter(Boolean)
 
-            
         const dynamicFieldsPromises = rounds
             .flatMap((round) => {
                 return round?.core?.fields?.contents?.map((content) => fetchDynamicFields(content)) || [];
@@ -75,6 +75,7 @@ export const useFormatRound = () => {
             .filter(Boolean);
 
         const results = await Promise.all(dynamicFieldsPromises).catch((e) => console.error(e))
+
         if (Array.isArray(results) && results.length > 0) {
             const nonNullResults = results.filter(Boolean)
             const corePromises = nonNullResults.flatMap((item) =>
@@ -105,10 +106,11 @@ export const useFormatRound = () => {
 
             const policies = flattenCoreDetails.filter((core) => core?.type_core === 'POLICY')
             const services = flattenCoreDetails.filter((core) => core?.type_core === 'SERVICE')
+            // const vault = flattenCoreDetails.filter((core) => core?.type_core === 'VAULT')
 
             let additionalInfo = {}
             policies.forEach((p) => {
-                if(!p?.max_purchase || !p?.min_purchase) return;
+                if (!p?.max_purchase || !p?.min_purchase) return;
 
                 additionalInfo = {
                     ...additionalInfo,
@@ -129,36 +131,44 @@ export const useFormatRound = () => {
                 }
             })
 
-            // storeServices(services)
             setServices(services)
             setPolicies(policies)
             setInfoRound((pre) => ({ ...pre, ...additionalInfo }))
         }
 
-        const infoState = rounds.map((info) => ({
-            id: info?.id?.id || '',
-            name: info?.name || '',
-            payments: info.payments || [],
-            projectName: projects[0]?.name || '',
-            endAt: info?.end_at || '',
-            startAt: info?.start_at || '',
-            decimals: info?.token_decimal || 0,
-            description: info?.token?.description || '',
-            iconUrl: info?.token?.iconUrl || '',
-            tokenName: info?.token?.name || '',
-            symbol: info?.token?.symbol || '',
-            totalSold: Number(info?.total_sold) || 0,
-            totalSupply: Number(info?.total_supply) || 0,
-            type: info?.token_type,
-            purchaseType: info?.purchase_type?.fields?.contents,
-            participants: info?.participants?.fields?.content
-        }))
 
+        const infoState = rounds.map((info) => {
+            console.log('infooo__', info)
+            return ({
+                id: info?.id?.id || '',
+                name: info?.name || '',
+                payments: info.payments || [],
+                projectName: info?.project?.fields.name || '',
+                telegram: info?.project?.fields.telegram,
+                discord: info?.project?.fields.discord,
+                twitter: info?.project?.fields.twitter,
+                medium: info?.project?.fields.medium,
+                website: info?.project?.fields.website,
+                imageUrl: info?.project?.fields.image_url,
+                endAt: info?.end_at || '',
+                startAt: info?.start_at || '',
+                decimals: info?.token_decimal || 0,
+                description: info?.project?.fields.description || '',
+                iconUrl: info?.token?.iconUrl || '',
+                tokenName: info?.token?.name || '',
+                symbol: info?.token?.symbol || '',
+                totalSold: Number(info?.total_sold) || 0,
+                totalSupply: Number(info?.total_supply) || 0,
+                type: info?.token_type,
+                purchaseType: info?.purchase_type?.fields?.contents,
+                participants: info?.participants?.fields?.content
+            })
+        })
         setInfoRound((pre) => ({
             ...pre,
             ...infoState[0],
         }))
-    
+
     }, [fetchDynamicFieldObject, fetchDynamicFields, projects])
 
     return {

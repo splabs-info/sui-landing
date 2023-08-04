@@ -14,7 +14,7 @@ const dataSUA =
     'SUA is a token of Meta version. It has no intrinsic value or expectation of financial return. There is no official team or roadmap.',
   time: '10th June 2023',
   total: 1011,
-  link: '/ido-launchpad/sua-sale',
+  link: '/ido-launchpad/sua',
   token: "SUA"
 }
 

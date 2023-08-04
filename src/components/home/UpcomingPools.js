@@ -73,7 +73,7 @@ const upComingList = [
     title: 'Releap Protocol',
     description: 'Social-Fi, NFT',
     openDate: 'Aug 7th, 12:00 UTC',
-    link: '/ido-launchpad',
+    link: '/ido-launchpad/releap/public-sale',
     startTime: '',
     endTime: '',
   },
@@ -95,7 +95,7 @@ export default function UpcomingPools() {
       <Box mb={5} sx={{ position: 'relative' }}>
         <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
         <TitleBox>
-          <Typography> Upcoming</Typography>
+          <Typography>Upcoming</Typography>
           <TypographyGradient>Pools</TypographyGradient>
         </TitleBox>
       </Box>

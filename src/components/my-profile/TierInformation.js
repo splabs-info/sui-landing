@@ -41,7 +41,7 @@ const Info = styled(Typography)(({ theme }) => ({
     color: 'white',
 }));
 
-export const TierInformation = ({ tierMedal, level, idoApp }) => {
+export const TierInformation = ({ tierMedal, level, xuiReq, allocation, ino, discount, freeAir }) => {
     const isTablet = useResponsive('down', 'md');
 
     return (
@@ -68,28 +68,23 @@ export const TierInformation = ({ tierMedal, level, idoApp }) => {
             <Box width={'100%'}>
                 <InfoWrapper>
                     <StyledTitleTierInfo>IDO Allocation</StyledTitleTierInfo>
-                    {/* <Info>35%</Info> */}
-                    <Info>--</Info>
+                    <Info>{allocation}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>$XUI Required</StyledTitleTierInfo>
-                    {/* <Info>2% of Total pool</Info> */}
-                    <Info>--</Info>
+                    <Info>{xuiReq}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>Free Airdrop Allocation</StyledTitleTierInfo>
-                    {/* <Info>Lottery</Info> */}
-                    <Info>--</Info>
+                    <Info>{freeAir}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Allocation</StyledTitleTierInfo>
-                    {/* <Info>FCFS</Info> */}
-                    <Info>--</Info>
+                    <Info>{ino}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                     <StyledTitleTierInfo>INO Discount</StyledTitleTierInfo>
-                    {/* <Info>-20%</Info> */}
-                    <Info>--</Info>
+                    <Info>{discount}</Info>
                 </InfoWrapper>
             </Box>
         </TierBox>

@@ -25,6 +25,7 @@ import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 
 const XUIIDOContainer = () => {
+  let project = 'YouSUI';
   const isMobile = useResponsive('down', 'sm');
   const [loading, setLoading] = React.useState(false);
   const [claimInfo, setClaimInfo] = React.useState({});
@@ -37,6 +38,7 @@ const XUIIDOContainer = () => {
   const { roundName } = useParams();
   const navigate = useNavigate();
   const formattedRoundName = handleNameRound(roundName);
+
 
   const tabToPath = {
     0: '/ido-launchpad/og-sale',
@@ -170,8 +172,8 @@ const XUIIDOContainer = () => {
   }, [infoRound]);
 
   React.useEffect(() => {
-    formatInfoRound(formattedRoundName);
-  }, [formatInfoRound, formattedRoundName]);
+    formatInfoRound(formattedRoundName, project);
+  }, [formatInfoRound, formattedRoundName, project]);
 
   React.useEffect(() => {
     const pathToTab = {

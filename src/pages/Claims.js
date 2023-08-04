@@ -138,12 +138,6 @@ export default function Claims() {
                                 myIDOs={myIDOs}
                             />
                         ) : (
-                            // <VestingContainer
-                            //     tokenType={vestingDetails?.token_type}
-                            //     periodList={vestingDetails?.period_list}
-                            //     totalLockAmount={vestingDetails?.total_lock_mount}
-                            //     totalUnlockAmount={vestingDetails?.total_unlock_amount}
-                            // />
                             <div />
                         )}
                     </Container>

@@ -82,7 +82,7 @@ export function fDisplayName(displayName = '') {
 export function fAddress(text) {
     const length = text.length;
     if (length > 15) {
-        return `${text.substring(0, 8)}...${text.substring(length - 8, length)}`;
+        return `${text.substring(0, 10)}...${text.substring(length - 10, length)}`;
     }
     return text;
 }
