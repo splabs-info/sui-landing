@@ -125,25 +125,43 @@ export const Chart = ({
 
     const renderTotalSupply = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
-            return <>{!totalSupply ? '--' : fCurrencyV2(totalSupply)} REAP</>;
+            if (roundName === 'Public_Sale') {
+                return (
+                    <>
+                        {!totalSupply ? '--' : fCurrencyV2(totalSupply)} REAP
+                        <Typography variant="body2">30,000 USD</Typography>
+                    </>
+                );
+            } else {
+                return (
+
+                    <>
+                        {!totalSupply ? '--' : fCurrencyV2(totalSupply)} REAP
+                        <Typography variant="body2">70,000 USD</Typography>
+                    </>
+                )
+            }
         }
         if (projectName === XUI_PROJECT_NAME) {
             return <>{!totalSupply ? '--' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 6)} SUI</>;
         }
-    }, [formattedRatio, projectName, totalSupply]);
+    }, [formattedRatio, projectName, roundName, totalSupply]);
 
     const renderMinPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             if (roundName === 'Public_Sale') {
                 return (
-                    <>200 SUI</>
-                )
+                    <>
+                        -- REAP
+                        <Typography variant="body2">200 SUI</Typography>
+                    </>
+                );
             } else {
                 return (
                     <>
                         {/* {minPurchase? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'} ={' '}
                         {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
-                        100 SUI
+                        -- SUI
                     </>
                 );
             }
@@ -153,24 +171,30 @@ export const Chart = ({
         }
     }, [formattedRatio, minPurchase, projectName, symbol]);
 
-
     const renderMaxPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             if (roundName === 'Public_Sale') {
-                return <>1,000 SUI</>
+                return (
+                    <>
+                        -- REAP
+                        <Typography variant="body2">1,000 SUI</Typography>
+                    </>
+                );
             } else {
-
-                return <>
-                    {/* {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'} ={' '}
+                return (
+                    <>
+                        {/* {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'} ={' '}
                 {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI */}
-                    70,000 USD
-                </>
+                        -- REAP
+                        <Typography variant='body2'>70,000 USD</Typography>
+                    </>
+                );
             }
         }
         if (projectName === XUI_PROJECT_NAME) {
-            return <>{!totalSupply ? '--' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 3)} SUI</>
+            return <>{!totalSupply ? '--' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 3)} SUI</>;
         }
-    }, [formattedRatio, maxPurchase, projectName, symbol, totalSupply])
+    }, [formattedRatio, maxPurchase, projectName, symbol, totalSupply]);
 
     const percent = React.useMemo(() => {
         if (!totalSold || !totalSupply) return '0';
@@ -181,43 +205,38 @@ export const Chart = ({
         return percent;
     }, [minPurchase, roundName, totalSold, totalSupply]);
 
-
     const renderInfoChart = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
-            return <>
-                {!totalSold ? '0' : (
-                    <span style={{ color: '#1FD8D1' }}>
-                        {fCurrencyV2(totalSold)}{' '}
-                    </span>
-                )}
-                {' / '}
-                {!totalSupply ? '0' : fCurrencyV2(totalSupply)}{' '}
-                {symbol}
-            </>
+            return (
+                <>
+                    {!totalSold ? '0' : <span style={{ color: '#1FD8D1' }}>{fCurrencyV2(totalSold)} </span>}
+                    {' / '}
+                    {!totalSupply ? '0' : fCurrencyV2(totalSupply)} {symbol}
+                </>
+            );
         }
         if (projectName === XUI_PROJECT_NAME) {
             return (
-
-                <>{!totalSold ? (
-                    '0'
-                ) : (
-                    <span style={{ color: '#1FD8D1' }}>
-                        {fCurrencyV2(round(totalSold * toNumber(formattedRatio), 6), 6)}{' '}
-                    </span>
-                )}
+                <>
+                    {!totalSold ? (
+                        '0'
+                    ) : (
+                        <span style={{ color: '#1FD8D1' }}>{fCurrencyV2(round(totalSold * toNumber(formattedRatio), 6), 6)} </span>
+                    )}
                     {' / '}
                     {!totalSupply ? '0' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 6)}
                     {' SUI'}
                 </>
-            )
+            );
         }
-    }, [formattedRatio, projectName, symbol, totalSold, totalSupply])
+    }, [formattedRatio, projectName, symbol, totalSold, totalSupply]);
 
     const renderPrice = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
-                    0.013 USD
+                    -- SUI
+                    <Typography variant="body2">0.013 USD</Typography>
                 </>
             );
         }
@@ -228,7 +247,7 @@ export const Chart = ({
                 </>
             );
         }
-    }, [formattedRatio, projectName, symbol])
+    }, [formattedRatio, projectName, symbol]);
     return (
         <ChartBox>
             <LiveBox>
@@ -262,8 +281,12 @@ export const Chart = ({
                         {renderInfoChart()}
                     </Typography>
                 </Stack>
-                <Box ml={isMobile ? 0 : 4}>
-                    <SaleInfoBox>
+                <Box ml={isMobile ? 0 : 4} gap={2}>
+                    <SaleInfoBox
+                        sx={{
+                            gap: '12px',
+                        }}
+                    >
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <img src="/images/icon/icon-data.png" alt="" />
                             <Stack>
@@ -310,9 +333,7 @@ export const Chart = ({
                                 <Typography variant="body2" fontWeight={'bold'}>
                                     Max Purchase Amount
                                 </Typography>
-                                <Typography variant="body2">
-                                    {renderMaxPurchase()}
-                                </Typography>
+                                <Typography variant="body2">{renderMaxPurchase()}</Typography>
                             </Stack>
                         </Box>
                     </SaleInfoBox>
@@ -326,7 +347,7 @@ export const Chart = ({
                                 />
                                 <Typography variant="h6">IDO Information</Typography>
                             </Box>
-                            <ul style={{ marginLeft: '64px', minHeight: 72, }}>{renderIdoInfo()}</ul>
+                            <ul style={{ marginLeft: '64px', minHeight: 72 }}>{renderIdoInfo()}</ul>
                         </Stack>
                     </Box>
                 </Box>

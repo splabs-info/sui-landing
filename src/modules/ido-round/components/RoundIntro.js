@@ -1,9 +1,9 @@
 import { Box, Stack, Typography, styled } from '@mui/material';
 import { IDOCountdown } from 'components/countdown/IDOCountdown';
 import { SocialBox } from 'components/footer/FooterStyles';
+import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 import React from 'react';
 import { ImageBox, RoundInfoBox, TitleBackgroundBox } from './RoundStyled';
-import { RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants'
 const CountDownBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: '10px',
@@ -75,7 +75,6 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                         </Box>
                     ))}
                 </>
-
             )
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
