@@ -45,7 +45,7 @@ export default function IDOLaunchpad() {
     const com = onGoing.find((item) => item?.name === 'Community_Sale');
     if (!com) return;
 
-    console.log('')
+    console.log(com)
     if (currentTime.isAfter(toNumber(com.startAt))) {
       return <OnGoingPools releapRound={onGoing} />
     }

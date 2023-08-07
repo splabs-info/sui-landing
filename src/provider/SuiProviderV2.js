@@ -270,6 +270,10 @@ export const SUIWalletContext = ({ children }) => {
     React.useEffect(() => {
         if (!provider) return;
         fetchData();
+        const interval = setInterval(() => {
+            fetchData()
+        }, 5000);
+        return clearInterval(interval)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchData]);
 
