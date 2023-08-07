@@ -37,15 +37,12 @@ const CountdownStack = styled(Stack)(({ theme }) => ({
 }));
 
 export const IDOEndTimeCountdown = ({ endTime, _handleComplete }) => {
-
-
   const now = moment().unix();
   const end = _formatUtcUnix(endTime);
 
-
-  const render = React.useCallback(({days, hours, minutes, seconds, completed}) => {
+  const render = React.useCallback(({ days, hours, minutes, seconds, completed }) => {
     const hoursDay = Number(days) * 24 + Number(hours);
-  
+
     if (completed) {
       return '';
     } else {
@@ -75,17 +72,13 @@ export const IDOEndTimeCountdown = ({ endTime, _handleComplete }) => {
         </Stack>
       );
     }
-  }, [])
+  }, []);
 
   const renderCountDown = React.useCallback(() => {
     return (
-      <Countdown
-        date={(now + (end - now)) * 1000}
-        renderer={(props) => render(props)}
-        onComplete={_handleComplete}
-      />
+      <Countdown date={(now + (end - now)) * 1000} renderer={(props) => render(props)} onComplete={_handleComplete} />
     );
-  }, [_handleComplete, end, now, render])
+  }, [_handleComplete, end, now, render]);
   // let countdownComponent = null;
   // countdownComponent = (
   //   <Countdown
@@ -101,7 +94,7 @@ export const IDOEndTimeCountdown = ({ endTime, _handleComplete }) => {
 
 const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
   const hoursDay = Number(days) * 24 + Number(hours);
-  
+
   if (completed) {
     return '';
   } else {

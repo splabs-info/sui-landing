@@ -25,7 +25,6 @@ import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 export default function IDOLaunchpad() {
   let project = 'Releap';
 
-  const currentTime = moment();
 
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
@@ -41,20 +40,21 @@ export default function IDOLaunchpad() {
   }, [formatInfoRound, project]);
 
   const renderOnGoing = React.useCallback(() => {
+    const currentTime = moment();
     if (isEmpty(onGoing)) return null;
     const com = onGoing.find((item) => item?.name === 'Community_Sale');
     if (!com) return;
 
-    console.log(com)
+    console.log(com);
     if (currentTime.isAfter(toNumber(com.startAt))) {
-      return <OnGoingPools releapRound={onGoing} />
+      return <OnGoingPools releapRound={onGoing} />;
     }
     if (currentTime.isAfter(toNumber(com.endAt))) {
       return <></>;
     }
-  }, [currentTime, onGoing]);
+  }, [onGoing]);
 
-  const renderUpComing = React.useCallback(() => { }, []);
+  const renderUpComing = React.useCallback(() => {}, []);
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
