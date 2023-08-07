@@ -1,10 +1,8 @@
 import { ethers } from 'ethers';
 import { isEmpty } from 'lodash';
-import { fetchCoreDetails } from 'onchain/helpers';
+import { fetchCoreDetails, handleLink } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
-import { toLowerCase } from 'setting/format';
-import { handleLink } from 'onchain/helpers';
 export const useFormatRound = () => {
   let onGo = [];
   const [infoRound, setInfoRound] = React.useState([]);
