@@ -14,11 +14,11 @@
 
 
 // Production-real
-// export const PACKAGE_BASE = '0x6e80d8698dad095892a8563b9384f6c7dad24ec855323af36882f1db5ddc4d41'
-// export const PACKAGE_UPGRADE = '0xa3f8edb40cd0e272e3e636027f9ab2684100d49c8ebbf2903241f0ce145140ae'
-// export const LAUNCHPAD_STORAGE =
-//     '0xef98dd2ef163816c2ea311eda98703f0efd06cebd9a4b08930fa361f79786eee'
-// export const ADMIN_STORAGE = '0xa9c4b0b259b16abd221d3aefa547e4cf522176fa3c3ef8f20ddf67780df07157'
+export const PACKAGE_BASE = '0x6e80d8698dad095892a8563b9384f6c7dad24ec855323af36882f1db5ddc4d41'
+export const PACKAGE_UPGRADE = '0xa3f8edb40cd0e272e3e636027f9ab2684100d49c8ebbf2903241f0ce145140ae'
+export const LAUNCHPAD_STORAGE =
+    '0xef98dd2ef163816c2ea311eda98703f0efd06cebd9a4b08930fa361f79786eee'
+export const ADMIN_STORAGE = '0xa9c4b0b259b16abd221d3aefa547e4cf522176fa3c3ef8f20ddf67780df07157'
 
 // export const PACKAGE_BASE = '0x9d70afdb5767bc126d21db55acb3d4c9c10f70de91166eaa3105527afa81985d'
 // export const PACKAGE_UPGRADE = '0xfbbd7001a1fd87d02f6f2667f14f67fe84a06e569eb5dcea318c11e7eacbb42f'
@@ -32,12 +32,12 @@ export const CLOCK = '0x6'
 
 
 // Main-net test
-export const PACKAGE_BASE = '0x7ec05d4d0c863d8e6e8a4cdda12a126f3d2bda1dede3ef8f149cefe301ef3c2e'
-export const PACKAGE_UPGRADE = '0x2673aa3dfd24d62b5758a5d710c4bf4f17115099c5087b92fc265982391e5adf'
-export const LAUNCHPAD_STORAGE =
-    '0x96ea0afe6c1252e0b0833b9cc112081875bae587971737fbe861cf69e8321370'
+// export const PACKAGE_BASE = '0x7ec05d4d0c863d8e6e8a4cdda12a126f3d2bda1dede3ef8f149cefe301ef3c2e'
+// export const PACKAGE_UPGRADE = '0x2673aa3dfd24d62b5758a5d710c4bf4f17115099c5087b92fc265982391e5adf'
+// export const LAUNCHPAD_STORAGE =
+//     '0x96ea0afe6c1252e0b0833b9cc112081875bae587971737fbe861cf69e8321370'
 
-export const ADMIN_STORAGE = '0xd3f4b70826c7fe8eecdcc2c2d59d8403eb7099333ed8a0f5774e394dc8095993'
+// export const ADMIN_STORAGE = '0xd3f4b70826c7fe8eecdcc2c2d59d8403eb7099333ed8a0f5774e394dc8095993'
 
 // Current
 // export const PACKAGE_BASE = '0x7f3c869ba40146b9e5c7be7ac14a099df58392141b1cae75e8acedc82eb98d6d'

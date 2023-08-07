@@ -15,7 +15,6 @@ import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty, toNumber } from 'lodash';
 import moment from 'moment';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';

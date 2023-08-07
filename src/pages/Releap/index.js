@@ -16,7 +16,7 @@ import { Round } from 'modules/xui/Round';
 import { SpecialTabList } from 'modules/xui/components/TabList';
 import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
 import { formatEther, handleKeyType } from 'onchain/helpers';
-import { subscribe } from 'onchain/hooks/subscribe';
+// import { subscribe } from 'onchain/hooks/subscribe';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
@@ -249,9 +249,9 @@ const ReleapContainer = () => {
         }
     }, []);
 
-    React.useEffect(() => {
-        subscribe(setHasEvent)
-    }, [])
+    // React.useEffect(() => {
+    //     subscribe(setHasEvent)
+    // }, [])
 
     React.useEffect(() => {
         if (infoRound) {
