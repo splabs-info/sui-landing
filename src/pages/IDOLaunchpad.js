@@ -15,12 +15,11 @@ import OnGoingPools from 'components/ido-list/OnGoingPools';
 import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
+import { isEmpty, toNumber } from 'lodash';
 import moment from 'moment';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
-import { isEmpty, toNumber } from 'lodash';
 import { Link } from 'react-router-dom';
-import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 
 export default function IDOLaunchpad() {
   let project = 'Releap';
@@ -31,8 +30,8 @@ export default function IDOLaunchpad() {
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
-  const [reLeapInTime, setReleapInTime] = React.useState();
-  const [reLeapOutTime, setReleapOutTime] = React.useState();
+  // const [reLeapInTime, setReleapInTime] = React.useState();
+  // const [reLeapOutTime, setReleapOutTime] = React.useState();
   const { formatInfoRound, onGoing } = useFormatRound();
 
   React.useEffect(() => {
@@ -45,7 +44,6 @@ export default function IDOLaunchpad() {
     const com = onGoing.find((item) => item?.name === 'Community_Sale');
     if (!com) return;
 
-    console.log(com)
     if (currentTime.isAfter(toNumber(com.startAt))) {
       return <OnGoingPools releapRound={onGoing} />
     }
@@ -119,7 +117,7 @@ export default function IDOLaunchpad() {
               releapRound={onGoing}
             />
           )} */}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} reLeapInTime={reLeapInTime} />
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} reLeapInTime={isEmpty(onGoing)} />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>

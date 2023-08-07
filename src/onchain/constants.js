@@ -32,20 +32,20 @@ export const CLOCK = '0x6'
 
 
 // Main-net test
-// export const PACKAGE_BASE = '0x8c51ab7346994589f4f50e71c81e5a2868eb6d9a1033f41afb58ed52dcec43dc'
-// export const PACKAGE_UPGRADE = '0x0b865329d3f7cb5756385c9970c8e5ee033b6c443e330620f68d64552f133bff'
-// export const LAUNCHPAD_STORAGE =
-//     '0x7aa987d38a809e71a6b66a981518dc9690dc2bf7d049dbd22a71977e17992085'
+export const PACKAGE_BASE = '0x7ec05d4d0c863d8e6e8a4cdda12a126f3d2bda1dede3ef8f149cefe301ef3c2e'
+export const PACKAGE_UPGRADE = '0x2673aa3dfd24d62b5758a5d710c4bf4f17115099c5087b92fc265982391e5adf'
+export const LAUNCHPAD_STORAGE =
+    '0x96ea0afe6c1252e0b0833b9cc112081875bae587971737fbe861cf69e8321370'
 
-// export const ADMIN_STORAGE = '0x25bb988d84ffd7a06a2e777903b277d956fdbc2239cba97a329f6b87cb1b27bc'
+export const ADMIN_STORAGE = '0xd3f4b70826c7fe8eecdcc2c2d59d8403eb7099333ed8a0f5774e394dc8095993'
 
 // Current
-export const PACKAGE_BASE = '0x7f3c869ba40146b9e5c7be7ac14a099df58392141b1cae75e8acedc82eb98d6d'
-export const PACKAGE_UPGRADE = '0xf8f9fdd5ad5144161f771bc266583494aeb2a3471fd7970e8ba21a89f95ad380'
-export const LAUNCHPAD_STORAGE =
-    '0x6c6c3ca843e7800e9742c1047f2a30bfcd0d7ced79585754fcfa0b3b79570d2b'
+// export const PACKAGE_BASE = '0x7f3c869ba40146b9e5c7be7ac14a099df58392141b1cae75e8acedc82eb98d6d'
+// export const PACKAGE_UPGRADE = '0xf8f9fdd5ad5144161f771bc266583494aeb2a3471fd7970e8ba21a89f95ad380'
+// export const LAUNCHPAD_STORAGE =
+//     '0x6c6c3ca843e7800e9742c1047f2a30bfcd0d7ced79585754fcfa0b3b79570d2b'
 
-export const ADMIN_STORAGE = '0x56a52fb1ad2e6f32ceaf650d8352f60f81db56554511227ef5652b3f64784bad'
+// export const ADMIN_STORAGE = '0x56a52fb1ad2e6f32ceaf650d8352f60f81db56554511227ef5652b3f64784bad'
 export const XUI_TYPE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c::xui::XUI'
 
 // Staking----------

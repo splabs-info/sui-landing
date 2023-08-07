@@ -132,7 +132,7 @@ const ReleapContainer = () => {
     }, [wallet?.address, wallet?.connected, wallet?.connecting, wallet?.name, wallet?.status]);
 
     const fetchClaimInfo = React.useCallback(async () => {
-        if (isEmpty(infoRound) || !infoRound || !wallet?.address) return;
+        if (isEmpty(infoRound) || !infoRound || !wallet?.address) return console.log('Invalid fetchClaim info');
         try {
             const info = await provider.getDynamicFieldObject({
                 parentId: infoRound?.id,

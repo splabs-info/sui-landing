@@ -217,7 +217,6 @@ export const BuyForm = ({
     const handleMaxReleap = async () => {
         if (!isNaN(poolRemaining) && !isNaN(maxPurchase) && !isNaN(formattedBalance)) {
             const max = min([poolRemaining, maxPurchase, formattedBalance])
-            console.log('max__', max)
             setValue('amount', max);
             trigger('amount')
         } else {

@@ -163,7 +163,7 @@ export const Chart = ({
             if (roundName === 'Public_Sale') {
                 return (
                     <>
-                        {minPurchase ? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'}
+                        {minPurchase ? `${fCurrencyV2(minPurchase, 6)} ${symbol}` : '0'}
                         {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
                         {/* -- REAP
                         <Typography variant="body2">200 SUI</Typography> */}
