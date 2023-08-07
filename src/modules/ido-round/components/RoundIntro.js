@@ -92,9 +92,9 @@ export const RoundIntro = ({
         if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
-                    {/* <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                        Start After
-                    </Typography> */}
+                    <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                        End After
+                    </Typography>
 
                     <Box
                         mb={13}
@@ -108,7 +108,7 @@ export const RoundIntro = ({
                             </CountDownBox>
                         ) : (
                             <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-07T12:00:00'} />
+                                <IDOCountdown endTime={'2023-08-08T12:00:00'} />
                             </CountDownBox>
                         )}
                     </Box>
