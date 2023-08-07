@@ -70,7 +70,7 @@ const upComingList = [
   {
     label: 'Go to Launchpad ››',
     src: 'images/home/releap.jpg',
-    title: 'Releap Protocol Community',
+    title: 'Releap Protocol Community Round',
     description: 'Social-Fi, NFT',
     openDate: 'Aug 7th, 12:00 UTC',
     link: '/ido-launchpad/releap/community-sale',
@@ -80,9 +80,9 @@ const upComingList = [
   {
     label: 'Go to Launchpad ››',
     src: 'images/home/releap.jpg',
-    title: 'Releap Protocol Public',
+    title: 'Releap Protocol Public Round',
     description: 'Social-Fi, NFT',
-    openDate: 'Aug 7th, 12:00 UTC',
+    openDate: 'Aug 8th, 12:30 UTC',
     link: '/ido-launchpad/releap/public-sale',
     startTime: '2023-08-08T12:30:00',
     endTime: '',
