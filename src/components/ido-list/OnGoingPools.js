@@ -50,7 +50,7 @@ const infoRounds = [
 
 export default function OnGoingPools({ releapRound }) {
   const renderOnGoingPool = React.useCallback(() => {
-    if (isEmpty(releapRound)) {
+    if (!releapRound) {
       return (
         <>
           {infoRounds?.map((item, index) => (
