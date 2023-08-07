@@ -16,18 +16,45 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
-
+import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
+import { isEmpty, toNumber } from 'lodash';
 import { Link } from 'react-router-dom';
+import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 
 export default function IDOLaunchpad() {
-  // Tiep o day
+  let project = 'Releap';
+
+  const currentTime = moment();
+
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
+  const [reLeapInTime, setReleapInTime] = React.useState();
+  const [reLeapOutTime, setReleapOutTime] = React.useState();
+  const { formatInfoRound, onGoing } = useFormatRound();
 
+  React.useEffect(() => {
+    formatInfoRound('Public_Sale', project);
+    formatInfoRound('Community_Sale', project);
+  }, [formatInfoRound, project]);
 
+  const renderOnGoing = React.useCallback(() => {
+    if (isEmpty(onGoing)) return null;
+    const com = onGoing.find((item) => item?.name === 'Community_Sale');
+    if (!com) return;
+
+    console.log('')
+    if (currentTime.isAfter(toNumber(com.startAt))) {
+      return <OnGoingPools releapRound={onGoing} />
+    }
+    if (currentTime.isAfter(toNumber(com.endAt))) {
+      return <></>;
+    }
+  }, [currentTime, onGoing]);
+
+  const renderUpComing = React.useCallback(() => { }, []);
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
@@ -36,7 +63,12 @@ export default function IDOLaunchpad() {
     if (moment().isAfter('2023-07-20T12:00:00 Z')) {
       setHasInTimeIDOXUI(true);
     }
-  }, [])
+  }, []);
+
+  React.useEffect(() => {
+    renderUpComing();
+  }, [renderUpComing]);
+
   return (
     <Page title="IDO list">
       <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
@@ -58,7 +90,11 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FrameButton>Buy $XUI</FrameButton>
             </a>
             <Link to={'/whitepaper'}>
@@ -76,9 +112,14 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          {/* <OnGoingPools /> */}
-          {hasInTimeIDOXUI && !hasOutTimeIDOXUI && <OnGoingPools />}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
+          {/* <OnGoingPools releapRound={onGoing} /> */}
+          {renderOnGoing()}
+          {/* {hasInTimeIDOXUI && !hasOutTimeIDOXUI && (
+            <OnGoingPools
+              releapRound={onGoing}
+            />
+          )} */}
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} reLeapInTime={reLeapInTime} />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>

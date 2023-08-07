@@ -3,6 +3,7 @@ import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
 import { IDOEndTimeCountdown } from 'components/countdown/IDOEndTimeCountdown';
 import useResponsive from 'hooks/useResponsive';
+import { convertTimestamp } from 'onchain/helpers';
 import { useNavigate } from 'react-router-dom';
 import { formatAmount, formatNumberWithDecimal } from 'setting/format';
 
@@ -24,6 +25,7 @@ const ReleaseBox = styled(Box)(({ theme }) => ({
         padding: '12px 24px',
     },
 }));
+
 export const OnGoingCard = ({
     avatar,
     endTime,
@@ -34,10 +36,19 @@ export const OnGoingCard = ({
     sold,
     token,
     description,
+    totalSold,
+    totalSupply,
+    endAt,
+    projectName,
+    imageUrl,
+    roundName,
     ...props
 }) => {
     const navigate = useNavigate();
     const isMobile = useResponsive('down', 'sm');
+
+
+    const converted = convertTimestamp(endAt)
     return (
         <Box
             sx={{
@@ -50,18 +61,14 @@ export const OnGoingCard = ({
         >
             <Grid container alignItems={'center'} spacing={4}>
                 <Grid item md={4} xs={12}>
-                    <AvatarBox component={'img'} src={avatar} alt={title} />
+                    <AvatarBox component={'img'} src={imageUrl ? imageUrl : avatar} alt={title} />
                 </Grid>
                 <Grid item md={8} xs={12}>
                     <Typography variant="h5" mb={2}>
-                        {title}
+                        {(projectName && roundName) ? `${projectName + ' ' + roundName}` : title}
                     </Typography>
 
-
-
-                    <Typography>{description}</Typography>
-
-                    {/* <ProcessBarBox
+                    <ProcessBarBox
                         title={
                             <>
                                 <Typography variant="body2">Progress</Typography>
@@ -70,15 +77,15 @@ export const OnGoingCard = ({
                         }
                         subtitle={
                             <>
-                                <Typography variant="body2">{formatNumberWithDecimal((sold / total) * 100, 2)}%</Typography>
+                                <Typography variant="body2">{formatNumberWithDecimal((totalSold / totalSupply) * 100, 2)}%</Typography>
                                 <Typography variant="body2">
-                                    {formatAmount(sold)}/{formatAmount(total)}
+                                    {formatAmount(totalSold)}/{formatAmount(totalSupply)}
                                 </Typography>
                             </>
                         }
-                        percent={sold / total ? (sold / total) * 100 : 0}
+                        percent={totalSold / totalSupply ? (totalSold / totalSupply) * 100 : 0}
                         sx={{ margin: isMobile ? '24px 0px' : '0px' }}
-                    /> */}
+                    />
                     <Stack
                         spacing={1.5}
                         direction={isMobile ? 'column' : 'row'}
@@ -101,7 +108,13 @@ export const OnGoingCard = ({
                                 {' '}
                                 EndTime
                             </Typography>
-                            <IDOEndTimeCountdown endTime={endTime} />
+                            {/* <CountDownBox>
+
+                            </CountDownBox> */}
+                            {/* <IDOCountdown
+                                endTime={'2023-08-07T12:00:00'}
+                            /> */}
+                            <IDOEndTimeCountdown endTime={converted ? converted : endTime} />
                         </ReleaseBox>
                         <BorderGradientButton onClick={() => navigate(link)} className="animated-bg">
                             JOIN NOW

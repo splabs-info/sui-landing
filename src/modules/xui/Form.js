@@ -6,10 +6,10 @@ import { useWallet } from '@suiet/wallet-kit';
 import { CheckboxFiled, InputField } from 'components';
 import { BigNumber, ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
-import { debounce, includes, isEmpty, round, toNumber } from 'lodash';
+import { debounce, includes, isEmpty, min, round, toNumber } from 'lodash';
 import { BuyTokenButton, SaleFormBox, TokenButton } from 'modules/ido-round/components/RoundStyled';
 import * as moment from 'moment';
-import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_PROJECT_NAME, RELEAP_ROUND_NAME, STAKING_STORAGE, XUI_PROJECT_NAME } from 'onchain/constants';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_PROJECT_NAME, STAKING_STORAGE, XUI_PROJECT_NAME } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import { fAddress } from 'utils/format';
 import { fCurrencyV2 } from 'utils/util';
 import * as yup from 'yup';
+
 import { useYouSuiStore } from 'zustand-store/yousui_store';
 export const BuyForm = ({
     totalSold,
@@ -48,7 +49,6 @@ export const BuyForm = ({
 
     const { balances, coinObjectsId, fetchBalance, fetchData } = React.useContext(SuiContext);
 
-    console.log('balances__', balances)
     const poolRemaining = React.useMemo(() => {
         if (totalSupply && (totalSold || totalSold === 0)) {
             return totalSupply - totalSold;
@@ -61,6 +61,11 @@ export const BuyForm = ({
         }
     }, [decimals, payments]);
 
+    const formattedBalance = React.useMemo(() => {
+        if (!isNaN(balances)) {
+            return balances / formattedRatio
+        }
+    }, [balances, formattedRatio])
     const inWhiteList = React.useMemo(() => {
         if (!whiteList || isEmpty(whiteList) || !wallet?.address) return;
         return includes(whiteList, wallet.address);
@@ -98,8 +103,8 @@ export const BuyForm = ({
                 if (value < minPurchase) return false;
                 else return true;
             })
-            .test('nft-validate', 'Your wallet is currently not participating in staking and is not required to hold any Tier NFTs.', () => {
-                if (projectName === RELEAP_PROJECT_NAME && objectIdOGRoleNft === '' && currentTier.current === 'non_tier') {
+            .test('nft-validate', 'Your wallet is currently not participating in staking, inputting Tier NFT, or in the whitelist.', () => {
+                if (projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale' && objectIdOGRoleNft === '' && currentTier.current === 'non_tier' && !inWhiteList) {
                     return false
                 } else return true;
             })
@@ -210,15 +215,11 @@ export const BuyForm = ({
     };
 
     const handleMaxReleap = async () => {
-        if (!isNaN(poolRemaining)) {
-            if (poolRemaining < maxPurchase) {
-
-                setValue('amount', poolRemaining);
-                trigger('amount');
-            } else {
-                setValue('amount', maxPurchase);
-                trigger('amount');
-            }
+        if (!isNaN(poolRemaining) && !isNaN(maxPurchase) && !isNaN(formattedBalance)) {
+            const max = min([poolRemaining, maxPurchase, formattedBalance])
+            console.log('max__', max)
+            setValue('amount', max);
+            trigger('amount')
         } else {
             console.error(
                 'maxPurchase or decimals is not a valid value: maxPurchase = ',
@@ -228,6 +229,7 @@ export const BuyForm = ({
             );
         }
     }
+
     const selectPercent = (option) => {
         switch (option) {
             case 'Min':
@@ -362,9 +364,9 @@ export const BuyForm = ({
                 ],
             });
         } else if (projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale') {
-            if (objectIdOGRoleNft !== '') {
+            if (inWhiteList) {
                 tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_tier45_holder`,
+                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor`,
                     typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
                     arguments: [
                         tx.object(CLOCK),
@@ -373,25 +375,39 @@ export const BuyForm = ({
                         tx.pure(roundName),
                         tx.pure(parseAmount),
                         vec,
-                        tx.object(objectIdOGRoleNft),
                     ],
                 });
             } else {
-                tx.moveCall({
-                    target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor_staking`,
-                    typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
-                    arguments: [
-                        tx.object(CLOCK),
-                        tx.object(LAUNCHPAD_STORAGE),
-                        tx.pure(projectName),
-                        tx.pure(roundName),
-                        tx.pure(parseAmount),
-                        vec,
-                        tx.object(STAKING_STORAGE),
-                    ],
-                });
+                if (objectIdOGRoleNft !== '') {
+                    tx.moveCall({
+                        target: `${PACKAGE_UPGRADE}::launchpad::purchase_yousui_tier45_holder`,
+                        typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                        arguments: [
+                            tx.object(CLOCK),
+                            tx.object(LAUNCHPAD_STORAGE),
+                            tx.pure(projectName),
+                            tx.pure(roundName),
+                            tx.pure(parseAmount),
+                            vec,
+                            tx.object(objectIdOGRoleNft),
+                        ],
+                    });
+                } else {
+                    tx.moveCall({
+                        target: `${PACKAGE_UPGRADE}::launchpad::purchase_nor_staking`,
+                        typeArguments: [`0x${type}`, `0x${payments[0]?.method_type}`],
+                        arguments: [
+                            tx.object(CLOCK),
+                            tx.object(LAUNCHPAD_STORAGE),
+                            tx.pure(projectName),
+                            tx.pure(roundName),
+                            tx.pure(parseAmount),
+                            vec,
+                            tx.object(STAKING_STORAGE),
+                        ],
+                    });
+                }
             }
-
         }
 
         try {
@@ -444,51 +460,43 @@ export const BuyForm = ({
             if (currentTime.isAfter(moment(toNumber(endAt)))) {
                 return <BuyTokenButton disabled>End Time</BuyTokenButton>;
             }
-
-
             return (
                 <BuyTokenButton disabled={!isValid || !checked} loading={loading} type="submit">
                     Buy Now
                 </BuyTokenButton>
             );
         }
-        else {
-            return (
-                <BuyTokenButton disabled={!isValid || !checked} loading={loading} type="submit">
-                    Buy Now
-                </BuyTokenButton>
-            )
-
-        }
     }, [checked, endAt, isValid, loading, minPurchase, poolRemaining, projectName, roundName, startAt]);
 
     const renderTier = React.useCallback(() => {
-        if (projectName === RELEAP_PROJECT_NAME) {
-            if (totalXUILocked >= 40000) {
-                currentTier.current = 'tier_1';
-                return '( Tier 1 )'
-            }
-            if (totalXUILocked >= 20000) {
-                currentTier.current = 'tier_2';
-                return '( Tier 2 )';
-            }
-            if (totalXUILocked >= 7500) {
-                currentTier.current = 'tier_3';
-                return '( Tier 3 )';
-            }
-            if (totalXUILocked >= 5000) {
-                currentTier.current = 'tier_4';
-                return '( Tier 4 )';
-            }
-            if (totalXUILocked >= 3000) {
-                currentTier.current = 'tier_5';
-                return '( Tier 5 )';
-            } else {
-                currentTier.current = 'non_tier';
-                return '( Non-tier )';
-            }
-        } else return '';
-    }, [projectName, totalXUILocked]);
+        if (wallet?.address && wallet?.connected) {
+            if (projectName === RELEAP_PROJECT_NAME) {
+                if (totalXUILocked >= 40000) {
+                    currentTier.current = 'tier_1';
+                    return '( Tier 1 )'
+                }
+                if (totalXUILocked >= 20000) {
+                    currentTier.current = 'tier_2';
+                    return '( Tier 2 )';
+                }
+                if (totalXUILocked >= 7500) {
+                    currentTier.current = 'tier_3';
+                    return '( Tier 3 )';
+                }
+                if (totalXUILocked >= 5000) {
+                    currentTier.current = 'tier_4';
+                    return '( Tier 4 )';
+                }
+                if (totalXUILocked >= 3000) {
+                    currentTier.current = 'tier_5';
+                    return '( Tier 5 )';
+                } else {
+                    currentTier.current = 'non_tier';
+                    return '( Non-tier )';
+                }
+            } else return '';
+        } else return ''
+    }, [projectName, totalXUILocked, wallet?.address, wallet?.connected]);
 
     return (
         <>
@@ -526,7 +534,7 @@ export const BuyForm = ({
                             }}
                         >
                             {renderStatusBalance()}
-                            
+
                         </Typography>
                     </Box>
                 </Box>
@@ -537,7 +545,7 @@ export const BuyForm = ({
                             id="amount"
                             name="amount"
                             control={control}
-                            disabled
+
                             sx={{
                                 fontWeight: 'bold',
                                 color: 'white',
@@ -562,30 +570,29 @@ export const BuyForm = ({
                                 ),
                             }}
                         />
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexWrap: 'wrap',
-                                justifyContent: 'flex-end',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                borderRadius: '10px',
-                                padding: '7.5px 10px',
-                                width: '22%',
-                                maxHeight: 40,
+                        <InputField
+                            control={control}
+                            name="currency"
+                            sx={{ borderRadius: '10px', maxHeight: 40, textAlign: 'right' }}
+                            size="small"
+                            disabled
+                            value={watchAmount && !isEmpty(payments) ? fCurrencyV2(watchAmount * toNumber(formattedRatio), 4) : 0}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end"
+                                        sx={{
+                                            '& .MuiTypography-root': {
+                                                color: 'white',
+                                                fontWeight: 'bold',
+                                            },
+                                        }}
+                                    >
+                                        SUI
+                                    </InputAdornment>
+                                ),
                             }}
-                            mb={4}
-                        >
-                            <Typography>
-                                ~{' '}
-                                {watchAmount && !isEmpty(payments)
-                                    ? Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }).format(
-                                        watchAmount * toNumber(formattedRatio)
-                                    )
-                                    : 0}{' '}
-                                SUI
-                            </Typography>
-                        </Box>
+                        />
                     </Stack>
                     <Box
                         sx={{
@@ -600,7 +607,6 @@ export const BuyForm = ({
                                 key={token}
                                 className={chosenToken === token ? 'active' : ''}
                                 onClick={() => selectPercent(token)}
-                                disabled
                             >
                                 {token}
                                 {isNaN(Number(token)) ? '' : '%'}

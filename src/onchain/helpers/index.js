@@ -1,7 +1,8 @@
 import { BigNumber, ethers } from 'ethers'
 import { isNull, round, toNumber } from 'lodash'
-import * as moment from 'moment'
+// import * as moment from 'moment'
 import { fCurrencyV2 } from 'utils/util'
+import * as moment from 'moment-timezone'
 export const fetchCoreDetails = async (p) => {
     if (p && Object.keys(p).includes('POLICY')) {
         return Object.values(p).flatMap((i) => {
@@ -122,4 +123,18 @@ export const handleKeyType = (inputString) => {
         return inputString.substring(2);
     }
     return inputString;
+}
+
+export function handleLink(input) {
+    return input.toLowerCase().split('_').join('-');
+}
+
+
+
+export function convertTimestamp(timestamp) {
+    // Convert the timestamp to milliseconds (since JavaScript timestamps are in milliseconds)
+    const date = moment(toNumber(timestamp));
+    // Convert it to UTC and format it
+    const formattedDate = date.utc().format("YYYY-MM-DDTHH:mm:ss[Z]");
+    return formattedDate;
 }

@@ -5,10 +5,13 @@ import {
 import { fetchCoreDetails } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
+import { toLowerCase } from 'setting/format';
+import {handleLink} from 'onchain/helpers'
 export const useFormatRound = () => {
+    let onGo = []
     const [infoRound, setInfoRound] = React.useState([])
     const { projects, provider } = React.useContext(SuiContext)
-
+    const [onGoing, setOngoing] = React.useState([])
     const [policies, setPolicies] = React.useState({})
     const [services, setServices] = React.useState({})
 
@@ -138,8 +141,10 @@ export const useFormatRound = () => {
 
 
         const infoState = rounds.map((info) => {
-            console.log('infooo__', info)
-            return ({
+            const path =  projectName.toLowerCase();
+
+            const route = handleLink(name)
+            const formattedRound = {
                 id: info?.id?.id || '',
                 name: info?.name || '',
                 payments: info.payments || [],
@@ -161,20 +166,27 @@ export const useFormatRound = () => {
                 totalSupply: Number(info?.total_supply) || 0,
                 type: info?.token_type,
                 purchaseType: info?.purchase_type?.fields?.contents,
-                participants: info?.participants?.fields?.content
-            })
+                participants: info?.participants?.fields?.content,
+                link: `/ido-launchpad/${path}/${route}`
+            }
+            onGo.push(formattedRound);
+            return formattedRound
         })
+        setOngoing(onGo)
         setInfoRound((pre) => ({
             ...pre,
             ...infoState[0],
         }))
-
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchDynamicFieldObject, fetchDynamicFields, projects])
+
 
     return {
         infoRound,
         services,
         policies,
+        onGoing,
         formatInfoRound
     }
 }

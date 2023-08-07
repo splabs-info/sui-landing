@@ -156,7 +156,11 @@ export default function MyInfo() {
         const investList = dynamicData?.data?.content?.fields?.invest_list?.fields?.contents.filter(
             (i) => i?.fields.key === wallet?.address
         );
-        if (!investList || isEmpty(investList)) return;
+        if (!investList) return;
+
+        if (isEmpty(investList)) {
+            return setTotalXUILocked(0)
+        }
         investList.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
                 const formattedKey = handleKeyType(XUI_TYPE)

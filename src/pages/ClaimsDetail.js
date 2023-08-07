@@ -38,6 +38,7 @@ export default function ClaimsDetail() {
         })
 
 
+
         const vestingState = {
             projectName: vestingElement?.data?.content?.fields?.project?.fields?.name,
             tokenType: vestingElement?.data?.content?.fields?.info?.fields?.token_type,
