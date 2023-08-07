@@ -93,7 +93,7 @@ export const RoundIntro = ({
             return (
                 <>
                     <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                        Start After
+                        End After
                     </Typography>
 
                     <Box
@@ -108,7 +108,7 @@ export const RoundIntro = ({
                             </CountDownBox>
                         ) : (
                             <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-07T12:00:00'} />
+                                <IDOCountdown endTime={'2023-08-08T12:00:00'} />
                             </CountDownBox>
                         )}
                     </Box>
