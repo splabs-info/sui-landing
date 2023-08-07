@@ -139,7 +139,6 @@ export default function StakingForm({ verifyData, setVerifyData, sortedData, fet
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formattedBalanceTokenStaking]);
 
-    console.log('')
     return (
         <FormBox>
             <form onSubmit={handleSubmit(handleStaking)}>

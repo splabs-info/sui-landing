@@ -75,8 +75,8 @@ export default function VestingTokens({
     }, [infoRound, projectName]);
 
     React.useEffect(() => {
-        formatInfoRound(event);
-    }, [formatInfoRound, event]);
+        formatInfoRound(event, projectName);
+    }, [formatInfoRound, event, projectName]);
 
 
     const renderSocial = React.useCallback(() => {

@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import moment from 'moment';
 import Countdown from 'react-countdown';
 import { _formatUtcUnix } from '../../setting/format';
-
+import React from 'react';
 const CountdownStack = styled(Stack)(({ theme }) => ({
   width: '52px',
   height: '44px',
@@ -37,22 +37,71 @@ const CountdownStack = styled(Stack)(({ theme }) => ({
 }));
 
 export const IDOEndTimeCountdown = ({ endTime, _handleComplete }) => {
+
+
   const now = moment().unix();
   const end = _formatUtcUnix(endTime);
 
-  let countdownComponent = null;
-  countdownComponent = (
-    <Countdown
-      date={(now + (end - now)) * 1000}
-      renderer={(props) => countDownRenderer(props)}
-      onComplete={_handleComplete}
-    />
-  );
-  return <Box display="flex">{countdownComponent}</Box>;
+
+  const render = React.useCallback(({days, hours, minutes, seconds, completed}) => {
+    const hoursDay = Number(days) * 24 + Number(hours);
+  
+    if (completed) {
+      return '';
+    } else {
+      return (
+        <Stack direction="row" spacing={1}>
+          <CountdownStack>
+            <Typography variant="body1">
+              {hoursDay < 10 ? '0' : ''}
+              {hoursDay}
+            </Typography>
+            <Typography variant="caption">hours</Typography>
+          </CountdownStack>
+          <CountdownStack>
+            <Typography variant="body1">
+              {minutes < 10 ? '0' : ''}
+              {minutes}
+            </Typography>
+            <Typography variant="caption">mins</Typography>
+          </CountdownStack>
+          <CountdownStack>
+            <Typography variant="body1">
+              {seconds < 10 ? '0' : ''}
+              {seconds}
+            </Typography>
+            <Typography variant="caption">secs</Typography>
+          </CountdownStack>
+        </Stack>
+      );
+    }
+  }, [])
+
+  const renderCountDown = React.useCallback(() => {
+    return (
+      <Countdown
+        date={(now + (end - now)) * 1000}
+        renderer={(props) => render(props)}
+        onComplete={_handleComplete}
+      />
+    );
+  }, [_handleComplete, end, now, render])
+  // let countdownComponent = null;
+  // countdownComponent = (
+  //   <Countdown
+  //     date={(now + (end - now)) * 1000}
+  //     renderer={(props) => {
+  //       return countDownRenderer(props)
+  //     }}
+  //     onComplete={_handleComplete}
+  //   />
+  // );
+  return <Box display="flex">{renderCountDown()}</Box>;
 };
 
 const countDownRenderer = ({ days, hours, minutes, seconds, completed }) => {
   const hoursDay = Number(days) * 24 + Number(hours);
+  
   if (completed) {
     return '';
   } else {

@@ -53,7 +53,9 @@ export const ProcessCircleBox = ({ radius, percent, totalSold, totalSupply, roun
         const percent = (totalSold / totalSupply) * 100;
         if ((roundName === 'Og_Sale' || projectName === RELEAP_PROJECT_NAME) && ((totalSupply - totalSold) < minPurchase || (totalSupply - totalSold) < 0)) {
             return 100
-        } else { return round(percent, 2) };
+        } else { 
+            return round(percent, 2) 
+        };
         // if (roundName === 'Public_Sale') return round(percent, 2);
     }, [minPurchase, projectName, roundName, totalSold, totalSupply])
 

@@ -1,55 +1,99 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { ImgTitleBox, TitleBox, TypographyGradient } from 'components/home/HomeStyles';
+import React from 'react';
 import { OnGoingCard } from './OnGoingCard';
-
+import { isEmpty } from 'lodash';
 const infoRounds = [
-    {
-        title: '$XUI IDO - OG ROUND',
-        link: '/ido-launchpad/og-sale',
-        avatar: '/images/staking/water-seek.jpg',
-        participants: '--',
-        token: 'XUI',
-        total: 280000,
-        description:
-            '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace.',
-        sold: 35000,
-        startTime: '2023-07-20T12:00:00Z',
-        endTime: '2023-07-23T12:00:00Z',
-        vesting: ''
-    },
-    {
-        title: '$XUI IDO - PUBLIC ROUND',
-        link: '/ido-launchpad/public-sale',
-        avatar: '/images/staking/water-seek.jpg',
-        participants: '--',
-        token: 'XUI',
-        description:
-            '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
-        total: 720000,
-        sold: 120000,
-        startTime: '2023-07-20T12:00:00Z',
-        endTime: '2023-07-23T12:00:00Z',
-        vesting: ''
-    },
+  {
+    title: '$XUI IDO - OG ROUND',
+    link: '/ido-launchpad/og-sale',
+    avatar: '/images/staking/water-seek.jpg',
+    participants: '--',
+    token: 'XUI',
+    total: 280000,
+    description:
+      '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace.',
+    sold: 35000,
+    startTime: '2023-07-20T12:00:00Z',
+    endTime: '2023-07-23T12:00:00Z',
+    vesting: '',
+  },
+  {
+    title: '$XUI IDO - PUBLIC ROUND',
+    link: '/ido-launchpad/public-sale',
+    avatar: '/images/staking/water-seek.jpg',
+    participants: '--',
+    token: 'XUI',
+    description:
+      '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
+    total: 720000,
+    sold: 120000,
+    startTime: '2023-07-20T12:00:00Z',
+    endTime: '2023-07-23T12:00:00Z',
+    vesting: '',
+  },
+  {
+    title: 'RELEAP - COMMUNITY ROUND',
+    link: '/ido-launchpad/releap/public-sale',
+    avatar: '/images/staking/water-seek.jpg',
+    participants: '--',
+    token: 'XUI',
+    description:
+      '$XUI is a utility token of the YouSUI platform that can be used in Launchpad, DEX, Cross Chain Swap, Bridge, and NFT Marketplace. ',
+    total: 720000,
+    sold: 120000,
+    startTime: '2023-08-05T11:00:00Z',
+    endTime: '2023-08-08T11:00:00Z',
+    vesting: '',
+  },
 ];
 
-export default function OnGoingPools() {
-    return (
-        <Box mb={20} mt={10} position="relative">
-            <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-            <TitleBox>
-                <Typography>On-going</Typography>
-                <TypographyGradient>Pools</TypographyGradient>
-            </TitleBox>
-            <Grid container spacing={5} mt={2}>
-                {infoRounds?.map((item, index) => (
-                    <Grid item md={6} xs={12} key={index}>
-                        <OnGoingCard {...item} key={index} />
-                    </Grid>
-                ))}
+export default function OnGoingPools({ releapRound }) {
+  const renderOnGoingPool = React.useCallback(() => {
+    if (!releapRound) {
+      return (
+        <>
+          {infoRounds?.map((item, index) => (
+            <Grid item md={6} xs={12} key={index}>
+              <OnGoingCard {...item} key={index} />
             </Grid>
+          ))}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {releapRound?.map((item, index) => (
+            <Grid item md={6} xs={12} key={index}>
+              <OnGoingCard
+                link={item?.link}
+                roundName={item?.name}
+                projectName={item?.projectName}
+                imageUrl={item?.imageUrl}
+                endAt={item?.endAt}
+                totalSupply={item?.totalSupply}
+                totalSold={item?.totalSold}
+                key={index}
+              />
+            </Grid>
+          ))}
+        </>
+      );
+    }
+  }, [releapRound]);
 
-            {/* {infoRounds.map((round, index) => (
+  return (
+    <Box mb={20} mt={10} position="relative">
+      <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+      <TitleBox>
+        <Typography>On-going</Typography>
+        <TypographyGradient>Pools</TypographyGradient>
+      </TitleBox>
+      <Grid container spacing={5} mt={2}>
+        {renderOnGoingPool()}
+      </Grid>
+
+      {/* {infoRounds.map((round, index) => (
         <Box
           sx={{
             background: 'linear-gradient(128.67deg, rgba(104, 230, 184, 0.2) 10.81%, rgba(109, 133, 218, 0.2) 75.48%)',
@@ -173,6 +217,6 @@ export default function OnGoingPools() {
           </Grid>
         </Box>
       ))} */}
-        </Box>
-    );
+    </Box>
+  );
 }
