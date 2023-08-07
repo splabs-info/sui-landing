@@ -89,8 +89,8 @@ export const UpComingIDOCard = ({ avatar, releaseTime, title, description, statu
 
             </Box>
             <Box position={'relative'}>
-                <Typography variant={'h4'} mt={3}>{title}</Typography>
-                {roundName ? <Typography variant={'h4'}>{roundName}</Typography> : ''}
+                <Typography mt={3} sx={{ fontSize: 22, fontWeight: 'bold' }}>{title}</Typography>
+                {roundName ? <Typography sx={{ fontSize: 18, fontWeight: 'bold' }}>{roundName}</Typography> : ''}
                 {startTime &&
                     <CountDownBox>
                         <IDOCountdown

@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import { Stack, Typography } from '@mui/material';
 import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
@@ -5,13 +6,11 @@ import { ethers } from 'ethers';
 import { find, get, isEmpty, toNumber } from 'lodash';
 import { BuyTokenButton, ClaimBox } from 'modules/ido-round/components/RoundStyled';
 import * as moment from 'moment';
-import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE } from 'onchain/constants';
+import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_PROJECT_NAME } from 'onchain/constants';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { fCurrencyV2 } from 'utils/util';
-import { RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants';
-import { useLocation } from 'react-router-dom';
 export const Claim = ({ decimals, services, claimInfo, type, payments, projectName, roundName, endAt }) => {
     const [loading, setLoading] = React.useState();
     const [claimSuccessful, setClaimSuccessful] = React.useState(false);
@@ -19,7 +18,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     const [isClaim, setIsClaim] = React.useState(false);
     const [canRefund, setCanRefund] = React.useState(false);
     const { provider } = React.useContext(SuiContext);
-
+    const theme = useTheme();
     const wallet = useWallet();
 
     const { fetchData } = React.useContext(SuiContext)
@@ -92,7 +91,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     const fetchRefund = React.useCallback(async () => {
         const currentTime = moment();
         const dynamicFields = findRefund();
-        if(!dynamicFields) return;
+        if (!dynamicFields) return;
         try {
             if (projectName === RELEAP_PROJECT_NAME) {
 
@@ -118,10 +117,6 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                 const startRefundTime = moment(toNumber(info?.data?.content?.fields.start_refund_time))
 
                 const refundRangeTime = moment(toNumber(info?.data?.content?.fields.refund_range_time))
-
-                // console.log('startRefundTime___', startRefundTime.format('LLLL'))
-                // console.log('___123123',currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds')))
-                // console.log('__current time', currentTime.format('LLLL'))
                 if (currentTime.isBefore(moment(startRefundTime))) {
                     setRefundState('REFUND REQUEST (NOT TIME)')
                     return setCanRefund(false)
@@ -216,11 +211,21 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
                             {formattedPurchased ? formattedPurchased : '--'} REAP
                         </Typography>
                     </Stack>
-                    <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className="border">
-                        <Typography variant="body2" fontWeight={500} sx={{ width: '32%' }}>
+                    <Stack direction={'row'} justifyContent="space-between" alignItems={'center'} className="border" flexWrap={'wrap'}>
+                        <Typography variant="body2" fontWeight={500} sx={{
+                            width: '32%', [theme.breakpoints.down('md')]: {
+                                width: '100%',
+                                marginBottom: '16px',
+                                textAlign: 'center',
+                            }
+                        }}>
                             You can request a refund within <strong>48 hours</strong> from the time of listing the $REAP token.
                         </Typography>
-                        <BuyTokenButton loading={loading} disabled={!canRefund} onClick={handleRefund}>{refundState}</BuyTokenButton>
+                        <BuyTokenButton loading={loading} disabled={!canRefund} onClick={handleRefund} sx={{
+                            [theme.breakpoints.down('md')]: {
+                                margin: 'auto'
+                            }
+                        }}>{refundState}</BuyTokenButton>
                     </Stack>
                 </>
             );

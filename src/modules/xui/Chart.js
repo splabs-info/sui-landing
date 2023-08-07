@@ -106,7 +106,7 @@ export const Chart = ({
                             <Typography variant="body2">IDO Launchpad Logic: FCFS</Typography>{' '}
                         </li>
                         <li>
-                            <Typography variant="body2">TGE Claim Date & Time : 10th August</Typography>{' '}
+                            <Typography variant="body2">TGE Claim Date & Time : 11:00 AM (UTC), 10th August</Typography>{' '}
                         </li>
                     </>
                 );
@@ -121,7 +121,7 @@ export const Chart = ({
                             <Typography variant="body2">XUI staking snapshot: 5th August 04:00 (UTC)</Typography>{' '}
                         </li>
                         <li>
-                            <Typography variant="body2">TGE Claim Date & Time : 10th August</Typography>{' '}
+                            <Typography variant="body2">TGE Claim Date & Time : 11:00 AM (UTC), 10th August</Typography>{' '}
                         </li>
                     </>
                 );
@@ -164,9 +164,6 @@ export const Chart = ({
                 return (
                     <>
                         {minPurchase ? `${fCurrencyV2(minPurchase, 6)} ${symbol}` : '0'}
-                        {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
-                        {/* -- REAP
-                        <Typography variant="body2">200 SUI</Typography> */}
                         <Typography variant="body2">200 SUI</Typography>
                     </>
                 );
@@ -175,8 +172,6 @@ export const Chart = ({
                     <>
                         {minPurchase ? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'}
                         <Typography variant="body2">100 SUI</Typography>
-                        {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
-                        {/* -- SUI */}
                     </>
                 );
             }
@@ -295,14 +290,18 @@ export const Chart = ({
     }, [formattedRatio, projectName, symbol]);
     return (
         <ChartBox>
-            <LiveBox sx={{justifyContent: 'space-between'}}>
+            <LiveBox sx={{ justifyContent: 'space-between' }}>
                 <Stack direction={'row'} justifyContent={'space-between'}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: '100%', justifyContent: 'space-between' }}>
-                        <Stack direction={'row'} justifyContent={"space-between"} alignItems={"center"} sx={{width: '100%'}}>
-                            <Box sx={{ display: 'flex' }}>
-                                <img src="/images/icon/icon-lock-2.png" alt="" style={{marginRight: '8px'}}/>
+                        <Stack direction={'row'} justifyContent={"space-between"} alignItems={"center"} sx={{ width: '100%' }}>
+                            <Box sx={{
+                                display: 'flex', whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis'
+                            }}>
+                                <img src="/images/icon/icon-lock-2.png" alt="" style={{ marginRight: '8px' }} />
                                 <Typography
-                                    sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'normal', display: 'flex',  }}
+                                    sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'normal', display: 'flex', }}
                                 >
                                     <Typography sx={{ fontWeight: 'bold' }} mr={1}>
                                         Start Time:
@@ -310,12 +309,13 @@ export const Chart = ({
                                     {startAt ? `${moment(toNumber(startAt)).format('LLLL')}` : 'Start at: 12:00 UTC 20-07-2023'}
                                 </Typography>
                             </Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale' && <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <Typography sx={{ display: 'flex', color: `${inWhiteList ? '#1FD8D1' : `rgba(145, 158, 171, 0.8)`}`, fontWeight: 'bold' }}>
                                     Whitelist
                                     <IconCircleCheck color={inWhiteList ? '#1FD8D1' : 'rgba(145, 158, 171, 0.8)'} style={{ marginLeft: '8px' }} />
                                 </Typography>
-                            </Box>
+                            </Box>}
+
                         </Stack>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}></Box>

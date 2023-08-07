@@ -55,9 +55,9 @@ const data = {
 };
 const publicReleap = {
     title: 'Releap',
-    roundName: 'Public Sale',
+    roundName: 'Public Round',
     avatar: '/images/home/releap.jpg',
-    releaseTime: 'Official Launch: Aug 7th',
+    releaseTime: 'Official Launch: Aug 8th',
     startAt: 'Aug 8th, 12:30 UTC',
     status: false,
     link: `/ido-launchpad/releap/public-sale`,
@@ -65,8 +65,8 @@ const publicReleap = {
     endTime: '2023-08-09T12:00:00 Z',
     description: [
         <>
-            <p>Initial Marketcap</p>
-            <p>491,400 USD</p>
+            <p></p>
+            <p>30,000 USD</p>
         </>,
         <>
             <p>800,000,000</p>
@@ -81,7 +81,7 @@ const publicReleap = {
 
 const dataReleap = {
     title: 'Releap',
-    roundName: 'Community Sale',
+    roundName: 'Community Round',
     avatar: '/images/home/releap.jpg',
     releaseTime: 'Official Launch: Aug 7th',
     startAt: 'Aug 7th, 12:00 UTC',
@@ -91,8 +91,8 @@ const dataReleap = {
     endTime: '2023-08-08T12:00:00 Z',
     description: [
         <>
-            <p>Initial Marketcap</p>
-            <p>491,400 USD</p>
+            <p></p>
+            <p>70,000 USD</p>
         </>,
         <>
             <p>800,000,000</p>
@@ -112,7 +112,7 @@ export default function UpComingPools({ hasInTimeIDOXUI = false, reLeapInTime })
     React.useEffect(() => {
         if (hasInTimeIDOXUI || reLeapInTime) {
             setList([dataReleap, publicReleap, data]);
-        } else setList([dataXUI, data]);
+        } else setList([data]);
     }, [hasInTimeIDOXUI, reLeapInTime]);
 
     return (

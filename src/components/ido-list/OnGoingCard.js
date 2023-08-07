@@ -50,7 +50,6 @@ export const OnGoingCard = ({
 
     const converted = convertTimestamp(endAt)
 
-    console.log('______endtime', converted)
     return (
         <Box
             sx={{
@@ -74,7 +73,7 @@ export const OnGoingCard = ({
                         title={
                             <>
                                 <Typography variant="body2">Progress</Typography>
-                                <Typography variant="body2">Participants: {participants} </Typography>
+                                {/* <Typography variant="body2">Participants: {participants} </Typography> */}
                             </>
                         }
                         subtitle={

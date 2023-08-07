@@ -62,6 +62,16 @@ export default function IDOLaunchpad() {
     }
   }, []);
 
+
+  React.useEffect(() => {
+    if (moment().isAfter('2023-08-07T17:38:00 Z')) {
+      setHasOutTimeIDOXUI(true);
+    }
+    if (moment().isAfter('2023-08-08T19:00:00 Z')) {
+      setHasInTimeIDOXUI(true);
+    }
+  }, []);
+
   return (
     <Page title="IDO list">
       <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>

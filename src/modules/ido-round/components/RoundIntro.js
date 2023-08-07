@@ -37,7 +37,17 @@ const socials = [
     },
 ];
 
-export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundName, description, imageUrl, projectName }) => {
+export const RoundIntro = ({
+    medium,
+    twitter,
+    discord,
+    telegram,
+    startAt,
+    roundName,
+    description,
+    imageUrl,
+    projectName,
+}) => {
     const renderRoundTitle = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             return 'Releap Protocol';
@@ -45,7 +55,6 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
             return 'XUI - YouSUI Token';
         }
     }, [projectName]);
-
 
     const renderSocial = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
@@ -58,15 +67,14 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                         <img component="img" src="/images/icon/icon-twitter.png" alt="" />
                     </Box>
                     <Box component="a" href={discord} target={'_blank'}>
-                        <img component="img" src='/images/icon/icon-discord.png' alt="" />
+                        <img component="img" src="/images/icon/icon-discord.png" alt="" />
                     </Box>
                     <Box component="a" href="https://docs.releap.xyz/introduction/overview" target={'_blank'}>
-                        <img component="img" src='/images/icon/icon-wpp.png' alt="" />
+                        <img component="img" src="/images/icon/icon-wpp.png" alt="" />
                     </Box>
                 </>
-            )
-        }
-        else {
+            );
+        } else {
             return (
                 <>
                     {socials.map((item, index) => (
@@ -75,43 +83,52 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                         </Box>
                     ))}
                 </>
-            )
+            );
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    }, []);
 
     const renderCountDown = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
-            return <>
-                <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                    Start After
-                </Typography>
+            return (
+                <>
+                    <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                        Start After
+                    </Typography>
 
-                <Box mb={13} sx={{
-                    position: 'relative'
-                }}>
-                    {startAt && roundName === 'Public_Sale' ?
-                        <CountDownBox>
-                            <IDOCountdown
-                                endTime={'2023-08-08T12:30:00'}
-                            />
-                        </CountDownBox> : <CountDownBox>
-                            <IDOCountdown
-                                endTime={'2023-08-07T12:00:00'}
-                            />
-                        </CountDownBox> }
-                </Box>
-            </>
+                    <Box
+                        mb={13}
+                        sx={{
+                            position: 'relative',
+                        }}
+                    >
+                        {startAt && roundName === 'Public_Sale' ? (
+                            <CountDownBox>
+                                <IDOCountdown endTime={'2023-08-08T12:30:00'} />
+                            </CountDownBox>
+                        ) : (
+                            <CountDownBox>
+                                <IDOCountdown endTime={'2023-08-07T12:00:00'} />
+                            </CountDownBox>
+                        )}
+                    </Box>
+                </>
+            );
         } else return;
-    }, [projectName, roundName, startAt])
+    }, [projectName, roundName, startAt]);
 
     return (
         <RoundInfoBox>
             <ImageBox>
-                <img src={imageUrl ? imageUrl : '/images/staking/water-seek.jpg'} alt="" />
-                {imageUrl ? '' : <img src="/logo-1.png" alt="" width={200} className="absolute" />}
+                {imageUrl ? (
+                    <a target="_blank" href="https://releap.xyz/" rel="noreferrer">
+                        <img src={imageUrl} alt="" />
+                    </a>
+                ) : (
+                    <img src={'/images/staking/water-seek.jpg'} alt="" />
+                )}
 
+                {imageUrl ? '' : <img src="/logo-1.png" alt="" width={200} className="absolute" />}
             </ImageBox>
             {renderCountDown()}
 
@@ -119,9 +136,7 @@ export const RoundIntro = ({ medium, twitter, discord, telegram, startAt, roundN
                 <TitleBackgroundBox>
                     <Typography variant="h5">{renderRoundTitle()}</Typography>
                 </TitleBackgroundBox>
-                <SocialBox>
-                    {renderSocial()}
-                </SocialBox>
+                <SocialBox>{renderSocial()}</SocialBox>
             </Stack>
             <Typography variant="body2" lineHeight={2}>
                 {description ? description : info.description}
