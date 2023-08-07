@@ -34,7 +34,7 @@ export default function IDOLaunchpad() {
 
   React.useEffect(() => {
     formatInfoRound('Public_Sale', project);
-    formatInfoRound('Community_Sale', project);
+    // formatInfoRound('Community_Sale', project);
     // formatInfoRound('Public_Sale', XUI_PROJECT_NAME);
     // formatInfoRound('Og_Sale', XUI_PROJECT_NAME);
   }, [formatInfoRound, project]);

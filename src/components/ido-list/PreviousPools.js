@@ -18,6 +18,19 @@ const dataSUA =
   token: "SUA"
 }
 
+const dataReleapCommunity =
+{
+  avatar: 'https://files.yousui.io/IDO/banner/releap.png',
+  title: 'Releap Community Round',
+  description:
+    'Releap Protocol is a fully decentralized social graph that empowers creators to ...',
+  time: '08th August 2023',
+  total: '5,384,615.385',
+  link: '/ido-launchpad/releap/community-sale',
+  token: "REAP"
+}
+
+
 const dataXUIOG =
 {
   avatar: '/images/staking/water-seek.jpg',
@@ -51,6 +64,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
   padding: '16px',
   '& .avatar-ino-previous': {
     width: '35%',
+    height: '210px',
     borderRadius: '10px',
     boxShadow: '0px 0px 15.0429px rgba(159, 241, 236, 0.5), inset 1.50429px 2.25643px 7.52145px rgba(0, 0, 0, 0.3)',
   },
@@ -78,11 +92,13 @@ export default function PreviousPools({ hasOutTimeIDOXUI = false }) {
   const isMobile = useResponsive('down', 'sm');
   const navigate = useNavigate();
   const [list, setList] = useState([dataSUA]);
+
   useEffect(() => {
     if (hasOutTimeIDOXUI) {
-      setList([dataXUIOG, dataXUIPublic, dataSUA]);
+      setList([dataXUIOG, dataXUIPublic, dataSUA, dataReleapCommunity]);
     }
   }, [hasOutTimeIDOXUI])
+
   return (
     <Box mt={20} pb={20} position="relative">
       <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
