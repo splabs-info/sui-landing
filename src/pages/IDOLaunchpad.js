@@ -24,8 +24,6 @@ import { Link } from 'react-router-dom';
 export default function IDOLaunchpad() {
   let project = 'Releap';
 
-  const currentTime = moment();
-
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
@@ -33,26 +31,28 @@ export default function IDOLaunchpad() {
   // const [reLeapInTime, setReleapInTime] = React.useState();
   // const [reLeapOutTime, setReleapOutTime] = React.useState();
   const { formatInfoRound, onGoing } = useFormatRound();
+  const [onGoingPools, setOnGoingPools] = React.useState(null);
 
   React.useEffect(() => {
     formatInfoRound('Public_Sale', project);
     formatInfoRound('Community_Sale', project);
   }, [formatInfoRound, project]);
 
-  const renderOnGoing = React.useCallback(() => {
-    if (isEmpty(onGoing)) return null;
-    const com = onGoing.find((item) => item?.name === 'Community_Sale');
-    if (!com) return;
-
-    if (currentTime.isAfter(toNumber(com.startAt))) {
-      return <OnGoingPools releapRound={onGoing} />
+  React.useEffect(() => {
+    if (onGoing.length > 0) {
+      const currentTime = moment();
+      const tempData = [];
+      for (const iterator of onGoing) {
+        if (
+          currentTime.isAfter(moment(parseInt(iterator.startAt))) &&
+          currentTime.isBefore(moment(parseInt(iterator.endAt)))
+        ) {
+          tempData.push(iterator);
+        }
+      }
+      setOnGoingPools(tempData);
     }
-    if (currentTime.isAfter(toNumber(com.endAt))) {
-      return <></>;
-    }
-  }, [currentTime, onGoing]);
-
-  const renderUpComing = React.useCallback(() => { }, []);
+  }, [onGoing]);
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
@@ -62,10 +62,6 @@ export default function IDOLaunchpad() {
       setHasInTimeIDOXUI(true);
     }
   }, []);
-
-  React.useEffect(() => {
-    renderUpComing();
-  }, [renderUpComing]);
 
   return (
     <Page title="IDO list">
@@ -110,14 +106,8 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          {/* <OnGoingPools releapRound={onGoing} /> */}
-          {renderOnGoing()}
-          {/* {hasInTimeIDOXUI && !hasOutTimeIDOXUI && (
-            <OnGoingPools
-              releapRound={onGoing}
-            />
-          )} */}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} reLeapInTime={isEmpty(onGoing)} />
+          {onGoingPools && onGoingPools.length > 0 ? <OnGoingPools releapRound={onGoingPools} /> : null}
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI}  />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>
