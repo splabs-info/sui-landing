@@ -33,6 +33,7 @@ import useResponsive from '../hooks/useResponsive';
 import NotifiHistory from 'modules/notifi-network/NotifiHistory';
 import { BuyCryptoButton } from 'components/common/CustomButton';
 import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
+import { Maintenance } from 'modules/maintenance';
 
 const config = [
   // { label: 'buy_crypto', link: '/' },
@@ -305,6 +306,7 @@ export default function HeaderSection() {
   return (
     <>
       <Header sx={{ flexDirection: 'column' }} id="header">
+        <Maintenance open={false} />
         <Box sx={{ backgroundColor: 'rgba(11, 55, 77, 1)', width: '100%' }}>
           <Container
             maxWidth={'xl'}
