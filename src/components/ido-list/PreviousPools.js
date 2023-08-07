@@ -25,7 +25,8 @@ const dataReleapCommunity =
   description:
     'Releap Protocol is a fully decentralized social graph that empowers creators to ...',
   time: '08th August 2023',
-  total: '5,384,615.385',
+  total: '5,381,885.385',
+  supply: '5,384,615.385',
   link: '/ido-launchpad/releap/community-sale',
   token: "REAP"
 }
@@ -155,7 +156,8 @@ export default function PreviousPools({ hasOutTimeIDOXUI = false }) {
               />
               <Stack direction="row" justifyContent="space-between" mt={1.5}>
                 <Typography variant="body1">100%</Typography>
-                <Typography variant="body1">{item.total}/{item.total} {item.token}</Typography>
+                {item?.supply ? <Typography variant="body1">{item.total}/{item.supply} {item.token}</Typography> : <Typography variant="body1">{item.total}/{item.total} {item.token}</Typography>}
+                {/* <Typography variant="body1">{item.total}/{item.total} {item.token}</Typography> */}
               </Stack>
             </Box>
           </Grid>
