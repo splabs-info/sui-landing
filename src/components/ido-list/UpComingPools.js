@@ -125,6 +125,9 @@ export default function UpComingPools({ hasInTimeIDOXUI = false, reLeapInTime })
         <TypographyGradient>Pools</TypographyGradient>
       </TitleBox>
       <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, mt: 3 }}>
+        {/* {list?.map((item, index) =>
+          now.isBefore(moment(item.startTime)) ? <UpComingIDOCard {...item} key={index} /> : null
+        )} */}
         {list?.map((item, index) =>
           now.isBefore(moment(item.startTime)) ? <UpComingIDOCard {...item} key={index} /> : null
         )}

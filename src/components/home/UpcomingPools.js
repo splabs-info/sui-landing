@@ -74,7 +74,7 @@ const upComingList = [
     description: 'Social-Fi, NFT',
     openDate: 'Aug 7th, 12:00 UTC',
     link: '/ido-launchpad/releap/community-sale',
-    startTime: '2023-08-07T12:00:00',
+    startTime: '2023-08-08T12:30:00',
     endTime: '',
   },
   {
