@@ -89,11 +89,37 @@ export const RoundIntro = ({
     }, []);
 
     const renderCountDown = React.useCallback(() => {
-        if (projectName === RELEAP_PROJECT_NAME) {
+        if (projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale') {
+            return (
+                <>
+                    {/* <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                        SOLD OUT
+                    </Typography> */}
+
+                    {/* <Box
+                        mb={13}
+                        sx={{
+                            position: 'relative',
+                        }}
+                    > */}
+                        {/* {startAt && roundName === 'Public_Sale' ? (
+                            <CountDownBox>
+                                <IDOCountdown endTime={'2023-08-08T12:30:00'} />
+                            </CountDownBox>
+                        ) : ( */}
+                            {/* <CountDownBox>
+                                <IDOCountdown endTime={'2023-08-08T00:00:00'} />
+                            </CountDownBox> */}
+                        {/* )} */}
+                    {/* </Box> */}
+                </>
+            );
+        }
+        if (projectName === RELEAP_PROJECT_NAME && roundName === 'Public_Sale') {
             return (
                 <>
                     <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                        End After
+                        Start After
                     </Typography>
 
                     <Box
@@ -102,19 +128,17 @@ export const RoundIntro = ({
                             position: 'relative',
                         }}
                     >
-                        {startAt && roundName === 'Public_Sale' ? (
+                        {roundName === 'Public_Sale' ? (
                             <CountDownBox>
                                 <IDOCountdown endTime={'2023-08-08T12:30:00'} />
                             </CountDownBox>
                         ) : (
-                            <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-08T12:00:00'} />
-                            </CountDownBox>
+                            <></>
                         )}
                     </Box>
                 </>
-            );
-        } else return;
+            )
+        };
     }, [projectName, roundName, startAt]);
 
     return (
