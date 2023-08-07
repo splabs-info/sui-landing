@@ -65,7 +65,6 @@ export default function IDOLaunchpad() {
     }
   }, []);
 
-
   React.useEffect(() => {
     if (moment().isAfter('2023-08-07T17:38:00 Z')) {
       setHasOutTimeIDOXUI(true);
@@ -119,7 +118,7 @@ export default function IDOLaunchpad() {
       >
         <Container maxWidth="xl">
           {onGoingPools && onGoingPools.length > 0 ? <OnGoingPools releapRound={onGoingPools} /> : null}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI}  />
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>
