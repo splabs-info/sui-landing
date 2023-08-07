@@ -167,7 +167,7 @@ export const Chart = ({
                         {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
                         {/* -- REAP
                         <Typography variant="body2">200 SUI</Typography> */}
-                        <Typography variant="body2">100 SUI</Typography>
+                        <Typography variant="body2">200 SUI</Typography>
                     </>
                 );
             } else {
