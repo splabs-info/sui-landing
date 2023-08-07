@@ -51,7 +51,9 @@ export default function IDOLaunchpad() {
           tempData.push(iterator);
         }
       }
-      setOnGoingPools(tempData);
+      if (tempData.length > 0) {
+        setOnGoingPools(tempData);
+      }
     }
   }, [onGoing]);
 
