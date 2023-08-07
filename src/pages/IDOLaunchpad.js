@@ -16,7 +16,6 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
-import { XUI_PROJECT_NAME } from 'onchain/constants';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -35,7 +34,7 @@ export default function IDOLaunchpad() {
 
   React.useEffect(() => {
     formatInfoRound('Public_Sale', project);
-    formatInfoRound('Public_Sale', project);
+    formatInfoRound('Community_Sale', project);
     // formatInfoRound('Public_Sale', XUI_PROJECT_NAME);
     // formatInfoRound('Og_Sale', XUI_PROJECT_NAME);
   }, [formatInfoRound, project]);
