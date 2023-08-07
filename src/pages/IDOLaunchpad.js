@@ -16,6 +16,7 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
+import { XUI_PROJECT_NAME } from 'onchain/constants';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -34,7 +35,9 @@ export default function IDOLaunchpad() {
 
   React.useEffect(() => {
     formatInfoRound('Public_Sale', project);
-    formatInfoRound('Community_Sale', project);
+    formatInfoRound('Public_Sale', project);
+    // formatInfoRound('Public_Sale', XUI_PROJECT_NAME);
+    // formatInfoRound('Og_Sale', XUI_PROJECT_NAME);
   }, [formatInfoRound, project]);
 
   React.useEffect(() => {
@@ -58,6 +61,15 @@ export default function IDOLaunchpad() {
       setHasOutTimeIDOXUI(true);
     }
     if (moment().isAfter('2023-07-20T12:00:00 Z')) {
+      setHasInTimeIDOXUI(true);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (moment().isAfter('2023-08-07T17:38:00 Z')) {
+      setHasOutTimeIDOXUI(true);
+    }
+    if (moment().isAfter('2023-08-08T19:00:00 Z')) {
       setHasInTimeIDOXUI(true);
     }
   }, []);
@@ -106,7 +118,7 @@ export default function IDOLaunchpad() {
       >
         <Container maxWidth="xl">
           {onGoingPools && onGoingPools.length > 0 ? <OnGoingPools releapRound={onGoingPools} /> : null}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI}  />
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>
