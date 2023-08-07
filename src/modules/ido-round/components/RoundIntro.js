@@ -92,9 +92,9 @@ export const RoundIntro = ({
         if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
-                    <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                    {/* <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
                         Start After
-                    </Typography>
+                    </Typography> */}
 
                     <Box
                         mb={13}
