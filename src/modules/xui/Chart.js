@@ -106,7 +106,7 @@ export const Chart = ({
                             <Typography variant="body2">IDO Launchpad Logic: FCFS</Typography>{' '}
                         </li>
                         <li>
-                            <Typography variant="body2">TGE Claim Date & Time : 11:00 AM (UTC), 10th August</Typography>{' '}
+                            <Typography variant="body2">TGE Claim Date & Time: 11:00 AM (UTC), 10th August</Typography>{' '}
                         </li>
                     </>
                 );
