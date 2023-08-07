@@ -55,6 +55,7 @@ const data = {
 };
 const publicReleap = {
     title: 'Releap',
+    roundName: 'Public Sale',
     avatar: '/images/home/releap.jpg',
     releaseTime: 'Official Launch: Aug 7th',
     startAt: 'Aug 7th, 12:00 UTC',
@@ -80,6 +81,7 @@ const publicReleap = {
 
 const dataReleap = {
     title: 'Releap',
+    roundName: 'Community Sale',
     avatar: '/images/home/releap.jpg',
     releaseTime: 'Official Launch: Aug 7th',
     startAt: 'Aug 7th, 12:00 UTC',

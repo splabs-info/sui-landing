@@ -46,7 +46,7 @@ export const ADMIN_STORAGE = '0xd3f4b70826c7fe8eecdcc2c2d59d8403eb7099333ed8a0f5
 //     '0x6c6c3ca843e7800e9742c1047f2a30bfcd0d7ced79585754fcfa0b3b79570d2b'
 
 // export const ADMIN_STORAGE = '0x56a52fb1ad2e6f32ceaf650d8352f60f81db56554511227ef5652b3f64784bad'
-export const XUI_TYPE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c::xui::XUI'
+// export const XUI_TYPE = '0xd266c3b4078511ee857583b6ea48eacfcd192b5a3f28e7e975079b3dd64ade4c::xui::XUI'
 
 // Staking----------
 // export const STAKING_STORAGE = "0xa9f5633eb02a35b7216eb6f81f3cfec6d345f8851ac101a170688c1a67c8b216"
@@ -63,7 +63,7 @@ export const STAKING_STORAGE="0x69a7e714f0b75ce6852175d3fbb0e6d039c3e2f2ea5a81cd
 export const STAKING_PACKAGE_BASE = '0x0f0cdf14bcac51ef9f468600807f4224c97bc21e4480b34a9cfd51eeae63b297'
 export const STAKING_PACKAGE_UPGRADE = '0x901ffb2579cf41deb4ac498a7b0654382f3db138e91f2a208d35380a7c7d7a15'
 
-// export const XUI_TYPE = '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'
+export const XUI_TYPE = '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'
 
 export const XUI_PROJECT_NAME = 'YouSUI';
 export const RELEAP_PROJECT_NAME = 'Releap';
