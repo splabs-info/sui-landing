@@ -67,16 +67,16 @@ const CountDownBox = styled(Box)(({ theme }) => ({
 }));
 
 const upComingList = [
-  {
-    label: 'Go to Launchpad ››',
-    src: 'images/home/releap.jpg',
-    title: 'Releap Protocol Community Round',
-    description: 'Social-Fi, NFT',
-    openDate: 'Aug 7th, 12:00 UTC',
-    link: '/ido-launchpad/releap/community-sale',
-    startTime: '2023-08-08T12:30:00',
-    endTime: '',
-  },
+  // {
+  //   label: 'Go to Launchpad ››',
+  //   src: 'images/home/releap.jpg',
+  //   title: 'Releap Protocol Community Round',
+  //   description: 'Social-Fi, NFT',
+  //   openDate: 'Aug 7th, 12:00 UTC',
+  //   link: '/ido-launchpad/releap/community-sale',
+  //   startTime: '2023-08-08T12:30:00',
+  //   endTime: '',
+  // },
   {
     label: 'Go to Launchpad ››',
     src: 'images/home/releap.jpg',
