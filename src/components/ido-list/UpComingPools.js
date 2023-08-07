@@ -53,23 +53,50 @@ const data = {
         </>,
     ],
 };
+const publicReleap = {
+    title: 'Releap',
+    roundName: 'Public Sale',
+    avatar: '/images/home/releap.jpg',
+    releaseTime: 'Official Launch: Aug 7th',
+    startAt: 'Aug 8th, 12:30 UTC',
+    status: false,
+    link: `/ido-launchpad/releap/public-sale`,
+    startTime: '2023-08-08T12:30:00 Z',
+    endTime: '2023-08-09T12:00:00 Z',
+    description: [
+        <>
+            <p>Initial Marketcap</p>
+            <p>491,400 USD</p>
+        </>,
+        <>
+            <p>800,000,000</p>
+            <p>Total Supply</p>
+        </>,
+        <>
+            <p>Access</p>
+            <p>Any</p>
+        </>,
+    ],
+};
+
 const dataReleap = {
     title: 'Releap',
+    roundName: 'Community Sale',
     avatar: '/images/home/releap.jpg',
     releaseTime: 'Official Launch: Aug 7th',
     startAt: 'Aug 7th, 12:00 UTC',
     status: false,
-    link: `/ido-launchpad/releap/public-sale`,
+    link: `/ido-launchpad/releap/community-sale`,
     startTime: '2023-08-07T12:00:00 Z',
-    endTime: '2023-08-09T12:00:00 Z',
+    endTime: '2023-08-08T12:00:00 Z',
     description: [
         <>
-            <p>100,000 $</p>
-            <p></p>
+            <p>Initial Marketcap</p>
+            <p>491,400 USD</p>
         </>,
         <>
-            <p>10,4M $</p>
-            <p>Valuation</p>
+            <p>800,000,000</p>
+            <p>Total Supply</p>
         </>,
         <>
             <p>Access</p>
@@ -78,15 +105,15 @@ const dataReleap = {
     ],
 };
 
-export default function UpComingPools({ hasInTimeIDOXUI = false }) {
+export default function UpComingPools({ hasInTimeIDOXUI = false, reLeapInTime }) {
     const [list, setList] = React.useState([]);
 
     // console.log(hasInTimeIDOXUI);
     React.useEffect(() => {
-        if (hasInTimeIDOXUI) {
-            setList([dataReleap, data]);
+        if (hasInTimeIDOXUI || reLeapInTime) {
+            setList([dataReleap, publicReleap, data]);
         } else setList([dataXUI, data]);
-    }, [hasInTimeIDOXUI]);
+    }, [hasInTimeIDOXUI, reLeapInTime]);
 
     return (
         <Box my={20} position="relative">

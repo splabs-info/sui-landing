@@ -40,7 +40,7 @@ export const IDOParticipated = ({ myIDOs }) => {
                             textShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
                         }}
                     >
-                        {myIDOs ? myIDOs.length : '0'}/3
+                        {myIDOs ? myIDOs.length : '0'}/4
                     </Typography>
                     <Link to={`/claim-tokens`}>
                         <BorderGradientButton sx={{ width: 120 }}>Claim</BorderGradientButton>

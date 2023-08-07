@@ -74,7 +74,7 @@ const CountDownBox = styled(Box)(({ theme }) => ({
 }));
 
 
-export const UpComingIDOCard = ({ avatar, releaseTime, title, description, status, startTime, link, startAt, salePeriod, ...props }) => {
+export const UpComingIDOCard = ({ avatar, releaseTime, title, description, status, startTime, link, startAt, salePeriod, roundName, ...props }) => {
     const navigate = useNavigate();
     return (
         <UpComingIDOBox
@@ -90,7 +90,7 @@ export const UpComingIDOCard = ({ avatar, releaseTime, title, description, statu
             </Box>
             <Box position={'relative'}>
                 <Typography variant={'h4'} mt={3}>{title}</Typography>
-
+                {roundName ? <Typography variant={'h4'}>{roundName}</Typography> : ''}
                 {startTime &&
                     <CountDownBox>
                         <IDOCountdown

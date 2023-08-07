@@ -92,6 +92,7 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
     const fetchRefund = React.useCallback(async () => {
         const currentTime = moment();
         const dynamicFields = findRefund();
+        if(!dynamicFields) return;
         try {
             if (projectName === RELEAP_PROJECT_NAME) {
 
@@ -118,7 +119,10 @@ export const Claim = ({ decimals, services, claimInfo, type, payments, projectNa
 
                 const refundRangeTime = moment(toNumber(info?.data?.content?.fields.refund_range_time))
 
-                if (currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds'))) {
+                // console.log('startRefundTime___', startRefundTime.format('LLLL'))
+                // console.log('___123123',currentTime.isBefore(moment(startRefundTime).add(refundRangeTime, 'milliseconds')))
+                // console.log('__current time', currentTime.format('LLLL'))
+                if (currentTime.isBefore(moment(startRefundTime))) {
                     setRefundState('REFUND REQUEST (NOT TIME)')
                     return setCanRefund(false)
                 }

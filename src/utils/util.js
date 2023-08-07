@@ -1,5 +1,6 @@
 import { toNumber, isNumber } from 'lodash';
 import * as moment from 'moment';
+import numeral from 'numeral';
 export const getVideoCover = async (file, seekTo = 0.0) => {
     return new Promise((resolve, reject) => {
         // load the file to a video player

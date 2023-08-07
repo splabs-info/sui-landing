@@ -2,11 +2,10 @@ import { SuiClient, getFullnodeUrl } from '@mysten/sui.js/client';
 import { PACKAGE_BASE } from 'onchain/constants';
 
 const client = new SuiClient({
-    url: getFullnodeUrl('testnet'),
+    url: getFullnodeUrl('mainnet'),
 });
 
 export const subscribe = async (setHasEvent) => {
-    console.log('do roi')
     try {
         await client.subscribeEvent({
             filter: {

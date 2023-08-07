@@ -1,13 +1,16 @@
 import { Box, Stack, Typography } from '@mui/material';
+import { useWallet } from '@suiet/wallet-kit';
 import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
 import { ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { isEmpty, round, toNumber } from 'lodash';
 import { ChartBox, LiveBox, SaleInfoBox } from 'modules/ido-round/components/RoundStyled';
 import * as moment from 'moment';
+import { RELEAP_PROJECT_NAME, XUI_PROJECT_NAME } from 'onchain/constants';
 import React from 'react';
 import { fCurrencyV2 } from 'utils/util';
-import { RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME, XUI_PROJECT_NAME } from 'onchain/constants';
+import { includes } from 'lodash';
+import { IconCircleCheck } from '@tabler/icons-react';
 export const Chart = ({
     startAt,
     roundName,
@@ -19,8 +22,11 @@ export const Chart = ({
     payments,
     symbol,
     projectName,
+    whiteList,
 }) => {
     const isMobile = useResponsive('down', 'sm');
+
+    const wallet = useWallet();
 
     const formattedRatio = React.useMemo(() => {
         if (!isEmpty(payments)) {
@@ -147,21 +153,30 @@ export const Chart = ({
         }
     }, [formattedRatio, projectName, roundName, totalSupply]);
 
+    const inWhiteList = React.useMemo(() => {
+        if (!whiteList || isEmpty(whiteList) || !wallet?.address) return;
+        return includes(whiteList, wallet.address);
+    }, [wallet?.address, whiteList]);
+
     const renderMinPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             if (roundName === 'Public_Sale') {
                 return (
                     <>
-                        -- REAP
+                        {minPurchase ? `${fCurrencyV2(minPurchase, 6)} ${symbol}` : '0'}
+                        {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
+                        {/* -- REAP
+                        <Typography variant="body2">200 SUI</Typography> */}
                         <Typography variant="body2">200 SUI</Typography>
                     </>
                 );
             } else {
                 return (
                     <>
-                        {/* {minPurchase? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'} ={' '}
-                        {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
-                        -- SUI
+                        {minPurchase ? `${fCurrencyV2(minPurchase)} ${symbol}` : '0'}
+                        <Typography variant="body2">100 SUI</Typography>
+                        {/* {fCurrencyV2(minPurchase * toNumber(formattedRatio))} SUI */}
+                        {/* -- SUI */}
                     </>
                 );
             }
@@ -169,23 +184,24 @@ export const Chart = ({
         if (projectName === XUI_PROJECT_NAME) {
             return <>{minPurchase ? fCurrencyV2(minPurchase * toNumber(formattedRatio)) : '0'} SUI</>;
         }
-    }, [formattedRatio, minPurchase, projectName, symbol]);
+    }, [formattedRatio, minPurchase, projectName, roundName, symbol]);
 
     const renderMaxPurchase = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
             if (roundName === 'Public_Sale') {
                 return (
                     <>
-                        -- REAP
+                        {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'}
+                        {/* {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI */}
                         <Typography variant="body2">1,000 SUI</Typography>
                     </>
                 );
             } else {
                 return (
                     <>
-                        {/* {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'} ={' '}
-                {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI */}
-                        -- REAP
+                        {maxPurchase ? `${fCurrencyV2(maxPurchase)} ${symbol}` : '0'}
+                        {/* {fCurrencyV2(maxPurchase * toNumber(formattedRatio))} SUI */}
+                        {/* -- REAP */}
                         <Typography variant='body2'>70,000 USD</Typography>
                     </>
                 );
@@ -194,16 +210,41 @@ export const Chart = ({
         if (projectName === XUI_PROJECT_NAME) {
             return <>{!totalSupply ? '--' : fCurrencyV2(round(totalSupply * formattedRatio, 6), 3)} SUI</>;
         }
-    }, [formattedRatio, maxPurchase, projectName, symbol, totalSupply]);
+    }, [formattedRatio, maxPurchase, projectName, roundName, symbol, totalSupply]);
 
     const percent = React.useMemo(() => {
         if (!totalSold || !totalSupply) return '0';
         const percent = (totalSold / totalSupply) * 100;
-        if (roundName === 'Public_Sale' && percent > 100) return 100;
-        if ((roundName === 'Og_Sale' || roundName === RELEAP_ROUND_NAME) && totalSupply - totalSold < minPurchase)
-            return 100;
+        if (projectName === XUI_PROJECT_NAME && roundName === 'Public_Sale' && percent > 100) return 100;
+
+
+        if (projectName === RELEAP_PROJECT_NAME) {
+            if ((totalSupply - totalSold) < minPurchase) {
+                return 100;
+            } else {
+                return percent;
+            }
+        }
+        if (projectName === XUI_PROJECT_NAME) {
+            if (roundName === 'Og_Sale') {
+                if ((totalSupply - totalSold) < minPurchase) {
+                    return 100;
+                } else {
+                    return percent
+                }
+            } else {
+                return percent
+            }
+        }
+
+        // if ((roundName === 'Og_Sale' || projectName === RELEAP_PROJECT_NAME) && (totalSupply - totalSold) < minPurchase){
+        //     console.log('vao khong')
+
+        //     return 100;
+        // }
         return percent;
-    }, [minPurchase, roundName, totalSold, totalSupply]);
+    }, [minPurchase, projectName, roundName, totalSold, totalSupply]);
+
 
     const renderInfoChart = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
@@ -235,7 +276,11 @@ export const Chart = ({
         if (projectName === RELEAP_PROJECT_NAME) {
             return (
                 <>
-                    -- SUI
+                    {/* 1 {symbol} = {formattedRatio} SUI */}
+                    {formattedRatio} SUI
+                    {/* -- SUI
+                    <Typography variant="body2">0.013 USD</Typography>
+                     */}
                     <Typography variant="body2">0.013 USD</Typography>
                 </>
             );
@@ -250,19 +295,28 @@ export const Chart = ({
     }, [formattedRatio, projectName, symbol]);
     return (
         <ChartBox>
-            <LiveBox>
+            <LiveBox sx={{justifyContent: 'space-between'}}>
                 <Stack direction={'row'} justifyContent={'space-between'}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <img src="/images/icon/icon-lock-2.png" alt="" />
-                        <Typography
-                            sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'normal', display: 'flex' }}
-                        >
-                            <Typography sx={{ fontWeight: 'bold' }} mr={1}>
-                                Start Time:
-                            </Typography>
-                            {startAt ? `${moment(toNumber(startAt)).format('LLLL')}` : 'Start at: 12:00 UTC 20-07-2023'}
-                            {/* {moment(toNumber(startAt)).format('LLLL')} */}
-                        </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: '100%', justifyContent: 'space-between' }}>
+                        <Stack direction={'row'} justifyContent={"space-between"} alignItems={"center"} sx={{width: '100%'}}>
+                            <Box sx={{ display: 'flex' }}>
+                                <img src="/images/icon/icon-lock-2.png" alt="" style={{marginRight: '8px'}}/>
+                                <Typography
+                                    sx={{ fontSize: 16, lineHeight: '24px', color: '#1FD8D1', fontWeight: 'normal', display: 'flex',  }}
+                                >
+                                    <Typography sx={{ fontWeight: 'bold' }} mr={1}>
+                                        Start Time:
+                                    </Typography>
+                                    {startAt ? `${moment(toNumber(startAt)).format('LLLL')}` : 'Start at: 12:00 UTC 20-07-2023'}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <Typography sx={{ display: 'flex', color: `${inWhiteList ? '#1FD8D1' : `rgba(145, 158, 171, 0.8)`}`, fontWeight: 'bold' }}>
+                                    Whitelist
+                                    <IconCircleCheck color={inWhiteList ? '#1FD8D1' : 'rgba(145, 158, 171, 0.8)'} style={{ marginLeft: '8px' }} />
+                                </Typography>
+                            </Box>
+                        </Stack>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}></Box>
                 </Stack>
@@ -272,6 +326,7 @@ export const Chart = ({
                     <ProcessCircleBox
                         radius={100}
                         percent={percent}
+                        projectName={projectName}
                         totalSold={totalSold}
                         totalSupply={totalSupply}
                         roundName={roundName}

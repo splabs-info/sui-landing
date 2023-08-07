@@ -34,7 +34,6 @@ export const Round = ({
     imageUrl,
 }) => {
 
-    console.log('abc______', projectName)
     return (
         <Box>
             <Grid container spacing={3}>
@@ -51,7 +50,8 @@ export const Round = ({
                     />
                 </Grid>
                 <Grid item xs={12} md={8} alignItems={'space-between'}>
-                    <Chart
+                    <Chart 
+                        whiteList={whiteList}
                         symbol={symbol}
                         startAt={startAt}
                         roundName={roundName}

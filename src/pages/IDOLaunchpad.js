@@ -16,18 +16,42 @@ import PreviousPools from 'components/ido-list/PreviousPools';
 import UpComingPools from 'components/ido-list/UpComingPools';
 import useResponsive from 'hooks/useResponsive';
 import moment from 'moment';
-
+import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function IDOLaunchpad() {
-  // Tiep o day
+  let project = 'Releap';
+
   const isDesktop = useResponsive('up', 'md');
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
+  // const [reLeapInTime, setReleapInTime] = React.useState();
+  // const [reLeapOutTime, setReleapOutTime] = React.useState();
+  const { formatInfoRound, onGoing } = useFormatRound();
+  const [onGoingPools, setOnGoingPools] = React.useState(null);
 
+  React.useEffect(() => {
+    formatInfoRound('Public_Sale', project);
+    formatInfoRound('Community_Sale', project);
+  }, [formatInfoRound, project]);
 
+  React.useEffect(() => {
+    if (onGoing.length > 0) {
+      const currentTime = moment();
+      const tempData = [];
+      for (const iterator of onGoing) {
+        if (
+          currentTime.isAfter(moment(parseInt(iterator.startAt))) &&
+          currentTime.isBefore(moment(parseInt(iterator.endAt)))
+        ) {
+          tempData.push(iterator);
+        }
+      }
+      setOnGoingPools(tempData);
+    }
+  }, [onGoing]);
 
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
@@ -36,7 +60,8 @@ export default function IDOLaunchpad() {
     if (moment().isAfter('2023-07-20T12:00:00 Z')) {
       setHasInTimeIDOXUI(true);
     }
-  }, [])
+  }, []);
+
   return (
     <Page title="IDO list">
       <SectionBox sx={{ backgroundImage: "url('/images/background/ido-list-header-bg.png')" }}>
@@ -58,7 +83,11 @@ export default function IDOLaunchpad() {
             <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
               <FrameButton>Apply for Launchpad</FrameButton>
             </a>
-            <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FrameButton>Buy $XUI</FrameButton>
             </a>
             <Link to={'/whitepaper'}>
@@ -76,9 +105,8 @@ export default function IDOLaunchpad() {
         }}
       >
         <Container maxWidth="xl">
-          {/* <OnGoingPools /> */}
-          {hasInTimeIDOXUI && !hasOutTimeIDOXUI && <OnGoingPools />}
-          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} />
+          {onGoingPools && onGoingPools.length > 0 ? <OnGoingPools releapRound={onGoingPools} /> : null}
+          <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI}  />
           <PreviousPools hasOutTimeIDOXUI={hasInTimeIDOXUI && hasOutTimeIDOXUI} />
         </Container>
       </SectionBox>

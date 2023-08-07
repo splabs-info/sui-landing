@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { TabContext, TabPanel } from '@mui/lab';
 import { Box, Container, Grid, InputAdornment, Stack, Tab } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { isValidSuiObjectId } from '@mysten/sui.js';
@@ -9,24 +10,22 @@ import { InputField } from 'components';
 import Page from 'components/common/Page';
 import { SectionBox } from 'components/home/HomeStyles';
 import useResponsive from 'hooks/useResponsive';
-import { isEmpty } from 'lodash';
+import { find, get, isEmpty } from 'lodash';
 import { BuyTokenButton } from 'modules/ido-round/components/RoundStyled';
 import { Round } from 'modules/xui/Round';
+import { SpecialTabList } from 'modules/xui/components/TabList';
 import { STAKING_STORAGE, XUI_TYPE } from 'onchain/constants';
 import { formatEther, handleKeyType } from 'onchain/helpers';
-import { subscribe } from 'onchain/hooks/subscribe';
+// import { subscribe } from 'onchain/hooks/subscribe';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { handleNameRound } from 'utils/util';
 import * as yup from 'yup';
 import { useYouSuiStore } from 'zustand-store/yousui_store';
-import { TabContext, TabPanel } from '@mui/lab';
-import { SpecialTabList } from 'modules/xui/components/TabList';
-import {handleUrl} from 'onchain/utils/common'
 const ReleapContainer = () => {
     let project = 'Releap';
     const isMobile = useResponsive('down', 'sm');
@@ -34,19 +33,17 @@ const ReleapContainer = () => {
     const [hasEvent, setHasEvent] = React.useState(false);
     const [claimInfo, setClaimInfo] = React.useState({});
     const [loading, setLoading] = React.useState(false);
+    const [whiteList, setWhiteList] = React.useState();
     const [totalXUILocked, setTotalXUILocked] = React.useState(0);
     const [tabIndex, setTabIndex] = React.useState('0');
 
     const navigate = useNavigate();
 
-    // const location = useLocation()
-    // project = handleUrl(location?.pathname)
-
     const { round } = useParams();
 
     const formattedRoundName = React.useMemo(() => handleNameRound(round), [round]);
 
-    const { infoRound, services, formatInfoRound } = useFormatRound();
+    const { infoRound, services, policies, formatInfoRound } = useFormatRound();
 
     const { objectIdOGRoleNft, setObjectId, clearObjectId } = useYouSuiStore();
     const wallet = useWallet();
@@ -113,6 +110,11 @@ const ReleapContainer = () => {
         setObjectId(objectId);
         toast.success('Save successful');
     };
+    const findPolicies = React.useCallback(() => {
+        if (!policies || isEmpty(policies)) return;
+        return find(policies, (po) => get(po, 'name.value') === 'policy_whitelist');
+    }, [policies]);
+
     React.useEffect(() => {
         if (
             !wallet?.name &&
@@ -130,7 +132,7 @@ const ReleapContainer = () => {
     }, [wallet?.address, wallet?.connected, wallet?.connecting, wallet?.name, wallet?.status]);
 
     const fetchClaimInfo = React.useCallback(async () => {
-        if (isEmpty(infoRound) || !infoRound || !wallet?.address) return;
+        if (isEmpty(infoRound) || !infoRound || !wallet?.address) return console.log('Invalid fetchClaim info');
         try {
             const info = await provider.getDynamicFieldObject({
                 parentId: infoRound?.id,
@@ -165,7 +167,12 @@ const ReleapContainer = () => {
         const investList = dynamicData?.data?.content?.fields?.invest_list?.fields?.contents.filter(
             (i) => i?.fields.key === wallet?.address
         );
-        if (!investList || isEmpty(investList)) return;
+        if (!investList) return;
+
+        if (isEmpty(investList)) {
+            return setTotalXUILocked(0)
+        }
+
         investList.forEach((i) =>
             i?.fields?.value?.fields?.contents.forEach((e) => {
                 const formattedKey = handleKeyType(XUI_TYPE);
@@ -181,9 +188,23 @@ const ReleapContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet.address, wallet?.connected]);
 
+    const fetWhiteList = React.useCallback(async () => {
+        const whitelist = findPolicies();
+        if (!whitelist || !policies || isEmpty(whitelist)) return;
+
+        const dynamicFields = await provider.getDynamicFieldObject({
+            parentId: whitelist?.parent_id,
+            name: whitelist?.name,
+        });
+        const final = dynamicFields?.data?.content?.fields?.value?.fields?.whitelist?.fields?.contents;
+        setWhiteList(final);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [policies]);
+
     React.useEffect(() => {
         fetchClaimInfo();
-    }, [fetchClaimInfo]);
+        fetWhiteList()
+    }, [fetWhiteList, fetchClaimInfo]);
 
     React.useEffect(() => {
         fetchUserStakingInfo();
@@ -191,6 +212,7 @@ const ReleapContainer = () => {
 
     React.useEffect(() => {
         formatInfoRound(formattedRoundName, project);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formatInfoRound, formattedRoundName, project]);
 
     React.useEffect(() => {
@@ -227,11 +249,16 @@ const ReleapContainer = () => {
         }
     }, []);
 
-    React.useEffect(() => {
-        subscribe(setHasEvent)
-    }, [])
+    // React.useEffect(() => {
+    //     subscribe(setHasEvent)
+    // }, [])
 
-    
+    React.useEffect(() => {
+        if (infoRound) {
+            console.log(infoRound.name, infoRound.totalSold, infoRound.totalSupply);
+        }
+    }, [infoRound]);
+
     return (
         <Page title="IDO - Reap">
             <SectionBox sx={{ backgroundImage: `url(${IDObackground})` }}>
@@ -309,15 +336,13 @@ const ReleapContainer = () => {
                                                 )}
 
                                             </Stack>
-
                                         </Grid>
                                     </Grid>
-
                                     <TabPanel value={tabIndex} sx={{ padding: { md: '32px 0 0', xs: '32px 8px 0' } }}>
                                         <Round
                                             services={services}
                                             claimInfo={claimInfo}
-                                            // whiteList={whiteList}
+                                            whiteList={whiteList}
                                             iconUrl={infoRound?.iconUrl}
                                             totalXUILocked={totalXUILocked}
                                             purchaseType={infoRound?.purchaseType}
@@ -328,7 +353,6 @@ const ReleapContainer = () => {
                                             discord={infoRound?.discord}
                                             medium={infoRound?.medium}
                                             roundName={formattedRoundName}
-                                            projectName={infoRound?.projectName || 'YouSUI'}
                                             maxPurchase={infoRound?.maxPurchase}
                                             minPurchase={infoRound?.minPurchase}
                                             payments={infoRound?.payments}
@@ -336,6 +360,7 @@ const ReleapContainer = () => {
                                             symbol={infoRound?.symbol}
                                             type={infoRound?.type}
                                             imageUrl={infoRound?.imageUrl}
+                                            projectName={infoRound?.projectName || 'YouSUI'}
                                             tokenName={infoRound?.tokenName}
                                             totalSold={infoRound?.totalSold}
                                             totalSupply={infoRound?.totalSupply}
