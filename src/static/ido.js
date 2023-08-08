@@ -7,7 +7,7 @@ export const hood = {
     link: '',
     startTime: '2023-08-25T12:00:00Z',
     endTime: '2023-08-27T12:00:00Z',
-    startAtSc: '1691497800000',
+    startAtSc: '1692964800000',
     endAtSc: '',
     description: [
         <>
@@ -36,6 +36,7 @@ export const releapPublic = {
     startTime: '2023-08-08T12:30:00Z',
     endTime: '2023-08-09T12:00:00Z',
     startAtSc: '1691497800000',
+    
     endAtSc: '1691584200000',
     description: [
         <>

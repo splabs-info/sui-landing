@@ -1,4 +1,4 @@
-import { Box, Container, Stack, styled, Typography } from '@mui/material';
+import { Box, Container, Grid, Stack, styled, Typography } from '@mui/material';
 import Page from 'components/common/Page';
 import {
     ButtonTitleBox,
@@ -11,7 +11,6 @@ import {
     TypographyGradient,
 } from 'components/home/HomeStyles';
 import { questionsList } from 'components/home/Questions';
-import { Grid } from '@mui/material';
 import CustomSlider from 'components/ido-list/CustomSlider';
 import { OnGoingCard } from 'components/ido-list/OnGoingCard';
 import { UpComingIDOCard } from 'components/ido-list/UpComingIDOCard';
@@ -41,7 +40,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
         width: '75%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10px'
+        gap: '10px',
     },
     [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
@@ -60,55 +59,72 @@ export default function IDOLaunchpad() {
 
     const formattedUpcoming = React.useMemo(() => [releapPublic, hood], []);
 
-    const formattedPrevious = React.useMemo(() => [sua, releapCommunity, xuiOG, xuiPublic, releapPublicPre], [])
+    const formattedPrevious = React.useMemo(() => [sua, xuiOG, xuiPublic, releapCommunity, releapPublicPre], []);
+
     const isDesktop = useResponsive('up', 'md');
     const isMobile = useResponsive('down', 'sm');
     const navigate = useNavigate();
-    // const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
-    // const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
-    // const [allSCRoundPools, setallSCRoundPools] = React.useState(null);
-    const { formatInfoRound, allSCRound } = useFormatRound();
 
-    // console.log('allSCRound__', allSCRound)
+    const { formatInfoRound, allSCRound } = useFormatRound();
 
     const renderOnGoingSection = React.useCallback(() => {
         if (isEmpty(allSCRound)) return;
+
         const currentOnGoing = allSCRound.filter((i) => {
-            const poolRemaining = i?.totalSold - i?.totalSupply;
-            return currentTime.isBetween(moment(toNumber(i.startAt)), moment(toNumber(i.endAt))) && poolRemaining > i?.minPurchase
-        })
+            // const poolRemaining = i?.totalSupply - i?.totalSold;
+            if (
+                currentTime.isBetween(moment(toNumber(i.startAt)), moment(toNumber(i.endAt))) 
+                // (poolRemaining > 0 ? (poolRemaining > i?.minPurchase ? true : false) : true)
+            ) {
+                return i;
+            } else return null;
+        });
 
         return (
             <>
-                {!isEmpty(currentOnGoing) ? <Box mb={20} mt={10} position="relative">
-                    <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
-                    <TitleBox>
-                        <Typography>On-going</Typography>
-                        <TypographyGradient>Pools</TypographyGradient>
-                    </TitleBox>
-                    <Grid container spacing={5} mt={2}>
-                        {currentOnGoing?.map((item, index) => (
-                            <Grid item md={6} xs={12} key={index}>
-                                <OnGoingCard
-                                    link={item?.link}
-                                    roundName={item?.name}
-                                    projectName={item?.projectName}
-                                    imageUrl={item?.imageUrl}
-                                    endAt={item?.endAt}
-                                    totalSupply={item?.totalSupply}
-                                    totalSold={item?.totalSold}
-                                    key={index}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Box> : <></>}
-
+                {!isEmpty(currentOnGoing) ? (
+                    <Box mb={20} mt={10} position="relative">
+                        <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
+                        <TitleBox>
+                            <Typography>On-going</Typography>
+                            <TypographyGradient>Pools</TypographyGradient>
+                        </TitleBox>
+                        <Grid container spacing={5} mt={2}>
+                            {currentOnGoing?.map((item, index) => (
+                                <Grid item md={6} xs={12} key={index}>
+                                    <OnGoingCard
+                                        link={item?.link}
+                                        roundName={item?.name}
+                                        projectName={item?.projectName}
+                                        imageUrl={item?.imageUrl}
+                                        endAt={item?.endAt}
+                                        totalSupply={item?.totalSupply}
+                                        totalSold={item?.totalSold}
+                                        key={index}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+                ) : (
+                    <></>
+                )}
             </>
-        )
-    }, [allSCRound, currentTime])
+        );
+    }, [allSCRound, currentTime]);
     const renderUpComingSection = React.useCallback(() => {
-        const currentUpcoming = formattedUpcoming.filter((i) => currentTime.isBefore(moment(toNumber(i.startAtSc))))
+        // console.log('formattedUpcoming__', moment(formattedUpcoming));
+        const currentUpcoming = formattedUpcoming.filter((i) => {
+            console.log(
+                'currentTime.isBefore(moment(toNumber(i.startAtSc)))',
+                currentTime.isBefore(moment(toNumber(i.startAtSc)))
+            );
+            if (currentTime.isBefore(moment(toNumber(i.startAtSc)))) {
+                return i;
+            } else return null;
+        });
+
+        // console.log('currentUpcoming__', currentUpcoming);
         return (
             <Box my={20} position="relative">
                 <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
@@ -117,15 +133,16 @@ export default function IDOLaunchpad() {
                     <TypographyGradient>Pools</TypographyGradient>
                 </TitleBox>
                 <Stack sx={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 2, mt: 3 }}>
-                    {currentUpcoming.map((item, index) => <UpComingIDOCard {...item} key={index} />)}
+                    {currentUpcoming.map((item, index) => (
+                        <UpComingIDOCard {...item} key={index} />
+                    ))}
                 </Stack>
             </Box>
-        )
+        );
     }, [currentTime, formattedUpcoming]);
 
-
     const renderPreviousSection = React.useCallback(() => {
-        const currentPrevious = formattedPrevious.filter((i) => currentTime.isAfter(moment(toNumber(i.endAt))))
+        const currentPrevious = formattedPrevious.filter((i) => currentTime.isAfter(moment(toNumber(i.endAt))));
 
         return (
             <Box my={20} position="relative">
@@ -146,21 +163,22 @@ export default function IDOLaunchpad() {
                                     cursor: 'pointer',
                                 }}
                                 onClick={() => {
-                                    navigate(item.link)
+                                    navigate(item.link);
                                 }}
                             >
                                 <ContentBox>
-                                    <Box component={'img'} src={item.avatar} alt={item.title} className='avatar-ino-previous' />
-                                    <Box className='content-ino-previous'>
+                                    <Box component={'img'} src={item.avatar} alt={item.title} className="avatar-ino-previous" />
+                                    <Box className="content-ino-previous">
                                         <Typography variant="h3" fontWeight={700}>
                                             {item.title}
                                         </Typography>
-                                        <Typography variant="body1" >Time: {item.time}</Typography>
-                                        <Typography variant="body1" mt={1}>{item.description}</Typography>
+                                        <Typography variant="body1">Time: {item.time}</Typography>
+                                        <Typography variant="body1" mt={1}>
+                                            {item.description}
+                                        </Typography>
                                     </Box>
                                 </ContentBox>
-                                <Box p={3}>
-                                </Box>
+                                <Box p={3}></Box>
                             </Box>
                             <Box mt={3}>
                                 <CustomSlider
@@ -183,22 +201,28 @@ export default function IDOLaunchpad() {
                                 />
                                 <Stack direction="row" justifyContent="space-between" mt={1.5}>
                                     <Typography variant="body1">100%</Typography>
-                                    {item?.supply ? <Typography variant="body1">{item.total}/{item.supply} {item.token}</Typography> : <Typography variant="body1">{item.total}/{item.total} {item.token}</Typography>}
+                                    {item?.supply ? (
+                                        <Typography variant="body1">
+                                            {item.total}/{item.supply} {item.token}
+                                        </Typography>
+                                    ) : (
+                                        <Typography variant="body1">
+                                            {item.total}/{item.total} {item.token}
+                                        </Typography>
+                                    )}
                                 </Stack>
                             </Box>
                         </Grid>
                     ))}
                 </Grid>
             </Box>
-        )
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentTime, formattedPrevious])
+    }, [currentTime, formattedPrevious]);
 
     React.useEffect(() => {
         formatInfoRound('Public_Sale', project);
-        formatInfoRound('Community_Sale', project);
-        // formatInfoRound('Public_Sale', XUI_PROJECT_NAME)
-        // formatInfoRound('Og_Sale', XUI_PROJECT_NAME)
+        // formatInfoRound('Community_Sale', project);
     }, [formatInfoRound, project]);
 
     // React.useEffect(() => {
@@ -218,18 +242,6 @@ export default function IDOLaunchpad() {
     //         }
     //     }
     // }, [allSCRound]);
-
-
-    // React.useEffect(() => {
-    //     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
-    //         setHasOutTimeIDOXUI(true);
-    //     }
-    //     if (moment().isAfter('2023-07-20T12:00:00 Z')) {
-    //         setHasInTimeIDOXUI(true);
-    //     }
-    // }, []);
-
-
 
     return (
         <Page title="IDO list">
@@ -275,17 +287,15 @@ export default function IDOLaunchpad() {
             >
                 <Container maxWidth="xl">
                     {/* {onGoingPools && onGoingPools.length > 0 ? <OnGoingPools releapRound={onGoingPools} /> : null} */}
-                    {renderOnGoingSection()}
-                    {renderUpComingSection()}
-                    {renderPreviousSection()}
                     {/* {allSCRoundPools && allSCRoundPools.length > 0 ? <allSCRoundPools releapRound={allSCRoundPools} /> : null} */}
-
                     {/* <UpComingPools hasInTimeIDOXUI={hasInTimeIDOXUI} /> */}
-
-
                     {/* {renderallSCRoundPool()} */}
                     {/* {renderPrevious()} */}
                     {/* <PreviousPools previous={previous} /> */}
+
+                    {renderOnGoingSection()}
+                    {renderUpComingSection()}
+                    {renderPreviousSection()}
                 </Container>
             </SectionBox>
         </Page>
