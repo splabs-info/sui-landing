@@ -166,7 +166,7 @@ export const RoundIntro = ({
 
                 {imageUrl ? '' : <img src="/logo-1.png" alt="" width={200} className="absolute" />}
             </ImageBox>
-            {renderCountDown()}
+            {/* {renderCountDown()} */}
 
             <Stack direction="row" spacing={2} justifyContent={'space-between'} alignItems={'center'} my={3}>
                 <TitleBackgroundBox>
