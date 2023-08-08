@@ -42,6 +42,7 @@ export const Round = ({
                         discord={discord}
                         twitter={twitter}
                         startAt={startAt}
+                        endAt={endAt}
                         roundName={roundName}
                         description={description}
                         imageUrl={imageUrl}
