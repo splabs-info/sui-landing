@@ -106,7 +106,7 @@ export const Chart = ({
                             <Typography variant="body2">IDO Launchpad Logic: FCFS</Typography>{' '}
                         </li>
                         <li>
-                            <Typography variant="body2">TGE Claim Date & Time: 12:00 PM (UTC), 10th August</Typography>{' '}
+                            <Typography variant="body2">TGE Claim Date & Time: 11:55 AM (UTC), 14th August</Typography>{' '}
                         </li>
                     </>
                 );
@@ -121,7 +121,7 @@ export const Chart = ({
                             <Typography variant="body2">XUI staking snapshot: 5th August 04:00 (UTC)</Typography>{' '}
                         </li>
                         <li>
-                            <Typography variant="body2">TGE Claim Date & Time: 12:00 PM (UTC), 10th August</Typography>{' '}
+                            <Typography variant="body2">TGE Claim Date & Time: 11:55 AM (UTC), 14th August</Typography>{' '}
                         </li>
                     </>
                 );
