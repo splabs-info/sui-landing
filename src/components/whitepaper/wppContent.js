@@ -650,7 +650,7 @@ export const wppContent = [
       {
         checklist: true,
         list: [
-          <>※ Secure IDO</>,
+          <p style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>※ Secure IDO</p>,
           <>
             <IconSquareCheck /> Ensuring Liquidity and Lockup: <br />
             At YouSUI, investor security is paramount. Projects must contribute a minimum of $400–500k to the liquidity
@@ -697,7 +697,10 @@ export const wppContent = [
             YouSUI prioritizes the integrity of project smart contracts. Thorough audits are conducted to ensure no
             blacklisting or restrictions that harm token distribution and the community.
           </>,
-          <>※ Risk-Free IDO</>,
+          <>
+            <img src="/images/whitepaper/risk-free-1.jpg" alt="" style={{ marginBottom: 24, marginTop: 24, }} />
+          </>,
+          <p style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 24 }}>※ Risk-Free IDO</p>,
           <>
             Our risk-free IDO model gives investors unmatched flexibility and the power to make decisions. For each
             risk-free project listed on YouSUI Launchpad, you can claim 100% of your funds back within 24-48 hours of
