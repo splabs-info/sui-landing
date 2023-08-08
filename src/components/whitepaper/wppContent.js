@@ -1,5 +1,6 @@
 import { IconSquare, IconSquareCheck } from '@tabler/icons';
 import { BrandKit } from './BrandKit';
+import Typography from 'theme/overrides/Typography';
 export const wppContent = [
   {
     id: 'introduction-of-yousui',
@@ -641,11 +642,15 @@ export const wppContent = [
     category: 'Investor Protection',
     description: [
       {
-        content: [<img src="/images/whitepaper/investor-protection.jpg" alt="" />],
+        content: [
+          <img src="/images/whitepaper/investor-protection.jpg" alt="" />,
+          'We are committed to prioritizing the security and interests of our investors. Our comprehensive investor protection measures ensure that projects listed on our platform adhere to strict guidelines for the benefit of the community.',
+        ],
       },
       {
         checklist: true,
         list: [
+          <>※ Secure IDO</>,
           <>
             <IconSquareCheck /> Ensuring Liquidity and Lockup: <br />
             At YouSUI, investor security is paramount. Projects must contribute a minimum of $400–500k to the liquidity
@@ -691,6 +696,27 @@ export const wppContent = [
             <br />
             YouSUI prioritizes the integrity of project smart contracts. Thorough audits are conducted to ensure no
             blacklisting or restrictions that harm token distribution and the community.
+          </>,
+          <>※ Risk-Free IDO</>,
+          <>
+            Our risk-free IDO model gives investors unmatched flexibility and the power to make decisions. For each
+            risk-free project listed on YouSUI Launchpad, you can claim 100% of your funds back within 24-48 hours of
+            the token listing if you choose to. This model puts the control back into your hands, enabling you to make
+            investment decisions based on real-time market performance.
+          </>,
+          <>
+            <IconSquareCheck /> Claim Tokens
+            <br />
+            You can "claim tokens" and they will start to become available according to a set timetable or "vesting
+            schedule". Just remember, once you choose to claim the tokens, you can't ask for a refund.
+          </>,
+          <>
+            <IconSquareCheck /> Ask for a Full Refund
+            <br />
+            Alternatively, you can request a full refund of your investment. This option lets you watch the market and
+            make an educated decision about whether to stay in or get out. Within 48 hours of the token listing, you can
+            ask for a complete refund of the money you put in. This option provides an exit strategy if the market goes
+            bad or if you start feeling unsure about your investment.
           </>,
         ],
       },
@@ -1425,9 +1451,7 @@ export const wppContent = [
     category: 'Brand Kit and Community',
     description: [
       {
-        content: [
-          <BrandKit />
-        ],
+        content: [<BrandKit />],
       },
     ],
   },
