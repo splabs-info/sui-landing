@@ -27,16 +27,11 @@ export default function IDOLaunchpad() {
   const isMobile = useResponsive('down', 'sm');
   const [hasInTimeIDOXUI, setHasInTimeIDOXUI] = React.useState(false);
   const [hasOutTimeIDOXUI, setHasOutTimeIDOXUI] = React.useState(false);
-  // const [reLeapInTime, setReleapInTime] = React.useState();
-  // const [reLeapOutTime, setReleapOutTime] = React.useState();
   const { formatInfoRound, onGoing } = useFormatRound();
   const [onGoingPools, setOnGoingPools] = React.useState(null);
 
   React.useEffect(() => {
     formatInfoRound('Public_Sale', project);
-    // formatInfoRound('Community_Sale', project);
-    // formatInfoRound('Public_Sale', XUI_PROJECT_NAME);
-    // formatInfoRound('Og_Sale', XUI_PROJECT_NAME);
   }, [formatInfoRound, project]);
 
   React.useEffect(() => {
@@ -57,20 +52,12 @@ export default function IDOLaunchpad() {
     }
   }, [onGoing]);
 
+
   React.useEffect(() => {
     if (moment().isAfter('2023-07-23T12:00:00 Z')) {
       setHasOutTimeIDOXUI(true);
     }
     if (moment().isAfter('2023-07-20T12:00:00 Z')) {
-      setHasInTimeIDOXUI(true);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (moment().isAfter('2023-08-07T17:38:00 Z')) {
-      setHasOutTimeIDOXUI(true);
-    }
-    if (moment().isAfter('2023-08-08T19:00:00 Z')) {
       setHasInTimeIDOXUI(true);
     }
   }, []);
