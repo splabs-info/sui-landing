@@ -21,13 +21,11 @@ export const Round = ({
     type,
     purchaseType,
     projectName,
-    iconUrl,
     description,
     symbol,
     totalXUILocked,
     fetchClaimInfo,
     tokenName,
-    telegram,
     twitter,
     discord,
     medium,
@@ -50,7 +48,7 @@ export const Round = ({
                     />
                 </Grid>
                 <Grid item xs={12} md={8} alignItems={'space-between'}>
-                    <Chart 
+                    <Chart
                         whiteList={whiteList}
                         symbol={symbol}
                         startAt={startAt}
