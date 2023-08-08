@@ -4,10 +4,10 @@ import { fetchCoreDetails, handleLink } from 'onchain/helpers';
 import { SuiContext } from 'provider/SuiProviderV2';
 import React from 'react';
 export const useFormatRound = () => {
-  let onGo = [];
+  let scRound = [];
   const [infoRound, setInfoRound] = React.useState([]);
   const { projects, provider } = React.useContext(SuiContext);
-  const [onGoing, setOngoing] = React.useState([]);
+  const [allSCRound, setSCRound] = React.useState([]);
   const [policies, setPolicies] = React.useState({});
   const [services, setServices] = React.useState({});
 
@@ -147,20 +147,20 @@ export const useFormatRound = () => {
           participants: info?.participants?.fields?.content,
           link: `/ido-launchpad/${path}/${route}`,
         };
-        onGo.push(formattedRound);
+        scRound.push(formattedRound);
         return formattedRound;
       });
 
-      
 
-      setOngoing([...onGo]);
+
+      setSCRound([...scRound]);
       setInfoRound((pre) => ({
         ...pre,
         ...infoState[0],
       }));
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fetchDynamicFieldObject, fetchDynamicFields, projects]
   );
 
@@ -168,7 +168,7 @@ export const useFormatRound = () => {
     infoRound,
     services,
     policies,
-    onGoing,
+    allSCRound,
     formatInfoRound,
   };
 };
