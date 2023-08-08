@@ -1,4 +1,4 @@
-import { Percentage, TransactionUtil, adjustForSlippage, d } from '@cetusprotocol/cetus-sui-clmm-sdk';
+import { TransactionUtil } from '@cetusprotocol/cetus-sui-clmm-sdk';
 import {
   Box,
   CircularProgress,
@@ -20,14 +20,20 @@ import Page from 'components/common/Page';
 import { SectionBox, TypographyGradient } from 'components/home/HomeStyles';
 import { formatUnits } from 'ethers/lib/utils.js';
 import useResponsive from 'hooks/useResponsive';
-import { SwapSettings } from 'modules/swap-v3/components/SwapSettingsPopup';
-import { AmountBox, AmountStack, ConnectButton, SelectToken, SwapBox } from 'modules/swap-v3/components/SwapStyles';
+import { SwapSettings } from 'modules/cetus-swap/v3/components/SwapSettingsPopup';
+import {
+  AmountBox,
+  AmountStack,
+  ConnectButton,
+  SelectToken,
+  SwapBox,
+} from 'modules/cetus-swap/v3/components/SwapStyles';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
 import Statistic from './components/Statistic';
-import { SwapHelper, cetusLoad, getBalance, getPool, getPreSwapData, sdk } from './init';
+import { SwapHelper, cetusLoad, getBalance, sdk } from './init';
 
 const PYTHNET_CLUSTER_NAME = 'pythnet';
 const connection = new Connection(getPythClusterApiUrl(PYTHNET_CLUSTER_NAME));
@@ -40,24 +46,21 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-export default function SwapV3Page() {
+export default function SwapPage() {
   const isMobile = useResponsive('down', 'sm');
   const [tokenList, setTokenList] = React.useState([]);
   const [sendToken, setSendToken] = React.useState(null);
   const [receiveToken, setReceiveToken] = React.useState(null);
   const wallet = useWallet();
-  const [a2b, setA2B] = React.useState(true);
   const [sendAmount, setSendAmount] = React.useState('0');
   const [receiveAmount, setReceiveAmount] = React.useState('0');
   const [flag, setFlag] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [byAmountIn, setByAmountInt] = React.useState(true);
   const [estimating, setEstimating] = React.useState(true);
   const [slippageSetting, setSlippageSetting] = React.useState(true);
   const [openSettings, setOpenSettings] = React.useState(false);
   const [error, setError] = React.useState('');
   const [bestRoute, setBestRoute] = React.useState(null);
-  // const [tokenListObj, setTokenListObj] = React.useState({});
   const [preSwapData, setPreSwapData] = React.useState(null);
   const [baseBalance, setBaseBalance] = React.useState(0);
   const [quoteBalance, setQuoteBalance] = React.useState(0);
@@ -77,10 +80,8 @@ export default function SwapV3Page() {
         if (symbol.includes('Crypto')) {
           const price = data.productPrice.get(symbol);
           if (price.price && price.confidence) {
-            // console.log(`${symbol}: $${price.price} \xB1$${price.confidence}`);
             pythPrices.set(symbol.replace('Crypto.', '').replace('/USD', ''), price.price);
           } else {
-            // console.log(`${symbol}: price currently unavailable. status is ${[price.status]}`);
           }
         }
       }
@@ -143,56 +144,33 @@ export default function SwapV3Page() {
     e.preventDefault();
     setLoading(true);
     try {
-      if (bestRoute.coinTypeC) {
-        if (!bestRoute?.isExceed) {
-          const allCoinAsset = await sdk.getOwnerCoinAssets(sdk.senderAddress);
-          const routerPayload = TransactionUtil.buildRouterSwapTransaction(
-            sdk,
-            bestRoute?.createTxParams,
-            byAmountIn,
-            allCoinAsset
-          );
-          const transferTxn = await wallet.signAndExecuteTransactionBlock({
-            transactionBlock: routerPayload,
-          });
-          if (transferTxn) {
-            toast.success('Success');
-          } else {
-            toast.error('Fail');
-          }
-        }
+      const allCoinAsset = await sdk.getOwnerCoinAssets(sdk.senderAddress);
+      console.log({
+        sdk,
+        bestRoute,
+        allCoinAsset,
+        swapPartner: SwapHelper.config.swapPartner,
+        slippageSetting,
+      });
+      const routerPayload = await TransactionUtil.buildAggregatorSwapTransaction(
+        sdk,
+        bestRoute,
+        allCoinAsset,
+        SwapHelper.config.swapPartner,
+        slippageSetting
+      );
+      const transferTxn = await wallet.signAndExecuteTransactionBlock({
+        transactionBlock: routerPayload,
+      });
+      if (transferTxn) {
+        toast.success('Success');
       } else {
-        const amount = Number(sendAmount).toFixed(sendToken.decimals).replace('.', '');
-        const coinAmount = new SwapHelper.BN(parseFloat(amount));
-        const pool = bestRoute;
-
-        const slippage = Percentage.fromDecimal(d(slippageSetting));
-
-        const amountLimit = adjustForSlippage(coinAmount, slippage, !byAmountIn);
-
-        const swapPayload = await sdk.Swap.createSwapTransactionPayload({
-          pool_id: pool.poolAddress,
-          coinTypeA: pool.coinTypeA,
-          coinTypeB: pool.coinTypeB,
-          a2b: pool.coinTypeA === sendToken,
-          by_amount_in: true,
-          amount: pool.amountIn,
-          amount_limit: amountLimit.toString(),
-          swap_partner: SwapHelper.config.swapPartner,
-        });
-
-        const transferTxn = await wallet.signAndExecuteTransactionBlock({
-          transactionBlock: swapPayload,
-        });
-        if (transferTxn) {
-          toast.success('Success');
-        } else {
-          toast.error('Fail');
-        }
+        toast.error('Fail');
       }
       setFlag(!flag);
       setLoading(false);
     } catch (error) {
+      console.log(error);
       toast.error(error.toString());
       setLoading(false);
     }
@@ -214,59 +192,42 @@ export default function SwapV3Page() {
     if (document.getElementById('refresh-button')) document.getElementById('refresh-button').classList.add('rotate');
     try {
       if (receiveToken && sendToken) {
-        const currentPool = await getPool(sendToken, receiveToken);
-        const swapPool = currentPool ? await sdk.Pool.getPool([...currentPool.addressMap][0][1]) : null;
         setEstimating(true);
         const amount = Number(sendAmount).toFixed(SwapHelper.CetusHelper.getDecimals(sendToken)).replace('.', '');
         const coinAmount = new SwapHelper.BN(parseFloat(amount));
 
-        let swapRouter = await (async () => {
-          try {
-            return await sdk.Router.price(
-              sendToken,
-              receiveToken,
-              coinAmount,
-              true,
-              slippageSetting,
-              SwapHelper.config.swapPartner
-            );
-          } catch (error) {
-            return false;
-          }
-        })();
+        const routerV2 = (
+          await sdk.RouterV2.getBestRouter(
+            sendToken,
+            receiveToken,
+            coinAmount,
+            true,
+            slippageSetting,
+            SwapHelper.config.swapPartner,
+            undefined,
+            true,
+            false
+          )
+        ).result;
 
-        if (!swapRouter) {
-          swapRouter = swapPool;
-        }
-
-        if (swapRouter) {
-          if (!swapRouter.coinTypeC) {
-            const preSwap = await sdk.Swap.preswap({
-              pool: swapRouter,
-              current_sqrt_price: swapRouter.current_sqrt_price,
-              coinTypeA: swapPool.coinTypeA,
-              coinTypeB: swapPool.coinTypeB,
-              decimalsA: SwapHelper.CetusHelper.getDecimals(swapPool.coinTypeA),
-              decimalsB: SwapHelper.CetusHelper.getDecimals(swapPool.coinTypeB),
-              a2b: swapPool.coinTypeA === sendToken ? true : false,
-              by_amount_in: true,
-              amount: coinAmount.toString(),
-            });
-            swapRouter.amountOut = preSwap.estimatedAmountOut;
-            swapRouter.amountIn = preSwap.estimatedAmountIn;
-            swapRouter.a2b = swapPool.coinTypeA === sendToken ? true : false;
-          }
-
-          setA2B(swapRouter.coinTypeA === sendToken ? true : false);
-          setReceiveAmount(
-            formatUnits(swapRouter.amountOut.toString(), SwapHelper.CetusHelper.getDecimals(receiveToken))
+        if (!routerV2?.isExceed) {
+          setBestRoute(routerV2);
+          const fee = parseFloat(sdk.Swap.calculateSwapFee(routerV2.splitPaths)).toFixed(8);
+          const priceImpact = parseFloat(sdk.Swap.calculateSwapPriceImpact(routerV2.splitPaths)).toFixed(2);
+          const minimumReceived = await SwapHelper.CetusHelper.getMinimumReceived(
+            routerV2.outputAmount,
+            slippageSetting
           );
-
-          const preSwapData = await getPreSwapData(swapRouter, slippageSetting, true);
-          setPreSwapData(preSwapData);
+          setPreSwapData({ fee, priceImpact, minimumReceived });
+          setReceiveAmount(
+            formatUnits(routerV2.outputAmount.toString(), SwapHelper.CetusHelper.getDecimals(receiveToken))
+          );
+        } else {
+          bestRoute(null);
+          setReceiveAmount(0);
+          setPreSwapData(null);
         }
 
-        setBestRoute(swapRouter ? swapRouter : null);
         setEstimating(false);
         setFlag(!flag);
       }
@@ -341,9 +302,6 @@ export default function SwapV3Page() {
                 <SwapBox>
                   <Box component={'form'} onSubmit={handleSwap}>
                     <TypographyGradient variant="h2">Swap</TypographyGradient>
-                    {/* <PriceTypography>
-                          <b>1 {sendToken?.official_symbol}</b> ($0.25) = <b>0.35 {receiveToken?.official_symbol}</b> ($17.15)
-                      </PriceTypography> */}
                     <Stack
                       direction="row"
                       justifyContent={'flex-end'}
@@ -533,19 +491,17 @@ export default function SwapV3Page() {
                             variant="body2"
                             fontWeight={600}
                             color={
-                              preSwapData?.impactPrice && preSwapData?.impactPrice > -1
-                                ? preSwapData.impactPrice < 1
+                              preSwapData && parseFloat(sendAmount)
+                                ? preSwapData.priceImpact < 1
                                   ? 'green'
-                                  : preSwapData?.impactPrice < 10
+                                  : preSwapData?.priceImpact < 10
                                   ? 'yellow'
                                   : 'red'
                                 : 'white'
                             }
                             data-id="price-impact"
                           >
-                            {preSwapData
-                              ? `${preSwapData?.impactPrice > -1 ? `${preSwapData.impactPrice}%` : 'Estimating'}`
-                              : '--'}
+                            {preSwapData && parseFloat(sendAmount) ? `${preSwapData.priceImpact}%` : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="min-received">
                             {preSwapData
@@ -557,43 +513,21 @@ export default function SwapV3Page() {
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'} data-id="network-fee">
                             {preSwapData
-                              ? `${
-                                  preSwapData?.totalFee > -1
-                                    ? `${preSwapData.totalFee} ${SwapHelper.CetusHelper.getToken(sendToken).symbol}`
-                                    : 'Estimating'
-                                }`
+                              ? `${preSwapData.fee} ${SwapHelper.CetusHelper.getToken(sendToken).symbol}`
                               : '--'}
                           </Typography>
                           <Typography variant="body2" fontWeight={600} color={'white'}>
-                            {bestRoute ? (
-                              a2b ? (
-                                <>
-                                  {SwapHelper.CetusHelper.getToken(bestRoute.coinTypeA).symbol}
-                                  {bestRoute?.coinTypeB
-                                    ? ` > ${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeB).symbol}`
-                                    : ''}
-                                  {bestRoute?.coinTypeC
-                                    ? ` > ${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeC).symbol}`
-                                    : ''}
-                                </>
-                              ) : (
-                                <>
-                                  {bestRoute?.coinTypeC
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeC).symbol} > `
-                                    : ''}
-                                  {bestRoute?.coinTypeB
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeB).symbol} > `
-                                    : ''}
-                                  {bestRoute?.coinTypeA
-                                    ? `${SwapHelper.CetusHelper.getToken(bestRoute.coinTypeA).symbol}`
-                                    : ''}
-                                </>
-                              )
-                            ) : (
-                              '--'
-                            )}
+                            {bestRoute
+                              ? bestRoute.splitPaths[0].basePaths.map(
+                                  (item) => SwapHelper.CetusHelper.getToken(item.fromCoin).symbol + ` > `
+                                )
+                              : '--'}
+                            {bestRoute
+                              ? SwapHelper.CetusHelper.getToken(
+                                  bestRoute.splitPaths[0].basePaths[bestRoute.splitPaths[0].basePaths.length - 1].toCoin
+                                ).symbol
+                              : ''}
                           </Typography>
-                          {/* <Typography variant="caption" color={'white'}>{`${sendToken} > ${receiveToken}`}</Typography> */}
                         </Box>
                       </Stack>
                     )}
@@ -609,7 +543,7 @@ export default function SwapV3Page() {
                     <img src="/images/pyth/pyth_logo_lockup_white.png" height={42} width={'auto'} alt="" />
                   </Stack>
                   <Box mt={'56px'} />
-                  <Statistic />
+                  {/* <Statistic /> */}
                 </SwapBox>
               </Grid>
             </Grid>

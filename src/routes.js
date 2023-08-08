@@ -1,11 +1,16 @@
+import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 import Bridge from 'modules/bridge/Bridge';
+import SwapV3Page from 'modules/cetus-swap/v3/SwapV3Page';
+import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
+import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
 import FreeMinting from 'modules/free-minting/FreeMinting';
 import IDORound from 'modules/ido-round';
 import StakingFarming from 'modules/staking/OverallPage';
-import SwapV3Page from 'modules/swap-v3/SwapV3Page';
 import Claims from 'pages/Claims';
 import ClaimsDetail from 'pages/ClaimsDetail';
 import PrivateSale from 'pages/PrivateSale';
+import Governance from 'pages/governance';
+import SuggestionPage from 'pages/governance/SuggestionPage';
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import ClientLayout from './layouts';
@@ -14,11 +19,7 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
-import Governance from 'pages/governance';
-import SuggestionPage from 'pages/governance/SuggestionPage';
-import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
-import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
+import SwapPage from 'modules/cetus-swap/v4/SwapPage';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
@@ -26,7 +27,7 @@ const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));
 
 const XUI = React.lazy(() => import('./pages/XUI'));
 const SUAIDO = React.lazy(() => import('./pages/IDO/SUA'));
-const ReleapIDO = React.lazy(() => import('./pages/Releap'))
+const ReleapIDO = React.lazy(() => import('./pages/Releap'));
 // const TXUIIDO = React.lazy(() => import('./pages/IDO/TXUI'));
 const INOLaunchPad = React.lazy(() => import('./pages/INOLaunchPad'));
 
@@ -135,7 +136,7 @@ export default function Router() {
         },
         {
           path: 'swap',
-          element: <SwapV3Page />,
+          element: <SwapPage />,
         },
         {
           path: 'my-profile',
