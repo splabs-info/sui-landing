@@ -82,7 +82,7 @@ export default function IDOLaunchpad() {
 
         return (
             <>
-                {!isEmpty(currentOnGoing) ? (
+                {/* {!isEmpty(currentOnGoing) ? (
                     <Box mb={20} mt={10} position="relative">
                         <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                         <TitleBox>
@@ -108,17 +108,17 @@ export default function IDOLaunchpad() {
                     </Box>
                 ) : (
                     <></>
-                )}
+                )} */}
             </>
         );
     }, [allSCRound, currentTime]);
     const renderUpComingSection = React.useCallback(() => {
         // console.log('formattedUpcoming__', moment(formattedUpcoming));
         const currentUpcoming = formattedUpcoming.filter((i) => {
-            console.log(
-                'currentTime.isBefore(moment(toNumber(i.startAtSc)))',
-                currentTime.isBefore(moment(toNumber(i.startAtSc)))
-            );
+            // console.log(
+            //     'currentTime.isBefore(moment(toNumber(i.startAtSc)))',
+            //     currentTime.isBefore(moment(toNumber(i.startAtSc)))
+            // );
             if (currentTime.isBefore(moment(toNumber(i.startAtSc)))) {
                 return i;
             } else return null;
@@ -148,7 +148,7 @@ export default function IDOLaunchpad() {
             <Box my={20} position="relative">
                 <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
                 <TitleBox>
-                    <Typography>Upcoming</Typography>
+                    <Typography>Previous</Typography>
                     <TypographyGradient>Pools</TypographyGradient>
                 </TitleBox>
                 <Grid container spacing={5} mt={1}>

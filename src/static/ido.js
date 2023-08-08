@@ -8,6 +8,7 @@ export const hood = {
     startTime: '2023-08-25T12:00:00Z',
     endTime: '2023-08-27T12:00:00Z',
     startAtSc: '1692964800000',
+    
     endAtSc: '',
     description: [
         <>
@@ -35,8 +36,8 @@ export const releapPublic = {
     link: `/ido-launchpad/releap/public-sale`,
     startTime: '2023-08-08T12:30:00Z',
     endTime: '2023-08-09T12:00:00Z',
-    startAtSc: '1691497800000',
-    
+    // startAtSc: '1691497800000',
+    startAtSc: '1691409600000',
     endAtSc: '1691584200000',
     description: [
         <>
@@ -85,12 +86,12 @@ export const releapPublicPre = {
     title: 'Releap Public Round',
     description: 'Releap Protocol is a fully decentralized social graph that empowers creators to ...',
     time: '08th August 2023',
-    total: '5,381,885.385',
+    total: '2,307,692.30769',
     supply: '2,307,692.30769',
     link: '/ido-launchpad/releap/public-sale',
     token: 'REAP',
     startAt: '1691497800000',
-    endAt: '1691584200000',
+    endAt: '1690113600000',
 };
 
 export const xuiOG = {
