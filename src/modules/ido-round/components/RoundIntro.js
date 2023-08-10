@@ -4,6 +4,8 @@ import { SocialBox } from 'components/footer/FooterStyles';
 import { RELEAP_PROJECT_NAME } from 'onchain/constants';
 import React from 'react';
 import { ImageBox, RoundInfoBox, TitleBackgroundBox } from './RoundStyled';
+import * as moment from 'moment';
+import { toNumber } from 'lodash';
 const CountDownBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: '10px',
@@ -43,6 +45,7 @@ export const RoundIntro = ({
     discord,
     telegram,
     startAt,
+    endAt,
     roundName,
     description,
     imageUrl,
@@ -92,54 +95,63 @@ export const RoundIntro = ({
         if (projectName === RELEAP_PROJECT_NAME && roundName === 'Community_Sale') {
             return (
                 <>
-                    {/* <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                        SOLD OUT
-                    </Typography> */}
-
-                    {/* <Box
-                        mb={13}
-                        sx={{
-                            position: 'relative',
-                        }}
-                    > */}
-                        {/* {startAt && roundName === 'Public_Sale' ? (
-                            <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-08T12:30:00'} />
-                            </CountDownBox>
-                        ) : ( */}
-                            {/* <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-08T00:00:00'} />
-                            </CountDownBox> */}
-                        {/* )} */}
-                    {/* </Box> */}
                 </>
             );
         }
         if (projectName === RELEAP_PROJECT_NAME && roundName === 'Public_Sale') {
-            return (
-                <>
-                    <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
-                        Start After
-                    </Typography>
-
-                    <Box
-                        mb={13}
-                        sx={{
-                            position: 'relative',
-                        }}
-                    >
-                        {roundName === 'Public_Sale' ? (
-                            <CountDownBox>
-                                <IDOCountdown endTime={'2023-08-08T12:30:00'} />
-                            </CountDownBox>
-                        ) : (
-                            <></>
-                        )}
-                    </Box>
-                </>
-            )
+            const currentTime = moment();
+            if(currentTime.isBefore(moment(toNumber(startAt)))) {
+                return (
+                    <>
+                        <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                            Start After
+                        </Typography>
+    
+                        <Box
+                            mb={13}
+                            sx={{
+                                position: 'relative',
+                            }}
+                        >
+                            {roundName === 'Public_Sale' ? (
+                                <CountDownBox>
+                                    <IDOCountdown endTime={'2023-08-08T12:30:00'} />
+                                </CountDownBox>
+                            ) : (
+                                <></>
+                            )}
+                        </Box>
+                    </>
+                )
+            }
+            if(currentTime.isBetween(moment(toNumber(startAt)), moment(toNumber(endAt)))) {
+                return (
+                    <>
+                        <Typography sx={{ fontSize: 18, color: '#1FD8D1', textAlign: 'center' }} mt={2}>
+                            End After
+                        </Typography>
+    
+                        <Box
+                            mb={13}
+                            sx={{
+                                position: 'relative',
+                            }}
+                        >
+                            {roundName === 'Public_Sale' ? (
+                                <CountDownBox>
+                                    <IDOCountdown endTime={'2023-08-09T12:30:00'} />
+                                </CountDownBox>
+                            ) : (
+                                <></>
+                            )}
+                        </Box>
+                    </>
+                )
+            } else {
+                return <></>
+            }
         };
-    }, [projectName, roundName, startAt]);
+    }, [endAt, projectName, roundName, startAt]);
 
     return (
         <RoundInfoBox>
@@ -154,7 +166,7 @@ export const RoundIntro = ({
 
                 {imageUrl ? '' : <img src="/logo-1.png" alt="" width={200} className="absolute" />}
             </ImageBox>
-            {renderCountDown()}
+            {/* {renderCountDown()} */}
 
             <Stack direction="row" spacing={2} justifyContent={'space-between'} alignItems={'center'} my={3}>
                 <TitleBackgroundBox>
