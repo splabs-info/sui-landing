@@ -32,7 +32,6 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
-import Statistic from './components/Statistic';
 import { SwapHelper, cetusLoad, getBalance, sdk } from './init';
 
 const PYTHNET_CLUSTER_NAME = 'pythnet';
@@ -209,6 +208,8 @@ export default function SwapPage() {
             false
           )
         ).result;
+
+        console.log(routerV2);
 
         if (!routerV2?.isExceed) {
           setBestRoute(routerV2);

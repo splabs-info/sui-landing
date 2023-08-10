@@ -43,3 +43,5 @@ yousui-landing
 *.lock
 
 *.env*
+
+yarn.lock
