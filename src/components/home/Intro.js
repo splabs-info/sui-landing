@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { formatAddress } from 'setting/format';
 import useResponsive from '../../hooks/useResponsive';
 import { ButtonTitleBox, ContractBox, FrameButton, SectionBox, TextTypography, TitleTypography } from './HomeStyles';
+import ApplyForLaunchpad from 'components/ApplyForLaunchpad';
 
 // const SubTitle = [
 //   'YouSUI works with projects with a high probability of success',
@@ -81,10 +82,7 @@ export default function Intro() {
               }}
             >
               {Title.map((item, i) => (
-                <TitleTypography
-                  key={i}
-                  sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}
-                >
+                <TitleTypography key={i} sx={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 'bold' }}>
                   {item}
                   <br />
                 </TitleTypography>
@@ -137,25 +135,28 @@ export default function Intro() {
             </Box>
 
             <ButtonTitleBox sx={{ gap: '1rem' }}>
-              <a href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.bitget.com/expressly?channelCode=8g69&vipCode=y4ug&languageType=0"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FrameButton>Buy $XUI</FrameButton>
               </a>
-              <a href="https://1wcod92hu2t.typeform.com/to/yrmuPiG6" target="_blank" rel="noreferrer">
-                <FrameButton>Apply for Launchpad</FrameButton>
-              </a>
+              <ApplyForLaunchpad />
               <Link to={'/whitepaper'}>
                 <FrameButton>Whitepaper</FrameButton>
               </Link>
             </ButtonTitleBox>
 
-            <Stack flexDirection={'row'}
+            <Stack
+              flexDirection={'row'}
               gap={isMobile ? 3 : 5}
               mt={6}
               flexWrap={isMobile ? 'wrap' : 'nowrap'}
               justifyContent={isMobile && 'center'}
               sx={{ color: 'white' }}
             >
-              <Box >
+              <Box>
                 <Typography variant="body1" fontSize={isMobile && '0.9rem'}>
                   {' '}
                   Powered by{' '}
@@ -175,7 +176,7 @@ export default function Intro() {
                 </Box>
               </Box>
 
-              <Box >
+              <Box>
                 <Typography
                   variant="body1"
                   mr={2}
@@ -199,7 +200,7 @@ export default function Intro() {
                   <img alt="sui" src="/images/partners/logo-movebit.png" height={isMobile ? 35 : 46} />
                 </Box>
               </Box>
-              <Box >
+              <Box>
                 <Typography
                   variant="body1"
                   mr={2}
@@ -207,9 +208,10 @@ export default function Intro() {
                   display={'flex'}
                   alignItems={'center'}
                 >
-                  <img alt="sui" src="/images/icon/token.gif" width={24} style={{ marginRight: '0.5rem' }} /> $XUI live on{' '}
+                  <img alt="sui" src="/images/icon/token.gif" width={24} style={{ marginRight: '0.5rem' }} /> $XUI live
+                  on{' '}
                 </Typography>
-                
+
                 <Box
                   mt={1}
                   sx={{
@@ -281,7 +283,9 @@ export default function Intro() {
                     ? formatAddress('0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI', 14)
                     : '0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI'}
                 </a>
-                <CopyComponent content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI`} />
+                <CopyComponent
+                  content={`0x3cbae4efb916a6ff23eb4724f6fb5d37c5a342b689a6f308fa10acc944799f84::xui::XUI`}
+                />
               </ContractBox>
             </Box>
           </Grid>
