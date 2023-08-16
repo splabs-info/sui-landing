@@ -1,7 +1,8 @@
-import { Box, Button, Divider, Link, styled, Typography } from '@mui/material';
+import { Box, Button, Link, styled, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLogin } from 'services/auth';
 import { WalletButton } from './wallet-button';
 
 const InstallButton = styled(Button)(({ theme }) => ({
@@ -21,12 +22,15 @@ export const ChooseWalletModal = () => {
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
     const [isInstalledOkx, setIsInstallOkx] = useState(false);
     const { setting } = useSelector((state) => state);
-    const { library } = setting;
+    const { mutateAsync: login } = useLogin();
+    
     const {
+
         select, // select
         configuredWallets, // default wallets
         detectedWallets, // Sui-standard wallets detected from browser env
     } = useWallet();
+
 
     useEffect(() => {
 
@@ -42,6 +46,7 @@ export const ChooseWalletModal = () => {
     }, []);
 
     const handleClick = async (wallet) => {
+        console.log('wallet__', wallet)
         // Check if the wallet is installed
         if (!wallet?.installed) {
             console.log('Wallet is not installed');
@@ -55,13 +60,13 @@ export const ChooseWalletModal = () => {
         try {
             // Attempt to select the wallet
             await select(wallet.name);
+            // login({ address: wallet?.address })
         } catch (error) {
             // Log any error that occurred during selection
             console.error('An error occurred while selecting the wallet: ', error);
             // toast.error('Some thing went wrong, please the other wallet')
         }
     };
-
 
 
     return (

@@ -18,8 +18,9 @@ import AreaInformation from './Information';
 import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
-import StakingTable from './my-staking/StakingTable';
 import { StakingBalance } from './StakingBalance';
+import StakingTable from './my-staking/StakingTable';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 export default function MyInfo() {
     let actionList = [];
     const [action, setAction] = React.useState([])
@@ -44,6 +45,9 @@ export default function MyInfo() {
     const initialTabIndex = Number(tabIndexFromUrl) || 0; // Đảm bảo rằng tabIndex là số
     const [tabIndex, setTabIndex] = useState(initialTabIndex);
 
+    const { currentUser } = useYouSuiStore();
+
+    console.log('currentUser__', currentUser)
     const navigate = useNavigate();
     const handleChangeTab = (index) => {
         setTabIndex(index);
@@ -192,6 +196,7 @@ export default function MyInfo() {
     }, [fetchData, projects]);
 
 
+
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -250,24 +255,18 @@ export default function MyInfo() {
                             </Box>
                         ) : (
                             <>
-                                {/* {isLoadingGetProfile ? (
-                                    <CircularProgress sx={{ margin: '128px auto 128px auto' }} />
-                                ) : ( */}
-                                <>
-                                    <Grid container mb={3}>
-                                        <Grid item xs={12} md={3.5}>
-                                            {!isNull(defaultInfo) && (
-                                                <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
-                                            )}
-                                        </Grid>
-                                        <Grid item xs={12} md={8.5}>
-                                            <OverviewTabs handleChangeTab={handleChangeTab} totalXUILocked={totalXUILocked} />
-                                        </Grid>
+                                <Grid container mb={3}>
+                                    <Grid item xs={12} md={3.5}>
+                                        {!isNull(defaultInfo) && (
+                                            <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
+                                        )}
                                     </Grid>
-                                    {tabIndex === 0 && <OverViewContent />}
-                                    {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action} />}
-                                </>
-                                {/* )} */}
+                                    <Grid item xs={12} md={8.5}>
+                                        <OverviewTabs handleChangeTab={handleChangeTab} totalXUILocked={totalXUILocked} />
+                                    </Grid>
+                                </Grid>
+                                {tabIndex === 0 && <OverViewContent />}
+                                {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action} />}
                             </>
                         )}
                     </Stack>
@@ -277,7 +276,7 @@ export default function MyInfo() {
                 open={openCreateProfile}
                 handleClose={setOpenCreateProfile}
                 data={defaultInfo}
-                id={id}
+                id={currentUser ? currentUser?.account?.ID : null}
                 handleRefresh={() => setFlag(!flag)}
                 setDefaultInfo={setDefaultInfo}
             />
