@@ -1,8 +1,7 @@
 import { Box, Button, Link, styled, Typography } from '@mui/material';
 import { useWallet } from '@suiet/wallet-kit';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLogin } from 'services/auth';
 import { WalletButton } from './wallet-button';
 
 const InstallButton = styled(Button)(({ theme }) => ({
@@ -22,8 +21,7 @@ export const ChooseWalletModal = () => {
     const [isInstalledBitKeep, setIsInstalledBitKeep] = useState(false);
     const [isInstalledOkx, setIsInstallOkx] = useState(false);
     const { setting } = useSelector((state) => state);
-    const { mutateAsync: login } = useLogin();
-    
+
     const {
 
         select, // select
