@@ -345,7 +345,7 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
                                         </Box>
                                     </Box>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-                                        <Box sx={{ flexBasis: '100%' }}>
+                                        <Box sx={{ flexBasis: '100%' }} mb={3}>
                                             <InputField
                                                 id="email_address"
                                                 name="email_address"
