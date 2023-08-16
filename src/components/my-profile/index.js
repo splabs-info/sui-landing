@@ -10,7 +10,10 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLogin } from 'services/auth';
+import { setAccessToken } from 'utils/auth';
 import { findCertificate } from 'utils/util';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { ClaimAvailable } from './ClaimAvailable';
 import { CurrentStakingPool } from './CurrentStakingPool';
 import { IDOParticipated } from './IDOParticipated';
@@ -20,13 +23,14 @@ import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
 import { StakingBalance } from './StakingBalance';
 import StakingTable from './my-staking/StakingTable';
-import { useYouSuiStore } from 'zustand-store/yousui_store';
 export default function MyInfo() {
     let actionList = [];
     const [action, setAction] = React.useState([])
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const wallet = useWallet();
 
+    const { mutateAsync: login } = useLogin();
+    const { storageUser, clearUser } = useYouSuiStore();
     const [defaultInfo, setDefaultInfo] = React.useState({
         gender: 'other',
         avatar: '',
@@ -196,7 +200,6 @@ export default function MyInfo() {
     }, [fetchData, projects]);
 
 
-
     const OverViewContent = () => {
         return (
             <Stack direction="column">
@@ -218,6 +221,15 @@ export default function MyInfo() {
             </Stack>
         );
     }
+
+    React.useEffect(() => {
+        if (!wallet?.address || !wallet?.connected) return;
+        login({ address: wallet?.address }).then((result) => {
+            storageUser(result)
+            setAccessToken(result?.token)
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, wallet?.connected])
 
     return (
         <>
@@ -257,8 +269,8 @@ export default function MyInfo() {
                             <>
                                 <Grid container mb={3}>
                                     <Grid item xs={12} md={3.5}>
-                                        {!isNull(defaultInfo) && (
-                                            <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
+                                        {(!isNull(defaultInfo) || !isEmpty(currentUser)) && (
+                                            <AreaInformation onOpen={handleOpen} id={id} DATA_DEFAULT={!isEmpty(currentUser) ? currentUser?.account : defaultInfo} />
                                         )}
                                     </Grid>
                                     <Grid item xs={12} md={8.5}>
@@ -275,7 +287,7 @@ export default function MyInfo() {
             <CreateProfilePopup
                 open={openCreateProfile}
                 handleClose={setOpenCreateProfile}
-                data={defaultInfo}
+                data={!isEmpty(currentUser) ? currentUser?.account : defaultInfo}
                 id={currentUser ? currentUser?.account?.ID : null}
                 handleRefresh={() => setFlag(!flag)}
                 setDefaultInfo={setDefaultInfo}

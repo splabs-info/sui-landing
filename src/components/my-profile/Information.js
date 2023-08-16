@@ -54,6 +54,9 @@ export default function AreaInformation({ onOpen, DATA_DEFAULT, id }) {
         }
     };
 
+    console.log(
+        'DATA_DEFAULT', DATA_DEFAULT
+    )
     return (
         <>
             <WrapperAreaInformation>

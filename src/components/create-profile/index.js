@@ -10,7 +10,11 @@ import { UpdateProfileSchema } from 'pages/validation';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useUpdateEmailById, useUpdateInfo, useUploadAvatar } from 'services/auth';
+import { setAccessToken } from 'utils/auth';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
+import { useLogin } from 'services/auth';
 import MultipleNationalSelect from './nationality';
+import { useWallet } from '@suiet/wallet-kit';
 
 const StyledForm = styled('form')(({ theme }) => ({
     width: '100%',
@@ -86,8 +90,8 @@ const loading = {
 
 export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh, setDefaultInfo }) => {
     const [isFemale, setIsFemale] = React.useState(data?.gender !== 2);
-
     
+
     const [dataImageUpload, setDataImageUpload] = React.useState(null);
     const { mutateAsync: updateEmail, isLoading } = useUpdateEmailById({
         onSuccess: () => {
@@ -187,6 +191,7 @@ export const CreateProfilePopup = ({ open, handleClose, data, id, handleRefresh,
     const handleClickSex = (type) => {
         setIsFemale(type === 'Female');
     };
+
 
     return (
         <Modal
