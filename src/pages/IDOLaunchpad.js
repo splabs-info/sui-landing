@@ -13,7 +13,6 @@ import {
 } from 'components/home/HomeStyles';
 import { questionsList } from 'components/home/Questions';
 import CustomSlider from 'components/ido-list/CustomSlider';
-import { OnGoingCard } from 'components/ido-list/OnGoingCard';
 import { UpComingIDOCard } from 'components/ido-list/UpComingIDOCard';
 import useResponsive from 'hooks/useResponsive';
 import { isEmpty, toNumber } from 'lodash';
@@ -58,7 +57,9 @@ export default function IDOLaunchpad() {
   let project = 'Releap';
   const currentTime = moment();
 
-  const formattedUpcoming = React.useMemo(() => [releapPublic, hood], []);
+  // const formattedUpcoming = React.useMemo(() => [releapPublic, hood], []);
+
+  const formattedUpcoming = React.useMemo(() => [releapPublic], []);
 
   const formattedPrevious = React.useMemo(() => [sua, xuiOG, xuiPublic, releapCommunity, releapPublicPre], []);
 
@@ -126,6 +127,7 @@ export default function IDOLaunchpad() {
     });
 
     // console.log('currentUpcoming__', currentUpcoming);
+    if (currentUpcoming.length === 0) return null;
     return (
       <Box my={20} position="relative">
         <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
