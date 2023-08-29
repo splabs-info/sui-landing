@@ -32,6 +32,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CustomInput from './components/CustomInput';
+import Statistic from './components/Statistic';
 import { SwapHelper, cetusLoad, getBalance, sdk } from './init';
 
 const PYTHNET_CLUSTER_NAME = 'pythnet';
@@ -544,7 +545,7 @@ export default function SwapPage() {
                     <img src="/images/pyth/pyth_logo_lockup_white.png" height={42} width={'auto'} alt="" />
                   </Stack>
                   <Box mt={'56px'} />
-                  {/* <Statistic /> */}
+                  <Statistic />
                 </SwapBox>
               </Grid>
             </Grid>

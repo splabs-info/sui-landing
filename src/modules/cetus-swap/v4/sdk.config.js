@@ -1,15 +1,15 @@
 import { CetusClmmSDK } from '@cetusprotocol/cetus-sui-clmm-sdk';
-import { clmm_mainnet } from './mainnet.config';
-import { clmm_testnet } from './testnet.config';
+import { mainnet } from './mainnet.config';
+import { testnet } from './testnet.config';
 
 export const currSdkEnv = 'mainnet';
 
 export function buildSdkOptions() {
   switch (currSdkEnv) {
     case 'mainnet':
-      return clmm_mainnet;
+      return mainnet;
     case 'testnet':
-      return clmm_testnet;
+      return testnet;
     default:
   }
 }
