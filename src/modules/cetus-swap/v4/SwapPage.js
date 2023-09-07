@@ -539,9 +539,9 @@ export default function SwapPage() {
               <Grid item md={5} xs={12}>
                 <SwapBox height={'100%'}>
                   <Stack direction={'row'} alignItems={'center'}>
-                    <TypographyGradient variant="h2" mr={1}>
+                    {/* <TypographyGradient variant="h2" mr={1}>
                       Ref.
-                    </TypographyGradient>
+                    </TypographyGradient> */}
                     <img src="/images/pyth/pyth_logo_lockup_white.png" height={42} width={'auto'} alt="" />
                   </Stack>
                   <Box mt={'56px'} />
