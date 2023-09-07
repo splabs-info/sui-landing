@@ -542,7 +542,7 @@ export default function SwapPage() {
                     {/* <TypographyGradient variant="h2" mr={1}>
                       Ref.
                     </TypographyGradient> */}
-                    <img src="/images/pyth/pyth_logo_lockup_white.png" height={42} width={'auto'} alt="" />
+                    <img src="/images/pyth/pyth_logo_lockup_white.svg" height={42} width={'auto'} alt="" />
                   </Stack>
                   <Box mt={'56px'} />
                   <Statistic />
