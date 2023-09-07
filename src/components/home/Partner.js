@@ -109,7 +109,7 @@ const partners = [
   { label: 'flowx', link: 'https://flowx.finance' },
   { label: 'abex', link: 'https://abex.fi/' },
   { label: 'cetus', link: 'https://www.cetus.zone/' },
-  { label: 'pyth', link: 'https://pyth.network/' },
+  { label: 'pyth-white', link: 'https://pyth.network/' },
   { label: 'coin98', link: 'https://coin98.net/' },
   { label: 'vmeta', link: 'https://vmeta3.com/' },
   { label: 'giro', link: 'https://giroswap.com/' },
