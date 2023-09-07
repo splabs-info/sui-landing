@@ -277,6 +277,7 @@ export const SUIWalletContext = ({ children }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
+
   React.useEffect(() => {
     if (provider && wallet?.address && wallet?.connected) {
       fetchBalance();
