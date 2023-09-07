@@ -138,3 +138,14 @@ export function convertTimestamp(timestamp) {
     const formattedDate = date.utc().format("YYYY-MM-DDTHH:mm:ss[Z]");
     return formattedDate;
 }
+
+export function extractSymbolToken(s) {
+    const parts = s.split("::");
+
+    // Check if the string has the expected format
+    if (parts.length < 2) {
+        throw new Error("Invalid string format");
+    }
+
+    return parts[parts.length - 1];
+}

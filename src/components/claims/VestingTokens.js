@@ -12,7 +12,7 @@ import * as moment from 'moment';
 import { CLOCK, LAUNCHPAD_STORAGE, PACKAGE_UPGRADE, RELEAP_ROUND_NAME, RELEAP_PROJECT_NAME } from 'onchain/constants';
 import { useFormatRound } from 'onchain/hooks/use-format-round';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { canClaimVesting } from 'utils/util';
 import { TokenPoolBox } from './ClaimTokens';
@@ -27,10 +27,12 @@ export default function VestingTokens({
 }) {
     const isMobile = useResponsive('down', 'sm');
 
+    const navigate = useNavigate();
     const location = useLocation();
 
     const event = location.state?.eventName;
     const { infoRound, formatInfoRound } = useFormatRound();
+
 
     const renderEventName = React.useCallback(() => {
         if (projectName === RELEAP_PROJECT_NAME) {
@@ -73,6 +75,12 @@ export default function VestingTokens({
             );
         }
     }, [infoRound, projectName]);
+
+    React.useEffect(() => {
+        if(!event) navigate('/claim-tokens')
+        return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [event])
 
     React.useEffect(() => {
         formatInfoRound(event, projectName);

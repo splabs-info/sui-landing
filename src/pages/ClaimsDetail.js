@@ -37,8 +37,6 @@ export default function ClaimsDetail() {
             name: { type: 'address', value: wallet?.address },
         })
 
-
-
         const vestingState = {
             projectName: vestingElement?.data?.content?.fields?.project?.fields?.name,
             tokenType: vestingElement?.data?.content?.fields?.info?.fields?.token_type,

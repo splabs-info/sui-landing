@@ -75,8 +75,6 @@ export const TokenPoolBox = styled(Box)(({ theme, isWithdrawal }) => ({
 
 export default function ClaimTokens({ myIDOs }) {
     const isMobile = useResponsive('down', 'sm');
-
-    console.log('myIDOs___', myIDOs)
     return (
         <Box mb={isMobile ? 5 : 10} mt={20} position="relative">
             <ImgTitleBox component={'img'} src="/images/home/shape.png" alt="" />
