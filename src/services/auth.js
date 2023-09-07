@@ -13,7 +13,9 @@ const authenticationKeys = {
 
 export const useLogin = (configs) => {
     const queryClient = useQueryClient();
-    return useMutation((payload) => authApis.login(payload), {
+    return useMutation((payload) => {
+        return authApis.login(payload)
+    }, {
         onSuccess: (...args) => {
             queryClient.invalidateQueries([...authenticationKeys.user()]);
             configs?.onSuccess?.(...args);
@@ -46,7 +48,9 @@ export const useSendOtp = (configs) => {
 
 export const useUpdateEmailById = (configs) => {
     const queryClient = useQueryClient();
-    return useMutation((payload) => authApis.updateEmailById(payload), {
+    return useMutation((payload) => {
+        return authApis.updateEmailById(payload)
+    }, {
         ...configs,
         onSuccess: (...args) => {
             queryClient.invalidateQueries([...authenticationKeys.user()]);
@@ -101,7 +105,7 @@ export const useGetProfile = (id) => {
 };
 
 export const useGetAccount = (id) => {
-    const { data, ...others } = useQueryWithCache(authenticationKeys.account(id), () => authApis.getAccountById(id));
+    const { data, ...others } = useQueryWithCache(authenticationKeys.account(id), () => id ? authApis.getAccountById(id) : null);
 
     return {
         account: data || {},

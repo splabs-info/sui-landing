@@ -10,7 +10,10 @@ import { SuiContext } from 'provider/SuiProviderV2';
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLogin } from 'services/auth';
+import { setAccessToken } from 'utils/auth';
 import { findCertificate } from 'utils/util';
+import { useYouSuiStore } from 'zustand-store/yousui_store';
 import { ClaimAvailable } from './ClaimAvailable';
 import { CurrentStakingPool } from './CurrentStakingPool';
 import { IDOParticipated } from './IDOParticipated';
@@ -18,14 +21,16 @@ import AreaInformation from './Information';
 import { MyIDOArea } from './MyIDO';
 import { MyINOArea } from './MyINO';
 import OverviewTabs from './OverviewTabs';
-import StakingTable from './my-staking/StakingTable';
 import { StakingBalance } from './StakingBalance';
+import StakingTable from './my-staking/StakingTable';
 export default function MyInfo() {
     let actionList = [];
     const [action, setAction] = React.useState([])
     const [openCreateProfile, setOpenCreateProfile] = React.useState();
     const wallet = useWallet();
 
+    const { mutateAsync: login } = useLogin();
+    const { storageUser, clearUser } = useYouSuiStore();
     const [defaultInfo, setDefaultInfo] = React.useState({
         gender: 'other',
         avatar: '',
@@ -44,6 +49,9 @@ export default function MyInfo() {
     const initialTabIndex = Number(tabIndexFromUrl) || 0; // Đảm bảo rằng tabIndex là số
     const [tabIndex, setTabIndex] = useState(initialTabIndex);
 
+    const { currentUser } = useYouSuiStore();
+
+    console.log('currentUser__', currentUser)
     const navigate = useNavigate();
     const handleChangeTab = (index) => {
         setTabIndex(index);
@@ -214,6 +222,15 @@ export default function MyInfo() {
         );
     }
 
+    React.useEffect(() => {
+        if (!wallet?.address || !wallet?.connected) return;
+        login({ address: wallet?.address }).then((result) => {
+            storageUser(result)
+            setAccessToken(result?.token)
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wallet?.address, wallet?.connected])
+
     return (
         <>
             <SectionBox
@@ -250,24 +267,18 @@ export default function MyInfo() {
                             </Box>
                         ) : (
                             <>
-                                {/* {isLoadingGetProfile ? (
-                                    <CircularProgress sx={{ margin: '128px auto 128px auto' }} />
-                                ) : ( */}
-                                <>
-                                    <Grid container mb={3}>
-                                        <Grid item xs={12} md={3.5}>
-                                            {!isNull(defaultInfo) && (
-                                                <AreaInformation onOpen={handleOpen} DATA_DEFAULT={defaultInfo} id={id} />
-                                            )}
-                                        </Grid>
-                                        <Grid item xs={12} md={8.5}>
-                                            <OverviewTabs handleChangeTab={handleChangeTab} totalXUILocked={totalXUILocked} />
-                                        </Grid>
+                                <Grid container mb={3}>
+                                    <Grid item xs={12} md={3.5}>
+                                        {(!isNull(defaultInfo) || !isEmpty(currentUser)) && (
+                                            <AreaInformation onOpen={handleOpen} id={id} DATA_DEFAULT={!isEmpty(currentUser) ? currentUser?.account : defaultInfo} />
+                                        )}
                                     </Grid>
-                                    {tabIndex === 0 && <OverViewContent />}
-                                    {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action} />}
-                                </>
-                                {/* )} */}
+                                    <Grid item xs={12} md={8.5}>
+                                        <OverviewTabs handleChangeTab={handleChangeTab} totalXUILocked={totalXUILocked} />
+                                    </Grid>
+                                </Grid>
+                                {tabIndex === 0 && <OverViewContent />}
+                                {tabIndex === 1 && <StakingTable fetchUserStakingInfo={fetchUserStakingInfo} actionList={action} />}
                             </>
                         )}
                     </Stack>
@@ -276,8 +287,8 @@ export default function MyInfo() {
             <CreateProfilePopup
                 open={openCreateProfile}
                 handleClose={setOpenCreateProfile}
-                data={defaultInfo}
-                id={id}
+                data={!isEmpty(currentUser) ? currentUser?.account : defaultInfo}
+                id={currentUser ? currentUser?.account?.ID : null}
                 handleRefresh={() => setFlag(!flag)}
                 setDefaultInfo={setDefaultInfo}
             />

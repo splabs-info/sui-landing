@@ -266,15 +266,17 @@ export const SUIWalletContext = ({ children }) => {
     }
   }, [wallet.address]);
 
-  React.useEffect(() => {
-    if (!provider) return;
-    fetchData();
-    setInterval(() => {
-      fetchData();
-    }, 20000);
+  // React.useEffect(() => {
+  //   if (!provider) return;
+  //   fetchData();
+  //   setInterval(() => {
+  //     console.log('fetchData');
+  //     fetchData();
+  //   }, 20000);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
 
   React.useEffect(() => {
     if (provider && wallet?.address && wallet?.connected) {

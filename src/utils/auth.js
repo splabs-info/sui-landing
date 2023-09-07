@@ -33,7 +33,7 @@ export const getAccessToken = () => {
 };
 
 export const setScopes = (scopes) => {
-   window.localStorage.setItem(SCOPES_KEY, Encrypt(JSON.stringify(scopes), SCOPES_KEY));
+    window.localStorage.setItem(SCOPES_KEY, Encrypt(JSON.stringify(scopes), SCOPES_KEY));
 };
 
 export const checkScope = (scope) => {
