@@ -81,17 +81,17 @@ const inoProjects = [
     endTime: '2023-07-19T12:00:00Z',
   },
 
-  {
-    title: 'HooD',
-    avatar: '/images/ino/ino-upcoming-2.jpg',
-    hardCap: '2000',
-    access: 'Tier 1-5',
-    releaseTime: 'Official Launch: Aug 25th',
-    status: false,
-    link: '',
-    startTime: '2023-08-30T11:00:00Z',
-    endTime: '2023-08-30T12:00:00Z',
-  },
+  // {
+  //   title: 'HooD',
+  //   avatar: '/images/ino/ino-upcoming-2.jpg',
+  //   hardCap: '2000',
+  //   access: 'Tier 1-5',
+  //   releaseTime: 'Official Launch: Aug 25th',
+  //   status: false,
+  //   link: '',
+  //   startTime: '2023-08-30T11:00:00Z',
+  //   endTime: '2023-08-30T12:00:00Z',
+  // },
 ];
 
 const INOLaunchPad = () => {
