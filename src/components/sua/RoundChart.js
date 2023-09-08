@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { ProcessCircleBox } from 'components/common/ProcessCircleBox';
+import { ProcessCircleBoxV2 } from 'components/common/ProcessCircleBoxV2';
 import useResponsive from 'hooks/useResponsive';
-import { ChartBox, LiveBox, SaleInfoBox } from './RoundStyled';
-import { fCurrency } from 'utils/format';
-import React from 'react';
 import * as moment from 'moment';
+import React from 'react';
+import { fCurrency } from 'utils/format';
+import { ChartBox, LiveBox, SaleInfoBox } from './RoundStyled';
 
 const calculateDuration = eventTime => moment.duration(Math.max(eventTime - (Math.floor(Date.now())), 0), 'milliseconds');
 
@@ -27,7 +27,7 @@ export const RoundChart = ({ round }) => {
             </LiveBox>
             <Stack direction={isMobile ? 'column' : 'row'} justifyContent={'space-around'} alignItems={'center'}>
                 <Stack justifyContent={'center'} mb={isMobile ? 2 : 0} alignItems={'center'}>
-                    <ProcessCircleBox
+                    <ProcessCircleBoxV2
                         radius={100} percent={100}
                     />
                     {/* <Typography variant='body1' fontWeight={'bold'} textAlign={'center'}>
