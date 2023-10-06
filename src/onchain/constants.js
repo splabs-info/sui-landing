@@ -2,7 +2,7 @@
 
 // Production-real
 export const PACKAGE_BASE = '0x6e80d8698dad095892a8563b9384f6c7dad24ec855323af36882f1db5ddc4d41'
-export const PACKAGE_UPGRADE = '0x8a109f80e3695c56ecaaf634bcf573d6fd6ad4f5893a7c11783baf7187e9841c'
+export const PACKAGE_UPGRADE = '0x03c38d822cffea45024777a5bb1617f591b8e76bfaa2e9d65e64813debfd1f39'
 export const LAUNCHPAD_STORAGE =
     '0xef98dd2ef163816c2ea311eda98703f0efd06cebd9a4b08930fa361f79786eee'
 export const ADMIN_STORAGE = '0xa9c4b0b259b16abd221d3aefa547e4cf522176fa3c3ef8f20ddf67780df07157'
