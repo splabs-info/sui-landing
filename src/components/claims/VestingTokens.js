@@ -212,7 +212,7 @@ function VestingList({
       arguments: [
         tx.object(CLOCK),
         tx.object(LAUNCHPAD_STORAGE),
-        tx.object(projectName),
+        tx.pure(projectName),
         tx.pure(event),
         tx.pure([indexVesting]),
       ],
@@ -238,11 +238,8 @@ function VestingList({
     }
   };
 
-  console.log('projectName', projectName);
-
   const renderButtonState = React.useCallback(() => {
     if (projectName === 'YouSUI') {
-        
       const refund = 3;
       if (isWithdrawal && id < refund && canClaim) {
         return 'Claimed';
