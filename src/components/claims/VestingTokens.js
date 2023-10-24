@@ -229,12 +229,14 @@ function VestingList({
         toast.success('Claim success');
       } else {
         setLoading(false);
-        toast.error('Transaction rejected');
+        // toast.error('Transaction rejected');
+        // toast.error(JSON.stringify(e));
       }
     } catch (e) {
       setLoading(false);
       console.log('error__handleClaim', e);
       toast.error('Transaction rejected');
+      alert(e);
     }
   };
 
