@@ -4,7 +4,7 @@ import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { BorderGradientButton } from 'components/common/CustomButton';
 import { ProcessBarBox } from 'components/common/ProcessBarBox';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import useResponsive from 'hooks/useResponsive';
 import { SocialFooter } from 'layouts/FooterSection';
 import { isEmpty, toNumber } from 'lodash';
@@ -258,6 +258,8 @@ function VestingList({
     }
   }, []);
 
+  console.log({ unlockAmount });
+
   return (
     <TokenPoolBox isWithdrawal={withdrawal}>
       <Grid container alignItems={'center'} spacing={isMobile ? 2 : 5}>
@@ -336,7 +338,7 @@ function VestingList({
                   symbol
                 : 'Loading'}{' '}
               {`(${Intl.NumberFormat('en-US', { maximumSignificantDigits: 10 }).format(
-                ethers.utils.formatUnits(unlockAmount * 0.3, 9)
+                ethers.utils.formatUnits(BigNumber.from(unlockAmount).mul(BigNumber.from(3)).div(BigNumber.from(10)), 9)
               )} SUI)`}
             </Typography>
           </Box>
