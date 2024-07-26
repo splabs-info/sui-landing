@@ -1,6 +1,6 @@
 import AlchemyPay from 'modules/alchemy-pay/AlchemyPay';
 import Bridge from 'modules/bridge/Bridge';
-import SwapV3Page from 'modules/cetus-swap/v3/SwapV3Page';
+import SwapPage from 'modules/cetus-swap/v4/SwapPage';
 import FreeMinting2 from 'modules/free-minting-2/FreeMinting2';
 import FreeMinting3 from 'modules/free-minting-3/FreeMinting3';
 import FreeMinting from 'modules/free-minting/FreeMinting';
@@ -19,7 +19,6 @@ import Homepage from './pages/Homepage';
 import IDOLaunchpad from './pages/IDOLaunchpad';
 import NotFound from './pages/Page404';
 import Whitepaper from './pages/Whitepaper';
-import SwapPage from 'modules/cetus-swap/v4/SwapPage';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const MyProfilePage = React.lazy(() => import('./pages/MyProfile'));

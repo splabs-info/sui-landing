@@ -122,6 +122,11 @@ const partners = [
   // { label: 'titan', link: 'https://titantrading.io/' },
   { label: 'mirror', link: 'https://mirrorworld.fun/' },
   { label: 'maven', link: 'https://www.m-safe.io/maven/home' },
+  {
+    link: 'https://www.omnibtc.finance/',
+    isPng: true,
+    image: '/images/partners/OmniBTC-logo.png',
+  },
 ];
 
 export default function Partner() {
@@ -135,11 +140,17 @@ export default function Partner() {
           </TitleBox>
         </Box>
         <ContainerPartner mt={10}>
-          {partners.map((partner, index) => (
-            <a href={partner.link} target="_blank" rel="noreferrer" key={index}>
-              <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
-            </a>
-          ))}
+          {partners.map((partner, index) =>
+            partner.isPng ? (
+              <a href={partner.link} target="_blank" rel="noreferrer" key={index}>
+                <CustomLogo src={partner.image} alt={partner.label} />
+              </a>
+            ) : (
+              <a href={partner.link} target="_blank" rel="noreferrer" key={index}>
+                <CustomLogo src={`./images/partners/${partner.label}.svg`} alt={partner.label} />
+              </a>
+            )
+          )}
         </ContainerPartner>
       </Box>
     </Container>

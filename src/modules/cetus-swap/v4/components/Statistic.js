@@ -5,8 +5,6 @@ import useResponsive from 'hooks/useResponsive';
 import React from 'react';
 import TradingView from './TradingView';
 
-const connection = new EvmPriceServiceConnection('https://xc-mainnet.pyth.network', { logger: console });
-
 export default function Statistic() {
   const isMobile = useResponsive('down', 'sm');
   const [prices, setPrices] = React.useState(
@@ -22,40 +20,46 @@ export default function Statistic() {
 
   React.useEffect(() => {
     (async () => {
-      // // See Price Service endpoints section below for other endpoints
-      const priceIds = [
-        '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43', //BTC
-        '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace', //ETH
-        '0x23d7315113f5b1d3ba7a83604c44b94d79f4fd69af77f804fc7f920a6dc65744', //SUI
-        '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b', //USDT
-        '0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a', //USDC
-        '0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f', //BNB
-      ];
+      try {
+        // // See Price Service endpoints section below for other endpoints
+        const priceIds = [
+          '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43', //BTC
+          '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace', //ETH
+          '0x23d7315113f5b1d3ba7a83604c44b94d79f4fd69af77f804fc7f920a6dc65744', //SUI
+          '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b', //USDT
+          '0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a', //USDC
+          '0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f', //BNB
+        ];
 
-      const priceName = {
-        '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43': 'BTC',
-        '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace': 'ETH',
-        '0x23d7315113f5b1d3ba7a83604c44b94d79f4fd69af77f804fc7f920a6dc65744': 'SUI',
-        '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b': 'USDT',
-        '0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a': 'USDC',
-        '0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f': 'BNB',
-      };
+        const priceName = {
+          '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43': 'BTC',
+          '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace': 'ETH',
+          '0x23d7315113f5b1d3ba7a83604c44b94d79f4fd69af77f804fc7f920a6dc65744': 'SUI',
+          '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b': 'USDT',
+          '0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a': 'USDC',
+          '0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f': 'BNB',
+        };
 
-      await connection.subscribePriceFeedUpdates(priceIds, (priceFeed) => {
-        const temp = new Map(prices);
-        temp.set(
-          priceName[`0x${priceFeed.id}`],
-          parseFloat(
-            formatUnits(priceFeed.getPriceNoOlderThan(60).price, priceFeed.getPriceNoOlderThan(60).expo * -1)
-          ).toFixed(2)
-        );
-        setPrices(temp);
-        // console.log(`Current price for ${priceName[`0x${priceFeed.id}`]}: ${priceFeed.getPriceNoOlderThan(60).price}.`);
-      });
+        const connection = new EvmPriceServiceConnection('https://xc-mainnet.pyth.network', { logger: console });
 
-      // return async () => {
-      //   await connection.unsubscribePriceFeedUpdates(priceIds);
-      // };
+        await connection.subscribePriceFeedUpdates(priceIds, (priceFeed) => {
+          const temp = new Map(prices);
+          temp.set(
+            priceName[`0x${priceFeed.id}`],
+            parseFloat(
+              formatUnits(priceFeed.getPriceNoOlderThan(60).price, priceFeed.getPriceNoOlderThan(60).expo * -1)
+            ).toFixed(2)
+          );
+          setPrices(temp);
+          // console.log(`Current price for ${priceName[`0x${priceFeed.id}`]}: ${priceFeed.getPriceNoOlderThan(60).price}.`);
+        });
+
+        // return async () => {
+        //   await connection.unsubscribePriceFeedUpdates(priceIds);
+        // };
+      } catch (error) {
+        console.log('error', error);
+      }
     })();
   }, [prices]);
 

@@ -210,8 +210,6 @@ export default function SwapPage() {
           )
         ).result;
 
-        console.log(routerV2);
-
         if (!routerV2?.isExceed) {
           setBestRoute(routerV2);
           const fee = parseFloat(sdk.Swap.calculateSwapFee(routerV2.splitPaths)).toFixed(8);
