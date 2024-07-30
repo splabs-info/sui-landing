@@ -3,15 +3,47 @@ import { IconCreditCard } from '@tabler/icons';
 import { NavLink } from 'react-router-dom';
 import { config } from './init';
 
+const CryptoJS = require('crypto-js');
+
+function generateSignature(timestamp, httpMethod, requestPath, secretKey) {
+  const signatureString = `${timestamp}${httpMethod}${requestPath}`;
+  const signature = CryptoJS.HmacSHA256(signatureString, secretKey).toString(CryptoJS.enc.Base64);
+  return encodeURIComponent(signature);
+}
+
+function getStringToSign(params) {
+  const sortedKeys = Object.keys(params).sort();
+  let s2s = '';
+  sortedKeys.forEach((key) => {
+    if (Array.isArray(params[key])) {
+      return;
+    } else if (params[key]) {
+      s2s += `${key}=${params[key]}&`;
+    }
+  });
+  return s2s.slice(0, -1);
+}
+
+function getLink(type) {
+  const onRampHttpMethod = 'GET';
+  let onRampRequestPath = type === 'buy' ? '/index/rampPageBuy' : '/index/rampPageSell'; // onRamp use this: '/index/rampPageBuy' and offRamp use this:' /index/rampPageSell'
+  const onRampSecretKey = config.appSecret;
+  const appId = config.appId;
+  const timestamp = Date.now().toString();
+  const paramsToSign = {
+    appId: appId,
+    timestamp: timestamp,
+    merchantOrderNo: 'yousui-' + timestamp,
+  };
+  if (type === 'sell') paramsToSign.type = 'sell';
+  const rawDataToSign = getStringToSign(paramsToSign);
+  onRampRequestPath += `?${rawDataToSign}`;
+  const onRampSignature = generateSignature(timestamp, onRampHttpMethod, onRampRequestPath, onRampSecretKey);
+  const link = `${config.link}?${rawDataToSign}&sign=${onRampSignature}`;
+  window.open(link, '', 'width=500,height=700');
+}
+
 export default function AlchemyPay() {
-  const handleOpenBuy = () => {
-    window.open(`${config.link}?appId=${config.appId}`, '', 'width=500,height=700');
-  };
-
-  const handleOpenSell = () => {
-    window.open(`${config.link}?appId=${config.appId}&type=sell`, '', 'width=500,height=700');
-  };
-
   return (
     <Box
       sx={{
@@ -80,7 +112,7 @@ export default function AlchemyPay() {
           }}
         >
           <Button
-            onClick={handleOpenBuy}
+            onClick={() => getLink('buy')}
             sx={{
               display: 'flex',
               flexDirection: 'row',
@@ -98,7 +130,7 @@ export default function AlchemyPay() {
             </Box>
           </Button>
           <Button
-            onClick={handleOpenSell}
+            onClick={() => getLink('sell')}
             sx={{
               display: 'flex',
               flexDirection: 'row',
