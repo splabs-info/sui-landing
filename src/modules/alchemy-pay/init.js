@@ -6,5 +6,3 @@ export const config = {
   crypto: 'USDT',
   fiat: 'MYR',
 };
-
-console.log(JSON.stringify(config));
